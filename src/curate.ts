@@ -2,7 +2,7 @@ import OpenAI from "openai";
 import type { Article, StoryCluster } from "./types.js";
 import { logJson, withHardTimeout, withRetry } from "./util.js";
 
-const MODEL = "anthropic/claude-sonnet-4-7";
+const MODEL = "anthropic/claude-sonnet-4.6";
 const TIMEOUT_MS = 60_000;
 const MAX_ATTEMPTS = 3;
 

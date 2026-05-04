@@ -32,7 +32,13 @@ export async function withRetry<T>(fn: () => Promise<T>, opts: RetryOpts = {}): 
     } catch (err) {
       lastErr = err;
       const msg = err instanceof Error ? err.message : String(err);
-      logJson({ phase: "retry", label, attempt, attempts, status: "error", error: msg });
+      const extra: Record<string, unknown> = {};
+      if (err && typeof err === "object") {
+        const e = err as { status?: unknown; error?: unknown };
+        if ("status" in e && e.status !== undefined) extra.status = e.status;
+        if ("error" in e && e.error !== undefined) extra.providerError = e.error;
+      }
+      logJson({ phase: "retry", label, attempt, attempts, status: "error", error: msg, ...extra });
       if (attempt < attempts) {
         await sleep(baseMs * 2 ** (attempt - 1));
       }

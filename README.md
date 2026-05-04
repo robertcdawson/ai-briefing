@@ -1,5 +1,10 @@
 # AI Briefing
 
+![Status: Work in Progress](https://img.shields.io/badge/status-work_in_progress-yellow)
+
+> [!WARNING]
+> **Work in progress.** This is a personal project under active development. Expect breaking changes, incomplete features, and rough edges. Not yet stable.
+
 A daily, fully-automated AI news podcast. Every morning at ~06:30 Pacific, GitHub Actions:
 
 1. Pulls the last 24h of articles from a curated set of AI news RSS feeds.
@@ -215,7 +220,7 @@ The workflow page has a **Re-run all jobs** button. Use it after fixing the root
 
 ### Change the voice
 
-Set `TTS_VOICE` in Actions variables (or `.env` locally). Valid: `alloy`, `echo`, `fable`, `onyx`, `nova`, `shimmer`. Takes effect on the next run only — past episodes remain in their original voice.
+Set `TTS_VOICE` in Actions variables (or `.env` locally). Valid for `tts-1-hd`: `alloy`, `ash`, `coral`, `echo`, `fable`, `nova`, `onyx`, `sage`, `shimmer`. Takes effect on the next run only — past episodes remain in their original voice.
 
 ### Change the model or feed sources
 

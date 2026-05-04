@@ -15,8 +15,6 @@ const RESPONSE_SCHEMA = {
     },
     segments: {
       type: "array",
-      minItems: 1,
-      maxItems: 3,
       items: {
         type: "object",
         properties: {
@@ -28,7 +26,6 @@ const RESPONSE_SCHEMA = {
           },
           sourceUrls: {
             type: "array",
-            minItems: 1,
             items: { type: "string" },
           },
         },

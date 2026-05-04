@@ -11,7 +11,6 @@ const RESPONSE_SCHEMA = {
   properties: {
     clusters: {
       type: "array",
-      maxItems: 3,
       items: {
         type: "object",
         properties: {
@@ -37,7 +36,6 @@ const RESPONSE_SCHEMA = {
           },
           sources: {
             type: "array",
-            minItems: 1,
             items: {
               type: "object",
               properties: {

@@ -9,8 +9,13 @@ const MODEL = "tts-1-hd";
 const TIMEOUT_MS = 60_000;
 const MAX_ATTEMPTS = 3;
 
-type TTSVoice = "alloy" | "echo" | "fable" | "onyx" | "nova" | "shimmer";
-const VALID_VOICES: TTSVoice[] = ["alloy", "echo", "fable", "onyx", "nova", "shimmer"];
+type TTSVoice =
+  | "alloy" | "ash" | "coral" | "echo" | "fable"
+  | "nova" | "onyx" | "sage" | "shimmer";
+const VALID_VOICES: TTSVoice[] = [
+  "alloy", "ash", "coral", "echo", "fable",
+  "nova", "onyx", "sage", "shimmer",
+];
 
 export interface TTSResult {
   segmentDir: string;

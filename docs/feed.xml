@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd">
+    <channel>
+        <title>AI Briefing</title>
+        <link>https://robertcdawson.github.io/ai-briefing/</link>
+        <description>Daily AI news briefing — the top three stories from the last 24 hours.</description>
+        <lastBuildDate>Mon, 04 May 2026 21:46:34 GMT</lastBuildDate>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+        <generator>https://github.com/jpmonette/feed</generator>
+        <language>en</language>
+        <copyright>© 2026 AI Briefing</copyright>
+        <atom:link href="https://robertcdawson.github.io/ai-briefing/feed.xml" rel="self" type="application/rss+xml"/>
+                <itunes:author>AI Briefing</itunes:author>
+        <itunes:summary>Daily AI news briefing — top three stories from the last 24 hours, fully scripted.</itunes:summary>
+        <itunes:explicit>false</itunes:explicit>
+        <item>
+            <title><![CDATA[AI Briefing — May 4, 2026]]></title>
+            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-05-04.mp3</link>
+            <guid>ai-briefing-2026-05-04</guid>
+            <pubDate>Mon, 04 May 2026 21:46:34 GMT</pubDate>
+            <description><![CDATA[Top 3 AI stories for 2026-05-04:
+
+1. OpenAI and Anthropic both bet big on enterprise deployment
+2. Week one of Musk versus Altman delivers theater and substance
+3. OpenAI opens up its real-time voice infrastructure]]></description>
+            <enclosure length="7600666" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-04.mp3"/>
+                    <itunes:duration>317</itunes:duration>
+            <itunes:explicit>false</itunes:explicit>
+        </item>
+    </channel>
+</rss>

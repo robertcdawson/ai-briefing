@@ -1,0 +1,27 @@
+{
+  "name": "ai-briefing",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Daily AI news podcast pipeline",
+  "scripts": {
+    "build": "tsc --noEmit",
+    "start": "tsx src/index.ts",
+    "test": "tsx test/fetch.smoke.ts"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "execa": "^9.5.1",
+    "feed": "^4.2.2",
+    "openai": "^4.77.0",
+    "rss-parser": "^3.13.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.17.10",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}

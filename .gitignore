@@ -1,0 +1,9 @@
+node_modules/
+.env
+.env.local
+.DS_Store
+*.log
+
+# Local scratch outputs from manual runs (real episodes live in docs/episodes/)
+/tmp/
+/out/

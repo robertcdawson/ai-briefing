@@ -1,0 +1,59 @@
+name: daily
+
+on:
+  schedule:
+    # 13:30 UTC = 06:30 PT during PDT (Mar–Nov), 05:30 PT during PST (Nov–Mar).
+    # See README "Schedule drift" for why we don't bother adjusting.
+    - cron: "30 13 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: daily
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install ffmpeg
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run pipeline
+        env:
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          FEED_BASE_URL: ${{ vars.FEED_BASE_URL }}
+          TTS_VOICE: ${{ vars.TTS_VOICE }}
+        run: npx tsx src/index.ts
+
+      - name: Commit episode
+        run: |
+          if [ -z "$(git status --porcelain docs/)" ]; then
+            echo "No docs/ changes — skipping commit."
+            exit 0
+          fi
+          git config user.email "actions@github.com"
+          git config user.name "github-actions"
+          git add docs/
+          git commit -m "Episode $(date -u +%Y-%m-%d)"
+          git push

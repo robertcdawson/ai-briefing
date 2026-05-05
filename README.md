@@ -87,7 +87,7 @@ sudo apt install ffmpeg      # Debian/Ubuntu
 
 ```bash
 cp .env.example .env
-# edit .env and fill in OPENROUTER_API_KEY, OPENAI_API_KEY, FEED_BASE_URL
+# edit .env and fill in OPENROUTER_API_KEY, OPENAI_API_KEY, FEED_BASE_URL, and PODCAST_* values
 ```
 
 `FEED_BASE_URL` is the public URL where `docs/` will be served — typically `https://USER.github.io/ai-briefing`.
@@ -139,6 +139,15 @@ After ~30s, visit `https://USER.github.io/ai-briefing/feed.xml`. You should see 
 
 Paste your feed URL into https://castfeedvalidator.com. Fix anything red before subscribing on iPhone — Apple is unforgiving about malformed feeds and the cached error state can stick around.
 
+If Cast Feed Validator flags missing Apple metadata, make sure these are set before re-running `npm start`:
+
+- `PODCAST_OWNER_NAME` and `PODCAST_OWNER_EMAIL` (contact metadata)
+- `PODCAST_IMAGE_URL` (show artwork URL)
+- `PODCAST_CATEGORIES` (for example `Technology`)
+- `PODCAST_TYPE` (`episodic` for this project)
+
+The default artwork path is `docs/podcast-cover.jpg`. Place a square JPG there (1400x1400 to 3000x3000), then commit and push it so GitHub Pages can serve it.
+
 ### 9. Configure GitHub Actions
 
 In the repo's **Settings → Secrets and variables → Actions**:
@@ -150,6 +159,14 @@ In the repo's **Settings → Secrets and variables → Actions**:
 **Variables:**
 - `FEED_BASE_URL` — same as `.env`, e.g. `https://USER.github.io/ai-briefing`
 - `TTS_VOICE` — `onyx` (or `alloy`, `echo`, `fable`, `nova`, `shimmer`)
+- `PODCAST_AUTHOR`
+- `PODCAST_SUMMARY`
+- `PODCAST_OWNER_NAME`
+- `PODCAST_OWNER_EMAIL`
+- `PODCAST_IMAGE_URL`
+- `PODCAST_CATEGORIES`
+- `PODCAST_EXPLICIT`
+- `PODCAST_TYPE`
 
 Then **Settings → Actions → General → Workflow permissions** → set to "Read and write permissions" so the workflow can push the daily commit.
 

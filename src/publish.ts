@@ -19,6 +19,17 @@ interface EpisodeRecord {
   pubDate: string;
 }
 
+interface PodcastMetadata {
+  author: string;
+  summary: string;
+  ownerName: string;
+  ownerEmail: string;
+  imageHref: string;
+  categories: string[];
+  explicit: "true" | "false";
+  type: "episodic" | "serial";
+}
+
 export interface PublishResult {
   episodePath: string;
   feedPath: string;
@@ -35,6 +46,7 @@ export async function publish(
   const baseUrl = process.env.FEED_BASE_URL;
   if (!baseUrl) throw new Error("FEED_BASE_URL is not set");
   const trimmedBase = stripTrailingSlash(baseUrl);
+  const metadata = getPodcastMetadata(trimmedBase);
 
   await mkdir(EPISODES_DIR, { recursive: true });
 
@@ -90,8 +102,7 @@ export async function publish(
 
   const baseRss = feed.rss2();
   const finalXml = injectItunesTags(baseRss, {
-    author: "AI Briefing",
-    summary: "Daily AI news briefing — top three stories from the last 24 hours, fully scripted.",
+    metadata,
     items: Object.fromEntries(top.map((r) => [`ai-briefing-${r.date}`, r.durationSeconds])),
   });
 
@@ -180,17 +191,28 @@ function stripTrailingSlash(s: string): string {
 // deterministically: add the namespace, then inject channel + item iTunes tags.
 function injectItunesTags(
   rss: string,
-  opts: { author: string; summary: string; items: Record<string, number> },
+  opts: { metadata: PodcastMetadata; items: Record<string, number> },
 ): string {
   let out = rss.replace(/<rss\s+([^>]*?)>/, (_m, attrs: string) => {
     if (attrs.includes("xmlns:itunes")) return `<rss ${attrs}>`;
     return `<rss ${attrs.trim()} xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd">`;
   });
 
+  const categoryTags = opts.metadata.categories
+    .map((category) => `        <itunes:category text="${xmlEscape(category)}"/>\n`)
+    .join("");
+
   const channelTags =
-    `        <itunes:author>${xmlEscape(opts.author)}</itunes:author>\n` +
-    `        <itunes:summary>${xmlEscape(opts.summary)}</itunes:summary>\n` +
-    `        <itunes:explicit>false</itunes:explicit>\n`;
+    `        <itunes:author>${xmlEscape(opts.metadata.author)}</itunes:author>\n` +
+    `        <itunes:summary>${xmlEscape(opts.metadata.summary)}</itunes:summary>\n` +
+    `        <itunes:owner>\n` +
+    `            <itunes:name>${xmlEscape(opts.metadata.ownerName)}</itunes:name>\n` +
+    `            <itunes:email>${xmlEscape(opts.metadata.ownerEmail)}</itunes:email>\n` +
+    `        </itunes:owner>\n` +
+    `        <itunes:image href="${xmlEscape(opts.metadata.imageHref)}"/>\n` +
+    categoryTags +
+    `        <itunes:explicit>${opts.metadata.explicit}</itunes:explicit>\n` +
+    `        <itunes:type>${opts.metadata.type}</itunes:type>\n`;
 
   if (out.includes("<item>")) {
     out = out.replace("<item>", `${channelTags}        <item>`);
@@ -204,11 +226,53 @@ function injectItunesTags(
     );
     out = out.replace(
       guidPattern,
-      `$1            <itunes:duration>${Math.max(0, Math.round(durationSec))}</itunes:duration>\n            <itunes:explicit>false</itunes:explicit>\n        </item>`,
+      `$1            <itunes:duration>${Math.max(0, Math.round(durationSec))}</itunes:duration>\n            <itunes:explicit>${opts.metadata.explicit}</itunes:explicit>\n            <itunes:episodeType>full</itunes:episodeType>\n        </item>`,
     );
   }
 
   return out;
+}
+
+function getPodcastMetadata(trimmedBase: string): PodcastMetadata {
+  const author = process.env.PODCAST_AUTHOR?.trim() || "AI Briefing";
+  const summary =
+    process.env.PODCAST_SUMMARY?.trim()
+    || "Daily AI news briefing — top three stories from the last 24 hours, fully scripted.";
+  const ownerName = process.env.PODCAST_OWNER_NAME?.trim() || author;
+  const ownerEmail = process.env.PODCAST_OWNER_EMAIL?.trim() || "noreply@example.com";
+  const imageHref =
+    process.env.PODCAST_IMAGE_URL?.trim() || `${trimmedBase}/podcast-cover.jpg`;
+  const categories = parseCategoryList(process.env.PODCAST_CATEGORIES);
+  const explicit = parseExplicitFlag(process.env.PODCAST_EXPLICIT);
+  const type = parsePodcastType(process.env.PODCAST_TYPE);
+
+  return {
+    author,
+    summary,
+    ownerName,
+    ownerEmail,
+    imageHref,
+    categories,
+    explicit,
+    type,
+  };
+}
+
+function parseCategoryList(raw: string | undefined): string[] {
+  if (!raw) return ["Technology"];
+  const items = raw
+    .split(",")
+    .map((value) => value.trim())
+    .filter(Boolean);
+  return items.length > 0 ? items : ["Technology"];
+}
+
+function parseExplicitFlag(raw: string | undefined): "true" | "false" {
+  return raw?.trim().toLowerCase() === "true" ? "true" : "false";
+}
+
+function parsePodcastType(raw: string | undefined): "episodic" | "serial" {
+  return raw?.trim().toLowerCase() === "serial" ? "serial" : "episodic";
 }
 
 function escapeRegex(s: string): string {

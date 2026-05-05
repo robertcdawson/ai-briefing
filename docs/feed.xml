@@ -4,22 +4,37 @@
         <title>AI Briefing</title>
         <link>https://robertcdawson.github.io/ai-briefing/</link>
         <description>Daily AI news briefing — the top three stories from the last 24 hours.</description>
-        <lastBuildDate>Mon, 04 May 2026 21:46:34 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 05 May 2026 16:25:33 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
         <copyright>© 2026 AI Briefing</copyright>
         <atom:link href="https://robertcdawson.github.io/ai-briefing/feed.xml" rel="self" type="application/rss+xml"/>
-        <itunes:author>AI Briefing</itunes:author>
-        <itunes:summary>Daily AI news briefing — top three stories from the last 24 hours, fully scripted.</itunes:summary>
+                <itunes:author>Robert Dawson</itunes:author>
+        <itunes:summary>A daily, fully-automated AI news podcast</itunes:summary>
         <itunes:owner>
-            <itunes:name>AI Briefing</itunes:name>
-            <itunes:email>noreply@example.com</itunes:email>
+            <itunes:name>Robert Dawson</itunes:name>
+            <itunes:email>manatees@gmail.com</itunes:email>
         </itunes:owner>
         <itunes:image href="https://robertcdawson.github.io/ai-briefing/podcast-cover.jpg"/>
-        <itunes:category text="Technology"/>
+        <itunes:category text="News"/>
         <itunes:explicit>false</itunes:explicit>
-        <itunes:type>episodic</itunes:type>
+        <itunes:type>serial</itunes:type>
+        <item>
+            <title><![CDATA[AI Briefing — May 5, 2026]]></title>
+            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-05-05.mp3</link>
+            <guid>ai-briefing-2026-05-05</guid>
+            <pubDate>Tue, 05 May 2026 16:25:33 GMT</pubDate>
+            <description><![CDATA[Top 3 AI stories for 2026-05-05:
+
+1. US moves toward pre-deployment review of frontier models
+2. Researchers gaslight Claude into producing forbidden content
+3. Nature retracts influential ChatGPT-in-education study]]></description>
+            <enclosure length="8596570" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-05.mp3"/>
+                    <itunes:duration>358</itunes:duration>
+            <itunes:explicit>false</itunes:explicit>
+            <itunes:episodeType>full</itunes:episodeType>
+        </item>
         <item>
             <title><![CDATA[AI Briefing — May 4, 2026]]></title>
             <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-05-04.mp3</link>
@@ -31,7 +46,7 @@
 2. Week one of Musk versus Altman delivers theater and substance
 3. OpenAI opens up its real-time voice infrastructure]]></description>
             <enclosure length="7600666" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-04.mp3"/>
-            <itunes:duration>317</itunes:duration>
+                    <itunes:duration>317</itunes:duration>
             <itunes:explicit>false</itunes:explicit>
             <itunes:episodeType>full</itunes:episodeType>
         </item>

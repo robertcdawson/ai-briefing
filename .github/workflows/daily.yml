@@ -44,6 +44,14 @@ jobs:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           FEED_BASE_URL: ${{ vars.FEED_BASE_URL }}
           TTS_VOICE: ${{ vars.TTS_VOICE }}
+          PODCAST_AUTHOR: ${{ vars.PODCAST_AUTHOR }}
+          PODCAST_SUMMARY: ${{ vars.PODCAST_SUMMARY }}
+          PODCAST_OWNER_NAME: ${{ vars.PODCAST_OWNER_NAME }}
+          PODCAST_OWNER_EMAIL: ${{ vars.PODCAST_OWNER_EMAIL }}
+          PODCAST_IMAGE_URL: ${{ vars.PODCAST_IMAGE_URL }}
+          PODCAST_CATEGORIES: ${{ vars.PODCAST_CATEGORIES }}
+          PODCAST_EXPLICIT: ${{ vars.PODCAST_EXPLICIT }}
+          PODCAST_TYPE: ${{ vars.PODCAST_TYPE }}
         run: npx tsx src/index.ts
 
       - name: Commit episode

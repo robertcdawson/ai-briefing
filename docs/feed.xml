@@ -4,7 +4,7 @@
         <title>AI Briefing</title>
         <link>https://robertcdawson.github.io/ai-briefing/</link>
         <description>Daily AI news briefing — the top three stories from the last 24 hours.</description>
-        <lastBuildDate>Tue, 05 May 2026 16:25:33 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 06 May 2026 14:17:19 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -20,6 +20,21 @@
         <itunes:category text="News"/>
         <itunes:explicit>false</itunes:explicit>
         <itunes:type>serial</itunes:type>
+        <item>
+            <title><![CDATA[AI Briefing — May 6, 2026]]></title>
+            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-05-06.mp3</link>
+            <guid>ai-briefing-2026-05-06</guid>
+            <pubDate>Wed, 06 May 2026 14:17:19 GMT</pubDate>
+            <description><![CDATA[Top 3 AI stories for 2026-05-06:
+
+1. GPT-5.5 Instant becomes the new ChatGPT default
+2. Apple opens iOS 27 to third-party AI models
+3. Anthropic's two hundred billion dollar Google Cloud deal]]></description>
+            <enclosure length="8037274" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-06.mp3"/>
+                    <itunes:duration>335</itunes:duration>
+            <itunes:explicit>false</itunes:explicit>
+            <itunes:episodeType>full</itunes:episodeType>
+        </item>
         <item>
             <title><![CDATA[AI Briefing — May 5, 2026]]></title>
             <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-05-05.mp3</link>

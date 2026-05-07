@@ -227,10 +227,13 @@ Already-deleted MP3s **remain in earlier git commits** — pruning only stops ne
 **Locally** (writes into `docs/`):
 ```bash
 npm start
-git add docs/ && git commit -m "Manual run $(date -u +%Y-%m-%d)" && git push
+EPISODE_DATE="$(TZ="${EPISODE_TIME_ZONE:-America/Los_Angeles}" date +%Y-%m-%d)"
+git add docs/ && git commit -m "Manual run $EPISODE_DATE" && git push
 ```
 
 **Via GitHub Actions:** Actions tab → daily → Run workflow.
+
+Episode filenames use `EPISODE_TIME_ZONE` when set, otherwise `America/Los_Angeles`. This keeps manual evening runs from publishing tomorrow's UTC date.
 
 ### Re-run a failed day
 

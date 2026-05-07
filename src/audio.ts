@@ -6,6 +6,14 @@ import { logJson, withHardTimeout, withRetry } from "./util.js";
 
 const TIMEOUT_MS = 5 * 60_000;
 const MAX_ATTEMPTS = 3;
+const TARGET_SAMPLE_RATE = "44100";
+const TARGET_CHANNELS = "2";
+
+interface CueTrackPaths {
+  intro: string;
+  transition: string;
+  outro: string;
+}
 
 export interface AudioResult {
   finalPath: string;
@@ -20,24 +28,16 @@ export async function buildEpisodeAudio(
 ): Promise<AudioResult> {
   const started = Date.now();
   await mkdir(workDir, { recursive: true });
+  if (segmentPaths.length === 0) {
+    throw new Error("buildEpisodeAudio: no segment paths provided");
+  }
 
-  const listPath = path.join(workDir, "concat.txt");
-  const listBody = segmentPaths.map((p) => `file '${p.replace(/'/g, "'\\''")}'`).join("\n");
-  await writeFile(listPath, listBody);
-
-  const concatPath = path.join(workDir, "concat.wav");
-  await runFfmpeg(
-    [
-      "-y",
-      "-loglevel", "error",
-      "-f", "concat",
-      "-safe", "0",
-      "-i", listPath,
-      "-c:a", "pcm_s16le",
-      concatPath,
-    ],
-    "concat",
-  );
+  const normalizedSegments = await normalizeSegmentAudio(segmentPaths, workDir);
+  const cuesEnabled = resolveAudioCuesEnabled();
+  const concatInputs = cuesEnabled
+    ? buildStingerSequence(normalizedSegments, await synthesizeCueTracks(workDir))
+    : normalizedSegments;
+  const concatPath = await concatAudioFiles(concatInputs, workDir, "program");
 
   const finalPath = path.join(workDir, `${episode.date}.mp3`);
   await runFfmpeg(
@@ -70,9 +70,31 @@ export async function buildEpisodeAudio(
     finalPath,
     byteLength: stats.size,
     durationSeconds,
+    cuesEnabled,
   });
 
   return { finalPath, byteLength: stats.size, durationSeconds };
+}
+
+export function resolveAudioCuesEnabled(value = process.env.AUDIO_CUES_ENABLED): boolean {
+  if (!value) return true;
+  const normalized = value.trim().toLowerCase();
+  return !["0", "false", "off", "no"].includes(normalized);
+}
+
+export function buildStingerSequence(
+  normalizedSegments: string[],
+  cueTracks: CueTrackPaths,
+): string[] {
+  const [firstSegment, ...remainingSegments] = normalizedSegments;
+  if (!firstSegment) return [];
+
+  const sequence: string[] = [cueTracks.intro, firstSegment];
+  for (const segment of remainingSegments) {
+    sequence.push(cueTracks.transition, segment);
+  }
+  sequence.push(cueTracks.outro);
+  return sequence;
 }
 
 async function runFfmpeg(args: string[], label: string): Promise<void> {
@@ -84,6 +106,86 @@ async function runFfmpeg(args: string[], label: string): Promise<void> {
         `ffmpeg.${label}`,
       ),
     { attempts: MAX_ATTEMPTS, label: `ffmpeg.${label}` },
+  );
+}
+
+async function normalizeSegmentAudio(segmentPaths: string[], workDir: string): Promise<string[]> {
+  const normalized: string[] = [];
+  for (const [index, segmentPath] of segmentPaths.entries()) {
+    const outputPath = path.join(workDir, `segment-${pad2(index)}.wav`);
+    await runFfmpeg(
+      [
+        "-y",
+        "-loglevel", "error",
+        "-i", segmentPath,
+        "-c:a", "pcm_s16le",
+        "-ar", TARGET_SAMPLE_RATE,
+        "-ac", TARGET_CHANNELS,
+        outputPath,
+      ],
+      `normalize.${index}`,
+    );
+    normalized.push(outputPath);
+  }
+  return normalized;
+}
+
+async function concatAudioFiles(inputs: string[], workDir: string, outputStem: string): Promise<string> {
+  const listPath = path.join(workDir, `${outputStem}.txt`);
+  const listBody = inputs.map((p) => `file '${p.replace(/'/g, "'\\''")}'`).join("\n");
+  await writeFile(listPath, listBody);
+
+  const outputPath = path.join(workDir, `${outputStem}.wav`);
+  await runFfmpeg(
+    [
+      "-y",
+      "-loglevel", "error",
+      "-f", "concat",
+      "-safe", "0",
+      "-i", listPath,
+      "-c:a", "pcm_s16le",
+      outputPath,
+    ],
+    `${outputStem}.concat`,
+  );
+  return outputPath;
+}
+
+async function synthesizeCueTracks(workDir: string): Promise<CueTrackPaths> {
+  const intro = path.join(workDir, "cue-intro.wav");
+  const transition = path.join(workDir, "cue-transition.wav");
+  const outro = path.join(workDir, "cue-outro.wav");
+
+  await Promise.all([
+    synthesizeCueTone(intro, 1046.5, 0.22, "intro"),
+    synthesizeCueTone(transition, 880, 0.16, "transition"),
+    synthesizeCueTone(outro, 659.25, 0.28, "outro"),
+  ]);
+
+  return { intro, transition, outro };
+}
+
+async function synthesizeCueTone(
+  outputPath: string,
+  frequency: number,
+  durationSeconds: number,
+  label: string,
+): Promise<void> {
+  const fadeOutStart = Math.max(0, durationSeconds - 0.04);
+  await runFfmpeg(
+    [
+      "-y",
+      "-loglevel", "error",
+      "-f", "lavfi",
+      "-i", `sine=frequency=${frequency}:sample_rate=${TARGET_SAMPLE_RATE}:duration=${durationSeconds}`,
+      "-af",
+      `volume=0.10,afade=t=in:st=0:d=0.015,afade=t=out:st=${fadeOutStart.toFixed(3)}:d=0.04`,
+      "-c:a", "pcm_s16le",
+      "-ar", TARGET_SAMPLE_RATE,
+      "-ac", TARGET_CHANNELS,
+      outputPath,
+    ],
+    `cue.${label}`,
   );
 }
 
@@ -100,4 +202,8 @@ async function probeDurationSeconds(filePath: string): Promise<number> {
   );
   const seconds = parseFloat(stdout.trim());
   return Number.isFinite(seconds) ? Math.round(seconds) : 0;
+}
+
+function pad2(n: number): string {
+  return n.toString().padStart(2, "0");
 }

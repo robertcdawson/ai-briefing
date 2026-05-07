@@ -46,7 +46,7 @@
 └────────┬────────┘
          ↓
 ┌─────────────────┐
-│  audio.ts       │   ffmpeg: concat, loudnorm, encode MP3 192k, ID3 tag
+│  audio.ts       │   ffmpeg: stingers + concat, loudnorm, encode MP3 192k, ID3 tag
 └────────┬────────┘
          ↓
 ┌─────────────────┐
@@ -169,6 +169,7 @@ Use the `feed` npm package — do not hand-roll XML. `length` must be the actual
 | `OPENROUTER_API_KEY` | LLM access (curate + script) |
 | `OPENAI_API_KEY` | TTS access |
 | `FEED_BASE_URL` | e.g., `https://USER.github.io/ai-briefing` |
+| `AUDIO_CUES_ENABLED` | Toggle synthetic intro/transition/outro stingers (`true`/`false`) |
 | `GITHUB_TOKEN` | Provided by Actions; used to commit + push |
 
 Store API keys as GitHub Actions secrets.

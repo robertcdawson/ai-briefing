@@ -4,7 +4,7 @@
         <title>AI Briefing</title>
         <link>https://robertcdawson.github.io/ai-briefing/</link>
         <description>Daily AI news briefing — the top three stories from the last 24 hours.</description>
-        <lastBuildDate>Thu, 07 May 2026 03:00:20 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 07 May 2026 04:12:09 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -24,14 +24,14 @@
             <title><![CDATA[AI Briefing — May 6, 2026]]></title>
             <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-05-06.mp3</link>
             <guid>ai-briefing-2026-05-06</guid>
-            <pubDate>Thu, 07 May 2026 03:00:20 GMT</pubDate>
+            <pubDate>Thu, 07 May 2026 04:12:08 GMT</pubDate>
             <description><![CDATA[Top 3 AI stories for 2026-05-06:
 
-1. Anthropic's SpaceX Compute Grab
-2. The MRC Networking Protocol
-3. Gemma 4 Gets a 3x Speedup]]></description>
-            <enclosure length="8132314" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-06.mp3"/>
-                    <itunes:duration>339</itunes:duration>
+1. Anthropic takes over Colossus-1
+2. OpenAI's open MRC networking protocol
+3. Gemma 4 gets 3x faster with speculative decoding]]></description>
+            <enclosure length="7860442" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-06.mp3"/>
+                    <itunes:duration>327</itunes:duration>
             <itunes:explicit>false</itunes:explicit>
             <itunes:episodeType>full</itunes:episodeType>
         </item>

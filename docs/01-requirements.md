@@ -48,7 +48,7 @@ Single user (me). Personal-use only. No public distribution.
 ## Out of scope (v1)
 
 - Public Apple Podcasts directory submission
-- Multiple voices, dialogue format, music beds, sound effects
+- Multiple voices, dialogue format, licensed music beds
 - Chapter markers, transcript search
 - Web-based admin or preview UI
 - Topic personalization beyond "AI news"

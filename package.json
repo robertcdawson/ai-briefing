@@ -8,7 +8,7 @@
     "build": "tsc --noEmit",
     "start": "tsx src/index.ts",
     "test": "tsx test/fetch.smoke.ts",
-    "test:unit": "tsx --test test/audio.stingers.test.ts"
+    "test:unit": "tsx test/publish.apple-rss.test.ts && tsx --test test/audio.stingers.test.ts"
   },
   "engines": {
     "node": ">=20"

@@ -8,7 +8,7 @@
 
 ### Runtime requirements
 
-- **Node.js >= 20** (installed via nvm; `nvm use 20` or source nvm before running commands)
+- **Node.js 20** (nvm default; the update script ensures Node 20 is installed and active)
 - **ffmpeg + ffprobe** on PATH (pre-installed on Cloud Agent VMs)
 - API keys for full pipeline only (see below)
 
@@ -20,6 +20,7 @@ All commands are defined in `package.json`:
 |---|---|---|
 | `npm run build` | Type-check via `tsc --noEmit` | No |
 | `npm test` | Smoke test — fetches live RSS feeds, asserts articles come back | No |
+| `npm run test:unit` | Unit tests (publish/feed XML generation) | No |
 | `npm start` | Full end-to-end pipeline (fetch → curate → script → TTS → audio → publish) | Yes |
 
 ### Environment variables
@@ -35,6 +36,6 @@ Copy `.env.example` to `.env` and fill in. `npm test` and `npm run build` work w
 ### Gotchas
 
 - **No lint command.** There is no ESLint or Prettier configured. `npm run build` (`tsc --noEmit`) is the only static analysis check.
-- **nvm must be sourced** before running node/npm in fresh shell sessions: `export NVM_DIR="$HOME/.nvm" && [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"`
+- **nvm is sourced automatically** via `~/.bashrc`. The update script sets Node 20 as the nvm default, so `node` and `npm` resolve correctly in new sessions without manual sourcing.
 - **Smoke test hits live feeds** and takes ~10-35 seconds depending on network. Some feeds may return 0 articles if there's no recent content, but the test still passes as long as at least one article total is fetched.
 - **Full pipeline run** (`npm start`) writes output files to `docs/episodes/` and regenerates `docs/feed.xml`. These changes should not be committed in dev unless intentional.

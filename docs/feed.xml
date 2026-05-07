@@ -21,32 +21,17 @@
         <itunes:explicit>false</itunes:explicit>
         <itunes:type>serial</itunes:type>
         <item>
-            <title><![CDATA[AI Briefing — May 7, 2026]]></title>
-            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-05-07.mp3</link>
-            <guid>ai-briefing-2026-05-07</guid>
+            <title><![CDATA[AI Briefing — May 6, 2026]]></title>
+            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-05-06.mp3</link>
+            <guid>ai-briefing-2026-05-06</guid>
             <pubDate>Thu, 07 May 2026 03:00:20 GMT</pubDate>
-            <description><![CDATA[Top 3 AI stories for 2026-05-07:
+            <description><![CDATA[Top 3 AI stories for 2026-05-06:
 
 1. Anthropic's SpaceX Compute Grab
 2. The MRC Networking Protocol
 3. Gemma 4 Gets a 3x Speedup]]></description>
-            <enclosure length="8132314" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-07.mp3"/>
+            <enclosure length="8132314" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-06.mp3"/>
                     <itunes:duration>339</itunes:duration>
-            <itunes:explicit>false</itunes:explicit>
-            <itunes:episodeType>full</itunes:episodeType>
-        </item>
-        <item>
-            <title><![CDATA[AI Briefing — May 6, 2026]]></title>
-            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-05-06.mp3</link>
-            <guid>ai-briefing-2026-05-06</guid>
-            <pubDate>Wed, 06 May 2026 14:17:19 GMT</pubDate>
-            <description><![CDATA[Top 3 AI stories for 2026-05-06:
-
-1. GPT-5.5 Instant becomes the new ChatGPT default
-2. Apple opens iOS 27 to third-party AI models
-3. Anthropic's two hundred billion dollar Google Cloud deal]]></description>
-            <enclosure length="8037274" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-06.mp3"/>
-                    <itunes:duration>335</itunes:duration>
             <itunes:explicit>false</itunes:explicit>
             <itunes:episodeType>full</itunes:episodeType>
         </item>

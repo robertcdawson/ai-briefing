@@ -5,12 +5,13 @@ import { curate } from "./curate.js";
 import { writeScript } from "./script.js";
 import { synthesize } from "./tts.js";
 import { buildEpisodeAudio } from "./audio.js";
+import { resolveEpisodeDate } from "./episode-date.js";
 import { publish } from "./publish.js";
 import { logJson } from "./util.js";
 
 async function main(): Promise<void> {
   const overallStart = Date.now();
-  const date = new Date().toISOString().slice(0, 10);
+  const date = resolveEpisodeDate();
   let workDir: string | null = null;
 
   try {

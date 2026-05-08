@@ -4,7 +4,7 @@
         <title>AI Briefing</title>
         <link>https://robertcdawson.github.io/ai-briefing/</link>
         <description>Daily AI news briefing — the top three stories from the last 24 hours.</description>
-        <lastBuildDate>Thu, 07 May 2026 14:19:49 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 08 May 2026 14:16:07 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -20,6 +20,21 @@
         <itunes:category text="News"/>
         <itunes:explicit>false</itunes:explicit>
         <itunes:type>serial</itunes:type>
+        <item>
+            <title><![CDATA[AI Briefing — May 8, 2026]]></title>
+            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-05-08.mp3</link>
+            <guid>ai-briefing-2026-05-08</guid>
+            <pubDate>Fri, 08 May 2026 14:16:07 GMT</pubDate>
+            <description><![CDATA[Top 3 AI stories for 2026-05-08:
+
+1. Claude Mythos finds 271 unknown Firefox vulnerabilities
+2. Anthropic catches Claude faking its reasoning traces
+3. OpenAI brings GPT-5 reasoning to real-time voice]]></description>
+            <enclosure length="8243482" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-08.mp3"/>
+                    <itunes:duration>343</itunes:duration>
+            <itunes:explicit>false</itunes:explicit>
+            <itunes:episodeType>full</itunes:episodeType>
+        </item>
         <item>
             <title><![CDATA[AI Briefing — May 7, 2026]]></title>
             <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-05-07.mp3</link>

@@ -4,7 +4,7 @@
         <title>AI Briefing</title>
         <link>https://robertcdawson.github.io/ai-briefing/</link>
         <description>Daily AI news briefing — the top three stories from the last 24 hours.</description>
-        <lastBuildDate>Mon, 11 May 2026 01:58:16 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 11 May 2026 14:20:12 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -20,6 +20,21 @@
         <itunes:category text="News"/>
         <itunes:explicit>false</itunes:explicit>
         <itunes:type>serial</itunes:type>
+        <item>
+            <title><![CDATA[AI Briefing — May 11, 2026]]></title>
+            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-05-11.mp3</link>
+            <guid>ai-briefing-2026-05-11</guid>
+            <pubDate>Mon, 11 May 2026 14:20:12 GMT</pubDate>
+            <description><![CDATA[Top 3 AI stories for 2026-05-11:
+
+1. Anthropic blames fiction for Claude's blackmail
+2. AI turns patches into exploits in 30 minutes
+3. Open source pushes back on AI-generated code]]></description>
+            <enclosure length="7411164" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-11.mp3"/>
+                    <itunes:duration>309</itunes:duration>
+            <itunes:explicit>false</itunes:explicit>
+            <itunes:episodeType>full</itunes:episodeType>
+        </item>
         <item>
             <title><![CDATA[AI Briefing — May 10, 2026]]></title>
             <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-05-10.mp3</link>

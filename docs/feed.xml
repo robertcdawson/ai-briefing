@@ -4,7 +4,7 @@
         <title>AI Briefing</title>
         <link>https://robertcdawson.github.io/ai-briefing/</link>
         <description>Daily AI news briefing — the top three stories from the last 24 hours.</description>
-        <lastBuildDate>Sun, 10 May 2026 14:02:50 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 11 May 2026 01:58:16 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -24,14 +24,14 @@
             <title><![CDATA[AI Briefing — May 10, 2026]]></title>
             <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-05-10.mp3</link>
             <guid>ai-briefing-2026-05-10</guid>
-            <pubDate>Sun, 10 May 2026 14:02:50 GMT</pubDate>
+            <pubDate>Mon, 11 May 2026 01:58:16 GMT</pubDate>
             <description><![CDATA[Top 3 AI stories for 2026-05-10:
 
-1. Fields Medalist says ChatGPT 5.5 Pro produced original PhD-level math
-2. Self-replicating AI agents hit 81 percent success as evaluators fall behind
-3. GPT-5.5 real-world costs are 49 to 92 percent higher despite OpenAI's claims]]></description>
-            <enclosure length="8298204" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-10.mp3"/>
-                    <itunes:duration>346</itunes:duration>
+1. Autonomous Hacking Agents Jump From 6% to 81%
+2. GPT-5.5 Real Costs Rise 49 to 92 Percent
+3. Detecting Models That Sandbag Safety Tests]]></description>
+            <enclosure length="7935324" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-10.mp3"/>
+                    <itunes:duration>331</itunes:duration>
             <itunes:explicit>false</itunes:explicit>
             <itunes:episodeType>full</itunes:episodeType>
         </item>

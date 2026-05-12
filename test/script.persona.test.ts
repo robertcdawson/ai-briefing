@@ -5,6 +5,7 @@ import {
   buildSystemPrompt,
   buildUserPrompt,
   selectDailyPersona,
+  validateScriptResponse,
 } from "../src/script.js";
 import type { StoryCluster } from "../src/types.js";
 
@@ -73,6 +74,8 @@ test("buildSystemPrompt enforces hook, labels, concise transitions, pacing, and 
   const prompt = buildSystemPrompt(persona);
 
   assert.match(prompt, /Begin with an engaging summary hook/);
+  assert.match(prompt, /exactly one segment per provided story cluster/);
+  assert.match(prompt, /If fewer than three credible clusters are provided/);
   assert.match(prompt, /first segment title MUST begin "Top Story:/);
   assert.match(prompt, /Product & Tool Watch: \{headline\}/);
   assert.match(prompt, /smooth, short transition/);
@@ -80,6 +83,94 @@ test("buildSystemPrompt enforces hook, labels, concise transitions, pacing, and 
   assert.match(prompt, /most sentences under about 24 words/);
   assert.match(prompt, /define specialized terms in 8-14 plain words/);
   assert.match(prompt, /Sound alert and enthusiastic/);
+});
+
+test("buildUserPrompt tells the model not to pad fewer-than-three clusters", () => {
+  const clusters: StoryCluster[] = [
+    {
+      canonicalKey: "research-story",
+      category: "research",
+      headline: "A benchmark exposes model planning gaps",
+      whyItMatters: "Researchers get a clearer evaluation target.",
+      caveat: "The benchmark may not match production tasks.",
+      sources: [{ publisher: "Example Lab", url: "https://example.com/benchmark" }],
+    },
+    {
+      canonicalKey: "policy-story",
+      category: "policy-regulation",
+      headline: "A regulator clarifies model audit rules",
+      whyItMatters: "Builders get a better compliance map.",
+      caveat: "The rules may still change after consultation.",
+      sources: [{ publisher: "Example Policy", url: "https://example.com/rules" }],
+    },
+  ];
+
+  const prompt = buildUserPrompt("2026-05-11", clusters);
+
+  assert.match(prompt, /following 2 story clusters/);
+  assert.match(prompt, /Return exactly 2 segment objects; never invent or pad/);
+});
+
+test("validateScriptResponse preserves segment count and source URLs", () => {
+  const clusters: StoryCluster[] = [
+    {
+      canonicalKey: "test-story",
+      category: "product-tools",
+      headline: "A model ships a useful feature",
+      whyItMatters: "Builders get a simpler path to production.",
+      caveat: "Benchmarks are still early.",
+      sources: [
+        { publisher: "Example News", url: "https://example.com/model-feature" },
+      ],
+    },
+  ];
+
+  validateScriptResponse(
+    {
+      intro: "Here is the setup.",
+      segments: [
+        {
+          title: "Top Story: A model ships a useful feature",
+          script: "A concise segment.",
+          sourceUrls: ["https://example.com/model-feature"],
+        },
+      ],
+      outro: "That is the pattern.",
+    },
+    clusters,
+  );
+
+  assert.throws(
+    () =>
+      validateScriptResponse(
+        {
+          intro: "Here is the setup.",
+          segments: [],
+          outro: "That is the pattern.",
+        },
+        clusters,
+      ),
+    /expected 1/,
+  );
+
+  assert.throws(
+    () =>
+      validateScriptResponse(
+        {
+          intro: "Here is the setup.",
+          segments: [
+            {
+              title: "Top Story: A model ships a useful feature",
+              script: "A concise segment.",
+              sourceUrls: ["https://example.com/changed"],
+            },
+          ],
+          outro: "That is the pattern.",
+        },
+        clusters,
+      ),
+    /sourceUrls do not match/,
+  );
 });
 
 function escapeRegExp(value: string): string {

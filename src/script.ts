@@ -16,6 +16,12 @@ export interface DailyPersona {
   avoid: string;
 }
 
+export interface ScriptResponse {
+  intro: string;
+  segments: EpisodeSegment[];
+  outro: string;
+}
+
 export const DAILY_PERSONAS: readonly DailyPersona[] = [
   {
     name: "The Golden-Age Newsreel Announcer",
@@ -128,13 +134,13 @@ const SEGMENT_LABEL_RULES = STORY_CATEGORY_DEFINITIONS
 const SYSTEM_PROMPT_BASE = `You are the writer for a daily AI news podcast called "AI Briefing". Write a tight, conversational 4-7 minute spoken script (~600-1000 words total) for a single host. Match this structure exactly:
 
 - INTRO HOOK (15-25 seconds, ~40-60 words): Begin with an engaging summary hook: the day's thesis, tension, or surprise, then name the date and preview the stakes. Not a dry table of contents.
-- THREE SEGMENTS (~90 seconds each, ~220-260 words each), one per story cluster, in the order provided. Each segment must:
+- STORY SEGMENTS (~90 seconds each, ~220-260 words each): Write exactly one segment per provided story cluster, in the order provided. If fewer than three credible clusters are provided, write fewer segments; never invent or pad. Each segment must:
   1. Open with what happened — concrete and specific.
   2. Explain why it matters for AI builders/researchers, with a listener-oriented takeaway.
   3. Briefly explain technical terms on first use in plain English, only when needed.
   4. End with a brief caveat: what's uncertain, missing, or potentially overhyped.
   5. Close with a smooth, short transition into the next story (or, for the last segment, into the outro).
-- SYNTHESIS OUTRO (30-40 seconds, ~80-100 words): Identify a pattern, theme, or contrast across the three stories. End with a sign-off.
+- SYNTHESIS OUTRO (30-40 seconds, ~80-100 words): Identify a pattern, theme, or contrast across the provided stories. End with a sign-off.
 
 Recurring segment labels:
 - The first segment title MUST begin "Top Story: " followed by the story headline.
@@ -198,7 +204,7 @@ export function buildUserPrompt(date: string, clusters: StoryCluster[]): string 
   Sources:
       ${sources}`;
   });
-  return `Today is ${date}. Write the podcast script for the following ${clusters.length} story cluster${clusters.length === 1 ? "" : "s"}, in order:
+  return `Today is ${date}. Write the podcast script for the following ${clusters.length} story cluster${clusters.length === 1 ? "" : "s"}, in order. Return exactly ${clusters.length} segment object${clusters.length === 1 ? "" : "s"}; never invent or pad:
 
 ${lines.join("\n\n")}`;
 }
@@ -216,9 +222,9 @@ export async function writeScript(date: string, clusters: StoryCluster[]): Promi
     timeout: TIMEOUT_MS,
   });
 
-  const completion = await withRetry(
-    () =>
-      withHardTimeout(
+  const parsed = await withRetry(
+    async () => {
+      const completion = await withHardTimeout(
         client.chat.completions.create({
           model: MODEL,
           messages: [
@@ -233,18 +239,17 @@ export async function writeScript(date: string, clusters: StoryCluster[]): Promi
         }),
         TIMEOUT_MS,
         "script.openrouter",
-      ),
+      );
+
+      const content = completion.choices[0]?.message?.content;
+      if (!content) throw new Error("Empty response from OpenRouter");
+
+      const response = JSON.parse(content) as ScriptResponse;
+      validateScriptResponse(response, clusters);
+      return response;
+    },
     { attempts: MAX_ATTEMPTS, label: "script" },
   );
-
-  const content = completion.choices[0]?.message?.content;
-  if (!content) throw new Error("Empty response from OpenRouter");
-
-  const parsed = JSON.parse(content) as {
-    intro: string;
-    segments: EpisodeSegment[];
-    outro: string;
-  };
 
   const wordCount =
     countWords(parsed.intro) +
@@ -274,6 +279,28 @@ export async function writeScript(date: string, clusters: StoryCluster[]): Promi
   return episode;
 }
 
+export function validateScriptResponse(
+  response: ScriptResponse,
+  clusters: StoryCluster[],
+): void {
+  if (response.segments.length !== clusters.length) {
+    throw new Error(
+      `script returned ${response.segments.length} segment(s), expected ${clusters.length}`,
+    );
+  }
+
+  for (let i = 0; i < clusters.length; i += 1) {
+    const segment = response.segments[i];
+    const cluster = clusters[i];
+    if (!segment || !cluster) throw new Error(`script response missing segment ${i + 1}`);
+
+    const expectedUrls = cluster.sources.map((source) => source.url);
+    if (!arraysEqual(segment.sourceUrls, expectedUrls)) {
+      throw new Error(`script segment ${i + 1} sourceUrls do not match the story cluster`);
+    }
+  }
+}
+
 function stableHash(input: string): number {
   let hash = 2166136261;
   for (let i = 0; i < input.length; i += 1) {
@@ -285,6 +312,10 @@ function stableHash(input: string): number {
 
 function countWords(s: string): number {
   return s.trim().split(/\s+/).filter(Boolean).length;
+}
+
+function arraysEqual(a: string[], b: string[]): boolean {
+  return a.length === b.length && a.every((value, index) => value === b[index]);
 }
 
 export function formatLongDate(yyyymmdd: string): string {

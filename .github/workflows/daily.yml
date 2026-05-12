@@ -44,7 +44,9 @@ jobs:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           FEED_BASE_URL: ${{ vars.FEED_BASE_URL }}
           EPISODE_TIME_ZONE: ${{ vars.EPISODE_TIME_ZONE }}
+          TTS_MODEL: ${{ vars.TTS_MODEL }}
           TTS_VOICE: ${{ vars.TTS_VOICE }}
+          AUDIO_CUES_ENABLED: ${{ vars.AUDIO_CUES_ENABLED }}
           PODCAST_AUTHOR: ${{ vars.PODCAST_AUTHOR }}
           PODCAST_SUMMARY: ${{ vars.PODCAST_SUMMARY }}
           PODCAST_OWNER_NAME: ${{ vars.PODCAST_OWNER_NAME }}

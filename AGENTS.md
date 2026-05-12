@@ -29,6 +29,7 @@ For `npm start` (full pipeline), a `.env` file is required with:
 - `OPENROUTER_API_KEY` — for LLM calls (curate + script generation)
 - `OPENAI_API_KEY` — for TTS audio synthesis
 - `FEED_BASE_URL` — public URL where `docs/` is served
+- `TTS_MODEL` (optional, default: `gpt-4o-mini-tts`)
 - `TTS_VOICE` (optional, default: `onyx`)
 
 Copy `.env.example` to `.env` and fill in. `npm test` and `npm run build` work without any API keys.

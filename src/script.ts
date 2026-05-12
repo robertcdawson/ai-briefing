@@ -1,4 +1,5 @@
 import OpenAI from "openai";
+import { STORY_CATEGORY_DEFINITIONS, STORY_CATEGORY_LABELS } from "./types.js";
 import type { Episode, EpisodeSegment, StoryCluster } from "./types.js";
 import { logJson, withHardTimeout, withRetry } from "./util.js";
 
@@ -99,7 +100,7 @@ const RESPONSE_SCHEMA = {
           script: {
             type: "string",
             description:
-              "~90s spoken script (~220-260 words): what happened → why it matters → caveat → 1-line transition into the next story (or outro for the final segment).",
+              "~90s spoken script (~220-260 words): what happened → why it matters → brief explainer when needed → caveat → short transition into the next story (or outro for the final segment).",
           },
           sourceUrls: {
             type: "array",
@@ -120,23 +121,38 @@ const RESPONSE_SCHEMA = {
   additionalProperties: false,
 } as const;
 
+const SEGMENT_LABEL_RULES = STORY_CATEGORY_DEFINITIONS
+  .map((category) => `  - ${category.id}: "${category.label}: {headline}"`)
+  .join("\n");
+
 const SYSTEM_PROMPT_BASE = `You are the writer for a daily AI news podcast called "AI Briefing". Write a tight, conversational 4-7 minute spoken script (~600-1000 words total) for a single host. Match this structure exactly:
 
-- INTRO HOOK (15-25 seconds, ~40-60 words): A compelling cold open that names the date and previews the day's stories. Not a dry table of contents.
+- INTRO HOOK (15-25 seconds, ~40-60 words): Begin with an engaging summary hook: the day's thesis, tension, or surprise, then name the date and preview the stakes. Not a dry table of contents.
 - THREE SEGMENTS (~90 seconds each, ~220-260 words each), one per story cluster, in the order provided. Each segment must:
   1. Open with what happened — concrete and specific.
-  2. Explain why it matters for AI builders/researchers.
-  3. End with a brief caveat: what's uncertain, missing, or potentially overhyped.
-  4. Close with a one-line transition into the next story (or, for the last segment, into the outro).
+  2. Explain why it matters for AI builders/researchers, with a listener-oriented takeaway.
+  3. Briefly explain technical terms on first use in plain English, only when needed.
+  4. End with a brief caveat: what's uncertain, missing, or potentially overhyped.
+  5. Close with a smooth, short transition into the next story (or, for the last segment, into the outro).
 - SYNTHESIS OUTRO (30-40 seconds, ~80-100 words): Identify a pattern, theme, or contrast across the three stories. End with a sign-off.
+
+Recurring segment labels:
+- The first segment title MUST begin "Top Story: " followed by the story headline.
+- Later segment titles MUST use the provided category's recurring label:
+${SEGMENT_LABEL_RULES}
+- Keep titles compact. Do not invent new segment label names.
 
 Voice rules:
 - Conversational and intelligent, not breathless or hyped.
+- Sound alert and enthusiastic, like the host genuinely finds the material useful, while staying skeptical and precise.
 - Optimize for information retention: vary sentence rhythm, front-load concrete details, and reinforce each segment's key takeaway once near the end.
+- Spoken pacing: mix crisp short sentences with medium explanatory sentences. Avoid dense clauses; keep most sentences under about 24 words.
 - Use light, dry humor sparingly (about one quick line per segment max) when it helps recall, never at the expense of accuracy or clarity.
 - Bring some attitude: sound like a sharp analyst with opinions grounded in evidence, not a neutral press-release reader.
 - The host may have strong opinions, but every opinion must be grounded in the provided facts. Prefer sharp analysis over neutral summary, but never sacrifice accuracy for personality.
 - Read-aloud-friendly: short sentences, no parenthetical asides, avoid em-dashes that force awkward pauses.
+- Explain jargon only when it helps: define specialized terms in 8-14 plain words and keep moving.
+- Transitions must be one sentence, under about 12 words, and specific to the next story. Avoid formulaic phrases like "next up."
 - No "Welcome to" or "Today on AI Briefing" boilerplate openings — that gets stale fast.
 - No bullet points, no markdown, no stage directions, no "[pause]" cues.
 - Numbers in spoken form when natural ("about three billion" not "3,000,000,000").
@@ -174,7 +190,9 @@ Today's original broadcast persona:
 export function buildUserPrompt(date: string, clusters: StoryCluster[]): string {
   const lines = clusters.map((c, i) => {
     const sources = c.sources.map((s) => `${s.publisher}: ${s.url}`).join("\n      ");
+    const categoryLabel = STORY_CATEGORY_LABELS[c.category];
     return `STORY ${i + 1}: ${c.headline}
+  Category: ${categoryLabel} (${c.category})
   Why it matters: ${c.whyItMatters}
   Caveat: ${c.caveat}
   Sources:

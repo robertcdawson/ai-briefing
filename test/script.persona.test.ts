@@ -48,6 +48,7 @@ test("buildUserPrompt preserves source publisher and URL context", () => {
   const clusters: StoryCluster[] = [
     {
       canonicalKey: "test-story",
+      category: "product-tools",
       headline: "A model ships a useful feature",
       whyItMatters: "Builders get a simpler path to production.",
       caveat: "Benchmarks are still early.",
@@ -61,7 +62,24 @@ test("buildUserPrompt preserves source publisher and URL context", () => {
 
   assert.match(prompt, /Today is 2026-05-11/);
   assert.match(prompt, /STORY 1: A model ships a useful feature/);
+  assert.match(prompt, /Category: Product & Tool Watch \(product-tools\)/);
   assert.match(prompt, /Example News: https:\/\/example\.com\/model-feature/);
+});
+
+test("buildSystemPrompt enforces hook, labels, concise transitions, pacing, and explainers", () => {
+  const persona = DAILY_PERSONAS[0];
+  assert.ok(persona, "at least one daily persona must be configured");
+
+  const prompt = buildSystemPrompt(persona);
+
+  assert.match(prompt, /Begin with an engaging summary hook/);
+  assert.match(prompt, /first segment title MUST begin "Top Story:/);
+  assert.match(prompt, /Product & Tool Watch: \{headline\}/);
+  assert.match(prompt, /smooth, short transition/);
+  assert.match(prompt, /under about 12 words/);
+  assert.match(prompt, /most sentences under about 24 words/);
+  assert.match(prompt, /define specialized terms in 8-14 plain words/);
+  assert.match(prompt, /Sound alert and enthusiastic/);
 });
 
 function escapeRegExp(value: string): string {

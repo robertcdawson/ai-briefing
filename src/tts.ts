@@ -5,21 +5,41 @@ import path from "node:path";
 import type { Episode } from "./types.js";
 import { logJson, withHardTimeout, withRetry } from "./util.js";
 
-const MODEL = "tts-1-hd";
+const DEFAULT_MODEL = "gpt-4o-mini-tts";
 const TIMEOUT_MS = 60_000;
 const MAX_ATTEMPTS = 3;
+const TTS_MODELS = [
+  "tts-1",
+  "tts-1-hd",
+  "gpt-4o-mini-tts",
+  "gpt-4o-mini-tts-2025-12-15",
+] as const;
+export type TTSModel = (typeof TTS_MODELS)[number];
 
-type TTSVoice =
-  | "alloy" | "ash" | "coral" | "echo" | "fable"
-  | "nova" | "onyx" | "sage" | "shimmer";
+export type TTSVoice =
+  | "alloy" | "ash" | "ballad" | "cedar" | "coral" | "echo" | "fable"
+  | "marin" | "nova" | "onyx" | "sage" | "shimmer" | "verse";
 const VALID_VOICES: TTSVoice[] = [
-  "alloy", "ash", "coral", "echo", "fable",
-  "nova", "onyx", "sage", "shimmer",
+  "alloy", "ash", "ballad", "cedar", "coral", "echo", "fable",
+  "marin", "nova", "onyx", "sage", "shimmer", "verse",
 ];
+
+export const TTS_DELIVERY_INSTRUCTIONS =
+  "Deliver as an enthusiastic, sharp AI news podcast host: upbeat, engaged, and clear, " +
+  "with natural momentum and emphasis on key takeaways. Stay precise and conversational; " +
+  "do not shout, overact, or sound like an advertisement.";
 
 export interface TTSResult {
   segmentDir: string;
   segmentPaths: string[];
+}
+
+export interface SpeechRequest {
+  model: TTSModel;
+  voice: TTSVoice;
+  input: string;
+  response_format: "mp3";
+  instructions?: string;
 }
 
 export async function synthesize(episode: Episode): Promise<TTSResult> {
@@ -29,6 +49,7 @@ export async function synthesize(episode: Episode): Promise<TTSResult> {
 
   const requestedVoice = (process.env.TTS_VOICE ?? "onyx") as TTSVoice;
   const voice: TTSVoice = VALID_VOICES.includes(requestedVoice) ? requestedVoice : "onyx";
+  const model = resolveTTSModel(process.env.TTS_MODEL);
 
   const client = new OpenAI({ apiKey, timeout: TIMEOUT_MS });
 
@@ -53,10 +74,7 @@ export async function synthesize(episode: Episode): Promise<TTSResult> {
         withHardTimeout(
           (async () => {
             const response = await client.audio.speech.create({
-              model: MODEL,
-              voice,
-              input: part.text,
-              response_format: "mp3",
+              ...buildSpeechRequest(part.text, voice, model),
             });
             const buffer = Buffer.from(await response.arrayBuffer());
             await writeFile(filePath, buffer);
@@ -82,9 +100,41 @@ export async function synthesize(episode: Episode): Promise<TTSResult> {
     durationMs: Date.now() - started,
     segments: segmentPaths.length,
     voice,
+    model,
+    deliveryInstructions: supportsDeliveryInstructions(model) ? "enabled" : "unsupported",
   });
 
   return { segmentDir, segmentPaths };
+}
+
+export function buildSpeechRequest(
+  input: string,
+  voice: TTSVoice,
+  model: TTSModel = DEFAULT_MODEL,
+): SpeechRequest {
+  const request: SpeechRequest = {
+    model,
+    voice,
+    input,
+    response_format: "mp3",
+  };
+
+  if (supportsDeliveryInstructions(model)) {
+    request.instructions = TTS_DELIVERY_INSTRUCTIONS;
+  }
+
+  return request;
+}
+
+function resolveTTSModel(requestedModel: string | undefined): TTSModel {
+  if (requestedModel && TTS_MODELS.includes(requestedModel as TTSModel)) {
+    return requestedModel as TTSModel;
+  }
+  return DEFAULT_MODEL;
+}
+
+function supportsDeliveryInstructions(model: TTSModel): boolean {
+  return model !== "tts-1" && model !== "tts-1-hd";
 }
 
 function slug(s: string): string {

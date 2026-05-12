@@ -9,8 +9,8 @@ A daily, fully-automated AI news podcast. Every morning at ~06:30 Pacific, GitHu
 
 1. Pulls the last 24h of articles from a curated set of AI news RSS feeds.
 2. Asks Claude (via OpenRouter) to cluster duplicates and pick the top 3 stories.
-3. Asks Claude to write a 4–7 minute spoken script (intro hook → three segments → synthesis outro).
-4. Synthesizes the script with OpenAI `tts-1-hd` (one MP3 per segment).
+3. Asks Claude to write a 4–7 minute spoken script (engaging summary hook → recurring segments → synthesis outro).
+4. Synthesizes the script with OpenAI `gpt-4o-mini-tts` (one MP3 per segment, with delivery instructions).
 5. Builds a full program master with ffmpeg (section stingers + concat), normalizes loudness to EBU R128 (-16 LUFS), encodes 192 kbps MP3 with ID3 tags.
 6. Drops the file at `docs/episodes/YYYY-MM-DD.mp3`, regenerates `docs/feed.xml`, commits, and pushes.
 7. GitHub Pages serves the feed; Apple Podcasts polls and downloads.
@@ -25,12 +25,12 @@ You subscribe once via "Follow a Show by URL" on iPhone. Every morning a new epi
 | Scheduler | GitHub Actions cron |
 | News | Curated RSS via `rss-parser` |
 | LLM | OpenRouter → `anthropic/claude-sonnet-4-7` |
-| TTS | OpenAI `tts-1-hd` (direct API) |
+| TTS | OpenAI `gpt-4o-mini-tts` (direct API) |
 | Audio | ffmpeg via `execa` |
 | Feed | `feed` npm package + iTunes namespace patch |
 | Hosting | GitHub Pages (public repo, obscure path = soft privacy) |
 
-Estimated cost: **~$5–8/month** (OpenAI TTS dominates).
+Estimated cost is usually low for a personal daily show, but depends on the selected TTS model and current provider pricing. Monitor the OpenAI and OpenRouter usage dashboards.
 
 ## Repo layout
 
@@ -40,7 +40,7 @@ ai-briefing/
 ├── src/
 │   ├── index.ts                  # Orchestrator
 │   ├── fetch.ts                  # RSS aggregation
-│   ├── curate.ts                 # Cluster + rank top 3
+│   ├── curate.ts                 # Cluster + rank top 3 across editorial categories
 │   ├── script.ts                 # Generate spoken script
 │   ├── tts.ts                    # Text → MP3 chunks
 │   ├── audio.ts                  # ffmpeg stingers + concat + loudnorm + ID3
@@ -158,7 +158,8 @@ In the repo's **Settings → Secrets and variables → Actions**:
 
 **Variables:**
 - `FEED_BASE_URL` — same as `.env`, e.g. `https://USER.github.io/ai-briefing`
-- `TTS_VOICE` — `onyx` (or `alloy`, `echo`, `fable`, `nova`, `shimmer`)
+- `TTS_MODEL` — `gpt-4o-mini-tts` (default; supports delivery instructions)
+- `TTS_VOICE` — `onyx` (or another supported OpenAI TTS voice)
 - `AUDIO_CUES_ENABLED` — `true` (set `false` to disable synthetic section stingers)
 - `PODCAST_AUTHOR`
 - `PODCAST_SUMMARY`
@@ -239,9 +240,9 @@ Episode filenames use `EPISODE_TIME_ZONE` when set, otherwise `America/Los_Angel
 
 The workflow page has a **Re-run all jobs** button. Use it after fixing the root cause. Note: a re-run that succeeds same-day will **overwrite** that day's episode and replace the sidecar JSON — the GUID stays the same so Apple Podcasts won't re-deliver it.
 
-### Change the voice
+### Change the TTS model or voice
 
-Set `TTS_VOICE` in Actions variables (or `.env` locally). Valid for `tts-1-hd`: `alloy`, `ash`, `coral`, `echo`, `fable`, `nova`, `onyx`, `sage`, `shimmer`. Takes effect on the next run only — past episodes remain in their original voice.
+Set `TTS_MODEL` and `TTS_VOICE` in Actions variables (or `.env` locally). The default model is `gpt-4o-mini-tts`, which supports delivery instructions for an upbeat, engaged podcast read. Legacy `tts-1` and `tts-1-hd` still work, but they ignore those delivery instructions. Takes effect on the next run only — past episodes remain in their original voice.
 
 ### Toggle section stingers
 

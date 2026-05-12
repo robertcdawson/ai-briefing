@@ -1,0 +1,56 @@
+{
+  "date": "2026-05-12",
+  "title": "AI Briefing — May 12, 2026",
+  "description": "Top 3 AI stories for 2026-05-12:\n\nChapters:\n00:00:00 Intro\n00:00:26 Google unveils Gemini Intelligence and...\n00:02:17 Microsoft ousts Israel chief after Azure...\n00:04:04 Mira Murati's Thinking Machines ships...\n00:05:44 Outro\n\nSources:\n1. Top Story: Google unveils Gemini Intelligence and AI-first Android overhaul ahead of I/O\nSource: https://www.theverge.com/tech/928724/gemini-intelligence-android-io-autofill\nSource: https://www.theverge.com/tech/928653/google-android-17-9-biggest-new-features-android-show-io\nSource: https://arstechnica.com/gadgets/2026/05/google-says-android-is-getting-a-big-ai-overhaul-in-2026/\nSource: https://arstechnica.com/gadgets/2026/05/googles-android-powered-laptops-are-called-googlebooks-and-theyre-coming-this-year/\nSource: https://techcrunch.com/2026/05/12/everything-google-announced-at-its-android-show-from-googlebooks-to-vibe-coded-widgets/\nSource: https://techcrunch.com/2026/05/12/google-brings-agentic-ai-and-vibe-coded-widgets-to-android/\nSource: https://techcrunch.com/2026/05/12/googles-create-my-widget-feature-will-let-you-vibe-code-your-own-widgets/\n2. Policy & Regulation Watch: Microsoft ousts Israel chief after Azure reportedly powered military AI targeting in Gaza\nSource: https://the-decoder.com/microsoft-ousts-its-israel-chief-following-reports-that-azure-quietly-powered-military-ai-targeting-in-gaza/\n3. Research Breakthrough: Mira Murati's Thinking Machines ships first model with parallel real-time interaction\nSource: https://www.theverge.com/ai-artificial-intelligence/928309/mira-murati-thinking-machines-ai-interaction-model\nSource: https://techcrunch.com/2026/05/11/thinking-machines-wants-to-build-an-ai-that-actually-listens-while-it-talks/\nSource: https://the-decoder.com/thinking-machines-lab-ships-its-first-model-and-argues-interactivity-is-what-openai-gets-wrong-about-voice/",
+  "durationSeconds": 380,
+  "byteLength": 9131100,
+  "pubDate": "2026-05-12T17:39:34.444Z",
+  "season": 2026,
+  "episodeNumber": 132,
+  "chaptersFilename": "2026-05-12.chapters.json",
+  "transcriptFilename": "2026-05-12.transcript.txt",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 26,
+      "title": "Intro"
+    },
+    {
+      "startTime": 26,
+      "endTime": 137,
+      "title": "Google unveils Gemini Intelligence and..."
+    },
+    {
+      "startTime": 137,
+      "endTime": 244,
+      "title": "Microsoft ousts Israel chief after Azure..."
+    },
+    {
+      "startTime": 244,
+      "endTime": 344,
+      "title": "Mira Murati's Thinking Machines ships..."
+    },
+    {
+      "startTime": 344,
+      "endTime": 380,
+      "title": "Outro"
+    }
+  ],
+  "soundbites": [
+    {
+      "startTime": 26,
+      "duration": 111,
+      "title": "Google unveils Gemini Intelligence and..."
+    },
+    {
+      "startTime": 137,
+      "duration": 107,
+      "title": "Microsoft ousts Israel chief after Azure..."
+    },
+    {
+      "startTime": 244,
+      "duration": 100,
+      "title": "Mira Murati's Thinking Machines ships..."
+    }
+  ]
+}

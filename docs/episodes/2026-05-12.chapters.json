@@ -1,0 +1,31 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — May 12, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 26,
+      "title": "Intro"
+    },
+    {
+      "startTime": 26,
+      "endTime": 137,
+      "title": "Google unveils Gemini Intelligence and..."
+    },
+    {
+      "startTime": 137,
+      "endTime": 244,
+      "title": "Microsoft ousts Israel chief after Azure..."
+    },
+    {
+      "startTime": 244,
+      "endTime": 344,
+      "title": "Mira Murati's Thinking Machines ships..."
+    },
+    {
+      "startTime": 344,
+      "endTime": 380,
+      "title": "Outro"
+    }
+  ]
+}

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:podcast="https://podcastindex.org/namespace/1.0">
     <channel>
         <title>AI Briefing</title>
         <link>https://robertcdawson.github.io/ai-briefing/</link>
         <description>Daily AI news briefing — the top three stories from the last 24 hours.</description>
-        <lastBuildDate>Tue, 12 May 2026 03:23:06 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 12 May 2026 17:39:34 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -20,6 +20,50 @@
         <itunes:category text="News"/>
         <itunes:explicit>false</itunes:explicit>
         <itunes:type>serial</itunes:type>
+        <podcast:guid>ea8709f4-3ba2-5b7e-bcdc-e409d84a6443</podcast:guid>
+        <podcast:locked owner="manatees@gmail.com">yes</podcast:locked>
+        <podcast:person role="host" group="cast">Robert Dawson</podcast:person>
+        <item>
+            <title><![CDATA[AI Briefing — May 12, 2026]]></title>
+            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-05-12.mp3</link>
+            <guid>ai-briefing-2026-05-12</guid>
+            <pubDate>Tue, 12 May 2026 17:39:34 GMT</pubDate>
+            <description><![CDATA[Top 3 AI stories for 2026-05-12:
+
+Chapters:
+00:00:00 Intro
+00:00:26 Google unveils Gemini Intelligence and...
+00:02:17 Microsoft ousts Israel chief after Azure...
+00:04:04 Mira Murati's Thinking Machines ships...
+00:05:44 Outro
+
+Sources:
+1. Top Story: Google unveils Gemini Intelligence and AI-first Android overhaul ahead of I/O
+Source: https://www.theverge.com/tech/928724/gemini-intelligence-android-io-autofill
+Source: https://www.theverge.com/tech/928653/google-android-17-9-biggest-new-features-android-show-io
+Source: https://arstechnica.com/gadgets/2026/05/google-says-android-is-getting-a-big-ai-overhaul-in-2026/
+Source: https://arstechnica.com/gadgets/2026/05/googles-android-powered-laptops-are-called-googlebooks-and-theyre-coming-this-year/
+Source: https://techcrunch.com/2026/05/12/everything-google-announced-at-its-android-show-from-googlebooks-to-vibe-coded-widgets/
+Source: https://techcrunch.com/2026/05/12/google-brings-agentic-ai-and-vibe-coded-widgets-to-android/
+Source: https://techcrunch.com/2026/05/12/googles-create-my-widget-feature-will-let-you-vibe-code-your-own-widgets/
+2. Policy & Regulation Watch: Microsoft ousts Israel chief after Azure reportedly powered military AI targeting in Gaza
+Source: https://the-decoder.com/microsoft-ousts-its-israel-chief-following-reports-that-azure-quietly-powered-military-ai-targeting-in-gaza/
+3. Research Breakthrough: Mira Murati's Thinking Machines ships first model with parallel real-time interaction
+Source: https://www.theverge.com/ai-artificial-intelligence/928309/mira-murati-thinking-machines-ai-interaction-model
+Source: https://techcrunch.com/2026/05/11/thinking-machines-wants-to-build-an-ai-that-actually-listens-while-it-talks/
+Source: https://the-decoder.com/thinking-machines-lab-ships-its-first-model-and-argues-interactivity-is-what-openai-gets-wrong-about-voice/]]></description>
+            <enclosure length="9131100" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-12.mp3"/>
+                    <itunes:duration>380</itunes:duration>
+            <itunes:explicit>false</itunes:explicit>
+            <itunes:season>2026</itunes:season>
+            <itunes:episode>132</itunes:episode>
+            <itunes:episodeType>full</itunes:episodeType>
+            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-12.chapters.json" type="application/json+chapters"/>
+            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-12.transcript.txt" type="text/plain" language="en"/>
+            <podcast:soundbite startTime="26" duration="111">Google unveils Gemini Intelligence and...</podcast:soundbite>
+            <podcast:soundbite startTime="137" duration="107">Microsoft ousts Israel chief after Azure...</podcast:soundbite>
+            <podcast:soundbite startTime="244" duration="100">Mira Murati&apos;s Thinking Machines ships...</podcast:soundbite>
+        </item>
         <item>
             <title><![CDATA[AI Briefing — May 11, 2026]]></title>
             <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-05-11.mp3</link>
@@ -33,6 +77,8 @@
             <enclosure length="8529756" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-11.mp3"/>
                     <itunes:duration>355</itunes:duration>
             <itunes:explicit>false</itunes:explicit>
+            <itunes:season>2026</itunes:season>
+            <itunes:episode>131</itunes:episode>
             <itunes:episodeType>full</itunes:episodeType>
         </item>
         <item>
@@ -48,6 +94,8 @@
             <enclosure length="7935324" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-10.mp3"/>
                     <itunes:duration>331</itunes:duration>
             <itunes:explicit>false</itunes:explicit>
+            <itunes:season>2026</itunes:season>
+            <itunes:episode>130</itunes:episode>
             <itunes:episodeType>full</itunes:episodeType>
         </item>
         <item>
@@ -63,6 +111,8 @@
             <enclosure length="8024602" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-09.mp3"/>
                     <itunes:duration>334</itunes:duration>
             <itunes:explicit>false</itunes:explicit>
+            <itunes:season>2026</itunes:season>
+            <itunes:episode>129</itunes:episode>
             <itunes:episodeType>full</itunes:episodeType>
         </item>
         <item>
@@ -78,6 +128,8 @@
             <enclosure length="8243482" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-08.mp3"/>
                     <itunes:duration>343</itunes:duration>
             <itunes:explicit>false</itunes:explicit>
+            <itunes:season>2026</itunes:season>
+            <itunes:episode>128</itunes:episode>
             <itunes:episodeType>full</itunes:episodeType>
         </item>
         <item>
@@ -93,6 +145,8 @@
             <enclosure length="8421466" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-07.mp3"/>
                     <itunes:duration>351</itunes:duration>
             <itunes:explicit>false</itunes:explicit>
+            <itunes:season>2026</itunes:season>
+            <itunes:episode>127</itunes:episode>
             <itunes:episodeType>full</itunes:episodeType>
         </item>
         <item>
@@ -108,6 +162,8 @@
             <enclosure length="7860442" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-06.mp3"/>
                     <itunes:duration>327</itunes:duration>
             <itunes:explicit>false</itunes:explicit>
+            <itunes:season>2026</itunes:season>
+            <itunes:episode>126</itunes:episode>
             <itunes:episodeType>full</itunes:episodeType>
         </item>
         <item>
@@ -123,6 +179,8 @@
             <enclosure length="8596570" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-05.mp3"/>
                     <itunes:duration>358</itunes:duration>
             <itunes:explicit>false</itunes:explicit>
+            <itunes:season>2026</itunes:season>
+            <itunes:episode>125</itunes:episode>
             <itunes:episodeType>full</itunes:episodeType>
         </item>
         <item>
@@ -138,6 +196,8 @@
             <enclosure length="7600666" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-04.mp3"/>
                     <itunes:duration>317</itunes:duration>
             <itunes:explicit>false</itunes:explicit>
+            <itunes:season>2026</itunes:season>
+            <itunes:episode>124</itunes:episode>
             <itunes:episodeType>full</itunes:episodeType>
         </item>
     </channel>

@@ -121,6 +121,7 @@ test("validateScriptResponse preserves segment count and source URLs", () => {
       caveat: "Benchmarks are still early.",
       sources: [
         { publisher: "Example News", url: "https://example.com/model-feature" },
+        { publisher: "Example Blog", url: "https://example.com/model-feature-details" },
       ],
     },
   ];
@@ -132,7 +133,10 @@ test("validateScriptResponse preserves segment count and source URLs", () => {
         {
           title: "Top Story: A model ships a useful feature",
           script: "A concise segment.",
-          sourceUrls: ["https://example.com/model-feature"],
+          sourceUrls: [
+            " https://example.com/model-feature-details ",
+            "https://example.com/model-feature",
+          ],
         },
       ],
       outro: "That is the pattern.",

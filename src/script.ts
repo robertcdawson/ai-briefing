@@ -295,7 +295,7 @@ export function validateScriptResponse(
     if (!segment || !cluster) throw new Error(`script response missing segment ${i + 1}`);
 
     const expectedUrls = cluster.sources.map((source) => source.url);
-    if (!arraysEqual(segment.sourceUrls, expectedUrls)) {
+    if (!containSameNormalizedUrls(segment.sourceUrls, expectedUrls)) {
       throw new Error(`script segment ${i + 1} sourceUrls do not match the story cluster`);
     }
   }
@@ -314,8 +314,16 @@ function countWords(s: string): number {
   return s.trim().split(/\s+/).filter(Boolean).length;
 }
 
-function arraysEqual(a: string[], b: string[]): boolean {
-  return a.length === b.length && a.every((value, index) => value === b[index]);
+function containSameNormalizedUrls(a: string[], b: string[]): boolean {
+  if (a.length !== b.length) return false;
+
+  const normalizedA = a.map(normalizeSourceUrl).sort();
+  const normalizedB = b.map(normalizeSourceUrl).sort();
+  return normalizedA.every((value, index) => value === normalizedB[index]);
+}
+
+function normalizeSourceUrl(url: string): string {
+  return url.trim();
 }
 
 export function formatLongDate(yyyymmdd: string): string {

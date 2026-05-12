@@ -173,7 +173,37 @@ test("validateScriptResponse preserves segment count and source URLs", () => {
         },
         clusters,
       ),
-    /sourceUrls do not match/,
+    /sourceUrls do not match.*missing=.*model-feature.*extra=.*changed/,
+  );
+
+  assert.throws(
+    () =>
+      validateScriptResponse(
+        {
+          intro: "Here is the setup.",
+          outro: "That is the pattern.",
+        } as unknown as Parameters<typeof validateScriptResponse>[0],
+        clusters,
+      ),
+    /segments must be an array/,
+  );
+
+  assert.throws(
+    () =>
+      validateScriptResponse(
+        {
+          intro: "Here is the setup.",
+          segments: [
+            {
+              title: "Top Story: A model ships a useful feature",
+              script: "A concise segment.",
+            },
+          ],
+          outro: "That is the pattern.",
+        } as unknown as Parameters<typeof validateScriptResponse>[0],
+        clusters,
+      ),
+    /sourceUrls must be an array/,
   );
 });
 

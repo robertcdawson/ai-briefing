@@ -1,5 +1,5 @@
 import OpenAI from "openai";
-import { STORY_CATEGORY_DEFINITIONS, STORY_CATEGORY_LABELS } from "./types.js";
+import { getStoryCategoryLabel, STORY_CATEGORY_DEFINITIONS } from "./types.js";
 import type { Episode, EpisodeSegment, StoryCluster } from "./types.js";
 import { logJson, withHardTimeout, withRetry } from "./util.js";
 
@@ -196,7 +196,7 @@ Today's original broadcast persona:
 export function buildUserPrompt(date: string, clusters: StoryCluster[]): string {
   const lines = clusters.map((c, i) => {
     const sources = c.sources.map((s) => `${s.publisher}: ${s.url}`).join("\n      ");
-    const categoryLabel = STORY_CATEGORY_LABELS[c.category];
+    const categoryLabel = getStoryCategoryLabel(c.category);
     return `STORY ${i + 1}: ${c.headline}
   Category: ${categoryLabel} (${c.category})
   Why it matters: ${c.whyItMatters}
@@ -283,6 +283,14 @@ export function validateScriptResponse(
   response: ScriptResponse,
   clusters: StoryCluster[],
 ): void {
+  if (!response || typeof response !== "object") {
+    throw new Error("script response must be an object");
+  }
+
+  if (!Array.isArray(response.segments)) {
+    throw new Error("script response segments must be an array");
+  }
+
   if (response.segments.length !== clusters.length) {
     throw new Error(
       `script returned ${response.segments.length} segment(s), expected ${clusters.length}`,
@@ -294,9 +302,20 @@ export function validateScriptResponse(
     const cluster = clusters[i];
     if (!segment || !cluster) throw new Error(`script response missing segment ${i + 1}`);
 
+    if (!Array.isArray(segment.sourceUrls)) {
+      throw new Error(`script segment ${i + 1} sourceUrls must be an array`);
+    }
+    if (segment.sourceUrls.some((url) => typeof url !== "string")) {
+      throw new Error(`script segment ${i + 1} sourceUrls must contain only strings`);
+    }
+
     const expectedUrls = cluster.sources.map((source) => source.url);
-    if (!containSameNormalizedUrls(segment.sourceUrls, expectedUrls)) {
-      throw new Error(`script segment ${i + 1} sourceUrls do not match the story cluster`);
+    const diff = diffNormalizedUrls(segment.sourceUrls, expectedUrls);
+    if (diff.missing.length > 0 || diff.extra.length > 0) {
+      throw new Error(
+        `script segment ${i + 1} sourceUrls do not match the story cluster: ` +
+          `missing=${formatUrlList(diff.missing)} extra=${formatUrlList(diff.extra)}`,
+      );
     }
   }
 }
@@ -314,16 +333,50 @@ function countWords(s: string): number {
   return s.trim().split(/\s+/).filter(Boolean).length;
 }
 
-function containSameNormalizedUrls(a: string[], b: string[]): boolean {
-  if (a.length !== b.length) return false;
+interface UrlDiff {
+  missing: string[];
+  extra: string[];
+}
 
-  const normalizedA = a.map(normalizeSourceUrl).sort();
-  const normalizedB = b.map(normalizeSourceUrl).sort();
-  return normalizedA.every((value, index) => value === normalizedB[index]);
+function diffNormalizedUrls(received: string[], expected: string[]): UrlDiff {
+  const receivedCounts = countNormalizedUrls(received);
+  const expectedCounts = countNormalizedUrls(expected);
+
+  return {
+    missing: subtractUrlCounts(expectedCounts, receivedCounts),
+    extra: subtractUrlCounts(receivedCounts, expectedCounts),
+  };
+}
+
+function countNormalizedUrls(urls: string[]): Map<string, number> {
+  const counts = new Map<string, number>();
+  for (const url of urls) {
+    const normalized = normalizeSourceUrl(url);
+    counts.set(normalized, (counts.get(normalized) ?? 0) + 1);
+  }
+  return counts;
+}
+
+function subtractUrlCounts(
+  left: Map<string, number>,
+  right: Map<string, number>,
+): string[] {
+  const diff: string[] = [];
+  for (const [url, count] of left) {
+    const remaining = count - (right.get(url) ?? 0);
+    for (let i = 0; i < remaining; i += 1) {
+      diff.push(url);
+    }
+  }
+  return diff.sort();
 }
 
 function normalizeSourceUrl(url: string): string {
   return url.trim();
+}
+
+function formatUrlList(urls: string[]): string {
+  return urls.length === 0 ? "[]" : JSON.stringify(urls);
 }
 
 export function formatLongDate(yyyymmdd: string): string {

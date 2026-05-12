@@ -41,14 +41,11 @@ export const STORY_CATEGORY_DEFINITIONS = [
 
 export type StoryCategory = (typeof STORY_CATEGORY_DEFINITIONS)[number]["id"];
 
-export const STORY_CATEGORY_LABELS = {
-  research: "Research Breakthrough",
-  "product-tools": "Product & Tool Watch",
-  business: "AI Business Watch",
-  "policy-regulation": "Policy & Regulation Watch",
-  "open-source": "Open Source Watch",
-  culture: "AI Culture Signal",
-} as const satisfies Record<StoryCategory, string>;
+export function getStoryCategoryLabel(category: StoryCategory): string {
+  const definition = STORY_CATEGORY_DEFINITIONS.find((candidate) => candidate.id === category);
+  if (!definition) throw new Error(`Unknown story category: ${category}`);
+  return definition.label;
+}
 
 export interface StoryCluster {
   canonicalKey: string;

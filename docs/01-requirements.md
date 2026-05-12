@@ -49,7 +49,7 @@ Single user (me). Personal-use only. No public distribution.
 
 - Public Apple Podcasts directory submission
 - Multiple voices, dialogue format, licensed music beds
-- Chapter markers, transcript search
+- Transcript search UI
 - Web-based admin or preview UI
 - Topic personalization beyond "AI news"
 - Real auth on the feed URL (HMAC-signed URLs, basic auth, etc.)
@@ -58,7 +58,7 @@ Single user (me). Personal-use only. No public distribution.
 
 - Cloudflare R2 + custom domain for proper privacy
 - Source-quality scoring + ranking dashboard
-- Auto-generated show notes in episode description
+- Searchable transcript/chapter UI
 - Slack/email digest companion
 - Topic preferences (more research papers, less fundraising news)
 - Switch to ElevenLabs for higher voice quality

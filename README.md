@@ -53,7 +53,9 @@ ai-briefing/
 │   ├── feed.xml                  # Regenerated each run
 │   └── episodes/
 │       ├── YYYY-MM-DD.mp3        # The audio
-│       └── YYYY-MM-DD.json       # Sidecar metadata (title, duration, bytes)
+│       ├── YYYY-MM-DD.json       # Sidecar metadata (title, duration, bytes, feed options)
+│       ├── YYYY-MM-DD.chapters.json
+│       └── YYYY-MM-DD.transcript.txt
 ├── .env.example
 ├── package.json
 ├── tsconfig.json
@@ -142,6 +144,7 @@ Paste your feed URL into https://castfeedvalidator.com. Fix anything red before 
 If Cast Feed Validator flags missing Apple metadata, make sure these are set before re-running `npm start`:
 
 - `PODCAST_OWNER_NAME` and `PODCAST_OWNER_EMAIL` (contact metadata)
+- `PODCAST_HOST_NAME` and `PODCAST_LOCKED` (Podcasting 2.0 host/import metadata)
 - `PODCAST_IMAGE_URL` (show artwork URL)
 - `PODCAST_CATEGORIES` (for example `Technology`)
 - `PODCAST_TYPE` (`episodic` for this project)
@@ -165,6 +168,8 @@ In the repo's **Settings → Secrets and variables → Actions**:
 - `PODCAST_SUMMARY`
 - `PODCAST_OWNER_NAME`
 - `PODCAST_OWNER_EMAIL`
+- `PODCAST_HOST_NAME`
+- `PODCAST_LOCKED`
 - `PODCAST_IMAGE_URL`
 - `PODCAST_CATEGORIES`
 - `PODCAST_EXPLICIT`
@@ -206,7 +211,7 @@ Two layers of expiry, both deliberate:
 | Layer | Window | Behavior |
 |---|---|---|
 | `feed.xml` listing | Last **30 episodes** | Older episodes drop out of the RSS feed |
-| Disk (and git history going forward) | Last **90 days** | Older `.mp3` and `.json` files are deleted on each run |
+| Disk (and git history going forward) | Last **90 days** | Older episode `.mp3`, `.json`, chapter, and transcript files are deleted on each run |
 
 The 90-day disk cap prevents the repo from ballooning past GitHub's 1 GB recommendation (~5–7 MB × 365 days would otherwise be ~2 GB after a year).
 

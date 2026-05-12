@@ -1,7 +1,7 @@
 import { execa } from "execa";
 import { mkdir, stat, writeFile } from "node:fs/promises";
 import path from "node:path";
-import type { Episode } from "./types.js";
+import type { Episode, EpisodePartTiming } from "./types.js";
 import { logJson, withHardTimeout, withRetry } from "./util.js";
 
 const TIMEOUT_MS = 5 * 60_000;
@@ -19,6 +19,7 @@ export interface AudioResult {
   finalPath: string;
   byteLength: number;
   durationSeconds: number;
+  partTimings: EpisodePartTiming[];
 }
 
 export async function buildEpisodeAudio(
@@ -31,11 +32,26 @@ export async function buildEpisodeAudio(
   if (segmentPaths.length === 0) {
     throw new Error("buildEpisodeAudio: no segment paths provided");
   }
+  const expectedParts = episode.segments.length + 2;
+  if (segmentPaths.length !== expectedParts) {
+    throw new Error(
+      `buildEpisodeAudio: received ${segmentPaths.length} segment path(s), expected ${expectedParts}`,
+    );
+  }
 
   const normalizedSegments = await normalizeSegmentAudio(segmentPaths, workDir);
+  const segmentDurations = await Promise.all(normalizedSegments.map((filePath) => probeDuration(filePath)));
   const cuesEnabled = resolveAudioCuesEnabled();
-  const concatInputs = cuesEnabled
-    ? buildStingerSequence(normalizedSegments, await synthesizeCueTracks(workDir))
+  const cueTracks = cuesEnabled ? await synthesizeCueTracks(workDir) : null;
+  const cueDurations = cueTracks
+    ? {
+        intro: await probeDuration(cueTracks.intro),
+        transition: await probeDuration(cueTracks.transition),
+        outro: await probeDuration(cueTracks.outro),
+      }
+    : { intro: 0, transition: 0, outro: 0 };
+  const concatInputs = cueTracks
+    ? buildStingerSequence(normalizedSegments, cueTracks)
     : normalizedSegments;
   const concatPath = await concatAudioFiles(concatInputs, workDir, "program");
 
@@ -62,6 +78,7 @@ export async function buildEpisodeAudio(
 
   const stats = await stat(finalPath);
   const durationSeconds = await probeDurationSeconds(finalPath);
+  const partTimings = buildEpisodePartTimings(episode, segmentDurations, cueDurations, cuesEnabled);
 
   logJson({
     phase: "audio",
@@ -73,7 +90,7 @@ export async function buildEpisodeAudio(
     cuesEnabled,
   });
 
-  return { finalPath, byteLength: stats.size, durationSeconds };
+  return { finalPath, byteLength: stats.size, durationSeconds, partTimings };
 }
 
 export function resolveAudioCuesEnabled(value = process.env.AUDIO_CUES_ENABLED): boolean {
@@ -190,6 +207,10 @@ async function synthesizeCueTone(
 }
 
 async function probeDurationSeconds(filePath: string): Promise<number> {
+  return Math.round(await probeDuration(filePath));
+}
+
+async function probeDuration(filePath: string): Promise<number> {
   const { stdout } = await execa(
     "ffprobe",
     [
@@ -201,9 +222,47 @@ async function probeDurationSeconds(filePath: string): Promise<number> {
     { stdio: ["ignore", "pipe", "pipe"] },
   );
   const seconds = parseFloat(stdout.trim());
-  return Number.isFinite(seconds) ? Math.round(seconds) : 0;
+  return Number.isFinite(seconds) ? seconds : 0;
 }
 
 function pad2(n: number): string {
   return n.toString().padStart(2, "0");
+}
+
+function buildEpisodePartTimings(
+  episode: Episode,
+  segmentDurations: number[],
+  cueDurations: CueTrackPathsDurations,
+  cuesEnabled: boolean,
+): EpisodePartTiming[] {
+  const partLabels: Array<{ kind: EpisodePartTiming["kind"]; title: string; index?: number }> = [
+    { kind: "intro", title: "Intro" },
+    ...episode.segments.map((segment, index) => ({
+      kind: "segment" as const,
+      title: segment.title,
+      index,
+    })),
+    { kind: "outro", title: "Outro" },
+  ];
+
+  let cursor = 0;
+  return partLabels.map((part, index) => {
+    if (index === 0) {
+      const durationSeconds = segmentDurations[index] ?? 0;
+      cursor += (cuesEnabled ? cueDurations.intro : 0) + durationSeconds;
+      return { ...part, startTime: 0, durationSeconds };
+    }
+
+    if (cuesEnabled) cursor += cueDurations.transition;
+    const durationSeconds = segmentDurations[index] ?? 0;
+    const startTime = cursor;
+    cursor += durationSeconds;
+    return { ...part, startTime, durationSeconds };
+  });
+}
+
+interface CueTrackPathsDurations {
+  intro: number;
+  transition: number;
+  outro: number;
 }

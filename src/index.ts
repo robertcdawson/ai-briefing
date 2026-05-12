@@ -72,6 +72,7 @@ async function main(): Promise<void> {
       audio.finalPath,
       audio.byteLength,
       audio.durationSeconds,
+      audio.partTimings,
     );
     logJson({
       phase: "pipeline.step",

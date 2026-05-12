@@ -62,6 +62,16 @@ export interface EpisodeSegment {
   sourceUrls: string[];
 }
 
+export type EpisodePartKind = "intro" | "segment" | "outro";
+
+export interface EpisodePartTiming {
+  kind: EpisodePartKind;
+  title: string;
+  startTime: number;
+  durationSeconds: number;
+  index?: number;
+}
+
 export interface Episode {
   date: string;
   title: string;

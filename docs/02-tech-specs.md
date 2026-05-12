@@ -8,7 +8,7 @@
 | Scheduler | GitHub Actions cron | Free, zero new infra, already proven in prior pipeline |
 | News source | Curated RSS feeds via `rss-parser` | Free, deterministic, no API key, no rate limits, easy to extend |
 | LLM | OpenRouter → Claude Sonnet (`anthropic/claude-sonnet-4-7`) | Already in workflow; structured output; high reasoning quality |
-| TTS | OpenAI `tts-1-hd` (direct API) | ~$3-5/mo at this volume; reliable; voice consistency |
+| TTS | OpenAI `gpt-4o-mini-tts` (direct API) | Supports delivery instructions for a more engaged podcast read; direct OpenAI keeps audio generation reliable |
 | Audio | ffmpeg | Industry standard; loudness normalize, concat, encode, ID3 |
 | Storage + hosting | Public GitHub repo + GitHub Pages | Free; zero new infra; obscure path = soft privacy |
 | RSS feed | `feed` npm package, `feed.xml` committed to repo | Standards-compliant; Apple Podcasts compatible |
@@ -42,7 +42,7 @@
 └────────┬────────┘
          ↓
 ┌─────────────────┐
-│  tts.ts         │   OpenAI tts-1-hd: per-segment MP3 chunks
+│  tts.ts         │   OpenAI TTS: per-segment MP3 chunks
 └────────┬────────┘
          ↓
 ┌─────────────────┐
@@ -121,6 +121,7 @@ interface Article {
 
 interface StoryCluster {
   canonicalKey: string;    // e.g., "openai-releases-tts-3"
+  category: "research" | "product-tools" | "business" | "policy-regulation" | "open-source" | "culture";
   headline: string;
   whyItMatters: string;
   caveat: string;
@@ -169,6 +170,8 @@ Use the `feed` npm package — do not hand-roll XML. `length` must be the actual
 | `OPENROUTER_API_KEY` | LLM access (curate + script) |
 | `OPENAI_API_KEY` | TTS access |
 | `FEED_BASE_URL` | e.g., `https://USER.github.io/ai-briefing` |
+| `TTS_MODEL` | OpenAI speech model; default `gpt-4o-mini-tts` supports delivery instructions |
+| `TTS_VOICE` | OpenAI TTS voice; default `onyx` |
 | `AUDIO_CUES_ENABLED` | Toggle synthetic intro/transition/outro stingers (`true`/`false`) |
 | `GITHUB_TOKEN` | Provided by Actions; used to commit + push |
 
@@ -194,7 +197,7 @@ Rule of thumb: a missing episode is fine; a broken feed unsubscribes me.
 | GitHub Actions | $0 (well within free tier) |
 | GitHub Pages | $0 |
 | OpenRouter (curate + script) | ~$2-3 |
-| OpenAI TTS `tts-1-hd` | ~$3-5 |
+| OpenAI TTS | Model-dependent; monitor the OpenAI usage dashboard |
 | **Total** | **~$5-8/month** |
 
 ## Privacy note

@@ -1,4 +1,5 @@
 import OpenAI from "openai";
+import { STORY_CATEGORY_DEFINITIONS } from "./types.js";
 import type { Article, StoryCluster } from "./types.js";
 import { logJson, withHardTimeout, withRetry } from "./util.js";
 
@@ -17,6 +18,11 @@ const RESPONSE_SCHEMA = {
           canonicalKey: {
             type: "string",
             description: "kebab-case slug, e.g. 'openai-releases-tts-3'",
+          },
+          category: {
+            type: "string",
+            enum: STORY_CATEGORY_DEFINITIONS.map((category) => category.id),
+            description: "Primary editorial lane for this story.",
           },
           headline: {
             type: "string",
@@ -49,6 +55,7 @@ const RESPONSE_SCHEMA = {
         },
         required: [
           "canonicalKey",
+          "category",
           "headline",
           "whyItMatters",
           "caveat",
@@ -63,20 +70,29 @@ const RESPONSE_SCHEMA = {
   additionalProperties: false,
 } as const;
 
-const SYSTEM_PROMPT = `You are the editor for a daily AI news podcast. Given a list of recent articles from various publishers, your job is to:
+export function buildSystemPrompt(): string {
+  const categoryLines = STORY_CATEGORY_DEFINITIONS
+    .map((category) => `- ${category.label} (${category.id}): ${category.prompt}`)
+    .join("\n");
+
+  return `You are the editor for a daily AI news podcast. Given a list of recent articles from various publishers, your job is to:
 
 1. CLUSTER articles about the same underlying story (e.g., multiple outlets covering one product launch). Group them by canonical story.
-2. SCORE each cluster's importance for a technical AI audience (researchers, builders, technical leaders) on a 0-100 scale. Weight substantive product/research news above funding/business chatter above pure opinion. Down-weight SEO clickbait and listicles.
-3. SELECT the top 3 clusters by importance. If fewer than 3 credible stories exist, return fewer — never pad with weak material.
+2. SCAN every editorial lane before selecting stories, so the show does not miss strong category-specific news:
+${categoryLines}
+3. SCORE each cluster's audience impact for researchers, builders, and technical leaders on a 0-100 scale. Weight practical usefulness, strategic consequence, evidence quality, and timeliness above novelty; novelty is only a tiebreaker. Down-weight SEO clickbait, thin rewrites, listicles, and pure opinion.
+4. SELECT the top 3 clusters by audience impact, preferring a diverse mix of categories when scores are close. If fewer than 3 credible stories exist, return fewer — never pad with weak material.
 
 For each cluster:
 - canonicalKey: short kebab-case slug
+- category: one of the editorial lane ids above
 - headline: 8-14 word neutral framing
 - whyItMatters: 1-2 sentences on significance for AI builders/researchers
 - caveat: 1 sentence on what's uncertain, missing, or potentially overhyped
 - sources: every article in the cluster as {url, publisher}
 
 Return only JSON matching the provided schema. No prose outside the JSON.`;
+}
 
 function buildUserPrompt(articles: Article[]): string {
   const lines = articles.map((a, i) => {
@@ -108,7 +124,7 @@ export async function curate(articles: Article[]): Promise<StoryCluster[]> {
         client.chat.completions.create({
           model: MODEL,
           messages: [
-            { role: "system", content: SYSTEM_PROMPT },
+            { role: "system", content: buildSystemPrompt() },
             { role: "user", content: buildUserPrompt(articles) },
           ],
           response_format: {
@@ -146,6 +162,7 @@ export async function curate(articles: Article[]): Promise<StoryCluster[]> {
     inputArticles: articles.length,
     outputClusters: clusters.length,
     headlines: clusters.map((c) => c.headline),
+    categories: clusters.map((c) => c.category),
   });
 
   return clusters;

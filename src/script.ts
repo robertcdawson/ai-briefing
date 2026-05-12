@@ -1,4 +1,5 @@
 import OpenAI from "openai";
+import { getStoryCategoryLabel, STORY_CATEGORY_DEFINITIONS } from "./types.js";
 import type { Episode, EpisodeSegment, StoryCluster } from "./types.js";
 import { logJson, withHardTimeout, withRetry } from "./util.js";
 
@@ -13,6 +14,12 @@ export interface DailyPersona {
   opinionStance: string;
   humor: string;
   avoid: string;
+}
+
+export interface ScriptResponse {
+  intro: string;
+  segments: EpisodeSegment[];
+  outro: string;
 }
 
 export const DAILY_PERSONAS: readonly DailyPersona[] = [
@@ -99,7 +106,7 @@ const RESPONSE_SCHEMA = {
           script: {
             type: "string",
             description:
-              "~90s spoken script (~220-260 words): what happened → why it matters → caveat → 1-line transition into the next story (or outro for the final segment).",
+              "~90s spoken script (~220-260 words): what happened → why it matters → brief explainer when needed → caveat → short transition into the next story (or outro for the final segment).",
           },
           sourceUrls: {
             type: "array",
@@ -120,23 +127,38 @@ const RESPONSE_SCHEMA = {
   additionalProperties: false,
 } as const;
 
+const SEGMENT_LABEL_RULES = STORY_CATEGORY_DEFINITIONS
+  .map((category) => `  - ${category.id}: "${category.label}: {headline}"`)
+  .join("\n");
+
 const SYSTEM_PROMPT_BASE = `You are the writer for a daily AI news podcast called "AI Briefing". Write a tight, conversational 4-7 minute spoken script (~600-1000 words total) for a single host. Match this structure exactly:
 
-- INTRO HOOK (15-25 seconds, ~40-60 words): A compelling cold open that names the date and previews the day's stories. Not a dry table of contents.
-- THREE SEGMENTS (~90 seconds each, ~220-260 words each), one per story cluster, in the order provided. Each segment must:
+- INTRO HOOK (15-25 seconds, ~40-60 words): Begin with an engaging summary hook: the day's thesis, tension, or surprise, then name the date and preview the stakes. Not a dry table of contents.
+- STORY SEGMENTS (~90 seconds each, ~220-260 words each): Write exactly one segment per provided story cluster, in the order provided. If fewer than three credible clusters are provided, write fewer segments; never invent or pad. Each segment must:
   1. Open with what happened — concrete and specific.
-  2. Explain why it matters for AI builders/researchers.
-  3. End with a brief caveat: what's uncertain, missing, or potentially overhyped.
-  4. Close with a one-line transition into the next story (or, for the last segment, into the outro).
-- SYNTHESIS OUTRO (30-40 seconds, ~80-100 words): Identify a pattern, theme, or contrast across the three stories. End with a sign-off.
+  2. Explain why it matters for AI builders/researchers, with a listener-oriented takeaway.
+  3. Briefly explain technical terms on first use in plain English, only when needed.
+  4. End with a brief caveat: what's uncertain, missing, or potentially overhyped.
+  5. Close with a smooth, short transition into the next story (or, for the last segment, into the outro).
+- SYNTHESIS OUTRO (30-40 seconds, ~80-100 words): Identify a pattern, theme, or contrast across the provided stories. End with a sign-off.
+
+Recurring segment labels:
+- The first segment title MUST begin "Top Story: " followed by the story headline.
+- Later segment titles MUST use the provided category's recurring label:
+${SEGMENT_LABEL_RULES}
+- Keep titles compact. Do not invent new segment label names.
 
 Voice rules:
 - Conversational and intelligent, not breathless or hyped.
+- Sound alert and enthusiastic, like the host genuinely finds the material useful, while staying skeptical and precise.
 - Optimize for information retention: vary sentence rhythm, front-load concrete details, and reinforce each segment's key takeaway once near the end.
+- Spoken pacing: mix crisp short sentences with medium explanatory sentences. Avoid dense clauses; keep most sentences under about 24 words.
 - Use light, dry humor sparingly (about one quick line per segment max) when it helps recall, never at the expense of accuracy or clarity.
 - Bring some attitude: sound like a sharp analyst with opinions grounded in evidence, not a neutral press-release reader.
 - The host may have strong opinions, but every opinion must be grounded in the provided facts. Prefer sharp analysis over neutral summary, but never sacrifice accuracy for personality.
 - Read-aloud-friendly: short sentences, no parenthetical asides, avoid em-dashes that force awkward pauses.
+- Explain jargon only when it helps: define specialized terms in 8-14 plain words and keep moving.
+- Transitions must be one sentence, under about 12 words, and specific to the next story. Avoid formulaic phrases like "next up."
 - No "Welcome to" or "Today on AI Briefing" boilerplate openings — that gets stale fast.
 - No bullet points, no markdown, no stage directions, no "[pause]" cues.
 - Numbers in spoken form when natural ("about three billion" not "3,000,000,000").
@@ -174,13 +196,15 @@ Today's original broadcast persona:
 export function buildUserPrompt(date: string, clusters: StoryCluster[]): string {
   const lines = clusters.map((c, i) => {
     const sources = c.sources.map((s) => `${s.publisher}: ${s.url}`).join("\n      ");
+    const categoryLabel = getStoryCategoryLabel(c.category);
     return `STORY ${i + 1}: ${c.headline}
+  Category: ${categoryLabel} (${c.category})
   Why it matters: ${c.whyItMatters}
   Caveat: ${c.caveat}
   Sources:
       ${sources}`;
   });
-  return `Today is ${date}. Write the podcast script for the following ${clusters.length} story cluster${clusters.length === 1 ? "" : "s"}, in order:
+  return `Today is ${date}. Write the podcast script for the following ${clusters.length} story cluster${clusters.length === 1 ? "" : "s"}, in order. Return exactly ${clusters.length} segment object${clusters.length === 1 ? "" : "s"}; never invent or pad:
 
 ${lines.join("\n\n")}`;
 }
@@ -198,9 +222,9 @@ export async function writeScript(date: string, clusters: StoryCluster[]): Promi
     timeout: TIMEOUT_MS,
   });
 
-  const completion = await withRetry(
-    () =>
-      withHardTimeout(
+  const parsed = await withRetry(
+    async () => {
+      const completion = await withHardTimeout(
         client.chat.completions.create({
           model: MODEL,
           messages: [
@@ -215,18 +239,17 @@ export async function writeScript(date: string, clusters: StoryCluster[]): Promi
         }),
         TIMEOUT_MS,
         "script.openrouter",
-      ),
+      );
+
+      const content = completion.choices[0]?.message?.content;
+      if (!content) throw new Error("Empty response from OpenRouter");
+
+      const response = JSON.parse(content) as ScriptResponse;
+      validateScriptResponse(response, clusters);
+      return response;
+    },
     { attempts: MAX_ATTEMPTS, label: "script" },
   );
-
-  const content = completion.choices[0]?.message?.content;
-  if (!content) throw new Error("Empty response from OpenRouter");
-
-  const parsed = JSON.parse(content) as {
-    intro: string;
-    segments: EpisodeSegment[];
-    outro: string;
-  };
 
   const wordCount =
     countWords(parsed.intro) +
@@ -256,6 +279,47 @@ export async function writeScript(date: string, clusters: StoryCluster[]): Promi
   return episode;
 }
 
+export function validateScriptResponse(
+  response: ScriptResponse,
+  clusters: StoryCluster[],
+): void {
+  if (!response || typeof response !== "object") {
+    throw new Error("script response must be an object");
+  }
+
+  if (!Array.isArray(response.segments)) {
+    throw new Error("script response segments must be an array");
+  }
+
+  if (response.segments.length !== clusters.length) {
+    throw new Error(
+      `script returned ${response.segments.length} segment(s), expected ${clusters.length}`,
+    );
+  }
+
+  for (let i = 0; i < clusters.length; i += 1) {
+    const segment = response.segments[i];
+    const cluster = clusters[i];
+    if (!segment || !cluster) throw new Error(`script response missing segment ${i + 1}`);
+
+    if (!Array.isArray(segment.sourceUrls)) {
+      throw new Error(`script segment ${i + 1} sourceUrls must be an array`);
+    }
+    if (segment.sourceUrls.some((url) => typeof url !== "string")) {
+      throw new Error(`script segment ${i + 1} sourceUrls must contain only strings`);
+    }
+
+    const expectedUrls = cluster.sources.map((source) => source.url);
+    const diff = diffNormalizedUrls(segment.sourceUrls, expectedUrls);
+    if (diff.missing.length > 0 || diff.extra.length > 0) {
+      throw new Error(
+        `script segment ${i + 1} sourceUrls do not match the story cluster: ` +
+          `missing=${formatUrlList(diff.missing)} extra=${formatUrlList(diff.extra)}`,
+      );
+    }
+  }
+}
+
 function stableHash(input: string): number {
   let hash = 2166136261;
   for (let i = 0; i < input.length; i += 1) {
@@ -267,6 +331,52 @@ function stableHash(input: string): number {
 
 function countWords(s: string): number {
   return s.trim().split(/\s+/).filter(Boolean).length;
+}
+
+interface UrlDiff {
+  missing: string[];
+  extra: string[];
+}
+
+function diffNormalizedUrls(received: string[], expected: string[]): UrlDiff {
+  const receivedCounts = countNormalizedUrls(received);
+  const expectedCounts = countNormalizedUrls(expected);
+
+  return {
+    missing: subtractUrlCounts(expectedCounts, receivedCounts),
+    extra: subtractUrlCounts(receivedCounts, expectedCounts),
+  };
+}
+
+function countNormalizedUrls(urls: string[]): Map<string, number> {
+  const counts = new Map<string, number>();
+  for (const url of urls) {
+    const normalized = normalizeSourceUrl(url);
+    counts.set(normalized, (counts.get(normalized) ?? 0) + 1);
+  }
+  return counts;
+}
+
+function subtractUrlCounts(
+  left: Map<string, number>,
+  right: Map<string, number>,
+): string[] {
+  const diff: string[] = [];
+  for (const [url, count] of left) {
+    const remaining = count - (right.get(url) ?? 0);
+    for (let i = 0; i < remaining; i += 1) {
+      diff.push(url);
+    }
+  }
+  return diff.sort();
+}
+
+function normalizeSourceUrl(url: string): string {
+  return url.trim();
+}
+
+function formatUrlList(urls: string[]): string {
+  return urls.length === 0 ? "[]" : JSON.stringify(urls);
 }
 
 export function formatLongDate(yyyymmdd: string): string {

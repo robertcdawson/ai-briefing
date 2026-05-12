@@ -26,8 +26,8 @@ sequenceDiagram
     Note over Cron: 06:30 PT daily
     Cron->>Job: trigger workflow
     Job->>Job: fetch RSS (last 24h)
-    Job->>LLM: cluster + rank candidates
-    LLM-->>Job: top 3 StoryClusters
+    Job->>LLM: cluster + scan categories + rank by audience impact
+    LLM-->>Job: top 3 categorized StoryClusters
     Job->>LLM: generate spoken script
     LLM-->>Job: Episode (intro, segments, outro)
     Job->>TTS: synthesize per segment

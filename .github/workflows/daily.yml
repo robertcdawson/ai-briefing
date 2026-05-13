@@ -17,7 +17,7 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -32,6 +32,11 @@ jobs:
 
       - name: Install ffmpeg
         run: |
+          if command -v ffmpeg >/dev/null 2>&1 && command -v ffprobe >/dev/null 2>&1; then
+            ffmpeg -version | sed -n '1p'
+            ffprobe -version | sed -n '1p'
+            exit 0
+          fi
           sudo apt-get update
           sudo apt-get install -y ffmpeg
 
@@ -46,11 +51,15 @@ jobs:
           EPISODE_TIME_ZONE: ${{ vars.EPISODE_TIME_ZONE }}
           TTS_MODEL: ${{ vars.TTS_MODEL }}
           TTS_VOICE: ${{ vars.TTS_VOICE }}
+          TTS_TIMEOUT_MS: ${{ vars.TTS_TIMEOUT_MS }}
           AUDIO_CUES_ENABLED: ${{ vars.AUDIO_CUES_ENABLED }}
+          AUDIO_CUE_STYLE: ${{ vars.AUDIO_CUE_STYLE }}
           PODCAST_AUTHOR: ${{ vars.PODCAST_AUTHOR }}
           PODCAST_SUMMARY: ${{ vars.PODCAST_SUMMARY }}
           PODCAST_OWNER_NAME: ${{ vars.PODCAST_OWNER_NAME }}
           PODCAST_OWNER_EMAIL: ${{ vars.PODCAST_OWNER_EMAIL }}
+          PODCAST_HOST_NAME: ${{ vars.PODCAST_HOST_NAME }}
+          PODCAST_LOCKED: ${{ vars.PODCAST_LOCKED }}
           PODCAST_IMAGE_URL: ${{ vars.PODCAST_IMAGE_URL }}
           PODCAST_CATEGORIES: ${{ vars.PODCAST_CATEGORIES }}
           PODCAST_EXPLICIT: ${{ vars.PODCAST_EXPLICIT }}

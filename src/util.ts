@@ -7,12 +7,14 @@ export function sleep(ms: number): Promise<void> {
 }
 
 export function withHardTimeout<T>(p: Promise<T>, ms: number, label: string): Promise<T> {
-  return Promise.race<T>([
-    p,
-    new Promise<T>((_, reject) =>
-      setTimeout(() => reject(new Error(`Timeout after ${ms}ms: ${label}`)), ms),
-    ),
-  ]);
+  let timeout: NodeJS.Timeout | undefined;
+  const timeoutPromise = new Promise<T>((_, reject) => {
+    timeout = setTimeout(() => reject(new Error(`Timeout after ${ms}ms: ${label}`)), ms);
+  });
+
+  return Promise.race<T>([p, timeoutPromise]).finally(() => {
+    if (timeout) clearTimeout(timeout);
+  });
 }
 
 export interface RetryOpts {

@@ -3,10 +3,12 @@ import { mkdir, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import type { Episode } from "./types.js";
-import { logJson, withHardTimeout, withRetry } from "./util.js";
+import { logJson, withRetry } from "./util.js";
 
 const DEFAULT_MODEL = "gpt-4o-mini-tts";
-const TIMEOUT_MS = 60_000;
+const DEFAULT_TIMEOUT_MS = 180_000;
+const MIN_TIMEOUT_MS = 60_000;
+const MAX_TIMEOUT_MS = 600_000;
 const MAX_ATTEMPTS = 3;
 const TTS_MODELS = [
   "tts-1",
@@ -50,8 +52,9 @@ export async function synthesize(episode: Episode): Promise<TTSResult> {
   const requestedVoice = (process.env.TTS_VOICE ?? "onyx") as TTSVoice;
   const voice: TTSVoice = VALID_VOICES.includes(requestedVoice) ? requestedVoice : "onyx";
   const model = resolveTTSModel(process.env.TTS_MODEL);
+  const timeoutMs = resolveTTSTimeoutMs(process.env.TTS_TIMEOUT_MS);
 
-  const client = new OpenAI({ apiKey, timeout: TIMEOUT_MS });
+  const client = new OpenAI({ apiKey, timeout: timeoutMs, maxRetries: 0 });
 
   const segmentDir = path.join(tmpdir(), `ai-briefing-${episode.date}-${process.pid}`);
   await mkdir(segmentDir, { recursive: true });
@@ -70,18 +73,7 @@ export async function synthesize(episode: Episode): Promise<TTSResult> {
     const partStart = Date.now();
     const filePath = path.join(segmentDir, `${part.label}.mp3`);
     await withRetry(
-      () =>
-        withHardTimeout(
-          (async () => {
-            const response = await client.audio.speech.create({
-              ...buildSpeechRequest(part.text, voice, model),
-            });
-            const buffer = Buffer.from(await response.arrayBuffer());
-            await writeFile(filePath, buffer);
-          })(),
-          TIMEOUT_MS,
-          `tts.${part.label}`,
-        ),
+      () => writeSpeechFile(client, buildSpeechRequest(part.text, voice, model), filePath, timeoutMs, part.label),
       { attempts: MAX_ATTEMPTS, label: `tts:${part.label}` },
     );
     segmentPaths.push(filePath);
@@ -101,10 +93,42 @@ export async function synthesize(episode: Episode): Promise<TTSResult> {
     segments: segmentPaths.length,
     voice,
     model,
+    timeoutMs,
     deliveryInstructions: supportsDeliveryInstructions(model) ? "enabled" : "unsupported",
   });
 
   return { segmentDir, segmentPaths };
+}
+
+async function writeSpeechFile(
+  client: OpenAI,
+  request: SpeechRequest,
+  filePath: string,
+  timeoutMs: number,
+  label: string,
+): Promise<void> {
+  const controller = new AbortController();
+  let timedOut = false;
+  const timeout = setTimeout(() => {
+    timedOut = true;
+    controller.abort();
+  }, timeoutMs);
+
+  try {
+    const response = await client.audio.speech.create(
+      request,
+      { signal: controller.signal, timeout: timeoutMs },
+    );
+    const buffer = Buffer.from(await response.arrayBuffer());
+    await writeFile(filePath, buffer);
+  } catch (err) {
+    if (timedOut) {
+      throw new Error(`Timeout after ${timeoutMs}ms: tts.${label}`);
+    }
+    throw err;
+  } finally {
+    clearTimeout(timeout);
+  }
 }
 
 export function buildSpeechRequest(
@@ -131,6 +155,15 @@ function resolveTTSModel(requestedModel: string | undefined): TTSModel {
     return requestedModel as TTSModel;
   }
   return DEFAULT_MODEL;
+}
+
+export function resolveTTSTimeoutMs(raw: string | undefined): number {
+  if (!raw) return DEFAULT_TIMEOUT_MS;
+  const parsed = Number(raw);
+  if (!Number.isFinite(parsed)) return DEFAULT_TIMEOUT_MS;
+  const rounded = Math.round(parsed);
+  if (rounded < MIN_TIMEOUT_MS || rounded > MAX_TIMEOUT_MS) return DEFAULT_TIMEOUT_MS;
+  return rounded;
 }
 
 function supportsDeliveryInstructions(model: TTSModel): boolean {

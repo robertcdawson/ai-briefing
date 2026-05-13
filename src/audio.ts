@@ -2,7 +2,7 @@ import { execa } from "execa";
 import { mkdir, stat, writeFile } from "node:fs/promises";
 import path from "node:path";
 import type { Episode, EpisodePartTiming } from "./types.js";
-import { logJson, withHardTimeout, withRetry } from "./util.js";
+import { logJson, withRetry } from "./util.js";
 
 const TIMEOUT_MS = 5 * 60_000;
 const MAX_ATTEMPTS = 3;
@@ -13,6 +13,14 @@ interface CueTrackPaths {
   intro: string;
   transition: string;
   outro: string;
+}
+
+type AudioCueStyle = "tone" | "chime" | "tick";
+
+interface CueToneSpec {
+  frequency: number;
+  durationSeconds: number;
+  volume: number;
 }
 
 export interface AudioResult {
@@ -42,7 +50,8 @@ export async function buildEpisodeAudio(
   const normalizedSegments = await normalizeSegmentAudio(segmentPaths, workDir);
   const segmentDurations = await Promise.all(normalizedSegments.map((filePath) => probeDuration(filePath)));
   const cuesEnabled = resolveAudioCuesEnabled();
-  const cueTracks = cuesEnabled ? await synthesizeCueTracks(workDir) : null;
+  const cueStyle = resolveAudioCueStyle();
+  const cueTracks = cuesEnabled ? await synthesizeCueTracks(workDir, cueStyle) : null;
   const cueDurations = cueTracks
     ? {
         intro: await probeDuration(cueTracks.intro),
@@ -54,6 +63,10 @@ export async function buildEpisodeAudio(
     ? buildStingerSequence(normalizedSegments, cueTracks)
     : normalizedSegments;
   const concatPath = await concatAudioFiles(concatInputs, workDir, "program");
+  const partTimings = buildEpisodePartTimings(episode, segmentDurations, cueDurations, cuesEnabled);
+  const estimatedDurationSeconds = estimateProgramDuration(segmentDurations, cueDurations, cuesEnabled);
+  const chapterMetadataPath = path.join(workDir, "chapters.ffmetadata");
+  await writeFile(chapterMetadataPath, buildFfmpegChapterMetadata(partTimings, estimatedDurationSeconds));
 
   const finalPath = path.join(workDir, `${episode.date}.mp3`);
   await runFfmpeg(
@@ -61,7 +74,12 @@ export async function buildEpisodeAudio(
       "-y",
       "-loglevel", "error",
       "-i", concatPath,
+      "-f", "ffmetadata",
+      "-i", chapterMetadataPath,
+      "-map", "0:a:0",
       "-af", "loudnorm=I=-16:TP=-1.5:LRA=11",
+      "-map_metadata", "1",
+      "-map_chapters", "1",
       "-c:a", "libmp3lame",
       "-b:a", "192k",
       "-id3v2_version", "3",
@@ -78,7 +96,6 @@ export async function buildEpisodeAudio(
 
   const stats = await stat(finalPath);
   const durationSeconds = await probeDurationSeconds(finalPath);
-  const partTimings = buildEpisodePartTimings(episode, segmentDurations, cueDurations, cuesEnabled);
 
   logJson({
     phase: "audio",
@@ -88,6 +105,8 @@ export async function buildEpisodeAudio(
     byteLength: stats.size,
     durationSeconds,
     cuesEnabled,
+    cueStyle: cuesEnabled ? cueStyle : "off",
+    chaptersEmbedded: partTimings.length,
   });
 
   return { finalPath, byteLength: stats.size, durationSeconds, partTimings };
@@ -97,6 +116,12 @@ export function resolveAudioCuesEnabled(value = process.env.AUDIO_CUES_ENABLED):
   if (!value) return true;
   const normalized = value.trim().toLowerCase();
   return !["0", "false", "off", "no"].includes(normalized);
+}
+
+export function resolveAudioCueStyle(value = process.env.AUDIO_CUE_STYLE): AudioCueStyle {
+  const normalized = value?.trim().toLowerCase();
+  if (normalized === "chime" || normalized === "tick") return normalized;
+  return "tone";
 }
 
 export function buildStingerSequence(
@@ -117,11 +142,11 @@ export function buildStingerSequence(
 async function runFfmpeg(args: string[], label: string): Promise<void> {
   await withRetry(
     () =>
-      withHardTimeout(
-        execa("ffmpeg", args, { stdio: ["ignore", "ignore", "pipe"] }).then(() => undefined),
-        TIMEOUT_MS,
-        `ffmpeg.${label}`,
-      ),
+      execa("ffmpeg", args, {
+        stdio: ["ignore", "ignore", "pipe"],
+        timeout: TIMEOUT_MS,
+        forceKillAfterDelay: 1_000,
+      }).then(() => undefined),
     { attempts: MAX_ATTEMPTS, label: `ffmpeg.${label}` },
   );
 }
@@ -168,15 +193,16 @@ async function concatAudioFiles(inputs: string[], workDir: string, outputStem: s
   return outputPath;
 }
 
-async function synthesizeCueTracks(workDir: string): Promise<CueTrackPaths> {
+async function synthesizeCueTracks(workDir: string, style: AudioCueStyle): Promise<CueTrackPaths> {
   const intro = path.join(workDir, "cue-intro.wav");
   const transition = path.join(workDir, "cue-transition.wav");
   const outro = path.join(workDir, "cue-outro.wav");
+  const spec = getCueToneSpec(style);
 
   await Promise.all([
-    synthesizeCueTone(intro, 1046.5, 0.22, "intro"),
-    synthesizeCueTone(transition, 880, 0.16, "transition"),
-    synthesizeCueTone(outro, 659.25, 0.28, "outro"),
+    synthesizeCueTone(intro, spec.intro, "intro"),
+    synthesizeCueTone(transition, spec.transition, "transition"),
+    synthesizeCueTone(outro, spec.outro, "outro"),
   ]);
 
   return { intro, transition, outro };
@@ -184,10 +210,10 @@ async function synthesizeCueTracks(workDir: string): Promise<CueTrackPaths> {
 
 async function synthesizeCueTone(
   outputPath: string,
-  frequency: number,
-  durationSeconds: number,
+  spec: CueToneSpec,
   label: string,
 ): Promise<void> {
+  const { durationSeconds, frequency, volume } = spec;
   const fadeOutStart = Math.max(0, durationSeconds - 0.04);
   await runFfmpeg(
     [
@@ -196,7 +222,7 @@ async function synthesizeCueTone(
       "-f", "lavfi",
       "-i", `sine=frequency=${frequency}:sample_rate=${TARGET_SAMPLE_RATE}:duration=${durationSeconds}`,
       "-af",
-      `volume=0.10,afade=t=in:st=0:d=0.015,afade=t=out:st=${fadeOutStart.toFixed(3)}:d=0.04`,
+      `volume=${volume.toFixed(2)},afade=t=in:st=0:d=0.015,afade=t=out:st=${fadeOutStart.toFixed(3)}:d=0.04`,
       "-c:a", "pcm_s16le",
       "-ar", TARGET_SAMPLE_RATE,
       "-ac", TARGET_CHANNELS,
@@ -204,6 +230,29 @@ async function synthesizeCueTone(
     ],
     `cue.${label}`,
   );
+}
+
+function getCueToneSpec(style: AudioCueStyle): Record<keyof CueTrackPaths, CueToneSpec> {
+  switch (style) {
+    case "chime":
+      return {
+        intro: { frequency: 1318.51, durationSeconds: 0.30, volume: 0.08 },
+        transition: { frequency: 987.77, durationSeconds: 0.22, volume: 0.07 },
+        outro: { frequency: 783.99, durationSeconds: 0.36, volume: 0.07 },
+      };
+    case "tick":
+      return {
+        intro: { frequency: 1760, durationSeconds: 0.08, volume: 0.08 },
+        transition: { frequency: 1320, durationSeconds: 0.06, volume: 0.07 },
+        outro: { frequency: 880, durationSeconds: 0.10, volume: 0.07 },
+      };
+    case "tone":
+      return {
+        intro: { frequency: 1046.5, durationSeconds: 0.22, volume: 0.10 },
+        transition: { frequency: 880, durationSeconds: 0.16, volume: 0.10 },
+        outro: { frequency: 659.25, durationSeconds: 0.28, volume: 0.10 },
+      };
+  }
 }
 
 async function probeDurationSeconds(filePath: string): Promise<number> {
@@ -258,6 +307,69 @@ function buildEpisodePartTimings(
     const startTime = cursor;
     cursor += durationSeconds;
     return { ...part, startTime, durationSeconds };
+  });
+}
+
+function estimateProgramDuration(
+  segmentDurations: number[],
+  cueDurations: CueTrackPathsDurations,
+  cuesEnabled: boolean,
+): number {
+  const narrationSeconds = segmentDurations.reduce((sum, duration) => sum + duration, 0);
+  if (!cuesEnabled) return narrationSeconds;
+  const transitionCount = Math.max(0, segmentDurations.length - 1);
+  return narrationSeconds + cueDurations.intro + cueDurations.outro + (cueDurations.transition * transitionCount);
+}
+
+export function buildFfmpegChapterMetadata(
+  partTimings: EpisodePartTiming[],
+  durationSeconds: number,
+): string {
+  const lines = [";FFMETADATA1"];
+  for (const [index, part] of partTimings.entries()) {
+    const startMs = secondsToMilliseconds(part.startTime);
+    const next = partTimings[index + 1];
+    const fallbackEnd = index === partTimings.length - 1
+      ? durationSeconds
+      : next?.startTime ?? part.startTime + part.durationSeconds;
+    const endMs = Math.max(startMs, secondsToMilliseconds(fallbackEnd));
+    lines.push(
+      "[CHAPTER]",
+      "TIMEBASE=1/1000",
+      `START=${startMs}`,
+      `END=${endMs}`,
+      `title=${escapeFfmpegMetadataValue(formatChapterTitle(part))}`,
+    );
+  }
+  return `${lines.join("\n")}\n`;
+}
+
+function formatChapterTitle(part: EpisodePartTiming): string {
+  if (part.kind === "intro") return "Intro";
+  if (part.kind === "outro") return "Outro";
+  const stripped = part.title.replace(/^[^:]{1,32}:\s+/, "").trim() || part.title.trim();
+  return truncateForPodcastApp(stripped);
+}
+
+function truncateForPodcastApp(title: string): string {
+  if (title.length <= 45) return title;
+  const truncated = title.slice(0, 42).replace(/\s+\S*$/, "").trim();
+  return `${truncated || title.slice(0, 42)}...`;
+}
+
+function secondsToMilliseconds(seconds: number): number {
+  return Math.max(0, Math.round(seconds * 1000));
+}
+
+function escapeFfmpegMetadataValue(value: string): string {
+  return value.replace(/[\\=;#\n\r]/g, (char) => {
+    switch (char) {
+      case "\n":
+      case "\r":
+        return " ";
+      default:
+        return `\\${char}`;
+    }
   });
 }
 

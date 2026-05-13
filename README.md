@@ -11,7 +11,7 @@ A daily, fully-automated AI news podcast. Every morning at ~06:30 Pacific, GitHu
 2. Asks Claude (via OpenRouter) to cluster duplicates and pick the top 3 stories.
 3. Asks Claude to write a 4–7 minute spoken script (engaging summary hook → recurring segments → synthesis outro).
 4. Synthesizes the script with OpenAI `gpt-4o-mini-tts` (one MP3 per segment, with delivery instructions).
-5. Builds a full program master with ffmpeg (section stingers + concat), normalizes loudness to EBU R128 (-16 LUFS), encodes 192 kbps MP3 with ID3 tags.
+5. Builds a full program master with ffmpeg (section stingers + concat), normalizes loudness to EBU R128 (-16 LUFS), encodes 192 kbps MP3 with ID3 tags and embedded chapters.
 6. Drops the file at `docs/episodes/YYYY-MM-DD.mp3`, regenerates `docs/feed.xml`, commits, and pushes.
 7. GitHub Pages serves the feed; Apple Podcasts polls and downloads.
 
@@ -163,7 +163,9 @@ In the repo's **Settings → Secrets and variables → Actions**:
 - `FEED_BASE_URL` — same as `.env`, e.g. `https://USER.github.io/ai-briefing`
 - `TTS_MODEL` — `gpt-4o-mini-tts` (default; supports delivery instructions)
 - `TTS_VOICE` — `onyx` (or another supported OpenAI TTS voice)
+- `TTS_TIMEOUT_MS` — `180000` by default; raise only if OpenAI speech generation is still timing out
 - `AUDIO_CUES_ENABLED` — `true` (set `false` to disable synthetic section stingers)
+- `AUDIO_CUE_STYLE` — `tone`, `chime`, or `tick`
 - `PODCAST_AUTHOR`
 - `PODCAST_SUMMARY`
 - `PODCAST_OWNER_NAME`
@@ -249,12 +251,29 @@ The workflow page has a **Re-run all jobs** button. Use it after fixing the root
 
 Set `TTS_MODEL` and `TTS_VOICE` in Actions variables (or `.env` locally). The default model is `gpt-4o-mini-tts`, which supports delivery instructions for an upbeat, engaged podcast read. Legacy `tts-1` and `tts-1-hd` still work, but they ignore those delivery instructions. Takes effect on the next run only — past episodes remain in their original voice.
 
+OpenAI does not label built-in voices by gender in the API docs, but the current Speech API includes `alloy`, `ash`, `ballad`, `coral`, `echo`, `fable`, `nova`, `onyx`, `sage`, `shimmer`, `verse`, `marin`, and `cedar`. In practice, start auditions with `coral`, `nova`, or `shimmer` for a brighter/feminine-coded host, and `marin` or `cedar` for OpenAI's recommended best quality.
+
+For a future two-speaker conversation format, keep the personas complementary rather than gimmicky. A durable pairing would be:
+
+- **The Anchor:** concise, skeptical, keeps the facts and story order straight.
+- **The Analyst:** warmer and more playful, asks the practical "so what?" question and adds one memorable analogy.
+
+That format should be implemented as structured speaker turns before TTS so each speaker can use a different `TTS_VOICE`; do not try to fake a dialogue by putting both speakers into one TTS request.
+
 ### Toggle section stingers
 
 Set `AUDIO_CUES_ENABLED` in Actions variables (or `.env` locally).
 
 - `true` (default): adds short synthetic intro/transition/outro stingers.
 - `false`: disables stingers and keeps pure narration.
+
+The cues are generated with ffmpeg sine tones; no external sound assets are downloaded or committed. Set `AUDIO_CUE_STYLE` to choose the generated sound:
+
+- `tone` (default): the original short section beeps.
+- `chime`: slightly longer, softer transition tones.
+- `tick`: very short markers for a less musical feel.
+
+Chapters are published two ways: a Podcasting 2.0 JSON sidecar linked from `<podcast:chapters>` and embedded MP3 ID3 chapters. Apple Podcasts supports both, but embedding the ID3 chapter metadata makes chapter markers travel with the audio file even when the hosting layer cannot serve `.chapters.json` as `application/json+chapters`.
 
 ### Change the model or feed sources
 
@@ -310,6 +329,7 @@ GitHub emails the repo owner on first failure of any workflow. Triage:
    - **OpenRouter 401:** key revoked or out of credit.
    - **OpenAI 429:** rate-limited. Wait, then re-run.
    - **OpenAI 401:** key revoked or billing lapsed.
+   - **TTS timeout:** OpenAI speech generation exceeded `TTS_TIMEOUT_MS`; the default is 180 seconds per part.
    - **ffmpeg not found:** the apt install step failed; check the install logs.
 
 Recovery is always: fix the root cause, then re-run the workflow. A missing day is fine — the feed remains valid and the next morning's episode publishes normally.

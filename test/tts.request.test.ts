@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { buildSpeechRequest, TTS_DELIVERY_INSTRUCTIONS } from "../src/tts.js";
+import { buildSpeechRequest, resolveTTSTimeoutMs, TTS_DELIVERY_INSTRUCTIONS } from "../src/tts.js";
 
 test("buildSpeechRequest adds enthusiastic delivery instructions for instructable TTS models", () => {
   const request = buildSpeechRequest("Short podcast intro.", "onyx", "gpt-4o-mini-tts");
@@ -16,4 +16,11 @@ test("buildSpeechRequest omits delivery instructions for legacy TTS models", () 
 
   assert.equal(request.model, "tts-1-hd");
   assert.equal(request.instructions, undefined);
+});
+
+test("resolveTTSTimeoutMs uses a realistic default and accepts valid overrides", () => {
+  assert.equal(resolveTTSTimeoutMs(undefined), 180_000);
+  assert.equal(resolveTTSTimeoutMs("240000"), 240_000);
+  assert.equal(resolveTTSTimeoutMs("1000"), 180_000);
+  assert.equal(resolveTTSTimeoutMs("not-a-number"), 180_000);
 });

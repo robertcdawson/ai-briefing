@@ -9,7 +9,7 @@
 | News source | Curated RSS feeds via `rss-parser` | Free, deterministic, no API key, no rate limits, easy to extend |
 | LLM | OpenRouter → Claude Sonnet (`anthropic/claude-sonnet-4-7`) | Already in workflow; structured output; high reasoning quality |
 | TTS | OpenAI `gpt-4o-mini-tts` (direct API) | Supports delivery instructions for a more engaged podcast read; direct OpenAI keeps audio generation reliable |
-| Audio | ffmpeg | Industry standard; loudness normalize, concat, encode, ID3 |
+| Audio | ffmpeg | Industry standard; loudness normalize, concat, encode, ID3 chapters |
 | Storage + hosting | Public GitHub repo + GitHub Pages | Free; zero new infra; obscure path = soft privacy |
 | RSS feed | `feed` npm package, `feed.xml` committed to repo | Standards-compliant; Apple Podcasts compatible |
 | iPhone | Apple Podcasts → "Follow a Show by URL" | Native UX: lock screen, CarPlay, queue, speed control |
@@ -46,7 +46,7 @@
 └────────┬────────┘
          ↓
 ┌─────────────────┐
-│  audio.ts       │   ffmpeg: stingers + concat, loudnorm, encode MP3 192k, ID3 tag
+│  audio.ts       │   ffmpeg: stingers + concat, loudnorm, encode MP3 192k, ID3 tags + chapters
 └────────┬────────┘
          ↓
 ┌─────────────────┐
@@ -172,7 +172,9 @@ Use the `feed` npm package — do not hand-roll XML. `length` must be the actual
 | `FEED_BASE_URL` | e.g., `https://USER.github.io/ai-briefing` |
 | `TTS_MODEL` | OpenAI speech model; default `gpt-4o-mini-tts` supports delivery instructions |
 | `TTS_VOICE` | OpenAI TTS voice; default `onyx` |
+| `TTS_TIMEOUT_MS` | Per-segment OpenAI speech timeout; default `180000` |
 | `AUDIO_CUES_ENABLED` | Toggle synthetic intro/transition/outro stingers (`true`/`false`) |
+| `AUDIO_CUE_STYLE` | Generated cue style: `tone`, `chime`, or `tick` |
 | `GITHUB_TOKEN` | Provided by Actions; used to commit + push |
 
 Store API keys as GitHub Actions secrets.

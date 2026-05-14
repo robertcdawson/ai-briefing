@@ -13,12 +13,14 @@ import type { StoryCluster } from "../src/types.js";
 
 test("resolveScriptModel defaults to a structured-output-compatible OpenRouter model", () => {
   assert.equal(resolveScriptModel(undefined), "anthropic/claude-opus-4.6");
+  assert.equal(resolveScriptModel(""), "anthropic/claude-opus-4.6");
+  assert.equal(resolveScriptModel("   "), "anthropic/claude-opus-4.6");
   assert.notEqual(resolveScriptModel(undefined), "anthropic/claude-opus-4.7");
 });
 
 test("resolveScriptModel accepts an explicit configured model", () => {
   assert.equal(
-    resolveScriptModel("anthropic/claude-sonnet-4.6"),
+    resolveScriptModel(" anthropic/claude-sonnet-4.6 "),
     "anthropic/claude-sonnet-4.6",
   );
 });

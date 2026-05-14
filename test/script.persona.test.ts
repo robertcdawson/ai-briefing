@@ -28,12 +28,14 @@ test("resolveScriptModel accepts an explicit configured model", () => {
 });
 
 test("resolveScriptTimeoutMs uses a realistic default and accepts valid overrides", () => {
-  assert.equal(resolveScriptTimeoutMs(undefined), 180_000);
-  assert.equal(resolveScriptTimeoutMs(""), 180_000);
+  assert.equal(resolveScriptTimeoutMs(undefined), 360_000);
+  assert.equal(resolveScriptTimeoutMs(""), 360_000);
   assert.equal(resolveScriptTimeoutMs(" 240000 "), 240_000);
-  assert.equal(resolveScriptTimeoutMs("59999"), 180_000);
-  assert.equal(resolveScriptTimeoutMs("600001"), 180_000);
-  assert.equal(resolveScriptTimeoutMs("not-a-number"), 180_000);
+  assert.equal(resolveScriptTimeoutMs("59999"), 360_000);
+  assert.equal(resolveScriptTimeoutMs("600001"), 600_001);
+  assert.equal(resolveScriptTimeoutMs("900000"), 900_000);
+  assert.equal(resolveScriptTimeoutMs("900001"), 360_000);
+  assert.equal(resolveScriptTimeoutMs("not-a-number"), 360_000);
 });
 
 test("selectDailyPersona is stable for the same episode date", () => {

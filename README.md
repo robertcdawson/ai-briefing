@@ -334,7 +334,7 @@ GitHub emails the repo owner on first failure of any workflow. Triage:
    - **OpenRouter 401:** key revoked or out of credit.
    - **OpenAI 429:** rate-limited. Wait, then re-run.
    - **OpenAI 401:** key revoked or billing lapsed.
-   - **Script timeout:** OpenRouter script generation exceeded `OPENROUTER_SCRIPT_TIMEOUT_MS`; the default is 180 seconds (structured JSON can be slow).
+   - **Script timeout:** OpenRouter script generation exceeded `OPENROUTER_SCRIPT_TIMEOUT_MS`; the default is 360 seconds (structured JSON can be slow from CI).
    - **TTS timeout:** OpenAI speech generation exceeded `TTS_TIMEOUT_MS`; the default is 180 seconds per part.
    - **ffmpeg not found:** the apt install step failed; check the install logs.
 

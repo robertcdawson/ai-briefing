@@ -5,9 +5,9 @@ import type { Episode, SpeakerTurn, StoryCluster } from "./types.js";
 import { logJson, withHardTimeout, withRetry } from "./util.js";
 
 const DEFAULT_SCRIPT_MODEL = "anthropic/claude-sonnet-4.6";
-const DEFAULT_SCRIPT_TIMEOUT_MS = 180_000;
+const DEFAULT_SCRIPT_TIMEOUT_MS = 360_000;
 const MIN_SCRIPT_TIMEOUT_MS = 60_000;
-const MAX_SCRIPT_TIMEOUT_MS = 600_000;
+const MAX_SCRIPT_TIMEOUT_MS = 900_000;
 const MAX_ATTEMPTS = 3;
 const MIN_TURNS_PER_PART = 2;
 

@@ -100,6 +100,11 @@ test("SCRIPT_RESPONSE_SCHEMA requires structured speaker turns", () => {
     schema.properties.segments.items.properties.turns.items.required,
     ["speaker", "text"],
   );
+  assert.equal(schema.properties.intro.minItems, 2);
+  assert.equal(schema.properties.segments.items.properties.title.minLength, 1);
+  assert.equal(schema.properties.segments.items.properties.title.pattern, "\\S");
+  assert.equal(schema.properties.segments.items.properties.turns.items.properties.text.minLength, 1);
+  assert.equal(schema.properties.segments.items.properties.turns.items.properties.text.pattern, "\\S");
   assert.deepEqual(
     schema.properties.segments.items.properties.turns.items.properties.speaker.enum,
     ["anchor", "analyst"],
@@ -178,9 +183,15 @@ test("validateScriptResponse preserves segment count and source URLs", () => {
     () =>
       validateScriptResponse(
         {
-          intro: [{ speaker: "anchor", text: "Here is the setup." }],
+          intro: [
+            { speaker: "anchor", text: "Here is the setup." },
+            { speaker: "analyst", text: "Here is the so what." },
+          ],
           segments: [],
-          outro: [{ speaker: "analyst", text: "That is the pattern." }],
+          outro: [
+            { speaker: "anchor", text: "That is the pattern." },
+            { speaker: "analyst", text: "That is the lens." },
+          ],
         },
         clusters,
       ),
@@ -191,15 +202,24 @@ test("validateScriptResponse preserves segment count and source URLs", () => {
     () =>
       validateScriptResponse(
         {
-          intro: [{ speaker: "anchor", text: "Here is the setup." }],
+          intro: [
+            { speaker: "anchor", text: "Here is the setup." },
+            { speaker: "analyst", text: "Here is the so what." },
+          ],
           segments: [
             {
               title: "Top Story: A model ships a useful feature",
-              turns: [{ speaker: "analyst", text: "A concise segment." }],
+              turns: [
+                { speaker: "anchor", text: "A concise segment." },
+                { speaker: "analyst", text: "The practical takeaway is simple." },
+              ],
               sourceUrls: ["https://example.com/changed"],
             },
           ],
-          outro: [{ speaker: "analyst", text: "That is the pattern." }],
+          outro: [
+            { speaker: "anchor", text: "That is the pattern." },
+            { speaker: "analyst", text: "That is the lens." },
+          ],
         },
         clusters,
       ),
@@ -210,8 +230,14 @@ test("validateScriptResponse preserves segment count and source URLs", () => {
     () =>
       validateScriptResponse(
         {
-          intro: [{ speaker: "anchor", text: "Here is the setup." }],
-          outro: [{ speaker: "analyst", text: "That is the pattern." }],
+          intro: [
+            { speaker: "anchor", text: "Here is the setup." },
+            { speaker: "analyst", text: "Here is the so what." },
+          ],
+          outro: [
+            { speaker: "anchor", text: "That is the pattern." },
+            { speaker: "analyst", text: "That is the lens." },
+          ],
         } as unknown as Parameters<typeof validateScriptResponse>[0],
         clusters,
       ),
@@ -222,14 +248,23 @@ test("validateScriptResponse preserves segment count and source URLs", () => {
     () =>
       validateScriptResponse(
         {
-          intro: [{ speaker: "anchor", text: "Here is the setup." }],
+          intro: [
+            { speaker: "anchor", text: "Here is the setup." },
+            { speaker: "analyst", text: "Here is the so what." },
+          ],
           segments: [
             {
               title: "Top Story: A model ships a useful feature",
-              turns: [{ speaker: "analyst", text: "A concise segment." }],
+              turns: [
+                { speaker: "anchor", text: "A concise segment." },
+                { speaker: "analyst", text: "The practical takeaway is simple." },
+              ],
             },
           ],
-          outro: [{ speaker: "analyst", text: "That is the pattern." }],
+          outro: [
+            { speaker: "anchor", text: "That is the pattern." },
+            { speaker: "analyst", text: "That is the lens." },
+          ],
         } as unknown as Parameters<typeof validateScriptResponse>[0],
         clusters,
       ),
@@ -257,30 +292,45 @@ test("validateScriptResponse rejects malformed speaker turns", () => {
           segments: [
             {
               title: "Top Story: A model ships a useful feature",
-              turns: [{ speaker: "anchor", text: "A concise segment." }],
+              turns: [
+                { speaker: "anchor", text: "A concise segment." },
+                { speaker: "analyst", text: "The practical takeaway is simple." },
+              ],
               sourceUrls: ["https://example.com/model-feature"],
             },
           ],
-          outro: [{ speaker: "analyst", text: "That is the pattern." }],
+          outro: [
+            { speaker: "anchor", text: "That is the pattern." },
+            { speaker: "analyst", text: "That is the lens." },
+          ],
         },
         clusters,
       ),
-    /intro turns must not be empty/,
+    /intro turns must include at least 2 turns/,
   );
 
   assert.throws(
     () =>
       validateScriptResponse(
         {
-          intro: [{ speaker: "producer", text: "Here is the setup." }],
+          intro: [
+            { speaker: "producer", text: "Here is the setup." },
+            { speaker: "analyst", text: "Here is the so what." },
+          ],
           segments: [
             {
               title: "Top Story: A model ships a useful feature",
-              turns: [{ speaker: "anchor", text: "A concise segment." }],
+              turns: [
+                { speaker: "anchor", text: "A concise segment." },
+                { speaker: "analyst", text: "The practical takeaway is simple." },
+              ],
               sourceUrls: ["https://example.com/model-feature"],
             },
           ],
-          outro: [{ speaker: "analyst", text: "That is the pattern." }],
+          outro: [
+            { speaker: "anchor", text: "That is the pattern." },
+            { speaker: "analyst", text: "That is the lens." },
+          ],
         } as unknown as Parameters<typeof validateScriptResponse>[0],
         clusters,
       ),
@@ -291,15 +341,49 @@ test("validateScriptResponse rejects malformed speaker turns", () => {
     () =>
       validateScriptResponse(
         {
-          intro: [{ speaker: "anchor", text: "Here is the setup." }],
+          intro: [
+            { speaker: "anchor", text: "Here is the setup." },
+            { speaker: "analyst", text: "Here is the so what." },
+          ],
           segments: [
             {
               title: "Top Story: A model ships a useful feature",
-              turns: [{ speaker: "analyst", text: " " }],
+              turns: [{ speaker: "anchor", text: "A concise segment." }],
               sourceUrls: ["https://example.com/model-feature"],
             },
           ],
-          outro: [{ speaker: "analyst", text: "That is the pattern." }],
+          outro: [
+            { speaker: "anchor", text: "That is the pattern." },
+            { speaker: "analyst", text: "That is the lens." },
+          ],
+        },
+        clusters,
+      ),
+    /segment 1 turns must include at least 2 turns/,
+  );
+
+  assert.throws(
+    () =>
+      validateScriptResponse(
+        {
+          intro: [
+            { speaker: "anchor", text: "Here is the setup." },
+            { speaker: "analyst", text: "Here is the so what." },
+          ],
+          segments: [
+            {
+              title: "Top Story: A model ships a useful feature",
+              turns: [
+                { speaker: "anchor", text: "A concise segment." },
+                { speaker: "analyst", text: " " },
+              ],
+              sourceUrls: ["https://example.com/model-feature"],
+            },
+          ],
+          outro: [
+            { speaker: "anchor", text: "That is the pattern." },
+            { speaker: "analyst", text: "That is the lens." },
+          ],
         } as unknown as Parameters<typeof validateScriptResponse>[0],
         clusters,
       ),

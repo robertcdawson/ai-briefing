@@ -156,7 +156,7 @@ async function synthesizePart(
     return outputPath;
   }
 
-  await concatSpeechFiles(turnPaths, outputPath, segmentDir, part.label);
+  await concatSpeechFiles(turnPaths, outputPath, part.label);
   return outputPath;
 }
 
@@ -262,25 +262,15 @@ function resolveVoiceForTurn(turn: SpeakerTurn, speakerVoices: SpeakerVoiceConfi
 async function concatSpeechFiles(
   inputs: string[],
   outputPath: string,
-  segmentDir: string,
   label: string,
 ): Promise<void> {
-  const listPath = path.join(segmentDir, `${label}.turns.txt`);
-  const listBody = inputs.map((p) => `file '${p.replace(/'/g, "'\\''")}'`).join("\n");
-  await writeFile(listPath, listBody);
+  const filterInputs = inputs.map((_, index) => `[${index}:a:0]`).join("");
+  const args = buildConcatSpeechArgs(inputs, outputPath, filterInputs);
   await withRetry(
     () =>
       execa(
         "ffmpeg",
-        [
-          "-y",
-          "-loglevel", "error",
-          "-f", "concat",
-          "-safe", "0",
-          "-i", listPath,
-          "-c", "copy",
-          outputPath,
-        ],
+        args,
         {
           stdio: ["ignore", "ignore", "pipe"],
           timeout: 60_000,
@@ -289,6 +279,23 @@ async function concatSpeechFiles(
       ).then(() => undefined),
     { attempts: MAX_ATTEMPTS, label: `ffmpeg.tts_concat.${label}` },
   );
+}
+
+export function buildConcatSpeechArgs(
+  inputs: readonly string[],
+  outputPath: string,
+  filterInputs = inputs.map((_, index) => `[${index}:a:0]`).join(""),
+): string[] {
+  return [
+    "-y",
+    "-loglevel", "error",
+    ...inputs.flatMap((input) => ["-i", input]),
+    "-filter_complex", `${filterInputs}concat=n=${inputs.length}:v=0:a=1[a]`,
+    "-map", "[a]",
+    "-c:a", "libmp3lame",
+    "-b:a", "192k",
+    outputPath,
+  ];
 }
 
 function slug(s: string): string {

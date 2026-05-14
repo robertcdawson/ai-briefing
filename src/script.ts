@@ -7,6 +7,7 @@ import { logJson, withHardTimeout, withRetry } from "./util.js";
 const MODEL = "anthropic/claude-opus-4.7";
 const TIMEOUT_MS = 90_000;
 const MAX_ATTEMPTS = 3;
+const MIN_TURNS_PER_PART = 2;
 
 export interface DailyPersona {
   name: string;
@@ -107,6 +108,8 @@ const SPEAKER_TURN_SCHEMA = {
     },
     text: {
       type: "string",
+      minLength: 1,
+      pattern: "\\S",
       description: "One read-aloud-friendly spoken turn. Do not include speaker labels or stage directions.",
     },
   },
@@ -119,7 +122,7 @@ export const SCRIPT_RESPONSE_SCHEMA = {
   properties: {
     intro: {
       type: "array",
-      minItems: 2,
+      minItems: MIN_TURNS_PER_PART,
       items: SPEAKER_TURN_SCHEMA,
       description: "15-25s spoken intro hook as 2-3 concise speaker turns (~40-70 words total).",
     },
@@ -128,10 +131,10 @@ export const SCRIPT_RESPONSE_SCHEMA = {
       items: {
         type: "object",
         properties: {
-          title: { type: "string" },
+          title: { type: "string", minLength: 1, pattern: "\\S" },
           turns: {
             type: "array",
-            minItems: 2,
+            minItems: MIN_TURNS_PER_PART,
             items: SPEAKER_TURN_SCHEMA,
             description:
               "~90s conversational story script as 4-7 concise turns (~220-280 words total): what happened, why it matters, brief explainer when needed, caveat, and a short transition into the next story or outro.",
@@ -147,7 +150,7 @@ export const SCRIPT_RESPONSE_SCHEMA = {
     },
     outro: {
       type: "array",
-      minItems: 2,
+      minItems: MIN_TURNS_PER_PART,
       items: SPEAKER_TURN_SCHEMA,
       description:
         "30-40s synthesis outro as 2-4 turns (~80-110 words total) identifying a pattern, theme, or contrast across the stories. End with a sign-off.",
@@ -371,8 +374,8 @@ function validateSpeakerTurns(label: string, turns: unknown): asserts turns is S
   if (!Array.isArray(turns)) {
     throw new Error(`script ${label} turns must be an array`);
   }
-  if (turns.length === 0) {
-    throw new Error(`script ${label} turns must not be empty`);
+  if (turns.length < MIN_TURNS_PER_PART) {
+    throw new Error(`script ${label} turns must include at least ${MIN_TURNS_PER_PART} turns`);
   }
 
   for (const [index, turn] of turns.entries()) {

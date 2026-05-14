@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import {
+  buildConcatSpeechArgs,
   buildSpeechRequest,
   buildTurnSpeechRequest,
   resolveSpeakerVoices,
@@ -85,4 +86,23 @@ test("buildTurnSpeechRequest rejects turns without a configured speaker voice", 
       ),
     /No TTS voice configured for speaker: producer/,
   );
+});
+
+test("buildConcatSpeechArgs re-encodes turn audio instead of stream-copying MP3s", () => {
+  const args = buildConcatSpeechArgs(["anchor.mp3", "analyst.mp3"], "part.mp3");
+
+  assert.deepEqual(args.slice(0, 7), [
+    "-y",
+    "-loglevel",
+    "error",
+    "-i",
+    "anchor.mp3",
+    "-i",
+    "analyst.mp3",
+  ]);
+  assert.ok(args.includes("-filter_complex"));
+  assert.ok(args.includes("[0:a:0][1:a:0]concat=n=2:v=0:a=1[a]"));
+  assert.ok(args.includes("libmp3lame"));
+  assert.equal(args.includes("-c"), false);
+  assert.equal(args.includes("copy"), false);
 });

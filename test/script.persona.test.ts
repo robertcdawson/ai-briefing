@@ -116,7 +116,7 @@ test("SCRIPT_RESPONSE_SCHEMA requires structured speaker turns", () => {
     schema.properties.segments.items.properties.turns.items.required,
     ["speaker", "text"],
   );
-  assert.equal(schema.properties.intro.minItems, 2);
+  assertNoArrayMinItemsAboveOne(schema);
   assert.equal(schema.properties.segments.items.properties.title.minLength, 1);
   assert.equal(schema.properties.segments.items.properties.title.pattern, "\\S");
   assert.equal(schema.properties.segments.items.properties.turns.items.properties.text.minLength, 1);
@@ -391,6 +391,31 @@ test("validateScriptResponse rejects malformed speaker turns", () => {
               title: "Top Story: A model ships a useful feature",
               turns: [
                 { speaker: "anchor", text: "A concise segment." },
+                { speaker: "analyst", text: "The practical takeaway is simple." },
+              ],
+              sourceUrls: ["https://example.com/model-feature"],
+            },
+          ],
+          outro: [{ speaker: "anchor", text: "That is the pattern." }],
+        },
+        clusters,
+      ),
+    /outro turns must include at least 2 turns/,
+  );
+
+  assert.throws(
+    () =>
+      validateScriptResponse(
+        {
+          intro: [
+            { speaker: "anchor", text: "Here is the setup." },
+            { speaker: "analyst", text: "Here is the so what." },
+          ],
+          segments: [
+            {
+              title: "Top Story: A model ships a useful feature",
+              turns: [
+                { speaker: "anchor", text: "A concise segment." },
                 { speaker: "analyst", text: " " },
               ],
               sourceUrls: ["https://example.com/model-feature"],
@@ -409,4 +434,20 @@ test("validateScriptResponse rejects malformed speaker turns", () => {
 
 function escapeRegExp(value: string): string {
   return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function assertNoArrayMinItemsAboveOne(schema: unknown, path = "schema"): void {
+  if (!schema || typeof schema !== "object") return;
+
+  const node = schema as Record<string, unknown>;
+  if (node.type === "array" && typeof node.minItems === "number") {
+    assert.ok(
+      node.minItems <= 1,
+      `${path}.minItems must be 0, 1, or omitted for Bedrock structured output compatibility`,
+    );
+  }
+
+  for (const [key, value] of Object.entries(node)) {
+    assertNoArrayMinItemsAboveOne(value, `${path}.${key}`);
+  }
 }

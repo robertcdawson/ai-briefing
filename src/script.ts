@@ -122,7 +122,6 @@ export const SCRIPT_RESPONSE_SCHEMA = {
   properties: {
     intro: {
       type: "array",
-      minItems: MIN_TURNS_PER_PART,
       items: SPEAKER_TURN_SCHEMA,
       description: "15-25s spoken intro hook as 2-3 concise speaker turns (~40-70 words total).",
     },
@@ -134,7 +133,6 @@ export const SCRIPT_RESPONSE_SCHEMA = {
           title: { type: "string", minLength: 1, pattern: "\\S" },
           turns: {
             type: "array",
-            minItems: MIN_TURNS_PER_PART,
             items: SPEAKER_TURN_SCHEMA,
             description:
               "~90s conversational story script as 4-7 concise turns (~220-280 words total): what happened, why it matters, brief explainer when needed, caveat, and a short transition into the next story or outro.",
@@ -150,7 +148,6 @@ export const SCRIPT_RESPONSE_SCHEMA = {
     },
     outro: {
       type: "array",
-      minItems: MIN_TURNS_PER_PART,
       items: SPEAKER_TURN_SCHEMA,
       description:
         "30-40s synthesis outro as 2-4 turns (~80-110 words total) identifying a pattern, theme, or contrast across the stories. End with a sign-off.",

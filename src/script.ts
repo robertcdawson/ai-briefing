@@ -4,7 +4,7 @@ import { getStoryCategoryLabel, STORY_CATEGORY_DEFINITIONS } from "./types.js";
 import type { Episode, SpeakerTurn, StoryCluster } from "./types.js";
 import { logJson, withHardTimeout, withRetry } from "./util.js";
 
-const DEFAULT_SCRIPT_MODEL = "anthropic/claude-opus-4.6";
+const DEFAULT_SCRIPT_MODEL = "anthropic/claude-sonnet-4.6";
 const TIMEOUT_MS = 90_000;
 const MAX_ATTEMPTS = 3;
 const MIN_TURNS_PER_PART = 2;

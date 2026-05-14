@@ -12,9 +12,10 @@ import {
 import type { StoryCluster } from "../src/types.js";
 
 test("resolveScriptModel defaults to a structured-output-compatible OpenRouter model", () => {
-  assert.equal(resolveScriptModel(undefined), "anthropic/claude-opus-4.6");
-  assert.equal(resolveScriptModel(""), "anthropic/claude-opus-4.6");
-  assert.equal(resolveScriptModel("   "), "anthropic/claude-opus-4.6");
+  assert.equal(resolveScriptModel(undefined), "anthropic/claude-sonnet-4.6");
+  assert.equal(resolveScriptModel(""), "anthropic/claude-sonnet-4.6");
+  assert.equal(resolveScriptModel("   "), "anthropic/claude-sonnet-4.6");
+  assert.notEqual(resolveScriptModel(undefined), "anthropic/claude-opus-4.6");
   assert.notEqual(resolveScriptModel(undefined), "anthropic/claude-opus-4.7");
 });
 

@@ -5,7 +5,9 @@ import type { Episode, SpeakerTurn, StoryCluster } from "./types.js";
 import { logJson, withHardTimeout, withRetry } from "./util.js";
 
 const DEFAULT_SCRIPT_MODEL = "anthropic/claude-sonnet-4.6";
-const TIMEOUT_MS = 90_000;
+const DEFAULT_SCRIPT_TIMEOUT_MS = 180_000;
+const MIN_SCRIPT_TIMEOUT_MS = 60_000;
+const MAX_SCRIPT_TIMEOUT_MS = 600_000;
 const MAX_ATTEMPTS = 3;
 const MIN_TURNS_PER_PART = 2;
 
@@ -253,6 +255,17 @@ export function resolveScriptModel(requestedModel: string | undefined): string {
   return model && model.length > 0 ? model : DEFAULT_SCRIPT_MODEL;
 }
 
+export function resolveScriptTimeoutMs(raw: string | undefined): number {
+  if (!raw?.trim()) return DEFAULT_SCRIPT_TIMEOUT_MS;
+  const parsed = Number(raw.trim());
+  if (!Number.isFinite(parsed)) return DEFAULT_SCRIPT_TIMEOUT_MS;
+  const rounded = Math.round(parsed);
+  if (rounded < MIN_SCRIPT_TIMEOUT_MS || rounded > MAX_SCRIPT_TIMEOUT_MS) {
+    return DEFAULT_SCRIPT_TIMEOUT_MS;
+  }
+  return rounded;
+}
+
 export async function writeScript(date: string, clusters: StoryCluster[]): Promise<Episode> {
   const started = Date.now();
   const apiKey = process.env.OPENROUTER_API_KEY;
@@ -260,11 +273,12 @@ export async function writeScript(date: string, clusters: StoryCluster[]): Promi
   if (clusters.length === 0) throw new Error("writeScript: no clusters provided");
   const persona = selectDailyPersona(date);
   const model = resolveScriptModel(process.env.OPENROUTER_SCRIPT_MODEL);
+  const timeoutMs = resolveScriptTimeoutMs(process.env.OPENROUTER_SCRIPT_TIMEOUT_MS);
 
   const client = new OpenAI({
     apiKey,
     baseURL: "https://openrouter.ai/api/v1",
-    timeout: TIMEOUT_MS,
+    timeout: timeoutMs,
   });
 
   const parsed = await withRetry(
@@ -282,7 +296,7 @@ export async function writeScript(date: string, clusters: StoryCluster[]): Promi
           },
           temperature: 0.7,
         }),
-        TIMEOUT_MS,
+        timeoutMs,
         "script.openrouter",
       );
 
@@ -321,6 +335,7 @@ export async function writeScript(date: string, clusters: StoryCluster[]): Promi
     wordCount,
     persona: persona.name,
     model,
+    timeoutMs,
   });
 
   return episode;

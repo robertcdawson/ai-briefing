@@ -24,7 +24,7 @@ You subscribe once via "Follow a Show by URL" on iPhone. Every morning a new epi
 | Language | TypeScript (Node 20, ESM) |
 | Scheduler | GitHub Actions cron |
 | News | Curated RSS via `rss-parser` |
-| LLM | OpenRouter → `anthropic/claude-sonnet-4-7` |
+| LLM | OpenRouter → Claude (`anthropic/claude-sonnet-4.6` for curation, `anthropic/claude-opus-4.6` for scripts by default) |
 | TTS | OpenAI `gpt-4o-mini-tts` (direct API) |
 | Audio | ffmpeg via `execa` |
 | Feed | `feed` npm package + iTunes namespace patch |
@@ -161,6 +161,7 @@ In the repo's **Settings → Secrets and variables → Actions**:
 
 **Variables:**
 - `FEED_BASE_URL` — same as `.env`, e.g. `https://USER.github.io/ai-briefing`
+- `OPENROUTER_SCRIPT_MODEL` — optional script model override; defaults to `anthropic/claude-opus-4.6`
 - `TTS_MODEL` — `gpt-4o-mini-tts` (default; supports delivery instructions)
 - `TTS_VOICE` — legacy Anchor fallback; defaults to `onyx`
 - `TTS_ANCHOR_VOICE` — Anchor voice; defaults to `onyx`
@@ -279,7 +280,9 @@ Chapters are published two ways: a Podcasting 2.0 JSON sidecar linked from `<pod
 
 ### Change the model or feed sources
 
-Edit `src/curate.ts`/`src/script.ts` (`MODEL` constant) or `src/feeds.ts` (`SOURCES`) and push. The next scheduled run picks up the change.
+For script generation, set `OPENROUTER_SCRIPT_MODEL` in Actions variables (or `.env` locally). Keep it on an OpenRouter model/provider path that supports JSON schema structured output; the default is `anthropic/claude-opus-4.6`.
+
+For curation, edit `src/curate.ts` (`MODEL` constant). For feed sources, edit `src/feeds.ts` (`SOURCES`) and push. The next scheduled run picks up the change.
 
 ### Pause the pipeline
 

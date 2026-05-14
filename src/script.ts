@@ -4,7 +4,7 @@ import { getStoryCategoryLabel, STORY_CATEGORY_DEFINITIONS } from "./types.js";
 import type { Episode, SpeakerTurn, StoryCluster } from "./types.js";
 import { logJson, withHardTimeout, withRetry } from "./util.js";
 
-const MODEL = "anthropic/claude-opus-4.7";
+const DEFAULT_SCRIPT_MODEL = "anthropic/claude-opus-4.6";
 const TIMEOUT_MS = 90_000;
 const MAX_ATTEMPTS = 3;
 const MIN_TURNS_PER_PART = 2;
@@ -251,12 +251,18 @@ export function buildUserPrompt(date: string, clusters: StoryCluster[]): string 
 ${lines.join("\n\n")}`;
 }
 
+export function resolveScriptModel(requestedModel: string | undefined): string {
+  const model = requestedModel?.trim();
+  return model && model.length > 0 ? model : DEFAULT_SCRIPT_MODEL;
+}
+
 export async function writeScript(date: string, clusters: StoryCluster[]): Promise<Episode> {
   const started = Date.now();
   const apiKey = process.env.OPENROUTER_API_KEY;
   if (!apiKey) throw new Error("OPENROUTER_API_KEY is not set");
   if (clusters.length === 0) throw new Error("writeScript: no clusters provided");
   const persona = selectDailyPersona(date);
+  const model = resolveScriptModel(process.env.OPENROUTER_SCRIPT_MODEL);
 
   const client = new OpenAI({
     apiKey,
@@ -268,7 +274,7 @@ export async function writeScript(date: string, clusters: StoryCluster[]): Promi
     async () => {
       const completion = await withHardTimeout(
         client.chat.completions.create({
-          model: MODEL,
+          model,
           messages: [
             { role: "system", content: buildSystemPrompt(persona) },
             { role: "user", content: buildUserPrompt(date, clusters) },
@@ -317,6 +323,7 @@ export async function writeScript(date: string, clusters: StoryCluster[]): Promi
     segments: episode.segments.length,
     wordCount,
     persona: persona.name,
+    model,
   });
 
   return episode;

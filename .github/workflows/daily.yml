@@ -47,6 +47,7 @@ jobs:
         env:
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
           OPENROUTER_SCRIPT_MODEL: ${{ vars.OPENROUTER_SCRIPT_MODEL }}
+          OPENROUTER_SCRIPT_TIMEOUT_MS: ${{ vars.OPENROUTER_SCRIPT_TIMEOUT_MS }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           FEED_BASE_URL: ${{ vars.FEED_BASE_URL }}
           EPISODE_TIME_ZONE: ${{ vars.EPISODE_TIME_ZONE }}

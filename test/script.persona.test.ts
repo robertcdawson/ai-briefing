@@ -6,6 +6,7 @@ import {
   buildSystemPrompt,
   buildUserPrompt,
   resolveScriptModel,
+  resolveScriptTimeoutMs,
   selectDailyPersona,
   validateScriptResponse,
 } from "../src/script.js";
@@ -24,6 +25,15 @@ test("resolveScriptModel accepts an explicit configured model", () => {
     resolveScriptModel(" anthropic/claude-sonnet-4.6 "),
     "anthropic/claude-sonnet-4.6",
   );
+});
+
+test("resolveScriptTimeoutMs uses a realistic default and accepts valid overrides", () => {
+  assert.equal(resolveScriptTimeoutMs(undefined), 180_000);
+  assert.equal(resolveScriptTimeoutMs(""), 180_000);
+  assert.equal(resolveScriptTimeoutMs(" 240000 "), 240_000);
+  assert.equal(resolveScriptTimeoutMs("59999"), 180_000);
+  assert.equal(resolveScriptTimeoutMs("600001"), 180_000);
+  assert.equal(resolveScriptTimeoutMs("not-a-number"), 180_000);
 });
 
 test("selectDailyPersona is stable for the same episode date", () => {

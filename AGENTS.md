@@ -28,6 +28,7 @@ All commands are defined in `package.json`:
 For `npm start` (full pipeline), a `.env` file is required with:
 - `OPENROUTER_API_KEY` — for LLM calls (curate + script generation)
 - `OPENROUTER_SCRIPT_MODEL` (optional, default: `anthropic/claude-sonnet-4.6`)
+- `OPENROUTER_SCRIPT_TIMEOUT_MS` (optional, default: `180000` — OpenRouter JSON-schema script calls can exceed 90s under load)
 - `OPENAI_API_KEY` — for TTS audio synthesis
 - `FEED_BASE_URL` — public URL where `docs/` is served
 - `TTS_MODEL` (optional, default: `gpt-4o-mini-tts`)

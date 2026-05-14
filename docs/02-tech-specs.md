@@ -7,7 +7,7 @@
 | Language | TypeScript (Node 20+) | Aligns with existing Next.js work; rich npm ecosystem; clean RSS/feed/Octokit libs |
 | Scheduler | GitHub Actions cron | Free, zero new infra, already proven in prior pipeline |
 | News source | Curated RSS feeds via `rss-parser` | Free, deterministic, no API key, no rate limits, easy to extend |
-| LLM | OpenRouter → Claude Sonnet (`anthropic/claude-sonnet-4-7`) | Already in workflow; structured output; high reasoning quality |
+| LLM | OpenRouter → Claude (`anthropic/claude-sonnet-4.6` for curation, `anthropic/claude-opus-4.6` for scripts by default) | Already in workflow; structured output; high reasoning quality; script model is configurable when provider capabilities change |
 | TTS | OpenAI `gpt-4o-mini-tts` (direct API) | Supports delivery instructions and per-speaker voices for the conversational format; direct OpenAI keeps audio generation reliable |
 | Audio | ffmpeg | Industry standard; loudness normalize, concat, encode, ID3 chapters |
 | Storage + hosting | Public GitHub repo + GitHub Pages | Free; zero new infra; obscure path = soft privacy |
@@ -174,6 +174,7 @@ Use the `feed` npm package — do not hand-roll XML. `length` must be the actual
 | Var | Purpose |
 |---|---|
 | `OPENROUTER_API_KEY` | LLM access (curate + script) |
+| `OPENROUTER_SCRIPT_MODEL` | Optional script-generation model override; defaults to `anthropic/claude-opus-4.6` |
 | `OPENAI_API_KEY` | TTS access |
 | `FEED_BASE_URL` | e.g., `https://USER.github.io/ai-briefing` |
 | `TTS_MODEL` | OpenAI speech model; default `gpt-4o-mini-tts` supports delivery instructions |

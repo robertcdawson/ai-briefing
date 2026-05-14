@@ -8,7 +8,7 @@
 | Scheduler | GitHub Actions cron | Free, zero new infra, already proven in prior pipeline |
 | News source | Curated RSS feeds via `rss-parser` | Free, deterministic, no API key, no rate limits, easy to extend |
 | LLM | OpenRouter → Claude Sonnet (`anthropic/claude-sonnet-4-7`) | Already in workflow; structured output; high reasoning quality |
-| TTS | OpenAI `gpt-4o-mini-tts` (direct API) | Supports delivery instructions for a more engaged podcast read; direct OpenAI keeps audio generation reliable |
+| TTS | OpenAI `gpt-4o-mini-tts` (direct API) | Supports delivery instructions and per-speaker voices for the conversational format; direct OpenAI keeps audio generation reliable |
 | Audio | ffmpeg | Industry standard; loudness normalize, concat, encode, ID3 chapters |
 | Storage + hosting | Public GitHub repo + GitHub Pages | Free; zero new infra; obscure path = soft privacy |
 | RSS feed | `feed` npm package, `feed.xml` committed to repo | Standards-compliant; Apple Podcasts compatible |
@@ -38,11 +38,11 @@
 └────────┬────────┘
          ↓
 ┌─────────────────┐
-│  script.ts      │   OpenRouter→Claude: full spoken script → Episode
+│  script.ts      │   OpenRouter→Claude: speaker-turn script → Episode
 └────────┬────────┘
          ↓
 ┌─────────────────┐
-│  tts.ts         │   OpenAI TTS: per-segment MP3 chunks
+│  tts.ts         │   OpenAI TTS: per-turn voice synthesis → section MP3 chunks
 └────────┬────────┘
          ↓
 ┌─────────────────┐
@@ -131,13 +131,19 @@ interface StoryCluster {
 interface Episode {
   date: string;            // YYYY-MM-DD
   title: string;           // "AI Briefing — May 4, 2026"
-  intro: string;
+  speakers: {
+    id: "anchor" | "analyst";
+    name: string;
+    role: string;
+    persona: string;
+  }[];
+  intro: { speaker: "anchor" | "analyst"; text: string }[];
   segments: {
     title: string;
-    script: string;
+    turns: { speaker: "anchor" | "analyst"; text: string }[];
     sourceUrls: string[];
   }[];
-  outro: string;
+  outro: { speaker: "anchor" | "analyst"; text: string }[];
   audioPath: string;       // docs/episodes/YYYY-MM-DD.mp3
   byteLength: number;
   durationSeconds: number;
@@ -171,7 +177,9 @@ Use the `feed` npm package — do not hand-roll XML. `length` must be the actual
 | `OPENAI_API_KEY` | TTS access |
 | `FEED_BASE_URL` | e.g., `https://USER.github.io/ai-briefing` |
 | `TTS_MODEL` | OpenAI speech model; default `gpt-4o-mini-tts` supports delivery instructions |
-| `TTS_VOICE` | OpenAI TTS voice; default `onyx` |
+| `TTS_VOICE` | Legacy Anchor fallback; default `onyx` |
+| `TTS_ANCHOR_VOICE` | Anchor voice; default `onyx` |
+| `TTS_ANALYST_VOICE` | Analyst voice; default `nova` |
 | `TTS_TIMEOUT_MS` | Per-segment OpenAI speech timeout; default `180000` |
 | `AUDIO_CUES_ENABLED` | Toggle synthetic intro/transition/outro stingers (`true`/`false`) |
 | `AUDIO_CUE_STYLE` | Generated cue style: `tone`, `chime`, or `tick` |

@@ -2,6 +2,7 @@ import { copyFile, mkdir, readdir, readFile, unlink, writeFile } from "node:fs/p
 import { createHash } from "node:crypto";
 import path from "node:path";
 import { Feed } from "feed";
+import { formatSpeakerTurns } from "./speakers.js";
 import type { Episode, EpisodePartTiming } from "./types.js";
 import { logJson } from "./util.js";
 
@@ -409,19 +410,19 @@ function buildTranscript(ep: Episode): string {
     "",
     "Intro",
     "",
-    ep.intro,
+    formatSpeakerTurns(ep.intro),
     "",
   ];
 
   for (const segment of ep.segments) {
-    lines.push(segment.title, "", segment.script);
+    lines.push(segment.title, "", formatSpeakerTurns(segment.turns));
     for (const url of segment.sourceUrls) {
       lines.push(`Source: ${url}`);
     }
     lines.push("");
   }
 
-  lines.push("Outro", "", ep.outro, "");
+  lines.push("Outro", "", formatSpeakerTurns(ep.outro), "");
   return lines.join("\n");
 }
 

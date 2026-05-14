@@ -9,8 +9,8 @@ A daily, fully-automated AI news podcast. Every morning at ~06:30 Pacific, GitHu
 
 1. Pulls the last 24h of articles from a curated set of AI news RSS feeds.
 2. Asks Claude (via OpenRouter) to cluster duplicates and pick the top 3 stories.
-3. Asks Claude to write a 4–7 minute spoken script (engaging summary hook → recurring segments → synthesis outro).
-4. Synthesizes the script with OpenAI `gpt-4o-mini-tts` (one MP3 per segment, with delivery instructions).
+3. Asks Claude to write a 4–7 minute two-speaker script (engaging summary hook → recurring segments → synthesis outro).
+4. Synthesizes each speaker turn with OpenAI `gpt-4o-mini-tts`, using the configured voice for that speaker, then groups turns back into intro/story/outro MP3 sections.
 5. Builds a full program master with ffmpeg (section stingers + concat), normalizes loudness to EBU R128 (-16 LUFS), encodes 192 kbps MP3 with ID3 tags and embedded chapters.
 6. Drops the file at `docs/episodes/YYYY-MM-DD.mp3`, regenerates `docs/feed.xml`, commits, and pushes.
 7. GitHub Pages serves the feed; Apple Podcasts polls and downloads.
@@ -162,7 +162,9 @@ In the repo's **Settings → Secrets and variables → Actions**:
 **Variables:**
 - `FEED_BASE_URL` — same as `.env`, e.g. `https://USER.github.io/ai-briefing`
 - `TTS_MODEL` — `gpt-4o-mini-tts` (default; supports delivery instructions)
-- `TTS_VOICE` — `onyx` (or another supported OpenAI TTS voice)
+- `TTS_VOICE` — legacy Anchor fallback; defaults to `onyx`
+- `TTS_ANCHOR_VOICE` — Anchor voice; defaults to `onyx`
+- `TTS_ANALYST_VOICE` — Analyst voice; defaults to `nova`
 - `TTS_TIMEOUT_MS` — `180000` by default; raise only if OpenAI speech generation is still timing out
 - `AUDIO_CUES_ENABLED` — `true` (set `false` to disable synthetic section stingers)
 - `AUDIO_CUE_STYLE` — `tone`, `chime`, or `tick`
@@ -249,16 +251,16 @@ The workflow page has a **Re-run all jobs** button. Use it after fixing the root
 
 ### Change the TTS model or voice
 
-Set `TTS_MODEL` and `TTS_VOICE` in Actions variables (or `.env` locally). The default model is `gpt-4o-mini-tts`, which supports delivery instructions for an upbeat, engaged podcast read. Legacy `tts-1` and `tts-1-hd` still work, but they ignore those delivery instructions. Takes effect on the next run only — past episodes remain in their original voice.
+Set `TTS_MODEL`, `TTS_ANCHOR_VOICE`, and `TTS_ANALYST_VOICE` in Actions variables (or `.env` locally). `TTS_VOICE` is still accepted as a legacy Anchor fallback. The default model is `gpt-4o-mini-tts`, which supports delivery instructions for an upbeat, engaged podcast read. Legacy `tts-1` and `tts-1-hd` still work, but they ignore those delivery instructions. Takes effect on the next run only — past episodes remain in their original voices.
 
 OpenAI does not label built-in voices by gender in the API docs, but the current Speech API includes `alloy`, `ash`, `ballad`, `coral`, `echo`, `fable`, `nova`, `onyx`, `sage`, `shimmer`, `verse`, `marin`, and `cedar`. In practice, start auditions with `coral`, `nova`, or `shimmer` for a brighter/feminine-coded host, and `marin` or `cedar` for OpenAI's recommended best quality.
 
-For a future two-speaker conversation format, keep the personas complementary rather than gimmicky. A durable pairing would be:
+The show uses a structured two-speaker conversation format. Keep the personas complementary rather than gimmicky:
 
 - **The Anchor:** concise, skeptical, keeps the facts and story order straight.
 - **The Analyst:** warmer and more playful, asks the practical "so what?" question and adds one memorable analogy.
 
-That format should be implemented as structured speaker turns before TTS so each speaker can use a different `TTS_VOICE`; do not try to fake a dialogue by putting both speakers into one TTS request.
+This is implemented as structured speaker turns before TTS. Each turn is synthesized with that speaker's configured voice, then turns are concatenated back into intro/story/outro sections so chapters stay aligned to the episode structure instead of every small exchange.
 
 ### Toggle section stingers
 

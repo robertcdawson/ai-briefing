@@ -56,9 +56,23 @@ export interface StoryCluster {
   sources: { url: string; publisher: string }[];
 }
 
+export type SpeakerId = "anchor" | "analyst";
+
+export interface EpisodeSpeaker {
+  id: SpeakerId;
+  name: string;
+  role: string;
+  persona: string;
+}
+
+export interface SpeakerTurn {
+  speaker: SpeakerId;
+  text: string;
+}
+
 export interface EpisodeSegment {
   title: string;
-  script: string;
+  turns: SpeakerTurn[];
   sourceUrls: string[];
 }
 
@@ -75,9 +89,10 @@ export interface EpisodePartTiming {
 export interface Episode {
   date: string;
   title: string;
-  intro: string;
+  speakers: EpisodeSpeaker[];
+  intro: SpeakerTurn[];
   segments: EpisodeSegment[];
-  outro: string;
+  outro: SpeakerTurn[];
   audioPath: string;
   byteLength: number;
   durationSeconds: number;

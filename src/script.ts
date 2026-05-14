@@ -1,6 +1,7 @@
 import OpenAI from "openai";
+import { getEpisodeSpeakers, isSpeakerId, speakerNamesForPrompt } from "./speakers.js";
 import { getStoryCategoryLabel, STORY_CATEGORY_DEFINITIONS } from "./types.js";
-import type { Episode, EpisodeSegment, StoryCluster } from "./types.js";
+import type { Episode, SpeakerTurn, StoryCluster } from "./types.js";
 import { logJson, withHardTimeout, withRetry } from "./util.js";
 
 const MODEL = "anthropic/claude-opus-4.7";
@@ -17,9 +18,15 @@ export interface DailyPersona {
 }
 
 export interface ScriptResponse {
-  intro: string;
-  segments: EpisodeSegment[];
-  outro: string;
+  intro: SpeakerTurn[];
+  segments: ScriptSegmentResponse[];
+  outro: SpeakerTurn[];
+}
+
+export interface ScriptSegmentResponse {
+  title: string;
+  turns: SpeakerTurn[];
+  sourceUrls: string[];
 }
 
 export const DAILY_PERSONAS: readonly DailyPersona[] = [
@@ -90,12 +97,31 @@ export const DAILY_PERSONAS: readonly DailyPersona[] = [
   },
 ];
 
-const RESPONSE_SCHEMA = {
+const SPEAKER_TURN_SCHEMA = {
+  type: "object",
+  properties: {
+    speaker: {
+      type: "string",
+      enum: ["anchor", "analyst"],
+      description: "The speaker persona for this spoken turn.",
+    },
+    text: {
+      type: "string",
+      description: "One read-aloud-friendly spoken turn. Do not include speaker labels or stage directions.",
+    },
+  },
+  required: ["speaker", "text"],
+  additionalProperties: false,
+} as const;
+
+export const SCRIPT_RESPONSE_SCHEMA = {
   type: "object",
   properties: {
     intro: {
-      type: "string",
-      description: "15-25s spoken intro hook (~40-60 words)",
+      type: "array",
+      minItems: 2,
+      items: SPEAKER_TURN_SCHEMA,
+      description: "15-25s spoken intro hook as 2-3 concise speaker turns (~40-70 words total).",
     },
     segments: {
       type: "array",
@@ -103,24 +129,28 @@ const RESPONSE_SCHEMA = {
         type: "object",
         properties: {
           title: { type: "string" },
-          script: {
-            type: "string",
+          turns: {
+            type: "array",
+            minItems: 2,
+            items: SPEAKER_TURN_SCHEMA,
             description:
-              "~90s spoken script (~220-260 words): what happened → why it matters → brief explainer when needed → caveat → short transition into the next story (or outro for the final segment).",
+              "~90s conversational story script as 4-7 concise turns (~220-280 words total): what happened, why it matters, brief explainer when needed, caveat, and a short transition into the next story or outro.",
           },
           sourceUrls: {
             type: "array",
             items: { type: "string" },
           },
         },
-        required: ["title", "script", "sourceUrls"],
+        required: ["title", "turns", "sourceUrls"],
         additionalProperties: false,
       },
     },
     outro: {
-      type: "string",
+      type: "array",
+      minItems: 2,
+      items: SPEAKER_TURN_SCHEMA,
       description:
-        "30-40s synthesis outro (~80-100 words) identifying a pattern, theme, or contrast across the stories. End with a sign-off.",
+        "30-40s synthesis outro as 2-4 turns (~80-110 words total) identifying a pattern, theme, or contrast across the stories. End with a sign-off.",
     },
   },
   required: ["intro", "segments", "outro"],
@@ -131,16 +161,25 @@ const SEGMENT_LABEL_RULES = STORY_CATEGORY_DEFINITIONS
   .map((category) => `  - ${category.id}: "${category.label}: {headline}"`)
   .join("\n");
 
-const SYSTEM_PROMPT_BASE = `You are the writer for a daily AI news podcast called "AI Briefing". Write a tight, conversational 4-7 minute spoken script (~600-1000 words total) for a single host. Match this structure exactly:
+const SYSTEM_PROMPT_BASE = `You are the writer for a daily AI news podcast called "AI Briefing". Write a tight, conversational 4-7 minute spoken script (~600-1000 words total) as a two-speaker exchange. Match this structure exactly:
 
-- INTRO HOOK (15-25 seconds, ~40-60 words): Begin with an engaging summary hook: the day's thesis, tension, or surprise, then name the date and preview the stakes. Not a dry table of contents.
-- STORY SEGMENTS (~90 seconds each, ~220-260 words each): Write exactly one segment per provided story cluster, in the order provided. If fewer than three credible clusters are provided, write fewer segments; never invent or pad. Each segment must:
+- INTRO HOOK (15-25 seconds, ~40-70 words total): Begin with an engaging summary hook: the day's thesis, tension, or surprise, then name the date and preview the stakes. Not a dry table of contents.
+- STORY SEGMENTS (~90 seconds each, ~220-280 words each): Write exactly one segment per provided story cluster, in the order provided. If fewer than three credible clusters are provided, write fewer segments; never invent or pad. Each segment must:
   1. Open with what happened — concrete and specific.
   2. Explain why it matters for AI builders/researchers, with a listener-oriented takeaway.
   3. Briefly explain technical terms on first use in plain English, only when needed.
   4. End with a brief caveat: what's uncertain, missing, or potentially overhyped.
   5. Close with a smooth, short transition into the next story (or, for the last segment, into the outro).
-- SYNTHESIS OUTRO (30-40 seconds, ~80-100 words): Identify a pattern, theme, or contrast across the provided stories. End with a sign-off.
+- SYNTHESIS OUTRO (30-40 seconds, ~80-110 words total): Identify a pattern, theme, or contrast across the provided stories. End with a sign-off.
+
+Speaker personas:
+${speakerNamesForPrompt()}
+
+Speaker-turn rules:
+- Return structured turns using only the speaker IDs "anchor" and "analyst"; do not put speaker names inside the text.
+- Use both speakers throughout the episode. The Anchor keeps sequence, facts, and caveats straight. The Analyst asks the practical "so what?" and adds one memorable analogy when useful.
+- Each story should feel like a real exchange, not two monologues pasted together. Keep turns short enough for natural back-and-forth.
+- Do not add stage directions, reactions, crosstalk markers, fake laughter, audio cues, or bracketed pauses.
 
 Recurring segment labels:
 - The first segment title MUST begin "Top Story: " followed by the story headline.
@@ -150,12 +189,12 @@ ${SEGMENT_LABEL_RULES}
 
 Voice rules:
 - Conversational and intelligent, not breathless or hyped.
-- Sound alert and enthusiastic, like the host genuinely finds the material useful, while staying skeptical and precise.
+- Sound alert and enthusiastic, like the speakers genuinely find the material useful, while staying skeptical and precise.
 - Optimize for information retention: vary sentence rhythm, front-load concrete details, and reinforce each segment's key takeaway once near the end.
 - Spoken pacing: mix crisp short sentences with medium explanatory sentences. Avoid dense clauses; keep most sentences under about 24 words.
 - Use light, dry humor sparingly (about one quick line per segment max) when it helps recall, never at the expense of accuracy or clarity.
 - Bring some attitude: sound like a sharp analyst with opinions grounded in evidence, not a neutral press-release reader.
-- The host may have strong opinions, but every opinion must be grounded in the provided facts. Prefer sharp analysis over neutral summary, but never sacrifice accuracy for personality.
+- The speakers may have strong opinions, but every opinion must be grounded in the provided facts. Prefer sharp analysis over neutral summary, but never sacrifice accuracy for personality.
 - Read-aloud-friendly: short sentences, no parenthetical asides, avoid em-dashes that force awkward pauses.
 - Explain jargon only when it helps: define specialized terms in 8-14 plain words and keep moving.
 - Transitions must be one sentence, under about 12 words, and specific to the next story. Avoid formulaic phrases like "next up."
@@ -168,7 +207,7 @@ Daily persona rules:
 - Use the provided daily persona as a style lens, not a character bit.
 - Keep the episode recognizably "AI Briefing": accurate, useful, skeptical, and concise.
 - Do not imitate real people or copyrighted characters. No celebrity impressions.
-- Do not invent audio cues, accents, scenes, sound effects, facts, quotes, or source details to fit the persona.
+- Do not invent audio cues, accents, scenes, sound effects, facts, quotes, reactions, or source details to fit the persona or the conversation.
 
 Each segment's sourceUrls MUST be exactly the urls provided for that cluster. Do not invent or omit any.
 
@@ -233,7 +272,7 @@ export async function writeScript(date: string, clusters: StoryCluster[]): Promi
           ],
           response_format: {
             type: "json_schema",
-            json_schema: { name: "episode_script", strict: true, schema: RESPONSE_SCHEMA },
+            json_schema: { name: "episode_script", strict: true, schema: SCRIPT_RESPONSE_SCHEMA },
           },
           temperature: 0.7,
         }),
@@ -252,13 +291,14 @@ export async function writeScript(date: string, clusters: StoryCluster[]): Promi
   );
 
   const wordCount =
-    countWords(parsed.intro) +
-    parsed.segments.reduce((sum, s) => sum + countWords(s.script), 0) +
-    countWords(parsed.outro);
+    countTurnWords(parsed.intro) +
+    parsed.segments.reduce((sum, s) => sum + countTurnWords(s.turns), 0) +
+    countTurnWords(parsed.outro);
 
   const episode: Episode = {
     date,
     title: `AI Briefing — ${formatLongDate(date)}`,
+    speakers: getEpisodeSpeakers(),
     intro: parsed.intro,
     segments: parsed.segments,
     outro: parsed.outro,
@@ -291,6 +331,9 @@ export function validateScriptResponse(
     throw new Error("script response segments must be an array");
   }
 
+  validateSpeakerTurns("intro", response.intro);
+  validateSpeakerTurns("outro", response.outro);
+
   if (response.segments.length !== clusters.length) {
     throw new Error(
       `script returned ${response.segments.length} segment(s), expected ${clusters.length}`,
@@ -301,6 +344,10 @@ export function validateScriptResponse(
     const segment = response.segments[i];
     const cluster = clusters[i];
     if (!segment || !cluster) throw new Error(`script response missing segment ${i + 1}`);
+    if (typeof segment.title !== "string" || segment.title.trim().length === 0) {
+      throw new Error(`script segment ${i + 1} title must be a non-empty string`);
+    }
+    validateSpeakerTurns(`segment ${i + 1}`, segment.turns);
 
     if (!Array.isArray(segment.sourceUrls)) {
       throw new Error(`script segment ${i + 1} sourceUrls must be an array`);
@@ -320,6 +367,29 @@ export function validateScriptResponse(
   }
 }
 
+function validateSpeakerTurns(label: string, turns: unknown): asserts turns is SpeakerTurn[] {
+  if (!Array.isArray(turns)) {
+    throw new Error(`script ${label} turns must be an array`);
+  }
+  if (turns.length === 0) {
+    throw new Error(`script ${label} turns must not be empty`);
+  }
+
+  for (const [index, turn] of turns.entries()) {
+    const turnLabel = `${label} turn ${index + 1}`;
+    if (!turn || typeof turn !== "object") {
+      throw new Error(`script ${turnLabel} must be an object`);
+    }
+    const candidate = turn as Partial<SpeakerTurn>;
+    if (!isSpeakerId(candidate.speaker)) {
+      throw new Error(`script ${turnLabel} speaker must be "anchor" or "analyst"`);
+    }
+    if (typeof candidate.text !== "string" || candidate.text.trim().length === 0) {
+      throw new Error(`script ${turnLabel} text must be a non-empty string`);
+    }
+  }
+}
+
 function stableHash(input: string): number {
   let hash = 2166136261;
   for (let i = 0; i < input.length; i += 1) {
@@ -331,6 +401,10 @@ function stableHash(input: string): number {
 
 function countWords(s: string): number {
   return s.trim().split(/\s+/).filter(Boolean).length;
+}
+
+function countTurnWords(turns: readonly SpeakerTurn[]): number {
+  return turns.reduce((sum, turn) => sum + countWords(turn.text), 0);
 }
 
 interface UrlDiff {

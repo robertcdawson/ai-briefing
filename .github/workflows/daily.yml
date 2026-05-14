@@ -51,6 +51,8 @@ jobs:
           EPISODE_TIME_ZONE: ${{ vars.EPISODE_TIME_ZONE }}
           TTS_MODEL: ${{ vars.TTS_MODEL }}
           TTS_VOICE: ${{ vars.TTS_VOICE }}
+          TTS_ANCHOR_VOICE: ${{ vars.TTS_ANCHOR_VOICE }}
+          TTS_ANALYST_VOICE: ${{ vars.TTS_ANALYST_VOICE }}
           TTS_TIMEOUT_MS: ${{ vars.TTS_TIMEOUT_MS }}
           AUDIO_CUES_ENABLED: ${{ vars.AUDIO_CUES_ENABLED }}
           AUDIO_CUE_STYLE: ${{ vars.AUDIO_CUE_STYLE }}

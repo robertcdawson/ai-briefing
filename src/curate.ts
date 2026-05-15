@@ -1,7 +1,7 @@
 import OpenAI from "openai";
 import { STORY_CATEGORY_DEFINITIONS } from "./types.js";
 import type { Article, StoryCluster } from "./types.js";
-import { logJson, withHardTimeout, withRetry } from "./util.js";
+import { getChatCompletionAssistantText, logJson, withHardTimeout, withRetry } from "./util.js";
 
 const MODEL = "anthropic/claude-sonnet-4.6";
 const TIMEOUT_MS = 60_000;
@@ -143,8 +143,7 @@ export async function curate(articles: Article[]): Promise<StoryCluster[]> {
     { attempts: MAX_ATTEMPTS, label: "curate" },
   );
 
-  const content = completion.choices[0]?.message?.content;
-  if (!content) throw new Error("Empty response from OpenRouter");
+  const content = getChatCompletionAssistantText(completion, "OpenRouter curate");
 
   const parsed = JSON.parse(content) as {
     clusters: (StoryCluster & { importance: number })[];

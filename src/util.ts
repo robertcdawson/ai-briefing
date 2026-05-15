@@ -48,3 +48,31 @@ export async function withRetry<T>(fn: () => Promise<T>, opts: RetryOpts = {}): 
   }
   throw lastErr;
 }
+
+/** Shape returned by OpenAI-compatible chat completion APIs (including OpenRouter). */
+export interface ChatCompletionLike {
+  choices?: ReadonlyArray<{
+    finish_reason?: string | null;
+    message?: { content?: string | null } | null;
+  }>;
+}
+
+/**
+ * Reads the first assistant text message. Uses optional chaining on `choices` because
+ * some providers omit `choices` on certain failure paths; `choices[0]` would throw.
+ */
+export function getChatCompletionAssistantText(
+  completion: ChatCompletionLike,
+  context: string,
+): string {
+  const choice = completion.choices?.[0];
+  const raw = choice?.message?.content;
+  if (typeof raw === "string" && raw.trim().length > 0) {
+    return raw.trim();
+  }
+  const detail = {
+    choiceCount: completion.choices?.length ?? 0,
+    finish_reason: choice?.finish_reason,
+  };
+  throw new Error(`${context}: missing assistant message content (${JSON.stringify(detail)})`);
+}

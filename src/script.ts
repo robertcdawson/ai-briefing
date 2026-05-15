@@ -2,7 +2,7 @@ import OpenAI from "openai";
 import { getEpisodeSpeakers, isSpeakerId, speakerNamesForPrompt } from "./speakers.js";
 import { getStoryCategoryLabel, STORY_CATEGORY_DEFINITIONS } from "./types.js";
 import type { Episode, SpeakerTurn, StoryCluster } from "./types.js";
-import { logJson, withHardTimeout, withRetry } from "./util.js";
+import { getChatCompletionAssistantText, logJson, withHardTimeout, withRetry } from "./util.js";
 
 const DEFAULT_SCRIPT_MODEL = "anthropic/claude-sonnet-4.6";
 const DEFAULT_SCRIPT_TIMEOUT_MS = 360_000;
@@ -300,8 +300,7 @@ export async function writeScript(date: string, clusters: StoryCluster[]): Promi
         "script.openrouter",
       );
 
-      const content = completion.choices[0]?.message?.content;
-      if (!content) throw new Error("Empty response from OpenRouter");
+      const content = getChatCompletionAssistantText(completion, "OpenRouter script");
 
       const response = JSON.parse(content) as ScriptResponse;
       validateScriptResponse(response, clusters);

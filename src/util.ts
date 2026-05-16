@@ -77,10 +77,13 @@ export function getChatCompletionAssistantText(
     return raw.trim();
   }
   const detail = compactRecord({
+    responseKeys: sortedObjectKeys(completion),
     id: completion.id,
     model: completion.model,
     object: completion.object,
     choiceCount: completion.choices?.length ?? 0,
+    firstChoiceKeys: sortedObjectKeys(choice),
+    firstMessageKeys: sortedObjectKeys(choice?.message),
     finish_reason: choice?.finish_reason,
     native_finish_reason: choice?.native_finish_reason,
     choiceError: safeProviderError(choice?.error),
@@ -91,6 +94,11 @@ export function getChatCompletionAssistantText(
 
 function compactRecord(input: Record<string, unknown>): Record<string, unknown> {
   return Object.fromEntries(Object.entries(input).filter(([, value]) => value !== undefined));
+}
+
+function sortedObjectKeys(input: object | null | undefined): string[] | undefined {
+  if (!input) return undefined;
+  return Object.keys(input).sort();
 }
 
 function safeScalarRecord(input: object | null | undefined): Record<string, unknown> | undefined {

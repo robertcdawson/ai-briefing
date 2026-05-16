@@ -65,6 +65,6 @@ test("getChatCompletionAssistantText includes safe completion metadata when cont
         },
         "ctx",
       ),
-    /ctx: missing assistant message content.*"id":"chatcmpl-test".*"model":"test\/model".*"object":"chat.completion".*"choiceCount":1.*"native_finish_reason":"provider-empty".*"choiceError":\{"code":"empty_choices","message":"provider returned no message"\}.*"usage":\{"prompt_tokens":42,"completion_tokens":0,"total_tokens":42\}/s,
+    /ctx: missing assistant message content.*"responseKeys":\["choices","id","model","object","usage"\].*"id":"chatcmpl-test".*"model":"test\/model".*"object":"chat.completion".*"choiceCount":1.*"firstChoiceKeys":\["error","finish_reason","message","native_finish_reason"\].*"firstMessageKeys":\["content"\].*"native_finish_reason":"provider-empty".*"choiceError":\{"code":"empty_choices","message":"provider returned no message"\}.*"usage":\{"prompt_tokens":42,"completion_tokens":0,"total_tokens":42\}/s,
   );
 });

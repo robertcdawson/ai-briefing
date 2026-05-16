@@ -158,6 +158,7 @@ In the repo's **Settings → Secrets and variables → Actions**:
 **Secrets:**
 - `OPENROUTER_API_KEY`
 - `OPENAI_API_KEY`
+- `DAILY_PUSH_DEPLOY_KEY` — private key for a write-enabled deploy key used only to push generated episodes from the daily workflow
 
 **Variables:**
 - `FEED_BASE_URL` — same as `.env`, e.g. `https://USER.github.io/ai-briefing`
@@ -180,7 +181,7 @@ In the repo's **Settings → Secrets and variables → Actions**:
 - `PODCAST_EXPLICIT`
 - `PODCAST_TYPE`
 
-The workflow requests `contents: write` in `.github/workflows/daily.yml` so it can commit generated episodes. If `main` is protected by a ruleset that requires pull requests, add the `github-actions[bot]` user as a bypass actor for that ruleset; otherwise the pipeline can generate the episode but the final `git push` fails with `GH013: Changes must be made through a pull request`.
+The workflow uses the `DAILY_PUSH_DEPLOY_KEY` SSH deploy key to commit generated episodes. If `main` is protected by a ruleset that requires pull requests, add deploy keys as a bypass actor for that ruleset; otherwise the pipeline can generate the episode but the final `git push` fails with `GH013: Changes must be made through a pull request`.
 
 ### 10. Trigger the first scheduled run manually
 
@@ -334,11 +335,11 @@ GitHub emails the repo owner on first failure of any workflow. Triage:
    - **OpenRouter 401:** key revoked or out of credit.
    - **OpenAI 429:** rate-limited. Wait, then re-run.
    - **OpenAI 401:** key revoked or billing lapsed.
-   - **OpenRouter script returned no assistant content:** look for `OpenRouter script: missing assistant message content` and any safe metadata such as `model`, `choiceCount`, `finish_reason`, `choiceError`, or `usage`. The script step tries the comma-separated `OPENROUTER_SCRIPT_MODEL` candidates in order; if the first model keeps returning empty choices, it should log `script.model_fallback` and continue with the next model.
+   - **OpenRouter script returned no assistant content:** look for `OpenRouter script: missing assistant message content` and safe metadata such as `responseKeys`, `firstChoiceKeys`, `model`, `choiceCount`, `finish_reason`, `choiceError`, or `usage`. The script step tries the comma-separated `OPENROUTER_SCRIPT_MODEL` candidates in order; if the first model keeps returning empty choices, it should log `script.model_fallback` and continue with the next model.
    - **Script timeout:** OpenRouter script generation exceeded `OPENROUTER_SCRIPT_TIMEOUT_MS`; the default is 360 seconds (structured JSON can be slow from CI).
    - **TTS timeout:** OpenAI speech generation exceeded `TTS_TIMEOUT_MS`; the default is 180 seconds per part.
    - **ffmpeg not found:** the apt install step failed; check the install logs.
-   - **Commit push rejected with GH013:** the pipeline generated and committed the episode in the runner, but the repository ruleset blocked the workflow from pushing to `main`. Add the `github-actions[bot]` user as a bypass actor for the `main` ruleset, then re-run the workflow.
+   - **Commit push rejected with GH013:** the pipeline generated and committed the episode in the runner, but the repository ruleset blocked the workflow from pushing to `main`. Make sure `DAILY_PUSH_DEPLOY_KEY` is set, the matching deploy key has write access, and deploy keys are allowed to bypass the `main` ruleset.
 
 Recovery is always: fix the root cause, then re-run the workflow. A missing day is fine — the feed remains valid and the next morning's episode publishes normally.
 

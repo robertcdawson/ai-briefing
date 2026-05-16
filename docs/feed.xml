@@ -4,7 +4,7 @@
         <title>AI Briefing</title>
         <link>https://robertcdawson.github.io/ai-briefing/</link>
         <description>Daily AI news briefing — the top three stories from the last 24 hours.</description>
-        <lastBuildDate>Sat, 16 May 2026 23:23:24 GMT</lastBuildDate>
+        <lastBuildDate>Sat, 16 May 2026 23:35:44 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -27,61 +27,57 @@
             <title><![CDATA[AI Briefing — May 16, 2026]]></title>
             <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-05-16.mp3</link>
             <guid>ai-briefing-2026-05-16</guid>
-            <pubDate>Sat, 16 May 2026 23:23:24 GMT</pubDate>
+            <pubDate>Sat, 16 May 2026 23:35:44 GMT</pubDate>
             <description><![CDATA[Top 3 AI stories for 2026-05-16:
 
 Chapters:
 00:00:00 Intro
-00:00:27 AI Agents Develop Real Browser Exploits
-00:01:26 $1.3 Million for 100 AI Coding Agents
-00:02:19 Job Losses in AI-Exposed Roles
-00:03:02 Outro
+00:00:33 CMU benchmark shows frontier AI agents...
+00:01:46 OpenClaw founder spends $1.3M monthly...
+00:02:52 ArXiv will ban authors one year for fully...
+00:03:48 Outro
 
 Sources:
-1. Research Breakthrough: AI Agents Develop Real Browser Exploits
+1. Research Breakthrough: CMU benchmark shows frontier AI agents autonomously developing real browser exploits
 Source: https://the-decoder.com/new-benchmark-shows-claude-mythos-and-gpt-5-5-can-develop-real-browser-exploits-autonomously/
-2. Product & Tool Watch: $1.3 Million for 100 AI Coding Agents
+2. Product & Tool Watch: OpenClaw founder spends $1.3M monthly running 100 parallel AI coding agents
 Source: https://the-decoder.com/for-1-3-million-a-month-openclaw-founder-peter-steinberger-runs-100-ai-agents-that-code-review-prs-and-find-bugs/
 Source: https://twitter.com/steipete/status/2055346265869721905
 Source: https://simonwillison.net/2026/May/16/openclaw-names/#atom-everything
-3. AI Culture Signal: Job Losses in AI-Exposed Roles
-Source: https://www.bloomberg.com/news/articles/2026-05-15/us-is-starting-to-see-heavy-job-losses-in-roles-exposed-to-ai
-Source: https://techcrunch.com/2026/05/16/the-haves-and-have-nots-of-the-ai-gold-rush/
-Source: https://the-decoder.com/ai-made-a-tiny-slice-of-silicon-valley-filthy-rich-and-left-the-rest-wondering-why-they-bother/]]></description>
-            <enclosure length="4980806" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-16.mp3"/>
-                    <itunes:duration>207</itunes:duration>
+3. Policy & Regulation Watch: ArXiv will ban authors one year for fully AI-generated paper submissions
+Source: https://techcrunch.com/2026/05/16/research-repository-arxiv-will-ban-authors-for-a-year-if-they-let-ai-do-all-the-work/]]></description>
+            <enclosure length="6021081" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-16.mp3"/>
+                    <itunes:duration>251</itunes:duration>
             <itunes:explicit>false</itunes:explicit>
             <itunes:season>2026</itunes:season>
             <itunes:episode>136</itunes:episode>
             <itunes:episodeType>full</itunes:episodeType>
             <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-16.chapters.json" type="application/json+chapters"/>
             <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-16.transcript.txt" type="text/plain" language="en"/>
-            <podcast:soundbite startTime="27" duration="58">AI Agents Develop Real Browser Exploits</podcast:soundbite>
-            <podcast:soundbite startTime="86" duration="53"><guid>ai-briefing-2026-05-16</guid>
-            <pubDate>Sat, 16 May 2026 23:23:24 GMT</pubDate>
+            <podcast:soundbite startTime="33" duration="73">CMU benchmark shows frontier AI agents...</podcast:soundbite>
+            <podcast:soundbite startTime="106" duration="66">OpenClaw founder spends <guid>ai-briefing-2026-05-16</guid>
+            <pubDate>Sat, 16 May 2026 23:35:44 GMT</pubDate>
             <description><![CDATA[Top 3 AI stories for 2026-05-16:
 
 Chapters:
 00:00:00 Intro
-00:00:27 AI Agents Develop Real Browser Exploits
-00:01:26 $1.3 Million for 100 AI Coding Agents
-00:02:19 Job Losses in AI-Exposed Roles
-00:03:02 Outro
+00:00:33 CMU benchmark shows frontier AI agents...
+00:01:46 OpenClaw founder spends $1.3M monthly...
+00:02:52 ArXiv will ban authors one year for fully...
+00:03:48 Outro
 
 Sources:
-1. Research Breakthrough: AI Agents Develop Real Browser Exploits
+1. Research Breakthrough: CMU benchmark shows frontier AI agents autonomously developing real browser exploits
 Source: https://the-decoder.com/new-benchmark-shows-claude-mythos-and-gpt-5-5-can-develop-real-browser-exploits-autonomously/
-2. Product & Tool Watch: $1.3 Million for 100 AI Coding Agents
+2. Product & Tool Watch: OpenClaw founder spends $1.3M monthly running 100 parallel AI coding agents
 Source: https://the-decoder.com/for-1-3-million-a-month-openclaw-founder-peter-steinberger-runs-100-ai-agents-that-code-review-prs-and-find-bugs/
 Source: https://twitter.com/steipete/status/2055346265869721905
 Source: https://simonwillison.net/2026/May/16/openclaw-names/#atom-everything
-3. AI Culture Signal: Job Losses in AI-Exposed Roles
-Source: https://www.bloomberg.com/news/articles/2026-05-15/us-is-starting-to-see-heavy-job-losses-in-roles-exposed-to-ai
-Source: https://techcrunch.com/2026/05/16/the-haves-and-have-nots-of-the-ai-gold-rush/
-Source: https://the-decoder.com/ai-made-a-tiny-slice-of-silicon-valley-filthy-rich-and-left-the-rest-wondering-why-they-bother/]]></description>
-            <enclosure length="4980806" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-16.mp3"/>
-        .3 Million for 100 AI Coding Agents</podcast:soundbite>
-            <podcast:soundbite startTime="139" duration="43">Job Losses in AI-Exposed Roles</podcast:soundbite>
+3. Policy & Regulation Watch: ArXiv will ban authors one year for fully AI-generated paper submissions
+Source: https://techcrunch.com/2026/05/16/research-repository-arxiv-will-ban-authors-for-a-year-if-they-let-ai-do-all-the-work/]]></description>
+            <enclosure length="6021081" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-16.mp3"/>
+        .3M monthly...</podcast:soundbite>
+            <podcast:soundbite startTime="172" duration="55">ArXiv will ban authors one year for fully...</podcast:soundbite>
         </item>
         <item>
             <title><![CDATA[AI Briefing — May 12, 2026]]></title>
@@ -241,23 +237,6 @@ Source: https://the-decoder.com/thinking-machines-lab-ships-its-first-model-and-
             <itunes:explicit>false</itunes:explicit>
             <itunes:season>2026</itunes:season>
             <itunes:episode>125</itunes:episode>
-            <itunes:episodeType>full</itunes:episodeType>
-        </item>
-        <item>
-            <title><![CDATA[AI Briefing — May 4, 2026]]></title>
-            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-05-04.mp3</link>
-            <guid>ai-briefing-2026-05-04</guid>
-            <pubDate>Mon, 04 May 2026 21:46:34 GMT</pubDate>
-            <description><![CDATA[Top 3 AI stories for 2026-05-04:
-
-1. OpenAI and Anthropic both bet big on enterprise deployment
-2. Week one of Musk versus Altman delivers theater and substance
-3. OpenAI opens up its real-time voice infrastructure]]></description>
-            <enclosure length="7600666" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-04.mp3"/>
-                    <itunes:duration>317</itunes:duration>
-            <itunes:explicit>false</itunes:explicit>
-            <itunes:season>2026</itunes:season>
-            <itunes:episode>124</itunes:episode>
             <itunes:episodeType>full</itunes:episodeType>
         </item>
     </channel>

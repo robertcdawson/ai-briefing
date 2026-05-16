@@ -4,27 +4,27 @@
   "chapters": [
     {
       "startTime": 0,
-      "endTime": 27,
+      "endTime": 33,
       "title": "Intro"
     },
     {
-      "startTime": 27,
-      "endTime": 86,
-      "title": "AI Agents Develop Real Browser Exploits"
+      "startTime": 33,
+      "endTime": 106,
+      "title": "CMU benchmark shows frontier AI agents..."
     },
     {
-      "startTime": 86,
-      "endTime": 139,
-      "title": "$1.3 Million for 100 AI Coding Agents"
+      "startTime": 106,
+      "endTime": 172,
+      "title": "OpenClaw founder spends $1.3M monthly..."
     },
     {
-      "startTime": 139,
-      "endTime": 182,
-      "title": "Job Losses in AI-Exposed Roles"
+      "startTime": 172,
+      "endTime": 228,
+      "title": "ArXiv will ban authors one year for fully..."
     },
     {
-      "startTime": 182,
-      "endTime": 207,
+      "startTime": 228,
+      "endTime": 251,
       "title": "Outro"
     }
   ]

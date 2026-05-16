@@ -6,25 +6,52 @@ import {
   buildSystemPrompt,
   buildUserPrompt,
   resolveScriptModel,
+  resolveScriptModels,
   resolveScriptTimeoutMs,
   selectDailyPersona,
   validateScriptResponse,
+  writeScript,
 } from "../src/script.js";
+import type { ScriptCompletionClient, ScriptCompletionParams } from "../src/script.js";
 import type { StoryCluster } from "../src/types.js";
 
-test("resolveScriptModel defaults to a structured-output-compatible OpenRouter model", () => {
+test("resolveScriptModels defaults to ordered structured-output-compatible OpenRouter models", () => {
+  assert.deepEqual(
+    resolveScriptModels(undefined),
+    ["anthropic/claude-sonnet-4.6", "openai/gpt-4o-mini"],
+  );
+  assert.deepEqual(
+    resolveScriptModels(""),
+    ["anthropic/claude-sonnet-4.6", "openai/gpt-4o-mini"],
+  );
+  assert.deepEqual(
+    resolveScriptModels("   "),
+    ["anthropic/claude-sonnet-4.6", "openai/gpt-4o-mini"],
+  );
+  assert.notDeepEqual(resolveScriptModels(undefined), ["anthropic/claude-opus-4.6"]);
+  assert.notDeepEqual(resolveScriptModels(undefined), ["anthropic/claude-opus-4.7"]);
+});
+
+test("resolveScriptModels accepts single and comma-separated configured models", () => {
+  assert.deepEqual(
+    resolveScriptModels(" anthropic/claude-sonnet-4.6 "),
+    ["anthropic/claude-sonnet-4.6"],
+  );
+  assert.deepEqual(
+    resolveScriptModels(" primary/model, fallback/model ,  "),
+    ["primary/model", "fallback/model"],
+  );
+});
+
+test("resolveScriptModel preserves single-model compatibility", () => {
   assert.equal(resolveScriptModel(undefined), "anthropic/claude-sonnet-4.6");
   assert.equal(resolveScriptModel(""), "anthropic/claude-sonnet-4.6");
   assert.equal(resolveScriptModel("   "), "anthropic/claude-sonnet-4.6");
-  assert.notEqual(resolveScriptModel(undefined), "anthropic/claude-opus-4.6");
-  assert.notEqual(resolveScriptModel(undefined), "anthropic/claude-opus-4.7");
-});
-
-test("resolveScriptModel accepts an explicit configured model", () => {
   assert.equal(
     resolveScriptModel(" anthropic/claude-sonnet-4.6 "),
     "anthropic/claude-sonnet-4.6",
   );
+  assert.equal(resolveScriptModel(" primary/model, fallback/model "), "primary/model");
 });
 
 test("resolveScriptTimeoutMs uses a realistic default and accepts valid overrides", () => {
@@ -444,8 +471,104 @@ test("validateScriptResponse rejects malformed speaker turns", () => {
   );
 });
 
+test("writeScript falls back to the next configured model after empty choices", async (t) => {
+  const originalModel = process.env.OPENROUTER_SCRIPT_MODEL;
+  const originalTimeout = process.env.OPENROUTER_SCRIPT_TIMEOUT_MS;
+  const originalApiKey = process.env.OPENROUTER_API_KEY;
+  process.env.OPENROUTER_SCRIPT_MODEL = "primary/model, fallback/model";
+  process.env.OPENROUTER_SCRIPT_TIMEOUT_MS = "60000";
+  delete process.env.OPENROUTER_API_KEY;
+  t.after(() => {
+    restoreEnv("OPENROUTER_SCRIPT_MODEL", originalModel);
+    restoreEnv("OPENROUTER_SCRIPT_TIMEOUT_MS", originalTimeout);
+    restoreEnv("OPENROUTER_API_KEY", originalApiKey);
+  });
+
+  const clusters: StoryCluster[] = [
+    {
+      canonicalKey: "test-story",
+      category: "product-tools",
+      headline: "A model ships a useful feature",
+      whyItMatters: "Builders get a simpler path to production.",
+      caveat: "Benchmarks are still early.",
+      sources: [{ publisher: "Example News", url: "https://example.com/model-feature" }],
+    },
+  ];
+  const requests: ScriptCompletionParams[] = [];
+  const completionClient: ScriptCompletionClient = {
+    async create(params) {
+      requests.push(params);
+      if (params.model === "primary/model") {
+        return {
+          id: "primary-empty",
+          object: "chat.completion",
+          model: params.model,
+          choices: [],
+          usage: { prompt_tokens: 10, completion_tokens: 0, total_tokens: 10 },
+        };
+      }
+      return {
+        id: "fallback-ok",
+        object: "chat.completion",
+        model: params.model,
+        choices: [
+          {
+            finish_reason: "stop",
+            message: {
+              content: JSON.stringify({
+                intro: [
+                  { speaker: "anchor", text: "Here is the setup." },
+                  { speaker: "analyst", text: "Here is why it matters." },
+                ],
+                segments: [
+                  {
+                    title: "Top Story: A model ships a useful feature",
+                    turns: [
+                      { speaker: "anchor", text: "A concise segment." },
+                      { speaker: "analyst", text: "The practical takeaway is simple." },
+                    ],
+                    sourceUrls: ["https://example.com/model-feature"],
+                  },
+                ],
+                outro: [
+                  { speaker: "anchor", text: "That is the pattern." },
+                  { speaker: "analyst", text: "That is the useful lens." },
+                ],
+              }),
+            },
+          },
+        ],
+      };
+    },
+  };
+
+  const episode = await writeScript("2026-05-16", clusters, {
+    completionClient,
+    retryBaseMs: 0,
+  });
+
+  assert.equal(episode.segments.length, 1);
+  assert.deepEqual(
+    requests.map((request) => request.model),
+    ["primary/model", "primary/model", "fallback/model"],
+  );
+  for (const request of requests) {
+    assert.equal(request.max_tokens, 4096);
+    assert.equal(request.stream, false);
+    assert.deepEqual(request.provider, { require_parameters: true });
+  }
+});
+
 function escapeRegExp(value: string): string {
   return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function restoreEnv(key: string, value: string | undefined): void {
+  if (value === undefined) {
+    delete process.env[key];
+  } else {
+    process.env[key] = value;
+  }
 }
 
 function assertNoArrayMinItemsAboveOne(schema: unknown, path = "schema"): void {

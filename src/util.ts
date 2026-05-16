@@ -51,10 +51,16 @@ export async function withRetry<T>(fn: () => Promise<T>, opts: RetryOpts = {}): 
 
 /** Shape returned by OpenAI-compatible chat completion APIs (including OpenRouter). */
 export interface ChatCompletionLike {
+  id?: string;
+  model?: string;
+  object?: string;
   choices?: ReadonlyArray<{
     finish_reason?: string | null;
-    message?: { content?: string | null } | null;
+    native_finish_reason?: string | null;
+    error?: unknown;
+    message?: { content?: unknown } | null;
   }>;
+  usage?: object | null;
 }
 
 /**
@@ -70,9 +76,56 @@ export function getChatCompletionAssistantText(
   if (typeof raw === "string" && raw.trim().length > 0) {
     return raw.trim();
   }
-  const detail = {
+  const detail = compactRecord({
+    id: completion.id,
+    model: completion.model,
+    object: completion.object,
     choiceCount: completion.choices?.length ?? 0,
     finish_reason: choice?.finish_reason,
-  };
+    native_finish_reason: choice?.native_finish_reason,
+    choiceError: safeProviderError(choice?.error),
+    usage: safeScalarRecord(completion.usage),
+  });
   throw new Error(`${context}: missing assistant message content (${JSON.stringify(detail)})`);
+}
+
+function compactRecord(input: Record<string, unknown>): Record<string, unknown> {
+  return Object.fromEntries(Object.entries(input).filter(([, value]) => value !== undefined));
+}
+
+function safeScalarRecord(input: object | null | undefined): Record<string, unknown> | undefined {
+  if (!input) return undefined;
+  const entries: Array<readonly [string, string | number | boolean | null]> = [];
+  for (const [key, value] of Object.entries(input)) {
+    if (isSafeScalar(value)) {
+      entries.push([key, truncateIfString(value)] as const);
+    }
+  }
+  return entries.length > 0 ? Object.fromEntries(entries) : undefined;
+}
+
+function safeProviderError(error: unknown): unknown {
+  if (error === undefined) return undefined;
+  if (isSafeScalar(error)) return truncateIfString(error);
+  if (!error || typeof error !== "object") return String(error);
+
+  const candidate = error as Record<string, unknown>;
+  const allowedKeys = ["code", "message", "param", "status", "type"];
+  const entries: Array<readonly [string, string | number | boolean | null]> = [];
+  for (const key of allowedKeys) {
+    const value = candidate[key];
+    if (isSafeScalar(value)) {
+      entries.push([key, truncateIfString(value)] as const);
+    }
+  }
+  return entries.length > 0 ? Object.fromEntries(entries) : "[object]";
+}
+
+function isSafeScalar(value: unknown): value is string | number | boolean | null {
+  return value === null || ["string", "number", "boolean"].includes(typeof value);
+}
+
+function truncateIfString(value: string | number | boolean | null): string | number | boolean | null {
+  if (typeof value !== "string") return value;
+  return value.length > 300 ? `${value.slice(0, 300)}...` : value;
 }

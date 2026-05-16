@@ -161,7 +161,7 @@ In the repo's **Settings → Secrets and variables → Actions**:
 
 **Variables:**
 - `FEED_BASE_URL` — same as `.env`, e.g. `https://USER.github.io/ai-briefing`
-- `OPENROUTER_SCRIPT_MODEL` — optional script model override; defaults to `anthropic/claude-sonnet-4.6`
+- `OPENROUTER_SCRIPT_MODEL` — optional script model override; accepts a comma-separated fallback list and defaults to `anthropic/claude-sonnet-4.6, openai/gpt-4o-mini`
 - `TTS_MODEL` — `gpt-4o-mini-tts` (default; supports delivery instructions)
 - `TTS_VOICE` — legacy Anchor fallback; defaults to `onyx`
 - `TTS_ANCHOR_VOICE` — Anchor voice; defaults to `onyx`
@@ -280,7 +280,7 @@ Chapters are published two ways: a Podcasting 2.0 JSON sidecar linked from `<pod
 
 ### Change the model or feed sources
 
-For script generation, set `OPENROUTER_SCRIPT_MODEL` in Actions variables (or `.env` locally). Keep it on an OpenRouter model/provider path that supports JSON schema structured output; the default is `anthropic/claude-sonnet-4.6`, matching the curation model path already used by the pipeline.
+For script generation, set `OPENROUTER_SCRIPT_MODEL` in Actions variables (or `.env` locally). Keep entries on OpenRouter model/provider paths that support JSON schema structured output. The value can be a comma-separated ordered fallback list; the default is `anthropic/claude-sonnet-4.6, openai/gpt-4o-mini`. Each model gets two attempts before the script step logs `script.model_fallback` and tries the next candidate.
 
 For curation, edit `src/curate.ts` (`MODEL` constant). For feed sources, edit `src/feeds.ts` (`SOURCES`) and push. The next scheduled run picks up the change.
 
@@ -334,6 +334,7 @@ GitHub emails the repo owner on first failure of any workflow. Triage:
    - **OpenRouter 401:** key revoked or out of credit.
    - **OpenAI 429:** rate-limited. Wait, then re-run.
    - **OpenAI 401:** key revoked or billing lapsed.
+   - **OpenRouter script returned no assistant content:** look for `OpenRouter script: missing assistant message content` and any safe metadata such as `model`, `choiceCount`, `finish_reason`, `choiceError`, or `usage`. The script step tries the comma-separated `OPENROUTER_SCRIPT_MODEL` candidates in order; if the first model keeps returning empty choices, it should log `script.model_fallback` and continue with the next model.
    - **Script timeout:** OpenRouter script generation exceeded `OPENROUTER_SCRIPT_TIMEOUT_MS`; the default is 360 seconds (structured JSON can be slow from CI).
    - **TTS timeout:** OpenAI speech generation exceeded `TTS_TIMEOUT_MS`; the default is 180 seconds per part.
    - **ffmpeg not found:** the apt install step failed; check the install logs.

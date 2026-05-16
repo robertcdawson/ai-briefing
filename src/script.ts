@@ -1,15 +1,34 @@
 import OpenAI from "openai";
+import type { ChatCompletionCreateParamsNonStreaming } from "openai/resources/chat/completions";
 import { getEpisodeSpeakers, isSpeakerId, speakerNamesForPrompt } from "./speakers.js";
 import { getStoryCategoryLabel, STORY_CATEGORY_DEFINITIONS } from "./types.js";
 import type { Episode, SpeakerTurn, StoryCluster } from "./types.js";
+import type { ChatCompletionLike } from "./util.js";
 import { getChatCompletionAssistantText, logJson, withHardTimeout, withRetry } from "./util.js";
 
-const DEFAULT_SCRIPT_MODEL = "anthropic/claude-sonnet-4.6";
+export const DEFAULT_SCRIPT_MODELS = ["anthropic/claude-sonnet-4.6", "openai/gpt-4o-mini"] as const;
 const DEFAULT_SCRIPT_TIMEOUT_MS = 360_000;
 const MIN_SCRIPT_TIMEOUT_MS = 60_000;
 const MAX_SCRIPT_TIMEOUT_MS = 900_000;
-const MAX_ATTEMPTS = 3;
+const SCRIPT_ATTEMPTS_PER_MODEL = 2;
+const DEFAULT_SCRIPT_RETRY_BASE_MS = 500;
+const MAX_SCRIPT_TOKENS = 4096;
 const MIN_TURNS_PER_PART = 2;
+
+export type ScriptCompletionParams = ChatCompletionCreateParamsNonStreaming & {
+  provider: {
+    require_parameters: true;
+  };
+};
+
+export interface ScriptCompletionClient {
+  create(params: ScriptCompletionParams): Promise<ChatCompletionLike>;
+}
+
+export interface WriteScriptOptions {
+  completionClient?: ScriptCompletionClient;
+  retryBaseMs?: number;
+}
 
 export interface DailyPersona {
   name: string;
@@ -250,9 +269,16 @@ export function buildUserPrompt(date: string, clusters: StoryCluster[]): string 
 ${lines.join("\n\n")}`;
 }
 
+export function resolveScriptModels(requestedModel: string | undefined): string[] {
+  const models = requestedModel
+    ?.split(",")
+    .map((model) => model.trim())
+    .filter((model) => model.length > 0);
+  return models && models.length > 0 ? models : [...DEFAULT_SCRIPT_MODELS];
+}
+
 export function resolveScriptModel(requestedModel: string | undefined): string {
-  const model = requestedModel?.trim();
-  return model && model.length > 0 ? model : DEFAULT_SCRIPT_MODEL;
+  return resolveScriptModels(requestedModel)[0] ?? DEFAULT_SCRIPT_MODELS[0];
 }
 
 export function resolveScriptTimeoutMs(raw: string | undefined): number {
@@ -266,48 +292,63 @@ export function resolveScriptTimeoutMs(raw: string | undefined): number {
   return rounded;
 }
 
-export async function writeScript(date: string, clusters: StoryCluster[]): Promise<Episode> {
+export async function writeScript(
+  date: string,
+  clusters: StoryCluster[],
+  options: WriteScriptOptions = {},
+): Promise<Episode> {
   const started = Date.now();
   const apiKey = process.env.OPENROUTER_API_KEY;
-  if (!apiKey) throw new Error("OPENROUTER_API_KEY is not set");
+  if (!apiKey && !options.completionClient) throw new Error("OPENROUTER_API_KEY is not set");
   if (clusters.length === 0) throw new Error("writeScript: no clusters provided");
   const persona = selectDailyPersona(date);
-  const model = resolveScriptModel(process.env.OPENROUTER_SCRIPT_MODEL);
+  const models = resolveScriptModels(process.env.OPENROUTER_SCRIPT_MODEL);
   const timeoutMs = resolveScriptTimeoutMs(process.env.OPENROUTER_SCRIPT_TIMEOUT_MS);
+  const completionClient =
+    options.completionClient ?? createOpenRouterScriptClient(apiKey ?? "", timeoutMs);
+  const retryBaseMs = options.retryBaseMs ?? DEFAULT_SCRIPT_RETRY_BASE_MS;
 
-  const client = new OpenAI({
-    apiKey,
-    baseURL: "https://openrouter.ai/api/v1",
-    timeout: timeoutMs,
-  });
+  let parsed: ScriptResponse | undefined;
+  let selectedModel: string | undefined;
+  let lastErr: unknown;
 
-  const parsed = await withRetry(
-    async () => {
-      const completion = await withHardTimeout(
-        client.chat.completions.create({
-          model,
-          messages: [
-            { role: "system", content: buildSystemPrompt(persona) },
-            { role: "user", content: buildUserPrompt(date, clusters) },
-          ],
-          response_format: {
-            type: "json_schema",
-            json_schema: { name: "episode_script", strict: true, schema: SCRIPT_RESPONSE_SCHEMA },
-          },
-          temperature: 0.7,
-        }),
-        timeoutMs,
-        "script.openrouter",
+  for (const [modelIndex, model] of models.entries()) {
+    try {
+      parsed = await withRetry(
+        async () => {
+          const completion = await withHardTimeout(
+            completionClient.create(buildScriptCompletionParams(model, persona, date, clusters)),
+            timeoutMs,
+            `script.openrouter.${model}`,
+          );
+
+          const content = getChatCompletionAssistantText(completion, "OpenRouter script");
+
+          const response = JSON.parse(content) as ScriptResponse;
+          validateScriptResponse(response, clusters);
+          return response;
+        },
+        { attempts: SCRIPT_ATTEMPTS_PER_MODEL, baseMs: retryBaseMs, label: "script" },
       );
+      selectedModel = model;
+      break;
+    } catch (err) {
+      lastErr = err;
+      const nextModel = models[modelIndex + 1];
+      if (!nextModel) break;
+      logJson({
+        phase: "script.model_fallback",
+        status: "error",
+        model,
+        nextModel,
+        error: err instanceof Error ? err.message : String(err),
+      });
+    }
+  }
 
-      const content = getChatCompletionAssistantText(completion, "OpenRouter script");
-
-      const response = JSON.parse(content) as ScriptResponse;
-      validateScriptResponse(response, clusters);
-      return response;
-    },
-    { attempts: MAX_ATTEMPTS, label: "script" },
-  );
+  if (!parsed || !selectedModel) {
+    throw lastErr ?? new Error("script generation failed without an error");
+  }
 
   const wordCount =
     countTurnWords(parsed.intro) +
@@ -333,11 +374,49 @@ export async function writeScript(date: string, clusters: StoryCluster[]): Promi
     segments: episode.segments.length,
     wordCount,
     persona: persona.name,
-    model,
+    model: selectedModel,
+    candidateModels: models.length,
     timeoutMs,
   });
 
   return episode;
+}
+
+function createOpenRouterScriptClient(apiKey: string, timeoutMs: number): ScriptCompletionClient {
+  const client = new OpenAI({
+    apiKey,
+    baseURL: "https://openrouter.ai/api/v1",
+    timeout: timeoutMs,
+  });
+
+  return {
+    create: (params) => client.chat.completions.create(params),
+  };
+}
+
+function buildScriptCompletionParams(
+  model: string,
+  persona: DailyPersona,
+  date: string,
+  clusters: StoryCluster[],
+): ScriptCompletionParams {
+  return {
+    model,
+    messages: [
+      { role: "system", content: buildSystemPrompt(persona) },
+      { role: "user", content: buildUserPrompt(date, clusters) },
+    ],
+    response_format: {
+      type: "json_schema",
+      json_schema: { name: "episode_script", strict: true, schema: SCRIPT_RESPONSE_SCHEMA },
+    },
+    max_tokens: MAX_SCRIPT_TOKENS,
+    provider: {
+      require_parameters: true,
+    },
+    stream: false,
+    temperature: 0.7,
+  };
 }
 
 export function validateScriptResponse(

@@ -35,3 +35,36 @@ test("getChatCompletionAssistantText throws when choices is empty", () => {
     /"choiceCount":0/s,
   );
 });
+
+test("getChatCompletionAssistantText includes safe completion metadata when content is missing", () => {
+  assert.throws(
+    () =>
+      getChatCompletionAssistantText(
+        {
+          id: "chatcmpl-test",
+          object: "chat.completion",
+          model: "test/model",
+          choices: [
+            {
+              finish_reason: "stop",
+              native_finish_reason: "provider-empty",
+              error: {
+                message: "provider returned no message",
+                code: "empty_choices",
+                ignored: { nested: "value" },
+              },
+              message: { content: "" },
+            },
+          ],
+          usage: {
+            prompt_tokens: 42,
+            completion_tokens: 0,
+            total_tokens: 42,
+            ignored_details: { nested: true },
+          },
+        },
+        "ctx",
+      ),
+    /ctx: missing assistant message content.*"id":"chatcmpl-test".*"model":"test\/model".*"object":"chat.completion".*"choiceCount":1.*"native_finish_reason":"provider-empty".*"choiceError":\{"code":"empty_choices","message":"provider returned no message"\}.*"usage":\{"prompt_tokens":42,"completion_tokens":0,"total_tokens":42\}/s,
+  );
+});

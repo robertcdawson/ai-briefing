@@ -180,7 +180,7 @@ In the repo's **Settings → Secrets and variables → Actions**:
 - `PODCAST_EXPLICIT`
 - `PODCAST_TYPE`
 
-Then **Settings → Actions → General → Workflow permissions** → set to "Read and write permissions" so the workflow can push the daily commit.
+The workflow requests `contents: write` in `.github/workflows/daily.yml` so it can commit generated episodes. If `main` is protected by a ruleset that requires pull requests, add the `github-actions[bot]` user as a bypass actor for that ruleset; otherwise the pipeline can generate the episode but the final `git push` fails with `GH013: Changes must be made through a pull request`.
 
 ### 10. Trigger the first scheduled run manually
 
@@ -338,6 +338,7 @@ GitHub emails the repo owner on first failure of any workflow. Triage:
    - **Script timeout:** OpenRouter script generation exceeded `OPENROUTER_SCRIPT_TIMEOUT_MS`; the default is 360 seconds (structured JSON can be slow from CI).
    - **TTS timeout:** OpenAI speech generation exceeded `TTS_TIMEOUT_MS`; the default is 180 seconds per part.
    - **ffmpeg not found:** the apt install step failed; check the install logs.
+   - **Commit push rejected with GH013:** the pipeline generated and committed the episode in the runner, but the repository ruleset blocked the workflow from pushing to `main`. Add the `github-actions[bot]` user as a bypass actor for the `main` ruleset, then re-run the workflow.
 
 Recovery is always: fix the root cause, then re-run the workflow. A missing day is fine — the feed remains valid and the next morning's episode publishes normally.
 

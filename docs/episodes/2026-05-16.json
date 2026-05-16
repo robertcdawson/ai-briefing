@@ -1,0 +1,56 @@
+{
+  "date": "2026-05-16",
+  "title": "AI Briefing — May 16, 2026",
+  "description": "Top 3 AI stories for 2026-05-16:\n\nChapters:\n00:00:00 Intro\n00:00:27 AI Agents Develop Real Browser Exploits\n00:01:26 $1.3 Million for 100 AI Coding Agents\n00:02:19 Job Losses in AI-Exposed Roles\n00:03:02 Outro\n\nSources:\n1. Research Breakthrough: AI Agents Develop Real Browser Exploits\nSource: https://the-decoder.com/new-benchmark-shows-claude-mythos-and-gpt-5-5-can-develop-real-browser-exploits-autonomously/\n2. Product & Tool Watch: $1.3 Million for 100 AI Coding Agents\nSource: https://the-decoder.com/for-1-3-million-a-month-openclaw-founder-peter-steinberger-runs-100-ai-agents-that-code-review-prs-and-find-bugs/\nSource: https://twitter.com/steipete/status/2055346265869721905\nSource: https://simonwillison.net/2026/May/16/openclaw-names/#atom-everything\n3. AI Culture Signal: Job Losses in AI-Exposed Roles\nSource: https://www.bloomberg.com/news/articles/2026-05-15/us-is-starting-to-see-heavy-job-losses-in-roles-exposed-to-ai\nSource: https://techcrunch.com/2026/05/16/the-haves-and-have-nots-of-the-ai-gold-rush/\nSource: https://the-decoder.com/ai-made-a-tiny-slice-of-silicon-valley-filthy-rich-and-left-the-rest-wondering-why-they-bother/",
+  "durationSeconds": 207,
+  "byteLength": 4980806,
+  "pubDate": "2026-05-16T23:23:24.947Z",
+  "season": 2026,
+  "episodeNumber": 136,
+  "chaptersFilename": "2026-05-16.chapters.json",
+  "transcriptFilename": "2026-05-16.transcript.txt",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 27,
+      "title": "Intro"
+    },
+    {
+      "startTime": 27,
+      "endTime": 86,
+      "title": "AI Agents Develop Real Browser Exploits"
+    },
+    {
+      "startTime": 86,
+      "endTime": 139,
+      "title": "$1.3 Million for 100 AI Coding Agents"
+    },
+    {
+      "startTime": 139,
+      "endTime": 182,
+      "title": "Job Losses in AI-Exposed Roles"
+    },
+    {
+      "startTime": 182,
+      "endTime": 207,
+      "title": "Outro"
+    }
+  ],
+  "soundbites": [
+    {
+      "startTime": 27,
+      "duration": 58,
+      "title": "AI Agents Develop Real Browser Exploits"
+    },
+    {
+      "startTime": 86,
+      "duration": 53,
+      "title": "$1.3 Million for 100 AI Coding Agents"
+    },
+    {
+      "startTime": 139,
+      "duration": 43,
+      "title": "Job Losses in AI-Exposed Roles"
+    }
+  ]
+}

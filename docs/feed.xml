@@ -4,7 +4,7 @@
         <title>AI Briefing</title>
         <link>https://robertcdawson.github.io/ai-briefing/</link>
         <description>Daily AI news briefing — the top three stories from the last 24 hours.</description>
-        <lastBuildDate>Tue, 12 May 2026 17:39:34 GMT</lastBuildDate>
+        <lastBuildDate>Sat, 16 May 2026 23:23:24 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -23,6 +23,66 @@
         <podcast:guid>ea8709f4-3ba2-5b7e-bcdc-e409d84a6443</podcast:guid>
         <podcast:locked owner="manatees@gmail.com">yes</podcast:locked>
         <podcast:person role="host" group="cast">Robert Dawson</podcast:person>
+        <item>
+            <title><![CDATA[AI Briefing — May 16, 2026]]></title>
+            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-05-16.mp3</link>
+            <guid>ai-briefing-2026-05-16</guid>
+            <pubDate>Sat, 16 May 2026 23:23:24 GMT</pubDate>
+            <description><![CDATA[Top 3 AI stories for 2026-05-16:
+
+Chapters:
+00:00:00 Intro
+00:00:27 AI Agents Develop Real Browser Exploits
+00:01:26 $1.3 Million for 100 AI Coding Agents
+00:02:19 Job Losses in AI-Exposed Roles
+00:03:02 Outro
+
+Sources:
+1. Research Breakthrough: AI Agents Develop Real Browser Exploits
+Source: https://the-decoder.com/new-benchmark-shows-claude-mythos-and-gpt-5-5-can-develop-real-browser-exploits-autonomously/
+2. Product & Tool Watch: $1.3 Million for 100 AI Coding Agents
+Source: https://the-decoder.com/for-1-3-million-a-month-openclaw-founder-peter-steinberger-runs-100-ai-agents-that-code-review-prs-and-find-bugs/
+Source: https://twitter.com/steipete/status/2055346265869721905
+Source: https://simonwillison.net/2026/May/16/openclaw-names/#atom-everything
+3. AI Culture Signal: Job Losses in AI-Exposed Roles
+Source: https://www.bloomberg.com/news/articles/2026-05-15/us-is-starting-to-see-heavy-job-losses-in-roles-exposed-to-ai
+Source: https://techcrunch.com/2026/05/16/the-haves-and-have-nots-of-the-ai-gold-rush/
+Source: https://the-decoder.com/ai-made-a-tiny-slice-of-silicon-valley-filthy-rich-and-left-the-rest-wondering-why-they-bother/]]></description>
+            <enclosure length="4980806" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-16.mp3"/>
+                    <itunes:duration>207</itunes:duration>
+            <itunes:explicit>false</itunes:explicit>
+            <itunes:season>2026</itunes:season>
+            <itunes:episode>136</itunes:episode>
+            <itunes:episodeType>full</itunes:episodeType>
+            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-16.chapters.json" type="application/json+chapters"/>
+            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-16.transcript.txt" type="text/plain" language="en"/>
+            <podcast:soundbite startTime="27" duration="58">AI Agents Develop Real Browser Exploits</podcast:soundbite>
+            <podcast:soundbite startTime="86" duration="53"><guid>ai-briefing-2026-05-16</guid>
+            <pubDate>Sat, 16 May 2026 23:23:24 GMT</pubDate>
+            <description><![CDATA[Top 3 AI stories for 2026-05-16:
+
+Chapters:
+00:00:00 Intro
+00:00:27 AI Agents Develop Real Browser Exploits
+00:01:26 $1.3 Million for 100 AI Coding Agents
+00:02:19 Job Losses in AI-Exposed Roles
+00:03:02 Outro
+
+Sources:
+1. Research Breakthrough: AI Agents Develop Real Browser Exploits
+Source: https://the-decoder.com/new-benchmark-shows-claude-mythos-and-gpt-5-5-can-develop-real-browser-exploits-autonomously/
+2. Product & Tool Watch: $1.3 Million for 100 AI Coding Agents
+Source: https://the-decoder.com/for-1-3-million-a-month-openclaw-founder-peter-steinberger-runs-100-ai-agents-that-code-review-prs-and-find-bugs/
+Source: https://twitter.com/steipete/status/2055346265869721905
+Source: https://simonwillison.net/2026/May/16/openclaw-names/#atom-everything
+3. AI Culture Signal: Job Losses in AI-Exposed Roles
+Source: https://www.bloomberg.com/news/articles/2026-05-15/us-is-starting-to-see-heavy-job-losses-in-roles-exposed-to-ai
+Source: https://techcrunch.com/2026/05/16/the-haves-and-have-nots-of-the-ai-gold-rush/
+Source: https://the-decoder.com/ai-made-a-tiny-slice-of-silicon-valley-filthy-rich-and-left-the-rest-wondering-why-they-bother/]]></description>
+            <enclosure length="4980806" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-16.mp3"/>
+        .3 Million for 100 AI Coding Agents</podcast:soundbite>
+            <podcast:soundbite startTime="139" duration="43">Job Losses in AI-Exposed Roles</podcast:soundbite>
+        </item>
         <item>
             <title><![CDATA[AI Briefing — May 12, 2026]]></title>
             <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-05-12.mp3</link>

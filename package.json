@@ -7,6 +7,7 @@
   "scripts": {
     "build": "tsc --noEmit",
     "start": "tsx src/index.ts",
+    "diagnose:script-model": "tsx scripts/diagnose-openrouter-script.ts",
     "test": "tsx test/fetch.smoke.ts",
     "test:unit": "tsx test/publish.apple-rss.test.ts && tsx --test test/audio.stingers.test.ts test/chat-completion.test.ts test/curate.prompt.test.ts test/episode-date.test.ts test/script.persona.test.ts test/tts.request.test.ts test/util.timeout.test.ts"
   },

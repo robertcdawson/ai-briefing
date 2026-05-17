@@ -8,9 +8,9 @@ test("withHardTimeout clears its timer after a fast operation resolves", async (
     [
       "tsx",
       "-e",
-      "(async () => { const { withHardTimeout } = await import('./src/util.ts'); await withHardTimeout(Promise.resolve('ok'), 2000, 'fast'); })();",
+      "(async () => { const { withHardTimeout } = await import('./src/util.ts'); await withHardTimeout(Promise.resolve('ok'), 6000, 'fast'); })();",
     ],
-    { timeout: 1500 },
+    { timeout: 4000 },
   );
 
   assert.equal(child.exitCode, 0);

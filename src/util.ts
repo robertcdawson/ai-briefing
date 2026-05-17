@@ -54,6 +54,7 @@ export interface ChatCompletionLike {
   id?: string;
   model?: string;
   object?: string;
+  error?: unknown;
   choices?: ReadonlyArray<{
     finish_reason?: string | null;
     native_finish_reason?: string | null;
@@ -86,6 +87,7 @@ export function getChatCompletionAssistantText(
     firstMessageKeys: sortedObjectKeys(choice?.message),
     finish_reason: choice?.finish_reason,
     native_finish_reason: choice?.native_finish_reason,
+    responseError: safeProviderError(completion.error),
     choiceError: safeProviderError(choice?.error),
     usage: safeScalarRecord(completion.usage),
   });

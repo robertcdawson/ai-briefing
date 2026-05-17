@@ -18,16 +18,17 @@ import type { StoryCluster } from "../src/types.js";
 test("resolveScriptModels defaults to ordered structured-output-compatible OpenRouter models", () => {
   assert.deepEqual(
     resolveScriptModels(undefined),
-    ["anthropic/claude-sonnet-4.6", "openai/gpt-4o-mini"],
+    ["openai/gpt-4o-mini", "google/gemini-3.1-pro-preview"],
   );
   assert.deepEqual(
     resolveScriptModels(""),
-    ["anthropic/claude-sonnet-4.6", "openai/gpt-4o-mini"],
+    ["openai/gpt-4o-mini", "google/gemini-3.1-pro-preview"],
   );
   assert.deepEqual(
     resolveScriptModels("   "),
-    ["anthropic/claude-sonnet-4.6", "openai/gpt-4o-mini"],
+    ["openai/gpt-4o-mini", "google/gemini-3.1-pro-preview"],
   );
+  assert.ok(!resolveScriptModels(undefined).includes("anthropic/claude-sonnet-4.6"));
   assert.notDeepEqual(resolveScriptModels(undefined), ["anthropic/claude-opus-4.6"]);
   assert.notDeepEqual(resolveScriptModels(undefined), ["anthropic/claude-opus-4.7"]);
 });
@@ -44,9 +45,9 @@ test("resolveScriptModels accepts single and comma-separated configured models",
 });
 
 test("resolveScriptModel preserves single-model compatibility", () => {
-  assert.equal(resolveScriptModel(undefined), "anthropic/claude-sonnet-4.6");
-  assert.equal(resolveScriptModel(""), "anthropic/claude-sonnet-4.6");
-  assert.equal(resolveScriptModel("   "), "anthropic/claude-sonnet-4.6");
+  assert.equal(resolveScriptModel(undefined), "openai/gpt-4o-mini");
+  assert.equal(resolveScriptModel(""), "openai/gpt-4o-mini");
+  assert.equal(resolveScriptModel("   "), "openai/gpt-4o-mini");
   assert.equal(
     resolveScriptModel(" anthropic/claude-sonnet-4.6 "),
     "anthropic/claude-sonnet-4.6",
@@ -156,10 +157,16 @@ test("SCRIPT_RESPONSE_SCHEMA requires structured speaker turns", () => {
     ["speaker", "text"],
   );
   assertNoArrayMinItemsAboveOne(schema);
-  assert.equal(schema.properties.segments.items.properties.title.minLength, 1);
-  assert.equal(schema.properties.segments.items.properties.title.pattern, "\\S");
-  assert.equal(schema.properties.segments.items.properties.turns.items.properties.text.minLength, 1);
-  assert.equal(schema.properties.segments.items.properties.turns.items.properties.text.pattern, "\\S");
+  assert.equal("minLength" in schema.properties.segments.items.properties.title, false);
+  assert.equal("pattern" in schema.properties.segments.items.properties.title, false);
+  assert.equal(
+    "minLength" in schema.properties.segments.items.properties.turns.items.properties.text,
+    false,
+  );
+  assert.equal(
+    "pattern" in schema.properties.segments.items.properties.turns.items.properties.text,
+    false,
+  );
   assert.deepEqual(
     schema.properties.segments.items.properties.turns.items.properties.speaker.enum,
     ["anchor", "analyst"],
@@ -324,6 +331,34 @@ test("validateScriptResponse preserves segment count and source URLs", () => {
         clusters,
       ),
     /sourceUrls must be an array/,
+  );
+
+  assert.throws(
+    () =>
+      validateScriptResponse(
+        {
+          intro: [
+            { speaker: "anchor", text: "Here is the setup." },
+            { speaker: "analyst", text: "Here is the so what." },
+          ],
+          segments: [
+            {
+              title: " ",
+              turns: [
+                { speaker: "anchor", text: "A concise segment." },
+                { speaker: "analyst", text: "The practical takeaway is simple." },
+              ],
+              sourceUrls: ["https://example.com/model-feature"],
+            },
+          ],
+          outro: [
+            { speaker: "anchor", text: "That is the pattern." },
+            { speaker: "analyst", text: "That is the lens." },
+          ],
+        },
+        clusters,
+      ),
+    /title must be a non-empty string/,
   );
 });
 

@@ -68,3 +68,24 @@ test("getChatCompletionAssistantText includes safe completion metadata when cont
     /ctx: missing assistant message content.*"responseKeys":\["choices","id","model","object","usage"\].*"id":"chatcmpl-test".*"model":"test\/model".*"object":"chat.completion".*"choiceCount":1.*"firstChoiceKeys":\["error","finish_reason","message","native_finish_reason"\].*"firstMessageKeys":\["content"\].*"native_finish_reason":"provider-empty".*"choiceError":\{"code":"empty_choices","message":"provider returned no message"\}.*"usage":\{"prompt_tokens":42,"completion_tokens":0,"total_tokens":42\}/s,
   );
 });
+
+test("getChatCompletionAssistantText includes safe top-level response errors", () => {
+  assert.throws(
+    () =>
+      getChatCompletionAssistantText(
+        {
+          error: {
+            code: 400,
+            message: "Provider rejected response_format",
+            status: "bad_request",
+            type: "invalid_request_error",
+            metadata: {
+              raw: "do not include nested provider payloads",
+            },
+          },
+        },
+        "ctx",
+      ),
+    /ctx: missing assistant message content.*"responseKeys":\["error"\].*"choiceCount":0.*"responseError":\{"code":400,"message":"Provider rejected response_format","status":"bad_request","type":"invalid_request_error"\}/s,
+  );
+});

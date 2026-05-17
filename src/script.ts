@@ -6,7 +6,7 @@ import type { Episode, SpeakerTurn, StoryCluster } from "./types.js";
 import type { ChatCompletionLike } from "./util.js";
 import { getChatCompletionAssistantText, logJson, withHardTimeout, withRetry } from "./util.js";
 
-export const DEFAULT_SCRIPT_MODELS = ["anthropic/claude-sonnet-4.6", "openai/gpt-4o-mini"] as const;
+export const DEFAULT_SCRIPT_MODELS = ["openai/gpt-4o-mini", "google/gemini-3.1-pro-preview"] as const;
 const DEFAULT_SCRIPT_TIMEOUT_MS = 360_000;
 const MIN_SCRIPT_TIMEOUT_MS = 60_000;
 const MAX_SCRIPT_TIMEOUT_MS = 900_000;
@@ -129,8 +129,6 @@ const SPEAKER_TURN_SCHEMA = {
     },
     text: {
       type: "string",
-      minLength: 1,
-      pattern: "\\S",
       description: "One read-aloud-friendly spoken turn. Do not include speaker labels or stage directions.",
     },
   },
@@ -151,7 +149,7 @@ export const SCRIPT_RESPONSE_SCHEMA = {
       items: {
         type: "object",
         properties: {
-          title: { type: "string", minLength: 1, pattern: "\\S" },
+          title: { type: "string" },
           turns: {
             type: "array",
             items: SPEAKER_TURN_SCHEMA,
@@ -394,7 +392,7 @@ function createOpenRouterScriptClient(apiKey: string, timeoutMs: number): Script
   };
 }
 
-function buildScriptCompletionParams(
+export function buildScriptCompletionParams(
   model: string,
   persona: DailyPersona,
   date: string,

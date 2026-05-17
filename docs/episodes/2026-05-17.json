@@ -1,0 +1,56 @@
+{
+  "date": "2026-05-17",
+  "title": "AI Briefing — May 17, 2026",
+  "description": "Top 3 AI stories for 2026-05-17:\n\nChapters:\n00:00:00 Intro\n00:00:29 Brockman Takes Charge at OpenAI\n00:01:18 New SOOHAK Benchmark Reveals AI Gaps\n00:02:12 Job Losses in AI-Exposed Roles\n00:02:57 Outro\n\nSources:\n1. AI Business Watch: Brockman Takes Charge at OpenAI\nSource: https://techcrunch.com/2026/05/16/openai-co-founder-greg-brockman-reportedly-takes-charge-of-product-strategy/\nSource: https://the-decoder.com/greg-brockman-consolidates-openais-product-teams-to-build-an-agentic-future/\n2. Research Breakthrough: New SOOHAK Benchmark Reveals AI Gaps\nSource: https://the-decoder.com/new-math-benchmark-reveals-ai-models-confidently-solve-problems-that-have-no-solution/\n3. AI Culture Signal: Job Losses in AI-Exposed Roles\nSource: https://www.bloomberg.com/news/articles/2026-05-15/us-is-starting-to-see-heavy-job-losses-in-roles-exposed-to-ai",
+  "durationSeconds": 203,
+  "byteLength": 4884605,
+  "pubDate": "2026-05-17T14:04:16.542Z",
+  "season": 2026,
+  "episodeNumber": 137,
+  "chaptersFilename": "2026-05-17.chapters.json",
+  "transcriptFilename": "2026-05-17.transcript.txt",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 29,
+      "title": "Intro"
+    },
+    {
+      "startTime": 29,
+      "endTime": 78,
+      "title": "Brockman Takes Charge at OpenAI"
+    },
+    {
+      "startTime": 78,
+      "endTime": 132,
+      "title": "New SOOHAK Benchmark Reveals AI Gaps"
+    },
+    {
+      "startTime": 132,
+      "endTime": 177,
+      "title": "Job Losses in AI-Exposed Roles"
+    },
+    {
+      "startTime": 177,
+      "endTime": 203,
+      "title": "Outro"
+    }
+  ],
+  "soundbites": [
+    {
+      "startTime": 29,
+      "duration": 49,
+      "title": "Brockman Takes Charge at OpenAI"
+    },
+    {
+      "startTime": 78,
+      "duration": 54,
+      "title": "New SOOHAK Benchmark Reveals AI Gaps"
+    },
+    {
+      "startTime": 132,
+      "duration": 44,
+      "title": "Job Losses in AI-Exposed Roles"
+    }
+  ]
+}

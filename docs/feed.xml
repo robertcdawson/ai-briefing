@@ -4,7 +4,7 @@
         <title>AI Briefing</title>
         <link>https://robertcdawson.github.io/ai-briefing/</link>
         <description>Daily AI news briefing — the top three stories from the last 24 hours.</description>
-        <lastBuildDate>Sun, 17 May 2026 00:09:09 GMT</lastBuildDate>
+        <lastBuildDate>Sun, 17 May 2026 14:04:16 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -23,6 +23,40 @@
         <podcast:guid>ea8709f4-3ba2-5b7e-bcdc-e409d84a6443</podcast:guid>
         <podcast:locked owner="manatees@gmail.com">yes</podcast:locked>
         <podcast:person role="host" group="cast">Robert Dawson</podcast:person>
+        <item>
+            <title><![CDATA[AI Briefing — May 17, 2026]]></title>
+            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-05-17.mp3</link>
+            <guid>ai-briefing-2026-05-17</guid>
+            <pubDate>Sun, 17 May 2026 14:04:16 GMT</pubDate>
+            <description><![CDATA[Top 3 AI stories for 2026-05-17:
+
+Chapters:
+00:00:00 Intro
+00:00:29 Brockman Takes Charge at OpenAI
+00:01:18 New SOOHAK Benchmark Reveals AI Gaps
+00:02:12 Job Losses in AI-Exposed Roles
+00:02:57 Outro
+
+Sources:
+1. AI Business Watch: Brockman Takes Charge at OpenAI
+Source: https://techcrunch.com/2026/05/16/openai-co-founder-greg-brockman-reportedly-takes-charge-of-product-strategy/
+Source: https://the-decoder.com/greg-brockman-consolidates-openais-product-teams-to-build-an-agentic-future/
+2. Research Breakthrough: New SOOHAK Benchmark Reveals AI Gaps
+Source: https://the-decoder.com/new-math-benchmark-reveals-ai-models-confidently-solve-problems-that-have-no-solution/
+3. AI Culture Signal: Job Losses in AI-Exposed Roles
+Source: https://www.bloomberg.com/news/articles/2026-05-15/us-is-starting-to-see-heavy-job-losses-in-roles-exposed-to-ai]]></description>
+            <enclosure length="4884605" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-17.mp3"/>
+                    <itunes:duration>203</itunes:duration>
+            <itunes:explicit>false</itunes:explicit>
+            <itunes:season>2026</itunes:season>
+            <itunes:episode>137</itunes:episode>
+            <itunes:episodeType>full</itunes:episodeType>
+            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-17.chapters.json" type="application/json+chapters"/>
+            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-17.transcript.txt" type="text/plain" language="en"/>
+            <podcast:soundbite startTime="29" duration="49">Brockman Takes Charge at OpenAI</podcast:soundbite>
+            <podcast:soundbite startTime="78" duration="54">New SOOHAK Benchmark Reveals AI Gaps</podcast:soundbite>
+            <podcast:soundbite startTime="132" duration="44">Job Losses in AI-Exposed Roles</podcast:soundbite>
+        </item>
         <item>
             <title><![CDATA[AI Briefing — May 16, 2026]]></title>
             <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-05-16.mp3</link>

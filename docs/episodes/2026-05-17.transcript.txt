@@ -1,0 +1,58 @@
+AI Briefing — May 17, 2026
+Date: 2026-05-17
+
+Intro
+
+The Anchor: Big shifts are happening at OpenAI as Greg Brockman takes the reins of product strategy, merging key teams. It's May 17, 2026, and the implications for developers and enterprises are profound.
+
+The Analyst: Plus, a new math benchmark reveals AI models are confidently tackling unsolvable problems. And in the job market, we're seeing real losses in roles exposed to AI, moving from theory to reality.
+
+AI Business Watch: Brockman Takes Charge at OpenAI
+
+The Anchor: OpenAI co-founder Greg Brockman is now leading product strategy, consolidating the ChatGPT and Codex teams along with the developer API under one roof.
+
+The Analyst: This move signals a shift towards an agentic super-app, where developers and enterprises will interact with a more unified OpenAI stack. It's like merging your favorite apps into one powerhouse for productivity.
+
+The Anchor: This consolidation could streamline workflows and enhance capabilities, but details about the execution timeline and existing developer contracts remain murky.
+
+The Analyst: So, while the vision sounds promising, there’s a lot left to unpack. How will this affect current users? That's the big question.
+
+The Anchor: And we’ll keep an eye on that as we transition to our next story.
+Source: https://techcrunch.com/2026/05/16/openai-co-founder-greg-brockman-reportedly-takes-charge-of-product-strategy/
+Source: https://the-decoder.com/greg-brockman-consolidates-openais-product-teams-to-build-an-agentic-future/
+
+Research Breakthrough: New SOOHAK Benchmark Reveals AI Gaps
+
+The Anchor: A new math benchmark called SOOHAK, developed by a team of 64 mathematicians, reveals significant gaps in AI models' capabilities.
+
+The Analyst: This benchmark tests AI on 99 deliberately unsolvable tasks, highlighting a critical issue: more compute power might improve problem-solving, but it doesn't enhance what they call 'epistemic humility.' That's a fancy way of saying AI doesn’t know when it’s out of its depth.
+
+The Anchor: This finding raises crucial safety concerns for AI used in high-stakes reasoning contexts, like law or medicine.
+
+The Analyst: Exactly! If AI can't recognize its limitations, it could lead to dangerous decisions. But remember, the benchmark only covers 439 tasks in math, so we can’t assume these issues extend to all types of reasoning.
+
+The Anchor: A valid point as we move on to our final story.
+Source: https://the-decoder.com/new-math-benchmark-reveals-ai-models-confidently-solve-problems-that-have-no-solution/
+
+AI Culture Signal: Job Losses in AI-Exposed Roles
+
+The Anchor: Bloomberg reports measurable job losses in roles exposed to AI, marking a shift from theory to a documented economic reality.
+
+The Analyst: This is significant because it means that AI displacement is no longer just a concern; it’s affecting people's livelihoods. Think of it as the canary in the coal mine for workforce planning.
+
+The Anchor: This early signal suggests companies may need to rethink their staffing strategies as AI continues to evolve.
+
+The Analyst: But the methodology behind identifying 'AI-exposed roles' and attributing losses directly to AI isn't publicly verifiable, leaving some questions hanging.
+
+The Anchor: Indeed, and that uncertainty is a crucial element to keep in mind.
+Source: https://www.bloomberg.com/news/articles/2026-05-15/us-is-starting-to-see-heavy-job-losses-in-roles-exposed-to-ai
+
+Outro
+
+The Anchor: Today's stories highlight a critical intersection of innovation and reality in AI.
+
+The Analyst: From strategic pivots at OpenAI to the tangible impacts on jobs, this is a moment for reflection and action.
+
+The Anchor: As we navigate these changes, the stakes for developers, researchers, and workers alike continue to rise.
+
+The Analyst: Stay tuned, and we'll keep unraveling these threads in the days to come.

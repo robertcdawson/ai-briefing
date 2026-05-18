@@ -23,7 +23,7 @@ jobs:
         uses: actions/checkout@v6.0.2
         with:
           fetch-depth: 1
-          ssh-key: ${{ secrets.DAILY_PUSH_DEPLOY_KEY }}
+          persist-credentials: false
 
       - name: Setup Node
         uses: actions/setup-node@v6.4.0
@@ -74,13 +74,21 @@ jobs:
       - name: Commit episode
         env:
           EPISODE_TIME_ZONE: ${{ vars.EPISODE_TIME_ZONE }}
+          DAILY_PUSH_DEPLOY_KEY: ${{ secrets.DAILY_PUSH_DEPLOY_KEY }}
         run: |
           if [ -z "$(git status --porcelain docs/)" ]; then
             echo "No docs/ changes — skipping commit."
             exit 0
           fi
+
+          deploy_key="$(mktemp)"
+          trap 'rm -f "$deploy_key"' EXIT
+          printf '%s\n' "$DAILY_PUSH_DEPLOY_KEY" > "$deploy_key"
+          chmod 600 "$deploy_key"
+
           git config user.email "actions@github.com"
           git config user.name "github-actions"
           git add docs/
           git commit -m "Episode $(TZ="${EPISODE_TIME_ZONE:-America/Los_Angeles}" date +%Y-%m-%d)"
-          git push
+          GIT_SSH_COMMAND="ssh -i $deploy_key -o IdentitiesOnly=yes -o StrictHostKeyChecking=accept-new" \
+            git push "git@github.com:${{ github.repository }}.git" "HEAD:${{ github.ref_name }}"

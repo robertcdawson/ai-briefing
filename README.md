@@ -158,7 +158,7 @@ In the repo's **Settings → Secrets and variables → Actions**:
 **Secrets:**
 - `OPENROUTER_API_KEY`
 - `OPENAI_API_KEY`
-- `DAILY_PUSH_DEPLOY_KEY` — private key for a write-enabled deploy key used only to push generated episodes from the daily workflow
+- `DAILY_PUSH_DEPLOY_KEY` — private key for a write-enabled deploy key used only by the final commit step to push generated episodes
 
 **Variables:**
 - `FEED_BASE_URL` — same as `.env`, e.g. `https://USER.github.io/ai-briefing`
@@ -181,7 +181,7 @@ In the repo's **Settings → Secrets and variables → Actions**:
 - `PODCAST_EXPLICIT`
 - `PODCAST_TYPE`
 
-The workflow uses the `DAILY_PUSH_DEPLOY_KEY` SSH deploy key to commit generated episodes. If `main` is protected by a ruleset that requires pull requests, add deploy keys as a bypass actor for that ruleset; otherwise the pipeline can generate the episode but the final `git push` fails with `GH013: Changes must be made through a pull request`.
+The workflow checks out code without persisting credentials, then exposes `DAILY_PUSH_DEPLOY_KEY` only to the final commit step after dependencies are installed and the episode pipeline has finished. Keep this deploy key scoped to this repository and do not add deploy keys as protected-branch bypass actors; if branch protection blocks direct pushes, prefer publishing from an unprotected release branch or changing the workflow to open a pull request for generated episodes.
 
 ### 10. Trigger the first scheduled run manually
 
@@ -339,7 +339,7 @@ GitHub emails the repo owner on first failure of any workflow. Triage:
    - **Script timeout:** OpenRouter script generation exceeded `OPENROUTER_SCRIPT_TIMEOUT_MS`; the default is 360 seconds (structured JSON can be slow from CI).
    - **TTS timeout:** OpenAI speech generation exceeded `TTS_TIMEOUT_MS`; the default is 180 seconds per part.
    - **ffmpeg not found:** the apt install step failed; check the install logs.
-   - **Commit push rejected with GH013:** the pipeline generated and committed the episode in the runner, but the repository ruleset blocked the workflow from pushing to `main`. Make sure `DAILY_PUSH_DEPLOY_KEY` is set, the matching deploy key has write access, and deploy keys are allowed to bypass the `main` ruleset.
+   - **Commit push rejected with GH013:** the pipeline generated and committed the episode in the runner, but the repository ruleset blocked the workflow from pushing to `main`. Make sure `DAILY_PUSH_DEPLOY_KEY` is set and the matching deploy key has write access. Do not add deploy keys as protected-branch bypass actors; instead, publish from an unprotected release branch or change the workflow to open a pull request for generated episodes.
 
 Recovery is always: fix the root cause, then re-run the workflow. A missing day is fine — the feed remains valid and the next morning's episode publishes normally.
 

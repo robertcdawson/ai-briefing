@@ -56,6 +56,12 @@ jobs:
           TTS_VOICE: ${{ vars.TTS_VOICE }}
           TTS_ANCHOR_VOICE: ${{ vars.TTS_ANCHOR_VOICE }}
           TTS_ANALYST_VOICE: ${{ vars.TTS_ANALYST_VOICE }}
+          TTS_GLOBAL_STYLE: ${{ vars.TTS_GLOBAL_STYLE }}
+          TTS_ANCHOR_STYLE: ${{ vars.TTS_ANCHOR_STYLE }}
+          TTS_ANALYST_STYLE: ${{ vars.TTS_ANALYST_STYLE }}
+          TTS_INTRO_STYLE: ${{ vars.TTS_INTRO_STYLE }}
+          TTS_STORY_STYLE: ${{ vars.TTS_STORY_STYLE }}
+          TTS_OUTRO_STYLE: ${{ vars.TTS_OUTRO_STYLE }}
           TTS_TIMEOUT_MS: ${{ vars.TTS_TIMEOUT_MS }}
           AUDIO_CUES_ENABLED: ${{ vars.AUDIO_CUES_ENABLED }}
           AUDIO_CUE_STYLE: ${{ vars.AUDIO_CUE_STYLE }}

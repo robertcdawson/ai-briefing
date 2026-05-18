@@ -164,9 +164,11 @@ In the repo's **Settings → Secrets and variables → Actions**:
 - `FEED_BASE_URL` — same as `.env`, e.g. `https://USER.github.io/ai-briefing`
 - `OPENROUTER_SCRIPT_MODEL` — optional script model override; accepts a comma-separated fallback list and defaults to `openai/gpt-4o-mini, google/gemini-3.1-pro-preview`
 - `TTS_MODEL` — `gpt-4o-mini-tts` (default; supports delivery instructions)
-- `TTS_VOICE` — legacy Anchor fallback; defaults to `onyx`
-- `TTS_ANCHOR_VOICE` — Anchor voice; defaults to `onyx`
-- `TTS_ANALYST_VOICE` — Analyst voice; defaults to `nova`
+- `TTS_VOICE` — legacy Anchor fallback; defaults to `cedar` when unset
+- `TTS_ANCHOR_VOICE` — Anchor voice; defaults to `cedar`
+- `TTS_ANALYST_VOICE` — Analyst voice; defaults to `marin`
+- `TTS_GLOBAL_STYLE`, `TTS_ANCHOR_STYLE`, `TTS_ANALYST_STYLE` — composed TTS delivery instructions (see `.env.example` and `src/speakerProfiles.ts`)
+- `TTS_INTRO_STYLE`, `TTS_STORY_STYLE`, `TTS_OUTRO_STYLE` — per-section delivery overrides for intro, story segments, and outro
 - `TTS_TIMEOUT_MS` — `180000` by default; raise only if OpenAI speech generation is still timing out
 - `AUDIO_CUES_ENABLED` — `true` (set `false` to disable synthetic section stingers)
 - `AUDIO_CUE_STYLE` — `tone`, `chime`, or `tick`
@@ -253,7 +255,7 @@ The workflow page has a **Re-run all jobs** button. Use it after fixing the root
 
 ### Change the TTS model or voice
 
-Set `TTS_MODEL`, `TTS_ANCHOR_VOICE`, and `TTS_ANALYST_VOICE` in Actions variables (or `.env` locally). `TTS_VOICE` is still accepted as a legacy Anchor fallback. The default model is `gpt-4o-mini-tts`, which supports delivery instructions for an upbeat, engaged podcast read. Legacy `tts-1` and `tts-1-hd` still work, but they ignore those delivery instructions. Takes effect on the next run only — past episodes remain in their original voices.
+Set `TTS_MODEL`, `TTS_ANCHOR_VOICE`, and `TTS_ANALYST_VOICE` in Actions variables (or `.env` locally). `TTS_VOICE` is still accepted as a legacy Anchor fallback. Defaults are `cedar` (anchor) and `marin` (analyst). Tune performance separately with `TTS_GLOBAL_STYLE`, `TTS_ANCHOR_STYLE`, `TTS_ANALYST_STYLE`, and optional `TTS_INTRO_STYLE` / `TTS_STORY_STYLE` / `TTS_OUTRO_STYLE` — see `src/speakerProfiles.ts` for built-in defaults. The default model is `gpt-4o-mini-tts`, which supports those delivery instructions. Legacy `tts-1` and `tts-1-hd` still work, but they ignore delivery instructions. Takes effect on the next run only — past episodes remain in their original voices.
 
 OpenAI does not label built-in voices by gender in the API docs, but the current Speech API includes `alloy`, `ash`, `ballad`, `coral`, `echo`, `fable`, `nova`, `onyx`, `sage`, `shimmer`, `verse`, `marin`, and `cedar`. In practice, start auditions with `coral`, `nova`, or `shimmer` for a brighter/feminine-coded host, and `marin` or `cedar` for OpenAI's recommended best quality.
 

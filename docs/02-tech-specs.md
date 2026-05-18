@@ -178,9 +178,12 @@ Use the `feed` npm package — do not hand-roll XML. `length` must be the actual
 | `OPENAI_API_KEY` | TTS access |
 | `FEED_BASE_URL` | e.g., `https://USER.github.io/ai-briefing` |
 | `TTS_MODEL` | OpenAI speech model; default `gpt-4o-mini-tts` supports delivery instructions |
-| `TTS_VOICE` | Legacy Anchor fallback; default `onyx` |
-| `TTS_ANCHOR_VOICE` | Anchor voice; default `onyx` |
-| `TTS_ANALYST_VOICE` | Analyst voice; default `nova` |
+| `TTS_VOICE` | Legacy Anchor fallback; default `cedar` |
+| `TTS_ANCHOR_VOICE` | Anchor voice; default `cedar` |
+| `TTS_ANALYST_VOICE` | Analyst voice; default `marin` |
+| `TTS_GLOBAL_STYLE` | Global TTS delivery instructions |
+| `TTS_ANCHOR_STYLE` / `TTS_ANALYST_STYLE` | Per-speaker delivery instructions |
+| `TTS_INTRO_STYLE` / `TTS_STORY_STYLE` / `TTS_OUTRO_STYLE` | Per-section delivery overrides |
 | `TTS_TIMEOUT_MS` | Per-segment OpenAI speech timeout; default `180000` |
 | `AUDIO_CUES_ENABLED` | Toggle synthetic intro/transition/outro stingers (`true`/`false`) |
 | `AUDIO_CUE_STYLE` | Generated cue style: `tone`, `chime`, or `tick` |

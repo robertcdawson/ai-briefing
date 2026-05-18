@@ -4,19 +4,20 @@ import {
   buildConcatSpeechArgs,
   buildSpeechRequest,
   buildTurnSpeechRequest,
+  DEFAULT_GLOBAL_TTS_STYLE,
   resolveSpeakerVoices,
+  resolveTTSDirection,
   resolveTTSTimeoutMs,
-  TTS_DELIVERY_INSTRUCTIONS,
-  TTS_DELIVERY_INSTRUCTIONS_BY_SPEAKER,
 } from "../src/tts.js";
+import { buildTurnSpeechInstructions } from "../src/speakerProfiles.js";
 
-test("buildSpeechRequest adds enthusiastic delivery instructions for instructable TTS models", () => {
+test("buildSpeechRequest adds global delivery instructions for instructable TTS models", () => {
   const request = buildSpeechRequest("Short podcast intro.", "onyx", "gpt-4o-mini-tts");
 
   assert.equal(request.model, "gpt-4o-mini-tts");
   assert.equal(request.response_format, "mp3");
-  assert.equal(request.instructions, TTS_DELIVERY_INSTRUCTIONS);
-  assert.match(request.instructions ?? "", /enthusiastic, sharp AI news podcast host/);
+  assert.equal(request.instructions, DEFAULT_GLOBAL_TTS_STYLE);
+  assert.match(request.instructions ?? "", /no fake enthusiasm/i);
 });
 
 test("buildSpeechRequest omits delivery instructions for legacy TTS models", () => {
@@ -33,8 +34,8 @@ test("resolveTTSTimeoutMs uses a realistic default and accepts valid overrides",
   assert.equal(resolveTTSTimeoutMs("not-a-number"), 180_000);
 });
 
-test("resolveSpeakerVoices chooses per-speaker voices with safe defaults", () => {
-  assert.deepEqual(resolveSpeakerVoices({}), { anchor: "onyx", analyst: "nova" });
+test("resolveSpeakerVoices chooses per-speaker voices with profile defaults", () => {
+  assert.deepEqual(resolveSpeakerVoices({}), { anchor: "cedar", analyst: "marin" });
   assert.deepEqual(
     resolveSpeakerVoices({
       TTS_VOICE: "echo",
@@ -45,36 +46,83 @@ test("resolveSpeakerVoices chooses per-speaker voices with safe defaults", () =>
   assert.deepEqual(
     resolveSpeakerVoices({
       TTS_VOICE: "invalid",
-      TTS_ANCHOR_VOICE: "cedar",
+      TTS_ANCHOR_VOICE: "onyx",
       TTS_ANALYST_VOICE: "also-invalid",
     }),
-    { anchor: "cedar", analyst: "nova" },
+    { anchor: "onyx", analyst: "marin" },
   );
 });
 
-test("buildTurnSpeechRequest uses each turn speaker's configured voice and persona instructions", () => {
+test("resolveTTSDirection reads global, speaker, and section style env vars", () => {
+  const direction = resolveTTSDirection({
+    TTS_GLOBAL_STYLE: "global style",
+    TTS_ANCHOR_STYLE: "anchor style",
+    TTS_ANALYST_STYLE: "analyst style",
+    TTS_INTRO_STYLE: "intro style",
+    TTS_STORY_STYLE: "story style",
+    TTS_OUTRO_STYLE: "outro style",
+  });
+
+  assert.deepEqual(direction, {
+    global: "global style",
+    anchor: "anchor style",
+    analyst: "analyst style",
+    intro: "intro style",
+    story: "story style",
+    outro: "outro style",
+  });
+});
+
+test("buildTurnSpeechInstructions composes global, persona, delivery, section, and dialogue footer", () => {
+  const instructions = buildTurnSpeechInstructions("anchor", "intro", {
+    global: "global",
+    anchor: "anchor delivery",
+    analyst: "analyst delivery",
+    intro: "intro section",
+    story: "story section",
+    outro: "outro section",
+  });
+
+  assert.match(instructions, /^global\n/);
+  assert.match(instructions, /Speaker persona: The Anchor is concise/);
+  assert.match(instructions, /Delivery: anchor delivery/);
+  assert.match(instructions, /Section: intro section/);
+  assert.match(instructions, /Do not say speaker labels/);
+});
+
+test("buildTurnSpeechRequest uses speaker voice and section-aware instructions", () => {
   const voices = { anchor: "onyx", analyst: "coral" } as const;
+  const direction = resolveTTSDirection({
+    TTS_GLOBAL_STYLE: "podcast global",
+    TTS_ANCHOR_STYLE: "anchor delivery",
+    TTS_ANALYST_STYLE: "analyst delivery",
+    TTS_STORY_STYLE: "measured story",
+  });
 
   const anchorRequest = buildTurnSpeechRequest(
     { speaker: "anchor", text: "Here is the fact pattern." },
     voices,
     "gpt-4o-mini-tts",
+    "story",
+    direction,
   );
   const analystRequest = buildTurnSpeechRequest(
     { speaker: "analyst", text: "So what does that change?" },
     voices,
     "gpt-4o-mini-tts",
+    "outro",
+    direction,
   );
 
   assert.equal(anchorRequest.voice, "onyx");
   assert.equal(anchorRequest.input, "Here is the fact pattern.");
-  assert.equal(anchorRequest.instructions, TTS_DELIVERY_INSTRUCTIONS_BY_SPEAKER.anchor);
-  assert.match(anchorRequest.instructions ?? "", /The Anchor is concise/);
+  assert.match(anchorRequest.instructions ?? "", /podcast global/);
+  assert.match(anchorRequest.instructions ?? "", /anchor delivery/);
+  assert.match(anchorRequest.instructions ?? "", /Section: measured story/);
 
   assert.equal(analystRequest.voice, "coral");
-  assert.equal(analystRequest.input, "So what does that change?");
-  assert.equal(analystRequest.instructions, TTS_DELIVERY_INSTRUCTIONS_BY_SPEAKER.analyst);
-  assert.match(analystRequest.instructions ?? "", /The Analyst is warmer/);
+  assert.match(analystRequest.instructions ?? "", /analyst delivery/);
+  assert.match(analystRequest.instructions ?? "", /Section: Warm, concise/);
 });
 
 test("buildTurnSpeechRequest rejects turns without a configured speaker voice", () => {

@@ -143,7 +143,10 @@ test("buildSystemPrompt enforces hook, labels, concise transitions, pacing, and 
   assert.match(prompt, /under about 12 words/);
   assert.match(prompt, /most sentences under about 24 words/);
   assert.match(prompt, /define specialized terms in 8-14 plain words/);
-  assert.match(prompt, /Sound alert and enthusiastic/);
+  assert.match(prompt, /TTS-friendly prosody/);
+  assert.match(prompt, /commas for natural breath pauses/);
+  assert.match(prompt, /one rhetorical question per segment at most/);
+  assert.match(prompt, /never announcer-y or fake-enthusiastic/);
   assert.match(prompt, /both speakers throughout the episode/);
 });
 

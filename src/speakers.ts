@@ -1,21 +1,16 @@
+import { SPEAKER_PROFILES } from "./speakerProfiles.js";
 import type { EpisodeSpeaker, SpeakerId, SpeakerTurn } from "./types.js";
 
-export const EPISODE_SPEAKERS: readonly EpisodeSpeaker[] = [
-  {
-    id: "anchor",
-    name: "The Anchor",
-    role: "Host",
-    persona:
-      "Concise, skeptical, and fact-forward. Keeps the story order straight, names what is known, and flags weak claims.",
-  },
-  {
-    id: "analyst",
-    name: "The Analyst",
-    role: "Analyst",
-    persona:
-      "Warmer and more playful. Asks the practical so-what question and adds memorable analogies without inventing facts.",
-  },
-];
+export const EPISODE_SPEAKERS: readonly EpisodeSpeaker[] = (
+  Object.values(SPEAKER_PROFILES) as SpeakerProfileValues[]
+).map((profile) => ({
+  id: profile.id,
+  name: profile.name,
+  role: profile.role,
+  persona: profile.persona,
+}));
+
+type SpeakerProfileValues = (typeof SPEAKER_PROFILES)[SpeakerId];
 
 export function getEpisodeSpeakers(): EpisodeSpeaker[] {
   return EPISODE_SPEAKERS.map((speaker) => ({ ...speaker }));

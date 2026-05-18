@@ -5,6 +5,14 @@ import { tmpdir } from "node:os";
 import path from "node:path";
 import type { Episode, SpeakerId, SpeakerTurn } from "./types.js";
 import { logJson, withRetry } from "./util.js";
+import {
+  buildTurnSpeechInstructions,
+  DEFAULT_GLOBAL_TTS_STYLE,
+  resolveTTSDirection,
+  SPEAKER_PROFILES,
+  type EpisodeSectionKind,
+  type TTSDirectionConfig,
+} from "./speakerProfiles.js";
 import { resolveTTSVoice, type TTSVoice } from "./voices.js";
 
 const DEFAULT_MODEL = "gpt-4o-mini-tts";
@@ -23,18 +31,13 @@ export type { TTSVoice };
 
 export type SpeakerVoiceConfig = Record<SpeakerId, TTSVoice>;
 
-export const TTS_DELIVERY_INSTRUCTIONS =
-  "Deliver as an enthusiastic, sharp AI news podcast host: upbeat, engaged, and clear, " +
-  "with natural momentum and emphasis on key takeaways. Stay precise and conversational; " +
-  "do not shout, overact, or sound like an advertisement.";
+/** @deprecated Use {@link DEFAULT_GLOBAL_TTS_STYLE} or composed turn instructions. */
+export const TTS_DELIVERY_INSTRUCTIONS = DEFAULT_GLOBAL_TTS_STYLE;
 
+/** @deprecated Use {@link buildTurnSpeechInstructions} with a section kind. */
 export const TTS_DELIVERY_INSTRUCTIONS_BY_SPEAKER: Record<SpeakerId, string> = {
-  anchor:
-    `${TTS_DELIVERY_INSTRUCTIONS} Speaker persona: The Anchor is concise, skeptical, ` +
-    "fact-forward, and keeps the story order straight.",
-  analyst:
-    `${TTS_DELIVERY_INSTRUCTIONS} Speaker persona: The Analyst is warmer, more playful, ` +
-    "asks the practical so-what question, and uses memorable analogies without overacting.",
+  anchor: buildTurnSpeechInstructions("anchor", "story"),
+  analyst: buildTurnSpeechInstructions("analyst", "story"),
 };
 
 export interface TTSResult {
@@ -56,6 +59,7 @@ export async function synthesize(episode: Episode): Promise<TTSResult> {
   if (!apiKey) throw new Error("OPENAI_API_KEY is not set");
 
   const speakerVoices = resolveSpeakerVoices();
+  const direction = resolveTTSDirection();
   const model = resolveTTSModel(process.env.TTS_MODEL);
   const timeoutMs = resolveTTSTimeoutMs(process.env.TTS_TIMEOUT_MS);
 
@@ -64,13 +68,14 @@ export async function synthesize(episode: Episode): Promise<TTSResult> {
   const segmentDir = path.join(tmpdir(), `ai-briefing-${episode.date}-${process.pid}`);
   await mkdir(segmentDir, { recursive: true });
 
-  const parts: { label: string; turns: SpeakerTurn[] }[] = [
-    { label: "00-intro", turns: episode.intro },
+  const parts: { label: string; section: EpisodeSectionKind; turns: SpeakerTurn[] }[] = [
+    { label: "00-intro", section: "intro", turns: episode.intro },
     ...episode.segments.map((s, i) => ({
       label: `${pad2(i + 1)}-${slug(s.title)}`,
+      section: "story" as const,
       turns: s.turns,
     })),
-    { label: `${pad2(episode.segments.length + 1)}-outro`, turns: episode.outro },
+    { label: `${pad2(episode.segments.length + 1)}-outro`, section: "outro", turns: episode.outro },
   ];
 
   const segmentPaths: string[] = [];
@@ -80,6 +85,7 @@ export async function synthesize(episode: Episode): Promise<TTSResult> {
       client,
       part,
       speakerVoices,
+      direction,
       model,
       segmentDir,
       timeoutMs,
@@ -90,6 +96,7 @@ export async function synthesize(episode: Episode): Promise<TTSResult> {
       label: part.label,
       status: "ok",
       durationMs: Date.now() - partStart,
+      section: part.section,
       turns: part.turns.length,
       chars: part.turns.reduce((sum, turn) => sum + turn.text.length, 0),
     });
@@ -101,6 +108,7 @@ export async function synthesize(episode: Episode): Promise<TTSResult> {
     durationMs: Date.now() - started,
     segments: segmentPaths.length,
     voices: speakerVoices,
+    direction,
     model,
     timeoutMs,
     deliveryInstructions: supportsDeliveryInstructions(model) ? "enabled" : "unsupported",
@@ -111,8 +119,9 @@ export async function synthesize(episode: Episode): Promise<TTSResult> {
 
 async function synthesizePart(
   client: OpenAI,
-  part: { label: string; turns: SpeakerTurn[] },
+  part: { label: string; section: EpisodeSectionKind; turns: SpeakerTurn[] },
   speakerVoices: SpeakerVoiceConfig,
+  direction: TTSDirectionConfig,
   model: TTSModel,
   segmentDir: string,
   timeoutMs: number,
@@ -132,7 +141,7 @@ async function synthesizePart(
       () =>
         writeSpeechFile(
           client,
-          buildTurnSpeechRequest(turn, speakerVoices, model),
+          buildTurnSpeechRequest(turn, speakerVoices, model, part.section, direction),
           turnPath,
           timeoutMs,
           turnLabel,
@@ -145,6 +154,7 @@ async function synthesizePart(
       label: part.label,
       turn: index + 1,
       speaker: turn.speaker,
+      section: part.section,
       voice,
       chars: turn.text.length,
       status: "ok",
@@ -195,7 +205,7 @@ export function buildSpeechRequest(
   input: string,
   voice: TTSVoice,
   model: TTSModel = DEFAULT_MODEL,
-  instructions = TTS_DELIVERY_INSTRUCTIONS,
+  instructions = DEFAULT_GLOBAL_TTS_STYLE,
 ): SpeechRequest {
   const request: SpeechRequest = {
     model,
@@ -215,21 +225,29 @@ export function buildTurnSpeechRequest(
   turn: SpeakerTurn,
   speakerVoices: SpeakerVoiceConfig,
   model: TTSModel = DEFAULT_MODEL,
+  section: EpisodeSectionKind = "story",
+  direction: TTSDirectionConfig = resolveTTSDirection(),
 ): SpeechRequest {
   const voice = resolveVoiceForTurn(turn, speakerVoices);
   return buildSpeechRequest(
     turn.text,
     voice,
     model,
-    TTS_DELIVERY_INSTRUCTIONS_BY_SPEAKER[turn.speaker],
+    buildTurnSpeechInstructions(turn.speaker, section, direction),
   );
 }
 
 export function resolveSpeakerVoices(env: NodeJS.ProcessEnv = process.env): SpeakerVoiceConfig {
-  const legacyVoice = resolveTTSVoice(env.TTS_VOICE, "onyx");
+  const legacyVoice = resolveTTSVoice(
+    env.TTS_VOICE,
+    SPEAKER_PROFILES.anchor.defaultVoice,
+  );
   return {
     anchor: resolveTTSVoice(env.TTS_ANCHOR_VOICE, legacyVoice),
-    analyst: resolveTTSVoice(env.TTS_ANALYST_VOICE, "nova"),
+    analyst: resolveTTSVoice(
+      env.TTS_ANALYST_VOICE,
+      SPEAKER_PROFILES.analyst.defaultVoice,
+    ),
   };
 }
 
@@ -305,3 +323,13 @@ function slug(s: string): string {
 function pad2(n: number): string {
   return n.toString().padStart(2, "0");
 }
+
+export {
+  buildTurnSpeechInstructions,
+  DEFAULT_GLOBAL_TTS_STYLE,
+  DEFAULT_SECTION_TTS_STYLES,
+  resolveTTSDirection,
+  SPEAKER_PROFILES,
+  type EpisodeSectionKind,
+  type TTSDirectionConfig,
+} from "./speakerProfiles.js";

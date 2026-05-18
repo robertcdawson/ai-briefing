@@ -1,0 +1,56 @@
+{
+  "date": "2026-05-18",
+  "title": "AI Briefing — May 18, 2026",
+  "description": "Top 3 AI stories for 2026-05-18:\n\nChapters:\n00:00:00 Intro\n00:00:28 Anthropic and OpenAI Capture 89 Percent...\n00:01:26 Anthropic's Claude Mythos Uncovers...\n00:02:20 Graduating Students Boo AI Cheerleading...\n00:03:13 Outro\n\nSources:\n1. AI Business Watch: Anthropic and OpenAI Capture 89 Percent of Top AI Startup Revenue\nSource: https://the-decoder.com/ai-startup-revenue-hits-80-billion-but-anthropic-and-openai-take-almost-all-of-it/\n2. Research Breakthrough: Anthropic's Claude Mythos Uncovers Financial System Cyber Vulnerabilities for Regulators\nSource: https://the-decoder.com/anthropic-to-brief-global-financial-regulators-on-cyber-flaws-found-by-claude-mythos/\n3. AI Culture Signal: Graduating Students Boo AI Cheerleading at Multiple 2026 Commencement Speeches\nSource: https://www.theverge.com/ai-artificial-intelligence/932203/university-of-arizona-students-boo-eric-schmidt-ai-commencement\nSource: https://www.nbcnews.com/tech/tech-news/former-google-ceo-booed-graduation-speech-ai-rcna345585\nSource: https://www.nbcnews.com/video/multiple-commencement-speakers-booed-for-ai-comments-during-graduation-speeches-263486021518\nSource: https://techcrunch.com/2026/05/17/if-youre-giving-a-commencement-speech-in-2026-maybe-dont-mention-ai/",
+  "durationSeconds": 223,
+  "byteLength": 5362709,
+  "pubDate": "2026-05-18T14:40:43.903Z",
+  "season": 2026,
+  "episodeNumber": 138,
+  "chaptersFilename": "2026-05-18.chapters.json",
+  "transcriptFilename": "2026-05-18.transcript.txt",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 28,
+      "title": "Intro"
+    },
+    {
+      "startTime": 28,
+      "endTime": 86,
+      "title": "Anthropic and OpenAI Capture 89 Percent..."
+    },
+    {
+      "startTime": 86,
+      "endTime": 140,
+      "title": "Anthropic's Claude Mythos Uncovers..."
+    },
+    {
+      "startTime": 140,
+      "endTime": 193,
+      "title": "Graduating Students Boo AI Cheerleading..."
+    },
+    {
+      "startTime": 193,
+      "endTime": 223,
+      "title": "Outro"
+    }
+  ],
+  "soundbites": [
+    {
+      "startTime": 28,
+      "duration": 58,
+      "title": "Anthropic and OpenAI Capture 89 Percent..."
+    },
+    {
+      "startTime": 86,
+      "duration": 54,
+      "title": "Anthropic's Claude Mythos Uncovers..."
+    },
+    {
+      "startTime": 140,
+      "duration": 53,
+      "title": "Graduating Students Boo AI Cheerleading..."
+    }
+  ]
+}

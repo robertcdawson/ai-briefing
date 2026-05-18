@@ -1,0 +1,31 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — May 18, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 28,
+      "title": "Intro"
+    },
+    {
+      "startTime": 28,
+      "endTime": 86,
+      "title": "Anthropic and OpenAI Capture 89 Percent..."
+    },
+    {
+      "startTime": 86,
+      "endTime": 140,
+      "title": "Anthropic's Claude Mythos Uncovers..."
+    },
+    {
+      "startTime": 140,
+      "endTime": 193,
+      "title": "Graduating Students Boo AI Cheerleading..."
+    },
+    {
+      "startTime": 193,
+      "endTime": 223,
+      "title": "Outro"
+    }
+  ]
+}

@@ -4,7 +4,7 @@
         <title>AI Briefing</title>
         <link>https://robertcdawson.github.io/ai-briefing/</link>
         <description>Daily AI news briefing — the top three stories from the last 24 hours.</description>
-        <lastBuildDate>Sun, 17 May 2026 14:04:16 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 18 May 2026 14:40:43 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -23,6 +23,42 @@
         <podcast:guid>ea8709f4-3ba2-5b7e-bcdc-e409d84a6443</podcast:guid>
         <podcast:locked owner="manatees@gmail.com">yes</podcast:locked>
         <podcast:person role="host" group="cast">Robert Dawson</podcast:person>
+        <item>
+            <title><![CDATA[AI Briefing — May 18, 2026]]></title>
+            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-05-18.mp3</link>
+            <guid>ai-briefing-2026-05-18</guid>
+            <pubDate>Mon, 18 May 2026 14:40:43 GMT</pubDate>
+            <description><![CDATA[Top 3 AI stories for 2026-05-18:
+
+Chapters:
+00:00:00 Intro
+00:00:28 Anthropic and OpenAI Capture 89 Percent...
+00:01:26 Anthropic's Claude Mythos Uncovers...
+00:02:20 Graduating Students Boo AI Cheerleading...
+00:03:13 Outro
+
+Sources:
+1. AI Business Watch: Anthropic and OpenAI Capture 89 Percent of Top AI Startup Revenue
+Source: https://the-decoder.com/ai-startup-revenue-hits-80-billion-but-anthropic-and-openai-take-almost-all-of-it/
+2. Research Breakthrough: Anthropic's Claude Mythos Uncovers Financial System Cyber Vulnerabilities for Regulators
+Source: https://the-decoder.com/anthropic-to-brief-global-financial-regulators-on-cyber-flaws-found-by-claude-mythos/
+3. AI Culture Signal: Graduating Students Boo AI Cheerleading at Multiple 2026 Commencement Speeches
+Source: https://www.theverge.com/ai-artificial-intelligence/932203/university-of-arizona-students-boo-eric-schmidt-ai-commencement
+Source: https://www.nbcnews.com/tech/tech-news/former-google-ceo-booed-graduation-speech-ai-rcna345585
+Source: https://www.nbcnews.com/video/multiple-commencement-speakers-booed-for-ai-comments-during-graduation-speeches-263486021518
+Source: https://techcrunch.com/2026/05/17/if-youre-giving-a-commencement-speech-in-2026-maybe-dont-mention-ai/]]></description>
+            <enclosure length="5362709" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-18.mp3"/>
+                    <itunes:duration>223</itunes:duration>
+            <itunes:explicit>false</itunes:explicit>
+            <itunes:season>2026</itunes:season>
+            <itunes:episode>138</itunes:episode>
+            <itunes:episodeType>full</itunes:episodeType>
+            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-18.chapters.json" type="application/json+chapters"/>
+            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-18.transcript.txt" type="text/plain" language="en"/>
+            <podcast:soundbite startTime="28" duration="58">Anthropic and OpenAI Capture 89 Percent...</podcast:soundbite>
+            <podcast:soundbite startTime="86" duration="54">Anthropic&apos;s Claude Mythos Uncovers...</podcast:soundbite>
+            <podcast:soundbite startTime="140" duration="53">Graduating Students Boo AI Cheerleading...</podcast:soundbite>
+        </item>
         <item>
             <title><![CDATA[AI Briefing — May 17, 2026]]></title>
             <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-05-17.mp3</link>

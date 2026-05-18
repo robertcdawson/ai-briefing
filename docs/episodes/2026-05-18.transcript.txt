@@ -1,0 +1,58 @@
+AI Briefing — May 18, 2026
+Date: 2026-05-18
+
+Intro
+
+The Anchor: In a world where AI is reshaping industries, a new report reveals that Anthropic and OpenAI are dominating startup revenue like never before. It's May 18, 2026, and with 89 percent of the pie going to just two players, the stakes for builders and investors are sky-high.
+
+The Analyst: But wait, is this concentration a sign of innovation, or are we witnessing the birth of an AI oligopoly?
+
+AI Business Watch: Anthropic and OpenAI Capture 89 Percent of Top AI Startup Revenue
+
+The Anchor: A recent analysis shows that Anthropic and OpenAI are raking in an astounding eighty billion dollars in total AI startup revenue. Together, they account for nearly ninety percent of this market.
+
+The Analyst: That’s like two chefs hogging the whole buffet! For builders and investors, this winner-take-most dynamic shapes everything from partnerships to pricing strategies.
+
+The Anchor: Exactly. Companies now have to navigate a landscape where two major players have immense control over the market. This could skew competition and innovation.
+
+The Analyst: And let's not forget, this analysis is based on The Information's methodology. It might not cover enterprise deals or revenue from non-U.S. players, which could paint a different picture.
+
+The Anchor: Right. We need to keep an eye on how this concentration will impact the ecosystem as a whole. Speaking of impact, let’s move to something that could change regulatory landscapes.
+Source: https://the-decoder.com/ai-startup-revenue-hits-80-billion-but-anthropic-and-openai-take-almost-all-of-it/
+
+Research Breakthrough: Anthropic's Claude Mythos Uncovers Financial System Cyber Vulnerabilities for Regulators
+
+The Anchor: Anthropic's AI model, Claude Mythos, has identified cybersecurity vulnerabilities within the global financial system. It’s set to brief regulators on these findings.
+
+The Analyst: This is a big deal! Imagine an AI that spots financial system flaws before they become disasters. It’s like having a financial watchdog that never sleeps.
+
+The Anchor: Absolutely, but this breakthrough also raises questions about the reliability of such systems. The specific vulnerabilities and their severity are still vague.
+
+The Analyst: And without knowing if Claude Mythos is available for commercial use, it makes you wonder how practical this breakthrough really is.
+
+The Anchor: True. There’s potential here, but we need more details to assess its immediate impact. Now, let’s pivot to a cultural signal that could reverberate through the industry.
+Source: https://the-decoder.com/anthropic-to-brief-global-financial-regulators-on-cyber-flaws-found-by-claude-mythos/
+
+AI Culture Signal: Graduating Students Boo AI Cheerleading at Multiple 2026 Commencement Speeches
+
+The Anchor: In a surprising turn of events, graduating students at several commencement ceremonies have booed speakers praising AI. This backlash highlights a growing distrust in the industry.
+
+The Analyst: It’s like the AI industry just got heckled at a wedding! This reaction could signal a deeper rift between AI leaders and the new workforce.
+
+The Anchor: Indeed. With automation reshaping job markets, students are expressing concern over the implications of unchecked AI optimism.
+
+The Analyst: But, we should note that this moment might not reflect broader public sentiment. It’s a snapshot from a specific demographic, not a full-blown poll.
+
+The Anchor: Right, but it’s a clear signal that builders and researchers need to pay attention to public sentiment. The relationship between AI and society is complex and evolving.
+Source: https://www.theverge.com/ai-artificial-intelligence/932203/university-of-arizona-students-boo-eric-schmidt-ai-commencement
+Source: https://www.nbcnews.com/tech/tech-news/former-google-ceo-booed-graduation-speech-ai-rcna345585
+Source: https://www.nbcnews.com/video/multiple-commencement-speakers-booed-for-ai-comments-during-graduation-speeches-263486021518
+Source: https://techcrunch.com/2026/05/17/if-youre-giving-a-commencement-speech-in-2026-maybe-dont-mention-ai/
+
+Outro
+
+The Anchor: Today’s stories paint a stark picture of the AI landscape. From revenue concentration to cybersecurity breakthroughs and cultural pushback, the stakes are rising.
+
+The Analyst: The tension between innovation and public trust is palpable. Builders and researchers must navigate this complex terrain carefully.
+
+The Anchor: As the industry evolves, so too must our understanding of its impact. Until next time, stay sharp and stay informed.

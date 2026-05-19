@@ -4,27 +4,27 @@
   "chapters": [
     {
       "startTime": 0,
-      "endTime": 27,
+      "endTime": 24,
       "title": "Intro"
     },
     {
-      "startTime": 27,
-      "endTime": 83,
-      "title": "Jury unanimously rules against Musk in..."
+      "startTime": 24,
+      "endTime": 89,
+      "title": "Google I/O 2026 unveils Gemini 3.5 Flash,..."
     },
     {
-      "startTime": 83,
-      "endTime": 136,
-      "title": "Anthropic acquires SDK automation startup..."
+      "startTime": 89,
+      "endTime": 140,
+      "title": "Andrej Karpathy joins Anthropic's..."
     },
     {
-      "startTime": 136,
-      "endTime": 180,
-      "title": "Cursor's Composer 2.5 matches frontier..."
+      "startTime": 140,
+      "endTime": 194,
+      "title": "OpenAI and Nvidia adopt Google's SynthID..."
     },
     {
-      "startTime": 180,
-      "endTime": 204,
+      "startTime": 194,
+      "endTime": 220,
       "title": "Outro"
     }
   ]

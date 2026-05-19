@@ -32,7 +32,8 @@ For `npm start` (full pipeline), a `.env` file is required with:
 - `OPENAI_API_KEY` — for TTS audio synthesis
 - `FEED_BASE_URL` — public URL where `docs/` is served
 - `TTS_MODEL` (optional, default: `gpt-4o-mini-tts`)
-- `TTS_VOICE` (optional, default: `onyx`)
+- `TTS_VOICE` / `TTS_ANCHOR_VOICE` / `TTS_ANALYST_VOICE` (optional; defaults `cedar` / `marin` via `src/speakerProfiles.ts`)
+- `TTS_GLOBAL_STYLE`, `TTS_ANCHOR_STYLE`, `TTS_ANALYST_STYLE`, `TTS_INTRO_STYLE`, `TTS_STORY_STYLE`, `TTS_OUTRO_STYLE` (optional delivery-instruction overrides)
 
 Copy `.env.example` to `.env` and fill in. `npm test` and `npm run build` work without any API keys.
 

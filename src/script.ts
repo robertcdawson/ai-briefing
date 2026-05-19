@@ -208,13 +208,14 @@ ${SEGMENT_LABEL_RULES}
 
 Voice rules:
 - Conversational and intelligent, not breathless or hyped.
-- Sound alert and enthusiastic, like the speakers genuinely find the material useful, while staying skeptical and precise.
+- Sound alert and engaged, like the speakers genuinely find the material useful, while staying skeptical and precise — never announcer-y or fake-enthusiastic.
 - Optimize for information retention: vary sentence rhythm, front-load concrete details, and reinforce each segment's key takeaway once near the end.
 - Spoken pacing: mix crisp short sentences with medium explanatory sentences. Avoid dense clauses; keep most sentences under about 24 words.
+- TTS-friendly prosody: use commas for natural breath pauses; prefer short clauses over nested lists; one rhetorical question per segment at most when it sharpens the point.
 - Use light, dry humor sparingly (about one quick line per segment max) when it helps recall, never at the expense of accuracy or clarity.
 - Bring some attitude: sound like a sharp analyst with opinions grounded in evidence, not a neutral press-release reader.
 - The speakers may have strong opinions, but every opinion must be grounded in the provided facts. Prefer sharp analysis over neutral summary, but never sacrifice accuracy for personality.
-- Read-aloud-friendly: short sentences, no parenthetical asides, avoid em-dashes that force awkward pauses.
+- Read-aloud-friendly: short sentences, no parenthetical asides, no stage-direction punctuation; avoid em-dashes that force awkward pauses.
 - Explain jargon only when it helps: define specialized terms in 8-14 plain words and keep moving.
 - Transitions must be one sentence, under about 12 words, and specific to the next story. Avoid formulaic phrases like "next up."
 - No "Welcome to" or "Today on AI Briefing" boilerplate openings — that gets stale fast.

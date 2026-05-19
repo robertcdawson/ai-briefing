@@ -1,0 +1,31 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — May 19, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 27,
+      "title": "Intro"
+    },
+    {
+      "startTime": 27,
+      "endTime": 83,
+      "title": "Jury unanimously rules against Musk in..."
+    },
+    {
+      "startTime": 83,
+      "endTime": 136,
+      "title": "Anthropic acquires SDK automation startup..."
+    },
+    {
+      "startTime": 136,
+      "endTime": 180,
+      "title": "Cursor's Composer 2.5 matches frontier..."
+    },
+    {
+      "startTime": 180,
+      "endTime": 204,
+      "title": "Outro"
+    }
+  ]
+}

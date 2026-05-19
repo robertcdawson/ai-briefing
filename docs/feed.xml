@@ -4,7 +4,7 @@
         <title>AI Briefing</title>
         <link>https://robertcdawson.github.io/ai-briefing/</link>
         <description>Daily AI news briefing — the top three stories from the last 24 hours.</description>
-        <lastBuildDate>Mon, 18 May 2026 14:40:43 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 19 May 2026 14:22:48 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -23,6 +23,46 @@
         <podcast:guid>ea8709f4-3ba2-5b7e-bcdc-e409d84a6443</podcast:guid>
         <podcast:locked owner="manatees@gmail.com">yes</podcast:locked>
         <podcast:person role="host" group="cast">Robert Dawson</podcast:person>
+        <item>
+            <title><![CDATA[AI Briefing — May 19, 2026]]></title>
+            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-05-19.mp3</link>
+            <guid>ai-briefing-2026-05-19</guid>
+            <pubDate>Tue, 19 May 2026 14:22:48 GMT</pubDate>
+            <description><![CDATA[Top 3 AI stories for 2026-05-19:
+
+Chapters:
+00:00:00 Intro
+00:00:27 Jury unanimously rules against Musk in...
+00:01:23 Anthropic acquires SDK automation startup...
+00:02:16 Cursor's Composer 2.5 matches frontier...
+00:03:00 Outro
+
+Sources:
+1. AI Business Watch: Jury unanimously rules against Musk in OpenAI lawsuit over statute of limitations
+Source: https://www.theverge.com/ai-artificial-intelligence/932383/jury-verdict-musk-v-altman-openai-trial
+Source: https://arstechnica.com/tech-policy/2026/05/elon-musk-loses-trial-accusing-sam-altman-openai-of-stealing-a-charity/
+Source: https://www.technologyreview.com/2026/05/18/1137488/elon-musk-suit-openai-verdict/
+Source: https://techcrunch.com/2026/05/18/elon-musk-has-lost-his-lawsuit-against-sam-altman-and-openai/
+Source: https://news.ycombinator.com/item?id=48182754
+Source: https://the-decoder.com/elon-musk-appeals-134-billion-openai-loss-calls-verdict-a-calendar-technicality/
+Source: https://www.theverge.com/tech/917225/sam-altman-elon-musk-openai-lawsuit
+2. AI Business Watch: Anthropic acquires SDK automation startup Stainless, used by OpenAI and Google
+Source: https://www.anthropic.com/news/anthropic-acquires-stainless
+Source: https://techcrunch.com/2026/05/18/anthropic-has-acquired-the-dev-tools-startup-used-by-openai-google-and-cloudflare/
+3. Product & Tool Watch: Cursor's Composer 2.5 matches frontier coding benchmarks at significantly lower cost
+Source: https://the-decoder.com/cursors-composer-2-5-matches-opus-4-7-and-gpt-5-5-benchmarks-at-a-fraction-of-the-cost/]]></description>
+            <enclosure length="4902490" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-19.mp3"/>
+                    <itunes:duration>204</itunes:duration>
+            <itunes:explicit>false</itunes:explicit>
+            <itunes:season>2026</itunes:season>
+            <itunes:episode>139</itunes:episode>
+            <itunes:episodeType>full</itunes:episodeType>
+            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-19.chapters.json" type="application/json+chapters"/>
+            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-19.transcript.txt" type="text/plain" language="en"/>
+            <podcast:soundbite startTime="27" duration="56">Jury unanimously rules against Musk in...</podcast:soundbite>
+            <podcast:soundbite startTime="83" duration="53">Anthropic acquires SDK automation startup...</podcast:soundbite>
+            <podcast:soundbite startTime="136" duration="44">Cursor&apos;s Composer 2.5 matches frontier...</podcast:soundbite>
+        </item>
         <item>
             <title><![CDATA[AI Briefing — May 18, 2026]]></title>
             <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-05-18.mp3</link>

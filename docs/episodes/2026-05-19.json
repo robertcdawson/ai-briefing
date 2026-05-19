@@ -1,0 +1,56 @@
+{
+  "date": "2026-05-19",
+  "title": "AI Briefing — May 19, 2026",
+  "description": "Top 3 AI stories for 2026-05-19:\n\nChapters:\n00:00:00 Intro\n00:00:27 Jury unanimously rules against Musk in...\n00:01:23 Anthropic acquires SDK automation startup...\n00:02:16 Cursor's Composer 2.5 matches frontier...\n00:03:00 Outro\n\nSources:\n1. AI Business Watch: Jury unanimously rules against Musk in OpenAI lawsuit over statute of limitations\nSource: https://www.theverge.com/ai-artificial-intelligence/932383/jury-verdict-musk-v-altman-openai-trial\nSource: https://arstechnica.com/tech-policy/2026/05/elon-musk-loses-trial-accusing-sam-altman-openai-of-stealing-a-charity/\nSource: https://www.technologyreview.com/2026/05/18/1137488/elon-musk-suit-openai-verdict/\nSource: https://techcrunch.com/2026/05/18/elon-musk-has-lost-his-lawsuit-against-sam-altman-and-openai/\nSource: https://news.ycombinator.com/item?id=48182754\nSource: https://the-decoder.com/elon-musk-appeals-134-billion-openai-loss-calls-verdict-a-calendar-technicality/\nSource: https://www.theverge.com/tech/917225/sam-altman-elon-musk-openai-lawsuit\n2. AI Business Watch: Anthropic acquires SDK automation startup Stainless, used by OpenAI and Google\nSource: https://www.anthropic.com/news/anthropic-acquires-stainless\nSource: https://techcrunch.com/2026/05/18/anthropic-has-acquired-the-dev-tools-startup-used-by-openai-google-and-cloudflare/\n3. Product & Tool Watch: Cursor's Composer 2.5 matches frontier coding benchmarks at significantly lower cost\nSource: https://the-decoder.com/cursors-composer-2-5-matches-opus-4-7-and-gpt-5-5-benchmarks-at-a-fraction-of-the-cost/",
+  "durationSeconds": 204,
+  "byteLength": 4902490,
+  "pubDate": "2026-05-19T14:22:48.317Z",
+  "season": 2026,
+  "episodeNumber": 139,
+  "chaptersFilename": "2026-05-19.chapters.json",
+  "transcriptFilename": "2026-05-19.transcript.txt",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 27,
+      "title": "Intro"
+    },
+    {
+      "startTime": 27,
+      "endTime": 83,
+      "title": "Jury unanimously rules against Musk in..."
+    },
+    {
+      "startTime": 83,
+      "endTime": 136,
+      "title": "Anthropic acquires SDK automation startup..."
+    },
+    {
+      "startTime": 136,
+      "endTime": 180,
+      "title": "Cursor's Composer 2.5 matches frontier..."
+    },
+    {
+      "startTime": 180,
+      "endTime": 204,
+      "title": "Outro"
+    }
+  ],
+  "soundbites": [
+    {
+      "startTime": 27,
+      "duration": 56,
+      "title": "Jury unanimously rules against Musk in..."
+    },
+    {
+      "startTime": 83,
+      "duration": 53,
+      "title": "Anthropic acquires SDK automation startup..."
+    },
+    {
+      "startTime": 136,
+      "duration": 44,
+      "title": "Cursor's Composer 2.5 matches frontier..."
+    }
+  ]
+}

@@ -8,11 +8,12 @@ import {
   resolveScriptModel,
   resolveScriptModels,
   resolveScriptTimeoutMs,
+  reconcileScriptSourceUrls,
   selectDailyPersona,
   validateScriptResponse,
   writeScript,
 } from "../src/script.js";
-import type { ScriptCompletionClient, ScriptCompletionParams } from "../src/script.js";
+import type { ScriptCompletionClient, ScriptCompletionParams, ScriptResponse } from "../src/script.js";
 import type { StoryCluster } from "../src/types.js";
 
 test("resolveScriptModels defaults to ordered structured-output-compatible OpenRouter models", () => {
@@ -290,6 +291,34 @@ test("validateScriptResponse preserves segment count and source URLs", () => {
       ),
     /sourceUrls do not match.*missing=.*model-feature.*extra=.*changed/,
   );
+
+  const omittedSourceResponse: ScriptResponse = {
+    intro: [
+      { speaker: "anchor", text: "Here is the setup." },
+      { speaker: "analyst", text: "And here is why it matters." },
+    ],
+    segments: [
+      {
+        title: "Top Story: A model ships a useful feature",
+        turns: [
+          { speaker: "anchor", text: "A concise segment." },
+          { speaker: "analyst", text: "The practical takeaway is simple." },
+        ],
+        sourceUrls: ["https://example.com/model-feature"],
+      },
+    ],
+    outro: [
+      { speaker: "anchor", text: "That is the pattern." },
+      { speaker: "analyst", text: "And that is the useful lens." },
+    ],
+  };
+
+  assert.equal(reconcileScriptSourceUrls(omittedSourceResponse, clusters), 1);
+  assert.deepEqual(omittedSourceResponse.segments[0]?.sourceUrls, [
+    "https://example.com/model-feature",
+    "https://example.com/model-feature-details",
+  ]);
+  validateScriptResponse(omittedSourceResponse, clusters);
 
   assert.throws(
     () =>

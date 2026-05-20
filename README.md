@@ -9,7 +9,7 @@ A daily, fully-automated AI news podcast. Every morning at ~06:30 Pacific, GitHu
 
 1. Pulls the last 24h of articles from a curated set of AI news RSS feeds.
 2. Asks Claude (via OpenRouter) to cluster duplicates and pick the top 3 stories.
-3. Asks Claude to write a 4–7 minute two-speaker script (engaging summary hook → recurring segments → synthesis outro).
+3. Writes a 4–7 minute two-speaker script (engaging summary hook → recurring segments → synthesis outro), using direct OpenAI for default `openai/...` models and OpenRouter for other configured fallbacks.
 4. Synthesizes each speaker turn with OpenAI `gpt-4o-mini-tts`, using the configured voice for that speaker, then groups turns back into intro/story/outro MP3 sections.
 5. Builds a full program master with ffmpeg (section stingers + concat), normalizes loudness to EBU R128 (-16 LUFS), encodes 192 kbps MP3 with ID3 tags and embedded chapters.
 6. Drops the file at `docs/episodes/YYYY-MM-DD.mp3`, regenerates `docs/feed.xml`, commits, and pushes.
@@ -362,7 +362,7 @@ Check both dashboards monthly:
 - OpenRouter: https://openrouter.ai/settings/credits
 - OpenAI: https://platform.openai.com/usage
 
-Expected: ~$2–3 OpenRouter (curate + script ≈ 5k tokens/day), ~$3–5 OpenAI TTS (~800 chars × 5 segments × 30 days × $30/1M chars). If either spikes 5x, something's wrong — check for an infinite retry loop in the logs.
+Expected: low OpenRouter usage for curation plus any non-OpenAI script fallbacks, and OpenAI usage for default script generation plus TTS (~800 chars × 5 segments × 30 days × $30/1M chars for speech). If either spikes 5x, something's wrong — check for an infinite retry loop in the logs.
 
 ## Scope and design notes
 

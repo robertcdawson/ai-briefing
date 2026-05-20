@@ -38,7 +38,7 @@
 └────────┬────────┘
          ↓
 ┌─────────────────┐
-│  script.ts      │   OpenRouter→Claude: speaker-turn script → Episode
+│  script.ts      │   Direct OpenAI by default; OpenRouter fallbacks: speaker-turn script → Episode
 └────────┬────────┘
          ↓
 ┌─────────────────┐
@@ -174,7 +174,7 @@ Use the `feed` npm package — do not hand-roll XML. `length` must be the actual
 | Var | Purpose |
 |---|---|
 | `OPENROUTER_API_KEY` | LLM access for curation and non-OpenAI script fallbacks |
-| `OPENROUTER_SCRIPT_MODEL` | Optional script-generation model override; defaults to `openai/gpt-4o-mini, google/gemini-3.1-pro-preview` |
+| `OPENROUTER_SCRIPT_MODEL` | Optional script-generation model override; defaults to `openai/gpt-4o-mini, google/gemini-3.1-pro-preview`; `openai/...` entries route directly to OpenAI when `OPENAI_API_KEY` is set, while other provider paths use OpenRouter |
 | `OPENAI_API_KEY` | Default script generation and TTS access |
 | `FEED_BASE_URL` | e.g., `https://USER.github.io/ai-briefing` |
 | `TTS_MODEL` | OpenAI speech model; default `gpt-4o-mini-tts` supports delivery instructions |
@@ -210,8 +210,8 @@ Rule of thumb: a missing episode is fine; a broken feed unsubscribes me.
 |---|---|
 | GitHub Actions | $0 (well within free tier) |
 | GitHub Pages | $0 |
-| OpenRouter (curate + script) | ~$2-3 |
-| OpenAI TTS | Model-dependent; monitor the OpenAI usage dashboard |
+| OpenRouter (curate + non-OpenAI script fallbacks) | Model-dependent; monitor the OpenRouter usage dashboard |
+| OpenAI script generation + TTS | Model-dependent; monitor the OpenAI usage dashboard |
 | **Total** | **~$5-8/month** |
 
 ## Privacy note

@@ -96,5 +96,13 @@ jobs:
           git config user.name "github-actions"
           git add docs/
           git commit -m "Episode $(TZ="${EPISODE_TIME_ZONE:-America/Los_Angeles}" date +%Y-%m-%d)"
-          GIT_SSH_COMMAND="ssh -i $deploy_key -o IdentitiesOnly=yes -o StrictHostKeyChecking=accept-new" \
-            git push "git@github.com:${{ github.repository }}.git" "HEAD:${{ github.ref_name }}"
+
+          remote="git@github.com:${{ github.repository }}.git"
+          branch="${{ github.ref_name }}"
+          export GIT_SSH_COMMAND="ssh -i $deploy_key -o IdentitiesOnly=yes -o StrictHostKeyChecking=accept-new"
+
+          # main may advance during the long pipeline run (e.g. merged PRs); rebase before push.
+          git remote set-url origin "$remote"
+          git fetch origin "$branch"
+          git rebase "origin/$branch"
+          git push origin "HEAD:$branch"

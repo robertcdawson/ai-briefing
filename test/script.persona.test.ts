@@ -3,6 +3,8 @@ import test from "node:test";
 import {
   DAILY_PERSONAS,
   SCRIPT_RESPONSE_SCHEMA,
+  buildDirectOpenAICompletionParams,
+  buildScriptCompletionParams,
   buildSystemPrompt,
   buildUserPrompt,
   resolveScriptModel,
@@ -54,6 +56,30 @@ test("resolveScriptModel preserves single-model compatibility", () => {
     "anthropic/claude-sonnet-4.6",
   );
   assert.equal(resolveScriptModel(" primary/model, fallback/model "), "primary/model");
+});
+
+test("buildDirectOpenAICompletionParams strips OpenRouter provider routing", () => {
+  const params = buildScriptCompletionParams(
+    "openai/gpt-4o-mini",
+    DAILY_PERSONAS[0] ?? selectDailyPersona("2026-05-16"),
+    "2026-05-16",
+    [
+      {
+        canonicalKey: "test-story",
+        category: "product-tools",
+        headline: "A model ships a useful feature",
+        whyItMatters: "Builders get a simpler path to production.",
+        caveat: "Benchmarks are still early.",
+        sources: [{ publisher: "Example News", url: "https://example.com/model-feature" }],
+      },
+    ],
+  );
+
+  const directParams = buildDirectOpenAICompletionParams(params);
+
+  assert.equal(directParams.model, "gpt-4o-mini");
+  assert.equal("provider" in directParams, false);
+  assert.deepEqual(directParams.response_format, params.response_format);
 });
 
 test("resolveScriptTimeoutMs uses a realistic default and accepts valid overrides", () => {

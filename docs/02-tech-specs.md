@@ -7,7 +7,7 @@
 | Language | TypeScript (Node 20+) | Aligns with existing Next.js work; rich npm ecosystem; clean RSS/feed/Octokit libs |
 | Scheduler | GitHub Actions cron | Free, zero new infra, already proven in prior pipeline |
 | News source | Curated RSS feeds via `rss-parser` | Free, deterministic, no API key, no rate limits, easy to extend |
-| LLM | OpenRouter → Claude (`anthropic/claude-sonnet-4.6` for curation and scripts by default) | Already in workflow; structured output; high reasoning quality; script model is configurable when provider capabilities change |
+| LLM | OpenRouter → Claude Sonnet for curation; direct OpenAI with OpenRouter fallback for scripts | Keeps curation on the existing OpenRouter workflow while sending the default script JSON-schema call to OpenAI's first-party structured-output implementation; script model fallback remains configurable when provider capabilities change |
 | TTS | OpenAI `gpt-4o-mini-tts` (direct API) | Supports delivery instructions and per-speaker voices for the conversational format; direct OpenAI keeps audio generation reliable |
 | Audio | ffmpeg | Industry standard; loudness normalize, concat, encode, ID3 chapters |
 | Storage + hosting | Public GitHub repo + GitHub Pages | Free; zero new infra; obscure path = soft privacy |
@@ -38,7 +38,7 @@
 └────────┬────────┘
          ↓
 ┌─────────────────┐
-│  script.ts      │   OpenRouter→Claude: speaker-turn script → Episode
+│  script.ts      │   Direct OpenAI by default; OpenRouter fallbacks: speaker-turn script → Episode
 └────────┬────────┘
          ↓
 ┌─────────────────┐
@@ -173,9 +173,9 @@ Use the `feed` npm package — do not hand-roll XML. `length` must be the actual
 
 | Var | Purpose |
 |---|---|
-| `OPENROUTER_API_KEY` | LLM access (curate + script) |
-| `OPENROUTER_SCRIPT_MODEL` | Optional script-generation model override; defaults to `anthropic/claude-sonnet-4.6` |
-| `OPENAI_API_KEY` | TTS access |
+| `OPENROUTER_API_KEY` | LLM access for curation and non-OpenAI script fallbacks |
+| `OPENROUTER_SCRIPT_MODEL` | Optional script-generation model override; defaults to `openai/gpt-4o-mini, google/gemini-3.1-pro-preview`; `openai/...` entries route directly to OpenAI when `OPENAI_API_KEY` is set, while other provider paths use OpenRouter |
+| `OPENAI_API_KEY` | Default script generation and TTS access |
 | `FEED_BASE_URL` | e.g., `https://USER.github.io/ai-briefing` |
 | `TTS_MODEL` | OpenAI speech model; default `gpt-4o-mini-tts` supports delivery instructions |
 | `TTS_VOICE` | Legacy Anchor fallback; default `cedar` |
@@ -210,8 +210,8 @@ Rule of thumb: a missing episode is fine; a broken feed unsubscribes me.
 |---|---|
 | GitHub Actions | $0 (well within free tier) |
 | GitHub Pages | $0 |
-| OpenRouter (curate + script) | ~$2-3 |
-| OpenAI TTS | Model-dependent; monitor the OpenAI usage dashboard |
+| OpenRouter (curate + non-OpenAI script fallbacks) | Model-dependent; monitor the OpenRouter usage dashboard |
+| OpenAI script generation + TTS | Model-dependent; monitor the OpenAI usage dashboard |
 | **Total** | **~$5-8/month** |
 
 ## Privacy note

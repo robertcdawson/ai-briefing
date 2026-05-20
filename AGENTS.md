@@ -26,10 +26,10 @@ All commands are defined in `package.json`:
 ### Environment variables
 
 For `npm start` (full pipeline), a `.env` file is required with:
-- `OPENROUTER_API_KEY` — for LLM calls (curate + script generation)
-- `OPENROUTER_SCRIPT_MODEL` (optional, comma-separated fallback list, default: `openai/gpt-4o-mini, google/gemini-3.1-pro-preview`)
-- `OPENROUTER_SCRIPT_TIMEOUT_MS` (optional, default: `360000` — OpenRouter JSON-schema script calls often exceed 180s from GitHub Actions)
-- `OPENAI_API_KEY` — for TTS audio synthesis
+- `OPENROUTER_API_KEY` — for curation and non-OpenAI script model fallbacks
+- `OPENROUTER_SCRIPT_MODEL` (optional, comma-separated fallback list, default: `openai/gpt-4o-mini, google/gemini-3.1-pro-preview`; `openai/...` entries use `OPENAI_API_KEY` directly when available)
+- `OPENROUTER_SCRIPT_TIMEOUT_MS` (optional, default: `360000` — script JSON-schema calls can exceed 180s from GitHub Actions)
+- `OPENAI_API_KEY` — for default script generation and TTS audio synthesis
 - `FEED_BASE_URL` — public URL where `docs/` is served
 - `TTS_MODEL` (optional, default: `gpt-4o-mini-tts`)
 - `TTS_VOICE` / `TTS_ANCHOR_VOICE` / `TTS_ANALYST_VOICE` (optional; defaults `cedar` / `marin` via `src/speakerProfiles.ts`)

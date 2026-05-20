@@ -9,7 +9,7 @@ A daily, fully-automated AI news podcast. Every morning at ~06:30 Pacific, GitHu
 
 1. Pulls the last 24h of articles from a curated set of AI news RSS feeds.
 2. Asks Claude (via OpenRouter) to cluster duplicates and pick the top 3 stories.
-3. Asks Claude to write a 4–7 minute two-speaker script (engaging summary hook → recurring segments → synthesis outro).
+3. Writes a 4–7 minute two-speaker script (engaging summary hook → recurring segments → synthesis outro), using direct OpenAI for default `openai/...` models and OpenRouter for other configured fallbacks.
 4. Synthesizes each speaker turn with OpenAI `gpt-4o-mini-tts`, using the configured voice for that speaker, then groups turns back into intro/story/outro MP3 sections.
 5. Builds a full program master with ffmpeg (section stingers + concat), normalizes loudness to EBU R128 (-16 LUFS), encodes 192 kbps MP3 with ID3 tags and embedded chapters.
 6. Drops the file at `docs/episodes/YYYY-MM-DD.mp3`, regenerates `docs/feed.xml`, commits, and pushes.
@@ -24,7 +24,7 @@ You subscribe once via "Follow a Show by URL" on iPhone. Every morning a new epi
 | Language | TypeScript (Node 20, ESM) |
 | Scheduler | GitHub Actions cron |
 | News | Curated RSS via `rss-parser` |
-| LLM | OpenRouter → Claude Sonnet for curation; OpenAI/Gemini fallback list for scripts |
+| LLM | OpenRouter → Claude Sonnet for curation; direct OpenAI with OpenRouter fallback for scripts |
 | TTS | OpenAI `gpt-4o-mini-tts` (direct API) |
 | Audio | ffmpeg via `execa` |
 | Feed | `feed` npm package + iTunes namespace patch |
@@ -162,7 +162,7 @@ In the repo's **Settings → Secrets and variables → Actions**:
 
 **Variables:**
 - `FEED_BASE_URL` — same as `.env`, e.g. `https://USER.github.io/ai-briefing`
-- `OPENROUTER_SCRIPT_MODEL` — optional script model override; accepts a comma-separated fallback list and defaults to `openai/gpt-4o-mini, google/gemini-3.1-pro-preview`
+- `OPENROUTER_SCRIPT_MODEL` — optional script model override; accepts a comma-separated fallback list and defaults to `openai/gpt-4o-mini, google/gemini-3.1-pro-preview`; `openai/...` entries use `OPENAI_API_KEY` directly when available
 - `TTS_MODEL` — `gpt-4o-mini-tts` (default; supports delivery instructions)
 - `TTS_VOICE` — legacy Anchor fallback; defaults to `cedar` when unset
 - `TTS_ANCHOR_VOICE` — Anchor voice; defaults to `cedar`
@@ -283,9 +283,9 @@ Chapters are published two ways: a Podcasting 2.0 JSON sidecar linked from `<pod
 
 ### Change the model or feed sources
 
-For script generation, set `OPENROUTER_SCRIPT_MODEL` in Actions variables (or `.env` locally). Keep entries on OpenRouter model/provider paths that support JSON schema structured output. The value can be a comma-separated ordered fallback list; the default is `openai/gpt-4o-mini, google/gemini-3.1-pro-preview`. Each model gets two attempts before the script step logs `script.model_fallback` and tries the next candidate.
+For script generation, set `OPENROUTER_SCRIPT_MODEL` in Actions variables (or `.env` locally). The value can be a comma-separated ordered fallback list; the default is `openai/gpt-4o-mini, google/gemini-3.1-pro-preview`. Entries beginning with `openai/` are sent directly to OpenAI when `OPENAI_API_KEY` is available, which keeps the default JSON-schema path on OpenAI's first-party structured-output implementation. Other provider paths use OpenRouter and should be kept to models that support JSON schema structured output. Each model gets two attempts before the script step logs `script.model_fallback` and tries the next candidate.
 
-To diagnose a model's structured-output behavior without running TTS or writing episode files, run `npm run diagnose:script-model`. The probe uses `OPENROUTER_API_KEY`, targets `OPENROUTER_DIAGNOSTIC_MODEL` or the first configured script model, and logs safe request/response metadata for both a tiny JSON-schema call and the production script-schema call. `OPENROUTER_DIAGNOSTIC_MODEL` is optional and local-only. The probe does not print generated script content.
+To diagnose an OpenRouter-routed model's structured-output behavior without running TTS or writing episode files, run `npm run diagnose:script-model`. The probe uses `OPENROUTER_API_KEY`, targets `OPENROUTER_DIAGNOSTIC_MODEL` or the first configured script model through OpenRouter, and logs safe request/response metadata for both a tiny JSON-schema call and the production script-schema call. `OPENROUTER_DIAGNOSTIC_MODEL` is optional and local-only. The probe does not print generated script content.
 
 For curation, edit `src/curate.ts` (`MODEL` constant). For feed sources, edit `src/feeds.ts` (`SOURCES`) and push. The next scheduled run picks up the change.
 
@@ -339,8 +339,8 @@ GitHub emails the repo owner on first failure of any workflow. Triage:
    - **OpenRouter 401:** key revoked or out of credit.
    - **OpenAI 429:** rate-limited. Wait, then re-run.
    - **OpenAI 401:** key revoked or billing lapsed.
-   - **OpenRouter script returned no assistant content:** look for `OpenRouter script: missing assistant message content` and safe metadata such as `responseKeys`, `responseError`, `firstChoiceKeys`, `model`, `choiceCount`, `finish_reason`, `choiceError`, or `usage`. If `responseKeys` is `["error"]`, OpenRouter returned an error-shaped payload instead of a normal chat completion; run `npm run diagnose:script-model` locally to capture the safe `responseError` fields. The script step tries the comma-separated `OPENROUTER_SCRIPT_MODEL` candidates in order; if the first model keeps returning empty choices, it should log `script.model_fallback` and continue with the next model.
-   - **Script timeout:** OpenRouter script generation exceeded `OPENROUTER_SCRIPT_TIMEOUT_MS`; the default is 360 seconds (structured JSON can be slow from CI).
+   - **Script returned no assistant content:** look for `OpenRouter script: missing assistant message content` and safe metadata such as `responseKeys`, `responseError`, `firstChoiceKeys`, `model`, `choiceCount`, `finish_reason`, `choiceError`, or `usage`. If `responseKeys` is `["error"]`, OpenRouter returned an error-shaped payload instead of a normal chat completion; run `npm run diagnose:script-model` locally to capture the safe `responseError` fields for OpenRouter-routed models. The script step tries the comma-separated `OPENROUTER_SCRIPT_MODEL` candidates in order; if the first model keeps returning empty choices, it should log `script.model_fallback` and continue with the next model.
+   - **Script timeout:** script generation exceeded `OPENROUTER_SCRIPT_TIMEOUT_MS`; the default is 360 seconds (structured JSON can be slow from CI).
    - **TTS timeout:** OpenAI speech generation exceeded `TTS_TIMEOUT_MS`; the default is 180 seconds per part.
    - **ffmpeg not found:** the apt install step failed; check the install logs.
    - **Commit push rejected with GH013:** the pipeline generated and committed the episode in the runner, but the repository ruleset blocked the workflow from pushing to `main`. Make sure `DAILY_PUSH_DEPLOY_KEY` is set and the matching deploy key has write access. Do not add deploy keys as protected-branch bypass actors; instead, publish from an unprotected release branch or change the workflow to open a pull request for generated episodes.
@@ -362,7 +362,7 @@ Check both dashboards monthly:
 - OpenRouter: https://openrouter.ai/settings/credits
 - OpenAI: https://platform.openai.com/usage
 
-Expected: ~$2–3 OpenRouter (curate + script ≈ 5k tokens/day), ~$3–5 OpenAI TTS (~800 chars × 5 segments × 30 days × $30/1M chars). If either spikes 5x, something's wrong — check for an infinite retry loop in the logs.
+Expected: low OpenRouter usage for curation plus any non-OpenAI script fallbacks, and OpenAI usage for default script generation plus TTS (~800 chars × 5 segments × 30 days × $30/1M chars for speech). If either spikes 5x, something's wrong — check for an infinite retry loop in the logs.
 
 ## Scope and design notes
 

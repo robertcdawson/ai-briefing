@@ -297,14 +297,18 @@ export async function writeScript(
   options: WriteScriptOptions = {},
 ): Promise<Episode> {
   const started = Date.now();
-  const apiKey = process.env.OPENROUTER_API_KEY;
-  if (!apiKey && !options.completionClient) throw new Error("OPENROUTER_API_KEY is not set");
+  const openRouterApiKey = process.env.OPENROUTER_API_KEY;
+  const openAiApiKey = process.env.OPENAI_API_KEY;
+  if (!openRouterApiKey && !openAiApiKey && !options.completionClient) {
+    throw new Error("OPENAI_API_KEY or OPENROUTER_API_KEY is not set");
+  }
   if (clusters.length === 0) throw new Error("writeScript: no clusters provided");
   const persona = selectDailyPersona(date);
   const models = resolveScriptModels(process.env.OPENROUTER_SCRIPT_MODEL);
   const timeoutMs = resolveScriptTimeoutMs(process.env.OPENROUTER_SCRIPT_TIMEOUT_MS);
   const completionClient =
-    options.completionClient ?? createOpenRouterScriptClient(apiKey ?? "", timeoutMs);
+    options.completionClient ??
+    createScriptCompletionClient(openRouterApiKey, openAiApiKey, timeoutMs);
   const retryBaseMs = options.retryBaseMs ?? DEFAULT_SCRIPT_RETRY_BASE_MS;
 
   let parsed: ScriptResponse | undefined;
@@ -389,16 +393,62 @@ export async function writeScript(
   return episode;
 }
 
-function createOpenRouterScriptClient(apiKey: string, timeoutMs: number): ScriptCompletionClient {
-  const client = new OpenAI({
-    apiKey,
-    baseURL: "https://openrouter.ai/api/v1",
-    timeout: timeoutMs,
-  });
+function createScriptCompletionClient(
+  openRouterApiKey: string | undefined,
+  openAiApiKey: string | undefined,
+  timeoutMs: number,
+): ScriptCompletionClient {
+  const openRouterClient = openRouterApiKey
+    ? new OpenAI({
+        apiKey: openRouterApiKey,
+        baseURL: "https://openrouter.ai/api/v1",
+        timeout: timeoutMs,
+      })
+    : undefined;
+  const openAiClient = openAiApiKey
+    ? new OpenAI({
+        apiKey: openAiApiKey,
+        timeout: timeoutMs,
+      })
+    : undefined;
 
   return {
-    create: (params) => client.chat.completions.create(params),
+    create: (params) => {
+      if (openAiClient && isOpenRouterOpenAIModel(params.model)) {
+        return openAiClient.chat.completions.create(buildDirectOpenAICompletionParams(params));
+      }
+      if (!openRouterClient) {
+        throw new Error(
+          isOpenRouterOpenAIModel(params.model)
+            ? "OPENAI_API_KEY or OPENROUTER_API_KEY is not set"
+            : "OPENROUTER_API_KEY is not set",
+        );
+      }
+      return openRouterClient.chat.completions.create(params);
+    },
   };
+}
+
+export function buildDirectOpenAICompletionParams(
+  params: ScriptCompletionParams,
+): ChatCompletionCreateParamsNonStreaming {
+  if (!isOpenRouterOpenAIModel(params.model)) {
+    throw new Error(`Cannot route non-OpenAI model directly to OpenAI: ${params.model}`);
+  }
+
+  const { provider: _provider, ...directParams } = params;
+  return {
+    ...directParams,
+    model: stripOpenRouterOpenAIPrefix(params.model),
+  };
+}
+
+function isOpenRouterOpenAIModel(model: string): boolean {
+  return model.startsWith("openai/") && stripOpenRouterOpenAIPrefix(model).length > 0;
+}
+
+function stripOpenRouterOpenAIPrefix(model: string): string {
+  return model.slice("openai/".length);
 }
 
 export function buildScriptCompletionParams(

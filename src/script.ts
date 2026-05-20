@@ -324,6 +324,14 @@ export async function writeScript(
           const content = getChatCompletionAssistantText(completion, "OpenRouter script");
 
           const response = JSON.parse(content) as ScriptResponse;
+          const repairedSegments = reconcileScriptSourceUrls(response, clusters);
+          if (repairedSegments > 0) {
+            logJson({
+              phase: "script.source_urls_repair",
+              status: "ok",
+              repairedSegments,
+            });
+          }
           validateScriptResponse(response, clusters);
           return response;
         },
@@ -416,6 +424,31 @@ export function buildScriptCompletionParams(
     stream: false,
     temperature: 0.7,
   };
+}
+
+/** Fill omitted cluster source URLs from curation; still reject invented extras. */
+export function reconcileScriptSourceUrls(
+  response: ScriptResponse,
+  clusters: StoryCluster[],
+): number {
+  let repairedSegments = 0;
+
+  for (let i = 0; i < clusters.length; i += 1) {
+    const segment = response.segments[i];
+    const cluster = clusters[i];
+    if (!segment || !cluster) continue;
+
+    const expectedUrls = cluster.sources.map((source) => source.url);
+    const receivedUrls = Array.isArray(segment.sourceUrls) ? segment.sourceUrls : [];
+    const diff = diffNormalizedUrls(receivedUrls, expectedUrls);
+    if (diff.extra.length > 0) continue;
+    if (diff.missing.length === 0) continue;
+
+    segment.sourceUrls = expectedUrls;
+    repairedSegments += 1;
+  }
+
+  return repairedSegments;
 }
 
 export function validateScriptResponse(

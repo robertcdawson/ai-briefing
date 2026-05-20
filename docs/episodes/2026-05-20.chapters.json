@@ -1,0 +1,31 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — May 20, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 32,
+      "title": "Intro"
+    },
+    {
+      "startTime": 32,
+      "endTime": 99,
+      "title": "Google I/O 2026 Unveils Gemini 3.5 Flash"
+    },
+    {
+      "startTime": 99,
+      "endTime": 159,
+      "title": "Google SynthID Watermarking Adopted"
+    },
+    {
+      "startTime": 159,
+      "endTime": 208,
+      "title": "Andrej Karpathy Joins Anthropic"
+    },
+    {
+      "startTime": 208,
+      "endTime": 237,
+      "title": "Outro"
+    }
+  ]
+}

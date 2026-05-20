@@ -4,7 +4,7 @@
         <title>AI Briefing</title>
         <link>https://robertcdawson.github.io/ai-briefing/</link>
         <description>Daily AI news briefing — the top three stories from the last 24 hours.</description>
-        <lastBuildDate>Tue, 19 May 2026 22:54:22 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 20 May 2026 15:42:30 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -23,6 +23,51 @@
         <podcast:guid>ea8709f4-3ba2-5b7e-bcdc-e409d84a6443</podcast:guid>
         <podcast:locked owner="manatees@gmail.com">yes</podcast:locked>
         <podcast:person role="host" group="cast">Robert Dawson</podcast:person>
+        <item>
+            <title><![CDATA[AI Briefing — May 20, 2026]]></title>
+            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-05-20.mp3</link>
+            <guid>ai-briefing-2026-05-20</guid>
+            <pubDate>Wed, 20 May 2026 15:42:30 GMT</pubDate>
+            <description><![CDATA[Top 3 AI stories for 2026-05-20:
+
+Chapters:
+00:00:00 Intro
+00:00:32 Google I/O 2026 Unveils Gemini 3.5 Flash
+00:01:39 Google SynthID Watermarking Adopted
+00:02:39 Andrej Karpathy Joins Anthropic
+00:03:28 Outro
+
+Sources:
+1. Product & Tool Watch: Google I/O 2026 Unveils Gemini 3.5 Flash
+Source: https://www.theverge.com/tech/933415/google-io-2026-biggest-announcements-ai-gemini
+Source: https://techcrunch.com/2026/05/19/with-gemini-3-5-flash-google-bets-its-next-ai-wave-on-agents-not-chatbots/
+Source: https://arstechnica.com/google/2026/05/google-announces-agent-optimized-gemini-3-5-flash-and-a-do-anything-model-called-omni/
+Source: https://the-decoder.com/googles-i-o-announcements-new-models-a-cloud-agent-that-never-sleeps-and-a-redesigned-gemini-app/
+Source: https://the-decoder.com/googles-gemini-3-5-flash-follows-anthropic-and-openai-in-making-newer-ai-models-significantly-pricier/
+Source: https://the-decoder.com/google-overhauls-its-ai-subscriptions-at-i-o-2026-with-three-tiers-starting-at-10-a-month/
+Source: https://techcrunch.com/2026/05/19/googles-ai-studio-now-lets-anyone-build-android-apps-in-minutes/
+Source: https://simonwillison.net/2026/May/20/google-io/#atom-everything
+Source: https://stratechery.com/2026/google-i-o-world-models-i-o-spaghetti/
+2. Policy & Regulation Watch: Google SynthID Watermarking Adopted
+Source: https://arstechnica.com/google/2026/05/googles-synthid-ai-watermarking-tech-is-being-adopted-by-openai-nvidia-and-more/
+Source: https://www.theverge.com/ai-artificial-intelligence/934521/google-synthid-c2pa-content-credentials-ai-labelling-efforts
+Source: https://techcrunch.com/2026/05/19/openai-is-making-it-easier-to-check-if-an-image-was-made-by-their-models/
+Source: https://openai.com/index/advancing-content-provenance/
+Source: https://github.com/wiltodelta/remove-ai-watermarks
+3. AI Business Watch: Andrej Karpathy Joins Anthropic
+Source: https://the-decoder.com/prominent-ai-researcher-andrej-karpathy-picks-anthropic-over-former-home-openai-to-get-back-into-frontier-llm-research/]]></description>
+            <enclosure length="5686406" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-20.mp3"/>
+                    <itunes:duration>237</itunes:duration>
+            <itunes:explicit>false</itunes:explicit>
+            <itunes:season>2026</itunes:season>
+            <itunes:episode>140</itunes:episode>
+            <itunes:episodeType>full</itunes:episodeType>
+            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-20.chapters.json" type="application/json+chapters"/>
+            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-20.transcript.txt" type="text/plain" language="en"/>
+            <podcast:soundbite startTime="32" duration="67">Google I/O 2026 Unveils Gemini 3.5 Flash</podcast:soundbite>
+            <podcast:soundbite startTime="99" duration="59">Google SynthID Watermarking Adopted</podcast:soundbite>
+            <podcast:soundbite startTime="159" duration="49">Andrej Karpathy Joins Anthropic</podcast:soundbite>
+        </item>
         <item>
             <title><![CDATA[AI Briefing — May 19, 2026]]></title>
             <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-05-19.mp3</link>

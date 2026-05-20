@@ -1,0 +1,56 @@
+{
+  "date": "2026-05-20",
+  "title": "AI Briefing — May 20, 2026",
+  "description": "Top 3 AI stories for 2026-05-20:\n\nChapters:\n00:00:00 Intro\n00:00:32 Google I/O 2026 Unveils Gemini 3.5 Flash\n00:01:39 Google SynthID Watermarking Adopted\n00:02:39 Andrej Karpathy Joins Anthropic\n00:03:28 Outro\n\nSources:\n1. Product & Tool Watch: Google I/O 2026 Unveils Gemini 3.5 Flash\nSource: https://www.theverge.com/tech/933415/google-io-2026-biggest-announcements-ai-gemini\nSource: https://techcrunch.com/2026/05/19/with-gemini-3-5-flash-google-bets-its-next-ai-wave-on-agents-not-chatbots/\nSource: https://arstechnica.com/google/2026/05/google-announces-agent-optimized-gemini-3-5-flash-and-a-do-anything-model-called-omni/\nSource: https://the-decoder.com/googles-i-o-announcements-new-models-a-cloud-agent-that-never-sleeps-and-a-redesigned-gemini-app/\nSource: https://the-decoder.com/googles-gemini-3-5-flash-follows-anthropic-and-openai-in-making-newer-ai-models-significantly-pricier/\nSource: https://the-decoder.com/google-overhauls-its-ai-subscriptions-at-i-o-2026-with-three-tiers-starting-at-10-a-month/\nSource: https://techcrunch.com/2026/05/19/googles-ai-studio-now-lets-anyone-build-android-apps-in-minutes/\nSource: https://simonwillison.net/2026/May/20/google-io/#atom-everything\nSource: https://stratechery.com/2026/google-i-o-world-models-i-o-spaghetti/\n2. Policy & Regulation Watch: Google SynthID Watermarking Adopted\nSource: https://arstechnica.com/google/2026/05/googles-synthid-ai-watermarking-tech-is-being-adopted-by-openai-nvidia-and-more/\nSource: https://www.theverge.com/ai-artificial-intelligence/934521/google-synthid-c2pa-content-credentials-ai-labelling-efforts\nSource: https://techcrunch.com/2026/05/19/openai-is-making-it-easier-to-check-if-an-image-was-made-by-their-models/\nSource: https://openai.com/index/advancing-content-provenance/\nSource: https://github.com/wiltodelta/remove-ai-watermarks\n3. AI Business Watch: Andrej Karpathy Joins Anthropic\nSource: https://the-decoder.com/prominent-ai-researcher-andrej-karpathy-picks-anthropic-over-former-home-openai-to-get-back-into-frontier-llm-research/",
+  "durationSeconds": 237,
+  "byteLength": 5686406,
+  "pubDate": "2026-05-20T15:42:30.399Z",
+  "season": 2026,
+  "episodeNumber": 140,
+  "chaptersFilename": "2026-05-20.chapters.json",
+  "transcriptFilename": "2026-05-20.transcript.txt",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 32,
+      "title": "Intro"
+    },
+    {
+      "startTime": 32,
+      "endTime": 99,
+      "title": "Google I/O 2026 Unveils Gemini 3.5 Flash"
+    },
+    {
+      "startTime": 99,
+      "endTime": 159,
+      "title": "Google SynthID Watermarking Adopted"
+    },
+    {
+      "startTime": 159,
+      "endTime": 208,
+      "title": "Andrej Karpathy Joins Anthropic"
+    },
+    {
+      "startTime": 208,
+      "endTime": 237,
+      "title": "Outro"
+    }
+  ],
+  "soundbites": [
+    {
+      "startTime": 32,
+      "duration": 67,
+      "title": "Google I/O 2026 Unveils Gemini 3.5 Flash"
+    },
+    {
+      "startTime": 99,
+      "duration": 59,
+      "title": "Google SynthID Watermarking Adopted"
+    },
+    {
+      "startTime": 159,
+      "duration": 49,
+      "title": "Andrej Karpathy Joins Anthropic"
+    }
+  ]
+}

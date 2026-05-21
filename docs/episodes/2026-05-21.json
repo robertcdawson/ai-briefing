@@ -1,0 +1,56 @@
+{
+  "date": "2026-05-21",
+  "title": "AI Briefing — May 21, 2026",
+  "description": "Top 3 AI stories for 2026-05-21:\n\nChapters:\n00:00:00 Intro\n00:00:32 OpenAI Disproves 80-Year-Old Conjecture\n00:01:37 Anthropic Commits $15B to SpaceX Colossus...\n00:02:31 OpenAI Files for Confidential IPO\n00:03:20 Outro\n\nSources:\n1. Research Breakthrough: OpenAI Disproves 80-Year-Old Conjecture\nSource: https://news.ycombinator.com/item?id=48212493\nSource: https://techcrunch.com/2026/05/20/openai-claims-it-solved-an-80-year-old-math-problem-for-real-this-time/\nSource: https://openai.com/index/model-disproves-discrete-geometry-conjecture/\n2. AI Business Watch: Anthropic Commits $15B to SpaceX Colossus Compute\nSource: https://www.theverge.com/science/935229/spacex-anthropic-ipo-ai-capacity-deal-colossus\nSource: https://techcrunch.com/2026/05/20/anthropic-will-pay-xai-1-25-billion-per-month-for-compute/\nSource: https://news.ycombinator.com/item?id=48214017\nSource: https://techcrunch.com/2026/05/20/anthropic-says-its-about-to-have-its-first-profitable-quarter/\nSource: https://simonwillison.net/2026/May/20/spacex-s1/#atom-everything\n3. AI Business Watch: OpenAI Files for Confidential IPO\nSource: https://www.cnbc.com/2026/05/20/openai-ipo-filing.html\nSource: https://www.wsj.com/tech/ai/openai-is-preparing-to-file-for-an-ipo-very-soon-0ec95af5\nSource: https://techcrunch.com/2026/05/20/openai-barrels-toward-ipo-that-may-happen-in-september/",
+  "durationSeconds": 226,
+  "byteLength": 5425488,
+  "pubDate": "2026-05-21T14:27:13.748Z",
+  "season": 2026,
+  "episodeNumber": 141,
+  "chaptersFilename": "2026-05-21.chapters.json",
+  "transcriptFilename": "2026-05-21.transcript.txt",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 32,
+      "title": "Intro"
+    },
+    {
+      "startTime": 32,
+      "endTime": 97,
+      "title": "OpenAI Disproves 80-Year-Old Conjecture"
+    },
+    {
+      "startTime": 97,
+      "endTime": 151,
+      "title": "Anthropic Commits $15B to SpaceX Colossus..."
+    },
+    {
+      "startTime": 151,
+      "endTime": 200,
+      "title": "OpenAI Files for Confidential IPO"
+    },
+    {
+      "startTime": 200,
+      "endTime": 226,
+      "title": "Outro"
+    }
+  ],
+  "soundbites": [
+    {
+      "startTime": 32,
+      "duration": 65,
+      "title": "OpenAI Disproves 80-Year-Old Conjecture"
+    },
+    {
+      "startTime": 97,
+      "duration": 53,
+      "title": "Anthropic Commits $15B to SpaceX Colossus..."
+    },
+    {
+      "startTime": 151,
+      "duration": 49,
+      "title": "OpenAI Files for Confidential IPO"
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "date": "2026-05-23",
+  "title": "AI Briefing — May 23, 2026",
+  "description": "Top 3 AI stories for 2026-05-23:\n\nChapters:\n00:00:00 Intro\n00:00:35 Claude Mythos Finds Bugs Faster Than...\n00:01:30 Trump Cancels AI Safety Testing Executive...\n00:02:26 OpenAI Loses $1.22 for Every Dollar...\n00:03:19 Outro\n\nSources:\n1. Research Breakthrough: Claude Mythos Finds Bugs Faster Than Developers Can Patch Them\nSource: https://the-decoder.com/anthropic-warns-claude-mythos-preview-finds-bugs-faster-than-developers-can-patch-them/\n2. Policy & Regulation Watch: Trump Cancels AI Safety Testing Executive Order After Tech CEO Snub\nSource: https://arstechnica.com/tech-policy/2026/05/trump-canceled-ai-safety-testing-eo-after-snub-from-tech-ceos/\n3. AI Business Watch: OpenAI Loses $1.22 for Every Dollar Earned Despite Record Revenue\nSource: https://the-decoder.com/openai-burned-through-1-22-per-dollar-earned-even-after-stripping-out-stock-based-compensation/",
+  "durationSeconds": 227,
+  "byteLength": 5442197,
+  "pubDate": "2026-05-23T14:08:18.216Z",
+  "season": 2026,
+  "episodeNumber": 143,
+  "chaptersFilename": "2026-05-23.chapters.json",
+  "transcriptFilename": "2026-05-23.transcript.txt",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 35,
+      "title": "Intro"
+    },
+    {
+      "startTime": 35,
+      "endTime": 90,
+      "title": "Claude Mythos Finds Bugs Faster Than..."
+    },
+    {
+      "startTime": 90,
+      "endTime": 146,
+      "title": "Trump Cancels AI Safety Testing Executive..."
+    },
+    {
+      "startTime": 146,
+      "endTime": 199,
+      "title": "OpenAI Loses $1.22 for Every Dollar..."
+    },
+    {
+      "startTime": 199,
+      "endTime": 227,
+      "title": "Outro"
+    }
+  ],
+  "soundbites": [
+    {
+      "startTime": 35,
+      "duration": 55,
+      "title": "Claude Mythos Finds Bugs Faster Than..."
+    },
+    {
+      "startTime": 90,
+      "duration": 56,
+      "title": "Trump Cancels AI Safety Testing Executive..."
+    },
+    {
+      "startTime": 146,
+      "duration": 53,
+      "title": "OpenAI Loses $1.22 for Every Dollar..."
+    }
+  ]
+}

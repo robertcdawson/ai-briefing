@@ -4,7 +4,7 @@
         <title>AI Briefing</title>
         <link>https://robertcdawson.github.io/ai-briefing/</link>
         <description>Daily AI news briefing — the top three stories from the last 24 hours.</description>
-        <lastBuildDate>Fri, 22 May 2026 14:19:52 GMT</lastBuildDate>
+        <lastBuildDate>Sat, 23 May 2026 14:08:18 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -23,6 +23,58 @@
         <podcast:guid>ea8709f4-3ba2-5b7e-bcdc-e409d84a6443</podcast:guid>
         <podcast:locked owner="manatees@gmail.com">yes</podcast:locked>
         <podcast:person role="host" group="cast">Robert Dawson</podcast:person>
+        <item>
+            <title><![CDATA[AI Briefing — May 23, 2026]]></title>
+            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-05-23.mp3</link>
+            <guid>ai-briefing-2026-05-23</guid>
+            <pubDate>Sat, 23 May 2026 14:08:18 GMT</pubDate>
+            <description><![CDATA[Top 3 AI stories for 2026-05-23:
+
+Chapters:
+00:00:00 Intro
+00:00:35 Claude Mythos Finds Bugs Faster Than...
+00:01:30 Trump Cancels AI Safety Testing Executive...
+00:02:26 OpenAI Loses $1.22 for Every Dollar...
+00:03:19 Outro
+
+Sources:
+1. Research Breakthrough: Claude Mythos Finds Bugs Faster Than Developers Can Patch Them
+Source: https://the-decoder.com/anthropic-warns-claude-mythos-preview-finds-bugs-faster-than-developers-can-patch-them/
+2. Policy & Regulation Watch: Trump Cancels AI Safety Testing Executive Order After Tech CEO Snub
+Source: https://arstechnica.com/tech-policy/2026/05/trump-canceled-ai-safety-testing-eo-after-snub-from-tech-ceos/
+3. AI Business Watch: OpenAI Loses $1.22 for Every Dollar Earned Despite Record Revenue
+Source: https://the-decoder.com/openai-burned-through-1-22-per-dollar-earned-even-after-stripping-out-stock-based-compensation/]]></description>
+            <enclosure length="5442197" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-23.mp3"/>
+                    <itunes:duration>227</itunes:duration>
+            <itunes:explicit>false</itunes:explicit>
+            <itunes:season>2026</itunes:season>
+            <itunes:episode>143</itunes:episode>
+            <itunes:episodeType>full</itunes:episodeType>
+            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-23.chapters.json" type="application/json+chapters"/>
+            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-23.transcript.txt" type="text/plain" language="en"/>
+            <podcast:soundbite startTime="35" duration="55">Claude Mythos Finds Bugs Faster Than...</podcast:soundbite>
+            <podcast:soundbite startTime="90" duration="56">Trump Cancels AI Safety Testing Executive...</podcast:soundbite>
+            <podcast:soundbite startTime="146" duration="53">OpenAI Loses <guid>ai-briefing-2026-05-23</guid>
+            <pubDate>Sat, 23 May 2026 14:08:18 GMT</pubDate>
+            <description><![CDATA[Top 3 AI stories for 2026-05-23:
+
+Chapters:
+00:00:00 Intro
+00:00:35 Claude Mythos Finds Bugs Faster Than...
+00:01:30 Trump Cancels AI Safety Testing Executive...
+00:02:26 OpenAI Loses $1.22 for Every Dollar...
+00:03:19 Outro
+
+Sources:
+1. Research Breakthrough: Claude Mythos Finds Bugs Faster Than Developers Can Patch Them
+Source: https://the-decoder.com/anthropic-warns-claude-mythos-preview-finds-bugs-faster-than-developers-can-patch-them/
+2. Policy & Regulation Watch: Trump Cancels AI Safety Testing Executive Order After Tech CEO Snub
+Source: https://arstechnica.com/tech-policy/2026/05/trump-canceled-ai-safety-testing-eo-after-snub-from-tech-ceos/
+3. AI Business Watch: OpenAI Loses $1.22 for Every Dollar Earned Despite Record Revenue
+Source: https://the-decoder.com/openai-burned-through-1-22-per-dollar-earned-even-after-stripping-out-stock-based-compensation/]]></description>
+            <enclosure length="5442197" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-23.mp3"/>
+        .22 for Every Dollar...</podcast:soundbite>
+        </item>
         <item>
             <title><![CDATA[AI Briefing — May 22, 2026]]></title>
             <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-05-22.mp3</link>

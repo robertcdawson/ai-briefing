@@ -1,0 +1,31 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — May 23, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 35,
+      "title": "Intro"
+    },
+    {
+      "startTime": 35,
+      "endTime": 90,
+      "title": "Claude Mythos Finds Bugs Faster Than..."
+    },
+    {
+      "startTime": 90,
+      "endTime": 146,
+      "title": "Trump Cancels AI Safety Testing Executive..."
+    },
+    {
+      "startTime": 146,
+      "endTime": 199,
+      "title": "OpenAI Loses $1.22 for Every Dollar..."
+    },
+    {
+      "startTime": 199,
+      "endTime": 227,
+      "title": "Outro"
+    }
+  ]
+}

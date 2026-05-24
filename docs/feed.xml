@@ -4,7 +4,7 @@
         <title>AI Briefing</title>
         <link>https://robertcdawson.github.io/ai-briefing/</link>
         <description>Daily AI news briefing — the top three stories from the last 24 hours.</description>
-        <lastBuildDate>Sat, 23 May 2026 14:08:18 GMT</lastBuildDate>
+        <lastBuildDate>Sun, 24 May 2026 14:07:02 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -23,6 +23,39 @@
         <podcast:guid>ea8709f4-3ba2-5b7e-bcdc-e409d84a6443</podcast:guid>
         <podcast:locked owner="manatees@gmail.com">yes</podcast:locked>
         <podcast:person role="host" group="cast">Robert Dawson</podcast:person>
+        <item>
+            <title><![CDATA[AI Briefing — May 24, 2026]]></title>
+            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-05-24.mp3</link>
+            <guid>ai-briefing-2026-05-24</guid>
+            <pubDate>Sun, 24 May 2026 14:07:02 GMT</pubDate>
+            <description><![CDATA[Top 3 AI stories for 2026-05-24:
+
+Chapters:
+00:00:00 Intro
+00:00:26 DeepSeek Makes 75% Discount Permanent
+00:01:34 Claude Code Discovers AI Scaling Algorithms
+00:02:31 Anthropic to Continue Supplying Claude to NSA
+00:03:20 Outro
+
+Sources:
+1. AI Business Watch: DeepSeek Makes 75% Discount Permanent
+Source: https://the-decoder.com/deepseek-makes-its-75-percent-discount-permanent-pricing-output-tokens-at-least-34x-below-gpt-5-5/
+2. Research Breakthrough: Claude Code Discovers AI Scaling Algorithms
+Source: https://the-decoder.com/researchers-let-claude-code-discover-ai-scaling-algorithms-that-humans-probably-wouldnt-have-designed/
+3. Policy & Regulation Watch: Anthropic to Continue Supplying Claude to NSA
+Source: https://the-decoder.com/anthropic-may-keep-supplying-claude-to-the-nsa-despite-being-flagged-as-a-supply-chain-risk-by-the-pentagon/]]></description>
+            <enclosure length="5578137" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-24.mp3"/>
+                    <itunes:duration>232</itunes:duration>
+            <itunes:explicit>false</itunes:explicit>
+            <itunes:season>2026</itunes:season>
+            <itunes:episode>144</itunes:episode>
+            <itunes:episodeType>full</itunes:episodeType>
+            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-24.chapters.json" type="application/json+chapters"/>
+            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-24.transcript.txt" type="text/plain" language="en"/>
+            <podcast:soundbite startTime="26" duration="69">DeepSeek Makes 75% Discount Permanent</podcast:soundbite>
+            <podcast:soundbite startTime="94" duration="56">Claude Code Discovers AI Scaling Algorithms</podcast:soundbite>
+            <podcast:soundbite startTime="151" duration="49">Anthropic to Continue Supplying Claude to NSA</podcast:soundbite>
+        </item>
         <item>
             <title><![CDATA[AI Briefing — May 23, 2026]]></title>
             <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-05-23.mp3</link>

@@ -4,7 +4,7 @@
         <title>AI Briefing</title>
         <link>https://robertcdawson.github.io/ai-briefing/</link>
         <description>Daily AI news briefing — the top three stories from the last 24 hours.</description>
-        <lastBuildDate>Sun, 24 May 2026 14:07:02 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 25 May 2026 14:25:35 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -23,6 +23,39 @@
         <podcast:guid>ea8709f4-3ba2-5b7e-bcdc-e409d84a6443</podcast:guid>
         <podcast:locked owner="manatees@gmail.com">yes</podcast:locked>
         <podcast:person role="host" group="cast">Robert Dawson</podcast:person>
+        <item>
+            <title><![CDATA[AI Briefing — May 25, 2026]]></title>
+            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-05-25.mp3</link>
+            <guid>ai-briefing-2026-05-25</guid>
+            <pubDate>Mon, 25 May 2026 14:25:35 GMT</pubDate>
+            <description><![CDATA[Top 3 AI stories for 2026-05-25:
+
+Chapters:
+00:00:00 Intro
+00:00:28 AlphaProof Nexus Solves Decades-Old Math...
+00:01:35 AI Models Cite Wrong Sources Despite...
+00:02:37 Communities Passing Anti-Data Center...
+00:03:35 Outro
+
+Sources:
+1. Research Breakthrough: AlphaProof Nexus Solves Decades-Old Math Problems
+Source: https://the-decoder.com/google-deepminds-alphaproof-nexus-solves-decades-old-math-problems-for-a-few-hundred-dollars/
+2. Research Breakthrough: AI Models Cite Wrong Sources Despite Correct Answers
+Source: https://the-decoder.com/ai-models-often-give-the-right-answers-but-point-to-the-wrong-sources/
+3. Policy & Regulation Watch: Communities Passing Anti-Data Center Legislation
+Source: https://www.404media.co/an-incomplete-list-of-successful-anti-data-center-legislation/]]></description>
+            <enclosure length="5900693" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-25.mp3"/>
+                    <itunes:duration>246</itunes:duration>
+            <itunes:explicit>false</itunes:explicit>
+            <itunes:season>2026</itunes:season>
+            <itunes:episode>145</itunes:episode>
+            <itunes:episodeType>full</itunes:episodeType>
+            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-25.chapters.json" type="application/json+chapters"/>
+            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-25.transcript.txt" type="text/plain" language="en"/>
+            <podcast:soundbite startTime="28" duration="68">AlphaProof Nexus Solves Decades-Old Math...</podcast:soundbite>
+            <podcast:soundbite startTime="95" duration="62">AI Models Cite Wrong Sources Despite...</podcast:soundbite>
+            <podcast:soundbite startTime="157" duration="58">Communities Passing Anti-Data Center...</podcast:soundbite>
+        </item>
         <item>
             <title><![CDATA[AI Briefing — May 24, 2026]]></title>
             <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-05-24.mp3</link>

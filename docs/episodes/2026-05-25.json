@@ -1,0 +1,56 @@
+{
+  "date": "2026-05-25",
+  "title": "AI Briefing — May 25, 2026",
+  "description": "Top 3 AI stories for 2026-05-25:\n\nChapters:\n00:00:00 Intro\n00:00:28 AlphaProof Nexus Solves Decades-Old Math...\n00:01:35 AI Models Cite Wrong Sources Despite...\n00:02:37 Communities Passing Anti-Data Center...\n00:03:35 Outro\n\nSources:\n1. Research Breakthrough: AlphaProof Nexus Solves Decades-Old Math Problems\nSource: https://the-decoder.com/google-deepminds-alphaproof-nexus-solves-decades-old-math-problems-for-a-few-hundred-dollars/\n2. Research Breakthrough: AI Models Cite Wrong Sources Despite Correct Answers\nSource: https://the-decoder.com/ai-models-often-give-the-right-answers-but-point-to-the-wrong-sources/\n3. Policy & Regulation Watch: Communities Passing Anti-Data Center Legislation\nSource: https://www.404media.co/an-incomplete-list-of-successful-anti-data-center-legislation/",
+  "durationSeconds": 246,
+  "byteLength": 5900693,
+  "pubDate": "2026-05-25T14:25:35.683Z",
+  "season": 2026,
+  "episodeNumber": 145,
+  "chaptersFilename": "2026-05-25.chapters.json",
+  "transcriptFilename": "2026-05-25.transcript.txt",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 28,
+      "title": "Intro"
+    },
+    {
+      "startTime": 28,
+      "endTime": 95,
+      "title": "AlphaProof Nexus Solves Decades-Old Math..."
+    },
+    {
+      "startTime": 95,
+      "endTime": 157,
+      "title": "AI Models Cite Wrong Sources Despite..."
+    },
+    {
+      "startTime": 157,
+      "endTime": 215,
+      "title": "Communities Passing Anti-Data Center..."
+    },
+    {
+      "startTime": 215,
+      "endTime": 246,
+      "title": "Outro"
+    }
+  ],
+  "soundbites": [
+    {
+      "startTime": 28,
+      "duration": 68,
+      "title": "AlphaProof Nexus Solves Decades-Old Math..."
+    },
+    {
+      "startTime": 95,
+      "duration": 62,
+      "title": "AI Models Cite Wrong Sources Despite..."
+    },
+    {
+      "startTime": 157,
+      "duration": 58,
+      "title": "Communities Passing Anti-Data Center..."
+    }
+  ]
+}

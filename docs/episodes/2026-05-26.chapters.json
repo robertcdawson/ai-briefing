@@ -1,0 +1,31 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — May 26, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 31,
+      "title": "Intro"
+    },
+    {
+      "startTime": 31,
+      "endTime": 92,
+      "title": "AI-fabricated citations infiltrating..."
+    },
+    {
+      "startTime": 92,
+      "endTime": 147,
+      "title": "Pope Leo XIV issues landmark encyclical..."
+    },
+    {
+      "startTime": 147,
+      "endTime": 203,
+      "title": "AI's real jobs threat may be quietly..."
+    },
+    {
+      "startTime": 203,
+      "endTime": 234,
+      "title": "Outro"
+    }
+  ]
+}

@@ -4,7 +4,7 @@
         <title>AI Briefing</title>
         <link>https://robertcdawson.github.io/ai-briefing/</link>
         <description>Daily AI news briefing — the top three stories from the last 24 hours.</description>
-        <lastBuildDate>Mon, 25 May 2026 14:25:35 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 26 May 2026 14:24:06 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -23,6 +23,43 @@
         <podcast:guid>ea8709f4-3ba2-5b7e-bcdc-e409d84a6443</podcast:guid>
         <podcast:locked owner="manatees@gmail.com">yes</podcast:locked>
         <podcast:person role="host" group="cast">Robert Dawson</podcast:person>
+        <item>
+            <title><![CDATA[AI Briefing — May 26, 2026]]></title>
+            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-05-26.mp3</link>
+            <guid>ai-briefing-2026-05-26</guid>
+            <pubDate>Tue, 26 May 2026 14:24:06 GMT</pubDate>
+            <description><![CDATA[Top 3 AI stories for 2026-05-26:
+
+Chapters:
+00:00:00 Intro
+00:00:31 AI-fabricated citations infiltrating...
+00:01:32 Pope Leo XIV issues landmark encyclical...
+00:02:27 AI's real jobs threat may be quietly...
+00:03:23 Outro
+
+Sources:
+1. Research Breakthrough: AI-fabricated citations infiltrating biomedical papers
+Source: https://the-decoder.com/ai-hallucinated-citations-are-creeping-into-papers-that-shape-clinical-guidelines-researchers-warn/
+2. Policy & Regulation Watch: Pope Leo XIV issues landmark encyclical warning against unconstrained AI power
+Source: https://www.theverge.com/news/936945/pope-leo-letter-encyclical-ai-anthropic-labor-warfare
+Source: https://simonwillison.net/2026/May/25/encyclical-on-ai/#atom-everything
+Source: https://techcrunch.com/2026/05/25/the-popes-ai-encyclical-isnt-really-about-ai/
+3. AI Culture Signal: AI's real jobs threat may be quietly hollowing out entry-level career pathways
+Source: https://www.technologyreview.com/2026/05/26/1137855/a-reality-check-on-the-ai-jobs-hysteria/
+Source: https://www.technologyreview.com/2026/05/26/1137865/its-time-to-address-the-looming-crisis-in-entry-level-work/
+Source: https://techcrunch.com/2026/05/25/what-clickups-mass-layoff-tells-us-about-the-future-of-work/]]></description>
+            <enclosure length="5606932" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-26.mp3"/>
+                    <itunes:duration>234</itunes:duration>
+            <itunes:explicit>false</itunes:explicit>
+            <itunes:season>2026</itunes:season>
+            <itunes:episode>146</itunes:episode>
+            <itunes:episodeType>full</itunes:episodeType>
+            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-26.chapters.json" type="application/json+chapters"/>
+            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-26.transcript.txt" type="text/plain" language="en"/>
+            <podcast:soundbite startTime="31" duration="61">AI-fabricated citations infiltrating...</podcast:soundbite>
+            <podcast:soundbite startTime="92" duration="55">Pope Leo XIV issues landmark encyclical...</podcast:soundbite>
+            <podcast:soundbite startTime="147" duration="55">AI&apos;s real jobs threat may be quietly...</podcast:soundbite>
+        </item>
         <item>
             <title><![CDATA[AI Briefing — May 25, 2026]]></title>
             <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-05-25.mp3</link>

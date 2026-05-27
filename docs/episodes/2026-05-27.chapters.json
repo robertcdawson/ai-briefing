@@ -1,0 +1,31 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — May 27, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 29,
+      "title": "Intro"
+    },
+    {
+      "startTime": 29,
+      "endTime": 90,
+      "title": "Critical 'BadHost' vulnerability in..."
+    },
+    {
+      "startTime": 90,
+      "endTime": 146,
+      "title": "Anthropic's Claude Mythos reportedly..."
+    },
+    {
+      "startTime": 146,
+      "endTime": 206,
+      "title": "YouTube begins automatically labeling..."
+    },
+    {
+      "startTime": 206,
+      "endTime": 236,
+      "title": "Outro"
+    }
+  ]
+}

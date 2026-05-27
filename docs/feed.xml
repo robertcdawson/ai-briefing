@@ -4,7 +4,7 @@
         <title>AI Briefing</title>
         <link>https://robertcdawson.github.io/ai-briefing/</link>
         <description>Daily AI news briefing — the top three stories from the last 24 hours.</description>
-        <lastBuildDate>Tue, 26 May 2026 14:24:06 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 27 May 2026 14:45:52 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -23,6 +23,40 @@
         <podcast:guid>ea8709f4-3ba2-5b7e-bcdc-e409d84a6443</podcast:guid>
         <podcast:locked owner="manatees@gmail.com">yes</podcast:locked>
         <podcast:person role="host" group="cast">Robert Dawson</podcast:person>
+        <item>
+            <title><![CDATA[AI Briefing — May 27, 2026]]></title>
+            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-05-27.mp3</link>
+            <guid>ai-briefing-2026-05-27</guid>
+            <pubDate>Wed, 27 May 2026 14:45:52 GMT</pubDate>
+            <description><![CDATA[Top 3 AI stories for 2026-05-27:
+
+Chapters:
+00:00:00 Intro
+00:00:29 Critical 'BadHost' vulnerability in...
+00:01:30 Anthropic's Claude Mythos reportedly...
+00:02:26 YouTube begins automatically labeling...
+00:03:26 Outro
+
+Sources:
+1. Product & Tool Watch: Critical 'BadHost' vulnerability in Starlette package imperils millions of AI agents
+Source: https://arstechnica.com/information-technology/2026/05/millions-of-ai-agents-imperiled-by-critical-vulnerability-in-open-source-package/
+2. Research Breakthrough: Anthropic's Claude Mythos reportedly solves landmark 1946 Erdős math conjecture
+Source: https://the-decoder.com/claude-mythos-reportedly-solves-openais-landmark-erdos-problem-with-a-cute-simple-proof/
+3. Policy & Regulation Watch: YouTube begins automatically labeling AI-generated content across its platform
+Source: https://www.theverge.com/streaming/937915/youtube-ai-labels-shorts-automatic-identification-updates
+Source: https://techcrunch.com/2026/05/27/youtube-will-now-automatically-label-ai-videos/]]></description>
+            <enclosure length="5659921" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-27.mp3"/>
+                    <itunes:duration>236</itunes:duration>
+            <itunes:explicit>false</itunes:explicit>
+            <itunes:season>2026</itunes:season>
+            <itunes:episode>147</itunes:episode>
+            <itunes:episodeType>full</itunes:episodeType>
+            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-27.chapters.json" type="application/json+chapters"/>
+            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-27.transcript.txt" type="text/plain" language="en"/>
+            <podcast:soundbite startTime="29" duration="61">Critical &apos;BadHost&apos; vulnerability in...</podcast:soundbite>
+            <podcast:soundbite startTime="90" duration="55">Anthropic&apos;s Claude Mythos reportedly...</podcast:soundbite>
+            <podcast:soundbite startTime="146" duration="60">YouTube begins automatically labeling...</podcast:soundbite>
+        </item>
         <item>
             <title><![CDATA[AI Briefing — May 26, 2026]]></title>
             <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-05-26.mp3</link>

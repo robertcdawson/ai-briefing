@@ -11,6 +11,6 @@ test("SPEAKER_PROFILES defines anchor and analyst with distinct default voices",
 
 test("EPISODE_SPEAKERS mirrors profile persona text for script generation", () => {
   assert.equal(EPISODE_SPEAKERS.length, 2);
-  assert.match(speakerNamesForPrompt(), /anchor: The Anchor — The Anchor is concise/);
-  assert.match(speakerNamesForPrompt(), /analyst: The Analyst — The Analyst is warmer/);
+  assert.match(speakerNamesForPrompt(), /anchor: The Anchor\. The Anchor is concise/);
+  assert.match(speakerNamesForPrompt(), /analyst: The Analyst\. The Analyst is warmer/);
 });

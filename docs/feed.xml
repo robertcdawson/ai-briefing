@@ -4,7 +4,7 @@
         <title>AI Briefing</title>
         <link>https://robertcdawson.github.io/ai-briefing/</link>
         <description>Daily AI news briefing — the top three stories from the last 24 hours.</description>
-        <lastBuildDate>Thu, 28 May 2026 14:45:57 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 28 May 2026 20:54:55 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -27,55 +27,40 @@
             <title><![CDATA[AI Briefing — May 28, 2026]]></title>
             <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-05-28.mp3</link>
             <guid>ai-briefing-2026-05-28</guid>
-            <pubDate>Thu, 28 May 2026 14:45:57 GMT</pubDate>
+            <pubDate>Thu, 28 May 2026 20:54:55 GMT</pubDate>
             <description><![CDATA[Top 3 AI stories for 2026-05-28:
 
 Chapters:
 00:00:00 Intro
-00:00:30 Cognition Raises $1B at $25B Valuation
-00:01:33 New ITBench-AA Benchmark Shows Frontier...
-00:02:32 CNN Sues Perplexity AI Over Verbatim...
-00:03:26 Outro
+00:00:29 Anthropic closes $65B Series H round...
+00:01:27 Anthropic releases Claude Opus 4.8 with...
+00:02:17 Illinois passes landmark AI safety law as...
+00:03:11 Outro
 
 Sources:
-1. AI Business Watch: Cognition Raises $1B at $25B Valuation
-Source: https://techcrunch.com/2026/05/27/ai-coding-startup-cognition-raises-1b-at-25b-pre-money-valuation/
-Source: https://the-decoder.com/ai-coding-agent-devin-maker-cognition-more-than-doubles-its-valuation-to-26-billion-in-under-nine-months/
-2. Research Breakthrough: New ITBench-AA Benchmark Shows Frontier Models Below 50% on Enterprise IT Tasks
-Source: https://huggingface.co/blog/ibm-research/itbench-aa
-3. Policy & Regulation Watch: CNN Sues Perplexity AI Over Verbatim Content Copying
-Source: https://www.theverge.com/ai-artificial-intelligence/938893/cnn-perplexity-ai-copyright-lawsuit]]></description>
-            <enclosure length="5660499" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-28.mp3"/>
-                    <itunes:duration>236</itunes:duration>
+1. AI Business Watch: Anthropic closes $65B Series H round nearing $1 trillion valuation
+Source: https://www.anthropic.com/news/series-h
+Source: https://techcrunch.com/2026/05/28/anthropic-raises-65-billion-nears-1t-valuation-ahead-of-ipo/
+Source: https://techcrunch.com/2026/05/28/how-long-is-anthropics-lease-with-spacex-opinions-vary/
+2. Product & Tool Watch: Anthropic releases Claude Opus 4.8 with honesty improvements and dynamic agent workflows
+Source: https://www.anthropic.com/news/claude-opus-4-8
+Source: https://www.theverge.com/ai-artificial-intelligence/939094/anthropic-claude-4-8-opus-honesty-effort
+Source: https://techcrunch.com/2026/05/28/anthropic-releases-opus-4-8-with-new-dynamic-workflow-tool/
+Source: https://claude.com/blog/introducing-dynamic-workflows-in-claude-code
+3. Policy & Regulation Watch: Illinois passes landmark AI safety law as state regulation outpaces federal action
+Source: https://arstechnica.com/tech-policy/2026/05/trump-loses-more-control-over-ai-regulation-as-illinois-passes-landmark-law/
+Source: https://openai.com/index/openai-frontier-governance-framework]]></description>
+            <enclosure length="5343705" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-28.mp3"/>
+                    <itunes:duration>223</itunes:duration>
             <itunes:explicit>false</itunes:explicit>
             <itunes:season>2026</itunes:season>
             <itunes:episode>148</itunes:episode>
             <itunes:episodeType>full</itunes:episodeType>
             <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-28.chapters.json" type="application/json+chapters"/>
             <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-28.transcript.txt" type="text/plain" language="en"/>
-            <podcast:soundbite startTime="30" duration="63">Cognition Raises <guid>ai-briefing-2026-05-28</guid>
-            <pubDate>Thu, 28 May 2026 14:45:57 GMT</pubDate>
-            <description><![CDATA[Top 3 AI stories for 2026-05-28:
-
-Chapters:
-00:00:00 Intro
-00:00:30 Cognition Raises $1B at $25B Valuation
-00:01:33 New ITBench-AA Benchmark Shows Frontier...
-00:02:32 CNN Sues Perplexity AI Over Verbatim...
-00:03:26 Outro
-
-Sources:
-1. AI Business Watch: Cognition Raises $1B at $25B Valuation
-Source: https://techcrunch.com/2026/05/27/ai-coding-startup-cognition-raises-1b-at-25b-pre-money-valuation/
-Source: https://the-decoder.com/ai-coding-agent-devin-maker-cognition-more-than-doubles-its-valuation-to-26-billion-in-under-nine-months/
-2. Research Breakthrough: New ITBench-AA Benchmark Shows Frontier Models Below 50% on Enterprise IT Tasks
-Source: https://huggingface.co/blog/ibm-research/itbench-aa
-3. Policy & Regulation Watch: CNN Sues Perplexity AI Over Verbatim Content Copying
-Source: https://www.theverge.com/ai-artificial-intelligence/938893/cnn-perplexity-ai-copyright-lawsuit]]></description>
-            <enclosure length="5660499" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-28.mp3"/>
-        B at $25B Valuation</podcast:soundbite>
-            <podcast:soundbite startTime="93" duration="58">New ITBench-AA Benchmark Shows Frontier...</podcast:soundbite>
-            <podcast:soundbite startTime="152" duration="54">CNN Sues Perplexity AI Over Verbatim...</podcast:soundbite>
+            <podcast:soundbite startTime="29" duration="58">Anthropic closes $65B Series H round...</podcast:soundbite>
+            <podcast:soundbite startTime="87" duration="50">Anthropic releases Claude Opus 4.8 with...</podcast:soundbite>
+            <podcast:soundbite startTime="137" duration="54">Illinois passes landmark AI safety law as...</podcast:soundbite>
         </item>
         <item>
             <title><![CDATA[AI Briefing — May 27, 2026]]></title>

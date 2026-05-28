@@ -4,27 +4,27 @@
   "chapters": [
     {
       "startTime": 0,
-      "endTime": 30,
+      "endTime": 29,
       "title": "Intro"
     },
     {
-      "startTime": 30,
-      "endTime": 93,
-      "title": "Cognition Raises $1B at $25B Valuation"
+      "startTime": 29,
+      "endTime": 87,
+      "title": "Anthropic closes $65B Series H round..."
     },
     {
-      "startTime": 93,
-      "endTime": 152,
-      "title": "New ITBench-AA Benchmark Shows Frontier..."
+      "startTime": 87,
+      "endTime": 137,
+      "title": "Anthropic releases Claude Opus 4.8 with..."
     },
     {
-      "startTime": 152,
-      "endTime": 206,
-      "title": "CNN Sues Perplexity AI Over Verbatim..."
+      "startTime": 137,
+      "endTime": 191,
+      "title": "Illinois passes landmark AI safety law as..."
     },
     {
-      "startTime": 206,
-      "endTime": 236,
+      "startTime": 191,
+      "endTime": 223,
       "title": "Outro"
     }
   ]

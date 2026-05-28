@@ -4,7 +4,7 @@ import { EPISODE_SPEAKERS, speakerNamesForPrompt } from "../src/speakers.js";
 import { SPEAKER_PROFILES } from "../src/speakerProfiles.js";
 
 test("SPEAKER_PROFILES defines anchor and analyst with distinct default voices", () => {
-  assert.equal(SPEAKER_PROFILES.anchor.defaultVoice, "cedar");
+  assert.equal(SPEAKER_PROFILES.anchor.defaultVoice, "ash");
   assert.equal(SPEAKER_PROFILES.analyst.defaultVoice, "marin");
   assert.notEqual(SPEAKER_PROFILES.anchor.defaultVoice, SPEAKER_PROFILES.analyst.defaultVoice);
 });

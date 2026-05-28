@@ -35,7 +35,7 @@ test("resolveTTSTimeoutMs uses a realistic default and accepts valid overrides",
 });
 
 test("resolveSpeakerVoices chooses per-speaker voices with profile defaults", () => {
-  assert.deepEqual(resolveSpeakerVoices({}), { anchor: "cedar", analyst: "marin" });
+  assert.deepEqual(resolveSpeakerVoices({}), { anchor: "ash", analyst: "marin" });
   assert.deepEqual(
     resolveSpeakerVoices({
       TTS_VOICE: "echo",

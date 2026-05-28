@@ -23,7 +23,7 @@ export const SPEAKER_PROFILES: Record<SpeakerId, SpeakerProfile> = {
       "The Anchor is concise, skeptical, fact-forward, and calm under uncertainty.",
     delivery:
       "Calm public-radio host; skeptical but not smug; medium-low energy; precise pacing; no hype.",
-    defaultVoice: "cedar",
+    defaultVoice: "ash",
   },
   analyst: {
     id: "analyst",

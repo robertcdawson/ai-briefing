@@ -34,6 +34,6 @@ export function formatSpeakerTurns(turns: readonly SpeakerTurn[]): string {
 
 export function speakerNamesForPrompt(): string {
   return EPISODE_SPEAKERS
-    .map((speaker) => `- ${speaker.id}: ${speaker.name} — ${speaker.persona}`)
+    .map((speaker) => `- ${speaker.id}: ${speaker.name}. ${speaker.persona}`)
     .join("\n");
 }

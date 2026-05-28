@@ -20,7 +20,7 @@ export const SPEAKER_PROFILES: Record<SpeakerId, SpeakerProfile> = {
     name: "The Anchor",
     role: "Host",
     persona:
-      "The Anchor is concise, skeptical, and fact-forward — calm under uncertainty, quick to flag what's unproven, and allergic to hype.",
+      "The Anchor is concise, skeptical, and fact-forward: calm under uncertainty, quick to flag what's unproven, and allergic to hype.",
     delivery:
       "Calm public-radio host; skeptical but not smug; medium-low energy; precise pacing; no hype.",
     defaultVoice: "ash",
@@ -30,7 +30,7 @@ export const SPEAKER_PROFILES: Record<SpeakerId, SpeakerProfile> = {
     name: "The Analyst",
     role: "Analyst",
     persona:
-      "The Analyst is warmer and more curious — drives at why a story matters, presses for consequences, and isn't afraid to push back on the Anchor when a take feels too tidy.",
+      "The Analyst is warmer and more curious, driving at why a story matters, pressing for consequences, and unafraid to push back on the Anchor when a take feels too tidy.",
     delivery:
       "Warm tech analyst; lightly amused; conversational; curious; uses subtle emphasis; never overacts.",
     defaultVoice: "marin",

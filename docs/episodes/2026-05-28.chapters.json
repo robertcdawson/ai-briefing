@@ -1,0 +1,31 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — May 28, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 30,
+      "title": "Intro"
+    },
+    {
+      "startTime": 30,
+      "endTime": 93,
+      "title": "Cognition Raises $1B at $25B Valuation"
+    },
+    {
+      "startTime": 93,
+      "endTime": 152,
+      "title": "New ITBench-AA Benchmark Shows Frontier..."
+    },
+    {
+      "startTime": 152,
+      "endTime": 206,
+      "title": "CNN Sues Perplexity AI Over Verbatim..."
+    },
+    {
+      "startTime": 206,
+      "endTime": 236,
+      "title": "Outro"
+    }
+  ]
+}

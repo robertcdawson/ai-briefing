@@ -4,7 +4,7 @@
         <title>AI Briefing</title>
         <link>https://robertcdawson.github.io/ai-briefing/</link>
         <description>Daily AI news briefing — the top three stories from the last 24 hours.</description>
-        <lastBuildDate>Thu, 28 May 2026 20:54:55 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 29 May 2026 14:25:30 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -23,6 +23,47 @@
         <podcast:guid>ea8709f4-3ba2-5b7e-bcdc-e409d84a6443</podcast:guid>
         <podcast:locked owner="manatees@gmail.com">yes</podcast:locked>
         <podcast:person role="host" group="cast">Robert Dawson</podcast:person>
+        <item>
+            <title><![CDATA[AI Briefing — May 29, 2026]]></title>
+            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-05-29.mp3</link>
+            <guid>ai-briefing-2026-05-29</guid>
+            <pubDate>Fri, 29 May 2026 14:25:30 GMT</pubDate>
+            <description><![CDATA[Top 3 AI stories for 2026-05-29:
+
+Chapters:
+00:00:00 Intro
+00:00:31 Anthropic raises $65 billion Series H,...
+00:01:34 Anthropic releases Claude Opus 4.8 with...
+00:02:28 Illinois passes landmark AI safety law as...
+00:03:13 Outro
+
+Sources:
+1. AI Business Watch: Anthropic raises $65 billion Series H, nears trillion-dollar valuation
+Source: https://techcrunch.com/2026/05/28/anthropic-raises-65-billion-nears-1t-valuation-ahead-of-ipo/
+Source: https://www.anthropic.com/news/series-h
+Source: https://the-decoder.com/claude-company-anthropic-nears-a-trillion-dollar-valuation-after-raising-65-billion-in-series-h/
+Source: https://simonwillison.net/2026/May/29/anthropic/#atom-everything
+2. Product & Tool Watch: Anthropic releases Claude Opus 4.8 with dynamic multi-agent workflow orchestration
+Source: https://www.anthropic.com/news/claude-opus-4-8
+Source: https://techcrunch.com/2026/05/28/anthropic-releases-opus-4-8-with-new-dynamic-workflow-tool/
+Source: https://the-decoder.com/anthropic-ships-claude-opus-4-8-as-a-modest-but-tangible-improvement-that-tops-gpt-5-5-in-most-benchmarks/
+Source: https://www.theverge.com/ai-artificial-intelligence/939094/anthropic-claude-4-8-opus-honesty-effort
+Source: https://simonwillison.net/2026/May/28/claude-opus-4-8/#atom-everything
+Source: https://claude.com/blog/introducing-dynamic-workflows-in-claude-code
+3. Policy & Regulation Watch: Illinois passes landmark AI safety law as state regulation outpaces federal inaction
+Source: https://arstechnica.com/tech-policy/2026/05/trump-loses-more-control-over-ai-regulation-as-illinois-passes-landmark-law/]]></description>
+            <enclosure length="5499227" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-29.mp3"/>
+                    <itunes:duration>229</itunes:duration>
+            <itunes:explicit>false</itunes:explicit>
+            <itunes:season>2026</itunes:season>
+            <itunes:episode>149</itunes:episode>
+            <itunes:episodeType>full</itunes:episodeType>
+            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-29.chapters.json" type="application/json+chapters"/>
+            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-29.transcript.txt" type="text/plain" language="en"/>
+            <podcast:soundbite startTime="31" duration="63">Anthropic raises $65 billion Series H,...</podcast:soundbite>
+            <podcast:soundbite startTime="94" duration="54">Anthropic releases Claude Opus 4.8 with...</podcast:soundbite>
+            <podcast:soundbite startTime="148" duration="45">Illinois passes landmark AI safety law as...</podcast:soundbite>
+        </item>
         <item>
             <title><![CDATA[AI Briefing — May 28, 2026]]></title>
             <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-05-28.mp3</link>

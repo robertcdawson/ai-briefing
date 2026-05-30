@@ -4,7 +4,7 @@
         <title>AI Briefing</title>
         <link>https://robertcdawson.github.io/ai-briefing/</link>
         <description>Daily AI news briefing — the top three stories from the last 24 hours.</description>
-        <lastBuildDate>Fri, 29 May 2026 14:25:30 GMT</lastBuildDate>
+        <lastBuildDate>Sat, 30 May 2026 14:08:50 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -23,6 +23,42 @@
         <podcast:guid>ea8709f4-3ba2-5b7e-bcdc-e409d84a6443</podcast:guid>
         <podcast:locked owner="manatees@gmail.com">yes</podcast:locked>
         <podcast:person role="host" group="cast">Robert Dawson</podcast:person>
+        <item>
+            <title><![CDATA[AI Briefing — May 30, 2026]]></title>
+            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-05-30.mp3</link>
+            <guid>ai-briefing-2026-05-30</guid>
+            <pubDate>Sat, 30 May 2026 14:08:50 GMT</pubDate>
+            <description><![CDATA[Top 3 AI stories for 2026-05-30:
+
+Chapters:
+00:00:00 Intro
+00:00:27 AI coding agents drive productivity...
+00:01:35 Liquid AI releases 8B MoE model trained...
+00:02:36 AI startups pay with free home cleaning...
+00:03:28 Outro
+
+Sources:
+1. AI Business Watch: AI coding agents drive productivity claims but raise serious tech-debt concerns
+Source: https://the-decoder.com/salesforce-claims-ai-agents-cut-a-231-day-migration-to-13-days-with-fewer-incidents/
+Source: https://techcrunch.com/2026/05/29/coders-are-refusing-to-work-without-ai-and-that-could-come-back-to-bite-them/
+Source: https://techcrunch.com/2026/05/29/cognitions-scott-wu-says-ai-coding-agents-shouldnt-replace-humans/
+2. Research Breakthrough: Liquid AI releases 8B MoE model trained on 38 trillion tokens
+Source: https://www.liquid.ai/blog/lfm2-5-8b-a1b
+3. AI Culture Signal: AI startups pay with free home cleaning to harvest robot training footage
+Source: https://www.theverge.com/ai-artificial-intelligence/940007/ai-companies-will-pay-for-robot-training-data
+Source: https://arstechnica.com/ai/2026/05/robot-training-startup-will-send-humans-wearing-cameras-to-clean-your-home/]]></description>
+            <enclosure length="5661654" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-30.mp3"/>
+                    <itunes:duration>236</itunes:duration>
+            <itunes:explicit>false</itunes:explicit>
+            <itunes:season>2026</itunes:season>
+            <itunes:episode>150</itunes:episode>
+            <itunes:episodeType>full</itunes:episodeType>
+            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-30.chapters.json" type="application/json+chapters"/>
+            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-30.transcript.txt" type="text/plain" language="en"/>
+            <podcast:soundbite startTime="27" duration="68">AI coding agents drive productivity...</podcast:soundbite>
+            <podcast:soundbite startTime="95" duration="60">Liquid AI releases 8B MoE model trained...</podcast:soundbite>
+            <podcast:soundbite startTime="156" duration="52">AI startups pay with free home cleaning...</podcast:soundbite>
+        </item>
         <item>
             <title><![CDATA[AI Briefing — May 29, 2026]]></title>
             <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-05-29.mp3</link>

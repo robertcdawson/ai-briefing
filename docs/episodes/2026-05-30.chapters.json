@@ -1,0 +1,31 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — May 30, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 27,
+      "title": "Intro"
+    },
+    {
+      "startTime": 27,
+      "endTime": 95,
+      "title": "AI coding agents drive productivity..."
+    },
+    {
+      "startTime": 95,
+      "endTime": 156,
+      "title": "Liquid AI releases 8B MoE model trained..."
+    },
+    {
+      "startTime": 156,
+      "endTime": 208,
+      "title": "AI startups pay with free home cleaning..."
+    },
+    {
+      "startTime": 208,
+      "endTime": 236,
+      "title": "Outro"
+    }
+  ]
+}

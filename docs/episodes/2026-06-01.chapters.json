@@ -1,0 +1,31 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — June 1, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 24,
+      "title": "Intro"
+    },
+    {
+      "startTime": 24,
+      "endTime": 86,
+      "title": "Nvidia launches Cosmos 3 world model and..."
+    },
+    {
+      "startTime": 86,
+      "endTime": 137,
+      "title": "OpenAI model solves 80-year-old famous..."
+    },
+    {
+      "startTime": 137,
+      "endTime": 189,
+      "title": "MiniMax M3 open-weight model offers..."
+    },
+    {
+      "startTime": 189,
+      "endTime": 217,
+      "title": "Outro"
+    }
+  ]
+}

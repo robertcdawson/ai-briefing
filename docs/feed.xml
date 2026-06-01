@@ -4,7 +4,7 @@
         <title>AI Briefing</title>
         <link>https://robertcdawson.github.io/ai-briefing/</link>
         <description>Daily AI news briefing — the top three stories from the last 24 hours.</description>
-        <lastBuildDate>Sun, 31 May 2026 14:11:52 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 01 Jun 2026 15:38:27 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -23,6 +23,41 @@
         <podcast:guid>ea8709f4-3ba2-5b7e-bcdc-e409d84a6443</podcast:guid>
         <podcast:locked owner="manatees@gmail.com">yes</podcast:locked>
         <podcast:person role="host" group="cast">Robert Dawson</podcast:person>
+        <item>
+            <title><![CDATA[AI Briefing — June 1, 2026]]></title>
+            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-06-01.mp3</link>
+            <guid>ai-briefing-2026-06-01</guid>
+            <pubDate>Mon, 01 Jun 2026 15:38:27 GMT</pubDate>
+            <description><![CDATA[Top 3 AI stories for 2026-06-01:
+
+Chapters:
+00:00:00 Intro
+00:00:24 Nvidia launches Cosmos 3 world model and...
+00:01:26 OpenAI model solves 80-year-old famous...
+00:02:17 MiniMax M3 open-weight model offers...
+00:03:09 Outro
+
+Sources:
+1. Open Source Watch: Nvidia launches Cosmos 3 world model and open humanoid robot platform
+Source: https://huggingface.co/blog/nvidia/cosmos-3-for-physical-ai
+Source: https://the-decoder.com/nvidia-bets-big-on-physical-ai-at-gtc-taipei-with-a-new-world-model-driving-brain-and-open-humanoid-robot/
+Source: https://the-decoder.com/nvidias-nemotron-3-ultra-becomes-the-smartest-open-us-model-but-china-still-leads/
+2. Research Breakthrough: OpenAI model solves 80-year-old famous mathematics problem
+Source: https://arstechnica.com/ai/2026/06/openais-math-breakthrough-played-to-ais-strengths/
+3. Open Source Watch: MiniMax M3 open-weight model offers million-token context with multimodality
+Source: https://the-decoder.com/minimax-m3-open-weight-model-with-a-million-token-context-challenges-proprietary-leaders/]]></description>
+            <enclosure length="5217558" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-01.mp3"/>
+                    <itunes:duration>217</itunes:duration>
+            <itunes:explicit>false</itunes:explicit>
+            <itunes:season>2026</itunes:season>
+            <itunes:episode>152</itunes:episode>
+            <itunes:episodeType>full</itunes:episodeType>
+            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-01.chapters.json" type="application/json+chapters"/>
+            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-01.transcript.txt" type="text/plain" language="en"/>
+            <podcast:soundbite startTime="24" duration="62">Nvidia launches Cosmos 3 world model and...</podcast:soundbite>
+            <podcast:soundbite startTime="86" duration="50">OpenAI model solves 80-year-old famous...</podcast:soundbite>
+            <podcast:soundbite startTime="137" duration="53">MiniMax M3 open-weight model offers...</podcast:soundbite>
+        </item>
         <item>
             <title><![CDATA[AI Briefing — May 31, 2026]]></title>
             <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-05-31.mp3</link>

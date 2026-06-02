@@ -4,7 +4,7 @@
         <title>AI Briefing</title>
         <link>https://robertcdawson.github.io/ai-briefing/</link>
         <description>Daily AI news briefing — the top three stories from the last 24 hours.</description>
-        <lastBuildDate>Mon, 01 Jun 2026 15:38:27 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 02 Jun 2026 14:49:47 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -23,6 +23,50 @@
         <podcast:guid>ea8709f4-3ba2-5b7e-bcdc-e409d84a6443</podcast:guid>
         <podcast:locked owner="manatees@gmail.com">yes</podcast:locked>
         <podcast:person role="host" group="cast">Robert Dawson</podcast:person>
+        <item>
+            <title><![CDATA[AI Briefing — June 2, 2026]]></title>
+            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-06-02.mp3</link>
+            <guid>ai-briefing-2026-06-02</guid>
+            <pubDate>Tue, 02 Jun 2026 14:49:47 GMT</pubDate>
+            <description><![CDATA[Top 3 AI stories for 2026-06-02:
+
+Chapters:
+00:00:00 Intro
+00:00:28 Anthropic Files for IPO
+00:01:28 Alphabet Raises $80 Billion for AI Expansion
+00:02:27 Meta's AI Chatbot Exploited
+00:03:19 Outro
+
+Sources:
+1. AI Business Watch: Anthropic Files for IPO
+Source: https://www.theverge.com/ai-artificial-intelligence/941016/anthropic-has-officially-filed-to-go-public
+Source: https://techcrunch.com/2026/06/01/anthropic-files-to-go-public/
+Source: https://the-decoder.com/claude-maker-anthropic-files-for-ipo-with-the-sec/
+Source: https://www.anthropic.com/news/confidential-draft-s1-sec
+Source: https://www.economist.com/finance-and-economics/2026/06/01/can-the-stockmarket-swallow-anthropic-spacex-and-openai
+2. AI Business Watch: Alphabet Raises $80 Billion for AI Expansion
+Source: https://techcrunch.com/2026/06/01/alphabet-plans-to-raise-80-billion-to-pay-for-ai-buildout/
+Source: https://the-decoder.com/warren-buffetts-berkshire-hathaway-bets-10-billion-on-alphabets-ai-infrastructure-buildout/
+Source: https://abc.xyz/investor/news/news-details/2026/Alphabet-Announces-Proposed-80-Billion-Equity-Capital-Raise-to-Expand-AI-Infrastructure-and-Compute-2026-b0myAMewCa/default.aspx
+Source: https://stratechery.com/2026/the-google-capital-company/
+3. Product & Tool Watch: Meta's AI Chatbot Exploited
+Source: https://www.404media.co/hackers-simply-asked-meta-ai-to-give-them-access-to-high-profile-instagram-accounts-it-worked/
+Source: https://www.theverge.com/tech/941179/meta-instagram-ai-support-chatbot-exploit-hacked
+Source: https://arstechnica.com/ai/2026/06/meta-ai-support-chatbot-gave-hackers-access-to-notable-instagram-accounts/
+Source: https://the-decoder.com/hackers-hijacked-high-profile-instagram-accounts-by-simply-asking-metas-ai-chatbot-to-change-the-email/
+Source: https://simonwillison.net/2026/Jun/1/hackers-simply-asked-meta-ai/#atom-everything]]></description>
+            <enclosure length="5577530" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-02.mp3"/>
+                    <itunes:duration>232</itunes:duration>
+            <itunes:explicit>false</itunes:explicit>
+            <itunes:season>2026</itunes:season>
+            <itunes:episode>153</itunes:episode>
+            <itunes:episodeType>full</itunes:episodeType>
+            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-02.chapters.json" type="application/json+chapters"/>
+            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-02.transcript.txt" type="text/plain" language="en"/>
+            <podcast:soundbite startTime="28" duration="60">Anthropic Files for IPO</podcast:soundbite>
+            <podcast:soundbite startTime="88" duration="59">Alphabet Raises $80 Billion for AI Expansion</podcast:soundbite>
+            <podcast:soundbite startTime="147" duration="52">Meta&apos;s AI Chatbot Exploited</podcast:soundbite>
+        </item>
         <item>
             <title><![CDATA[AI Briefing — June 1, 2026]]></title>
             <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-06-01.mp3</link>

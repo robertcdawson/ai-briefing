@@ -1,0 +1,56 @@
+{
+  "date": "2026-06-02",
+  "title": "AI Briefing — June 2, 2026",
+  "description": "Top 3 AI stories for 2026-06-02:\n\nChapters:\n00:00:00 Intro\n00:00:28 Anthropic Files for IPO\n00:01:28 Alphabet Raises $80 Billion for AI Expansion\n00:02:27 Meta's AI Chatbot Exploited\n00:03:19 Outro\n\nSources:\n1. AI Business Watch: Anthropic Files for IPO\nSource: https://www.theverge.com/ai-artificial-intelligence/941016/anthropic-has-officially-filed-to-go-public\nSource: https://techcrunch.com/2026/06/01/anthropic-files-to-go-public/\nSource: https://the-decoder.com/claude-maker-anthropic-files-for-ipo-with-the-sec/\nSource: https://www.anthropic.com/news/confidential-draft-s1-sec\nSource: https://www.economist.com/finance-and-economics/2026/06/01/can-the-stockmarket-swallow-anthropic-spacex-and-openai\n2. AI Business Watch: Alphabet Raises $80 Billion for AI Expansion\nSource: https://techcrunch.com/2026/06/01/alphabet-plans-to-raise-80-billion-to-pay-for-ai-buildout/\nSource: https://the-decoder.com/warren-buffetts-berkshire-hathaway-bets-10-billion-on-alphabets-ai-infrastructure-buildout/\nSource: https://abc.xyz/investor/news/news-details/2026/Alphabet-Announces-Proposed-80-Billion-Equity-Capital-Raise-to-Expand-AI-Infrastructure-and-Compute-2026-b0myAMewCa/default.aspx\nSource: https://stratechery.com/2026/the-google-capital-company/\n3. Product & Tool Watch: Meta's AI Chatbot Exploited\nSource: https://www.404media.co/hackers-simply-asked-meta-ai-to-give-them-access-to-high-profile-instagram-accounts-it-worked/\nSource: https://www.theverge.com/tech/941179/meta-instagram-ai-support-chatbot-exploit-hacked\nSource: https://arstechnica.com/ai/2026/06/meta-ai-support-chatbot-gave-hackers-access-to-notable-instagram-accounts/\nSource: https://the-decoder.com/hackers-hijacked-high-profile-instagram-accounts-by-simply-asking-metas-ai-chatbot-to-change-the-email/\nSource: https://simonwillison.net/2026/Jun/1/hackers-simply-asked-meta-ai/#atom-everything",
+  "durationSeconds": 232,
+  "byteLength": 5577530,
+  "pubDate": "2026-06-02T14:49:47.208Z",
+  "season": 2026,
+  "episodeNumber": 153,
+  "chaptersFilename": "2026-06-02.chapters.json",
+  "transcriptFilename": "2026-06-02.transcript.txt",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 28,
+      "title": "Intro"
+    },
+    {
+      "startTime": 28,
+      "endTime": 88,
+      "title": "Anthropic Files for IPO"
+    },
+    {
+      "startTime": 88,
+      "endTime": 147,
+      "title": "Alphabet Raises $80 Billion for AI Expansion"
+    },
+    {
+      "startTime": 147,
+      "endTime": 199,
+      "title": "Meta's AI Chatbot Exploited"
+    },
+    {
+      "startTime": 199,
+      "endTime": 232,
+      "title": "Outro"
+    }
+  ],
+  "soundbites": [
+    {
+      "startTime": 28,
+      "duration": 60,
+      "title": "Anthropic Files for IPO"
+    },
+    {
+      "startTime": 88,
+      "duration": 59,
+      "title": "Alphabet Raises $80 Billion for AI Expansion"
+    },
+    {
+      "startTime": 147,
+      "duration": 52,
+      "title": "Meta's AI Chatbot Exploited"
+    }
+  ]
+}

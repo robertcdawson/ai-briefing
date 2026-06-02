@@ -1,0 +1,31 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — June 2, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 28,
+      "title": "Intro"
+    },
+    {
+      "startTime": 28,
+      "endTime": 88,
+      "title": "Anthropic Files for IPO"
+    },
+    {
+      "startTime": 88,
+      "endTime": 147,
+      "title": "Alphabet Raises $80 Billion for AI Expansion"
+    },
+    {
+      "startTime": 147,
+      "endTime": 199,
+      "title": "Meta's AI Chatbot Exploited"
+    },
+    {
+      "startTime": 199,
+      "endTime": 232,
+      "title": "Outro"
+    }
+  ]
+}

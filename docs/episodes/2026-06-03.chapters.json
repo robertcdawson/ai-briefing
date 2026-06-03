@@ -1,0 +1,31 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — June 3, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 22,
+      "title": "Intro"
+    },
+    {
+      "startTime": 22,
+      "endTime": 87,
+      "title": "Microsoft Build 2026 Unveils New AI Tools"
+    },
+    {
+      "startTime": 87,
+      "endTime": 133,
+      "title": "Trump Signs Weakened AI Executive Order"
+    },
+    {
+      "startTime": 133,
+      "endTime": 182,
+      "title": "UK Regulator Forces Google to Allow..."
+    },
+    {
+      "startTime": 182,
+      "endTime": 213,
+      "title": "Outro"
+    }
+  ]
+}

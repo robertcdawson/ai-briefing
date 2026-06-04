@@ -4,7 +4,7 @@
         <title>AI Briefing</title>
         <link>https://robertcdawson.github.io/ai-briefing/</link>
         <description>Daily AI news briefing — the top three stories from the last 24 hours.</description>
-        <lastBuildDate>Wed, 03 Jun 2026 15:10:18 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 04 Jun 2026 14:22:24 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -23,6 +23,43 @@
         <podcast:guid>ea8709f4-3ba2-5b7e-bcdc-e409d84a6443</podcast:guid>
         <podcast:locked owner="manatees@gmail.com">yes</podcast:locked>
         <podcast:person role="host" group="cast">Robert Dawson</podcast:person>
+        <item>
+            <title><![CDATA[AI Briefing — June 4, 2026]]></title>
+            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-06-04.mp3</link>
+            <guid>ai-briefing-2026-06-04</guid>
+            <pubDate>Thu, 04 Jun 2026 14:22:24 GMT</pubDate>
+            <description><![CDATA[Top 3 AI stories for 2026-06-04:
+
+Chapters:
+00:00:00 Intro
+00:00:22 AI leaders urge Congress to mandate...
+00:01:22 Google DeepMind releases Gemma 4 12B...
+00:02:10 UK regulator forces Google to offer...
+00:03:03 Outro
+
+Sources:
+1. Policy & Regulation Watch: AI leaders urge Congress to mandate synthetic DNA screening amid bioweapon risks
+Source: https://www.theverge.com/ai-artificial-intelligence/942956/ai-biological-weapons-open-letter-congress
+Source: https://the-decoder.com/ai-can-now-coach-amateur-virologists-and-top-tech-leaders-want-congress-to-act-on-dna-security/
+2. Open Source Watch: Google DeepMind releases Gemma 4 12B multimodal model for 16GB laptops
+Source: https://arstechnica.com/google/2026/06/googles-new-gemma-4-open-ai-model-is-sized-for-your-laptop/
+Source: https://the-decoder.com/google-deepminds-gemma-4-12b-squeezes-multimodal-ai-onto-a-laptop-with-just-16-gb-of-ram/
+3. Policy & Regulation Watch: UK regulator forces Google to offer publishers opt-out from AI search features
+Source: https://arstechnica.com/tech-policy/2026/06/google-ordered-to-put-clearer-links-in-ai-search-and-let-uk-publishers-opt-out/
+Source: https://techcrunch.com/2026/06/03/publishers-will-be-able-to-opt-out-of-ai-search-thanks-to-new-regulation/
+Source: https://the-decoder.com/google-lets-sites-opt-out-of-ai-search-results-knowing-most-have-nowhere-else-to-go/]]></description>
+            <enclosure length="4947407" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-04.mp3"/>
+                    <itunes:duration>206</itunes:duration>
+            <itunes:explicit>false</itunes:explicit>
+            <itunes:season>2026</itunes:season>
+            <itunes:episode>155</itunes:episode>
+            <itunes:episodeType>full</itunes:episodeType>
+            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-04.chapters.json" type="application/json+chapters"/>
+            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-04.transcript.txt" type="text/plain" language="en"/>
+            <podcast:soundbite startTime="22" duration="60">AI leaders urge Congress to mandate...</podcast:soundbite>
+            <podcast:soundbite startTime="82" duration="48">Google DeepMind releases Gemma 4 12B...</podcast:soundbite>
+            <podcast:soundbite startTime="130" duration="52">UK regulator forces Google to offer...</podcast:soundbite>
+        </item>
         <item>
             <title><![CDATA[AI Briefing — June 3, 2026]]></title>
             <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-06-03.mp3</link>

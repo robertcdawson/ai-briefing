@@ -1,0 +1,56 @@
+{
+  "date": "2026-06-04",
+  "title": "AI Briefing — June 4, 2026",
+  "description": "Top 3 AI stories for 2026-06-04:\n\nChapters:\n00:00:00 Intro\n00:00:22 AI leaders urge Congress to mandate...\n00:01:22 Google DeepMind releases Gemma 4 12B...\n00:02:10 UK regulator forces Google to offer...\n00:03:03 Outro\n\nSources:\n1. Policy & Regulation Watch: AI leaders urge Congress to mandate synthetic DNA screening amid bioweapon risks\nSource: https://www.theverge.com/ai-artificial-intelligence/942956/ai-biological-weapons-open-letter-congress\nSource: https://the-decoder.com/ai-can-now-coach-amateur-virologists-and-top-tech-leaders-want-congress-to-act-on-dna-security/\n2. Open Source Watch: Google DeepMind releases Gemma 4 12B multimodal model for 16GB laptops\nSource: https://arstechnica.com/google/2026/06/googles-new-gemma-4-open-ai-model-is-sized-for-your-laptop/\nSource: https://the-decoder.com/google-deepminds-gemma-4-12b-squeezes-multimodal-ai-onto-a-laptop-with-just-16-gb-of-ram/\n3. Policy & Regulation Watch: UK regulator forces Google to offer publishers opt-out from AI search features\nSource: https://arstechnica.com/tech-policy/2026/06/google-ordered-to-put-clearer-links-in-ai-search-and-let-uk-publishers-opt-out/\nSource: https://techcrunch.com/2026/06/03/publishers-will-be-able-to-opt-out-of-ai-search-thanks-to-new-regulation/\nSource: https://the-decoder.com/google-lets-sites-opt-out-of-ai-search-results-knowing-most-have-nowhere-else-to-go/",
+  "durationSeconds": 206,
+  "byteLength": 4947407,
+  "pubDate": "2026-06-04T14:22:24.324Z",
+  "season": 2026,
+  "episodeNumber": 155,
+  "chaptersFilename": "2026-06-04.chapters.json",
+  "transcriptFilename": "2026-06-04.transcript.txt",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 22,
+      "title": "Intro"
+    },
+    {
+      "startTime": 22,
+      "endTime": 82,
+      "title": "AI leaders urge Congress to mandate..."
+    },
+    {
+      "startTime": 82,
+      "endTime": 130,
+      "title": "Google DeepMind releases Gemma 4 12B..."
+    },
+    {
+      "startTime": 130,
+      "endTime": 183,
+      "title": "UK regulator forces Google to offer..."
+    },
+    {
+      "startTime": 183,
+      "endTime": 206,
+      "title": "Outro"
+    }
+  ],
+  "soundbites": [
+    {
+      "startTime": 22,
+      "duration": 60,
+      "title": "AI leaders urge Congress to mandate..."
+    },
+    {
+      "startTime": 82,
+      "duration": 48,
+      "title": "Google DeepMind releases Gemma 4 12B..."
+    },
+    {
+      "startTime": 130,
+      "duration": 52,
+      "title": "UK regulator forces Google to offer..."
+    }
+  ]
+}

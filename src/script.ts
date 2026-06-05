@@ -548,7 +548,7 @@ function validateNarrationChunks(label: string, chunks: unknown): asserts chunks
   for (const [index, chunk] of chunks.entries()) {
     const chunkLabel = `${label} chunk ${index + 1}`;
     if (typeof chunk !== "string" || chunk.trim().length === 0) {
-      throw new Error(`script ${chunkLabel} text must be a non-empty string`);
+      throw new Error(`script ${chunkLabel} must be a non-empty string`);
     }
   }
 }

@@ -407,7 +407,7 @@ test("validateScriptResponse rejects malformed narration chunks", () => {
         } as unknown as Parameters<typeof validateScriptResponse>[0],
         clusters,
       ),
-    /text must be a non-empty string/,
+    /chunk 1 must be a non-empty string/,
   );
 
   assert.throws(
@@ -464,7 +464,7 @@ test("validateScriptResponse rejects malformed narration chunks", () => {
         },
         clusters,
       ),
-    /text must be a non-empty string/,
+    /chunk 2 must be a non-empty string/,
   );
 });
 

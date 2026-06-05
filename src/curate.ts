@@ -107,6 +107,29 @@ function buildUserPrompt(articles: Article[]): string {
   return `Articles from the last 24 hours (${articles.length} total):\n\n${lines.join("\n\n")}`;
 }
 
+/**
+ * Rank scored clusters and pick a variable number for the episode: clamp each
+ * importance into [0,100], sort high-to-low, keep everything that clears the bar
+ * (capped at MAX_STORIES), and if nothing clears it keep the single strongest
+ * story so a slow day still produces a show.
+ */
+export function selectStoryClusters(
+  clusters: readonly (StoryCluster & { importance?: number })[],
+): StoryCluster[] {
+  const ranked = clusters
+    .map((c) => ({ ...c, importance: clampImportance(c.importance) }))
+    .sort((a, b) => b.importance - a.importance);
+
+  const aboveBar = ranked.filter((c) => c.importance >= IMPORTANCE_THRESHOLD);
+  const selected = aboveBar.length >= MIN_STORIES ? aboveBar : ranked.slice(0, MIN_STORIES);
+  return selected.slice(0, MAX_STORIES);
+}
+
+function clampImportance(value: number | undefined): number {
+  if (!Number.isFinite(value)) return 0;
+  return Math.min(100, Math.max(0, value as number));
+}
+
 export async function curate(articles: Article[]): Promise<StoryCluster[]> {
   const started = Date.now();
   const apiKey = process.env.OPENROUTER_API_KEY;
@@ -154,16 +177,7 @@ export async function curate(articles: Article[]): Promise<StoryCluster[]> {
     clusters: (StoryCluster & { importance: number })[];
   };
 
-  const ranked = (parsed.clusters ?? [])
-    .map((c) => ({ ...c, importance: Number.isFinite(c.importance) ? c.importance : 0 }))
-    .sort((a, b) => b.importance - a.importance);
-
-  // Keep everything above the bar (up to MAX_STORIES); if nothing clears it,
-  // still keep the single strongest story so the show isn't empty.
-  const aboveBar = ranked.filter((c) => c.importance >= IMPORTANCE_THRESHOLD);
-  const selected = (aboveBar.length >= MIN_STORIES ? aboveBar : ranked.slice(0, MIN_STORIES))
-    .slice(0, MAX_STORIES);
-  const clusters: StoryCluster[] = selected;
+  const clusters = selectStoryClusters(parsed.clusters ?? []);
 
   logJson({
     phase: "curate",

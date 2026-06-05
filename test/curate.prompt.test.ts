@@ -13,8 +13,8 @@ test("curation prompt scans every editorial lane before ranking by audience impa
   assert.match(prompt, /SCAN every editorial lane before selecting stories/);
   assert.match(prompt, /audience impact for researchers, builders, and technical leaders/);
   assert.match(prompt, /novelty is only a tiebreaker/);
-  assert.match(prompt, /RETURN every distinct, credible story as its own cluster/);
-  assert.match(prompt, /do not cap the count/);
+  assert.match(prompt, /RETURN the strongest distinct, credible stories as separate clusters/);
+  assert.match(prompt, /at most 8/);
   assert.match(prompt, /honest importance score/);
   assert.match(prompt, /diverse mix of categories/);
   assert.match(prompt, /Never pad with weak material/);

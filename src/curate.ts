@@ -4,13 +4,18 @@ import type { Article, StoryCluster } from "./types.js";
 import { getChatCompletionAssistantText, logJson, withHardTimeout, withRetry } from "./util.js";
 
 const MODEL = "anthropic/claude-sonnet-4.6";
-const TIMEOUT_MS = 60_000;
+const TIMEOUT_MS = 120_000;
 const MAX_ATTEMPTS = 3;
 // Variable story count: include everything that clears the bar, capped so the
 // episode stays under ~10 minutes. On a slow day this can be as few as one story.
 const IMPORTANCE_THRESHOLD = 45;
 const MAX_STORIES = 6;
 const MIN_STORIES = 1;
+// Upper bound on clusters the model returns. Bounding the structured output
+// keeps curation latency in check (an unbounded list of every story balloons
+// generation time and can blow the request timeout); the code still narrows to
+// MAX_STORIES afterward.
+const MODEL_CLUSTER_LIMIT = 8;
 
 const RESPONSE_SCHEMA = {
   type: "object",
@@ -86,7 +91,7 @@ export function buildSystemPrompt(): string {
 2. SCAN every editorial lane before selecting stories, so the show does not miss strong category-specific news:
 ${categoryLines}
 3. SCORE each cluster's audience impact for researchers, builders, and technical leaders on a 0-100 scale. Weight practical usefulness, strategic consequence, evidence quality, and timeliness above novelty; novelty is only a tiebreaker. Down-weight SEO clickbait, thin rewrites, listicles, and pure opinion.
-4. RETURN every distinct, credible story as its own cluster, each with an honest importance score — do not cap the count and do not pre-select a "top N". Prefer a diverse mix of categories. Never pad with weak material: if it isn't worth a listener's time, leave it out. A slow day may yield only one or two strong stories.
+4. RETURN the strongest distinct, credible stories as separate clusters — at most ${MODEL_CLUSTER_LIMIT}, fewer when the day is quiet — each with an honest importance score. Prefer a diverse mix of categories. Never pad with weak material: if it isn't worth a listener's time, leave it out. A slow day may yield only one or two strong stories.
 
 For each cluster:
 - canonicalKey: short kebab-case slug

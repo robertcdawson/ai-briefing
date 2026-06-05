@@ -53,26 +53,17 @@ export interface StoryCluster {
   headline: string;
   whyItMatters: string;
   caveat: string;
+  /** 0-100 audience-impact score from curation; drives narration depth/ordering. */
+  importance?: number;
   sources: { url: string; publisher: string }[];
 }
 
-export type SpeakerId = "anchor" | "analyst";
-
-export interface EpisodeSpeaker {
-  id: SpeakerId;
-  name: string;
-  role: string;
-  persona: string;
-}
-
-export interface SpeakerTurn {
-  speaker: SpeakerId;
-  text: string;
-}
+/** One read-aloud chunk of the single narrator's monologue. */
+export type NarrationChunk = string;
 
 export interface EpisodeSegment {
   title: string;
-  turns: SpeakerTurn[];
+  chunks: NarrationChunk[];
   sourceUrls: string[];
 }
 
@@ -89,10 +80,9 @@ export interface EpisodePartTiming {
 export interface Episode {
   date: string;
   title: string;
-  speakers: EpisodeSpeaker[];
-  intro: SpeakerTurn[];
+  intro: NarrationChunk[];
   segments: EpisodeSegment[];
-  outro: SpeakerTurn[];
+  outro: NarrationChunk[];
   audioPath: string;
   byteLength: number;
   durationSeconds: number;

@@ -6,6 +6,11 @@ import { getChatCompletionAssistantText, logJson, withHardTimeout, withRetry } f
 const MODEL = "anthropic/claude-sonnet-4.6";
 const TIMEOUT_MS = 60_000;
 const MAX_ATTEMPTS = 3;
+// Variable story count: include everything that clears the bar, capped so the
+// episode stays under ~10 minutes. On a slow day this can be as few as one story.
+const IMPORTANCE_THRESHOLD = 45;
+const MAX_STORIES = 6;
+const MIN_STORIES = 1;
 
 const RESPONSE_SCHEMA = {
   type: "object",
@@ -81,7 +86,7 @@ export function buildSystemPrompt(): string {
 2. SCAN every editorial lane before selecting stories, so the show does not miss strong category-specific news:
 ${categoryLines}
 3. SCORE each cluster's audience impact for researchers, builders, and technical leaders on a 0-100 scale. Weight practical usefulness, strategic consequence, evidence quality, and timeliness above novelty; novelty is only a tiebreaker. Down-weight SEO clickbait, thin rewrites, listicles, and pure opinion.
-4. SELECT the top 3 clusters by audience impact, preferring a diverse mix of categories when scores are close. If fewer than 3 credible stories exist, return fewer — never pad with weak material.
+4. RETURN every distinct, credible story as its own cluster, each with an honest importance score — do not cap the count and do not pre-select a "top N". Prefer a diverse mix of categories. Never pad with weak material: if it isn't worth a listener's time, leave it out. A slow day may yield only one or two strong stories.
 
 For each cluster:
 - canonicalKey: short kebab-case slug
@@ -149,10 +154,16 @@ export async function curate(articles: Article[]): Promise<StoryCluster[]> {
     clusters: (StoryCluster & { importance: number })[];
   };
 
-  const clusters: StoryCluster[] = (parsed.clusters ?? [])
-    .sort((a, b) => b.importance - a.importance)
-    .slice(0, 3)
-    .map(({ importance: _importance, ...c }) => c);
+  const ranked = (parsed.clusters ?? [])
+    .map((c) => ({ ...c, importance: Number.isFinite(c.importance) ? c.importance : 0 }))
+    .sort((a, b) => b.importance - a.importance);
+
+  // Keep everything above the bar (up to MAX_STORIES); if nothing clears it,
+  // still keep the single strongest story so the show isn't empty.
+  const aboveBar = ranked.filter((c) => c.importance >= IMPORTANCE_THRESHOLD);
+  const selected = (aboveBar.length >= MIN_STORIES ? aboveBar : ranked.slice(0, MIN_STORIES))
+    .slice(0, MAX_STORIES);
+  const clusters: StoryCluster[] = selected;
 
   logJson({
     phase: "curate",

@@ -4,27 +4,42 @@
   "chapters": [
     {
       "startTime": 0,
-      "endTime": 32,
+      "endTime": 34,
       "title": "Intro"
     },
     {
-      "startTime": 32,
-      "endTime": 107,
-      "title": "Anthropic's Claude Writes 90% of Its Code"
+      "startTime": 34,
+      "endTime": 97,
+      "title": "Anthropic's Mythos model reportedly..."
     },
     {
-      "startTime": 107,
-      "endTime": 169,
-      "title": "Meta's AI Agent Exploited for Account..."
+      "startTime": 97,
+      "endTime": 162,
+      "title": "Anthropic reports Claude writes over 90%..."
     },
     {
-      "startTime": 169,
-      "endTime": 228,
-      "title": "Microsoft's MAI Models and Unlicensed Data"
+      "startTime": 162,
+      "endTime": 224,
+      "title": "Florida sues OpenAI and Sam Altman..."
     },
     {
-      "startTime": 228,
-      "endTime": 260,
+      "startTime": 224,
+      "endTime": 284,
+      "title": "Microsoft trained MAI models on..."
+    },
+    {
+      "startTime": 284,
+      "endTime": 339,
+      "title": "New York legislature passes first..."
+    },
+    {
+      "startTime": 339,
+      "endTime": 393,
+      "title": "Google commits $920 million per month to..."
+    },
+    {
+      "startTime": 393,
+      "endTime": 428,
       "title": "Outro"
     }
   ]

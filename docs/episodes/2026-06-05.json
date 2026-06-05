@@ -1,0 +1,56 @@
+{
+  "date": "2026-06-05",
+  "title": "AI Briefing — June 5, 2026",
+  "description": "Top 3 AI stories for 2026-06-05:\n\nChapters:\n00:00:00 Intro\n00:00:32 Anthropic's Claude Writes 90% of Its Code\n00:01:47 Meta's AI Agent Exploited for Account...\n00:02:49 Microsoft's MAI Models and Unlicensed Data\n00:03:48 Outro\n\nSources:\n1. Research Breakthrough: Anthropic's Claude Writes 90% of Its Code\nSource: https://www.anthropic.com/institute/recursive-self-improvement\nSource: https://the-decoder.com/anthropic-says-claude-now-writes-over-90-of-its-code-and-wants-the-world-to-have-an-ai-pause-button\nSource: https://techcrunch.com/2026/06/04/ahead-of-its-ipo-anthropics-daniela-amodei-shrugs-off-doubts-about-ais-returns\n2. Product & Tool Watch: Meta's AI Agent Exploited for Account Hijacking\nSource: https://www.technologyreview.com/2026/06/05/1138437/the-meta-hack-shows-theres-more-to-ai-security-than-mythos\nSource: https://simonwillison.net/2026/Jun/4/a-slightly-different-version/#atom-everything\n3. Policy & Regulation Watch: Microsoft's MAI Models and Unlicensed Data\nSource: https://the-decoder.com/microsoft-trained-its-mai-models-on-unlicensed-web-data-despite-promising-enterprise-grade-clean-and-commercially-licensed-data",
+  "durationSeconds": 260,
+  "byteLength": 6249175,
+  "pubDate": "2026-06-05T14:20:27.788Z",
+  "season": 2026,
+  "episodeNumber": 156,
+  "chaptersFilename": "2026-06-05.chapters.json",
+  "transcriptFilename": "2026-06-05.transcript.txt",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 32,
+      "title": "Intro"
+    },
+    {
+      "startTime": 32,
+      "endTime": 107,
+      "title": "Anthropic's Claude Writes 90% of Its Code"
+    },
+    {
+      "startTime": 107,
+      "endTime": 169,
+      "title": "Meta's AI Agent Exploited for Account..."
+    },
+    {
+      "startTime": 169,
+      "endTime": 228,
+      "title": "Microsoft's MAI Models and Unlicensed Data"
+    },
+    {
+      "startTime": 228,
+      "endTime": 260,
+      "title": "Outro"
+    }
+  ],
+  "soundbites": [
+    {
+      "startTime": 32,
+      "duration": 75,
+      "title": "Anthropic's Claude Writes 90% of Its Code"
+    },
+    {
+      "startTime": 107,
+      "duration": 62,
+      "title": "Meta's AI Agent Exploited for Account..."
+    },
+    {
+      "startTime": 169,
+      "duration": 59,
+      "title": "Microsoft's MAI Models and Unlicensed Data"
+    }
+  ]
+}

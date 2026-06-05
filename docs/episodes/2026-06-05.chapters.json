@@ -1,0 +1,31 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — June 5, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 32,
+      "title": "Intro"
+    },
+    {
+      "startTime": 32,
+      "endTime": 107,
+      "title": "Anthropic's Claude Writes 90% of Its Code"
+    },
+    {
+      "startTime": 107,
+      "endTime": 169,
+      "title": "Meta's AI Agent Exploited for Account..."
+    },
+    {
+      "startTime": 169,
+      "endTime": 228,
+      "title": "Microsoft's MAI Models and Unlicensed Data"
+    },
+    {
+      "startTime": 228,
+      "endTime": 260,
+      "title": "Outro"
+    }
+  ]
+}

@@ -4,7 +4,7 @@
         <title>AI Briefing</title>
         <link>https://robertcdawson.github.io/ai-briefing/</link>
         <description>Daily AI news briefing — the top three stories from the last 24 hours.</description>
-        <lastBuildDate>Thu, 04 Jun 2026 14:22:24 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 05 Jun 2026 14:20:27 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -23,6 +23,42 @@
         <podcast:guid>ea8709f4-3ba2-5b7e-bcdc-e409d84a6443</podcast:guid>
         <podcast:locked owner="manatees@gmail.com">yes</podcast:locked>
         <podcast:person role="host" group="cast">Robert Dawson</podcast:person>
+        <item>
+            <title><![CDATA[AI Briefing — June 5, 2026]]></title>
+            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-06-05.mp3</link>
+            <guid>ai-briefing-2026-06-05</guid>
+            <pubDate>Fri, 05 Jun 2026 14:20:27 GMT</pubDate>
+            <description><![CDATA[Top 3 AI stories for 2026-06-05:
+
+Chapters:
+00:00:00 Intro
+00:00:32 Anthropic's Claude Writes 90% of Its Code
+00:01:47 Meta's AI Agent Exploited for Account...
+00:02:49 Microsoft's MAI Models and Unlicensed Data
+00:03:48 Outro
+
+Sources:
+1. Research Breakthrough: Anthropic's Claude Writes 90% of Its Code
+Source: https://www.anthropic.com/institute/recursive-self-improvement
+Source: https://the-decoder.com/anthropic-says-claude-now-writes-over-90-of-its-code-and-wants-the-world-to-have-an-ai-pause-button
+Source: https://techcrunch.com/2026/06/04/ahead-of-its-ipo-anthropics-daniela-amodei-shrugs-off-doubts-about-ais-returns
+2. Product & Tool Watch: Meta's AI Agent Exploited for Account Hijacking
+Source: https://www.technologyreview.com/2026/06/05/1138437/the-meta-hack-shows-theres-more-to-ai-security-than-mythos
+Source: https://simonwillison.net/2026/Jun/4/a-slightly-different-version/#atom-everything
+3. Policy & Regulation Watch: Microsoft's MAI Models and Unlicensed Data
+Source: https://the-decoder.com/microsoft-trained-its-mai-models-on-unlicensed-web-data-despite-promising-enterprise-grade-clean-and-commercially-licensed-data]]></description>
+            <enclosure length="6249175" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-05.mp3"/>
+                    <itunes:duration>260</itunes:duration>
+            <itunes:explicit>false</itunes:explicit>
+            <itunes:season>2026</itunes:season>
+            <itunes:episode>156</itunes:episode>
+            <itunes:episodeType>full</itunes:episodeType>
+            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-05.chapters.json" type="application/json+chapters"/>
+            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-05.transcript.txt" type="text/plain" language="en"/>
+            <podcast:soundbite startTime="32" duration="75">Anthropic&apos;s Claude Writes 90% of Its Code</podcast:soundbite>
+            <podcast:soundbite startTime="107" duration="62">Meta&apos;s AI Agent Exploited for Account...</podcast:soundbite>
+            <podcast:soundbite startTime="169" duration="59">Microsoft&apos;s MAI Models and Unlicensed Data</podcast:soundbite>
+        </item>
         <item>
             <title><![CDATA[AI Briefing — June 4, 2026]]></title>
             <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-06-04.mp3</link>

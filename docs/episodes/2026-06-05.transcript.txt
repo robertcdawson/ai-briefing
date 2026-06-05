@@ -1,0 +1,62 @@
+AI Briefing — June 5, 2026
+Date: 2026-06-05
+
+Intro
+
+The Anchor: Big news today: Anthropic reveals its AI, Claude, generates a staggering 90% of its own code, while calling for a global pause on AI development. It's June 5, 2026, and this raises serious questions about safety and competition in the AI landscape.
+
+The Analyst: And on top of that, we've got Meta's AI customer support running amok, exploited to hijack Instagram accounts, including ones linked to the Obama White House. It's a wild day in AI!
+
+Research Breakthrough: Anthropic's Claude Writes 90% of Its Code
+
+The Anchor: Anthropic has reported that its AI, Claude, is now responsible for generating over 90% of its production code. This marks a significant leap toward recursive self-improvement, with engineers increasing their coding output by eight times daily.
+
+The Analyst: That's a huge efficiency gain! But it also raises a lot of questions about oversight. If an AI is writing most of its own code, how do we ensure safety?
+
+The Anchor: Exactly. In conjunction with this, Anthropic is advocating for a global pause on AI development to assess risks. They clearly recognize the implications of this rapid advancement.
+
+The Analyst: Right, but here's the catch: these numbers are self-reported, and given that Anthropic is gearing up for an IPO, we should treat them with caution. Can we trust that a global pause is even feasible?
+
+The Anchor: Good point. The feasibility of a verifiable global pause remains uncertain, adding another layer of complexity to the discussion about AI safety.
+
+The Analyst: Let's see how other companies respond to this pressure for accountability. Speaking of accountability, Meta's recent security breach raises some serious red flags.
+Source: https://www.anthropic.com/institute/recursive-self-improvement
+Source: https://the-decoder.com/anthropic-says-claude-now-writes-over-90-of-its-code-and-wants-the-world-to-have-an-ai-pause-button
+Source: https://techcrunch.com/2026/06/04/ahead-of-its-ipo-anthropics-daniela-amodei-shrugs-off-doubts-about-ais-returns
+
+Product & Tool Watch: Meta's AI Agent Exploited for Account Hijacking
+
+The Anchor: In a shocking turn of events, attackers exploited Meta's AI customer support agent to hijack Instagram accounts, including those linked to high-profile users like the Obama White House.
+
+The Analyst: This is a major security failure. It highlights a significant gap in AI authorization controls. If an AI can manipulate account ownership so easily, what does that mean for user trust?
+
+The Anchor: Absolutely, and every team deploying AI agents with access to user data must reconsider their security measures. This incident shows just how vulnerable we could be.
+
+The Analyst: But we still don't know the full extent of the damage or Meta’s response. The timeline for remediation hasn't been disclosed, leaving users in the dark.
+
+The Anchor: That uncertainty is critical. If Meta doesn't act quickly, the trust deficit could widen even further. On that note, let's shift gears to Microsoft and their MAI models.
+Source: https://www.technologyreview.com/2026/06/05/1138437/the-meta-hack-shows-theres-more-to-ai-security-than-mythos
+Source: https://simonwillison.net/2026/Jun/4/a-slightly-different-version/#atom-everything
+
+Policy & Regulation Watch: Microsoft's MAI Models and Unlicensed Data
+
+The Anchor: Microsoft is facing scrutiny after an investigation revealed that its MAI models were trained on unlicensed web data, despite claims of using clean, commercially licensed data.
+
+The Analyst: That's a serious credibility issue. Many enterprise customers opted for MAI based on those promises. What does this mean for their legal exposure?
+
+The Anchor: It's definitely a risk. The claims of using 'enterprise-grade' data are now called into question, which could hurt Microsoft's reputation.
+
+The Analyst: And let's not forget, Microsoft hasn't publicly addressed these allegations. The legal landscape around fair use for AI training is still murky.
+
+The Anchor: Right. Until we have clearer legal guidelines, companies are walking a tightrope. This situation could have far-reaching implications for trust in AI products.
+
+The Analyst: Absolutely. As AI continues to evolve, these issues will only grow in importance.
+Source: https://the-decoder.com/microsoft-trained-its-mai-models-on-unlicensed-web-data-despite-promising-enterprise-grade-clean-and-commercially-licensed-data
+
+Outro
+
+The Anchor: Today, we've seen a pattern of trust being tested in the AI space. From Anthropic's ambitious claims to Meta's security failures and Microsoft's questionable data practices, accountability is more crucial than ever.
+
+The Analyst: And as these companies navigate their challenges, it's clear that the stakes are high—not just for them, but for users everywhere.
+
+The Anchor: That's a wrap for today's AI Briefing. Stay curious, and keep questioning the narratives around AI.

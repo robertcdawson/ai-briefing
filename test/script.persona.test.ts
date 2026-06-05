@@ -122,18 +122,17 @@ test("buildSystemPrompt keeps persona style bounded by factual constraints", () 
 
   assert.match(prompt, new RegExp(`Persona: ${escapeRegExp(persona.name)}`));
   assert.match(prompt, /style lens, not a character bit/);
-  assert.match(prompt, /strong opinions/);
+  assert.match(prompt, /opinions grounded in evidence/);
   assert.match(prompt, /grounded in the provided facts/);
   assert.match(prompt, /No celebrity impressions/);
   assert.match(prompt, /Do not invent .* facts/);
   assert.match(prompt, /sourceUrls MUST be exactly the urls provided/);
-  assert.match(prompt, /two-speaker exchange/);
-  assert.match(prompt, /anchor: The Anchor/);
-  assert.match(prompt, /analyst: The Analyst/);
-  assert.match(prompt, /do not put speaker names inside the text/);
+  assert.match(prompt, /single host speaking solo/);
+  assert.match(prompt, /solo show/);
+  assert.match(prompt, /Do not include speaker labels/);
 });
 
-test("buildUserPrompt preserves source publisher and URL context", () => {
+test("buildUserPrompt preserves source publisher, URL, and importance context", () => {
   const clusters: StoryCluster[] = [
     {
       canonicalKey: "test-story",
@@ -141,6 +140,7 @@ test("buildUserPrompt preserves source publisher and URL context", () => {
       headline: "A model ships a useful feature",
       whyItMatters: "Builders get a simpler path to production.",
       caveat: "Benchmarks are still early.",
+      importance: 72,
       sources: [
         { publisher: "Example News", url: "https://example.com/model-feature" },
       ],
@@ -152,6 +152,7 @@ test("buildUserPrompt preserves source publisher and URL context", () => {
   assert.match(prompt, /Today is 2026-05-11/);
   assert.match(prompt, /STORY 1: A model ships a useful feature/);
   assert.match(prompt, /Category: Product & Tool Watch \(product-tools\)/);
+  assert.match(prompt, /Importance: 72\/100/);
   assert.match(prompt, /Example News: https:\/\/example\.com\/model-feature/);
 });
 
@@ -161,12 +162,15 @@ test("buildSystemPrompt enforces hook, labels, concise transitions, pacing, and 
 
   const prompt = buildSystemPrompt(persona);
 
-  assert.match(prompt, /Begin with an engaging summary hook/);
+  assert.match(prompt, /Begin with an engaging hook/);
   assert.match(prompt, /exactly one segment per provided story cluster/);
-  assert.match(prompt, /If fewer than three credible clusters are provided/);
+  assert.match(prompt, /Let the news set the length/);
+  assert.match(prompt, /Scale depth to each story's importance/);
+  assert.match(prompt, /under about ten minutes/);
+  assert.match(prompt, /potential impact both good and bad/);
   assert.match(prompt, /first segment title MUST begin "Top Story:/);
   assert.match(prompt, /Product & Tool Watch: \{headline\}/);
-  assert.match(prompt, /smooth, short transition/);
+  assert.match(prompt, /smooth, short, specific transition/);
   assert.match(prompt, /under about 12 words/);
   assert.match(prompt, /most sentences under about 24 words/);
   assert.match(prompt, /define specialized terms in 8-14 plain words/);
@@ -174,32 +178,25 @@ test("buildSystemPrompt enforces hook, labels, concise transitions, pacing, and 
   assert.match(prompt, /commas for natural breath pauses/);
   assert.match(prompt, /one rhetorical question per segment at most/);
   assert.match(prompt, /never announcer-y or fake-enthusiastic/);
-  assert.match(prompt, /both speakers throughout the episode/);
 });
 
-test("SCRIPT_RESPONSE_SCHEMA requires structured speaker turns", () => {
+test("SCRIPT_RESPONSE_SCHEMA requires string narration chunks", () => {
   const schema = SCRIPT_RESPONSE_SCHEMA;
   assert.equal(schema.properties.intro.type, "array");
+  assert.equal(schema.properties.intro.items.type, "string");
   assert.equal(schema.properties.outro.type, "array");
-  assert.equal(schema.properties.segments.items.properties.turns.type, "array");
-  assert.deepEqual(
-    schema.properties.segments.items.properties.turns.items.required,
-    ["speaker", "text"],
-  );
+  assert.equal(schema.properties.segments.items.properties.chunks.type, "array");
+  assert.equal(schema.properties.segments.items.properties.chunks.items.type, "string");
   assertNoArrayMinItemsAboveOne(schema);
   assert.equal("minLength" in schema.properties.segments.items.properties.title, false);
   assert.equal("pattern" in schema.properties.segments.items.properties.title, false);
   assert.equal(
-    "minLength" in schema.properties.segments.items.properties.turns.items.properties.text,
+    "minLength" in schema.properties.segments.items.properties.chunks.items,
     false,
   );
   assert.equal(
-    "pattern" in schema.properties.segments.items.properties.turns.items.properties.text,
+    "pattern" in schema.properties.segments.items.properties.chunks.items,
     false,
-  );
-  assert.deepEqual(
-    schema.properties.segments.items.properties.turns.items.properties.speaker.enum,
-    ["anchor", "analyst"],
   );
 });
 
@@ -246,27 +243,18 @@ test("validateScriptResponse preserves segment count and source URLs", () => {
 
   validateScriptResponse(
     {
-      intro: [
-        { speaker: "anchor", text: "Here is the setup." },
-        { speaker: "analyst", text: "And here is why it matters." },
-      ],
+      intro: ["Here is the setup.", "And here is why it matters."],
       segments: [
         {
           title: "Top Story: A model ships a useful feature",
-          turns: [
-            { speaker: "anchor", text: "A concise segment." },
-            { speaker: "analyst", text: "The practical takeaway is simple." },
-          ],
+          chunks: ["A concise segment.", "The practical takeaway is simple."],
           sourceUrls: [
             " https://example.com/model-feature-details ",
             "https://example.com/model-feature",
           ],
         },
       ],
-      outro: [
-        { speaker: "anchor", text: "That is the pattern." },
-        { speaker: "analyst", text: "And that is the useful lens." },
-      ],
+      outro: ["That is the pattern.", "And that is the useful lens."],
     },
     clusters,
   );
@@ -275,15 +263,9 @@ test("validateScriptResponse preserves segment count and source URLs", () => {
     () =>
       validateScriptResponse(
         {
-          intro: [
-            { speaker: "anchor", text: "Here is the setup." },
-            { speaker: "analyst", text: "Here is the so what." },
-          ],
+          intro: ["Here is the setup.", "Here is the so what."],
           segments: [],
-          outro: [
-            { speaker: "anchor", text: "That is the pattern." },
-            { speaker: "analyst", text: "That is the lens." },
-          ],
+          outro: ["That is the pattern.", "That is the lens."],
         },
         clusters,
       ),
@@ -294,24 +276,15 @@ test("validateScriptResponse preserves segment count and source URLs", () => {
     () =>
       validateScriptResponse(
         {
-          intro: [
-            { speaker: "anchor", text: "Here is the setup." },
-            { speaker: "analyst", text: "Here is the so what." },
-          ],
+          intro: ["Here is the setup.", "Here is the so what."],
           segments: [
             {
               title: "Top Story: A model ships a useful feature",
-              turns: [
-                { speaker: "anchor", text: "A concise segment." },
-                { speaker: "analyst", text: "The practical takeaway is simple." },
-              ],
+              chunks: ["A concise segment.", "The practical takeaway is simple."],
               sourceUrls: ["https://example.com/changed"],
             },
           ],
-          outro: [
-            { speaker: "anchor", text: "That is the pattern." },
-            { speaker: "analyst", text: "That is the lens." },
-          ],
+          outro: ["That is the pattern.", "That is the lens."],
         },
         clusters,
       ),
@@ -319,24 +292,15 @@ test("validateScriptResponse preserves segment count and source URLs", () => {
   );
 
   const omittedSourceResponse: ScriptResponse = {
-    intro: [
-      { speaker: "anchor", text: "Here is the setup." },
-      { speaker: "analyst", text: "And here is why it matters." },
-    ],
+    intro: ["Here is the setup.", "And here is why it matters."],
     segments: [
       {
         title: "Top Story: A model ships a useful feature",
-        turns: [
-          { speaker: "anchor", text: "A concise segment." },
-          { speaker: "analyst", text: "The practical takeaway is simple." },
-        ],
+        chunks: ["A concise segment.", "The practical takeaway is simple."],
         sourceUrls: ["https://example.com/model-feature"],
       },
     ],
-    outro: [
-      { speaker: "anchor", text: "That is the pattern." },
-      { speaker: "analyst", text: "And that is the useful lens." },
-    ],
+    outro: ["That is the pattern.", "And that is the useful lens."],
   };
 
   assert.equal(reconcileScriptSourceUrls(omittedSourceResponse, clusters), 1);
@@ -350,14 +314,8 @@ test("validateScriptResponse preserves segment count and source URLs", () => {
     () =>
       validateScriptResponse(
         {
-          intro: [
-            { speaker: "anchor", text: "Here is the setup." },
-            { speaker: "analyst", text: "Here is the so what." },
-          ],
-          outro: [
-            { speaker: "anchor", text: "That is the pattern." },
-            { speaker: "analyst", text: "That is the lens." },
-          ],
+          intro: ["Here is the setup.", "Here is the so what."],
+          outro: ["That is the pattern.", "That is the lens."],
         } as unknown as Parameters<typeof validateScriptResponse>[0],
         clusters,
       ),
@@ -368,23 +326,14 @@ test("validateScriptResponse preserves segment count and source URLs", () => {
     () =>
       validateScriptResponse(
         {
-          intro: [
-            { speaker: "anchor", text: "Here is the setup." },
-            { speaker: "analyst", text: "Here is the so what." },
-          ],
+          intro: ["Here is the setup.", "Here is the so what."],
           segments: [
             {
               title: "Top Story: A model ships a useful feature",
-              turns: [
-                { speaker: "anchor", text: "A concise segment." },
-                { speaker: "analyst", text: "The practical takeaway is simple." },
-              ],
+              chunks: ["A concise segment.", "The practical takeaway is simple."],
             },
           ],
-          outro: [
-            { speaker: "anchor", text: "That is the pattern." },
-            { speaker: "analyst", text: "That is the lens." },
-          ],
+          outro: ["That is the pattern.", "That is the lens."],
         } as unknown as Parameters<typeof validateScriptResponse>[0],
         clusters,
       ),
@@ -395,24 +344,15 @@ test("validateScriptResponse preserves segment count and source URLs", () => {
     () =>
       validateScriptResponse(
         {
-          intro: [
-            { speaker: "anchor", text: "Here is the setup." },
-            { speaker: "analyst", text: "Here is the so what." },
-          ],
+          intro: ["Here is the setup.", "Here is the so what."],
           segments: [
             {
               title: " ",
-              turns: [
-                { speaker: "anchor", text: "A concise segment." },
-                { speaker: "analyst", text: "The practical takeaway is simple." },
-              ],
+              chunks: ["A concise segment.", "The practical takeaway is simple."],
               sourceUrls: ["https://example.com/model-feature"],
             },
           ],
-          outro: [
-            { speaker: "anchor", text: "That is the pattern." },
-            { speaker: "analyst", text: "That is the lens." },
-          ],
+          outro: ["That is the pattern.", "That is the lens."],
         },
         clusters,
       ),
@@ -420,7 +360,7 @@ test("validateScriptResponse preserves segment count and source URLs", () => {
   );
 });
 
-test("validateScriptResponse rejects malformed speaker turns", () => {
+test("validateScriptResponse rejects malformed narration chunks", () => {
   const clusters: StoryCluster[] = [
     {
       canonicalKey: "test-story",
@@ -440,124 +380,88 @@ test("validateScriptResponse rejects malformed speaker turns", () => {
           segments: [
             {
               title: "Top Story: A model ships a useful feature",
-              turns: [
-                { speaker: "anchor", text: "A concise segment." },
-                { speaker: "analyst", text: "The practical takeaway is simple." },
-              ],
+              chunks: ["A concise segment.", "The practical takeaway is simple."],
               sourceUrls: ["https://example.com/model-feature"],
             },
           ],
-          outro: [
-            { speaker: "anchor", text: "That is the pattern." },
-            { speaker: "analyst", text: "That is the lens." },
-          ],
+          outro: ["That is the pattern.", "That is the lens."],
         },
         clusters,
       ),
-    /intro turns must include at least 2 turns/,
+    /intro chunks must include at least 1 chunk/,
   );
 
   assert.throws(
     () =>
       validateScriptResponse(
         {
-          intro: [
-            { speaker: "producer", text: "Here is the setup." },
-            { speaker: "analyst", text: "Here is the so what." },
-          ],
+          intro: ["Here is the setup.", "Here is the so what."],
           segments: [
             {
               title: "Top Story: A model ships a useful feature",
-              turns: [
-                { speaker: "anchor", text: "A concise segment." },
-                { speaker: "analyst", text: "The practical takeaway is simple." },
-              ],
+              chunks: [{ speaker: "anchor", text: "A concise segment." }],
               sourceUrls: ["https://example.com/model-feature"],
             },
           ],
-          outro: [
-            { speaker: "anchor", text: "That is the pattern." },
-            { speaker: "analyst", text: "That is the lens." },
-          ],
+          outro: ["That is the pattern.", "That is the lens."],
         } as unknown as Parameters<typeof validateScriptResponse>[0],
         clusters,
       ),
-    /speaker must be "anchor" or "analyst"/,
+    /text must be a non-empty string/,
   );
 
   assert.throws(
     () =>
       validateScriptResponse(
         {
-          intro: [
-            { speaker: "anchor", text: "Here is the setup." },
-            { speaker: "analyst", text: "Here is the so what." },
-          ],
+          intro: ["Here is the setup.", "Here is the so what."],
           segments: [
             {
               title: "Top Story: A model ships a useful feature",
-              turns: [{ speaker: "anchor", text: "A concise segment." }],
+              chunks: [],
               sourceUrls: ["https://example.com/model-feature"],
             },
           ],
-          outro: [
-            { speaker: "anchor", text: "That is the pattern." },
-            { speaker: "analyst", text: "That is the lens." },
-          ],
+          outro: ["That is the pattern.", "That is the lens."],
         },
         clusters,
       ),
-    /segment 1 turns must include at least 2 turns/,
+    /segment 1 chunks must include at least 1 chunk/,
   );
 
   assert.throws(
     () =>
       validateScriptResponse(
         {
-          intro: [
-            { speaker: "anchor", text: "Here is the setup." },
-            { speaker: "analyst", text: "Here is the so what." },
-          ],
+          intro: ["Here is the setup.", "Here is the so what."],
           segments: [
             {
               title: "Top Story: A model ships a useful feature",
-              turns: [
-                { speaker: "anchor", text: "A concise segment." },
-                { speaker: "analyst", text: "The practical takeaway is simple." },
-              ],
+              chunks: ["A concise segment.", "The practical takeaway is simple."],
               sourceUrls: ["https://example.com/model-feature"],
             },
           ],
-          outro: [{ speaker: "anchor", text: "That is the pattern." }],
+          outro: [],
         },
         clusters,
       ),
-    /outro turns must include at least 2 turns/,
+    /outro chunks must include at least 1 chunk/,
   );
 
   assert.throws(
     () =>
       validateScriptResponse(
         {
-          intro: [
-            { speaker: "anchor", text: "Here is the setup." },
-            { speaker: "analyst", text: "Here is the so what." },
-          ],
+          intro: ["Here is the setup.", "Here is the so what."],
           segments: [
             {
               title: "Top Story: A model ships a useful feature",
-              turns: [
-                { speaker: "anchor", text: "A concise segment." },
-                { speaker: "analyst", text: " " },
-              ],
+              chunks: ["A concise segment.", " "],
               sourceUrls: ["https://example.com/model-feature"],
             },
           ],
-          outro: [
-            { speaker: "anchor", text: "That is the pattern." },
-            { speaker: "analyst", text: "That is the lens." },
-          ],
-        } as unknown as Parameters<typeof validateScriptResponse>[0],
+          outro: ["That is the pattern.", "That is the lens."],
+        },
         clusters,
       ),
     /text must be a non-empty string/,
@@ -609,24 +513,15 @@ test("writeScript falls back to the next configured model after empty choices", 
             finish_reason: "stop",
             message: {
               content: JSON.stringify({
-                intro: [
-                  { speaker: "anchor", text: "Here is the setup." },
-                  { speaker: "analyst", text: "Here is why it matters." },
-                ],
+                intro: ["Here is the setup.", "Here is why it matters."],
                 segments: [
                   {
                     title: "Top Story: A model ships a useful feature",
-                    turns: [
-                      { speaker: "anchor", text: "A concise segment." },
-                      { speaker: "analyst", text: "The practical takeaway is simple." },
-                    ],
+                    chunks: ["A concise segment.", "The practical takeaway is simple."],
                     sourceUrls: ["https://example.com/model-feature"],
                   },
                 ],
-                outro: [
-                  { speaker: "anchor", text: "That is the pattern." },
-                  { speaker: "analyst", text: "That is the useful lens." },
-                ],
+                outro: ["That is the pattern.", "That is the useful lens."],
               }),
             },
           },
@@ -646,7 +541,7 @@ test("writeScript falls back to the next configured model after empty choices", 
     ["primary/model", "primary/model", "fallback/model"],
   );
   for (const request of requests) {
-    assert.equal(request.max_tokens, 4096);
+    assert.equal(request.max_tokens, 8000);
     assert.equal(request.stream, false);
     assert.deepEqual(request.provider, { require_parameters: true });
   }

@@ -82,29 +82,15 @@ test("buildEpisodeAudio embeds chapters that ffprobe can read from the MP3", asy
       {
         date: "2099-02-02",
         title: "AI Briefing Test",
-        speakers: [
-          {
-            id: "anchor",
-            name: "The Anchor",
-            role: "Host",
-            persona: "Concise, skeptical, and fact-forward.",
-          },
-          {
-            id: "analyst",
-            name: "The Analyst",
-            role: "Analyst",
-            persona: "Warmer and practical.",
-          },
-        ],
-        intro: [{ speaker: "anchor", text: "Intro" }],
+        intro: ["Intro"],
         segments: [
           {
             title: "Top Story: Chapter Check",
-            turns: [{ speaker: "analyst", text: "Story" }],
+            chunks: ["Story"],
             sourceUrls: [],
           },
         ],
-        outro: [{ speaker: "anchor", text: "Outro" }],
+        outro: ["Outro"],
         audioPath: "",
         byteLength: 0,
         durationSeconds: 0,

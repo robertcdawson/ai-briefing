@@ -2,8 +2,7 @@ import { copyFile, mkdir, readdir, readFile, unlink, writeFile } from "node:fs/p
 import { createHash } from "node:crypto";
 import path from "node:path";
 import { Feed } from "feed";
-import { formatSpeakerTurns } from "./speakers.js";
-import type { Episode, EpisodePartTiming } from "./types.js";
+import type { Episode, EpisodePartTiming, NarrationChunk } from "./types.js";
 import { logJson } from "./util.js";
 
 const DOCS_DIR = "docs";
@@ -140,7 +139,7 @@ export async function publish(
 
   const feed = new Feed({
     title: "AI Briefing",
-    description: "Daily AI news briefing — the top three stories from the last 24 hours.",
+    description: "Daily AI news briefing — the stories that matter from the last 24 hours.",
     id: trimmedBase + "/",
     link: trimmedBase + "/",
     language: "en",
@@ -355,7 +354,7 @@ function getPodcastMetadata(trimmedBase: string): PodcastMetadata {
   const author = process.env.PODCAST_AUTHOR?.trim() || "AI Briefing";
   const summary =
     process.env.PODCAST_SUMMARY?.trim()
-    || "Daily AI news briefing — top three stories from the last 24 hours, fully scripted.";
+    || "Daily AI news briefing — the stories that matter from the last 24 hours, fully scripted.";
   const ownerName = process.env.PODCAST_OWNER_NAME?.trim() || author;
   const ownerEmail = process.env.PODCAST_OWNER_EMAIL?.trim() || "noreply@example.com";
   const imageHref =
@@ -403,6 +402,10 @@ function parsePodcastLocked(raw: string | undefined): "yes" | "no" {
   return raw?.trim().toLowerCase() === "no" ? "no" : "yes";
 }
 
+function formatChunks(chunks: readonly NarrationChunk[]): string {
+  return chunks.map((chunk) => chunk.trim()).filter(Boolean).join("\n\n");
+}
+
 function buildTranscript(ep: Episode): string {
   const lines = [
     ep.title,
@@ -410,19 +413,19 @@ function buildTranscript(ep: Episode): string {
     "",
     "Intro",
     "",
-    formatSpeakerTurns(ep.intro),
+    formatChunks(ep.intro),
     "",
   ];
 
   for (const segment of ep.segments) {
-    lines.push(segment.title, "", formatSpeakerTurns(segment.turns));
+    lines.push(segment.title, "", formatChunks(segment.chunks));
     for (const url of segment.sourceUrls) {
       lines.push(`Source: ${url}`);
     }
     lines.push("");
   }
 
-  lines.push("Outro", "", formatSpeakerTurns(ep.outro), "");
+  lines.push("Outro", "", formatChunks(ep.outro), "");
   return lines.join("\n");
 }
 

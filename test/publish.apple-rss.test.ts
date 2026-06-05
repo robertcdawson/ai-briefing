@@ -20,38 +20,15 @@ process.env.PODCAST_OWNER_EMAIL = "owner@example.com";
 const episode: Episode = {
   date: TEST_DATE,
   title: "AI Briefing — Jan 1, 2099",
-  speakers: [
-    {
-      id: "anchor",
-      name: "The Anchor",
-      role: "Host",
-      persona: "Concise, skeptical, and fact-forward.",
-    },
-    {
-      id: "analyst",
-      name: "The Analyst",
-      role: "Analyst",
-      persona: "Warmer and practical.",
-    },
-  ],
-  intro: [
-    { speaker: "anchor", text: "Intro" },
-    { speaker: "analyst", text: "Intro follow-up" },
-  ],
+  intro: ["Intro", "Intro follow-up"],
   segments: [
     {
       title: "Test story",
-      turns: [
-        { speaker: "anchor", text: "Test script" },
-        { speaker: "analyst", text: "Test analysis" },
-      ],
+      chunks: ["Test script", "Test analysis"],
       sourceUrls: ["https://example.com/story"],
     },
   ],
-  outro: [
-    { speaker: "anchor", text: "Outro" },
-    { speaker: "analyst", text: "Outro follow-up" },
-  ],
+  outro: ["Outro", "Outro follow-up"],
   audioPath: "",
   byteLength: 0,
   durationSeconds: 0,
@@ -152,12 +129,17 @@ try {
       { startTime: 32, endTime: 42, title: "Outro" },
     ],
   });
-  assert.ok(transcript.includes("Intro\n\nThe Anchor: Intro"), "transcript should include the intro text");
+  assert.ok(transcript.includes("Intro\n\nIntro"), "transcript should include the intro text");
   assert.ok(
-    transcript.includes("Test story\n\nThe Anchor: Test script"),
+    transcript.includes("Test story\n\nTest script"),
     "transcript should include story script text",
   );
-  assert.ok(transcript.includes("The Analyst: Test analysis"), "transcript should include speaker labels");
+  assert.ok(transcript.includes("Test analysis"), "transcript should include story narration");
+  assert.equal(
+    transcript.includes("The Anchor:") || transcript.includes("The Analyst:"),
+    false,
+    "single-host transcript should not include speaker labels",
+  );
   assert.ok(transcript.includes("Source: https://example.com/story"), "transcript should include sources");
 } finally {
   await writeFile(FEED_PATH, originalFeed);

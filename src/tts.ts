@@ -3,13 +3,13 @@ import { execa } from "execa";
 import { copyFile, mkdir, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import path from "node:path";
-import type { Episode, SpeakerId, SpeakerTurn } from "./types.js";
+import type { Episode, NarrationChunk } from "./types.js";
 import { logJson, withRetry } from "./util.js";
 import {
-  buildTurnSpeechInstructions,
+  buildChunkSpeechInstructions,
   DEFAULT_GLOBAL_TTS_STYLE,
+  NARRATOR_PROFILE,
   resolveTTSDirection,
-  SPEAKER_PROFILES,
   type EpisodeSectionKind,
   type TTSDirectionConfig,
 } from "./speakerProfiles.js";
@@ -29,17 +29,6 @@ const TTS_MODELS = [
 export type TTSModel = (typeof TTS_MODELS)[number];
 export type { TTSVoice };
 
-export type SpeakerVoiceConfig = Record<SpeakerId, TTSVoice>;
-
-/** @deprecated Use {@link DEFAULT_GLOBAL_TTS_STYLE} or composed turn instructions. */
-export const TTS_DELIVERY_INSTRUCTIONS = DEFAULT_GLOBAL_TTS_STYLE;
-
-/** @deprecated Use {@link buildTurnSpeechInstructions} with a section kind. */
-export const TTS_DELIVERY_INSTRUCTIONS_BY_SPEAKER: Record<SpeakerId, string> = {
-  anchor: buildTurnSpeechInstructions("anchor", "story"),
-  analyst: buildTurnSpeechInstructions("analyst", "story"),
-};
-
 export interface TTSResult {
   segmentDir: string;
   segmentPaths: string[];
@@ -58,7 +47,7 @@ export async function synthesize(episode: Episode): Promise<TTSResult> {
   const apiKey = process.env.OPENAI_API_KEY;
   if (!apiKey) throw new Error("OPENAI_API_KEY is not set");
 
-  const speakerVoices = resolveSpeakerVoices();
+  const voice = resolveNarratorVoice();
   const direction = resolveTTSDirection();
   const model = resolveTTSModel(process.env.TTS_MODEL);
   const timeoutMs = resolveTTSTimeoutMs(process.env.TTS_TIMEOUT_MS);
@@ -68,14 +57,14 @@ export async function synthesize(episode: Episode): Promise<TTSResult> {
   const segmentDir = path.join(tmpdir(), `ai-briefing-${episode.date}-${process.pid}`);
   await mkdir(segmentDir, { recursive: true });
 
-  const parts: { label: string; section: EpisodeSectionKind; turns: SpeakerTurn[] }[] = [
-    { label: "00-intro", section: "intro", turns: episode.intro },
+  const parts: { label: string; section: EpisodeSectionKind; chunks: NarrationChunk[] }[] = [
+    { label: "00-intro", section: "intro", chunks: episode.intro },
     ...episode.segments.map((s, i) => ({
       label: `${pad2(i + 1)}-${slug(s.title)}`,
       section: "story" as const,
-      turns: s.turns,
+      chunks: s.chunks,
     })),
-    { label: `${pad2(episode.segments.length + 1)}-outro`, section: "outro", turns: episode.outro },
+    { label: `${pad2(episode.segments.length + 1)}-outro`, section: "outro", chunks: episode.outro },
   ];
 
   const segmentPaths: string[] = [];
@@ -84,7 +73,7 @@ export async function synthesize(episode: Episode): Promise<TTSResult> {
     const filePath = await synthesizePart(
       client,
       part,
-      speakerVoices,
+      voice,
       direction,
       model,
       segmentDir,
@@ -97,8 +86,8 @@ export async function synthesize(episode: Episode): Promise<TTSResult> {
       status: "ok",
       durationMs: Date.now() - partStart,
       section: part.section,
-      turns: part.turns.length,
-      chars: part.turns.reduce((sum, turn) => sum + turn.text.length, 0),
+      chunks: part.chunks.length,
+      chars: part.chunks.reduce((sum, chunk) => sum + chunk.length, 0),
     });
   }
 
@@ -107,7 +96,7 @@ export async function synthesize(episode: Episode): Promise<TTSResult> {
     status: "ok",
     durationMs: Date.now() - started,
     segments: segmentPaths.length,
-    voices: speakerVoices,
+    voice,
     direction,
     model,
     timeoutMs,
@@ -119,54 +108,52 @@ export async function synthesize(episode: Episode): Promise<TTSResult> {
 
 async function synthesizePart(
   client: OpenAI,
-  part: { label: string; section: EpisodeSectionKind; turns: SpeakerTurn[] },
-  speakerVoices: SpeakerVoiceConfig,
+  part: { label: string; section: EpisodeSectionKind; chunks: NarrationChunk[] },
+  voice: TTSVoice,
   direction: TTSDirectionConfig,
   model: TTSModel,
   segmentDir: string,
   timeoutMs: number,
 ): Promise<string> {
-  if (part.turns.length === 0) throw new Error(`tts.${part.label}: no speaker turns provided`);
+  if (part.chunks.length === 0) throw new Error(`tts.${part.label}: no narration chunks provided`);
 
   const outputPath = path.join(segmentDir, `${part.label}.mp3`);
-  const turnDir = path.join(segmentDir, `${part.label}-turns`);
-  await mkdir(turnDir, { recursive: true });
+  const chunkDir = path.join(segmentDir, `${part.label}-chunks`);
+  await mkdir(chunkDir, { recursive: true });
 
-  const turnPaths: string[] = [];
-  for (const [index, turn] of part.turns.entries()) {
-    const voice = resolveVoiceForTurn(turn, speakerVoices);
-    const turnLabel = `${part.label}.turn-${pad2(index + 1)}.${turn.speaker}`;
-    const turnPath = path.join(turnDir, `${pad2(index + 1)}-${turn.speaker}.mp3`);
+  const chunkPaths: string[] = [];
+  for (const [index, chunk] of part.chunks.entries()) {
+    const chunkLabel = `${part.label}.chunk-${pad2(index + 1)}`;
+    const chunkPath = path.join(chunkDir, `${pad2(index + 1)}.mp3`);
     await withRetry(
       () =>
         writeSpeechFile(
           client,
-          buildTurnSpeechRequest(turn, speakerVoices, model, part.section, direction),
-          turnPath,
+          buildChunkSpeechRequest(chunk, voice, model, part.section, direction),
+          chunkPath,
           timeoutMs,
-          turnLabel,
+          chunkLabel,
         ),
-      { attempts: MAX_ATTEMPTS, label: `tts:${turnLabel}` },
+      { attempts: MAX_ATTEMPTS, label: `tts:${chunkLabel}` },
     );
-    turnPaths.push(turnPath);
+    chunkPaths.push(chunkPath);
     logJson({
-      phase: "tts.turn",
+      phase: "tts.chunk",
       label: part.label,
-      turn: index + 1,
-      speaker: turn.speaker,
+      chunk: index + 1,
       section: part.section,
       voice,
-      chars: turn.text.length,
+      chars: chunk.length,
       status: "ok",
     });
   }
 
-  if (turnPaths.length === 1) {
-    await copyFile(turnPaths[0]!, outputPath);
+  if (chunkPaths.length === 1) {
+    await copyFile(chunkPaths[0]!, outputPath);
     return outputPath;
   }
 
-  await concatSpeechFiles(turnPaths, outputPath, part.label);
+  await concatSpeechFiles(chunkPaths, outputPath, part.label);
   return outputPath;
 }
 
@@ -221,34 +208,23 @@ export function buildSpeechRequest(
   return request;
 }
 
-export function buildTurnSpeechRequest(
-  turn: SpeakerTurn,
-  speakerVoices: SpeakerVoiceConfig,
+export function buildChunkSpeechRequest(
+  text: NarrationChunk,
+  voice: TTSVoice,
   model: TTSModel = DEFAULT_MODEL,
   section: EpisodeSectionKind = "story",
   direction: TTSDirectionConfig = resolveTTSDirection(),
 ): SpeechRequest {
-  const voice = resolveVoiceForTurn(turn, speakerVoices);
   return buildSpeechRequest(
-    turn.text,
+    text,
     voice,
     model,
-    buildTurnSpeechInstructions(turn.speaker, section, direction),
+    buildChunkSpeechInstructions(section, direction),
   );
 }
 
-export function resolveSpeakerVoices(env: NodeJS.ProcessEnv = process.env): SpeakerVoiceConfig {
-  const legacyVoice = resolveTTSVoice(
-    env.TTS_VOICE,
-    SPEAKER_PROFILES.anchor.defaultVoice,
-  );
-  return {
-    anchor: resolveTTSVoice(env.TTS_ANCHOR_VOICE, legacyVoice),
-    analyst: resolveTTSVoice(
-      env.TTS_ANALYST_VOICE,
-      SPEAKER_PROFILES.analyst.defaultVoice,
-    ),
-  };
+export function resolveNarratorVoice(env: NodeJS.ProcessEnv = process.env): TTSVoice {
+  return resolveTTSVoice(env.TTS_VOICE, NARRATOR_PROFILE.defaultVoice);
 }
 
 function resolveTTSModel(requestedModel: string | undefined): TTSModel {
@@ -269,12 +245,6 @@ export function resolveTTSTimeoutMs(raw: string | undefined): number {
 
 function supportsDeliveryInstructions(model: TTSModel): boolean {
   return model !== "tts-1" && model !== "tts-1-hd";
-}
-
-function resolveVoiceForTurn(turn: SpeakerTurn, speakerVoices: SpeakerVoiceConfig): TTSVoice {
-  const voice = speakerVoices[turn.speaker];
-  if (!voice) throw new Error(`No TTS voice configured for speaker: ${String(turn.speaker)}`);
-  return voice;
 }
 
 async function concatSpeechFiles(
@@ -325,11 +295,11 @@ function pad2(n: number): string {
 }
 
 export {
-  buildTurnSpeechInstructions,
+  buildChunkSpeechInstructions,
   DEFAULT_GLOBAL_TTS_STYLE,
   DEFAULT_SECTION_TTS_STYLES,
+  NARRATOR_PROFILE,
   resolveTTSDirection,
-  SPEAKER_PROFILES,
   type EpisodeSectionKind,
   type TTSDirectionConfig,
 } from "./speakerProfiles.js";

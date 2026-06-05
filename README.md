@@ -8,9 +8,9 @@
 A daily, fully-automated AI news podcast. Every morning at ~06:30 Pacific, GitHub Actions:
 
 1. Pulls the last 24h of articles from a curated set of AI news RSS feeds.
-2. Asks Claude (via OpenRouter) to cluster duplicates and pick the top 3 stories.
-3. Writes a 4–7 minute two-speaker script (engaging summary hook → recurring segments → synthesis outro), using direct OpenAI for default `openai/...` models and OpenRouter for other configured fallbacks.
-4. Synthesizes each speaker turn with OpenAI `gpt-4o-mini-tts`, using the configured voice for that speaker, then groups turns back into intro/story/outro MP3 sections.
+2. Asks Claude (via OpenRouter) to cluster duplicates and score each story, then keeps the ones that matter (a variable number that follows the day's news).
+3. Writes a natural, single-host script up to ~10 minutes (engaging hook → one segment per story, with depth scaled to importance → synthesis outro), using direct OpenAI for default `openai/...` models and OpenRouter for other configured fallbacks.
+4. Synthesizes the host's narration in chunks with OpenAI `gpt-4o-mini-tts` using the configured voice, then groups the chunks back into intro/story/outro MP3 sections.
 5. Builds a full program master with ffmpeg (section stingers + concat), normalizes loudness to EBU R128 (-16 LUFS), encodes 192 kbps MP3 with ID3 tags and embedded chapters.
 6. Drops the file at `docs/episodes/YYYY-MM-DD.mp3`, regenerates `docs/feed.xml`, commits, and pushes.
 7. GitHub Pages serves the feed; Apple Podcasts polls and downloads.
@@ -164,10 +164,8 @@ In the repo's **Settings → Secrets and variables → Actions**:
 - `FEED_BASE_URL` — same as `.env`, e.g. `https://USER.github.io/ai-briefing`
 - `OPENROUTER_SCRIPT_MODEL` — optional script model override; accepts a comma-separated fallback list and defaults to `openai/gpt-4o-mini, google/gemini-3.1-pro-preview`; `openai/...` entries use `OPENAI_API_KEY` directly when available
 - `TTS_MODEL` — `gpt-4o-mini-tts` (default; supports delivery instructions)
-- `TTS_VOICE` — legacy Anchor fallback; defaults to `cedar` when unset
-- `TTS_ANCHOR_VOICE` — Anchor voice; defaults to `cedar`
-- `TTS_ANALYST_VOICE` — Analyst voice; defaults to `marin`
-- `TTS_GLOBAL_STYLE`, `TTS_ANCHOR_STYLE`, `TTS_ANALYST_STYLE` — composed TTS delivery instructions (see `.env.example` and `src/speakerProfiles.ts`)
+- `TTS_VOICE` — the single host's voice; defaults to `marin` when unset
+- `TTS_GLOBAL_STYLE`, `TTS_NARRATOR_STYLE` — composed TTS delivery instructions (see `.env.example` and `src/speakerProfiles.ts`)
 - `TTS_INTRO_STYLE`, `TTS_STORY_STYLE`, `TTS_OUTRO_STYLE` — per-section delivery overrides for intro, story segments, and outro
 - `TTS_TIMEOUT_MS` — `180000` by default; raise only if OpenAI speech generation is still timing out
 - `AUDIO_CUES_ENABLED` — `true` (set `false` to disable synthetic section stingers)
@@ -255,16 +253,13 @@ The workflow page has a **Re-run all jobs** button. Use it after fixing the root
 
 ### Change the TTS model or voice
 
-Set `TTS_MODEL`, `TTS_ANCHOR_VOICE`, and `TTS_ANALYST_VOICE` in Actions variables (or `.env` locally). `TTS_VOICE` is still accepted as a legacy Anchor fallback. Defaults are `cedar` (anchor) and `marin` (analyst). Tune performance separately with `TTS_GLOBAL_STYLE`, `TTS_ANCHOR_STYLE`, `TTS_ANALYST_STYLE`, and optional `TTS_INTRO_STYLE` / `TTS_STORY_STYLE` / `TTS_OUTRO_STYLE` — see `src/speakerProfiles.ts` for built-in defaults. The default model is `gpt-4o-mini-tts`, which supports those delivery instructions. Legacy `tts-1` and `tts-1-hd` still work, but they ignore delivery instructions. Takes effect on the next run only — past episodes remain in their original voices.
+Set `TTS_MODEL` and `TTS_VOICE` in Actions variables (or `.env` locally). `TTS_VOICE` is the single host's voice and defaults to `marin`. The **voice ID controls timbre** — it's the only lever for *how the voice sounds*; delivery instructions can't change it. Tune performance separately with `TTS_GLOBAL_STYLE`, `TTS_NARRATOR_STYLE`, and optional `TTS_INTRO_STYLE` / `TTS_STORY_STYLE` / `TTS_OUTRO_STYLE` — see `src/speakerProfiles.ts` for built-in defaults. The default model is `gpt-4o-mini-tts`, which supports those delivery instructions. Legacy `tts-1` and `tts-1-hd` still work, but they ignore delivery instructions. Takes effect on the next run only — past episodes remain in their original voice.
 
-OpenAI does not label built-in voices by gender in the API docs, but the current Speech API includes `alloy`, `ash`, `ballad`, `coral`, `echo`, `fable`, `nova`, `onyx`, `sage`, `shimmer`, `verse`, `marin`, and `cedar`. In practice, start auditions with `coral`, `nova`, or `shimmer` for a brighter/feminine-coded host, and `marin` or `cedar` for OpenAI's recommended best quality.
+OpenAI does not label built-in voices by gender in the API docs, but the current Speech API includes `alloy`, `ash`, `ballad`, `coral`, `echo`, `fable`, `nova`, `onyx`, `sage`, `shimmer`, `verse`, `marin`, and `cedar`. In practice, `marin` (the default) and `cedar` are OpenAI's recommended best quality; `sage` and `verse` are good natural-sounding alternates; `coral`, `nova`, or `shimmer` read brighter/feminine-coded.
 
-The show uses a structured two-speaker conversation format. Keep the personas complementary rather than gimmicky:
+The show is a single-host monologue. The host is a sharp, witty, occasionally cynical guide who weighs each story's real-world stakes — who benefits, who gets hurt, and what could go right or wrong. A daily persona (rotated by date, see `DAILY_PERSONAS` in `src/script.ts`) sets the day's tonal lens on top of that.
 
-- **The Anchor:** concise, skeptical, keeps the facts and story order straight.
-- **The Analyst:** warmer and more playful, asks the practical "so what?" question and adds one memorable analogy.
-
-This is implemented as structured speaker turns before TTS. Each turn is synthesized with that speaker's configured voice, then turns are concatenated back into intro/story/outro sections so chapters stay aligned to the episode structure instead of every small exchange.
+This is implemented as ordered narration chunks before TTS. Each chunk is synthesized with the host's configured voice, then chunks are concatenated back into intro/story/outro sections so chapters stay aligned to the episode structure.
 
 ### Toggle section stingers
 

@@ -1,0 +1,46 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — June 6, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 36,
+      "title": "Intro"
+    },
+    {
+      "startTime": 36,
+      "endTime": 103,
+      "title": "Google pays SpaceX $920M monthly for..."
+    },
+    {
+      "startTime": 103,
+      "endTime": 167,
+      "title": "xAI reportedly trained coding models on..."
+    },
+    {
+      "startTime": 167,
+      "endTime": 228,
+      "title": "Florida sues OpenAI treating ChatGPT as..."
+    },
+    {
+      "startTime": 228,
+      "endTime": 291,
+      "title": "OpenAI and Trump administration negotiate..."
+    },
+    {
+      "startTime": 291,
+      "endTime": 352,
+      "title": "New York legislature passes one-year..."
+    },
+    {
+      "startTime": 352,
+      "endTime": 416,
+      "title": "Sakana AI launches dedicated lab for..."
+    },
+    {
+      "startTime": 416,
+      "endTime": 458,
+      "title": "Outro"
+    }
+  ]
+}

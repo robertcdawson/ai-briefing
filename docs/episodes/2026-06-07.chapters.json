@@ -1,0 +1,46 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — June 7, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 17,
+      "title": "Intro"
+    },
+    {
+      "startTime": 17,
+      "endTime": 75,
+      "title": "OpenAI declares 'chat is dead,' plans..."
+    },
+    {
+      "startTime": 75,
+      "endTime": 131,
+      "title": "OpenAI launches Lockdown Mode to reduce..."
+    },
+    {
+      "startTime": 131,
+      "endTime": 184,
+      "title": "Perplexity's 'Search as Code' lets models..."
+    },
+    {
+      "startTime": 184,
+      "endTime": 235,
+      "title": "New study explains mechanistically why..."
+    },
+    {
+      "startTime": 235,
+      "endTime": 275,
+      "title": "Trump administration reportedly exploring..."
+    },
+    {
+      "startTime": 275,
+      "endTime": 318,
+      "title": "England and Wales police ordered to stop..."
+    },
+    {
+      "startTime": 318,
+      "endTime": 357,
+      "title": "Outro"
+    }
+  ]
+}

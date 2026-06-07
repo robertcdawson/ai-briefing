@@ -4,7 +4,7 @@
         <title>AI Briefing</title>
         <link>https://robertcdawson.github.io/ai-briefing/</link>
         <description>Daily AI news briefing — the stories that matter from the last 24 hours.</description>
-        <lastBuildDate>Sat, 06 Jun 2026 14:11:08 GMT</lastBuildDate>
+        <lastBuildDate>Sun, 07 Jun 2026 14:16:41 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -23,6 +23,52 @@
         <podcast:guid>ea8709f4-3ba2-5b7e-bcdc-e409d84a6443</podcast:guid>
         <podcast:locked owner="manatees@gmail.com">yes</podcast:locked>
         <podcast:person role="host" group="cast">Robert Dawson</podcast:person>
+        <item>
+            <title><![CDATA[AI Briefing — June 7, 2026]]></title>
+            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-06-07.mp3</link>
+            <guid>ai-briefing-2026-06-07</guid>
+            <pubDate>Sun, 07 Jun 2026 14:16:41 GMT</pubDate>
+            <description><![CDATA[Top 6 AI stories for 2026-06-07:
+
+Chapters:
+00:00:00 Intro
+00:00:17 OpenAI declares 'chat is dead,' plans...
+00:01:15 OpenAI launches Lockdown Mode to reduce...
+00:02:11 Perplexity's 'Search as Code' lets models...
+00:03:04 New study explains mechanistically why...
+00:03:55 Trump administration reportedly exploring...
+00:04:35 England and Wales police ordered to stop...
+00:05:18 Outro
+
+Sources:
+1. Product & Tool Watch: OpenAI declares 'chat is dead,' plans ChatGPT agent superapp rebuild
+Source: https://the-decoder.com/openai-says-chat-is-dead-and-plans-to-rebuild-chatgpt-as-a-full-blown-agent-app/
+2. Product & Tool Watch: OpenAI launches Lockdown Mode to reduce prompt injection data exfiltration risk
+Source: https://techcrunch.com/2026/06/06/openai-unveils-lockdown-mode-to-protect-sensitive-data-from-prompt-injection-attacks/
+Source: https://the-decoder.com/chatgpts-new-lockdown-mode-lets-you-disable-web-access-and-more-to-protect-sensitive-data-from-prompt-injection/
+3. Research Breakthrough: Perplexity's 'Search as Code' lets models write dynamic search pipelines, cuts token costs 85%
+Source: https://the-decoder.com/perplexitys-search-as-code-lets-ai-models-write-their-own-search-pipelines-instead-of-calling-fixed-apis/
+4. Research Breakthrough: New study explains mechanistically why scale unlocks skills small models miss
+Source: https://the-decoder.com/researchers-pinpoint-why-larger-language-models-pick-up-skills-that-small-ones-miss/
+5. Policy & Regulation Watch: Trump administration reportedly exploring equity stake in OpenAI
+Source: https://techcrunch.com/2026/06/06/the-trump-administration-might-take-an-equity-stake-in-openai/
+6. Policy & Regulation Watch: England and Wales police ordered to stop using AI in court witness statements
+Source: https://www.ft.com/content/229e5949-3ebc-4151-8a86-a01b5e259241]]></description>
+            <enclosure length="8570148" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-07.mp3"/>
+                    <itunes:duration>357</itunes:duration>
+            <itunes:explicit>false</itunes:explicit>
+            <itunes:season>2026</itunes:season>
+            <itunes:episode>158</itunes:episode>
+            <itunes:episodeType>full</itunes:episodeType>
+            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-07.chapters.json" type="application/json+chapters"/>
+            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-07.transcript.txt" type="text/plain" language="en"/>
+            <podcast:soundbite startTime="17" duration="58">OpenAI declares &apos;chat is dead,&apos; plans...</podcast:soundbite>
+            <podcast:soundbite startTime="75" duration="55">OpenAI launches Lockdown Mode to reduce...</podcast:soundbite>
+            <podcast:soundbite startTime="131" duration="53">Perplexity&apos;s &apos;Search as Code&apos; lets models...</podcast:soundbite>
+            <podcast:soundbite startTime="184" duration="51">New study explains mechanistically why...</podcast:soundbite>
+            <podcast:soundbite startTime="235" duration="41">Trump administration reportedly exploring...</podcast:soundbite>
+            <podcast:soundbite startTime="275" duration="42">England and Wales police ordered to stop...</podcast:soundbite>
+        </item>
         <item>
             <title><![CDATA[AI Briefing — June 6, 2026]]></title>
             <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-06-06.mp3</link>
@@ -1085,23 +1131,6 @@ Source: https://the-decoder.com/thinking-machines-lab-ships-its-first-model-and-
             <itunes:explicit>false</itunes:explicit>
             <itunes:season>2026</itunes:season>
             <itunes:episode>126</itunes:episode>
-            <itunes:episodeType>full</itunes:episodeType>
-        </item>
-        <item>
-            <title><![CDATA[AI Briefing — May 5, 2026]]></title>
-            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-05-05.mp3</link>
-            <guid>ai-briefing-2026-05-05</guid>
-            <pubDate>Tue, 05 May 2026 16:25:33 GMT</pubDate>
-            <description><![CDATA[Top 3 AI stories for 2026-05-05:
-
-1. US moves toward pre-deployment review of frontier models
-2. Researchers gaslight Claude into producing forbidden content
-3. Nature retracts influential ChatGPT-in-education study]]></description>
-            <enclosure length="8596570" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-05.mp3"/>
-                    <itunes:duration>358</itunes:duration>
-            <itunes:explicit>false</itunes:explicit>
-            <itunes:season>2026</itunes:season>
-            <itunes:episode>125</itunes:episode>
             <itunes:episodeType>full</itunes:episodeType>
         </item>
     </channel>

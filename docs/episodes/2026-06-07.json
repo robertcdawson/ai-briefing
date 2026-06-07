@@ -1,0 +1,86 @@
+{
+  "date": "2026-06-07",
+  "title": "AI Briefing — June 7, 2026",
+  "description": "Top 6 AI stories for 2026-06-07:\n\nChapters:\n00:00:00 Intro\n00:00:17 OpenAI declares 'chat is dead,' plans...\n00:01:15 OpenAI launches Lockdown Mode to reduce...\n00:02:11 Perplexity's 'Search as Code' lets models...\n00:03:04 New study explains mechanistically why...\n00:03:55 Trump administration reportedly exploring...\n00:04:35 England and Wales police ordered to stop...\n00:05:18 Outro\n\nSources:\n1. Product & Tool Watch: OpenAI declares 'chat is dead,' plans ChatGPT agent superapp rebuild\nSource: https://the-decoder.com/openai-says-chat-is-dead-and-plans-to-rebuild-chatgpt-as-a-full-blown-agent-app/\n2. Product & Tool Watch: OpenAI launches Lockdown Mode to reduce prompt injection data exfiltration risk\nSource: https://techcrunch.com/2026/06/06/openai-unveils-lockdown-mode-to-protect-sensitive-data-from-prompt-injection-attacks/\nSource: https://the-decoder.com/chatgpts-new-lockdown-mode-lets-you-disable-web-access-and-more-to-protect-sensitive-data-from-prompt-injection/\n3. Research Breakthrough: Perplexity's 'Search as Code' lets models write dynamic search pipelines, cuts token costs 85%\nSource: https://the-decoder.com/perplexitys-search-as-code-lets-ai-models-write-their-own-search-pipelines-instead-of-calling-fixed-apis/\n4. Research Breakthrough: New study explains mechanistically why scale unlocks skills small models miss\nSource: https://the-decoder.com/researchers-pinpoint-why-larger-language-models-pick-up-skills-that-small-ones-miss/\n5. Policy & Regulation Watch: Trump administration reportedly exploring equity stake in OpenAI\nSource: https://techcrunch.com/2026/06/06/the-trump-administration-might-take-an-equity-stake-in-openai/\n6. Policy & Regulation Watch: England and Wales police ordered to stop using AI in court witness statements\nSource: https://www.ft.com/content/229e5949-3ebc-4151-8a86-a01b5e259241",
+  "durationSeconds": 357,
+  "byteLength": 8570148,
+  "pubDate": "2026-06-07T14:16:41.856Z",
+  "season": 2026,
+  "episodeNumber": 158,
+  "chaptersFilename": "2026-06-07.chapters.json",
+  "transcriptFilename": "2026-06-07.transcript.txt",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 17,
+      "title": "Intro"
+    },
+    {
+      "startTime": 17,
+      "endTime": 75,
+      "title": "OpenAI declares 'chat is dead,' plans..."
+    },
+    {
+      "startTime": 75,
+      "endTime": 131,
+      "title": "OpenAI launches Lockdown Mode to reduce..."
+    },
+    {
+      "startTime": 131,
+      "endTime": 184,
+      "title": "Perplexity's 'Search as Code' lets models..."
+    },
+    {
+      "startTime": 184,
+      "endTime": 235,
+      "title": "New study explains mechanistically why..."
+    },
+    {
+      "startTime": 235,
+      "endTime": 275,
+      "title": "Trump administration reportedly exploring..."
+    },
+    {
+      "startTime": 275,
+      "endTime": 318,
+      "title": "England and Wales police ordered to stop..."
+    },
+    {
+      "startTime": 318,
+      "endTime": 357,
+      "title": "Outro"
+    }
+  ],
+  "soundbites": [
+    {
+      "startTime": 17,
+      "duration": 58,
+      "title": "OpenAI declares 'chat is dead,' plans..."
+    },
+    {
+      "startTime": 75,
+      "duration": 55,
+      "title": "OpenAI launches Lockdown Mode to reduce..."
+    },
+    {
+      "startTime": 131,
+      "duration": 53,
+      "title": "Perplexity's 'Search as Code' lets models..."
+    },
+    {
+      "startTime": 184,
+      "duration": 51,
+      "title": "New study explains mechanistically why..."
+    },
+    {
+      "startTime": 235,
+      "duration": 41,
+      "title": "Trump administration reportedly exploring..."
+    },
+    {
+      "startTime": 275,
+      "duration": 42,
+      "title": "England and Wales police ordered to stop..."
+    }
+  ]
+}

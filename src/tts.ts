@@ -295,11 +295,6 @@ function pad2(n: number): string {
 }
 
 export {
-  buildChunkSpeechInstructions,
   DEFAULT_GLOBAL_TTS_STYLE,
-  DEFAULT_SECTION_TTS_STYLES,
-  NARRATOR_PROFILE,
   resolveTTSDirection,
-  type EpisodeSectionKind,
-  type TTSDirectionConfig,
 } from "./speakerProfiles.js";

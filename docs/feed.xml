@@ -4,7 +4,7 @@
         <title>AI Briefing</title>
         <link>https://robertcdawson.github.io/ai-briefing/</link>
         <description>Daily AI news briefing — the stories that matter from the last 24 hours.</description>
-        <lastBuildDate>Sun, 07 Jun 2026 14:16:41 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 08 Jun 2026 14:49:09 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -23,6 +23,53 @@
         <podcast:guid>ea8709f4-3ba2-5b7e-bcdc-e409d84a6443</podcast:guid>
         <podcast:locked owner="manatees@gmail.com">yes</podcast:locked>
         <podcast:person role="host" group="cast">Robert Dawson</podcast:person>
+        <item>
+            <title><![CDATA[AI Briefing — June 8, 2026]]></title>
+            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-06-08.mp3</link>
+            <guid>ai-briefing-2026-06-08</guid>
+            <pubDate>Mon, 08 Jun 2026 14:49:09 GMT</pubDate>
+            <description><![CDATA[Top 6 AI stories for 2026-06-08:
+
+Chapters:
+00:00:00 Intro
+00:00:25 OpenAI plans major ChatGPT overhaul as...
+00:01:18 AI billing shifts from flat subscriptions...
+00:02:00 Microsoft tightens conflict-zone rules...
+00:02:41 Meta discloses Instagram AI chatbot...
+00:03:21 DeepSeek tops Ramp's trending vendor list...
+00:03:55 Open source community rallies behind...
+00:04:26 Outro
+
+Sources:
+1. Product & Tool Watch: OpenAI plans major ChatGPT overhaul as 'chat is dead' internally
+Source: https://arstechnica.com/ai/2026/06/chat-is-dead-openai-preps-overhaul-of-chatgpt/
+Source: https://techcrunch.com/2026/06/07/openai-is-still-working-on-that-super-app/
+2. AI Business Watch: AI billing shifts from flat subscriptions to consumption-based token pricing
+Source: https://techcrunch.com/2026/06/07/is-this-the-dawn-of-the-tokenpocalypse/
+Source: https://the-decoder.com/frontier-radar-3-how-agentic-ai-is-turning-tokens-into-a-business-metric/
+3. Policy & Regulation Watch: Microsoft tightens conflict-zone rules after Israel military Azure investigation
+Source: https://the-decoder.com/microsoft-tightens-rules-for-conflict-zones-after-investigation-into-israels-military-use-of-azure/
+4. Policy & Regulation Watch: Meta discloses Instagram AI chatbot breach affecting over 20,000 accounts
+Source: https://the-decoder.com/instagram-ai-chatbot-breach-may-have-affected-over-to-20000-accounts-meta-discloses/
+5. AI Business Watch: DeepSeek tops Ramp's trending vendor list as US firms chase cheaper AI
+Source: https://the-decoder.com/deepseek-topped-ramps-trending-software-vendors-in-june-2026-as-us-companies-chase-cheaper-ai/
+6. Open Source Watch: Open source community rallies behind OpenEnv for agentic reinforcement learning
+Source: https://huggingface.co/blog/openenv-agentic-rl]]></description>
+            <enclosure length="7130141" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-08.mp3"/>
+                    <itunes:duration>297</itunes:duration>
+            <itunes:explicit>false</itunes:explicit>
+            <itunes:season>2026</itunes:season>
+            <itunes:episode>159</itunes:episode>
+            <itunes:episodeType>full</itunes:episodeType>
+            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-08.chapters.json" type="application/json+chapters"/>
+            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-08.transcript.txt" type="text/plain" language="en"/>
+            <podcast:soundbite startTime="25" duration="53">OpenAI plans major ChatGPT overhaul as...</podcast:soundbite>
+            <podcast:soundbite startTime="78" duration="42">AI billing shifts from flat subscriptions...</podcast:soundbite>
+            <podcast:soundbite startTime="120" duration="41">Microsoft tightens conflict-zone rules...</podcast:soundbite>
+            <podcast:soundbite startTime="161" duration="40">Meta discloses Instagram AI chatbot...</podcast:soundbite>
+            <podcast:soundbite startTime="201" duration="33">DeepSeek tops Ramp&apos;s trending vendor list...</podcast:soundbite>
+            <podcast:soundbite startTime="235" duration="32">Open source community rallies behind...</podcast:soundbite>
+        </item>
         <item>
             <title><![CDATA[AI Briefing — June 7, 2026]]></title>
             <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-06-07.mp3</link>
@@ -1114,23 +1161,6 @@ Source: https://the-decoder.com/thinking-machines-lab-ships-its-first-model-and-
             <itunes:explicit>false</itunes:explicit>
             <itunes:season>2026</itunes:season>
             <itunes:episode>127</itunes:episode>
-            <itunes:episodeType>full</itunes:episodeType>
-        </item>
-        <item>
-            <title><![CDATA[AI Briefing — May 6, 2026]]></title>
-            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-05-06.mp3</link>
-            <guid>ai-briefing-2026-05-06</guid>
-            <pubDate>Thu, 07 May 2026 04:12:08 GMT</pubDate>
-            <description><![CDATA[Top 3 AI stories for 2026-05-06:
-
-1. Anthropic takes over Colossus-1
-2. OpenAI's open MRC networking protocol
-3. Gemma 4 gets 3x faster with speculative decoding]]></description>
-            <enclosure length="7860442" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-06.mp3"/>
-                    <itunes:duration>327</itunes:duration>
-            <itunes:explicit>false</itunes:explicit>
-            <itunes:season>2026</itunes:season>
-            <itunes:episode>126</itunes:episode>
             <itunes:episodeType>full</itunes:episodeType>
         </item>
     </channel>

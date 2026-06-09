@@ -4,7 +4,7 @@
         <title>AI Briefing</title>
         <link>https://robertcdawson.github.io/ai-briefing/</link>
         <description>Daily AI news briefing — the stories that matter from the last 24 hours.</description>
-        <lastBuildDate>Mon, 08 Jun 2026 14:49:09 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 09 Jun 2026 14:21:15 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -23,6 +23,65 @@
         <podcast:guid>ea8709f4-3ba2-5b7e-bcdc-e409d84a6443</podcast:guid>
         <podcast:locked owner="manatees@gmail.com">yes</podcast:locked>
         <podcast:person role="host" group="cast">Robert Dawson</podcast:person>
+        <item>
+            <title><![CDATA[AI Briefing — June 9, 2026]]></title>
+            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-06-09.mp3</link>
+            <guid>ai-briefing-2026-06-09</guid>
+            <pubDate>Tue, 09 Jun 2026 14:21:15 GMT</pubDate>
+            <description><![CDATA[Top 6 AI stories for 2026-06-09:
+
+Chapters:
+00:00:00 Intro
+00:00:24 Apple unveils rebuilt Siri AI at WWDC...
+00:01:20 OpenAI files confidential IPO S-1, racing...
+00:02:00 Microsoft shuts 70-plus GitHub repos...
+00:02:41 China plans $295 billion AI data center...
+00:03:16 Google and Nvidia explore Intel foundry...
+00:03:51 Microsoft Research Lens shows rich...
+00:04:32 Outro
+
+Sources:
+1. Product & Tool Watch: Apple unveils rebuilt Siri AI at WWDC 2026 powered by Google and Nvidia
+Source: https://www.theverge.com/tech/942416/apple-siri-ai-update-wwdc
+Source: https://www.theverge.com/ai-artificial-intelligence/946705/apple-private-cloud-compute-ai-siri-intelligence-wwdc
+Source: https://www.theverge.com/ai-artificial-intelligence/946780/apples-ai-promises-are-finally-almost-sort-of-here
+Source: https://techcrunch.com/2026/06/08/apples-long-awaited-ai-siri-overhaul-is-finally-here
+Source: https://techcrunch.com/2026/06/08/wwdc-2026-everything-announced-on-siri-ai-os-27-apple-intelligence-and-more
+Source: https://techcrunch.com/2026/06/08/apple-bets-cheaper-ai-will-woo-small-developers
+Source: https://www.macrumors.com/2026/06/08/apple-reveals-new-ai-architecture/
+Source: https://developer.apple.com/documentation/coreai/
+Source: https://the-decoder.com/apple-intelligence-gets-a-second-go-with-the-help-of-google-and-nvidia/
+Source: https://simonwillison.net/2026/Jun/8/wwdc/#atom-everything
+Source: https://stratechery.com/2026/the-iphones-last-stand/
+2. AI Business Watch: OpenAI files confidential IPO S-1, racing Anthropic to public markets
+Source: https://www.theverge.com/ai-artificial-intelligence/946335/openai-ipo-s-1-confidential
+Source: https://techcrunch.com/2026/06/08/following-anthropic-openai-files-confidentially-for-ipo/
+Source: https://the-decoder.com/openai-says-going-public-is-a-complicated-set-of-tradeoffs-and-is-unsure-about-the-timing/
+Source: https://techcrunch.com/2026/06/08/as-openai-files-for-ipo-sam-altmans-eye-scanning-company-is-doing-layoffs-report-says/
+3. Policy & Regulation Watch: Microsoft shuts 70-plus GitHub repos after hackers targeted AI developer credentials
+Source: https://techcrunch.com/2026/06/08/microsofts-open-source-tools-were-hacked-to-steal-passwords-of-ai-developers/
+Source: https://www.404media.co/microsoft-hacked-to-deliver-malware-to-claude-and-gemini-users/
+4. Policy & Regulation Watch: China plans $295 billion AI data center network requiring 80 percent domestic chips
+Source: https://the-decoder.com/beijings-295-billion-ai-buildout-would-require-80-percent-domestic-chips-locking-out-us-suppliers/
+5. AI Business Watch: Google and Nvidia explore Intel foundry as backup to TSMC for AI chips
+Source: https://the-decoder.com/intel-gets-a-second-life-as-google-and-nvidia-explore-it-as-a-tsmc-backup-for-ai-chips/
+6. Research Breakthrough: Microsoft Research Lens shows rich captions beat scale for efficient image generation
+Source: https://the-decoder.com/microsoft-researchs-lens-proves-detailed-captions-matter-more-than-raw-scale-for-training-efficient-image-generators/]]></description>
+            <enclosure length="7456154" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-09.mp3"/>
+                    <itunes:duration>311</itunes:duration>
+            <itunes:explicit>false</itunes:explicit>
+            <itunes:season>2026</itunes:season>
+            <itunes:episode>160</itunes:episode>
+            <itunes:episodeType>full</itunes:episodeType>
+            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-09.chapters.json" type="application/json+chapters"/>
+            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-09.transcript.txt" type="text/plain" language="en"/>
+            <podcast:soundbite startTime="24" duration="56">Apple unveils rebuilt Siri AI at WWDC...</podcast:soundbite>
+            <podcast:soundbite startTime="80" duration="39">OpenAI files confidential IPO S-1, racing...</podcast:soundbite>
+            <podcast:soundbite startTime="120" duration="41">Microsoft shuts 70-plus GitHub repos...</podcast:soundbite>
+            <podcast:soundbite startTime="161" duration="35">China plans $295 billion AI data center...</podcast:soundbite>
+            <podcast:soundbite startTime="196" duration="35">Google and Nvidia explore Intel foundry...</podcast:soundbite>
+            <podcast:soundbite startTime="231" duration="41">Microsoft Research Lens shows rich...</podcast:soundbite>
+        </item>
         <item>
             <title><![CDATA[AI Briefing — June 8, 2026]]></title>
             <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-06-08.mp3</link>
@@ -1144,23 +1203,6 @@ Source: https://the-decoder.com/thinking-machines-lab-ships-its-first-model-and-
             <itunes:explicit>false</itunes:explicit>
             <itunes:season>2026</itunes:season>
             <itunes:episode>128</itunes:episode>
-            <itunes:episodeType>full</itunes:episodeType>
-        </item>
-        <item>
-            <title><![CDATA[AI Briefing — May 7, 2026]]></title>
-            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-05-07.mp3</link>
-            <guid>ai-briefing-2026-05-07</guid>
-            <pubDate>Thu, 07 May 2026 14:19:49 GMT</pubDate>
-            <description><![CDATA[Top 3 AI stories for 2026-05-07:
-
-1. Anthropic taps SpaceX's Colossus-1, doubles Claude Code limits, and teaches Claude to dream
-2. OpenAI's MRC protocol, co-built with AMD, Broadcom, Intel, Microsoft, and NVIDIA
-3. Google ships multi-token drafters making Gemma 4 up to 3x faster]]></description>
-            <enclosure length="8421466" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-07.mp3"/>
-                    <itunes:duration>351</itunes:duration>
-            <itunes:explicit>false</itunes:explicit>
-            <itunes:season>2026</itunes:season>
-            <itunes:episode>127</itunes:episode>
             <itunes:episodeType>full</itunes:episodeType>
         </item>
     </channel>

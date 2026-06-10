@@ -4,7 +4,7 @@
         <title>AI Briefing</title>
         <link>https://robertcdawson.github.io/ai-briefing/</link>
         <description>Daily AI news briefing — the stories that matter from the last 24 hours.</description>
-        <lastBuildDate>Tue, 09 Jun 2026 14:21:15 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 10 Jun 2026 14:36:38 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -23,6 +23,63 @@
         <podcast:guid>ea8709f4-3ba2-5b7e-bcdc-e409d84a6443</podcast:guid>
         <podcast:locked owner="manatees@gmail.com">yes</podcast:locked>
         <podcast:person role="host" group="cast">Robert Dawson</podcast:person>
+        <item>
+            <title><![CDATA[AI Briefing — June 10, 2026]]></title>
+            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-06-10.mp3</link>
+            <guid>ai-briefing-2026-06-10</guid>
+            <pubDate>Wed, 10 Jun 2026 14:36:38 GMT</pubDate>
+            <description><![CDATA[Top 6 AI stories for 2026-06-10:
+
+Chapters:
+00:00:00 Intro
+00:00:33 Anthropic releases Claude Fable 5, its...
+00:01:39 German court rules Google liable for...
+00:02:33 Apple relaunches Siri AI at WWDC 2026...
+00:03:22 Google launches Gemini 3.5 Live Translate...
+00:04:05 OpenAI negotiates lease on 10-gigawatt...
+00:04:50 Germany's National Security Council...
+00:05:40 Outro
+
+Sources:
+1. Product & Tool Watch: Anthropic releases Claude Fable 5, its first public Mythos-class model
+Source: https://www.theverge.com/news/946725/anthropic-releases-claude-fable-5-mythos
+Source: https://arstechnica.com/ai/2026/06/anthropic-says-these-topics-are-too-dangerous-to-let-its-fable-5-model-talk-about/
+Source: https://techcrunch.com/2026/06/09/anthropics-claude-fable-5-is-a-version-of-mythos-the-public-can-access-today/
+Source: https://techcrunch.com/2026/06/09/anthropics-fable-5-can-make-weirdly-fun-video-games-with-the-click-of-a-button/
+Source: https://the-decoder.com/claude-fable-5-the-first-mythos-model-is-powerful-expensive-and-heavily-filtered/
+Source: https://the-decoder.com/anthropic-releases-claude-fable-5-and-mythos-5-with-major-gains-in-coding-and-science/
+Source: https://stratechery.com/2026/fable-5-anthropic-alignment-ai-tiers/
+Source: https://simonwillison.net/2026/Jun/9/claude-fable-5/#atom-everything
+Source: https://simonwillison.net/2026/Jun/10/if-claude-fable-stops-helping-you/#atom-everything
+2. Policy & Regulation Watch: German court rules Google liable for false claims in AI search overviews
+Source: https://the-decoder.com/landmark-german-ruling-declares-googles-ai-overviews-are-googles-own-words-and-makes-it-liable-for-false-answers/
+3. Product & Tool Watch: Apple relaunches Siri AI at WWDC 2026 with deeper intelligence features
+Source: https://www.theverge.com/tech/947432/siri-ai-apple-intelligence-ios-27-wwdc
+Source: https://techcrunch.com/2026/06/09/wwdc-2026-everything-announced-on-siri-ai-os-27-apple-intelligence-and-more/
+Source: https://www.theverge.com/tech/946850/apple-ai-photo-editing-tools-ios27-wwdc-2026-deepfakes
+4. Product & Tool Watch: Google launches Gemini 3.5 Live Translate for real-time voice translation across 70+ languages
+Source: https://deepmind.google/blog/fluid-natural-voice-translation-with-gemini-35-live-translate/
+Source: https://arstechnica.com/ai/2026/06/google-announces-gemini-3-5-live-translate-for-instant-voice-to-voice-translation/
+Source: https://the-decoder.com/googles-gemini-3-5-live-translate-delivers-real-time-voice-translation-across-70-languages/
+5. AI Business Watch: OpenAI negotiates lease on 10-gigawatt Ohio data center backed by Nvidia
+Source: https://the-decoder.com/openai-wants-its-biggest-data-center-yet-and-nvidia-would-back-the-bill/
+6. Policy & Regulation Watch: Germany's National Security Council approves AI Safety Institute modeled on UK's AISI
+Source: https://the-decoder.com/germanys-national-security-council-greenights-an-ai-safety-institute-modeled-after-the-uks-aisi/]]></description>
+            <enclosure length="9362139" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-10.mp3"/>
+                    <itunes:duration>390</itunes:duration>
+            <itunes:explicit>false</itunes:explicit>
+            <itunes:season>2026</itunes:season>
+            <itunes:episode>161</itunes:episode>
+            <itunes:episodeType>full</itunes:episodeType>
+            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-10.chapters.json" type="application/json+chapters"/>
+            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-10.transcript.txt" type="text/plain" language="en"/>
+            <podcast:soundbite startTime="33" duration="66">Anthropic releases Claude Fable 5, its...</podcast:soundbite>
+            <podcast:soundbite startTime="99" duration="53">German court rules Google liable for...</podcast:soundbite>
+            <podcast:soundbite startTime="153" duration="49">Apple relaunches Siri AI at WWDC 2026...</podcast:soundbite>
+            <podcast:soundbite startTime="202" duration="43">Google launches Gemini 3.5 Live Translate...</podcast:soundbite>
+            <podcast:soundbite startTime="245" duration="45">OpenAI negotiates lease on 10-gigawatt...</podcast:soundbite>
+            <podcast:soundbite startTime="290" duration="49">Germany&apos;s National Security Council...</podcast:soundbite>
+        </item>
         <item>
             <title><![CDATA[AI Briefing — June 9, 2026]]></title>
             <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-06-09.mp3</link>
@@ -1186,23 +1243,6 @@ Source: https://the-decoder.com/thinking-machines-lab-ships-its-first-model-and-
             <itunes:explicit>false</itunes:explicit>
             <itunes:season>2026</itunes:season>
             <itunes:episode>129</itunes:episode>
-            <itunes:episodeType>full</itunes:episodeType>
-        </item>
-        <item>
-            <title><![CDATA[AI Briefing — May 8, 2026]]></title>
-            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-05-08.mp3</link>
-            <guid>ai-briefing-2026-05-08</guid>
-            <pubDate>Fri, 08 May 2026 14:16:07 GMT</pubDate>
-            <description><![CDATA[Top 3 AI stories for 2026-05-08:
-
-1. Claude Mythos finds 271 unknown Firefox vulnerabilities
-2. Anthropic catches Claude faking its reasoning traces
-3. OpenAI brings GPT-5 reasoning to real-time voice]]></description>
-            <enclosure length="8243482" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-08.mp3"/>
-                    <itunes:duration>343</itunes:duration>
-            <itunes:explicit>false</itunes:explicit>
-            <itunes:season>2026</itunes:season>
-            <itunes:episode>128</itunes:episode>
             <itunes:episodeType>full</itunes:episodeType>
         </item>
     </channel>

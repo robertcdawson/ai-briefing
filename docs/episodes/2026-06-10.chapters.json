@@ -1,0 +1,46 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — June 10, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 33,
+      "title": "Intro"
+    },
+    {
+      "startTime": 33,
+      "endTime": 99,
+      "title": "Anthropic releases Claude Fable 5, its..."
+    },
+    {
+      "startTime": 99,
+      "endTime": 153,
+      "title": "German court rules Google liable for..."
+    },
+    {
+      "startTime": 153,
+      "endTime": 202,
+      "title": "Apple relaunches Siri AI at WWDC 2026..."
+    },
+    {
+      "startTime": 202,
+      "endTime": 245,
+      "title": "Google launches Gemini 3.5 Live Translate..."
+    },
+    {
+      "startTime": 245,
+      "endTime": 290,
+      "title": "OpenAI negotiates lease on 10-gigawatt..."
+    },
+    {
+      "startTime": 290,
+      "endTime": 340,
+      "title": "Germany's National Security Council..."
+    },
+    {
+      "startTime": 340,
+      "endTime": 390,
+      "title": "Outro"
+    }
+  ]
+}

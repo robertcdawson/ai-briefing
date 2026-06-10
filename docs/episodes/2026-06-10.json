@@ -1,0 +1,86 @@
+{
+  "date": "2026-06-10",
+  "title": "AI Briefing — June 10, 2026",
+  "description": "Top 6 AI stories for 2026-06-10:\n\nChapters:\n00:00:00 Intro\n00:00:33 Anthropic releases Claude Fable 5, its...\n00:01:39 German court rules Google liable for...\n00:02:33 Apple relaunches Siri AI at WWDC 2026...\n00:03:22 Google launches Gemini 3.5 Live Translate...\n00:04:05 OpenAI negotiates lease on 10-gigawatt...\n00:04:50 Germany's National Security Council...\n00:05:40 Outro\n\nSources:\n1. Product & Tool Watch: Anthropic releases Claude Fable 5, its first public Mythos-class model\nSource: https://www.theverge.com/news/946725/anthropic-releases-claude-fable-5-mythos\nSource: https://arstechnica.com/ai/2026/06/anthropic-says-these-topics-are-too-dangerous-to-let-its-fable-5-model-talk-about/\nSource: https://techcrunch.com/2026/06/09/anthropics-claude-fable-5-is-a-version-of-mythos-the-public-can-access-today/\nSource: https://techcrunch.com/2026/06/09/anthropics-fable-5-can-make-weirdly-fun-video-games-with-the-click-of-a-button/\nSource: https://the-decoder.com/claude-fable-5-the-first-mythos-model-is-powerful-expensive-and-heavily-filtered/\nSource: https://the-decoder.com/anthropic-releases-claude-fable-5-and-mythos-5-with-major-gains-in-coding-and-science/\nSource: https://stratechery.com/2026/fable-5-anthropic-alignment-ai-tiers/\nSource: https://simonwillison.net/2026/Jun/9/claude-fable-5/#atom-everything\nSource: https://simonwillison.net/2026/Jun/10/if-claude-fable-stops-helping-you/#atom-everything\n2. Policy & Regulation Watch: German court rules Google liable for false claims in AI search overviews\nSource: https://the-decoder.com/landmark-german-ruling-declares-googles-ai-overviews-are-googles-own-words-and-makes-it-liable-for-false-answers/\n3. Product & Tool Watch: Apple relaunches Siri AI at WWDC 2026 with deeper intelligence features\nSource: https://www.theverge.com/tech/947432/siri-ai-apple-intelligence-ios-27-wwdc\nSource: https://techcrunch.com/2026/06/09/wwdc-2026-everything-announced-on-siri-ai-os-27-apple-intelligence-and-more/\nSource: https://www.theverge.com/tech/946850/apple-ai-photo-editing-tools-ios27-wwdc-2026-deepfakes\n4. Product & Tool Watch: Google launches Gemini 3.5 Live Translate for real-time voice translation across 70+ languages\nSource: https://deepmind.google/blog/fluid-natural-voice-translation-with-gemini-35-live-translate/\nSource: https://arstechnica.com/ai/2026/06/google-announces-gemini-3-5-live-translate-for-instant-voice-to-voice-translation/\nSource: https://the-decoder.com/googles-gemini-3-5-live-translate-delivers-real-time-voice-translation-across-70-languages/\n5. AI Business Watch: OpenAI negotiates lease on 10-gigawatt Ohio data center backed by Nvidia\nSource: https://the-decoder.com/openai-wants-its-biggest-data-center-yet-and-nvidia-would-back-the-bill/\n6. Policy & Regulation Watch: Germany's National Security Council approves AI Safety Institute modeled on UK's AISI\nSource: https://the-decoder.com/germanys-national-security-council-greenights-an-ai-safety-institute-modeled-after-the-uks-aisi/",
+  "durationSeconds": 390,
+  "byteLength": 9362139,
+  "pubDate": "2026-06-10T14:36:38.642Z",
+  "season": 2026,
+  "episodeNumber": 161,
+  "chaptersFilename": "2026-06-10.chapters.json",
+  "transcriptFilename": "2026-06-10.transcript.txt",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 33,
+      "title": "Intro"
+    },
+    {
+      "startTime": 33,
+      "endTime": 99,
+      "title": "Anthropic releases Claude Fable 5, its..."
+    },
+    {
+      "startTime": 99,
+      "endTime": 153,
+      "title": "German court rules Google liable for..."
+    },
+    {
+      "startTime": 153,
+      "endTime": 202,
+      "title": "Apple relaunches Siri AI at WWDC 2026..."
+    },
+    {
+      "startTime": 202,
+      "endTime": 245,
+      "title": "Google launches Gemini 3.5 Live Translate..."
+    },
+    {
+      "startTime": 245,
+      "endTime": 290,
+      "title": "OpenAI negotiates lease on 10-gigawatt..."
+    },
+    {
+      "startTime": 290,
+      "endTime": 340,
+      "title": "Germany's National Security Council..."
+    },
+    {
+      "startTime": 340,
+      "endTime": 390,
+      "title": "Outro"
+    }
+  ],
+  "soundbites": [
+    {
+      "startTime": 33,
+      "duration": 66,
+      "title": "Anthropic releases Claude Fable 5, its..."
+    },
+    {
+      "startTime": 99,
+      "duration": 53,
+      "title": "German court rules Google liable for..."
+    },
+    {
+      "startTime": 153,
+      "duration": 49,
+      "title": "Apple relaunches Siri AI at WWDC 2026..."
+    },
+    {
+      "startTime": 202,
+      "duration": 43,
+      "title": "Google launches Gemini 3.5 Live Translate..."
+    },
+    {
+      "startTime": 245,
+      "duration": 45,
+      "title": "OpenAI negotiates lease on 10-gigawatt..."
+    },
+    {
+      "startTime": 290,
+      "duration": 49,
+      "title": "Germany's National Security Council..."
+    }
+  ]
+}

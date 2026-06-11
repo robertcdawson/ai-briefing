@@ -1,5 +1,5 @@
 import { execa } from "execa";
-import { mkdir, stat, writeFile } from "node:fs/promises";
+import { access, mkdir, stat, writeFile } from "node:fs/promises";
 import path from "node:path";
 import type { Episode, EpisodePartTiming } from "./types.js";
 import { logJson, withRetry } from "./util.js";
@@ -8,6 +8,10 @@ const TIMEOUT_MS = 5 * 60_000;
 const MAX_ATTEMPTS = 3;
 const TARGET_SAMPLE_RATE = "44100";
 const TARGET_CHANNELS = "2";
+/** Breathing room baked into each cue track around section boundaries. */
+const CUE_PAD_SECONDS = 0.7;
+const CUE_ASSET_DIR = path.join("assets", "audio");
+const CUE_ASSET_EXTENSIONS = ["mp3", "wav"] as const;
 
 interface CueTrackPaths {
   intro: string;
@@ -15,13 +19,26 @@ interface CueTrackPaths {
   outro: string;
 }
 
-type AudioCueStyle = "tone" | "chime" | "tick";
+export type AudioCueStyle = "tone" | "chime" | "tick" | "asset";
 
 interface CueToneSpec {
   frequency: number;
   durationSeconds: number;
   volume: number;
 }
+
+export interface CuePadSpec {
+  padBeforeSeconds: number;
+  padAfterSeconds: number;
+}
+
+// No leading pad on the intro cue (the episode should start promptly) and no
+// trailing pad on the outro cue (nothing follows it).
+const CUE_PADS: Record<keyof CueTrackPaths, CuePadSpec> = {
+  intro: { padBeforeSeconds: 0, padAfterSeconds: CUE_PAD_SECONDS },
+  transition: { padBeforeSeconds: CUE_PAD_SECONDS, padAfterSeconds: CUE_PAD_SECONDS },
+  outro: { padBeforeSeconds: CUE_PAD_SECONDS, padAfterSeconds: 0 },
+};
 
 export interface AudioResult {
   finalPath: string;
@@ -120,7 +137,7 @@ export function resolveAudioCuesEnabled(value = process.env.AUDIO_CUES_ENABLED):
 
 export function resolveAudioCueStyle(value = process.env.AUDIO_CUE_STYLE): AudioCueStyle {
   const normalized = value?.trim().toLowerCase();
-  if (normalized === "chime" || normalized === "tick") return normalized;
+  if (normalized === "chime" || normalized === "tick" || normalized === "asset") return normalized;
   return "tone";
 }
 
@@ -194,27 +211,102 @@ async function concatAudioFiles(inputs: string[], workDir: string, outputStem: s
 }
 
 async function synthesizeCueTracks(workDir: string, style: AudioCueStyle): Promise<CueTrackPaths> {
+  if (style === "asset") {
+    const assetTracks = await prepareCueAssetTracks(workDir);
+    if (assetTracks) return assetTracks;
+    logJson({
+      phase: "audio.cue_assets",
+      status: "missing",
+      assetDir: CUE_ASSET_DIR,
+      fallback: "tone",
+    });
+  }
+
   const intro = path.join(workDir, "cue-intro.wav");
   const transition = path.join(workDir, "cue-transition.wav");
   const outro = path.join(workDir, "cue-outro.wav");
-  const spec = getCueToneSpec(style);
+  const spec = getCueToneSpec(style === "asset" ? "tone" : style);
 
   await Promise.all([
-    synthesizeCueTone(intro, spec.intro, "intro"),
-    synthesizeCueTone(transition, spec.transition, "transition"),
-    synthesizeCueTone(outro, spec.outro, "outro"),
+    synthesizeCueTone(intro, spec.intro, CUE_PADS.intro, "intro"),
+    synthesizeCueTone(transition, spec.transition, CUE_PADS.transition, "transition"),
+    synthesizeCueTone(outro, spec.outro, CUE_PADS.outro, "outro"),
   ]);
 
   return { intro, transition, outro };
 }
 
+/**
+ * Resolve committed cue assets (assets/audio/cue-{intro,transition,outro}.{mp3,wav})
+ * and normalize them into padded WAV cue tracks. Returns null when any asset
+ * is missing so the caller can fall back to synthesized tones.
+ */
+async function prepareCueAssetTracks(workDir: string): Promise<CueTrackPaths | null> {
+  const names: (keyof CueTrackPaths)[] = ["intro", "transition", "outro"];
+  const sources: Partial<Record<keyof CueTrackPaths, string>> = {};
+
+  for (const name of names) {
+    const source = await findCueAsset(name);
+    if (!source) return null;
+    sources[name] = source;
+  }
+
+  const tracks = {} as CueTrackPaths;
+  for (const name of names) {
+    const outputPath = path.join(workDir, `cue-${name}.wav`);
+    await runFfmpeg(
+      [
+        "-y",
+        "-loglevel", "error",
+        "-i", sources[name]!,
+        "-af", buildCuePadFilter(CUE_PADS[name]),
+        "-c:a", "pcm_s16le",
+        "-ar", TARGET_SAMPLE_RATE,
+        "-ac", TARGET_CHANNELS,
+        outputPath,
+      ],
+      `cue_asset.${name}`,
+    );
+    tracks[name] = outputPath;
+  }
+  return tracks;
+}
+
+async function findCueAsset(name: keyof CueTrackPaths): Promise<string | null> {
+  for (const extension of CUE_ASSET_EXTENSIONS) {
+    const candidate = path.join(CUE_ASSET_DIR, `cue-${name}.${extension}`);
+    try {
+      await access(candidate);
+      return candidate;
+    } catch {
+      // try next extension
+    }
+  }
+  return null;
+}
+
+/** Surround a cue with silence so section boundaries get breathing room. */
+export function buildCuePadFilter(pad: CuePadSpec): string {
+  const filters: string[] = [];
+  if (pad.padBeforeSeconds > 0) {
+    filters.push(`adelay=${Math.round(pad.padBeforeSeconds * 1000)}:all=1`);
+  }
+  if (pad.padAfterSeconds > 0) {
+    filters.push(`apad=pad_dur=${pad.padAfterSeconds}`);
+  }
+  return filters.length > 0 ? filters.join(",") : "anull";
+}
+
 async function synthesizeCueTone(
   outputPath: string,
   spec: CueToneSpec,
+  pad: CuePadSpec,
   label: string,
 ): Promise<void> {
   const { durationSeconds, frequency, volume } = spec;
   const fadeOutStart = Math.max(0, durationSeconds - 0.04);
+  const toneFilter =
+    `volume=${volume.toFixed(2)},afade=t=in:st=0:d=0.015,afade=t=out:st=${fadeOutStart.toFixed(3)}:d=0.04`;
   await runFfmpeg(
     [
       "-y",
@@ -222,7 +314,7 @@ async function synthesizeCueTone(
       "-f", "lavfi",
       "-i", `sine=frequency=${frequency}:sample_rate=${TARGET_SAMPLE_RATE}:duration=${durationSeconds}`,
       "-af",
-      `volume=${volume.toFixed(2)},afade=t=in:st=0:d=0.015,afade=t=out:st=${fadeOutStart.toFixed(3)}:d=0.04`,
+      `${toneFilter},${buildCuePadFilter(pad)}`,
       "-c:a", "pcm_s16le",
       "-ar", TARGET_SAMPLE_RATE,
       "-ac", TARGET_CHANNELS,
@@ -232,7 +324,7 @@ async function synthesizeCueTone(
   );
 }
 
-function getCueToneSpec(style: AudioCueStyle): Record<keyof CueTrackPaths, CueToneSpec> {
+function getCueToneSpec(style: Exclude<AudioCueStyle, "asset">): Record<keyof CueTrackPaths, CueToneSpec> {
   switch (style) {
     case "chime":
       return {

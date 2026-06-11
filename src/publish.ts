@@ -2,6 +2,7 @@ import { copyFile, mkdir, readdir, readFile, unlink, writeFile } from "node:fs/p
 import { createHash } from "node:crypto";
 import path from "node:path";
 import { Feed } from "feed";
+import { stripInlineAudioTags } from "./audioTags.js";
 import type { Episode, EpisodePartTiming, NarrationChunk } from "./types.js";
 import { logJson } from "./util.js";
 
@@ -403,7 +404,10 @@ function parsePodcastLocked(raw: string | undefined): "yes" | "no" {
 }
 
 function formatChunks(chunks: readonly NarrationChunk[]): string {
-  return chunks.map((chunk) => chunk.trim()).filter(Boolean).join("\n\n");
+  return chunks
+    .map((chunk) => stripInlineAudioTags(chunk).trim())
+    .filter(Boolean)
+    .join("\n\n");
 }
 
 function buildTranscript(ep: Episode): string {

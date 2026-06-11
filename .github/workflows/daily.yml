@@ -2,9 +2,9 @@ name: daily
 
 on:
   schedule:
-    # 13:30 UTC = 06:30 PT during PDT (Mar–Nov), 05:30 PT during PST (Nov–Mar).
+    # Weekdays only (Mon–Fri). 13:30 UTC = 06:30 PT during PDT (Mar–Nov), 05:30 PT during PST (Nov–Mar).
     # See README "Schedule drift" for why we don't bother adjusting.
-    - cron: "30 13 * * *"
+    - cron: "30 13 * * 1-5"
   workflow_dispatch:
 
 permissions:
@@ -52,6 +52,7 @@ jobs:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           FEED_BASE_URL: ${{ vars.FEED_BASE_URL }}
           EPISODE_TIME_ZONE: ${{ vars.EPISODE_TIME_ZONE }}
+          TTS_PROVIDER: ${{ vars.TTS_PROVIDER }}
           TTS_MODEL: ${{ vars.TTS_MODEL }}
           TTS_VOICE: ${{ vars.TTS_VOICE }}
           TTS_GLOBAL_STYLE: ${{ vars.TTS_GLOBAL_STYLE }}

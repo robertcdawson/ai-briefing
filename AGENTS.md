@@ -22,18 +22,22 @@ All commands are defined in `package.json`:
 | `npm test` | Smoke test — fetches live RSS feeds, asserts articles come back | No |
 | `npm run test:unit` | Unit tests (publish/feed XML generation) | No |
 | `npm start` | Full end-to-end pipeline (fetch → curate → script → TTS → audio → publish) | Yes |
+| `npm run tts:sample` | A/B synthesis of one fixed paragraph across candidate TTS models/voices into `tmp/tts-samples/` | Yes (skips candidates without a key) |
+| `npm run stingers:generate` | One-time music stinger asset generation (Lyria 3 via OpenRouter) into `assets/audio/` | Yes (`OPENROUTER_API_KEY`) |
 
 ### Environment variables
 
 For `npm start` (full pipeline), a `.env` file is required with:
-- `OPENROUTER_API_KEY` — for curation and non-OpenAI script model fallbacks
-- `OPENROUTER_SCRIPT_MODEL` (optional, comma-separated fallback list, default: `openai/gpt-4o-mini, google/gemini-3.1-pro-preview`; `openai/...` entries use `OPENAI_API_KEY` directly when available)
+- `OPENROUTER_API_KEY` — for curation, default script generation, and TTS when `TTS_PROVIDER=openrouter`
+- `OPENROUTER_SCRIPT_MODEL` (optional, comma-separated fallback list, default: `anthropic/claude-sonnet-4.6, openai/gpt-4o-mini, google/gemini-3.1-pro-preview`; `openai/...` entries use `OPENAI_API_KEY` directly when available)
 - `OPENROUTER_SCRIPT_TIMEOUT_MS` (optional, default: `360000` — script JSON-schema calls can exceed 180s from GitHub Actions)
-- `OPENAI_API_KEY` — for default script generation and TTS audio synthesis
+- `OPENAI_API_KEY` — for `openai/...` script fallbacks and TTS when `TTS_PROVIDER=openai`
 - `FEED_BASE_URL` — public URL where `docs/` is served
-- `TTS_MODEL` (optional, default: `gpt-4o-mini-tts`)
-- `TTS_VOICE` / `TTS_ANCHOR_VOICE` / `TTS_ANALYST_VOICE` (optional; defaults `cedar` / `marin` via `src/speakerProfiles.ts`)
-- `TTS_GLOBAL_STYLE`, `TTS_ANCHOR_STYLE`, `TTS_ANALYST_STYLE`, `TTS_INTRO_STYLE`, `TTS_STORY_STYLE`, `TTS_OUTRO_STYLE` (optional delivery-instruction overrides)
+- `TTS_PROVIDER` (optional, `openai` (default) or `openrouter`)
+- `TTS_MODEL` (optional; per provider — openai default: `gpt-4o-mini-tts`, openrouter default: `google/gemini-3.1-flash-tts-preview`)
+- `TTS_VOICE` (optional; single-host voice — openai default `marin` via `src/speakerProfiles.ts`, Gemini TTS default `Charon`)
+- `TTS_GLOBAL_STYLE`, `TTS_NARRATOR_STYLE`, `TTS_INTRO_STYLE`, `TTS_STORY_STYLE`, `TTS_OUTRO_STYLE` (optional delivery-instruction overrides; OpenAI `gpt-4o-mini-tts` only)
+- `AUDIO_CUE_STYLE` (optional; `tone` (default), `chime`, `tick`, or `asset` for committed music stingers in `assets/audio/`, generated once via `npm run stingers:generate`)
 
 Copy `.env.example` to `.env` and fill in. `npm test` and `npm run build` work without any API keys.
 

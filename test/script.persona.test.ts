@@ -1,6 +1,8 @@
 import assert from "node:assert/strict";
 import test from "node:test";
+import { ALLOWED_INLINE_AUDIO_TAGS } from "../src/audioTags.js";
 import {
+  BANNED_SCRIPT_PHRASES,
   DAILY_PERSONAS,
   SCRIPT_RESPONSE_SCHEMA,
   buildDirectOpenAICompletionParams,
@@ -18,22 +20,15 @@ import {
 import type { ScriptCompletionClient, ScriptCompletionParams, ScriptResponse } from "../src/script.js";
 import type { StoryCluster } from "../src/types.js";
 
-test("resolveScriptModels defaults to ordered structured-output-compatible OpenRouter models", () => {
-  assert.deepEqual(
-    resolveScriptModels(undefined),
-    ["openai/gpt-4o-mini", "google/gemini-3.1-pro-preview"],
-  );
-  assert.deepEqual(
-    resolveScriptModels(""),
-    ["openai/gpt-4o-mini", "google/gemini-3.1-pro-preview"],
-  );
-  assert.deepEqual(
-    resolveScriptModels("   "),
-    ["openai/gpt-4o-mini", "google/gemini-3.1-pro-preview"],
-  );
-  assert.ok(!resolveScriptModels(undefined).includes("anthropic/claude-sonnet-4.6"));
-  assert.notDeepEqual(resolveScriptModels(undefined), ["anthropic/claude-opus-4.6"]);
-  assert.notDeepEqual(resolveScriptModels(undefined), ["anthropic/claude-opus-4.7"]);
+test("resolveScriptModels defaults to Sonnet for prose quality with cheaper fallbacks", () => {
+  const expectedDefaults = [
+    "anthropic/claude-sonnet-4.6",
+    "openai/gpt-4o-mini",
+    "google/gemini-3.1-pro-preview",
+  ];
+  assert.deepEqual(resolveScriptModels(undefined), expectedDefaults);
+  assert.deepEqual(resolveScriptModels(""), expectedDefaults);
+  assert.deepEqual(resolveScriptModels("   "), expectedDefaults);
 });
 
 test("resolveScriptModels accepts single and comma-separated configured models", () => {
@@ -48,9 +43,9 @@ test("resolveScriptModels accepts single and comma-separated configured models",
 });
 
 test("resolveScriptModel preserves single-model compatibility", () => {
-  assert.equal(resolveScriptModel(undefined), "openai/gpt-4o-mini");
-  assert.equal(resolveScriptModel(""), "openai/gpt-4o-mini");
-  assert.equal(resolveScriptModel("   "), "openai/gpt-4o-mini");
+  assert.equal(resolveScriptModel(undefined), "anthropic/claude-sonnet-4.6");
+  assert.equal(resolveScriptModel(""), "anthropic/claude-sonnet-4.6");
+  assert.equal(resolveScriptModel("   "), "anthropic/claude-sonnet-4.6");
   assert.equal(
     resolveScriptModel(" anthropic/claude-sonnet-4.6 "),
     "anthropic/claude-sonnet-4.6",
@@ -178,6 +173,48 @@ test("buildSystemPrompt enforces hook, labels, concise transitions, pacing, and 
   assert.match(prompt, /commas for natural breath pauses/);
   assert.match(prompt, /one rhetorical question per segment at most/);
   assert.match(prompt, /never announcer-y or fake-enthusiastic/);
+});
+
+test("buildSystemPrompt bans worn-out podcast filler and demands fresh sign-offs", () => {
+  const persona = DAILY_PERSONAS[0];
+  assert.ok(persona, "at least one daily persona must be configured");
+
+  const prompt = buildSystemPrompt(persona);
+
+  assert.match(prompt, /BANNED PHRASES/);
+  for (const phrase of BANNED_SCRIPT_PHRASES) {
+    assert.ok(prompt.includes(`"${phrase}"`), `prompt must ban "${phrase}"`);
+  }
+  assert.match(prompt, /sign-off must be one short line that could only belong to today's persona/);
+  assert.match(prompt, /Never a stock farewell/);
+});
+
+test("buildSystemPrompt demands concrete specifics and a persona running angle", () => {
+  const persona = DAILY_PERSONAS[0];
+  assert.ok(persona, "at least one daily persona must be configured");
+
+  const prompt = buildSystemPrompt(persona);
+
+  assert.match(prompt, /at least one specific number, named person or organization, or short direct quote/);
+  assert.match(prompt, /Specifics beat adjectives/);
+  assert.match(prompt, /one understated running angle that surfaces two or three times/);
+});
+
+test("buildSystemPrompt gates inline delivery tags on the TTS model capability", () => {
+  const persona = DAILY_PERSONAS[0];
+  assert.ok(persona, "at least one daily persona must be configured");
+
+  const plainPrompt = buildSystemPrompt(persona);
+  assert.equal(plainPrompt.includes("Inline delivery tags"), false);
+  assert.match(plainPrompt, /audio cues, or bracketed pauses/);
+
+  const taggedPrompt = buildSystemPrompt(persona, { allowAudioTags: true });
+  assert.match(taggedPrompt, /Inline delivery tags:/);
+  for (const tag of ALLOWED_INLINE_AUDIO_TAGS) {
+    assert.ok(taggedPrompt.includes(tag), `tagged prompt must allow ${tag}`);
+  }
+  assert.match(taggedPrompt, /at most one tag per story segment/i);
+  assert.match(taggedPrompt, /ONLY bracketed text allowed is the approved inline delivery tags/);
 });
 
 test("SCRIPT_RESPONSE_SCHEMA requires string narration chunks", () => {

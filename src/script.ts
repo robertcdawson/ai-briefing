@@ -1,11 +1,22 @@
 import OpenAI from "openai";
 import type { ChatCompletionCreateParamsNonStreaming } from "openai/resources/chat/completions";
+import { buildInlineAudioTagRules } from "./audioTags.js";
+import { resolveTTSProviderConfig } from "./ttsProvider.js";
 import { getStoryCategoryLabel, STORY_CATEGORY_DEFINITIONS } from "./types.js";
 import type { Episode, NarrationChunk, StoryCluster } from "./types.js";
 import type { ChatCompletionLike } from "./util.js";
 import { getChatCompletionAssistantText, logJson, withHardTimeout, withRetry } from "./util.js";
 
-export const DEFAULT_SCRIPT_MODELS = ["openai/gpt-4o-mini", "google/gemini-3.1-pro-preview"] as const;
+// Sonnet leads for prose quality (wit, persona adherence, varied phrasing);
+// the cheaper models remain as availability fallbacks. Sonnet was briefly the
+// default before (removed when strict-schema minLength/pattern constraints
+// broke Bedrock-routed structured output); those constraints are long gone and
+// curation already runs Sonnet with strict JSON schema daily.
+export const DEFAULT_SCRIPT_MODELS = [
+  "anthropic/claude-sonnet-4.6",
+  "openai/gpt-4o-mini",
+  "google/gemini-3.1-pro-preview",
+] as const;
 const DEFAULT_SCRIPT_TIMEOUT_MS = 360_000;
 const MIN_SCRIPT_TIMEOUT_MS = 60_000;
 const MAX_SCRIPT_TIMEOUT_MS = 900_000;
@@ -131,7 +142,7 @@ export const SCRIPT_RESPONSE_SCHEMA = {
       type: "array",
       items: NARRATION_CHUNK_SCHEMA,
       description:
-        "Spoken intro hook as 2-3 narration chunks: lead with the single most consequential thing today, then preview the stakes. No 'welcome to' boilerplate.",
+        "Spoken intro hook as 2-3 narration chunks: lead with the single most consequential thing today, then preview why it matters. No 'welcome to' boilerplate.",
     },
     segments: {
       type: "array",
@@ -158,7 +169,7 @@ export const SCRIPT_RESPONSE_SCHEMA = {
       type: "array",
       items: NARRATION_CHUNK_SCHEMA,
       description:
-        "Synthesis outro as 2-4 narration chunks identifying a pattern, theme, or contrast across the stories. End with a sign-off.",
+        "Synthesis outro as 2-4 narration chunks identifying a pattern, theme, or contrast across the stories. End with a fresh, persona-flavored sign-off, never a stock farewell.",
     },
   },
   required: ["intro", "segments", "outro"],
@@ -169,12 +180,37 @@ const SEGMENT_LABEL_RULES = STORY_CATEGORY_DEFINITIONS
   .map((category) => `  - ${category.id}: "${category.label}: {headline}"`)
   .join("\n");
 
-const SYSTEM_PROMPT_BASE = `You are the writer for a daily AI news podcast called "AI Briefing", delivered by a single host speaking solo. Write a tight, natural, conversational monologue. Match this structure exactly:
+export const BANNED_SCRIPT_PHRASES = [
+  "dive in",
+  "diving in",
+  "stay curious",
+  "stay informed",
+  "stay tuned",
+  "until next time",
+  "pivotal moment",
+  "let's not forget",
+  "the stakes",
+  "crucial",
+  "game-changer",
+  "buckle up",
+  "that's a wrap",
+] as const;
 
-- INTRO HOOK (2-3 narration chunks): Begin with an engaging hook built on the single most surprising or consequential fact of the day, then name the date and preview the stakes. Not a vague teaser question, and not a dry table of contents.
+function buildSystemPromptBase(allowAudioTags: boolean): string {
+  const chunkPurityRule = allowAudioTags
+    ? "- Do not include speaker labels, stage directions, reactions, fake laughter, or audio cues. The ONLY bracketed text allowed is the approved inline delivery tags described below."
+    : "- Do not include speaker labels, stage directions, reactions, fake laughter, audio cues, or bracketed pauses.";
+  const noMarkupRule = allowAudioTags
+    ? `- No bullet points, no markdown, no stage directions, no "[pause]" cues. Approved inline delivery tags are the only exception.`
+    : `- No bullet points, no markdown, no stage directions, no "[pause]" cues.`;
+  const audioTagSection = allowAudioTags ? `\n\n${buildInlineAudioTagRules()}` : "";
+
+  return `You are the writer for a daily AI news podcast called "AI Briefing", delivered by a single host speaking solo. Write a tight, natural, conversational monologue. Match this structure exactly:
+
+- INTRO HOOK (2-3 narration chunks): Begin with an engaging hook built on the single most surprising or consequential fact of the day, then name the date and preview why today matters. Not a vague teaser question, and not a dry table of contents.
 - STORY SEGMENTS: Write exactly one segment per provided story cluster, in the order provided (most important first). For each story, cover (in whatever order feels natural) what concretely happened, why it matters for AI builders and researchers with a listener-oriented takeaway, a plain-English gloss of any jargon on first use, the potential impact both good and bad, and an honest caveat about what's uncertain, missing, or overhyped. End each segment with a smooth, short, specific transition into the next story (or, for the last segment, into the outro).
   - Do NOT use the same beat order in every segment. Vary how each story unfolds so the episode doesn't read as a template.
-- SYNTHESIS OUTRO (2-4 narration chunks): Identify a pattern, theme, or contrast across the provided stories. End with a sign-off.
+- SYNTHESIS OUTRO (2-4 narration chunks): Identify a pattern, theme, or contrast across the provided stories. End with a fresh, persona-flavored sign-off.
 
 Length and depth:
 - This is a solo show, not a fixed-length one. Let the news set the length: cover everything that matters, but keep the whole episode under about ten minutes (roughly 1500 spoken words total).
@@ -183,7 +219,7 @@ Length and depth:
 
 Narration chunks:
 - Return each part as an array of short narration chunks (roughly a sentence or two each). The chunks are read back-to-back as one continuous monologue, so they must flow naturally in order.
-- Do not include speaker labels, stage directions, reactions, fake laughter, audio cues, or bracketed pauses.
+${chunkPurityRule}
 
 Recurring segment labels:
 - The first segment title MUST begin "Top Story: " followed by the story headline.
@@ -196,29 +232,34 @@ Voice rules:
 - Sound alert and genuinely engaged, while staying skeptical and precise; never announcer-y or fake-enthusiastic.
 - Bring some attitude: witty, occasionally cynical, with opinions grounded in evidence. Care visibly about who a story helps or hurts. Never a neutral press-release reader.
 - Every opinion must be grounded in the provided facts. Prefer sharp analysis over neutral summary, but never sacrifice accuracy for personality.
+- Ground every story in the concrete: each segment must carry at least one specific number, named person or organization, or short direct quote drawn from the provided material. Specifics beat adjectives.
 - Optimize for information retention: vary sentence rhythm, front-load concrete details, and reinforce each segment's key takeaway once near the end.
 - Spoken pacing: mix crisp short sentences with medium explanatory sentences. Avoid dense clauses; keep most sentences under about 24 words.
 - TTS-friendly prosody: use commas for natural breath pauses; prefer short clauses over nested lists; one rhetorical question per segment at most when it sharpens the point.
 - Use light, dry humor sparingly (about one quick line per segment max) when it helps recall, never at the expense of accuracy or clarity.
 - At most ONE analogy or metaphor in the entire episode, and only when it genuinely makes a hard idea click. Do not reach for one every segment.
 - Avoid recycled filler and verbal tics. Never use stock phrases like "This is a big deal.", and never open a chunk with analogy crutches like "Think of it as" or "It's like". Find fresh phrasing every time.
+- BANNED PHRASES. Never say any of these, in any tense or close variation: ${BANNED_SCRIPT_PHRASES.map((phrase) => `"${phrase}"`).join(", ")}. They are worn-out podcast filler; find specific, persona-flavored language instead.
+- The sign-off must be one short line that could only belong to today's persona, different every episode. Never a stock farewell.
 - Read-aloud-friendly: short sentences, no parenthetical asides, no stage-direction punctuation; avoid em-dashes that force awkward pauses.
 - Explain jargon only when it helps: define specialized terms in 8-14 plain words and keep moving.
 - Transitions must be one sentence, under about 12 words, and specific to the next story. Vary them, and avoid formulaic phrases like "next up", "now, onto our next story", or "now, let's turn to".
 - No "Welcome to" or "Today on AI Briefing" boilerplate openings, which go stale fast.
-- No bullet points, no markdown, no stage directions, no "[pause]" cues.
+${noMarkupRule}
 - Numbers in spoken form when natural ("about three billion" not "3,000,000,000").
 - Don't read URLs aloud.
 
 Daily persona rules:
 - Use the provided daily persona to shape the whole episode's tone, word choice, and pacing. It is a style lens, not a character bit, and its flavor should be noticeable across the script, not decorative.
+- Let the persona visibly shape the hook, the word choice, and the sign-off, and give it one understated running angle that surfaces two or three times across the episode in different words.
 - Keep the episode recognizably "AI Briefing": accurate, useful, skeptical, and concise.
 - Do not imitate real people or copyrighted characters. No celebrity impressions.
 - Do not invent audio cues, accents, scenes, sound effects, facts, quotes, reactions, or source details to fit the persona or the conversation.
 
 Each segment's sourceUrls MUST be exactly the urls provided for that cluster. Do not invent or omit any.
 
-Return only JSON matching the provided schema.`;
+Return only JSON matching the provided schema.${audioTagSection}`;
+}
 
 export function selectDailyPersona(date: string): DailyPersona {
   const index = stableHash(date) % DAILY_PERSONAS.length;
@@ -227,8 +268,16 @@ export function selectDailyPersona(date: string): DailyPersona {
   return persona;
 }
 
-export function buildSystemPrompt(persona: DailyPersona): string {
-  return `${SYSTEM_PROMPT_BASE}
+export interface ScriptPromptOptions {
+  /** Permit approved inline delivery tags (expressive TTS models only). */
+  allowAudioTags?: boolean;
+}
+
+export function buildSystemPrompt(
+  persona: DailyPersona,
+  options: ScriptPromptOptions = {},
+): string {
+  return `${buildSystemPromptBase(options.allowAudioTags === true)}
 
 Today's original broadcast persona:
 - Persona: ${persona.name}
@@ -295,6 +344,11 @@ export async function writeScript(
   const persona = selectDailyPersona(date);
   const models = resolveScriptModels(process.env.OPENROUTER_SCRIPT_MODEL);
   const timeoutMs = resolveScriptTimeoutMs(process.env.OPENROUTER_SCRIPT_TIMEOUT_MS);
+  // Inline delivery tags are only written when the configured TTS model will
+  // interpret them; otherwise the script stays plain text.
+  const promptOptions: ScriptPromptOptions = {
+    allowAudioTags: resolveTTSProviderConfig().supportsInlineAudioTags,
+  };
   const completionClient =
     options.completionClient ??
     createScriptCompletionClient(openRouterApiKey, openAiApiKey, timeoutMs);
@@ -309,7 +363,9 @@ export async function writeScript(
       parsed = await withRetry(
         async () => {
           const completion = await withHardTimeout(
-            completionClient.create(buildScriptCompletionParams(model, persona, date, clusters)),
+            completionClient.create(
+              buildScriptCompletionParams(model, persona, date, clusters, promptOptions),
+            ),
             timeoutMs,
             `script.openrouter.${model}`,
           );
@@ -376,6 +432,7 @@ export async function writeScript(
     model: selectedModel,
     candidateModels: models.length,
     timeoutMs,
+    inlineAudioTags: promptOptions.allowAudioTags === true,
   });
 
   return episode;
@@ -444,11 +501,12 @@ export function buildScriptCompletionParams(
   persona: DailyPersona,
   date: string,
   clusters: StoryCluster[],
+  promptOptions: ScriptPromptOptions = {},
 ): ScriptCompletionParams {
   return {
     model,
     messages: [
-      { role: "system", content: buildSystemPrompt(persona) },
+      { role: "system", content: buildSystemPrompt(persona, promptOptions) },
       { role: "user", content: buildUserPrompt(date, clusters) },
     ],
     response_format: {

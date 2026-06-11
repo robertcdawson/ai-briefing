@@ -1,10 +1,12 @@
 import assert from "node:assert/strict";
-import { mkdtemp, rm } from "node:fs/promises";
+import { existsSync } from "node:fs";
+import { mkdir, mkdtemp, rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import test from "node:test";
 import { execa } from "execa";
 import {
+  buildCuePadFilter,
   buildEpisodeAudio,
   buildFfmpegChapterMetadata,
   buildStingerSequence,
@@ -54,11 +56,28 @@ test("buildFfmpegChapterMetadata emits ID3 chapter metadata for MP3 output", () 
   assert.match(metadata, /\[CHAPTER\]\nTIMEBASE=1\/1000\nSTART=132000\nEND=145000\ntitle=Outro\n/);
 });
 
-test("resolveAudioCueStyle defaults to tone and accepts supported generated cue styles", () => {
+test("resolveAudioCueStyle defaults to tone and accepts supported cue styles", () => {
   assert.equal(resolveAudioCueStyle(undefined), "tone");
   assert.equal(resolveAudioCueStyle("CHIME"), "chime");
   assert.equal(resolveAudioCueStyle("tick"), "tick");
+  assert.equal(resolveAudioCueStyle("asset"), "asset");
   assert.equal(resolveAudioCueStyle("unknown"), "tone");
+});
+
+test("buildCuePadFilter surrounds cues with silence for section breathing room", () => {
+  assert.equal(
+    buildCuePadFilter({ padBeforeSeconds: 0.7, padAfterSeconds: 0.7 }),
+    "adelay=700:all=1,apad=pad_dur=0.7",
+  );
+  assert.equal(
+    buildCuePadFilter({ padBeforeSeconds: 0, padAfterSeconds: 0.7 }),
+    "apad=pad_dur=0.7",
+  );
+  assert.equal(
+    buildCuePadFilter({ padBeforeSeconds: 0.7, padAfterSeconds: 0 }),
+    "adelay=700:all=1",
+  );
+  assert.equal(buildCuePadFilter({ padBeforeSeconds: 0, padAfterSeconds: 0 }), "anull");
 });
 
 test("buildEpisodeAudio embeds chapters that ffprobe can read from the MP3", async () => {
@@ -119,6 +138,127 @@ test("buildEpisodeAudio embeds chapters that ffprobe can read from the MP3", asy
     await rm(workDir, { recursive: true, force: true });
   }
 });
+
+test("buildEpisodeAudio inserts padded cues that lengthen the program for breathing room", async () => {
+  const workDir = await mkdtemp(path.join(tmpdir(), "ai-briefing-audio-cues-test-"));
+  const originalCuesEnabled = process.env.AUDIO_CUES_ENABLED;
+  const originalCueStyle = process.env.AUDIO_CUE_STYLE;
+  process.env.AUDIO_CUES_ENABLED = "true";
+  process.env.AUDIO_CUE_STYLE = "tone";
+
+  try {
+    const inputPaths = [
+      path.join(workDir, "intro.mp3"),
+      path.join(workDir, "story.mp3"),
+      path.join(workDir, "outro.mp3"),
+    ];
+    await Promise.all([
+      synthesizeTestTone(inputPaths[0]!, 440, 0.2),
+      synthesizeTestTone(inputPaths[1]!, 550, 0.3),
+      synthesizeTestTone(inputPaths[2]!, 660, 0.2),
+    ]);
+
+    const result = await buildEpisodeAudio(
+      {
+        date: "2099-03-03",
+        title: "AI Briefing Cue Pad Test",
+        intro: ["Intro"],
+        segments: [
+          { title: "Top Story: Pad Check", chunks: ["Story"], sourceUrls: [] },
+        ],
+        outro: ["Outro"],
+        audioPath: "",
+        byteLength: 0,
+        durationSeconds: 0,
+      },
+      inputPaths,
+      workDir,
+    );
+
+    // Narration is ~0.7s; cue tones are <1s combined, but each of the three
+    // cues carries 0.7s of pad on at least one side (intro after, transition
+    // both sides, outro before) for ~2.8s of added silence.
+    assert.ok(
+      result.durationSeconds >= 3,
+      `program should include cue padding, got ${result.durationSeconds}s`,
+    );
+  } finally {
+    restoreEnv("AUDIO_CUES_ENABLED", originalCuesEnabled);
+    restoreEnv("AUDIO_CUE_STYLE", originalCueStyle);
+    await rm(workDir, { recursive: true, force: true });
+  }
+});
+
+test("buildEpisodeAudio uses committed cue assets when AUDIO_CUE_STYLE=asset", async (t) => {
+  const assetDir = path.join("assets", "audio");
+  if (existsSync(assetDir)) {
+    // Real committed assets exist; this fixture-based test would clobber them.
+    t.skip("assets/audio already exists");
+    return;
+  }
+
+  const workDir = await mkdtemp(path.join(tmpdir(), "ai-briefing-audio-asset-test-"));
+  const originalCuesEnabled = process.env.AUDIO_CUES_ENABLED;
+  const originalCueStyle = process.env.AUDIO_CUE_STYLE;
+  process.env.AUDIO_CUES_ENABLED = "true";
+  process.env.AUDIO_CUE_STYLE = "asset";
+
+  try {
+    await mkdir(assetDir, { recursive: true });
+    await Promise.all([
+      synthesizeTestTone(path.join(assetDir, "cue-intro.mp3"), 880, 0.2),
+      synthesizeTestTone(path.join(assetDir, "cue-transition.mp3"), 990, 0.15),
+      synthesizeTestTone(path.join(assetDir, "cue-outro.mp3"), 770, 0.25),
+    ]);
+
+    const inputPaths = [
+      path.join(workDir, "intro.mp3"),
+      path.join(workDir, "story.mp3"),
+      path.join(workDir, "outro.mp3"),
+    ];
+    await Promise.all([
+      synthesizeTestTone(inputPaths[0]!, 440, 0.2),
+      synthesizeTestTone(inputPaths[1]!, 550, 0.3),
+      synthesizeTestTone(inputPaths[2]!, 660, 0.2),
+    ]);
+
+    const result = await buildEpisodeAudio(
+      {
+        date: "2099-04-04",
+        title: "AI Briefing Asset Cue Test",
+        intro: ["Intro"],
+        segments: [
+          { title: "Top Story: Asset Check", chunks: ["Story"], sourceUrls: [] },
+        ],
+        outro: ["Outro"],
+        audioPath: "",
+        byteLength: 0,
+        durationSeconds: 0,
+      },
+      inputPaths,
+      workDir,
+    );
+
+    // Narration (~0.7s) + asset cues (~0.6s) + pads (~2.8s).
+    assert.ok(
+      result.durationSeconds >= 3,
+      `program should include asset cues with padding, got ${result.durationSeconds}s`,
+    );
+  } finally {
+    restoreEnv("AUDIO_CUES_ENABLED", originalCuesEnabled);
+    restoreEnv("AUDIO_CUE_STYLE", originalCueStyle);
+    await rm(workDir, { recursive: true, force: true });
+    await rm("assets", { recursive: true, force: true });
+  }
+});
+
+function restoreEnv(key: string, value: string | undefined): void {
+  if (value === undefined) {
+    delete process.env[key];
+  } else {
+    process.env[key] = value;
+  }
+}
 
 async function synthesizeTestTone(
   outputPath: string,

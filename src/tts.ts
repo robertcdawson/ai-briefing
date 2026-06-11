@@ -5,6 +5,7 @@ import { tmpdir } from "node:os";
 import path from "node:path";
 import type { Episode, NarrationChunk } from "./types.js";
 import { logJson, withRetry } from "./util.js";
+import { stripInlineAudioTags } from "./audioTags.js";
 import {
   buildChunkSpeechInstructions,
   DEFAULT_GLOBAL_TTS_STYLE,
@@ -13,21 +14,26 @@ import {
   type EpisodeSectionKind,
   type TTSDirectionConfig,
 } from "./speakerProfiles.js";
+import {
+  DEFAULT_OPENAI_TTS_MODEL,
+  OPENAI_TTS_MODELS,
+  resolveTTSProviderConfig,
+  supportsOpenAIDeliveryInstructions,
+  type TTSProviderConfig,
+} from "./ttsProvider.js";
 import { resolveTTSVoice, type TTSVoice } from "./voices.js";
 
-const DEFAULT_MODEL = "gpt-4o-mini-tts";
 const DEFAULT_TIMEOUT_MS = 180_000;
 const MIN_TIMEOUT_MS = 60_000;
 const MAX_TIMEOUT_MS = 600_000;
 const MAX_ATTEMPTS = 3;
-const TTS_MODELS = [
-  "tts-1",
-  "tts-1-hd",
-  "gpt-4o-mini-tts",
-  "gpt-4o-mini-tts-2025-12-15",
-] as const;
-export type TTSModel = (typeof TTS_MODELS)[number];
+/** Breathing room inserted between chunks when a part is synthesized chunk-by-chunk. */
+export const CHUNK_GAP_SECONDS = 0.4;
+
+export type TTSModel = (typeof OPENAI_TTS_MODELS)[number];
 export type { TTSVoice };
+export { OPENAI_TTS_MODELS, resolveTTSProviderConfig } from "./ttsProvider.js";
+export type { TTSProviderConfig, TTSProviderId } from "./ttsProvider.js";
 
 export interface TTSResult {
   segmentDir: string;
@@ -35,8 +41,8 @@ export interface TTSResult {
 }
 
 export interface SpeechRequest {
-  model: TTSModel;
-  voice: TTSVoice;
+  model: string;
+  voice: string;
   input: string;
   response_format: "mp3";
   instructions?: string;
@@ -44,15 +50,19 @@ export interface SpeechRequest {
 
 export async function synthesize(episode: Episode): Promise<TTSResult> {
   const started = Date.now();
-  const apiKey = process.env.OPENAI_API_KEY;
-  if (!apiKey) throw new Error("OPENAI_API_KEY is not set");
+  const config = resolveTTSProviderConfig();
+  const apiKey = process.env[config.apiKeyEnvVar];
+  if (!apiKey) throw new Error(`${config.apiKeyEnvVar} is not set`);
 
-  const voice = resolveNarratorVoice();
   const direction = resolveTTSDirection();
-  const model = resolveTTSModel(process.env.TTS_MODEL);
   const timeoutMs = resolveTTSTimeoutMs(process.env.TTS_TIMEOUT_MS);
 
-  const client = new OpenAI({ apiKey, timeout: timeoutMs, maxRetries: 0 });
+  const client = new OpenAI({
+    apiKey,
+    baseURL: config.baseURL,
+    timeout: timeoutMs,
+    maxRetries: 0,
+  });
 
   const segmentDir = path.join(tmpdir(), `ai-briefing-${episode.date}-${process.pid}`);
   await mkdir(segmentDir, { recursive: true });
@@ -70,15 +80,7 @@ export async function synthesize(episode: Episode): Promise<TTSResult> {
   const segmentPaths: string[] = [];
   for (const part of parts) {
     const partStart = Date.now();
-    const filePath = await synthesizePart(
-      client,
-      part,
-      voice,
-      direction,
-      model,
-      segmentDir,
-      timeoutMs,
-    );
+    const filePath = await synthesizePart(client, part, config, direction, segmentDir, timeoutMs);
     segmentPaths.push(filePath);
     logJson({
       phase: "tts",
@@ -96,11 +98,13 @@ export async function synthesize(episode: Episode): Promise<TTSResult> {
     status: "ok",
     durationMs: Date.now() - started,
     segments: segmentPaths.length,
-    voice,
+    provider: config.provider,
+    voice: config.voice,
     direction,
-    model,
+    model: config.model,
     timeoutMs,
-    deliveryInstructions: supportsDeliveryInstructions(model) ? "enabled" : "unsupported",
+    deliveryInstructions: config.supportsDeliveryInstructions ? "enabled" : "unsupported",
+    inlineAudioTags: config.supportsInlineAudioTags ? "enabled" : "stripped",
   });
 
   return { segmentDir, segmentPaths };
@@ -109,15 +113,28 @@ export async function synthesize(episode: Episode): Promise<TTSResult> {
 async function synthesizePart(
   client: OpenAI,
   part: { label: string; section: EpisodeSectionKind; chunks: NarrationChunk[] },
-  voice: TTSVoice,
+  config: TTSProviderConfig,
   direction: TTSDirectionConfig,
-  model: TTSModel,
   segmentDir: string,
   timeoutMs: number,
 ): Promise<string> {
   if (part.chunks.length === 0) throw new Error(`tts.${part.label}: no narration chunks provided`);
 
   const outputPath = path.join(segmentDir, `${part.label}.mp3`);
+
+  // Prefer one request per part: continuous prosody across the whole monologue
+  // beats per-chunk synthesis, which resets intonation at every boundary.
+  const partRequest = buildPartSpeechRequest(part.chunks, config, part.section, direction);
+  if (partRequest.input.length <= config.maxRequestChars) {
+    await withRetry(
+      () => writeSpeechFile(client, partRequest, outputPath, timeoutMs, part.label),
+      { attempts: MAX_ATTEMPTS, label: `tts:${part.label}` },
+    );
+    return outputPath;
+  }
+
+  // Fallback for parts that exceed the provider's input limit: synthesize each
+  // chunk separately and rejoin them with a short breathing gap.
   const chunkDir = path.join(segmentDir, `${part.label}-chunks`);
   await mkdir(chunkDir, { recursive: true });
 
@@ -129,7 +146,7 @@ async function synthesizePart(
       () =>
         writeSpeechFile(
           client,
-          buildChunkSpeechRequest(chunk, voice, model, part.section, direction),
+          buildPartSpeechRequest([chunk], config, part.section, direction),
           chunkPath,
           timeoutMs,
           chunkLabel,
@@ -142,7 +159,7 @@ async function synthesizePart(
       label: part.label,
       chunk: index + 1,
       section: part.section,
-      voice,
+      voice: config.voice,
       chars: chunk.length,
       status: "ok",
     });
@@ -190,8 +207,8 @@ async function writeSpeechFile(
 
 export function buildSpeechRequest(
   input: string,
-  voice: TTSVoice,
-  model: TTSModel = DEFAULT_MODEL,
+  voice: string,
+  model: string = DEFAULT_OPENAI_TTS_MODEL,
   instructions = DEFAULT_GLOBAL_TTS_STYLE,
 ): SpeechRequest {
   const request: SpeechRequest = {
@@ -201,7 +218,7 @@ export function buildSpeechRequest(
     response_format: "mp3",
   };
 
-  if (supportsDeliveryInstructions(model)) {
+  if (supportsOpenAIDeliveryInstructions(model)) {
     request.instructions = instructions;
   }
 
@@ -210,8 +227,8 @@ export function buildSpeechRequest(
 
 export function buildChunkSpeechRequest(
   text: NarrationChunk,
-  voice: TTSVoice,
-  model: TTSModel = DEFAULT_MODEL,
+  voice: string,
+  model: string = DEFAULT_OPENAI_TTS_MODEL,
   section: EpisodeSectionKind = "story",
   direction: TTSDirectionConfig = resolveTTSDirection(),
 ): SpeechRequest {
@@ -223,15 +240,40 @@ export function buildChunkSpeechRequest(
   );
 }
 
-export function resolveNarratorVoice(env: NodeJS.ProcessEnv = process.env): TTSVoice {
-  return resolveTTSVoice(env.TTS_VOICE, NARRATOR_PROFILE.defaultVoice);
+/**
+ * Build one speech request for a whole part (or a single chunk on fallback):
+ * chunks are joined into one continuous monologue, inline delivery tags are
+ * stripped for models that would read them aloud, and the OpenAI-style
+ * `instructions` field is sent only to models that honor it.
+ */
+export function buildPartSpeechRequest(
+  chunks: readonly NarrationChunk[],
+  config: TTSProviderConfig,
+  section: EpisodeSectionKind = "story",
+  direction: TTSDirectionConfig = resolveTTSDirection(),
+): SpeechRequest {
+  const joined = chunks
+    .map((chunk) => chunk.trim())
+    .filter(Boolean)
+    .join("\n\n");
+  const input = config.supportsInlineAudioTags ? joined : stripInlineAudioTags(joined);
+
+  const request: SpeechRequest = {
+    model: config.model,
+    voice: config.voice,
+    input,
+    response_format: "mp3",
+  };
+
+  if (config.supportsDeliveryInstructions) {
+    request.instructions = buildChunkSpeechInstructions(section, direction);
+  }
+
+  return request;
 }
 
-function resolveTTSModel(requestedModel: string | undefined): TTSModel {
-  if (requestedModel && TTS_MODELS.includes(requestedModel as TTSModel)) {
-    return requestedModel as TTSModel;
-  }
-  return DEFAULT_MODEL;
+export function resolveNarratorVoice(env: NodeJS.ProcessEnv = process.env): TTSVoice {
+  return resolveTTSVoice(env.TTS_VOICE, NARRATOR_PROFILE.defaultVoice);
 }
 
 export function resolveTTSTimeoutMs(raw: string | undefined): number {
@@ -243,17 +285,12 @@ export function resolveTTSTimeoutMs(raw: string | undefined): number {
   return rounded;
 }
 
-function supportsDeliveryInstructions(model: TTSModel): boolean {
-  return model !== "tts-1" && model !== "tts-1-hd";
-}
-
 async function concatSpeechFiles(
   inputs: string[],
   outputPath: string,
   label: string,
 ): Promise<void> {
-  const filterInputs = inputs.map((_, index) => `[${index}:a:0]`).join("");
-  const args = buildConcatSpeechArgs(inputs, outputPath, filterInputs);
+  const args = buildConcatSpeechArgs(inputs, outputPath);
   await withRetry(
     () =>
       execa(
@@ -269,16 +306,27 @@ async function concatSpeechFiles(
   );
 }
 
+/**
+ * Concatenate chunk audio with a short silence appended to every chunk except
+ * the last, so chunk-by-chunk fallback synthesis still breathes naturally.
+ */
 export function buildConcatSpeechArgs(
   inputs: readonly string[],
   outputPath: string,
-  filterInputs = inputs.map((_, index) => `[${index}:a:0]`).join(""),
+  gapSeconds: number = CHUNK_GAP_SECONDS,
 ): string[] {
+  const padFilters = inputs
+    .slice(0, -1)
+    .map((_, index) => `[${index}:a:0]apad=pad_dur=${gapSeconds}[p${index}];`)
+    .join("");
+  const concatInputs = inputs
+    .map((_, index) => (index < inputs.length - 1 ? `[p${index}]` : `[${index}:a:0]`))
+    .join("");
   return [
     "-y",
     "-loglevel", "error",
     ...inputs.flatMap((input) => ["-i", input]),
-    "-filter_complex", `${filterInputs}concat=n=${inputs.length}:v=0:a=1[a]`,
+    "-filter_complex", `${padFilters}${concatInputs}concat=n=${inputs.length}:v=0:a=1[a]`,
     "-map", "[a]",
     "-c:a", "libmp3lame",
     "-b:a", "192k",

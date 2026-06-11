@@ -5,7 +5,7 @@
 > [!WARNING]
 > **Work in progress.** This is a personal project under active development. Expect breaking changes, incomplete features, and rough edges. Not yet stable.
 
-A daily, fully-automated AI news podcast. Every morning at ~06:30 Pacific, GitHub Actions:
+A weekday, fully-automated AI news podcast. Every Monday–Friday morning at ~06:30 Pacific, GitHub Actions:
 
 1. Pulls the last 24h of articles from a curated set of AI news RSS feeds.
 2. Asks Claude (via OpenRouter) to cluster duplicates and score each story, then keeps the ones that matter (a variable number that follows the day's news).
@@ -196,15 +196,15 @@ Go to **Actions → daily → Run workflow → main → Run workflow**. Watch th
 4. Tap **Follow**.
 5. Tap the show → settings gear → enable **Auto Download** and **Notify When New Episode**.
 
-You'll have new episodes auto-downloaded overnight. Lock screen, CarPlay, AirPods, 1.5x speed all work as expected.
+You'll have new episodes auto-downloaded overnight on weekdays. Lock screen, CarPlay, AirPods, 1.5x speed all work as expected.
 
 ## Day 2+
 
-Nothing for you to do. The cron fires at 13:30 UTC every day, the pipeline runs, the episode publishes. Apple Podcasts pulls the new feed within a couple of hours and downloads.
+Nothing for you to do on weekdays. The cron fires at 13:30 UTC Monday through Friday, the pipeline runs, the episode publishes. Apple Podcasts pulls the new feed within a couple of hours and downloads.
 
 ## Schedule drift (PST vs. PDT)
 
-The cron is fixed at `30 13 * * *` UTC year-round. That gives:
+The cron is fixed at `30 13 * * 1-5` UTC (weekdays only) year-round. That gives:
 
 - **PDT (mid-March → early November):** episode arrives at **06:30 PT** ✓
 - **PST (early November → mid-March):** episode arrives at **05:30 PT** (one hour earlier)

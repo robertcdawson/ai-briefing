@@ -1,10 +1,10 @@
 {
   "date": "2026-06-10",
   "title": "AI Briefing — June 10, 2026",
-  "description": "Top 6 AI stories for 2026-06-10:\n\nChapters:\n00:00:00 Intro\n00:00:33 Anthropic releases Claude Fable 5, its...\n00:01:39 German court rules Google liable for...\n00:02:33 Apple relaunches Siri AI at WWDC 2026...\n00:03:22 Google launches Gemini 3.5 Live Translate...\n00:04:05 OpenAI negotiates lease on 10-gigawatt...\n00:04:50 Germany's National Security Council...\n00:05:40 Outro\n\nSources:\n1. Product & Tool Watch: Anthropic releases Claude Fable 5, its first public Mythos-class model\nSource: https://www.theverge.com/news/946725/anthropic-releases-claude-fable-5-mythos\nSource: https://arstechnica.com/ai/2026/06/anthropic-says-these-topics-are-too-dangerous-to-let-its-fable-5-model-talk-about/\nSource: https://techcrunch.com/2026/06/09/anthropics-claude-fable-5-is-a-version-of-mythos-the-public-can-access-today/\nSource: https://techcrunch.com/2026/06/09/anthropics-fable-5-can-make-weirdly-fun-video-games-with-the-click-of-a-button/\nSource: https://the-decoder.com/claude-fable-5-the-first-mythos-model-is-powerful-expensive-and-heavily-filtered/\nSource: https://the-decoder.com/anthropic-releases-claude-fable-5-and-mythos-5-with-major-gains-in-coding-and-science/\nSource: https://stratechery.com/2026/fable-5-anthropic-alignment-ai-tiers/\nSource: https://simonwillison.net/2026/Jun/9/claude-fable-5/#atom-everything\nSource: https://simonwillison.net/2026/Jun/10/if-claude-fable-stops-helping-you/#atom-everything\n2. Policy & Regulation Watch: German court rules Google liable for false claims in AI search overviews\nSource: https://the-decoder.com/landmark-german-ruling-declares-googles-ai-overviews-are-googles-own-words-and-makes-it-liable-for-false-answers/\n3. Product & Tool Watch: Apple relaunches Siri AI at WWDC 2026 with deeper intelligence features\nSource: https://www.theverge.com/tech/947432/siri-ai-apple-intelligence-ios-27-wwdc\nSource: https://techcrunch.com/2026/06/09/wwdc-2026-everything-announced-on-siri-ai-os-27-apple-intelligence-and-more/\nSource: https://www.theverge.com/tech/946850/apple-ai-photo-editing-tools-ios27-wwdc-2026-deepfakes\n4. Product & Tool Watch: Google launches Gemini 3.5 Live Translate for real-time voice translation across 70+ languages\nSource: https://deepmind.google/blog/fluid-natural-voice-translation-with-gemini-35-live-translate/\nSource: https://arstechnica.com/ai/2026/06/google-announces-gemini-3-5-live-translate-for-instant-voice-to-voice-translation/\nSource: https://the-decoder.com/googles-gemini-3-5-live-translate-delivers-real-time-voice-translation-across-70-languages/\n5. AI Business Watch: OpenAI negotiates lease on 10-gigawatt Ohio data center backed by Nvidia\nSource: https://the-decoder.com/openai-wants-its-biggest-data-center-yet-and-nvidia-would-back-the-bill/\n6. Policy & Regulation Watch: Germany's National Security Council approves AI Safety Institute modeled on UK's AISI\nSource: https://the-decoder.com/germanys-national-security-council-greenights-an-ai-safety-institute-modeled-after-the-uks-aisi/",
-  "durationSeconds": 390,
-  "byteLength": 9362139,
-  "pubDate": "2026-06-10T14:36:38.642Z",
+  "description": "Top 6 AI stories for 2026-06-10:\n\nChapters:\n00:00:00 Intro\n00:00:40 Fable 5 tops benchmarks but blocks...\n00:03:11 Anthropic study shows AI converts...\n00:04:59 DiffusionGemma generates text from noise...\n00:06:32 A €0.01 bank transfer memo was enough to...\n00:07:47 Independent musicians sue Google over...\n00:09:01 Germany's National Security Council...\n00:10:06 Outro\n\nSources:\n1. Top Story: Fable 5 tops benchmarks but blocks requests and overrides enterprise data contracts\nSource: https://the-decoder.com/claude-fable-5-the-first-mythos-model-is-powerful-expensive-and-heavily-filtered/\nSource: https://techcrunch.com/2026/06/10/cybersecurity-researchers-arent-happy-about-the-guardrails-on-anthropics-fable/\nSource: https://www.theverge.com/ai-artificial-intelligence/947973/fable-wont-answer-basic-biology-questions\nSource: https://www.theverge.com/report/947575/microsoft-claude-fable-5-restricted-internally\nSource: https://stratechery.com/2026/fable-5-anthropic-alignment-ai-tiers/\nSource: https://news.ycombinator.com/item?id=48473166\nSource: https://simonwillison.net/2026/Jun/11/anthropic-walks-back-policy/#atom-everything\n2. Research Breakthrough: Anthropic study shows AI converts security patches into working exploits in hours\nSource: https://the-decoder.com/anthropic-study-shows-ai-needs-hours-not-weeks-to-build-exploits-from-security-patches/\n3. Research Breakthrough: DiffusionGemma generates text from noise at roughly 1,000 tokens per second\nSource: https://deepmind.google/blog/diffusiongemma-4x-faster-text-generation/\nSource: https://arstechnica.com/google/2026/06/googles-latest-diffusiongemma-open-ai-model-comes-with-a-4x-speed-boost/\nSource: https://the-decoder.com/googles-new-open-model-diffusiongemma-generates-text-from-noise-instead-of-word-by-word/\nSource: https://simonwillison.net/2026/Jun/10/diffusiongemma/#atom-everything\n4. Research Breakthrough: A €0.01 bank transfer memo was enough to hijack a financial AI agent\nSource: https://blue41.com/blog/how-we-helped-bunq-secure-their-financial-ai-assistant/\n5. Policy & Regulation Watch: Independent musicians sue Google over alleged YouTube-to-Lyria AI training pipeline\nSource: https://www.theverge.com/tech/947770/google-lyria-music-ai-lawsuit-youtube\nSource: https://techcrunch.com/2026/06/10/warner-music-acquires-ai-attribution-startup-sureel-ai/\n6. Policy & Regulation Watch: Germany's National Security Council approves an AI Safety Institute modeled on the UK's AISI\nSource: https://the-decoder.com/germanys-national-security-council-greenights-an-ai-safety-institute-modeled-after-the-uks-aisi/",
+  "durationSeconds": 659,
+  "byteLength": 15822595,
+  "pubDate": "2026-06-11T04:25:26.068Z",
   "season": 2026,
   "episodeNumber": 161,
   "chaptersFilename": "2026-06-10.chapters.json",
@@ -12,74 +12,74 @@
   "chapters": [
     {
       "startTime": 0,
-      "endTime": 33,
+      "endTime": 40,
       "title": "Intro"
     },
     {
-      "startTime": 33,
-      "endTime": 99,
-      "title": "Anthropic releases Claude Fable 5, its..."
+      "startTime": 40,
+      "endTime": 191,
+      "title": "Fable 5 tops benchmarks but blocks..."
     },
     {
-      "startTime": 99,
-      "endTime": 153,
-      "title": "German court rules Google liable for..."
+      "startTime": 191,
+      "endTime": 299,
+      "title": "Anthropic study shows AI converts..."
     },
     {
-      "startTime": 153,
-      "endTime": 202,
-      "title": "Apple relaunches Siri AI at WWDC 2026..."
+      "startTime": 299,
+      "endTime": 392,
+      "title": "DiffusionGemma generates text from noise..."
     },
     {
-      "startTime": 202,
-      "endTime": 245,
-      "title": "Google launches Gemini 3.5 Live Translate..."
+      "startTime": 392,
+      "endTime": 467,
+      "title": "A €0.01 bank transfer memo was enough to..."
     },
     {
-      "startTime": 245,
-      "endTime": 290,
-      "title": "OpenAI negotiates lease on 10-gigawatt..."
+      "startTime": 467,
+      "endTime": 541,
+      "title": "Independent musicians sue Google over..."
     },
     {
-      "startTime": 290,
-      "endTime": 340,
+      "startTime": 541,
+      "endTime": 606,
       "title": "Germany's National Security Council..."
     },
     {
-      "startTime": 340,
-      "endTime": 390,
+      "startTime": 606,
+      "endTime": 659,
       "title": "Outro"
     }
   ],
   "soundbites": [
     {
-      "startTime": 33,
-      "duration": 66,
-      "title": "Anthropic releases Claude Fable 5, its..."
+      "startTime": 40,
+      "duration": 120,
+      "title": "Fable 5 tops benchmarks but blocks..."
     },
     {
-      "startTime": 99,
-      "duration": 53,
-      "title": "German court rules Google liable for..."
+      "startTime": 191,
+      "duration": 106,
+      "title": "Anthropic study shows AI converts..."
     },
     {
-      "startTime": 153,
-      "duration": 49,
-      "title": "Apple relaunches Siri AI at WWDC 2026..."
+      "startTime": 299,
+      "duration": 92,
+      "title": "DiffusionGemma generates text from noise..."
     },
     {
-      "startTime": 202,
-      "duration": 43,
-      "title": "Google launches Gemini 3.5 Live Translate..."
+      "startTime": 392,
+      "duration": 73,
+      "title": "A €0.01 bank transfer memo was enough to..."
     },
     {
-      "startTime": 245,
-      "duration": 45,
-      "title": "OpenAI negotiates lease on 10-gigawatt..."
+      "startTime": 467,
+      "duration": 73,
+      "title": "Independent musicians sue Google over..."
     },
     {
-      "startTime": 290,
-      "duration": 49,
+      "startTime": 541,
+      "duration": 63,
       "title": "Germany's National Security Council..."
     }
   ]

@@ -4,7 +4,7 @@
         <title>AI Briefing</title>
         <link>https://robertcdawson.github.io/ai-briefing/</link>
         <description>Daily AI news briefing — the stories that matter from the last 24 hours.</description>
-        <lastBuildDate>Thu, 11 Jun 2026 04:25:26 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 11 Jun 2026 14:49:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -23,6 +23,60 @@
         <podcast:guid>ea8709f4-3ba2-5b7e-bcdc-e409d84a6443</podcast:guid>
         <podcast:locked owner="manatees@gmail.com">yes</podcast:locked>
         <podcast:person role="host" group="cast">Robert Dawson</podcast:person>
+        <item>
+            <title><![CDATA[AI Briefing — June 11, 2026]]></title>
+            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-06-11.mp3</link>
+            <guid>ai-briefing-2026-06-11</guid>
+            <pubDate>Thu, 11 Jun 2026 14:48:59 GMT</pubDate>
+            <description><![CDATA[Top 6 AI stories for 2026-06-11:
+
+Chapters:
+00:00:00 Intro
+00:00:34 Anthropic reverses hidden guardrails on...
+00:02:32 Anthropic study finds AI builds working...
+00:04:15 Google DeepMind releases DiffusionGemma...
+00:06:01 xAI sued after allegedly firing engineer...
+00:07:10 Google DeepMind funds research into risks...
+00:08:21 New research finds AI memory systems can...
+00:09:23 Outro
+
+Sources:
+1. Top Story: Anthropic reverses hidden guardrails on Claude Fable after researcher backlash
+Source: https://www.theverge.com/ai-artificial-intelligence/948280/anthropic-claude-fable-invisible-distillation-guardrail
+Source: https://www.theverge.com/ai-artificial-intelligence/947973/fable-wont-answer-basic-biology-questions
+Source: https://www.theverge.com/report/947575/microsoft-claude-fable-5-restricted-internally
+Source: https://techcrunch.com/2026/06/10/cybersecurity-researchers-arent-happy-about-the-guardrails-on-anthropics-fable/
+Source: https://simonwillison.net/2026/Jun/11/anthropic-walks-back-policy/#atom-everything
+Source: https://the-decoder.com/claude-fable-5-anthropic-admits-wrong-tradeoff-after-invisibly-throttling-rival-ai-researchers/
+Source: https://news.ycombinator.com/item?id=48478969
+2. Research Breakthrough: Anthropic study finds AI builds working exploits from patches within hours
+Source: https://the-decoder.com/anthropic-study-shows-ai-needs-hours-not-weeks-to-build-exploits-from-security-patches/
+3. Open Source Watch: Google DeepMind releases DiffusionGemma open model with 4x text generation speedup
+Source: https://deepmind.google/blog/diffusiongemma-4x-faster-text-generation/
+Source: https://arstechnica.com/google/2026/06/googles-latest-diffusiongemma-open-ai-model-comes-with-a-4x-speed-boost/
+Source: https://the-decoder.com/googles-new-open-model-diffusiongemma-generates-text-from-noise-instead-of-word-by-word/
+Source: https://simonwillison.net/2026/Jun/10/diffusiongemma/#atom-everything
+4. Policy & Regulation Watch: xAI sued after allegedly firing engineer who flagged Grok safety concerns
+Source: https://techcrunch.com/2026/06/10/xai-fired-an-engineer-who-raised-alarms-about-grok-safety-new-lawsuit-claims/
+5. Research Breakthrough: Google DeepMind funds research into risks of millions of interacting AI agents
+Source: https://www.technologyreview.com/2026/06/11/1138794/google-deepmind-is-worried-about-what-happens-when-millions-of-agents-start-to-interact/
+6. Research Breakthrough: New research finds AI memory systems can degrade model performance and sycophancy
+Source: https://techcrunch.com/2026/06/10/how-memory-tools-can-make-ai-models-worse/]]></description>
+            <enclosure length="15023080" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-11.mp3"/>
+                    <itunes:duration>626</itunes:duration>
+            <itunes:explicit>false</itunes:explicit>
+            <itunes:season>2026</itunes:season>
+            <itunes:episode>162</itunes:episode>
+            <itunes:episodeType>full</itunes:episodeType>
+            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-11.chapters.json" type="application/json+chapters"/>
+            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-11.transcript.txt" type="text/plain" language="en"/>
+            <podcast:soundbite startTime="34" duration="117">Anthropic reverses hidden guardrails on...</podcast:soundbite>
+            <podcast:soundbite startTime="152" duration="102">Anthropic study finds AI builds working...</podcast:soundbite>
+            <podcast:soundbite startTime="255" duration="104">Google DeepMind releases DiffusionGemma...</podcast:soundbite>
+            <podcast:soundbite startTime="361" duration="68">xAI sued after allegedly firing engineer...</podcast:soundbite>
+            <podcast:soundbite startTime="430" duration="69">Google DeepMind funds research into risks...</podcast:soundbite>
+            <podcast:soundbite startTime="501" duration="61">New research finds AI memory systems can...</podcast:soundbite>
+        </item>
         <item>
             <title><![CDATA[AI Briefing — June 10, 2026]]></title>
             <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-06-10.mp3</link>
@@ -1224,23 +1278,6 @@ Source: https://the-decoder.com/thinking-machines-lab-ships-its-first-model-and-
             <itunes:explicit>false</itunes:explicit>
             <itunes:season>2026</itunes:season>
             <itunes:episode>130</itunes:episode>
-            <itunes:episodeType>full</itunes:episodeType>
-        </item>
-        <item>
-            <title><![CDATA[AI Briefing — May 9, 2026]]></title>
-            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-05-09.mp3</link>
-            <guid>ai-briefing-2026-05-09</guid>
-            <pubDate>Sat, 09 May 2026 14:01:59 GMT</pubDate>
-            <description><![CDATA[Top 3 AI stories for 2026-05-09:
-
-1. Anthropic's $900B valuation and the AI capital squeeze
-2. Broadcom wants Microsoft to co-sign OpenAI's chip
-3. Anthropic on teaching Claude the why, not just the what]]></description>
-            <enclosure length="8024602" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-09.mp3"/>
-                    <itunes:duration>334</itunes:duration>
-            <itunes:explicit>false</itunes:explicit>
-            <itunes:season>2026</itunes:season>
-            <itunes:episode>129</itunes:episode>
             <itunes:episodeType>full</itunes:episodeType>
         </item>
     </channel>

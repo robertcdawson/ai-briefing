@@ -1,0 +1,46 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — June 15, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 40,
+      "title": "Intro"
+    },
+    {
+      "startTime": 40,
+      "endTime": 180,
+      "title": "White House export order on Anthropic..."
+    },
+    {
+      "startTime": 180,
+      "endTime": 259,
+      "title": "Salesforce acquires AI customer service..."
+    },
+    {
+      "startTime": 259,
+      "endTime": 354,
+      "title": "13-word Reddit snippets can reliably..."
+    },
+    {
+      "startTime": 354,
+      "endTime": 426,
+      "title": "Pokémon Go player-contributed AR data now..."
+    },
+    {
+      "startTime": 426,
+      "endTime": 478,
+      "title": "OpenAI launches $150M Partner Network to..."
+    },
+    {
+      "startTime": 478,
+      "endTime": 544,
+      "title": "Sarvam raises $234M to become India's..."
+    },
+    {
+      "startTime": 544,
+      "endTime": 592,
+      "title": "Outro"
+    }
+  ]
+}

@@ -4,7 +4,7 @@
         <title>AI Briefing</title>
         <link>https://robertcdawson.github.io/ai-briefing/</link>
         <description>Daily AI news briefing — the stories that matter from the last 24 hours.</description>
-        <lastBuildDate>Fri, 12 Jun 2026 14:28:31 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 15 Jun 2026 15:33:13 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -23,6 +23,83 @@
         <podcast:guid>ea8709f4-3ba2-5b7e-bcdc-e409d84a6443</podcast:guid>
         <podcast:locked owner="manatees@gmail.com">yes</podcast:locked>
         <podcast:person role="host" group="cast">Robert Dawson</podcast:person>
+        <item>
+            <title><![CDATA[AI Briefing — June 15, 2026]]></title>
+            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-06-15.mp3</link>
+            <guid>ai-briefing-2026-06-15</guid>
+            <pubDate>Mon, 15 Jun 2026 15:33:13 GMT</pubDate>
+            <description><![CDATA[Top 6 AI stories for 2026-06-15:
+
+Chapters:
+00:00:00 Intro
+00:00:40 White House export order on Anthropic...
+00:03:00 Salesforce acquires AI customer service...
+00:04:19 13-word Reddit snippets can reliably...
+00:05:54 Pokémon Go player-contributed AR data now...
+00:07:06 OpenAI launches $150M Partner Network to...
+00:07:58 Sarvam raises $234M to become India's...
+00:09:04 Outro
+
+Sources:
+1. Top Story: White House export order on Anthropic models triggers China access fears and European sovereignty debate
+Source: https://www.theverge.com/ai-artificial-intelligence/949644/china-white-house-anthropic-mythos
+Source: https://the-decoder.com/anthropic-shutdown-sparks-sovereignty-debate-across-europe/
+Source: https://stratechery.com/2026/anthropics-safety-superpower/
+2. AI Business Watch: Salesforce acquires AI customer service platform Fin for $3.6 billion
+Source: https://techcrunch.com/2026/06/15/salesforce-acquires-ai-customer-service-platform-fin-for-3-6b/
+3. Research Breakthrough: 13-word Reddit snippets can reliably manipulate AI search outputs
+Source: https://www.404media.co/it-is-trivially-easy-to-use-reddit-to-manipulate-ai-search-research-suggests/
+4. AI Culture Signal: Pokémon Go player-contributed AR data now linked to military drone navigation AI
+Source: https://the-decoder.com/pokemon-go-data-helped-train-ai-now-linked-to-military-drones/
+5. AI Business Watch: OpenAI launches $150M Partner Network to accelerate global enterprise AI adoption
+Source: https://openai.com/index/introducing-openai-partner-network
+6. AI Business Watch: Sarvam raises $234M to become India's newest AI unicorn led by HCLTech
+Source: https://techcrunch.com/2026/06/15/sarvam-becomes-indias-newest-ai-unicorn-with-234-million-funding-round-led-by-hcltech/]]></description>
+            <enclosure length="14220175" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-15.mp3"/>
+                    <itunes:duration>592</itunes:duration>
+            <itunes:explicit>false</itunes:explicit>
+            <itunes:season>2026</itunes:season>
+            <itunes:episode>166</itunes:episode>
+            <itunes:episodeType>full</itunes:episodeType>
+            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-15.chapters.json" type="application/json+chapters"/>
+            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-15.transcript.txt" type="text/plain" language="en"/>
+            <podcast:soundbite startTime="40" duration="120">White House export order on Anthropic...</podcast:soundbite>
+            <podcast:soundbite startTime="180" duration="77">Salesforce acquires AI customer service...</podcast:soundbite>
+            <podcast:soundbite startTime="259" duration="93">13-word Reddit snippets can reliably...</podcast:soundbite>
+            <podcast:soundbite startTime="354" duration="71">Pokémon Go player-contributed AR data now...</podcast:soundbite>
+            <podcast:soundbite startTime="426" duration="50">OpenAI launches <guid>ai-briefing-2026-06-15</guid>
+            <pubDate>Mon, 15 Jun 2026 15:33:13 GMT</pubDate>
+            <description><![CDATA[Top 6 AI stories for 2026-06-15:
+
+Chapters:
+00:00:00 Intro
+00:00:40 White House export order on Anthropic...
+00:03:00 Salesforce acquires AI customer service...
+00:04:19 13-word Reddit snippets can reliably...
+00:05:54 Pokémon Go player-contributed AR data now...
+00:07:06 OpenAI launches $150M Partner Network to...
+00:07:58 Sarvam raises $234M to become India's...
+00:09:04 Outro
+
+Sources:
+1. Top Story: White House export order on Anthropic models triggers China access fears and European sovereignty debate
+Source: https://www.theverge.com/ai-artificial-intelligence/949644/china-white-house-anthropic-mythos
+Source: https://the-decoder.com/anthropic-shutdown-sparks-sovereignty-debate-across-europe/
+Source: https://stratechery.com/2026/anthropics-safety-superpower/
+2. AI Business Watch: Salesforce acquires AI customer service platform Fin for $3.6 billion
+Source: https://techcrunch.com/2026/06/15/salesforce-acquires-ai-customer-service-platform-fin-for-3-6b/
+3. Research Breakthrough: 13-word Reddit snippets can reliably manipulate AI search outputs
+Source: https://www.404media.co/it-is-trivially-easy-to-use-reddit-to-manipulate-ai-search-research-suggests/
+4. AI Culture Signal: Pokémon Go player-contributed AR data now linked to military drone navigation AI
+Source: https://the-decoder.com/pokemon-go-data-helped-train-ai-now-linked-to-military-drones/
+5. AI Business Watch: OpenAI launches $150M Partner Network to accelerate global enterprise AI adoption
+Source: https://openai.com/index/introducing-openai-partner-network
+6. AI Business Watch: Sarvam raises $234M to become India's newest AI unicorn led by HCLTech
+Source: https://techcrunch.com/2026/06/15/sarvam-becomes-indias-newest-ai-unicorn-with-234-million-funding-round-led-by-hcltech/]]></description>
+            <enclosure length="14220175" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-15.mp3"/>
+        50M Partner Network to...</podcast:soundbite>
+            <podcast:soundbite startTime="478" duration="65">Sarvam raises $234M to become India&apos;s...</podcast:soundbite>
+        </item>
         <item>
             <title><![CDATA[AI Briefing — June 12, 2026]]></title>
             <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-06-12.mp3</link>
@@ -1330,23 +1407,6 @@ Source: https://the-decoder.com/thinking-machines-lab-ships-its-first-model-and-
             <podcast:soundbite startTime="26" duration="111">Google unveils Gemini Intelligence and...</podcast:soundbite>
             <podcast:soundbite startTime="137" duration="107">Microsoft ousts Israel chief after Azure...</podcast:soundbite>
             <podcast:soundbite startTime="244" duration="100">Mira Murati&apos;s Thinking Machines ships...</podcast:soundbite>
-        </item>
-        <item>
-            <title><![CDATA[AI Briefing — May 11, 2026]]></title>
-            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-05-11.mp3</link>
-            <guid>ai-briefing-2026-05-11</guid>
-            <pubDate>Tue, 12 May 2026 03:23:06 GMT</pubDate>
-            <description><![CDATA[Top 3 AI stories for 2026-05-11:
-
-1. Top Story: Google Confirms First AI-Built Zero-Day Exploit in the Wild
-2. AI Business Watch: OpenAI Launches DeployCo to Embed Models in Enterprise Workflows
-3. Research Breakthrough: Baidu's Ernie 5.1 Claims 94 Percent Cheaper Pre-Training]]></description>
-            <enclosure length="8529756" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-11.mp3"/>
-                    <itunes:duration>355</itunes:duration>
-            <itunes:explicit>false</itunes:explicit>
-            <itunes:season>2026</itunes:season>
-            <itunes:episode>131</itunes:episode>
-            <itunes:episodeType>full</itunes:episodeType>
         </item>
     </channel>
 </rss>

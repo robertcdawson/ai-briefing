@@ -1,0 +1,86 @@
+{
+  "date": "2026-06-15",
+  "title": "AI Briefing — June 15, 2026",
+  "description": "Top 6 AI stories for 2026-06-15:\n\nChapters:\n00:00:00 Intro\n00:00:40 White House export order on Anthropic...\n00:03:00 Salesforce acquires AI customer service...\n00:04:19 13-word Reddit snippets can reliably...\n00:05:54 Pokémon Go player-contributed AR data now...\n00:07:06 OpenAI launches $150M Partner Network to...\n00:07:58 Sarvam raises $234M to become India's...\n00:09:04 Outro\n\nSources:\n1. Top Story: White House export order on Anthropic models triggers China access fears and European sovereignty debate\nSource: https://www.theverge.com/ai-artificial-intelligence/949644/china-white-house-anthropic-mythos\nSource: https://the-decoder.com/anthropic-shutdown-sparks-sovereignty-debate-across-europe/\nSource: https://stratechery.com/2026/anthropics-safety-superpower/\n2. AI Business Watch: Salesforce acquires AI customer service platform Fin for $3.6 billion\nSource: https://techcrunch.com/2026/06/15/salesforce-acquires-ai-customer-service-platform-fin-for-3-6b/\n3. Research Breakthrough: 13-word Reddit snippets can reliably manipulate AI search outputs\nSource: https://www.404media.co/it-is-trivially-easy-to-use-reddit-to-manipulate-ai-search-research-suggests/\n4. AI Culture Signal: Pokémon Go player-contributed AR data now linked to military drone navigation AI\nSource: https://the-decoder.com/pokemon-go-data-helped-train-ai-now-linked-to-military-drones/\n5. AI Business Watch: OpenAI launches $150M Partner Network to accelerate global enterprise AI adoption\nSource: https://openai.com/index/introducing-openai-partner-network\n6. AI Business Watch: Sarvam raises $234M to become India's newest AI unicorn led by HCLTech\nSource: https://techcrunch.com/2026/06/15/sarvam-becomes-indias-newest-ai-unicorn-with-234-million-funding-round-led-by-hcltech/",
+  "durationSeconds": 592,
+  "byteLength": 14220175,
+  "pubDate": "2026-06-15T15:33:13.557Z",
+  "season": 2026,
+  "episodeNumber": 166,
+  "chaptersFilename": "2026-06-15.chapters.json",
+  "transcriptFilename": "2026-06-15.transcript.txt",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 40,
+      "title": "Intro"
+    },
+    {
+      "startTime": 40,
+      "endTime": 180,
+      "title": "White House export order on Anthropic..."
+    },
+    {
+      "startTime": 180,
+      "endTime": 259,
+      "title": "Salesforce acquires AI customer service..."
+    },
+    {
+      "startTime": 259,
+      "endTime": 354,
+      "title": "13-word Reddit snippets can reliably..."
+    },
+    {
+      "startTime": 354,
+      "endTime": 426,
+      "title": "Pokémon Go player-contributed AR data now..."
+    },
+    {
+      "startTime": 426,
+      "endTime": 478,
+      "title": "OpenAI launches $150M Partner Network to..."
+    },
+    {
+      "startTime": 478,
+      "endTime": 544,
+      "title": "Sarvam raises $234M to become India's..."
+    },
+    {
+      "startTime": 544,
+      "endTime": 592,
+      "title": "Outro"
+    }
+  ],
+  "soundbites": [
+    {
+      "startTime": 40,
+      "duration": 120,
+      "title": "White House export order on Anthropic..."
+    },
+    {
+      "startTime": 180,
+      "duration": 77,
+      "title": "Salesforce acquires AI customer service..."
+    },
+    {
+      "startTime": 259,
+      "duration": 93,
+      "title": "13-word Reddit snippets can reliably..."
+    },
+    {
+      "startTime": 354,
+      "duration": 71,
+      "title": "Pokémon Go player-contributed AR data now..."
+    },
+    {
+      "startTime": 426,
+      "duration": 50,
+      "title": "OpenAI launches $150M Partner Network to..."
+    },
+    {
+      "startTime": 478,
+      "duration": 65,
+      "title": "Sarvam raises $234M to become India's..."
+    }
+  ]
+}

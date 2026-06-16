@@ -4,7 +4,7 @@
         <title>AI Briefing</title>
         <link>https://robertcdawson.github.io/ai-briefing/</link>
         <description>Daily AI news briefing — the stories that matter from the last 24 hours.</description>
-        <lastBuildDate>Mon, 15 Jun 2026 15:33:13 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 16 Jun 2026 15:19:23 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -23,6 +23,62 @@
         <podcast:guid>ea8709f4-3ba2-5b7e-bcdc-e409d84a6443</podcast:guid>
         <podcast:locked owner="manatees@gmail.com">yes</podcast:locked>
         <podcast:person role="host" group="cast">Robert Dawson</podcast:person>
+        <item>
+            <title><![CDATA[AI Briefing — June 16, 2026]]></title>
+            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-06-16.mp3</link>
+            <guid>ai-briefing-2026-06-16</guid>
+            <pubDate>Tue, 16 Jun 2026 15:19:23 GMT</pubDate>
+            <description><![CDATA[Top 6 AI stories for 2026-06-16:
+
+Chapters:
+00:00:00 Intro
+00:00:37 Trump Administration Bans Anthropic's...
+00:02:59 SpaceX Acquires AI Coding Tool Cursor for...
+00:04:53 OpenAI Burned $34 Billion in 2025 as...
+00:06:18 DeepSeek Raises $7.4 Billion in...
+00:07:49 Critical Microsoft Copilot Vulnerability...
+00:09:08 Nvidia Raises Up to $25 Billion in Its...
+00:10:22 Outro
+
+Sources:
+1. Top Story: Trump Administration Bans Anthropic's Fable 5 and Mythos 5 Models for Foreign Nationals
+Source: https://www.theverge.com/ai-artificial-intelligence/950412/anthropic-trump-adminstration-claude-mythos-fable-5-export-controls
+Source: https://www.theverge.com/ai-artificial-intelligence/950026/anthropic-fable-mythos-ban-ai-shutdown
+Source: https://www.theverge.com/ai-artificial-intelligence/949986/anthropic-fable-mythos-shutdown-sovereign-ai
+Source: https://techcrunch.com/2026/06/15/the-us-governments-anthropic-models-ban-was-never-about-an-ai-jailbreak/
+Source: https://techcrunch.com/2026/06/15/cybersecurity-vets-protest-dangerous-us-government-ban-on-anthropics-most-powerful-models/
+Source: https://the-decoder.com/the-us-government-may-be-asking-anthropic-the-impossible-by-demanding-unhackable-llms/
+Source: https://simonwillison.net/2026/Jun/16/fable-5-export-controls/#atom-everything
+2. AI Business Watch: SpaceX Acquires AI Coding Tool Cursor for $60 Billion Post-IPO
+Source: https://www.theverge.com/ai-artificial-intelligence/950571/spacex-is-officially-buying-cursor-for-60-billion
+Source: https://techcrunch.com/2026/06/16/spacex-to-acquire-cursor-for-60b-in-stock-days-after-blockbuster-ipo/
+Source: https://techcrunch.com/2026/06/15/spacex-is-public-everything-you-need-to-know-post-ipo/
+Source: https://techcrunch.com/2026/06/16/spacex-passes-amazon-as-valuation-balloons-to-2-7t/
+3. AI Business Watch: OpenAI Burned $34 Billion in 2025 as Losses Grew Nearly Eightfold
+Source: https://www.wheresyoured.at/exclusive-openai-financials/
+Source: https://the-decoder.com/openai-burned-through-34-billion-last-year/
+4. AI Business Watch: DeepSeek Raises $7.4 Billion in First-Ever External Funding Round at $50B Valuation
+Source: https://the-decoder.com/deepseek-takes-outside-money-for-the-first-time-at-a-50-billion-valuation/
+5. Product & Tool Watch: Critical Microsoft Copilot Vulnerability Let Attackers Steal Users' 2FA Codes
+Source: https://arstechnica.com/security/2026/06/critical-copilot-vulnerability-allowed-hackers-to-seal-2fa-code-from-users/
+6. AI Business Watch: Nvidia Raises Up to $25 Billion in Its First Bond Deal Since 2021
+Source: https://arstechnica.com/ai/2026/06/chipmaker-nvidia-seeks-to-raise-over-25b-in-first-bond-deal-since-2021/
+Source: https://the-decoder.com/nvidia-joins-ai-debt-boom-with-20-billion-bond-sale/]]></description>
+            <enclosure length="16217113" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-16.mp3"/>
+                    <itunes:duration>676</itunes:duration>
+            <itunes:explicit>false</itunes:explicit>
+            <itunes:season>2026</itunes:season>
+            <itunes:episode>167</itunes:episode>
+            <itunes:episodeType>full</itunes:episodeType>
+            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-16.chapters.json" type="application/json+chapters"/>
+            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-16.transcript.txt" type="text/plain" language="en"/>
+            <podcast:soundbite startTime="37" duration="120">Trump Administration Bans Anthropic&apos;s...</podcast:soundbite>
+            <podcast:soundbite startTime="179" duration="112">SpaceX Acquires AI Coding Tool Cursor for...</podcast:soundbite>
+            <podcast:soundbite startTime="293" duration="83">OpenAI Burned $34 Billion in 2025 as...</podcast:soundbite>
+            <podcast:soundbite startTime="378" duration="90">DeepSeek Raises $7.4 Billion in...</podcast:soundbite>
+            <podcast:soundbite startTime="469" duration="78">Critical Microsoft Copilot Vulnerability...</podcast:soundbite>
+            <podcast:soundbite startTime="548" duration="72">Nvidia Raises Up to $25 Billion in Its...</podcast:soundbite>
+        </item>
         <item>
             <title><![CDATA[AI Briefing — June 15, 2026]]></title>
             <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-06-15.mp3</link>
@@ -1366,47 +1422,6 @@ Source: https://techcrunch.com/2026/05/16/the-haves-and-have-nots-of-the-ai-gold
             <enclosure length="5613256" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-16.mp3"/>
         .3M Monthly for AI Coding Agents</podcast:soundbite>
             <podcast:soundbite startTime="154" duration="55">Job Losses and Wealth Concentration</podcast:soundbite>
-        </item>
-        <item>
-            <title><![CDATA[AI Briefing — May 12, 2026]]></title>
-            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-05-12.mp3</link>
-            <guid>ai-briefing-2026-05-12</guid>
-            <pubDate>Tue, 12 May 2026 17:39:34 GMT</pubDate>
-            <description><![CDATA[Top 3 AI stories for 2026-05-12:
-
-Chapters:
-00:00:00 Intro
-00:00:26 Google unveils Gemini Intelligence and...
-00:02:17 Microsoft ousts Israel chief after Azure...
-00:04:04 Mira Murati's Thinking Machines ships...
-00:05:44 Outro
-
-Sources:
-1. Top Story: Google unveils Gemini Intelligence and AI-first Android overhaul ahead of I/O
-Source: https://www.theverge.com/tech/928724/gemini-intelligence-android-io-autofill
-Source: https://www.theverge.com/tech/928653/google-android-17-9-biggest-new-features-android-show-io
-Source: https://arstechnica.com/gadgets/2026/05/google-says-android-is-getting-a-big-ai-overhaul-in-2026/
-Source: https://arstechnica.com/gadgets/2026/05/googles-android-powered-laptops-are-called-googlebooks-and-theyre-coming-this-year/
-Source: https://techcrunch.com/2026/05/12/everything-google-announced-at-its-android-show-from-googlebooks-to-vibe-coded-widgets/
-Source: https://techcrunch.com/2026/05/12/google-brings-agentic-ai-and-vibe-coded-widgets-to-android/
-Source: https://techcrunch.com/2026/05/12/googles-create-my-widget-feature-will-let-you-vibe-code-your-own-widgets/
-2. Policy & Regulation Watch: Microsoft ousts Israel chief after Azure reportedly powered military AI targeting in Gaza
-Source: https://the-decoder.com/microsoft-ousts-its-israel-chief-following-reports-that-azure-quietly-powered-military-ai-targeting-in-gaza/
-3. Research Breakthrough: Mira Murati's Thinking Machines ships first model with parallel real-time interaction
-Source: https://www.theverge.com/ai-artificial-intelligence/928309/mira-murati-thinking-machines-ai-interaction-model
-Source: https://techcrunch.com/2026/05/11/thinking-machines-wants-to-build-an-ai-that-actually-listens-while-it-talks/
-Source: https://the-decoder.com/thinking-machines-lab-ships-its-first-model-and-argues-interactivity-is-what-openai-gets-wrong-about-voice/]]></description>
-            <enclosure length="9131100" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-12.mp3"/>
-                    <itunes:duration>380</itunes:duration>
-            <itunes:explicit>false</itunes:explicit>
-            <itunes:season>2026</itunes:season>
-            <itunes:episode>132</itunes:episode>
-            <itunes:episodeType>full</itunes:episodeType>
-            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-12.chapters.json" type="application/json+chapters"/>
-            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-12.transcript.txt" type="text/plain" language="en"/>
-            <podcast:soundbite startTime="26" duration="111">Google unveils Gemini Intelligence and...</podcast:soundbite>
-            <podcast:soundbite startTime="137" duration="107">Microsoft ousts Israel chief after Azure...</podcast:soundbite>
-            <podcast:soundbite startTime="244" duration="100">Mira Murati&apos;s Thinking Machines ships...</podcast:soundbite>
         </item>
     </channel>
 </rss>

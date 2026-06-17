@@ -3,6 +3,7 @@ import { STORY_CATEGORY_DEFINITIONS } from "./types.js";
 import type { Article, StoryCluster } from "./types.js";
 import { loadRecentCoverage } from "./ledger.js";
 import type { PriorCoverageEntry } from "./ledger.js";
+import { getInterestProfile } from "./interests.js";
 import { getChatCompletionAssistantText, logJson, withHardTimeout, withRetry } from "./util.js";
 
 const MODEL = "anthropic/claude-sonnet-4.6";
@@ -102,10 +103,30 @@ const RESPONSE_SCHEMA = {
   additionalProperties: false,
 } as const;
 
-export function buildSystemPrompt(): string {
+/**
+ * Builds the listener interest-profile steering block for the system prompt.
+ * Returns "" when the profile is empty so the prompt is byte-for-byte
+ * unchanged when personalization is disabled (M14 behavior-neutral floor).
+ *
+ * The block is a WEIGHTING nudge, not a filter: it explicitly instructs the
+ * model that genuinely major AI news must surface regardless of profile fit,
+ * which defends against the filter-bubble failure mode.
+ */
+export function buildInterestProfileBlock(interestProfile: string): string {
+  const profile = interestProfile.trim();
+  if (profile === "") return "";
+  return `\nLISTENER INTEREST PROFILE — nudge importance scores UP for stories that fit the listener's interests below; treat profile fit as one factor among the scoring criteria, never as a filter. A genuinely major or landmark AI development (a frontier capability shift, a broadly consequential release, a significant safety, policy, or societal event) MUST surface with a high score REGARDLESS of how well it fits this profile — never bury big news for being off-theme.
+
+Listener interests:
+${profile}\n`;
+}
+
+export function buildSystemPrompt(interestProfile = ""): string {
   const categoryLines = STORY_CATEGORY_DEFINITIONS
     .map((category) => `- ${category.label} (${category.id}): ${category.prompt}`)
     .join("\n");
+
+  const interestBlock = buildInterestProfileBlock(interestProfile);
 
   return `You are the editor for a daily AI news podcast. Given a list of recent articles from various publishers, your job is to:
 
@@ -116,7 +137,7 @@ ${categoryLines}
 4. RETURN the strongest distinct, credible stories as separate clusters — at most ${MODEL_CLUSTER_LIMIT}, fewer when the day is quiet — each with an honest importance score. Prefer a diverse mix of categories. Never pad with weak material: if it isn't worth a listener's time, leave it out. A slow day may yield only one or two strong stories.
 5. SUPPRESS already-covered stories: if today's articles revisit a story from the recently-covered list below, omit that cluster UNLESS it has materially developed (new facts, confirmed outcomes, significant escalation). When UNCERTAIN whether it developed enough, PREFER including it as a short follow-up rather than dropping it — bias toward surfacing. ALWAYS surface a major escalation even if you covered it recently.
 6. Every cluster MUST include a "followUp" field. When threading a follow-up (a story that recurred with material development), set followUp to an object containing priorDate (the episode date from the recently-covered list) and priorFraming (a 1-sentence recall of what was said before). For a brand-new story, set followUp to null.
-
+${interestBlock}
 For each cluster:
 - canonicalKey: short kebab-case slug
 - category: one of the editorial lane ids above
@@ -315,7 +336,7 @@ export async function curate(articles: Article[], date?: string): Promise<StoryC
         client.chat.completions.create({
           model: MODEL,
           messages: [
-            { role: "system", content: buildSystemPrompt() },
+            { role: "system", content: buildSystemPrompt(getInterestProfile()) },
             { role: "user", content: buildUserPrompt(articles, priorCoverage, windowDays) },
           ],
           response_format: {

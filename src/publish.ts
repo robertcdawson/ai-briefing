@@ -3,7 +3,7 @@ import { createHash } from "node:crypto";
 import path from "node:path";
 import { Feed } from "feed";
 import { stripInlineAudioTags } from "./audioTags.js";
-import type { Episode, EpisodePartTiming, NarrationChunk } from "./types.js";
+import type { CurationRecord, Episode, EpisodePartTiming, NarrationChunk, StoryCluster } from "./types.js";
 import { logJson } from "./util.js";
 
 const DOCS_DIR = "docs";
@@ -13,7 +13,7 @@ const FEED_LIMIT = 30;
 const RETENTION_DAYS = 90;
 const PODCAST_GUID_NAMESPACE = "ead4c236-bf58-58c6-a2c6-a6b28d128cb6";
 
-interface EpisodeRecord {
+export interface EpisodeRecord {
   date: string;
   title: string;
   description: string;
@@ -26,6 +26,7 @@ interface EpisodeRecord {
   transcriptFilename?: string;
   chapters?: ChapterRecord[];
   soundbites?: SoundbiteRecord[];
+  curation?: CurationRecord[];
 }
 
 interface PodcastMetadata {
@@ -75,6 +76,7 @@ export async function publish(
   byteLength: number,
   durationSeconds: number,
   partTimings: EpisodePartTiming[] = [],
+  airedClusters: StoryCluster[] = [],
 ): Promise<PublishResult> {
   const started = Date.now();
   const baseUrl = process.env.FEED_BASE_URL;
@@ -115,6 +117,17 @@ export async function publish(
     );
   }
 
+  const curation: CurationRecord[] | undefined = airedClusters.length > 0
+    ? airedClusters.map((c) => ({
+        canonicalKey: c.canonicalKey,
+        headline: c.headline,
+        whyItMatters: c.whyItMatters,
+        caveat: c.caveat,
+        importance: c.importance,
+        category: c.category,
+      }))
+    : undefined;
+
   const record: EpisodeRecord = {
     date: episode.date,
     title: episode.title,
@@ -128,6 +141,7 @@ export async function publish(
     transcriptFilename,
     chapters,
     soundbites,
+    ...(curation !== undefined ? { curation } : {}),
   };
   await writeFile(
     path.join(EPISODES_DIR, `${episode.date}.json`),
@@ -244,16 +258,19 @@ async function pruneOldEpisodes(keepDates: Set<string>): Promise<string[]> {
   return pruned;
 }
 
-async function loadAllRecords(): Promise<EpisodeRecord[]> {
-  const entries = await readdir(EPISODES_DIR, { withFileTypes: true }).catch(() => []);
+// F3 + F10: dir? with internal default so callers can pass undefined cleanly.
+export async function loadAllRecords(dir?: string): Promise<EpisodeRecord[]> {
+  const target = dir ?? EPISODES_DIR;
+  const entries = await readdir(target, { withFileTypes: true }).catch(() => []);
   const records: EpisodeRecord[] = [];
   for (const e of entries) {
     if (!e.isFile() || !/^\d{4}-\d{2}-\d{2}\.json$/.test(e.name)) continue;
-    const txt = await readFile(path.join(EPISODES_DIR, e.name), "utf8");
+    // F3: wrap readFile AND JSON.parse together so ENOENT/EACCES skips the file
     try {
+      const txt = await readFile(path.join(target, e.name), "utf8");
       records.push(JSON.parse(txt) as EpisodeRecord);
     } catch {
-      // skip malformed sidecar
+      // skip missing, unreadable, or malformed sidecar
     }
   }
   return records;

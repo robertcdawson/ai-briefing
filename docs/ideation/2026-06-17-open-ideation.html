@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ideation: AI Briefing — Open / Surprise-Me</title>
+<link rel="preconnect" href="https://fonts.bunny.net" crossorigin>
+<link rel="stylesheet" href="https://fonts.bunny.net/css?family=inter:400,500,600,700|jetbrains-mono:400,500">
+<style>
+  :root {
+    --bg: #fbfaf8;
+    --surface: #ffffff;
+    --ink: #1c1b19;
+    --muted: #6b675f;
+    --line: #e6e2db;
+    --accent: #b4541a;        /* warm ember — podcast/audio feel */
+    --accent-soft: #fbeee3;
+    --accent-text: #8a3e12;
+    --info: #2a6f97;
+    --info-soft: #e6f0f6;
+    --warn-soft: #fcf3e2;
+    --good: #2f7a47;
+    --good-soft: #e8f3ec;
+    --radius: 10px;
+    --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+    --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: var(--sans); font-size: 16px; line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 920px; margin-inline: auto; padding: 3rem 1.5rem 5rem; }
+  p, li { max-width: 72ch; }
+  a { color: var(--accent-text); text-underline-offset: 2px; }
+  code { font-family: var(--mono); font-size: 0.86em; background: #f1ede7; padding: 0.1em 0.35em; border-radius: 5px; }
+  h1 { font-size: 2.1rem; line-height: 1.15; font-weight: 700; letter-spacing: -0.02em; margin: 0 0 0.4rem; }
+  h2 { font-size: 1.4rem; font-weight: 650; letter-spacing: -0.01em; margin: 3rem 0 1rem; padding-bottom: 0.4rem; border-bottom: 1px solid var(--line); }
+  h3 { font-size: 1.18rem; font-weight: 650; margin: 0; }
+  .eyebrow { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.13em; text-transform: uppercase; color: var(--accent-text); }
+  .lede { font-size: 1.08rem; color: var(--muted); max-width: 68ch; }
+
+  /* header meta */
+  .meta { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1.2rem 0 0; }
+  .pill { font-size: 0.78rem; font-weight: 500; padding: 0.25rem 0.65rem; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--muted); }
+  .pill strong { color: var(--ink); font-weight: 600; }
+
+  /* stats */
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.75rem; margin: 1.75rem 0 0; }
+  .stat { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 0.9rem 1rem; }
+  .stat .n { font-size: 1.5rem; font-weight: 700; letter-spacing: -0.02em; }
+  .stat .l { font-size: 0.74rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+  @media (max-width: 640px) { .stats { grid-template-columns: repeat(2, 1fr); } }
+
+  section { margin-top: 0.5rem; }
+  .grounding p { color: #322f2a; }
+  .axisnote { background: var(--info-soft); border: 1px solid #cfe0ea; color: #21567a; border-radius: var(--radius); padding: 0.75rem 1rem; font-size: 0.92rem; }
+
+  /* jump list */
+  .jump { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 1rem 1.2rem; margin-bottom: 1.5rem; }
+  .jump ol { margin: 0.4rem 0 0; padding-left: 1.2rem; }
+  .jump li { margin: 0.2rem 0; }
+  .jump a { text-decoration: none; }
+  .jump a:hover { text-decoration: underline; }
+
+  /* idea cards */
+  .idea { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.4rem 1.5rem; margin: 1.1rem 0; scroll-margin-top: 1rem; }
+  .idea .top { display: flex; align-items: baseline; gap: 0.7rem; flex-wrap: wrap; margin-bottom: 0.6rem; }
+  .idchip { font-family: var(--mono); font-size: 0.78rem; font-weight: 500; background: var(--accent-soft); color: var(--accent-text); border: 1px solid #f0d7c2; border-radius: 6px; padding: 0.15rem 0.5rem; }
+  .track { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin-left: auto; }
+  .idea dl { display: grid; grid-template-columns: max-content 1fr; gap: 0.35rem 1rem; margin: 0.9rem 0 0; }
+  .idea dt { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); padding-top: 0.15rem; }
+  .idea dd { margin: 0; }
+  .basis { font-family: var(--mono); font-size: 0.84rem; }
+  .basis .tag { font-weight: 600; color: var(--accent-text); }
+  .chips { display: flex; gap: 0.5rem; margin-top: 1rem; flex-wrap: wrap; }
+  .chip { font-size: 0.76rem; font-weight: 500; padding: 0.2rem 0.6rem; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); }
+  .chip.good { background: var(--good-soft); border-color: #cbe5d3; color: #245c37; }
+  .chip.med { background: var(--warn-soft); border-color: #ecdcb8; color: #8a6111; }
+  figure { margin: 1.1rem 0 0.2rem; }
+  figure svg { width: 100%; height: auto; display: block; background: #fcfbf9; border: 1px solid var(--line); border-radius: var(--radius); }
+  figcaption { font-size: 0.82rem; color: var(--muted); margin-top: 0.4rem; }
+
+  table { border-collapse: collapse; width: 100%; margin-top: 1rem; font-size: 0.92rem; }
+  th, td { text-align: left; padding: 0.55rem 0.7rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
+  td.id { font-family: var(--mono); color: var(--muted); white-space: nowrap; }
+
+  .composition-signal { margin-top: 4rem; padding-top: 1rem; border-top: 1px solid var(--line); font-size: 0.8rem; color: var(--muted); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="eyebrow">Ideation · Surprise-Me</div>
+    <h1>AI Briefing — Open Ideation</h1>
+    <p class="lede">Where to push the automated weekday AI-news podcast next: the strongest grounded directions across curation, voice, and reliability.</p>
+    <div class="meta">
+      <span class="pill"><strong>Date:</strong> <time datetime="2026-06-17">2026-06-17</time></span>
+      <span class="pill"><strong>Focus:</strong> open-ended (surprise-me)</span>
+      <span class="pill"><strong>Mode:</strong> repo-grounded</span>
+    </div>
+    <div class="stats">
+      <div class="stat"><div class="n">48</div><div class="l">Raw candidates</div></div>
+      <div class="stat"><div class="n">7</div><div class="l">Survivors</div></div>
+      <div class="stat"><div class="n">6</div><div class="l">Ideation frames</div></div>
+      <div class="stat"><div class="n">1</div><div class="l">Refuted by code</div></div>
+    </div>
+  </header>
+
+  <section class="grounding">
+    <h2>Grounding Context</h2>
+    <p><strong>Codebase Context.</strong> AI Briefing is a TypeScript/Node (ESM) pipeline with a thin orchestrator (<code>src/index.ts</code>) and seven stage modules. State lives in git plus <code>docs/episodes/*.json</code> sidecars — no database. The daily flow: <code>fetch</code> (12 RSS sources, 2 already dead) → <code>curate</code> (Claude Sonnet clusters duplicates and scores importance 0–100, keeps 1–6 stories over a 45 threshold, with a stable kebab-case <code>canonicalKey</code> per cluster) → <code>script</code> (single narrator, 3 personas rotating daily, depth scaled to importance) → <code>tts</code> (OpenAI <code>gpt-4o-mini-tts</code> or OpenRouter Gemini; per-section single request, oversized parts fall back to chunked synthesis) → <code>audio</code> (ffmpeg, EBU R128 −16 LUFS, chapters) → <code>publish</code> (MP3 + sidecar + transcript, regenerates <code>feed.xml</code>). It runs unattended on a weekday GitHub Actions cron.</p>
+    <p><strong>Strategy.</strong> The product commits to a hard ~10-minute ceiling and a fully automated daily pipeline (no human in the loop), serving one veteran senior engineer who wants AI signal in minimal time. Tracks: curation quality, audio/voice quality, pipeline reliability. The three strategy metrics are story relevance (qualitative, no measurement loop today), episode length, and cost per episode.</p>
+    <p><strong>What ideation leaned on.</strong> Two structural facts shaped the strongest ideas: (1) ~15+ episodes of structured sidecars and transcripts accumulate but no future episode ever reads them — <code>curate</code> runs cold every day; and (2) external research that news importance is fundamentally a <em>cluster</em> property (size + source entropy), and that single-source over-confidence (the WaPo AI-podcast failure) and silent degradation are the canonical failure modes for automated news audio.</p>
+  </section>
+
+  <section>
+    <h2>Topic Axes</h2>
+    <div class="axisnote">Decomposition skipped — surprise-me mode. With no settled subject to decompose, the six frames each chose their own surface; the cross-cutting synthesis below plays the coverage role instead.</div>
+  </section>
+
+  <section>
+    <h2>Ranked Ideas</h2>
+    <nav class="jump" aria-label="Ranked ideas">
+      <strong>Jump to:</strong>
+      <ol>
+        <li><a href="#m1">M1 · Cross-episode memory ledger &amp; story threading</a></li>
+        <li><a href="#m14">M14 · Personalized salience — curate for this engineer</a></li>
+        <li><a href="#m3">M3 · Curation observability — stop deleting the verdict</a></li>
+        <li><a href="#m9">M9 · Pronunciation lexicon for AI/lab names</a></li>
+        <li><a href="#m16">M16 · Confidence calibration from source count</a></li>
+        <li><a href="#m7">M7 · Dead-man's-switch for the unattended run</a></li>
+        <li><a href="#m6">M6 · Content-hash stage caching</a></li>
+      </ol>
+    </nav>
+
+    <!-- M1 -->
+    <article class="idea" id="m1">
+      <div class="top"><span class="idchip">M1</span><h3>Cross-episode memory ledger &amp; story threading</h3><span class="track">Curation · Top pick</span></div>
+      <p><strong>Description.</strong> Persist each episode's <code>canonicalKey</code> clusters into a rolling ~14-day ledger that <code>curate</code> reads on the next run. The briefing gains continuity: suppress stories already covered unless they genuinely developed, and have the narrator deliver follow-ups — "yesterday we flagged this as a rumor; today it shipped." The prior episode's <code>caveat</code> becomes today's setup. A ~50-line JSON written by <code>publish</code>, read by <code>curate</code>; no database.</p>
+      <figure>
+        <svg viewBox="0 0 760 210" role="img" aria-label="Today curate runs cold and ignores accumulated sidecars; with a ledger, prior clusters feed back into curation.">
+          <style>
+            .lbl{font:500 13px var(--sans,sans-serif);fill:#1c1b19}
+            .sub{font:400 11px var(--sans,sans-serif);fill:#6b675f}
+            .box{fill:#ffffff;stroke:#e6e2db}
+            .acc{fill:#fbeee3;stroke:#f0d7c2}
+            .dead{fill:#f4f1ec;stroke:#e6e2db}
+            .arr{stroke:#b4541a;stroke-width:1.6;fill:none;marker-end:url(#a1)}
+            .arrx{stroke:#c9c3b9;stroke-width:1.4;fill:none;stroke-dasharray:4 4}
+          </style>
+          <defs><marker id="a1" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="#b4541a"/></marker></defs>
+          <text class="sub" x="20" y="22">TODAY — curate runs cold</text>
+          <rect class="dead" x="20" y="34" width="120" height="40" rx="7"/><text class="lbl" x="34" y="58">15+ sidecars</text>
+          <text class="sub" x="34" y="92">written, never read</text>
+          <line class="arrx" x1="140" y1="54" x2="240" y2="54"/>
+          <rect class="box" x="240" y="34" width="120" height="40" rx="7"/><text class="lbl" x="262" y="58">curate</text>
+          <text class="sub" x="372" y="58">→ same saga re-lands as "new"</text>
+
+          <text class="sub" x="20" y="142">WITH LEDGER — memory feeds back</text>
+          <rect class="acc" x="20" y="154" width="120" height="40" rx="7"/><text class="lbl" x="42" y="178">ledger.json</text>
+          <line class="arr" x1="140" y1="174" x2="240" y2="174"/>
+          <rect class="box" x="240" y="154" width="120" height="40" rx="7"/><text class="lbl" x="262" y="178">curate</text>
+          <line class="arr" x1="360" y1="174" x2="460" y2="174"/>
+          <rect class="box" x="460" y="154" width="130" height="40" rx="7"/><text class="lbl" x="476" y="178">script (threads)</text>
+          <line class="arr" x1="525" y1="154" x2="92" y2="194" /><text class="sub" x="600" y="150">publish writes back</text>
+        </svg>
+        <figcaption>The archive is the largest unused asset; a ledger turns dead sidecars into a live curation input that compounds daily.</figcaption>
+      </figure>
+      <dl>
+        <dt>Basis</dt><dd class="basis"><span class="tag">direct:</span> <code>canonicalKey</code> already exists in <code>curate.ts</code>; <code>publish.ts</code> already reads the episodes dir; the verifier confirmed <code>curate</code> never reads prior episodes. <span class="tag">external:</span> importance evolves across days as cluster source-entropy grows (arXiv 2402.10302).</dd>
+        <dt>Rationale</dt><dd>A daily listener's marginal value is the <em>delta</em>, not a re-briefing. Memory is the difference between a feed and a correspondent who remembers what it already told you — and four other ideas (threading, week-in-review, velocity ranking, the feedback loop) are downstream of it.</dd>
+        <dt>Downsides</dt><dd>Introduces cross-run state that must stay consistent; ledger schema and retention need care; exact-key matching misses reworded recurrences (an embedding index would close that, at added cost).</dd>
+      </dl>
+      <div class="chips"><span class="chip good">Confidence 90%</span><span class="chip med">Complexity Medium</span><span class="chip">Spine: M1→M18→M21→M15</span></div>
+    </article>
+
+    <!-- M14 -->
+    <article class="idea" id="m14">
+      <div class="top"><span class="idchip">M14</span><h3>Personalized salience — curate for this engineer, not a stranger</h3><span class="track">Curation</span></div>
+      <p><strong>Description.</strong> The pipeline scores relevance as if an average reader is listening, but there is exactly one listener with a known stack and concerns. Add a lightweight interest profile (languages, tools, "I ship in TypeScript/Node," topics that matter to my work) that re-weights cluster importance scores in the <code>curate</code> prompt. Same pipeline, personalized salience.</p>
+      <dl>
+        <dt>Basis</dt><dd class="basis"><span class="tag">direct:</span> the primary user is precisely specified and the product is explicitly personal; the relevance metric is qualitative with no input today. <span class="tag">external:</span> personal-briefing products (WaPo, Alexa) assume per-user relevance as the core value.</dd>
+        <dt>Rationale</dt><dd>For an n=1 product, generic scoring leaves the single biggest lever — fit to <em>this</em> person — completely unpulled. The verifier flagged this as unusually tractable precisely because there's no multi-user infrastructure to build: it's a profile file injected into a prompt.</dd>
+        <dt>Downsides</dt><dd>Risks a filter bubble that misses important-but-off-profile stories; needs a floor so genuinely major news surfaces regardless of profile fit.</dd>
+      </dl>
+      <div class="chips"><span class="chip good">Confidence 85%</span><span class="chip med">Complexity Medium</span><span class="chip">Pairs with M15 (ratings)</span></div>
+    </article>
+
+    <!-- M3 -->
+    <article class="idea" id="m3">
+      <div class="top"><span class="idchip">M3</span><h3>Curation observability — stop deleting the editorial verdict</h3><span class="track">Curation · Reliability</span></div>
+      <p><strong>Description.</strong> <code>curate</code> ranks all clusters, thresholds at 45, slices to the top stories — then discards everything below the line with no record. Persist the <em>full</em> scored cluster list (including dropped clusters with their importance + category) into the episode sidecar, and accumulate a per-run health report that flags every degraded path (the chunked-TTS fallback, a provider fallback, a stale source). This costs zero extra LLM calls — the data already exists in the parsed response; it's dropped on the floor.</p>
+      <figure>
+        <svg viewBox="0 0 760 150" role="img" aria-label="All scored clusters exist in memory; today only survivors are kept, the rest discarded; the change persists the full list plus a run report.">
+          <style>
+            .lbl3{font:500 12px var(--sans,sans-serif);fill:#1c1b19}
+            .sub3{font:400 11px var(--sans,sans-serif);fill:#6b675f}
+          </style>
+          <defs><marker id="a3" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="#b4541a"/></marker></defs>
+          <rect x="20" y="45" width="150" height="60" rx="8" fill="#ffffff" stroke="#e6e2db"/>
+          <text class="lbl3" x="38" y="70">all scored clusters</text><text class="sub3" x="38" y="90">importance 0–100</text>
+          <path d="M170,75 L250,75" stroke="#b4541a" stroke-width="1.6" fill="none" marker-end="url(#a3)"/>
+          <rect x="250" y="20" width="150" height="44" rx="8" fill="#e8f3ec" stroke="#cbe5d3"/>
+          <text class="lbl3" x="268" y="47">survivors (1–6) ✓</text>
+          <rect x="250" y="86" width="150" height="44" rx="8" fill="#f4f1ec" stroke="#e6e2db"/>
+          <text class="sub3" x="268" y="106">dropped — discarded</text><text class="sub3" x="268" y="121">(no record today)</text>
+          <path d="M400,42 L470,42" stroke="#b4541a" stroke-width="1.6" fill="none" marker-end="url(#a3)"/>
+          <path d="M400,108 L470,75 L470,55" stroke="#b4541a" stroke-width="1.6" fill="none" marker-end="url(#a3)"/>
+          <rect x="470" y="40" width="270" height="70" rx="8" fill="#fbeee3" stroke="#f0d7c2"/>
+          <text class="lbl3" x="488" y="66">sidecar: full list + run report</text>
+          <text class="sub3" x="488" y="88">score distribution · drops · degraded paths</text>
+        </svg>
+        <figcaption>Story relevance is the #1 metric and it's currently unauditable — you can't tell if the threshold is too tight without the rejected set. This makes curation a reviewable daily diff, for free.</figcaption>
+      </figure>
+      <dl>
+        <dt>Basis</dt><dd class="basis"><span class="tag">direct:</span> the verifier confirmed <code>curate.ts</code> logs only the selected clusters and the sidecar carries no curation metadata; the dropped clusters and their scores are thrown away after selection.</dd>
+        <dt>Rationale</dt><dd>This is the measurement substrate every later curation experiment depends on — you cannot tune a threshold you cannot see — and it doubles as the observability the unattended pipeline lacks. Cheapest high-leverage item in the set.</dd>
+        <dt>Downsides</dt><dd>Larger sidecars; to surface dropped clusters as audible content (the "didn't make the cut" close) they'd need threading through to <code>script</code>, which is more work than the logging itself.</dd>
+      </dl>
+      <div class="chips"><span class="chip good">Confidence 90%</span><span class="chip good">Complexity Small</span><span class="chip">Unlocks M14, M15 tuning</span></div>
+    </article>
+
+    <!-- M9 -->
+    <article class="idea" id="m9">
+      <div class="top"><span class="idchip">M9</span><h3>Pronunciation lexicon for AI &amp; lab names</h3><span class="track">Audio/Voice</span></div>
+      <p><strong>Description.</strong> AI news is unusually dense with names TTS will mangle — Qwen, Mistral, Hugging Face, researcher names, lab acronyms. Maintain a small versioned project lexicon; a pre-TTS pass rewrites known terms to phonetic spellings (or SSML phonemes where the engine supports them), and unknown new-entity names get flagged in the run report for one-time addition. Optionally add an STT round-trip "canary" on the first 30 seconds to catch divergence before rendering the full episode.</p>
+      <dl>
+        <dt>Basis</dt><dd class="basis"><span class="tag">external:</span> the WaPo AI podcast's documented failure was hallucinated name pronunciations; <code>gpt-4o-mini-tts</code> takes natural-language instructions, Gemini 2.5 Flash TTS supports SSML. <span class="tag">reasoned:</span> AI vocabulary is adversarial for TTS and recurs daily, so a curated lexicon has outsized, compounding payoff. Verifier: no pronunciation handling exists today, and the <code>instructions</code> field is already wired in <code>tts.ts</code>.</dd>
+        <dt>Rationale</dt><dd>Clean episodes depend on names being right; this targets a known, named failure mode for exactly this content domain, and the fix slots into machinery that already exists.</dd>
+        <dt>Downsides</dt><dd>Lexicon needs ongoing curation as new models/labs appear; phonetic spellings are engine-specific and may need redoing on a TTS swap.</dd>
+      </dl>
+      <div class="chips"><span class="chip good">Confidence 85%</span><span class="chip good">Complexity Small</span></div>
+    </article>
+
+    <!-- M16 -->
+    <article class="idea" id="m16">
+      <div class="top"><span class="idchip">M16</span><h3>Confidence calibration — source count drives epistemic stance</h3><span class="track">Audio/Voice · Curation</span></div>
+      <p><strong>Description.</strong> A fully-automated pipeline has no editor to say "we only have this from one place." Borrow the newsroom two-source rule: facts from a single-source cluster get hedged language ("one report claims…") while multi-source clusters are asserted plainly, and likely-overhyped stories get a skeptical beat. Source entropy — which the curator already computes — <em>is</em> the corroboration count.</p>
+      <dl>
+        <dt>Basis</dt><dd class="basis"><span class="tag">direct:</span> the <code>sources</code> array exists per cluster and is already passed to the script stage; there is one narrator with a <code>caveat</code> field not currently conditioned on source count. <span class="tag">external:</span> journalism's two-source corroboration norm; the WaPo over-confidence risk.</dd>
+        <dt>Rationale</dt><dd>The cardinal risk in automated AI-news is credulous hype relay to a sophisticated listener who can smell over-confident single-source claims. Encoding corroboration into the narration's epistemic stance is the cheapest defense, and it's a prompt change — no new infrastructure.</dd>
+        <dt>Downsides</dt><dd>Over-hedging can make the show sound wishy-washy; the "overhyped" judgment is itself a model call that can be wrong.</dd>
+      </dl>
+      <div class="chips"><span class="chip good">Confidence 80%</span><span class="chip good">Complexity Small</span></div>
+    </article>
+
+    <!-- M7 -->
+    <article class="idea" id="m7">
+      <div class="top"><span class="idchip">M7</span><h3>Dead-man's-switch for the unattended run</h3><span class="track">Reliability</span></div>
+      <p><strong>Description.</strong> There's a weekday cron but nothing notices when it silently fails to produce an episode. Add Healthchecks.io start/done pings with a 25-hour window (absorbing GitHub's scheduling jitter): ping on start and on successful publish; a missed ping pages you. The canonical solo-operator pattern — one env var and two lines.</p>
+      <dl>
+        <dt>Basis</dt><dd class="basis"><span class="tag">external:</span> dead-man's-switch monitoring (Healthchecks.io, 25h window, start/done pings) is the standard unattended-pipeline pattern. <span class="tag">direct:</span> the verifier confirmed no watchdog exists anywhere — the cron either succeeds or sets a non-zero exit code with no external alert.</dd>
+        <dt>Rationale</dt><dd>Pipeline reliability is a named track, and the worst unattended failure is the one you discover days later because episodes simply stopped. This is the floor of unattended operability — cheap, standard, and currently absent.</dd>
+        <dt>Downsides</dt><dd>An external dependency (the monitoring service); distinguishing "no news today" from "pipeline died" needs a start ping, not just a done ping.</dd>
+      </dl>
+      <div class="chips"><span class="chip good">Confidence 90%</span><span class="chip good">Complexity Small</span></div>
+    </article>
+
+    <!-- M6 -->
+    <article class="idea" id="m6">
+      <div class="top"><span class="idchip">M6</span><h3>Content-hash stage caching</h3><span class="track">Reliability · Cost</span></div>
+      <p><strong>Description.</strong> <code>index.ts</code> runs fetch → curate → script → tts → audio → publish as one linear try block; any failure (a publish-time rebase race, a TTS timeout) re-runs everything on retry, re-billing the expensive curate and TTS stages. Hash each stage's input, write stage outputs keyed by hash, and skip stages whose input is unchanged. A failed publish should never re-synthesize audio.</p>
+      <dl>
+        <dt>Basis</dt><dd class="basis"><span class="tag">external:</span> idempotency via content-hash stage caching is a standard ETL pattern ("re-run skips completed stages"). <span class="tag">direct:</span> the verifier confirmed <code>index.ts</code> is a linear try with no skip logic and there is no publish retry on rebase failure.</dd>
+        <dt>Rationale</dt><dd>Cost per episode is a named metric, and the most wasteful spend is re-running paid stages to recover from a cheap downstream failure. Caching makes reruns nearly free — which in turn makes aggressive retries (and a publish retry loop) affordable.</dd>
+        <dt>Downsides</dt><dd>Cache invalidation is its own complexity; needs a clear hashing boundary per stage and a place to store intermediates (tmp or committed scratch).</dd>
+      </dl>
+      <div class="chips"><span class="chip med">Confidence 80%</span><span class="chip med">Complexity Medium</span></div>
+    </article>
+  </section>
+
+  <section>
+    <h2>Cross-cutting synthesis</h2>
+    <p>The surprise-me frames converged on one compounding spine worth seeing as a program rather than four separate tickets: <strong>M1 (memory) → M3 (observability) → M14 (salience) → ratings</strong> together build a <em>self-tuning personal editor</em>. The ledger gives the show history; observability makes its editorial judgment legible; salience personalizes the scoring; and a one-tap rating loop (cut this round as dependent on M1, but a strong follow-on) closes the relevance metric that has no measurement today. Each is shippable alone, but built in sequence they raise the same curve — story relevance — from three different angles. Two cut-but-notable extensions ride on M1: a Friday "what changed this week" meta-episode synthesized from the week's sidecars (zero new fetch), and velocity ranking that rewards a story accelerating across days, not just one that's big today.</p>
+  </section>
+
+  <section>
+    <h2>Rejection Summary</h2>
+    <table>
+      <thead><tr><th>#</th><th>Idea</th><th>Reason cut</th></tr></thead>
+      <tbody>
+        <tr><td class="id">M5</td><td>Per-source graceful degradation</td><td>Refuted by code — <code>fetch.ts</code> already uses <code>Promise.allSettled</code>; per-source isolation exists. Only liveness/quarantine alerting remained, too thin to rank.</td></tr>
+        <tr><td class="id">M2</td><td>Cluster-first curation (pre-rank before LLM)</td><td>Weak — there is already only one LLM call, capped at 8 clusters; the "~10x fewer calls" benefit doesn't apply to this design.</td></tr>
+        <tr><td class="id">M8</td><td>Fix "silent" TTS chunk fallback</td><td>Partially refuted — the fallback does emit <code>tts.chunk</code> logs; only a "degraded" marker is missing. Folded into M3.</td></tr>
+        <tr><td class="id">M10</td><td>Model-availability circuit breaker</td><td>Weak — a model waterfall already exists in <code>script.ts</code>; premise overstated. Worth doing later, not a top direction.</td></tr>
+        <tr><td class="id">M11</td><td>Elastic length / info-budget not a clock</td><td>Already the design intent — the script prompt explicitly says never pad on slow days. Affirm as policy, not a change.</td></tr>
+        <tr><td class="id">M13</td><td>Talk-back async follow-up loop</td><td>Scope mismatch for n=1 — needs a user-facing input channel + queue; better explored as a brainstorm than shipped as a pipeline tweak.</td></tr>
+        <tr><td class="id">M18</td><td>Friday week-in-review meta-episode</td><td>Contingent on M1 — sidecars lack cluster metadata until the ledger exists. Revisit after M1.</td></tr>
+        <tr><td class="id">M20</td><td>Mastering reference-track A/B</td><td>Disproportionate for n=1 — EBU R128 already handles loudness; the operator would notice a bad render on playback.</td></tr>
+        <tr><td class="id">M21</td><td>Story-velocity (R-number) ranking</td><td>Depends on M1's cross-window history; within one 24h window it collapses to current cluster size.</td></tr>
+        <tr><td class="id">M22</td><td>Event-driven / breaking edition</td><td>Continuous background curation + trigger is product infrastructure; scope mismatch for a personal weekday show.</td></tr>
+        <tr><td class="id">M24</td><td>$0 local-models edition</td><td>Local TTS is a clear quality regression and OpenRouter is already low-cost; savings don't justify the loss.</td></tr>
+        <tr><td class="id">M25</td><td>100x TTS / two-voice desk</td><td>Provider swap is trivial, but the two-voice format needs a script-schema change and the "per-section maps to voices" basis is a non-sequitur.</td></tr>
+        <tr><td class="id">M4</td><td>"On the radar / didn't make the cut" close</td><td>Dropped clusters aren't retained past selection; setup cost higher than implied. Becomes cheap once M3 persists them.</td></tr>
+        <tr><td class="id">M12</td><td>Companion text brief alongside MP3</td><td>Sound and cheap — held as honorable mention; a strong quick win but lower leverage than the survivors.</td></tr>
+        <tr><td class="id">M23</td><td>Primary-document sources (arXiv, GitHub releases)</td><td>Sound and easy (just feed entries) — honorable mention; a curation-quality win to revisit alongside M14.</td></tr>
+        <tr><td class="id">M17</td><td>Captured-learnings flywheel (docs/solutions)</td><td>Sound process improvement, but meta to the product; the project's CLAUDE.md already mandates it — a habit to start, not a ranked product direction.</td></tr>
+        <tr><td class="id">M19</td><td>Magazine front-of-book pacing</td><td>Sound prompt/schema change — honorable mention; a voice-quality refinement below the survivors' leverage.</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <footer class="composition-signal">Composed 2026-06-17 by ce-ideate (surprise-me, repo-grounded) for <code>ai-briefing</code> · 6 ideation frames + fresh-context basis verification · 48 raw → 7 survivors.</footer>
+
+</div>
+</body>
+</html>

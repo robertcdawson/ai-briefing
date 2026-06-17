@@ -6,6 +6,11 @@
 
 **ai-briefing** is a daily AI news podcast pipeline (no web server). It fetches RSS feeds, curates stories via LLM, generates a spoken script, synthesizes audio via TTS, and publishes an RSS podcast feed. There is no database — state lives in `docs/episodes/*.json` sidecars + git.
 
+### Documented knowledge
+
+- `docs/solutions/` — documented solutions to past problems (bugs, best practices, workflow patterns), organized by category with YAML frontmatter (`module`, `tags`, `problem_type`). Relevant when implementing or debugging in documented areas.
+- `CONCEPTS.md` — shared domain vocabulary (entities, named processes, status concepts). Relevant when orienting to the codebase or discussing domain terms.
+
 ### Runtime requirements
 
 - **Node.js 20** (nvm default; the update script ensures Node 20 is installed and active)

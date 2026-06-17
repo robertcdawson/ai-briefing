@@ -29,7 +29,11 @@ async function main(): Promise<void> {
     });
 
     const curateStart = Date.now();
-    const clusters = await withStageCache("curate", { date, articles }, () => curate(articles, date));
+    const { selected: clusters, report: curationReport } = await withStageCache(
+      "curate",
+      { date, articles },
+      () => curate(articles, date),
+    );
     if (clusters.length === 0) throw new Error("curate returned 0 clusters");
     logJson({
       phase: "pipeline.step",
@@ -75,6 +79,7 @@ async function main(): Promise<void> {
       audio.durationSeconds,
       audio.partTimings,
       clusters,
+      curationReport,
     );
     logJson({
       phase: "pipeline.step",

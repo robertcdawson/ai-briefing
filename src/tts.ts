@@ -6,6 +6,7 @@ import path from "node:path";
 import type { Episode, NarrationChunk } from "./types.js";
 import { logJson, withRetry } from "./util.js";
 import { stripInlineAudioTags } from "./audioTags.js";
+import { applyPronunciations } from "./pronunciations.js";
 import {
   buildChunkSpeechInstructions,
   DEFAULT_GLOBAL_TTS_STYLE,
@@ -256,7 +257,11 @@ export function buildPartSpeechRequest(
     .map((chunk) => chunk.trim())
     .filter(Boolean)
     .join("\n\n");
-  const input = config.supportsInlineAudioTags ? joined : stripInlineAudioTags(joined);
+  // M9: respell hard-to-pronounce names for the synthesizer only. This is the
+  // audio boundary — the canonical script/transcript (written by publish.ts)
+  // keeps the correct spelling.
+  const spoken = config.supportsInlineAudioTags ? joined : stripInlineAudioTags(joined);
+  const input = applyPronunciations(spoken);
 
   const request: SpeechRequest = {
     model: config.model,

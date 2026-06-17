@@ -70,6 +70,33 @@ export interface CurationRecord {
   category: StoryCategory;
 }
 
+/** Why a scored cluster did not make the episode. */
+export type CurationDropReason = "below_threshold" | "over_cap";
+
+/** A single cluster the curator scored, with whether it aired and (if not) why. */
+export interface ScoredCluster {
+  canonicalKey: string;
+  category: StoryCategory;
+  headline: string;
+  importance: number;
+  selected: boolean;
+  dropReason?: CurationDropReason;
+}
+
+/**
+ * Full audit of one curation pass — every scored cluster (selected and dropped)
+ * plus summary counts and the thresholds in effect. Observability only; does not
+ * affect which stories air.
+ */
+export interface CurationReport {
+  threshold: number;
+  maxStories: number;
+  total: number;
+  selectedCount: number;
+  droppedCount: number;
+  clusters: ScoredCluster[];
+}
+
 /** One read-aloud chunk of the single narrator's monologue. */
 export type NarrationChunk = string;
 

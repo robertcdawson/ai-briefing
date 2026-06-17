@@ -8,7 +8,7 @@
 A weekday, fully-automated AI news podcast. Every Monday–Friday morning at ~06:30 Pacific, GitHub Actions:
 
 1. Pulls the last 24h of articles from a curated set of AI news RSS feeds.
-2. Asks Claude (via OpenRouter) to cluster duplicates and score each story, then keeps the ones that matter (a variable number that follows the day's news).
+2. Asks Claude (via OpenRouter) to cluster duplicates and score each story against a rolling ~14-day memory of what already aired — suppressing stories already covered, threading genuine developments as follow-ups — then keeps the ones that matter (a variable number that follows the day's news).
 3. Writes a natural, single-host script up to ~10 minutes (engaging hook → one segment per story, with depth scaled to importance → synthesis outro), defaulting to Claude Sonnet via OpenRouter with `openai/...` and Gemini fallbacks (`openai/...` entries go direct to OpenAI when `OPENAI_API_KEY` is set).
 4. Synthesizes each intro/story/outro part in a single TTS request for continuous prosody (falling back to chunked synthesis with breathing gaps for oversized parts), via OpenAI `gpt-4o-mini-tts` or an OpenRouter TTS model such as Gemini 3.1 Flash TTS (`TTS_PROVIDER=openrouter`).
 5. Builds a full program master with ffmpeg (section stingers + concat), normalizes loudness to EBU R128 (-16 LUFS), encodes 192 kbps MP3 with ID3 tags and embedded chapters.
@@ -40,20 +40,21 @@ ai-briefing/
 ├── src/
 │   ├── index.ts                  # Orchestrator
 │   ├── fetch.ts                  # RSS aggregation
-│   ├── curate.ts                 # Cluster + rank top 3 across editorial categories
+│   ├── curate.ts                 # Cluster + score; suppress/thread vs. recent coverage
+│   ├── ledger.ts                 # Rolling 14-day prior-coverage window (cross-episode memory)
 │   ├── script.ts                 # Generate spoken script
 │   ├── tts.ts                    # Text → MP3 chunks
 │   ├── audio.ts                  # ffmpeg stingers + concat + loudnorm + ID3
 │   ├── publish.ts                # Move MP3, regenerate feed.xml
 │   ├── feeds.ts                  # Curated source list
-│   ├── types.ts                  # Article, StoryCluster, Episode
+│   ├── types.ts                  # Article, StoryCluster, CurationRecord, Episode
 │   └── util.ts                   # logJson, withRetry, withHardTimeout
 ├── test/fetch.smoke.ts           # Live-feed smoke test
 ├── docs/                         # GitHub Pages root
 │   ├── feed.xml                  # Regenerated each run
 │   └── episodes/
 │       ├── YYYY-MM-DD.mp3        # The audio
-│       ├── YYYY-MM-DD.json       # Sidecar metadata (title, duration, bytes, feed options)
+│       ├── YYYY-MM-DD.json       # Sidecar metadata (title, duration, bytes, feed options, curation records)
 │       ├── YYYY-MM-DD.chapters.json
 │       └── YYYY-MM-DD.transcript.txt
 ├── .env.example

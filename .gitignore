@@ -7,3 +7,5 @@ node_modules/
 # Local scratch outputs from manual runs (real episodes live in docs/episodes/)
 /tmp/
 /out/
+
+.compound-engineering/*.local.yaml

@@ -56,6 +56,18 @@ export interface StoryCluster {
   /** 0-100 audience-impact score from curation; drives narration depth/ordering. */
   importance?: number;
   sources: { url: string; publisher: string }[];
+  /** Present when this story is a follow-up to a previously covered story. */
+  followUp?: { priorDate: string; priorFraming: string };
+}
+
+/** Minimal record of a story that aired in an episode, stored in the sidecar for future threading. */
+export interface CurationRecord {
+  canonicalKey: string;
+  headline: string;
+  whyItMatters: string;
+  caveat: string;
+  importance?: number;
+  category: StoryCategory;
 }
 
 /** One read-aloud chunk of the single narrator's monologue. */

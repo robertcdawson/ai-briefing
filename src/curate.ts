@@ -1,6 +1,8 @@
 import OpenAI from "openai";
 import { STORY_CATEGORY_DEFINITIONS } from "./types.js";
 import type { Article, StoryCluster } from "./types.js";
+import { loadRecentCoverage } from "./ledger.js";
+import type { PriorCoverageEntry } from "./ledger.js";
 import { getChatCompletionAssistantText, logJson, withHardTimeout, withRetry } from "./util.js";
 
 const MODEL = "anthropic/claude-sonnet-4.6";
@@ -62,6 +64,25 @@ const RESPONSE_SCHEMA = {
               additionalProperties: false,
             },
           },
+          // F1: followUp is nullable+required for OpenAI strict-mode compatibility
+          // (OpenRouter only; nullable+required is the OpenAI-strict-compatible form for
+          // an optional object field — the model emits null for non-follow-up stories).
+          followUp: {
+            type: ["object", "null"],
+            description: "Present only when this cluster is a follow-up to a previously covered story. Null otherwise.",
+            properties: {
+              priorDate: {
+                type: "string",
+                description: "YYYY-MM-DD date of the episode that previously covered this story",
+              },
+              priorFraming: {
+                type: "string",
+                description: "Brief (1 sentence) recall of what was said about this story before",
+              },
+            },
+            required: ["priorDate", "priorFraming"],
+            additionalProperties: false,
+          },
         },
         required: [
           "canonicalKey",
@@ -71,6 +92,7 @@ const RESPONSE_SCHEMA = {
           "caveat",
           "importance",
           "sources",
+          "followUp",
         ],
         additionalProperties: false,
       },
@@ -92,6 +114,8 @@ export function buildSystemPrompt(): string {
 ${categoryLines}
 3. SCORE each cluster's audience impact for researchers, builders, and technical leaders on a 0-100 scale. Weight practical usefulness, strategic consequence, evidence quality, and timeliness above novelty; novelty is only a tiebreaker. Down-weight SEO clickbait, thin rewrites, listicles, and pure opinion.
 4. RETURN the strongest distinct, credible stories as separate clusters — at most ${MODEL_CLUSTER_LIMIT}, fewer when the day is quiet — each with an honest importance score. Prefer a diverse mix of categories. Never pad with weak material: if it isn't worth a listener's time, leave it out. A slow day may yield only one or two strong stories.
+5. SUPPRESS already-covered stories: if today's articles revisit a story from the recently-covered list below, omit that cluster UNLESS it has materially developed (new facts, confirmed outcomes, significant escalation). When UNCERTAIN whether it developed enough, PREFER including it as a short follow-up rather than dropping it — bias toward surfacing. ALWAYS surface a major escalation even if you covered it recently.
+6. Every cluster MUST include a "followUp" field. When threading a follow-up (a story that recurred with material development), set followUp to an object containing priorDate (the episode date from the recently-covered list) and priorFraming (a 1-sentence recall of what was said before). For a brand-new story, set followUp to null.
 
 For each cluster:
 - canonicalKey: short kebab-case slug
@@ -100,16 +124,51 @@ For each cluster:
 - whyItMatters: 1-2 sentences on significance for AI builders/researchers
 - caveat: 1 sentence on what's uncertain, missing, or potentially overhyped
 - sources: every article in the cluster as {url, publisher}
+- followUp: required on every cluster — an object {priorDate, priorFraming} when this is a follow-up to a recently-covered story, otherwise null
 
 Return only JSON matching the provided schema. No prose outside the JSON.`;
 }
 
-function buildUserPrompt(articles: Article[]): string {
+// Maximum lines to include in the prior-coverage block (F9 cap).
+const MAX_PRIOR_COVERAGE_LINES = 40;
+// Maximum character length for a single prior-coverage line (F9 compactness).
+const MAX_PRIOR_LINE_LENGTH = 200;
+
+/**
+ * Builds a compact "recently covered" block for the user prompt.
+ * Returns an empty string when the prior coverage list is empty so that
+ * the block is completely absent from the prompt on a cold run.
+ *
+ * @param priorCoverage  List of prior coverage entries.
+ * @param windowDays     Window size in days (default 14); interpolated into the header.
+ */
+export function buildPriorCoverageBlock(priorCoverage: PriorCoverageEntry[], windowDays = 14): string {
+  if (priorCoverage.length === 0) return "";
+
+  // F9: sort by episodeDate descending and cap at MAX_PRIOR_COVERAGE_LINES
+  const sorted = [...priorCoverage].sort((a, b) => b.episodeDate.localeCompare(a.episodeDate));
+  const capped = sorted.slice(0, MAX_PRIOR_COVERAGE_LINES);
+
+  const lines = capped.map((e) => {
+    const headline = e.headline.replace(/\s+/g, " ").trim().slice(0, 80);
+    const caveat = e.caveat.replace(/\s+/g, " ").trim().slice(0, 80);
+    const line = `  ${e.episodeDate} | ${e.canonicalKey} | ${headline} | caveat: ${caveat}`;
+    // Ensure the whole line stays compact
+    return line.length > MAX_PRIOR_LINE_LENGTH ? line.slice(0, MAX_PRIOR_LINE_LENGTH) : line;
+  });
+  // F6: interpolate actual windowDays into the header string
+  return `\nRecently covered (last ${windowDays} days — suppress unless materially developed):\n${lines.join("\n")}\n`;
+}
+
+export function buildUserPrompt(articles: Article[], priorCoverage: PriorCoverageEntry[] = [], windowDays = 14): string {
   const lines = articles.map((a, i) => {
     const excerpt = a.excerpt.replace(/\s+/g, " ").trim();
     return `[${i + 1}] (${a.source}) ${a.title}\n    URL: ${a.url}\n    Excerpt: ${excerpt}`;
   });
-  return `Articles from the last 24 hours (${articles.length} total):\n\n${lines.join("\n\n")}`;
+  const articleBlock = `Articles from the last 24 hours (${articles.length} total):\n\n${lines.join("\n\n")}`;
+  // F6: thread windowDays through so the prompt text matches the real window
+  const priorBlock = buildPriorCoverageBlock(priorCoverage, windowDays);
+  return priorBlock ? `${priorBlock}\n${articleBlock}` : articleBlock;
 }
 
 /**
@@ -135,7 +194,91 @@ function clampImportance(value: number | undefined): number {
   return Math.min(100, Math.max(0, value as number));
 }
 
-export async function curate(articles: Article[]): Promise<StoryCluster[]> {
+export interface ThreadingTally {
+  newCount: number;
+  followUpCount: number;
+  /** Count of prior-coverage canonicalKeys absent from today's selected clusters.
+   * Upper bound on suppression: a key may simply be absent from today's feed,
+   * not necessarily suppressed by the model. */
+  priorKeysNotResurfacedCount: number;
+  /** Prior-coverage canonicalKeys absent from today's selection (upper bound on
+   * suppression — a key may simply be absent from today's article feed). */
+  priorKeysNotResurfaced: string[];
+}
+
+/**
+ * Computes a tally of how selected clusters relate to prior coverage.
+ *
+ * - followUpCount: clusters in `selectedClusters` that have a `followUp` field.
+ * - newCount: clusters without a `followUp` field.
+ * - priorKeysNotResurfaced / priorKeysNotResurfacedCount: canonicalKeys from
+ *   `priorCoverage` that do NOT appear (as any cluster key) among
+ *   `selectedClusters`. This is an upper bound on suppression — a prior key
+ *   absent from today's selection may simply be absent from today's feeds.
+ */
+export function computeThreadingTally(
+  selectedClusters: readonly StoryCluster[],
+  priorCoverage: readonly PriorCoverageEntry[],
+): ThreadingTally {
+  let followUpCount = 0;
+  let newCount = 0;
+
+  for (const cluster of selectedClusters) {
+    if (cluster.followUp != null) {
+      followUpCount++;
+    } else {
+      newCount++;
+    }
+  }
+
+  const selectedKeys = new Set(selectedClusters.map((c) => c.canonicalKey));
+  const priorKeysNotResurfaced: string[] = [];
+  const seenPriorKeys = new Set<string>();
+  for (const entry of priorCoverage) {
+    if (seenPriorKeys.has(entry.canonicalKey)) continue;
+    seenPriorKeys.add(entry.canonicalKey);
+    if (!selectedKeys.has(entry.canonicalKey)) {
+      priorKeysNotResurfaced.push(entry.canonicalKey);
+    }
+  }
+
+  return { newCount, followUpCount, priorKeysNotResurfacedCount: priorKeysNotResurfaced.length, priorKeysNotResurfaced };
+}
+
+/**
+ * Normalise raw LLM cluster objects into StoryCluster, carrying through any
+ * followUp field the model emitted.
+ */
+export function normaliseCluster(
+  raw: StoryCluster & { importance?: number; followUp?: { priorDate: string; priorFraming: string } | null },
+): StoryCluster & { importance?: number } {
+  const result: StoryCluster & { importance?: number } = {
+    canonicalKey: raw.canonicalKey,
+    category: raw.category,
+    headline: raw.headline,
+    whyItMatters: raw.whyItMatters,
+    caveat: raw.caveat,
+    importance: raw.importance,
+    sources: raw.sources,
+  };
+  // F4 + F1-null: only carry followUp through when it is a non-null object
+  // whose priorDate AND priorFraming are both non-empty trimmed strings.
+  // This handles followUp: null (from F1 schema) and partial/garbage objects
+  // so "Previously (undefined)" never reaches the script prompt.
+  if (
+    raw.followUp != null &&
+    typeof raw.followUp === "object" &&
+    typeof raw.followUp.priorDate === "string" &&
+    raw.followUp.priorDate.trim().length > 0 &&
+    typeof raw.followUp.priorFraming === "string" &&
+    raw.followUp.priorFraming.trim().length > 0
+  ) {
+    result.followUp = raw.followUp;
+  }
+  return result;
+}
+
+export async function curate(articles: Article[], date?: string): Promise<StoryCluster[]> {
   const started = Date.now();
   const apiKey = process.env.OPENROUTER_API_KEY;
   if (!apiKey) throw new Error("OPENROUTER_API_KEY is not set");
@@ -143,6 +286,21 @@ export async function curate(articles: Article[]): Promise<StoryCluster[]> {
   if (articles.length === 0) {
     logJson({ phase: "curate", status: "empty", durationMs: 0 });
     return [];
+  }
+
+  // Load prior coverage non-blockingly; empty list = cold run (no change in behaviour).
+  const windowDays = 14;
+  let priorCoverage: PriorCoverageEntry[] = [];
+  if (date) {
+    try {
+      priorCoverage = await loadRecentCoverage(date, windowDays);
+    } catch {
+      // Non-blocking: if anything goes wrong just proceed cold.
+      priorCoverage = [];
+    }
+  } else {
+    // F12: emit a visible log when the ledger is bypassed due to missing date
+    logJson({ phase: "curate.ledger", status: "skip", reason: "no date provided" });
   }
 
   const client = new OpenAI({
@@ -158,7 +316,7 @@ export async function curate(articles: Article[]): Promise<StoryCluster[]> {
           model: MODEL,
           messages: [
             { role: "system", content: buildSystemPrompt() },
-            { role: "user", content: buildUserPrompt(articles) },
+            { role: "user", content: buildUserPrompt(articles, priorCoverage, windowDays) },
           ],
           response_format: {
             type: "json_schema",
@@ -179,10 +337,25 @@ export async function curate(articles: Article[]): Promise<StoryCluster[]> {
   const content = getChatCompletionAssistantText(completion, "OpenRouter curate");
 
   const parsed = JSON.parse(content) as {
-    clusters: (StoryCluster & { importance: number })[];
+    clusters: (StoryCluster & { importance: number; followUp?: { priorDate: string; priorFraming: string } | null })[];
   };
 
-  const clusters = selectStoryClusters(parsed.clusters ?? []);
+  // F5: guard against malformed/non-array clusters before mapping
+  const normalisedClusters = (Array.isArray(parsed?.clusters) ? parsed.clusters : []).map(normaliseCluster);
+  const clusters = selectStoryClusters(normalisedClusters);
+
+  // Only emit threading tally when prior coverage was loaded (non-cold run).
+  if (priorCoverage.length > 0) {
+    const tally = computeThreadingTally(clusters, priorCoverage);
+    logJson({
+      phase: "curate.threading",
+      status: "ok",
+      newCount: tally.newCount,
+      followUpCount: tally.followUpCount,
+      priorKeysNotResurfacedCount: tally.priorKeysNotResurfacedCount,
+      priorKeysNotResurfaced: tally.priorKeysNotResurfaced,
+    });
+  }
 
   logJson({
     phase: "curate",

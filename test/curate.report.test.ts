@@ -58,7 +58,17 @@ test("scoreAndSelect MIN_STORIES fallback: keeps the single strongest when none 
   assert.equal(report.clusters.filter((c) => c.dropReason === "below_threshold").length, 2);
 });
 
-test("scoreAndSelect is behavior-neutral: .selected equals selectStoryClusters output", () => {
+test("scoreAndSelect.selected matches the legacy selection rules (independent of selectStoryClusters)", () => {
+  // Above threshold (>=45): a80, b50, d95 -> sorted desc -> d95, a80, b50. c20 drops.
   const input = [cluster("a", 80), cluster("b", 50), cluster("c", 20), cluster("d", 95)];
-  assert.deepEqual(scoreAndSelect(input).selected, selectStoryClusters(input));
+  const selectedKeys = scoreAndSelect(input).selected.map((c) => c.canonicalKey);
+  // Assert against an explicit expected ordering, not against selectStoryClusters
+  // (which now delegates to scoreAndSelect, making that check tautological).
+  assert.deepEqual(selectedKeys, ["d", "a", "b"]);
+
+  // And the wrapper stays a faithful passthrough of that same result.
+  assert.deepEqual(
+    selectStoryClusters(input).map((c) => c.canonicalKey),
+    selectedKeys,
+  );
 });

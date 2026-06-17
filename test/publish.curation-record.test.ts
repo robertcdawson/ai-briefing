@@ -203,3 +203,54 @@ test("round-trip: EpisodeRecord with curation array survives loadAllRecords fiel
     await rm(dir, { recursive: true, force: true });
   }
 });
+
+// ---------------------------------------------------------------------------
+// M3: curationReport persists alongside (and independently of) the M1 curation field
+// ---------------------------------------------------------------------------
+test("round-trip: curationReport (full audit) persists alongside the M1 curation field", async () => {
+  const dir = await makeTempDir();
+  try {
+    const date = "2099-06-21";
+    const curation = buildCurationArray([
+      makeCluster("aired-key", { importance: 80, category: "research" }),
+    ]);
+    const curationReport = {
+      threshold: 45,
+      maxStories: 6,
+      total: 2,
+      selectedCount: 1,
+      droppedCount: 1,
+      clusters: [
+        { canonicalKey: "aired-key", category: "research", headline: "H1", importance: 80, selected: true },
+        {
+          canonicalKey: "dropped-key",
+          category: "business",
+          headline: "H2",
+          importance: 30,
+          selected: false,
+          dropReason: "below_threshold",
+        },
+      ],
+    };
+    const sidecar = buildSidecar(date, curation);
+    sidecar["curationReport"] = curationReport;
+    await writeFile(path.join(dir, `${date}.json`), JSON.stringify(sidecar, null, 2), "utf8");
+
+    const records = await loadAllRecords(dir);
+    const record = records[0]!;
+
+    // M1 field unchanged...
+    assert.ok(Array.isArray(record.curation), "curation (aired) must still be present");
+    assert.equal(record.curation!.length, 1);
+
+    // ...and the full M3 audit persists, including the dropped story + reason.
+    assert.ok(record.curationReport, "curationReport must be present");
+    assert.equal(record.curationReport!.droppedCount, 1);
+    assert.equal(record.curationReport!.clusters.length, 2);
+    const dropped = record.curationReport!.clusters.find((c) => !c.selected)!;
+    assert.equal(dropped.canonicalKey, "dropped-key");
+    assert.equal(dropped.dropReason, "below_threshold");
+  } finally {
+    await rm(dir, { recursive: true, force: true });
+  }
+});

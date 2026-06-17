@@ -3,7 +3,7 @@ import { createHash } from "node:crypto";
 import path from "node:path";
 import { Feed } from "feed";
 import { stripInlineAudioTags } from "./audioTags.js";
-import type { CurationRecord, Episode, EpisodePartTiming, NarrationChunk, StoryCluster } from "./types.js";
+import type { CurationRecord, CurationReport, Episode, EpisodePartTiming, NarrationChunk, StoryCluster } from "./types.js";
 import { logJson } from "./util.js";
 
 const DOCS_DIR = "docs";
@@ -26,7 +26,13 @@ export interface EpisodeRecord {
   transcriptFilename?: string;
   chapters?: ChapterRecord[];
   soundbites?: SoundbiteRecord[];
+  // `curation` is the AIRED stories only — it is the field the cross-episode
+  // ledger (src/ledger.ts) reads back, so its shape must stay stable.
   curation?: CurationRecord[];
+  // `curationReport` is the full audit/observability record (M3): every scored
+  // cluster, including dropped ones with the reason, plus summary counts. Not
+  // consumed by the ledger — for inspection and tuning.
+  curationReport?: CurationReport;
 }
 
 interface PodcastMetadata {
@@ -77,6 +83,7 @@ export async function publish(
   durationSeconds: number,
   partTimings: EpisodePartTiming[] = [],
   airedClusters: StoryCluster[] = [],
+  curationReport?: CurationReport,
 ): Promise<PublishResult> {
   const started = Date.now();
   const baseUrl = process.env.FEED_BASE_URL;
@@ -142,6 +149,7 @@ export async function publish(
     chapters,
     soundbites,
     ...(curation !== undefined ? { curation } : {}),
+    ...(curationReport !== undefined ? { curationReport } : {}),
   };
   await writeFile(
     path.join(EPISODES_DIR, `${episode.date}.json`),

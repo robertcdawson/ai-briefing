@@ -1,4 +1,4 @@
-import { test } from "node:test";
+import test from "node:test";
 import assert from "node:assert/strict";
 import { DEFAULT_INTEREST_PROFILE, getInterestProfile } from "../src/interests.js";
 import { buildInterestProfileBlock, buildSystemPrompt } from "../src/curate.js";

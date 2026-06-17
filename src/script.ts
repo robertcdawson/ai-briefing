@@ -295,7 +295,7 @@ export function buildUserPrompt(date: string, clusters: StoryCluster[]): string 
     const categoryLabel = getStoryCategoryLabel(c.category);
     const importance = typeof c.importance === "number" ? `${Math.round(c.importance)}/100` : "unscored";
     const followUpLine = c.followUp
-      ? `\n  Previously (${c.followUp.priorDate}): ${c.followUp.priorFraming} — this is a FOLLOW-UP/update, not a new story.`
+      ? `\n  Previously (${c.followUp.priorDate.replace(/\s+/g, " ").trim()}): ${c.followUp.priorFraming.replace(/\s+/g, " ").trim()} — this is a FOLLOW-UP/update, not a new story.`
       : "";
     return `STORY ${i + 1}: ${c.headline}
   Category: ${categoryLabel} (${c.category})

@@ -115,7 +115,7 @@ ${categoryLines}
 3. SCORE each cluster's audience impact for researchers, builders, and technical leaders on a 0-100 scale. Weight practical usefulness, strategic consequence, evidence quality, and timeliness above novelty; novelty is only a tiebreaker. Down-weight SEO clickbait, thin rewrites, listicles, and pure opinion.
 4. RETURN the strongest distinct, credible stories as separate clusters — at most ${MODEL_CLUSTER_LIMIT}, fewer when the day is quiet — each with an honest importance score. Prefer a diverse mix of categories. Never pad with weak material: if it isn't worth a listener's time, leave it out. A slow day may yield only one or two strong stories.
 5. SUPPRESS already-covered stories: if today's articles revisit a story from the recently-covered list below, omit that cluster UNLESS it has materially developed (new facts, confirmed outcomes, significant escalation). When UNCERTAIN whether it developed enough, PREFER including it as a short follow-up rather than dropping it — bias toward surfacing. ALWAYS surface a major escalation even if you covered it recently.
-6. When threading a follow-up (a story that recurred with material development), emit a "followUp" field on that cluster containing: priorDate (the episode date from the recently-covered list) and priorFraming (a 1-sentence recall of what was said before).
+6. Every cluster MUST include a "followUp" field. When threading a follow-up (a story that recurred with material development), set followUp to an object containing priorDate (the episode date from the recently-covered list) and priorFraming (a 1-sentence recall of what was said before). For a brand-new story, set followUp to null.
 
 For each cluster:
 - canonicalKey: short kebab-case slug
@@ -124,7 +124,7 @@ For each cluster:
 - whyItMatters: 1-2 sentences on significance for AI builders/researchers
 - caveat: 1 sentence on what's uncertain, missing, or potentially overhyped
 - sources: every article in the cluster as {url, publisher}
-- followUp (optional): only when this is a follow-up to a recently-covered story
+- followUp: required on every cluster — an object {priorDate, priorFraming} when this is a follow-up to a recently-covered story, otherwise null
 
 Return only JSON matching the provided schema. No prose outside the JSON.`;
 }
@@ -150,8 +150,8 @@ export function buildPriorCoverageBlock(priorCoverage: PriorCoverageEntry[], win
   const capped = sorted.slice(0, MAX_PRIOR_COVERAGE_LINES);
 
   const lines = capped.map((e) => {
-    const headline = e.headline.trim().slice(0, 80);
-    const caveat = e.caveat.trim().slice(0, 80);
+    const headline = e.headline.replace(/\s+/g, " ").trim().slice(0, 80);
+    const caveat = e.caveat.replace(/\s+/g, " ").trim().slice(0, 80);
     const line = `  ${e.episodeDate} | ${e.canonicalKey} | ${headline} | caveat: ${caveat}`;
     // Ensure the whole line stays compact
     return line.length > MAX_PRIOR_LINE_LENGTH ? line.slice(0, MAX_PRIOR_LINE_LENGTH) : line;

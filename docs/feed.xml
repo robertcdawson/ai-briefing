@@ -4,7 +4,7 @@
         <title>AI Briefing</title>
         <link>https://robertcdawson.github.io/ai-briefing/</link>
         <description>Daily AI news briefing — the stories that matter from the last 24 hours.</description>
-        <lastBuildDate>Tue, 16 Jun 2026 15:19:23 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 17 Jun 2026 14:37:15 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -23,6 +23,56 @@
         <podcast:guid>ea8709f4-3ba2-5b7e-bcdc-e409d84a6443</podcast:guid>
         <podcast:locked owner="manatees@gmail.com">yes</podcast:locked>
         <podcast:person role="host" group="cast">Robert Dawson</podcast:person>
+        <item>
+            <title><![CDATA[AI Briefing — June 17, 2026]]></title>
+            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-06-17.mp3</link>
+            <guid>ai-briefing-2026-06-17</guid>
+            <pubDate>Wed, 17 Jun 2026 14:37:15 GMT</pubDate>
+            <description><![CDATA[Top 6 AI stories for 2026-06-17:
+
+Chapters:
+00:00:00 Intro
+00:00:33 SpaceX Acquires AI Coding Platform Cursor...
+00:02:36 Leaked OpenAI Financials Reveal Billions...
+00:04:20 Anthropic Pauses Token-Based Billing...
+00:06:00 DOJ Invokes National Security to Shield...
+00:07:42 Epoch AI Analysis Warns Hyperscalers May...
+00:09:07 OpenAI Researchers Propose Method to...
+00:10:29 Outro
+
+Sources:
+1. Top Story: SpaceX Acquires AI Coding Platform Cursor in $60 Billion Deal
+Source: https://arstechnica.com/ai/2026/06/spacex-will-acquire-coding-tool-cursor-to-compete-with-anthropic-openai/
+Source: https://the-decoder.com/spacex-bets-60-billion-on-cursor-to-catch-openai-and-anthropic/
+Source: https://stratechery.com/2026/the-state-of-fable-the-jailbreak-problem-spacex-acquires-cursor/
+Source: https://techcrunch.com/2026/06/16/spacex-is-public-everything-you-need-to-know-post-ipo/
+2. AI Business Watch: Leaked OpenAI Financials Reveal Billions in Annual Losses Despite Revenue Growth
+Source: https://arstechnica.com/ai/2026/06/leaked-financial-docs-show-openai-is-losing-billions-of-dollars-a-year/
+Source: https://runtimewire.com/article/openai-leaked-financials-altman-compute-burn
+3. Product & Tool Watch: Anthropic Pauses Token-Based Billing Change for Claude Agent SDK After Backlash
+Source: https://arstechnica.com/ai/2026/06/anthropic-pauses-token-based-billing-for-its-claude-agent-sdk/
+4. Policy & Regulation Watch: DOJ Invokes National Security to Shield xAI's Unpermitted Gas Turbines from Lawsuit
+Source: https://arstechnica.com/tech-policy/2026/06/trump-admin-helps-xai-fight-pollution-lawsuit-says-military-needs-grok-for-war/
+Source: https://techcrunch.com/2026/06/16/doj-claims-xais-unpermitted-gas-turbines-are-a-matter-of-national-economic-and-energy-security/
+5. AI Business Watch: Epoch AI Analysis Warns Hyperscalers May Outspend Cash Flow on AI Infrastructure
+Source: https://the-decoder.com/hyperscalers-may-soon-be-unable-to-fund-their-ai-buildout-from-cash-flow-alone/
+6. Research Breakthrough: OpenAI Researchers Propose Method to Predict Model Failure Rates Before Launch
+Source: https://the-decoder.com/openai-researchers-want-to-predict-how-often-ai-models-will-fail-before-launch/]]></description>
+            <enclosure length="16482082" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-17.mp3"/>
+                    <itunes:duration>687</itunes:duration>
+            <itunes:explicit>false</itunes:explicit>
+            <itunes:season>2026</itunes:season>
+            <itunes:episode>168</itunes:episode>
+            <itunes:episodeType>full</itunes:episodeType>
+            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-17.chapters.json" type="application/json+chapters"/>
+            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-17.transcript.txt" type="text/plain" language="en"/>
+            <podcast:soundbite startTime="33" duration="120">SpaceX Acquires AI Coding Platform Cursor...</podcast:soundbite>
+            <podcast:soundbite startTime="156" duration="102">Leaked OpenAI Financials Reveal Billions...</podcast:soundbite>
+            <podcast:soundbite startTime="260" duration="99">Anthropic Pauses Token-Based Billing...</podcast:soundbite>
+            <podcast:soundbite startTime="360" duration="100">DOJ Invokes National Security to Shield...</podcast:soundbite>
+            <podcast:soundbite startTime="462" duration="84">Epoch AI Analysis Warns Hyperscalers May...</podcast:soundbite>
+            <podcast:soundbite startTime="547" duration="80">OpenAI Researchers Propose Method to...</podcast:soundbite>
+        </item>
         <item>
             <title><![CDATA[AI Briefing — June 16, 2026]]></title>
             <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-06-16.mp3</link>
@@ -1362,66 +1412,6 @@ Source: https://www.bloomberg.com/news/articles/2026-05-15/us-is-starting-to-see
             <podcast:soundbite startTime="29" duration="49">Brockman Takes Charge at OpenAI</podcast:soundbite>
             <podcast:soundbite startTime="78" duration="54">New SOOHAK Benchmark Reveals AI Gaps</podcast:soundbite>
             <podcast:soundbite startTime="132" duration="44">Job Losses in AI-Exposed Roles</podcast:soundbite>
-        </item>
-        <item>
-            <title><![CDATA[AI Briefing — May 16, 2026]]></title>
-            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-05-16.mp3</link>
-            <guid>ai-briefing-2026-05-16</guid>
-            <pubDate>Sun, 17 May 2026 00:09:09 GMT</pubDate>
-            <description><![CDATA[Top 3 AI stories for 2026-05-16:
-
-Chapters:
-00:00:00 Intro
-00:00:24 AI Agents Develop Real Browser Exploits
-00:01:34 $1.3M Monthly for AI Coding Agents
-00:02:34 Job Losses and Wealth Concentration
-00:03:29 Outro
-
-Sources:
-1. Research Breakthrough: AI Agents Develop Real Browser Exploits
-Source: https://the-decoder.com/new-benchmark-shows-claude-mythos-and-gpt-5-5-can-develop-real-browser-exploits-autonomously/
-2. AI Business Watch: $1.3M Monthly for AI Coding Agents
-Source: https://the-decoder.com/for-1-3-million-a-month-openclaw-founder-peter-steinberger-runs-100-ai-agents-that-code-review-prs-and-find-bugs/
-Source: https://twitter.com/steipete/status/2055346265869721905
-Source: https://simonwillison.net/2026/May/16/openclaw-names/#atom-everything
-3. AI Culture Signal: Job Losses and Wealth Concentration
-Source: https://www.bloomberg.com/news/articles/2026-05-15/us-is-starting-to-see-heavy-job-losses-in-roles-exposed-to-ai
-Source: https://the-decoder.com/ai-made-a-tiny-slice-of-silicon-valley-filthy-rich-and-left-the-rest-wondering-why-they-bother/
-Source: https://techcrunch.com/2026/05/16/the-haves-and-have-nots-of-the-ai-gold-rush/]]></description>
-            <enclosure length="5613256" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-16.mp3"/>
-                    <itunes:duration>234</itunes:duration>
-            <itunes:explicit>false</itunes:explicit>
-            <itunes:season>2026</itunes:season>
-            <itunes:episode>136</itunes:episode>
-            <itunes:episodeType>full</itunes:episodeType>
-            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-16.chapters.json" type="application/json+chapters"/>
-            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-16.transcript.txt" type="text/plain" language="en"/>
-            <podcast:soundbite startTime="24" duration="70">AI Agents Develop Real Browser Exploits</podcast:soundbite>
-            <podcast:soundbite startTime="94" duration="60"><guid>ai-briefing-2026-05-16</guid>
-            <pubDate>Sun, 17 May 2026 00:09:09 GMT</pubDate>
-            <description><![CDATA[Top 3 AI stories for 2026-05-16:
-
-Chapters:
-00:00:00 Intro
-00:00:24 AI Agents Develop Real Browser Exploits
-00:01:34 $1.3M Monthly for AI Coding Agents
-00:02:34 Job Losses and Wealth Concentration
-00:03:29 Outro
-
-Sources:
-1. Research Breakthrough: AI Agents Develop Real Browser Exploits
-Source: https://the-decoder.com/new-benchmark-shows-claude-mythos-and-gpt-5-5-can-develop-real-browser-exploits-autonomously/
-2. AI Business Watch: $1.3M Monthly for AI Coding Agents
-Source: https://the-decoder.com/for-1-3-million-a-month-openclaw-founder-peter-steinberger-runs-100-ai-agents-that-code-review-prs-and-find-bugs/
-Source: https://twitter.com/steipete/status/2055346265869721905
-Source: https://simonwillison.net/2026/May/16/openclaw-names/#atom-everything
-3. AI Culture Signal: Job Losses and Wealth Concentration
-Source: https://www.bloomberg.com/news/articles/2026-05-15/us-is-starting-to-see-heavy-job-losses-in-roles-exposed-to-ai
-Source: https://the-decoder.com/ai-made-a-tiny-slice-of-silicon-valley-filthy-rich-and-left-the-rest-wondering-why-they-bother/
-Source: https://techcrunch.com/2026/05/16/the-haves-and-have-nots-of-the-ai-gold-rush/]]></description>
-            <enclosure length="5613256" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-16.mp3"/>
-        .3M Monthly for AI Coding Agents</podcast:soundbite>
-            <podcast:soundbite startTime="154" duration="55">Job Losses and Wealth Concentration</podcast:soundbite>
         </item>
     </channel>
 </rss>

@@ -1,0 +1,86 @@
+{
+  "date": "2026-06-17",
+  "title": "AI Briefing — June 17, 2026",
+  "description": "Top 6 AI stories for 2026-06-17:\n\nChapters:\n00:00:00 Intro\n00:00:33 SpaceX Acquires AI Coding Platform Cursor...\n00:02:36 Leaked OpenAI Financials Reveal Billions...\n00:04:20 Anthropic Pauses Token-Based Billing...\n00:06:00 DOJ Invokes National Security to Shield...\n00:07:42 Epoch AI Analysis Warns Hyperscalers May...\n00:09:07 OpenAI Researchers Propose Method to...\n00:10:29 Outro\n\nSources:\n1. Top Story: SpaceX Acquires AI Coding Platform Cursor in $60 Billion Deal\nSource: https://arstechnica.com/ai/2026/06/spacex-will-acquire-coding-tool-cursor-to-compete-with-anthropic-openai/\nSource: https://the-decoder.com/spacex-bets-60-billion-on-cursor-to-catch-openai-and-anthropic/\nSource: https://stratechery.com/2026/the-state-of-fable-the-jailbreak-problem-spacex-acquires-cursor/\nSource: https://techcrunch.com/2026/06/16/spacex-is-public-everything-you-need-to-know-post-ipo/\n2. AI Business Watch: Leaked OpenAI Financials Reveal Billions in Annual Losses Despite Revenue Growth\nSource: https://arstechnica.com/ai/2026/06/leaked-financial-docs-show-openai-is-losing-billions-of-dollars-a-year/\nSource: https://runtimewire.com/article/openai-leaked-financials-altman-compute-burn\n3. Product & Tool Watch: Anthropic Pauses Token-Based Billing Change for Claude Agent SDK After Backlash\nSource: https://arstechnica.com/ai/2026/06/anthropic-pauses-token-based-billing-for-its-claude-agent-sdk/\n4. Policy & Regulation Watch: DOJ Invokes National Security to Shield xAI's Unpermitted Gas Turbines from Lawsuit\nSource: https://arstechnica.com/tech-policy/2026/06/trump-admin-helps-xai-fight-pollution-lawsuit-says-military-needs-grok-for-war/\nSource: https://techcrunch.com/2026/06/16/doj-claims-xais-unpermitted-gas-turbines-are-a-matter-of-national-economic-and-energy-security/\n5. AI Business Watch: Epoch AI Analysis Warns Hyperscalers May Outspend Cash Flow on AI Infrastructure\nSource: https://the-decoder.com/hyperscalers-may-soon-be-unable-to-fund-their-ai-buildout-from-cash-flow-alone/\n6. Research Breakthrough: OpenAI Researchers Propose Method to Predict Model Failure Rates Before Launch\nSource: https://the-decoder.com/openai-researchers-want-to-predict-how-often-ai-models-will-fail-before-launch/",
+  "durationSeconds": 687,
+  "byteLength": 16482082,
+  "pubDate": "2026-06-17T14:37:15.966Z",
+  "season": 2026,
+  "episodeNumber": 168,
+  "chaptersFilename": "2026-06-17.chapters.json",
+  "transcriptFilename": "2026-06-17.transcript.txt",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 33,
+      "title": "Intro"
+    },
+    {
+      "startTime": 33,
+      "endTime": 156,
+      "title": "SpaceX Acquires AI Coding Platform Cursor..."
+    },
+    {
+      "startTime": 156,
+      "endTime": 260,
+      "title": "Leaked OpenAI Financials Reveal Billions..."
+    },
+    {
+      "startTime": 260,
+      "endTime": 360,
+      "title": "Anthropic Pauses Token-Based Billing..."
+    },
+    {
+      "startTime": 360,
+      "endTime": 462,
+      "title": "DOJ Invokes National Security to Shield..."
+    },
+    {
+      "startTime": 462,
+      "endTime": 547,
+      "title": "Epoch AI Analysis Warns Hyperscalers May..."
+    },
+    {
+      "startTime": 547,
+      "endTime": 629,
+      "title": "OpenAI Researchers Propose Method to..."
+    },
+    {
+      "startTime": 629,
+      "endTime": 687,
+      "title": "Outro"
+    }
+  ],
+  "soundbites": [
+    {
+      "startTime": 33,
+      "duration": 120,
+      "title": "SpaceX Acquires AI Coding Platform Cursor..."
+    },
+    {
+      "startTime": 156,
+      "duration": 102,
+      "title": "Leaked OpenAI Financials Reveal Billions..."
+    },
+    {
+      "startTime": 260,
+      "duration": 99,
+      "title": "Anthropic Pauses Token-Based Billing..."
+    },
+    {
+      "startTime": 360,
+      "duration": 100,
+      "title": "DOJ Invokes National Security to Shield..."
+    },
+    {
+      "startTime": 462,
+      "duration": 84,
+      "title": "Epoch AI Analysis Warns Hyperscalers May..."
+    },
+    {
+      "startTime": 547,
+      "duration": 80,
+      "title": "OpenAI Researchers Propose Method to..."
+    }
+  ]
+}

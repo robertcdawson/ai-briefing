@@ -1,0 +1,46 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — June 17, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 33,
+      "title": "Intro"
+    },
+    {
+      "startTime": 33,
+      "endTime": 156,
+      "title": "SpaceX Acquires AI Coding Platform Cursor..."
+    },
+    {
+      "startTime": 156,
+      "endTime": 260,
+      "title": "Leaked OpenAI Financials Reveal Billions..."
+    },
+    {
+      "startTime": 260,
+      "endTime": 360,
+      "title": "Anthropic Pauses Token-Based Billing..."
+    },
+    {
+      "startTime": 360,
+      "endTime": 462,
+      "title": "DOJ Invokes National Security to Shield..."
+    },
+    {
+      "startTime": 462,
+      "endTime": 547,
+      "title": "Epoch AI Analysis Warns Hyperscalers May..."
+    },
+    {
+      "startTime": 547,
+      "endTime": 629,
+      "title": "OpenAI Researchers Propose Method to..."
+    },
+    {
+      "startTime": 629,
+      "endTime": 687,
+      "title": "Outro"
+    }
+  ]
+}

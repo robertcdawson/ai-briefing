@@ -7,6 +7,7 @@ import { synthesize } from "./tts.js";
 import { buildEpisodeAudio } from "./audio.js";
 import { resolveEpisodeDate } from "./episode-date.js";
 import { publish } from "./publish.js";
+import { pingHealthcheck } from "./healthcheck.js";
 import { logJson } from "./util.js";
 
 async function main(): Promise<void> {
@@ -16,6 +17,7 @@ async function main(): Promise<void> {
 
   try {
     logJson({ phase: "pipeline", status: "start", date });
+    await pingHealthcheck("start");
 
     const fetchStart = Date.now();
     const articles = await fetchAll();
@@ -89,6 +91,7 @@ async function main(): Promise<void> {
       durationMs: Date.now() - overallStart,
       date,
     });
+    await pingHealthcheck("success");
   } catch (err) {
     const message = err instanceof Error ? err.message : String(err);
     const stack = err instanceof Error ? err.stack : undefined;
@@ -100,6 +103,7 @@ async function main(): Promise<void> {
       stack,
     });
     process.exitCode = 1;
+    await pingHealthcheck("fail");
   } finally {
     if (workDir) {
       try {

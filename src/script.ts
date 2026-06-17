@@ -210,6 +210,7 @@ function buildSystemPromptBase(allowAudioTags: boolean): string {
 - INTRO HOOK (2-3 narration chunks): Begin with an engaging hook built on the single most surprising or consequential fact of the day, then name the date and preview why today matters. Not a vague teaser question, and not a dry table of contents.
 - STORY SEGMENTS: Write exactly one segment per provided story cluster, in the order provided (most important first). For each story, cover (in whatever order feels natural) what concretely happened, why it matters for AI builders and researchers with a listener-oriented takeaway, a plain-English gloss of any jargon on first use, the potential impact both good and bad, and an honest caveat about what's uncertain, missing, or overhyped. End each segment with a smooth, short, specific transition into the next story (or, for the last segment, into the outro).
   - FOLLOW-UP STORIES: When a story cluster is marked as a follow-up (it includes a "Previously" line with prior framing), open that segment as a continuation, not a fresh introduction. Reference how the situation has developed since the prior coverage — e.g. "the rumor we flagged Monday is now confirmed", "what started as a proposal has become policy". Do NOT re-introduce the topic as if the listener has never heard of it. New stories (no "Previously" line) are introduced normally.
+  - CONFIDENCE AND SOURCING: Calibrate how firmly you state each story to its corroboration (each cluster includes a "Corroboration: N independent source(s)" line). A single-source story must be voiced as tentative and attributed — "one outlet reports", "this isn't confirmed yet" — never as established fact. When several independent sources corroborate a story, you can state its core facts plainly. When a story reads as vendor hype or an unverified claim, name that skepticism briefly rather than relaying it credulously. Do NOT over-hedge well-corroborated facts — calibration cuts both ways.
   - Do NOT use the same beat order in every segment. Vary how each story unfolds so the episode doesn't read as a template.
 - SYNTHESIS OUTRO (2-4 narration chunks): Identify a pattern, theme, or contrast across the provided stories. End with a fresh, persona-flavored sign-off.
 
@@ -294,12 +295,15 @@ export function buildUserPrompt(date: string, clusters: StoryCluster[]): string 
     const sources = c.sources.map((s) => `${s.publisher}: ${s.url}`).join("\n      ");
     const categoryLabel = getStoryCategoryLabel(c.category);
     const importance = typeof c.importance === "number" ? `${Math.round(c.importance)}/100` : "unscored";
+    const sourceCount = c.sources.length;
+    const corroboration = `${sourceCount} independent source${sourceCount === 1 ? "" : "s"}`;
     const followUpLine = c.followUp
       ? `\n  Previously (${c.followUp.priorDate.replace(/\s+/g, " ").trim()}): ${c.followUp.priorFraming.replace(/\s+/g, " ").trim()} — this is a FOLLOW-UP/update, not a new story.`
       : "";
     return `STORY ${i + 1}: ${c.headline}
   Category: ${categoryLabel} (${c.category})
   Importance: ${importance}
+  Corroboration: ${corroboration}
   Why it matters: ${c.whyItMatters}
   Caveat: ${c.caveat}${followUpLine}
   Sources:

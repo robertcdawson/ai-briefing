@@ -31,8 +31,17 @@ test("pingHealthcheck is a no-op when monitoring is unconfigured", async () => {
     return new Response(null);
   }) as unknown as typeof fetch;
 
-  await pingHealthcheck("start", { url: undefined, fetchImpl });
+  // Force monitoring off with an explicit empty string, so the test stays
+  // hermetic even if HEALTHCHECK_URL is set in the environment (e.g. in CI).
+  await pingHealthcheck("start", { url: "", fetchImpl });
   assert.equal(called, false, "fetch must not be called when no URL is configured");
+});
+
+test("pingHealthcheck swallows a non-2xx response without throwing", async () => {
+  const fetchImpl = (async () => new Response(null, { status: 404 })) as unknown as typeof fetch;
+  await assert.doesNotReject(() =>
+    pingHealthcheck("success", { url: "https://hc-ping.com/x", fetchImpl }),
+  );
 });
 
 test("pingHealthcheck calls the composed URL for each kind", async () => {

@@ -17,7 +17,9 @@ async function main(): Promise<void> {
 
   try {
     logJson({ phase: "pipeline", status: "start", date });
-    await pingHealthcheck("start");
+    // Fire-and-forget: a slow/down monitor must not delay the pipeline. The
+    // ping self-swallows errors; the event loop still flushes it before exit.
+    void pingHealthcheck("start");
 
     const fetchStart = Date.now();
     const articles = await fetchAll();
@@ -91,7 +93,7 @@ async function main(): Promise<void> {
       durationMs: Date.now() - overallStart,
       date,
     });
-    await pingHealthcheck("success");
+    void pingHealthcheck("success");
   } catch (err) {
     const message = err instanceof Error ? err.message : String(err);
     const stack = err instanceof Error ? err.stack : undefined;
@@ -103,7 +105,7 @@ async function main(): Promise<void> {
       stack,
     });
     process.exitCode = 1;
-    await pingHealthcheck("fail");
+    void pingHealthcheck("fail");
   } finally {
     if (workDir) {
       try {

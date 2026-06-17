@@ -54,8 +54,14 @@ export async function pingHealthcheck(kind: HealthcheckKind, opts: PingOptions =
   const timer = setTimeout(() => controller.abort(), opts.timeoutMs ?? PING_TIMEOUT_MS);
 
   try {
-    await fetchImpl(target, { method: "POST", signal: controller.signal });
-    logJson({ phase: "healthcheck", kind, status: "ok" });
+    const res = await fetchImpl(target, { method: "POST", signal: controller.signal });
+    // A non-2xx response (e.g. a misconfigured ping URL returning 404) is a
+    // monitoring failure, not a success — surface it as a warn so it's visible.
+    logJson(
+      res.ok
+        ? { phase: "healthcheck", kind, status: "ok" }
+        : { phase: "healthcheck", kind, status: "warn", error: `HTTP ${res.status}` },
+    );
   } catch (err) {
     // Non-blocking: a monitoring ping must never affect the pipeline.
     logJson({

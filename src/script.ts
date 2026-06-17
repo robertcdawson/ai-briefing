@@ -296,7 +296,10 @@ export function buildUserPrompt(date: string, clusters: StoryCluster[]): string 
     const categoryLabel = getStoryCategoryLabel(c.category);
     const importance = typeof c.importance === "number" ? `${Math.round(c.importance)}/100` : "unscored";
     const sourceCount = c.sources.length;
-    const corroboration = `${sourceCount} independent source${sourceCount === 1 ? "" : "s"}`;
+    const corroboration =
+      sourceCount === 0
+        ? "none listed (treat as unverified)"
+        : `${sourceCount} independent source${sourceCount === 1 ? "" : "s"}`;
     const followUpLine = c.followUp
       ? `\n  Previously (${c.followUp.priorDate.replace(/\s+/g, " ").trim()}): ${c.followUp.priorFraming.replace(/\s+/g, " ").trim()} — this is a FOLLOW-UP/update, not a new story.`
       : "";

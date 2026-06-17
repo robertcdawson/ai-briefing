@@ -32,6 +32,12 @@ test("buildUserPrompt reports plural corroboration for a multi-source story", ()
   assert.match(prompt, /Corroboration: 3 independent sources/);
 });
 
+test("buildUserPrompt treats a story with no sources as unverified, not '0 independent sources'", () => {
+  const prompt = buildUserPrompt("2026-06-17", [cluster([])]);
+  assert.match(prompt, /Corroboration: none listed \(treat as unverified\)/);
+  assert.doesNotMatch(prompt, /0 independent sources/);
+});
+
 test("system prompt instructs confidence calibration tied to corroboration", () => {
   const prompt = buildSystemPrompt(selectDailyPersona("2026-06-17"));
   assert.match(prompt, /CONFIDENCE AND SOURCING/);

@@ -29,7 +29,10 @@ export function stageCacheDir(env: NodeJS.ProcessEnv = process.env): string | un
 /** Stable content hash of a stage's name + input. */
 export function cacheKey(stage: string, input: unknown): string {
   const hash = createHash("sha256");
-  hash.update(`${stage}:${JSON.stringify(input)}`);
+  // Update incrementally to avoid allocating a combined copy of the JSON payload.
+  hash.update(stage);
+  hash.update(":");
+  hash.update(JSON.stringify(input));
   return hash.digest("hex").slice(0, 32);
 }
 

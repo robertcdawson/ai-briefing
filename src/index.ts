@@ -32,7 +32,7 @@ async function main(): Promise<void> {
     });
 
     const curateStart = Date.now();
-    const clusters = await curate(articles, date);
+    const { selected: clusters, report: curationReport } = await curate(articles, date);
     if (clusters.length === 0) throw new Error("curate returned 0 clusters");
     logJson({
       phase: "pipeline.step",
@@ -78,6 +78,7 @@ async function main(): Promise<void> {
       audio.durationSeconds,
       audio.partTimings,
       clusters,
+      curationReport,
     );
     logJson({
       phase: "pipeline.step",

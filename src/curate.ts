@@ -1,6 +1,6 @@
 import OpenAI from "openai";
 import { STORY_CATEGORY_DEFINITIONS } from "./types.js";
-import type { Article, StoryCluster } from "./types.js";
+import type { Article, StoryCluster, ScoredCluster, CurationReport } from "./types.js";
 import { loadRecentCoverage } from "./ledger.js";
 import type { PriorCoverageEntry } from "./ledger.js";
 import { getInterestProfile } from "./interests.js";
@@ -201,13 +201,53 @@ export function buildUserPrompt(articles: Article[], priorCoverage: PriorCoverag
 export function selectStoryClusters(
   clusters: readonly (StoryCluster & { importance?: number })[],
 ): StoryCluster[] {
+  return scoreAndSelect(clusters).selected;
+}
+
+/**
+ * Single source of truth for selection AND observability: ranks/thresholds/caps
+ * exactly as selectStoryClusters always has, and additionally reports every
+ * scored cluster with whether it aired and (if not) why. The `selected` array
+ * is byte-identical to the historical selectStoryClusters output — the report is
+ * purely additive (M3).
+ */
+export function scoreAndSelect(
+  clusters: readonly (StoryCluster & { importance?: number })[],
+): { selected: StoryCluster[]; report: CurationReport } {
   const ranked = clusters
     .map((c) => ({ ...c, importance: clampImportance(c.importance) }))
     .sort((a, b) => b.importance - a.importance);
 
   const aboveBar = ranked.filter((c) => c.importance >= IMPORTANCE_THRESHOLD);
-  const selected = aboveBar.length >= MIN_STORIES ? aboveBar : ranked.slice(0, MIN_STORIES);
-  return selected.slice(0, MAX_STORIES);
+  const chosen = aboveBar.length >= MIN_STORIES ? aboveBar : ranked.slice(0, MIN_STORIES);
+  const selected = chosen.slice(0, MAX_STORIES);
+
+  // Identity set of the clusters that aired, so the report can flag the rest.
+  const selectedSet = new Set<StoryCluster>(selected);
+  const scored: ScoredCluster[] = ranked.map((c) => {
+    const isSelected = selectedSet.has(c);
+    return {
+      canonicalKey: c.canonicalKey,
+      category: c.category,
+      headline: c.headline,
+      importance: c.importance,
+      selected: isSelected,
+      // A dropped cluster that cleared the bar was squeezed out by the cap;
+      // otherwise it simply scored below the threshold.
+      ...(isSelected ? {} : { dropReason: c.importance >= IMPORTANCE_THRESHOLD ? "over_cap" as const : "below_threshold" as const }),
+    };
+  });
+
+  const report: CurationReport = {
+    threshold: IMPORTANCE_THRESHOLD,
+    maxStories: MAX_STORIES,
+    total: scored.length,
+    selectedCount: selected.length,
+    droppedCount: scored.length - selected.length,
+    clusters: scored,
+  };
+
+  return { selected, report };
 }
 
 function clampImportance(value: number | undefined): number {
@@ -299,14 +339,26 @@ export function normaliseCluster(
   return result;
 }
 
-export async function curate(articles: Article[], date?: string): Promise<StoryCluster[]> {
+const EMPTY_REPORT: CurationReport = {
+  threshold: IMPORTANCE_THRESHOLD,
+  maxStories: MAX_STORIES,
+  total: 0,
+  selectedCount: 0,
+  droppedCount: 0,
+  clusters: [],
+};
+
+export async function curate(
+  articles: Article[],
+  date?: string,
+): Promise<{ selected: StoryCluster[]; report: CurationReport }> {
   const started = Date.now();
   const apiKey = process.env.OPENROUTER_API_KEY;
   if (!apiKey) throw new Error("OPENROUTER_API_KEY is not set");
 
   if (articles.length === 0) {
     logJson({ phase: "curate", status: "empty", durationMs: 0 });
-    return [];
+    return { selected: [], report: EMPTY_REPORT };
   }
 
   // Load prior coverage non-blockingly; empty list = cold run (no change in behaviour).
@@ -363,7 +415,21 @@ export async function curate(articles: Article[], date?: string): Promise<StoryC
 
   // F5: guard against malformed/non-array clusters before mapping
   const normalisedClusters = (Array.isArray(parsed?.clusters) ? parsed.clusters : []).map(normaliseCluster);
-  const clusters = selectStoryClusters(normalisedClusters);
+  const { selected: clusters, report } = scoreAndSelect(normalisedClusters);
+
+  // M3: run health report — full scored list (incl. dropped) + summary counts.
+  logJson({
+    phase: "curate.report",
+    status: "ok",
+    threshold: report.threshold,
+    maxStories: report.maxStories,
+    total: report.total,
+    selectedCount: report.selectedCount,
+    droppedCount: report.droppedCount,
+    dropped: report.clusters
+      .filter((c) => !c.selected)
+      .map((c) => ({ canonicalKey: c.canonicalKey, importance: c.importance, dropReason: c.dropReason })),
+  });
 
   // Only emit threading tally when prior coverage was loaded (non-cold run).
   if (priorCoverage.length > 0) {
@@ -388,5 +454,5 @@ export async function curate(articles: Article[], date?: string): Promise<StoryC
     categories: clusters.map((c) => c.category),
   });
 
-  return clusters;
+  return { selected: clusters, report };
 }

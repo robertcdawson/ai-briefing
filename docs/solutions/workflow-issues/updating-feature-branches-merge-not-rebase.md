@@ -27,9 +27,10 @@ A second, repo-specific friction compounds it: parallel branches tend to edit th
 ```
 git checkout main && git pull --ff-only
 git checkout <feature-branch>
-git merge main --no-edit       # resolve conflicts, then it commits
+git merge main --no-edit       # clean merge auto-commits; on conflict it STOPS
+# if it stopped: resolve the conflicts, `git add` them, then `git commit` (or `git merge --continue`)
 npm run build && npm run test:unit
-git push                        # normal push; no --force needed
+git push                        # normal push; no force-push needed
 ```
 
 **Expect, and batch-resolve, the shared-line conflicts.** On these "registry" lines the resolution is always *keep every addition*:
@@ -54,4 +55,4 @@ The conflict on `package.json` always looks like two versions of the same `test:
 
 ## Related
 
-- A durable fix for the biggest conflict magnet: make `test:unit` glob the test directory (e.g. run `tsx --test test/*.test.ts`) instead of listing every file by hand, so adding a test no longer edits a shared line. Worth doing if branch conflicts on that line keep recurring.
+- A durable fix for the biggest conflict magnet: replace the hand-maintained file list in `test:unit` with a glob so adding a test no longer edits a shared line. Mind the current structure, though — `test:unit` deliberately runs `test/publish.apple-rss.test.ts` first as a plain `tsx` run (no `--test`), then runs the Node test runner (`tsx --test`) for the rest. Preserve that split: glob only the `--test` group (e.g. `tsx test/publish.apple-rss.test.ts && tsx --test test/*.test.ts`, excluding the apple-rss file from the glob if it must stay out of the `--test` runner), and re-check any `--test` concurrency assumptions. Worth doing if conflicts on that line keep recurring.

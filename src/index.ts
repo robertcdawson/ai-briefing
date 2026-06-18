@@ -8,6 +8,7 @@ import { buildEpisodeAudio } from "./audio.js";
 import { resolveEpisodeDate } from "./episode-date.js";
 import { publish } from "./publish.js";
 import { pingHealthcheck } from "./healthcheck.js";
+import { withStageCache } from "./stageCache.js";
 import { logJson } from "./util.js";
 
 async function main(): Promise<void> {
@@ -32,7 +33,11 @@ async function main(): Promise<void> {
     });
 
     const curateStart = Date.now();
-    const { selected: clusters, report: curationReport } = await curate(articles, date);
+    const { selected: clusters, report: curationReport } = await withStageCache(
+      "curate",
+      { date, articles },
+      () => curate(articles, date),
+    );
     if (clusters.length === 0) throw new Error("curate returned 0 clusters");
     logJson({
       phase: "pipeline.step",
@@ -42,7 +47,7 @@ async function main(): Promise<void> {
     });
 
     const scriptStart = Date.now();
-    const episode = await writeScript(date, clusters);
+    const episode = await withStageCache("script", { date, clusters }, () => writeScript(date, clusters));
     logJson({
       phase: "pipeline.step",
       step: "script",

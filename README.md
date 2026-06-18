@@ -48,6 +48,7 @@ ai-briefing/
 │   ├── publish.ts                # Move MP3, regenerate feed.xml
 │   ├── feeds.ts                  # Curated source list
 │   ├── types.ts                  # Article, StoryCluster, CurationRecord, Episode
+│   ├── stageCache.ts             # Content-hash cache for curate/script (opt-in, local re-runs)
 │   └── util.ts                   # logJson, withRetry, withHardTimeout
 ├── test/fetch.smoke.ts           # Live-feed smoke test
 ├── docs/                         # GitHub Pages root

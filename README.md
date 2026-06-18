@@ -173,6 +173,7 @@ In the repo's **Settings → Secrets and variables → Actions**:
 - `TTS_TIMEOUT_MS` — `180000` by default; raise only if speech generation is still timing out
 - `AUDIO_CUES_ENABLED` — `true` (set `false` to disable section stingers)
 - `AUDIO_CUE_STYLE` — `tone`, `chime`, `tick`, or `asset` (committed music stingers from `assets/audio/`)
+- `HEALTHCHECK_URL` — optional dead-man's-switch monitoring. Base ping URL of a Healthchecks.io-style check; the pipeline pings `<url>/start`, `<url>` (success), and `<url>/fail`. Unset disables it. Set the check's expected period to ~25h to absorb cron jitter and alert when a weekday run is missed.
 - `PODCAST_AUTHOR`
 - `PODCAST_SUMMARY`
 - `PODCAST_OWNER_NAME`

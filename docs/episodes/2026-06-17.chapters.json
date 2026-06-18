@@ -4,42 +4,42 @@
   "chapters": [
     {
       "startTime": 0,
-      "endTime": 33,
+      "endTime": 55,
       "title": "Intro"
     },
     {
-      "startTime": 33,
-      "endTime": 156,
-      "title": "SpaceX Acquires AI Coding Platform Cursor..."
+      "startTime": 55,
+      "endTime": 209,
+      "title": "Trump Administration Invokes Export..."
     },
     {
-      "startTime": 156,
-      "endTime": 260,
-      "title": "Leaked OpenAI Financials Reveal Billions..."
+      "startTime": 209,
+      "endTime": 305,
+      "title": "Leaked Financial Documents Reveal OpenAI..."
     },
     {
-      "startTime": 260,
-      "endTime": 360,
-      "title": "Anthropic Pauses Token-Based Billing..."
+      "startTime": 305,
+      "endTime": 384,
+      "title": "OpenAI and Molecule.one Deploy..."
     },
     {
-      "startTime": 360,
-      "endTime": 462,
-      "title": "DOJ Invokes National Security to Shield..."
+      "startTime": 384,
+      "endTime": 470,
+      "title": "Zhipu AI Releases GLM-5.2, a Powerful..."
     },
     {
-      "startTime": 462,
+      "startTime": 470,
       "endTime": 547,
-      "title": "Epoch AI Analysis Warns Hyperscalers May..."
+      "title": "Nvidia Research Uses AI Coding Agents to..."
     },
     {
       "startTime": 547,
-      "endTime": 629,
-      "title": "OpenAI Researchers Propose Method to..."
+      "endTime": 622,
+      "title": "Midjourney Pivots to Hardware with a..."
     },
     {
-      "startTime": 629,
-      "endTime": 687,
+      "startTime": 622,
+      "endTime": 671,
       "title": "Outro"
     }
   ]

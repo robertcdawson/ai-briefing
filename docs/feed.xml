@@ -4,7 +4,7 @@
         <title>AI Briefing</title>
         <link>https://robertcdawson.github.io/ai-briefing/</link>
         <description>Daily AI news briefing — the stories that matter from the last 24 hours.</description>
-        <lastBuildDate>Wed, 17 Jun 2026 14:37:15 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 18 Jun 2026 06:11:49 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -27,51 +27,53 @@
             <title><![CDATA[AI Briefing — June 17, 2026]]></title>
             <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-06-17.mp3</link>
             <guid>ai-briefing-2026-06-17</guid>
-            <pubDate>Wed, 17 Jun 2026 14:37:15 GMT</pubDate>
+            <pubDate>Thu, 18 Jun 2026 06:11:49 GMT</pubDate>
             <description><![CDATA[Top 6 AI stories for 2026-06-17:
 
 Chapters:
 00:00:00 Intro
-00:00:33 SpaceX Acquires AI Coding Platform Cursor...
-00:02:36 Leaked OpenAI Financials Reveal Billions...
-00:04:20 Anthropic Pauses Token-Based Billing...
-00:06:00 DOJ Invokes National Security to Shield...
-00:07:42 Epoch AI Analysis Warns Hyperscalers May...
-00:09:07 OpenAI Researchers Propose Method to...
-00:10:29 Outro
+00:00:55 Trump Administration Invokes Export...
+00:03:29 Leaked Financial Documents Reveal OpenAI...
+00:05:05 OpenAI and Molecule.one Deploy...
+00:06:24 Zhipu AI Releases GLM-5.2, a Powerful...
+00:07:50 Nvidia Research Uses AI Coding Agents to...
+00:09:07 Midjourney Pivots to Hardware with a...
+00:10:22 Outro
 
 Sources:
-1. Top Story: SpaceX Acquires AI Coding Platform Cursor in $60 Billion Deal
-Source: https://arstechnica.com/ai/2026/06/spacex-will-acquire-coding-tool-cursor-to-compete-with-anthropic-openai/
-Source: https://the-decoder.com/spacex-bets-60-billion-on-cursor-to-catch-openai-and-anthropic/
+1. Top Story: Trump Administration Invokes Export Controls to Block Anthropic's Fable and Mythos Models
+Source: https://www.theverge.com/ai-artificial-intelligence/951703/anthropic-shutdown-export-controls
+Source: https://www.theverge.com/column/951516/trump-anthropic-feud-mythos-fable-white-house
 Source: https://stratechery.com/2026/the-state-of-fable-the-jailbreak-problem-spacex-acquires-cursor/
-Source: https://techcrunch.com/2026/06/16/spacex-is-public-everything-you-need-to-know-post-ipo/
-2. AI Business Watch: Leaked OpenAI Financials Reveal Billions in Annual Losses Despite Revenue Growth
+Source: https://www.nytimes.com/2026/06/17/technology/anthropic-trump-administration-fable.html
+Source: https://techcrunch.com/2026/06/17/world-leaders-want-american-ai-they-just-dont-want-america-to-be-able-to-turn-it-off/
+2. AI Business Watch: Leaked Financial Documents Reveal OpenAI Is Losing Billions Annually
 Source: https://arstechnica.com/ai/2026/06/leaked-financial-docs-show-openai-is-losing-billions-of-dollars-a-year/
-Source: https://runtimewire.com/article/openai-leaked-financials-altman-compute-burn
-3. Product & Tool Watch: Anthropic Pauses Token-Based Billing Change for Claude Agent SDK After Backlash
-Source: https://arstechnica.com/ai/2026/06/anthropic-pauses-token-based-billing-for-its-claude-agent-sdk/
-4. Policy & Regulation Watch: DOJ Invokes National Security to Shield xAI's Unpermitted Gas Turbines from Lawsuit
-Source: https://arstechnica.com/tech-policy/2026/06/trump-admin-helps-xai-fight-pollution-lawsuit-says-military-needs-grok-for-war/
-Source: https://techcrunch.com/2026/06/16/doj-claims-xais-unpermitted-gas-turbines-are-a-matter-of-national-economic-and-energy-security/
-5. AI Business Watch: Epoch AI Analysis Warns Hyperscalers May Outspend Cash Flow on AI Infrastructure
-Source: https://the-decoder.com/hyperscalers-may-soon-be-unable-to-fund-their-ai-buildout-from-cash-flow-alone/
-6. Research Breakthrough: OpenAI Researchers Propose Method to Predict Model Failure Rates Before Launch
-Source: https://the-decoder.com/openai-researchers-want-to-predict-how-often-ai-models-will-fail-before-launch/]]></description>
-            <enclosure length="16482082" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-17.mp3"/>
-                    <itunes:duration>687</itunes:duration>
+3. Research Breakthrough: OpenAI and Molecule.one Deploy Near-Autonomous AI Chemist Using GPT-5.4 for Drug Synthesis
+Source: https://openai.com/index/ai-chemist-improves-reaction
+4. Open Source Watch: Zhipu AI Releases GLM-5.2, a Powerful Open-Weights Model Rivaling Closed-Source Leaders in Coding
+Source: https://huggingface.co/blog/zai-org/glm-52-blog
+Source: https://simonwillison.net/2026/Jun/17/glm-52/#atom-everything
+Source: https://the-decoder.com/zhipu-ais-glm-5-2-closes-in-on-closed-source-leaders-in-coding-marathons/
+5. Research Breakthrough: Nvidia Research Uses AI Coding Agents to Autonomously Train Robots for Dexterous Tasks
+Source: https://arstechnica.com/ai/2026/06/ai-coding-agents-can-autonomously-direct-robot-training/
+Source: https://the-decoder.com/nvidia-research-shows-robots-that-train-themselves-through-ai-coding-agents/
+6. Product & Tool Watch: Midjourney Pivots to Hardware with a Full-Body Ultrasound Scanner
+Source: https://www.theverge.com/ai-artificial-intelligence/952011/midjourney-medical-ai-ultrasound-scan]]></description>
+            <enclosure length="16097876" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-17.mp3"/>
+                    <itunes:duration>671</itunes:duration>
             <itunes:explicit>false</itunes:explicit>
             <itunes:season>2026</itunes:season>
             <itunes:episode>168</itunes:episode>
             <itunes:episodeType>full</itunes:episodeType>
             <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-17.chapters.json" type="application/json+chapters"/>
             <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-17.transcript.txt" type="text/plain" language="en"/>
-            <podcast:soundbite startTime="33" duration="120">SpaceX Acquires AI Coding Platform Cursor...</podcast:soundbite>
-            <podcast:soundbite startTime="156" duration="102">Leaked OpenAI Financials Reveal Billions...</podcast:soundbite>
-            <podcast:soundbite startTime="260" duration="99">Anthropic Pauses Token-Based Billing...</podcast:soundbite>
-            <podcast:soundbite startTime="360" duration="100">DOJ Invokes National Security to Shield...</podcast:soundbite>
-            <podcast:soundbite startTime="462" duration="84">Epoch AI Analysis Warns Hyperscalers May...</podcast:soundbite>
-            <podcast:soundbite startTime="547" duration="80">OpenAI Researchers Propose Method to...</podcast:soundbite>
+            <podcast:soundbite startTime="55" duration="120">Trump Administration Invokes Export...</podcast:soundbite>
+            <podcast:soundbite startTime="209" duration="95">Leaked Financial Documents Reveal OpenAI...</podcast:soundbite>
+            <podcast:soundbite startTime="305" duration="77">OpenAI and Molecule.one Deploy...</podcast:soundbite>
+            <podcast:soundbite startTime="384" duration="85">Zhipu AI Releases GLM-5.2, a Powerful...</podcast:soundbite>
+            <podcast:soundbite startTime="470" duration="75">Nvidia Research Uses AI Coding Agents to...</podcast:soundbite>
+            <podcast:soundbite startTime="547" duration="73">Midjourney Pivots to Hardware with a...</podcast:soundbite>
         </item>
         <item>
             <title><![CDATA[AI Briefing — June 16, 2026]]></title>

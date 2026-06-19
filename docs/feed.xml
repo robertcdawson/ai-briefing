@@ -4,7 +4,7 @@
         <title>AI Briefing</title>
         <link>https://robertcdawson.github.io/ai-briefing/</link>
         <description>Daily AI news briefing — the stories that matter from the last 24 hours.</description>
-        <lastBuildDate>Thu, 18 Jun 2026 06:11:49 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 19 Jun 2026 14:32:13 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -23,6 +23,51 @@
         <podcast:guid>ea8709f4-3ba2-5b7e-bcdc-e409d84a6443</podcast:guid>
         <podcast:locked owner="manatees@gmail.com">yes</podcast:locked>
         <podcast:person role="host" group="cast">Robert Dawson</podcast:person>
+        <item>
+            <title><![CDATA[AI Briefing — June 19, 2026]]></title>
+            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-06-19.mp3</link>
+            <guid>ai-briefing-2026-06-19</guid>
+            <pubDate>Fri, 19 Jun 2026 14:32:13 GMT</pubDate>
+            <description><![CDATA[Top 6 AI stories for 2026-06-19:
+
+Chapters:
+00:00:00 Intro
+00:00:45 New benchmark reveals AI models solve...
+00:02:24 Google DeepMind treats AI agents like...
+00:04:22 OpenAI researchers show targeted trait...
+00:06:05 ChatGPT health upgrade with GPT-5.5...
+00:07:27 Two Nature studies show specialized AI...
+00:08:52 Alleged SK Telecom China ties triggered...
+00:10:29 Outro
+
+Sources:
+1. Top Story: New benchmark reveals AI models solve only 3 percent of realistic knowledge tasks
+Source: https://the-decoder.com/new-benchmark-exposes-how-badly-ai-struggles-with-real-knowledge-work/
+2. Research Breakthrough: Google DeepMind treats AI agents like insider threats with new control roadmap
+Source: https://the-decoder.com/google-deepmind-treats-its-own-ai-agents-like-rogue-employees-with-office-keys/
+3. Research Breakthrough: OpenAI researchers show targeted trait training broadly improves model safety
+Source: https://the-decoder.com/openai-researchers-show-small-doses-of-beneficial-trait-training-make-ai-models-broadly-safer-and-harder-to-manipulate/
+4. Product & Tool Watch: ChatGPT health upgrade with GPT-5.5 claims to beat doctor-written answers
+Source: https://the-decoder.com/chatgpts-new-health-upgrade-beats-doctor-written-answers-openai-says/
+5. Research Breakthrough: Two Nature studies show specialized AI matches physicians in diagnosis and treatment
+Source: https://the-decoder.com/ai-systems-rival-doctors-in-new-nature-studies-but-one-result-suggests-the-tech-wont-age-well/
+6. Policy & Regulation Watch: Alleged SK Telecom China ties triggered White House intervention in Anthropic partnership
+Source: https://the-decoder.com/alleged-china-ties-at-sk-telecom-alarmed-us-officials-and-triggered-anthropic-crisis/]]></description>
+            <enclosure length="16327130" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-19.mp3"/>
+                    <itunes:duration>680</itunes:duration>
+            <itunes:explicit>false</itunes:explicit>
+            <itunes:season>2026</itunes:season>
+            <itunes:episode>170</itunes:episode>
+            <itunes:episodeType>full</itunes:episodeType>
+            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-19.chapters.json" type="application/json+chapters"/>
+            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-19.transcript.txt" type="text/plain" language="en"/>
+            <podcast:soundbite startTime="45" duration="97">New benchmark reveals AI models solve...</podcast:soundbite>
+            <podcast:soundbite startTime="144" duration="116">Google DeepMind treats AI agents like...</podcast:soundbite>
+            <podcast:soundbite startTime="262" duration="102">OpenAI researchers show targeted trait...</podcast:soundbite>
+            <podcast:soundbite startTime="365" duration="80">ChatGPT health upgrade with GPT-5.5...</podcast:soundbite>
+            <podcast:soundbite startTime="447" duration="84">Two Nature studies show specialized AI...</podcast:soundbite>
+            <podcast:soundbite startTime="532" duration="95">Alleged SK Telecom China ties triggered...</podcast:soundbite>
+        </item>
         <item>
             <title><![CDATA[AI Briefing — June 17, 2026]]></title>
             <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-06-17.mp3</link>
@@ -1380,40 +1425,6 @@ Source: https://techcrunch.com/2026/05/17/if-youre-giving-a-commencement-speech-
             <podcast:soundbite startTime="28" duration="58">Anthropic and OpenAI Capture 89 Percent...</podcast:soundbite>
             <podcast:soundbite startTime="86" duration="54">Anthropic&apos;s Claude Mythos Uncovers...</podcast:soundbite>
             <podcast:soundbite startTime="140" duration="53">Graduating Students Boo AI Cheerleading...</podcast:soundbite>
-        </item>
-        <item>
-            <title><![CDATA[AI Briefing — May 17, 2026]]></title>
-            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-05-17.mp3</link>
-            <guid>ai-briefing-2026-05-17</guid>
-            <pubDate>Sun, 17 May 2026 14:04:16 GMT</pubDate>
-            <description><![CDATA[Top 3 AI stories for 2026-05-17:
-
-Chapters:
-00:00:00 Intro
-00:00:29 Brockman Takes Charge at OpenAI
-00:01:18 New SOOHAK Benchmark Reveals AI Gaps
-00:02:12 Job Losses in AI-Exposed Roles
-00:02:57 Outro
-
-Sources:
-1. AI Business Watch: Brockman Takes Charge at OpenAI
-Source: https://techcrunch.com/2026/05/16/openai-co-founder-greg-brockman-reportedly-takes-charge-of-product-strategy/
-Source: https://the-decoder.com/greg-brockman-consolidates-openais-product-teams-to-build-an-agentic-future/
-2. Research Breakthrough: New SOOHAK Benchmark Reveals AI Gaps
-Source: https://the-decoder.com/new-math-benchmark-reveals-ai-models-confidently-solve-problems-that-have-no-solution/
-3. AI Culture Signal: Job Losses in AI-Exposed Roles
-Source: https://www.bloomberg.com/news/articles/2026-05-15/us-is-starting-to-see-heavy-job-losses-in-roles-exposed-to-ai]]></description>
-            <enclosure length="4884605" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-17.mp3"/>
-                    <itunes:duration>203</itunes:duration>
-            <itunes:explicit>false</itunes:explicit>
-            <itunes:season>2026</itunes:season>
-            <itunes:episode>137</itunes:episode>
-            <itunes:episodeType>full</itunes:episodeType>
-            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-17.chapters.json" type="application/json+chapters"/>
-            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-17.transcript.txt" type="text/plain" language="en"/>
-            <podcast:soundbite startTime="29" duration="49">Brockman Takes Charge at OpenAI</podcast:soundbite>
-            <podcast:soundbite startTime="78" duration="54">New SOOHAK Benchmark Reveals AI Gaps</podcast:soundbite>
-            <podcast:soundbite startTime="132" duration="44">Job Losses in AI-Exposed Roles</podcast:soundbite>
         </item>
     </channel>
 </rss>

@@ -1,0 +1,203 @@
+{
+  "date": "2026-06-19",
+  "title": "AI Briefing — June 19, 2026",
+  "description": "Top 6 AI stories for 2026-06-19:\n\nChapters:\n00:00:00 Intro\n00:00:45 New benchmark reveals AI models solve...\n00:02:24 Google DeepMind treats AI agents like...\n00:04:22 OpenAI researchers show targeted trait...\n00:06:05 ChatGPT health upgrade with GPT-5.5...\n00:07:27 Two Nature studies show specialized AI...\n00:08:52 Alleged SK Telecom China ties triggered...\n00:10:29 Outro\n\nSources:\n1. Top Story: New benchmark reveals AI models solve only 3 percent of realistic knowledge tasks\nSource: https://the-decoder.com/new-benchmark-exposes-how-badly-ai-struggles-with-real-knowledge-work/\n2. Research Breakthrough: Google DeepMind treats AI agents like insider threats with new control roadmap\nSource: https://the-decoder.com/google-deepmind-treats-its-own-ai-agents-like-rogue-employees-with-office-keys/\n3. Research Breakthrough: OpenAI researchers show targeted trait training broadly improves model safety\nSource: https://the-decoder.com/openai-researchers-show-small-doses-of-beneficial-trait-training-make-ai-models-broadly-safer-and-harder-to-manipulate/\n4. Product & Tool Watch: ChatGPT health upgrade with GPT-5.5 claims to beat doctor-written answers\nSource: https://the-decoder.com/chatgpts-new-health-upgrade-beats-doctor-written-answers-openai-says/\n5. Research Breakthrough: Two Nature studies show specialized AI matches physicians in diagnosis and treatment\nSource: https://the-decoder.com/ai-systems-rival-doctors-in-new-nature-studies-but-one-result-suggests-the-tech-wont-age-well/\n6. Policy & Regulation Watch: Alleged SK Telecom China ties triggered White House intervention in Anthropic partnership\nSource: https://the-decoder.com/alleged-china-ties-at-sk-telecom-alarmed-us-officials-and-triggered-anthropic-crisis/",
+  "durationSeconds": 680,
+  "byteLength": 16327130,
+  "pubDate": "2026-06-19T14:32:13.444Z",
+  "season": 2026,
+  "episodeNumber": 170,
+  "chaptersFilename": "2026-06-19.chapters.json",
+  "transcriptFilename": "2026-06-19.transcript.txt",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 45,
+      "title": "Intro"
+    },
+    {
+      "startTime": 45,
+      "endTime": 144,
+      "title": "New benchmark reveals AI models solve..."
+    },
+    {
+      "startTime": 144,
+      "endTime": 262,
+      "title": "Google DeepMind treats AI agents like..."
+    },
+    {
+      "startTime": 262,
+      "endTime": 365,
+      "title": "OpenAI researchers show targeted trait..."
+    },
+    {
+      "startTime": 365,
+      "endTime": 447,
+      "title": "ChatGPT health upgrade with GPT-5.5..."
+    },
+    {
+      "startTime": 447,
+      "endTime": 532,
+      "title": "Two Nature studies show specialized AI..."
+    },
+    {
+      "startTime": 532,
+      "endTime": 629,
+      "title": "Alleged SK Telecom China ties triggered..."
+    },
+    {
+      "startTime": 629,
+      "endTime": 680,
+      "title": "Outro"
+    }
+  ],
+  "soundbites": [
+    {
+      "startTime": 45,
+      "duration": 97,
+      "title": "New benchmark reveals AI models solve..."
+    },
+    {
+      "startTime": 144,
+      "duration": 116,
+      "title": "Google DeepMind treats AI agents like..."
+    },
+    {
+      "startTime": 262,
+      "duration": 102,
+      "title": "OpenAI researchers show targeted trait..."
+    },
+    {
+      "startTime": 365,
+      "duration": 80,
+      "title": "ChatGPT health upgrade with GPT-5.5..."
+    },
+    {
+      "startTime": 447,
+      "duration": 84,
+      "title": "Two Nature studies show specialized AI..."
+    },
+    {
+      "startTime": 532,
+      "duration": 95,
+      "title": "Alleged SK Telecom China ties triggered..."
+    }
+  ],
+  "curation": [
+    {
+      "canonicalKey": "ai-knowledge-work-benchmark-failure",
+      "headline": "New benchmark reveals AI models solve only 3 percent of realistic knowledge tasks",
+      "whyItMatters": "A rigorous benchmark exposing that even frontier models fail on real-world knowledge work tasks is a critical signal for builders deploying AI agents in enterprise settings — it quantifies the gap between demo performance and production utility.",
+      "caveat": "Benchmark design choices heavily influence results, and 'realistic knowledge work' is subjective; the 3% figure may not generalize across domains or task types.",
+      "importance": 82,
+      "category": "research"
+    },
+    {
+      "canonicalKey": "google-deepmind-ai-control-roadmap",
+      "headline": "Google DeepMind publishes AI Control Roadmap treating agents as insider threats",
+      "whyItMatters": "DeepMind's formal framework for constraining agentic AI systems — tying security measures to measurable capability thresholds — is directly actionable for teams building or deploying AI agents, and signals the industry is taking agent misuse seriously.",
+      "caveat": "The roadmap is a policy document and analysis, not a deployed system; whether it influences real-world agent deployments at scale remains to be seen.",
+      "importance": 80,
+      "category": "research"
+    },
+    {
+      "canonicalKey": "openai-beneficial-trait-safety-training",
+      "headline": "OpenAI research shows targeted trait training broadly improves model safety and robustness",
+      "whyItMatters": "Demonstrating that reinforcement learning on specific behavioral traits like truthfulness and corrigibility generalizes across domains — improving 44 of 53 benchmarks — offers a practical, scalable alternative to constitution-based alignment methods.",
+      "caveat": "Results come from OpenAI's own researchers and have not yet been independently replicated; the approach's robustness against adversarial prompting at deployment scale is unproven.",
+      "importance": 76,
+      "category": "research"
+    },
+    {
+      "canonicalKey": "chatgpt-health-upgrade-gpt55",
+      "headline": "OpenAI upgrades ChatGPT health features with GPT-5.5, claims to beat doctor answers",
+      "whyItMatters": "A reported 71% reduction in health-statement error rates and performance exceeding doctor-written answers in OpenAI's own tests marks a meaningful capability step for consumer health AI, relevant to builders in the health-tech space.",
+      "caveat": "All benchmark comparisons are OpenAI's own internal evaluations with no independent peer review, and 'beats doctor-written answers' is a narrow, self-defined metric.",
+      "importance": 74,
+      "category": "product-tools"
+    },
+    {
+      "canonicalKey": "ai-rivals-doctors-nature-studies",
+      "headline": "Two Nature studies show specialized AI matches physicians in diagnosis and treatment",
+      "whyItMatters": "Peer-reviewed publication in Nature of AI systems matching or exceeding physician performance in simulated cases is a landmark credibility milestone for clinical AI, with direct implications for health-tech builders and researchers.",
+      "caveat": "Both systems run on already-outdated base models, raising questions about longevity and whether results will hold as medical knowledge and AI architectures evolve.",
+      "importance": 73,
+      "category": "research"
+    },
+    {
+      "canonicalKey": "anthropic-sk-telecom-china-ties-crisis",
+      "headline": "Alleged SK Telecom China ties triggered White House intervention in Anthropic partnership",
+      "whyItMatters": "New details reveal that US officials cut off SK Telecom's access to Claude Mythos over suspected China links, providing concrete context for the previously reported export-control crisis around Anthropic and clarifying the geopolitical mechanics at play.",
+      "caveat": "The alleged China ties are described as 'suspected' and have not been publicly confirmed or adjudicated; SK Telecom has not publicly responded to the specific claims.",
+      "importance": 72,
+      "category": "policy-regulation"
+    }
+  ],
+  "curationReport": {
+    "threshold": 45,
+    "maxStories": 6,
+    "total": 8,
+    "selectedCount": 6,
+    "droppedCount": 2,
+    "clusters": [
+      {
+        "canonicalKey": "ai-knowledge-work-benchmark-failure",
+        "category": "research",
+        "headline": "New benchmark reveals AI models solve only 3 percent of realistic knowledge tasks",
+        "importance": 82,
+        "selected": true
+      },
+      {
+        "canonicalKey": "google-deepmind-ai-control-roadmap",
+        "category": "research",
+        "headline": "Google DeepMind publishes AI Control Roadmap treating agents as insider threats",
+        "importance": 80,
+        "selected": true
+      },
+      {
+        "canonicalKey": "openai-beneficial-trait-safety-training",
+        "category": "research",
+        "headline": "OpenAI research shows targeted trait training broadly improves model safety and robustness",
+        "importance": 76,
+        "selected": true
+      },
+      {
+        "canonicalKey": "chatgpt-health-upgrade-gpt55",
+        "category": "product-tools",
+        "headline": "OpenAI upgrades ChatGPT health features with GPT-5.5, claims to beat doctor answers",
+        "importance": 74,
+        "selected": true
+      },
+      {
+        "canonicalKey": "ai-rivals-doctors-nature-studies",
+        "category": "research",
+        "headline": "Two Nature studies show specialized AI matches physicians in diagnosis and treatment",
+        "importance": 73,
+        "selected": true
+      },
+      {
+        "canonicalKey": "anthropic-sk-telecom-china-ties-crisis",
+        "category": "policy-regulation",
+        "headline": "Alleged SK Telecom China ties triggered White House intervention in Anthropic partnership",
+        "importance": 72,
+        "selected": true
+      },
+      {
+        "canonicalKey": "baseten-inference-1-5b-raise",
+        "category": "business",
+        "headline": "AI inference startup Baseten reportedly raising 1.5 billion dollars at 13 billion valuation",
+        "importance": 68,
+        "selected": false,
+        "dropReason": "over_cap"
+      },
+      {
+        "canonicalKey": "google-ai-search-liability-appeal",
+        "category": "policy-regulation",
+        "headline": "Google appeals German court ruling making it liable for AI search overview errors",
+        "importance": 66,
+        "selected": false,
+        "dropReason": "over_cap"
+      }
+    ]
+  }
+}

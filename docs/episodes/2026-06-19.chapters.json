@@ -1,0 +1,46 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — June 19, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 45,
+      "title": "Intro"
+    },
+    {
+      "startTime": 45,
+      "endTime": 144,
+      "title": "New benchmark reveals AI models solve..."
+    },
+    {
+      "startTime": 144,
+      "endTime": 262,
+      "title": "Google DeepMind treats AI agents like..."
+    },
+    {
+      "startTime": 262,
+      "endTime": 365,
+      "title": "OpenAI researchers show targeted trait..."
+    },
+    {
+      "startTime": 365,
+      "endTime": 447,
+      "title": "ChatGPT health upgrade with GPT-5.5..."
+    },
+    {
+      "startTime": 447,
+      "endTime": 532,
+      "title": "Two Nature studies show specialized AI..."
+    },
+    {
+      "startTime": 532,
+      "endTime": 629,
+      "title": "Alleged SK Telecom China ties triggered..."
+    },
+    {
+      "startTime": 629,
+      "endTime": 680,
+      "title": "Outro"
+    }
+  ]
+}

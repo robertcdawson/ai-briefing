@@ -4,7 +4,7 @@
         <title>AI Briefing</title>
         <link>https://robertcdawson.github.io/ai-briefing/</link>
         <description>Daily AI news briefing — the stories that matter from the last 24 hours.</description>
-        <lastBuildDate>Fri, 19 Jun 2026 14:32:13 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 22 Jun 2026 15:21:20 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -23,6 +23,54 @@
         <podcast:guid>ea8709f4-3ba2-5b7e-bcdc-e409d84a6443</podcast:guid>
         <podcast:locked owner="manatees@gmail.com">yes</podcast:locked>
         <podcast:person role="host" group="cast">Robert Dawson</podcast:person>
+        <item>
+            <title><![CDATA[AI Briefing — June 22, 2026]]></title>
+            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-06-22.mp3</link>
+            <guid>ai-briefing-2026-06-22</guid>
+            <pubDate>Mon, 22 Jun 2026 15:21:20 GMT</pubDate>
+            <description><![CDATA[Top 6 AI stories for 2026-06-22:
+
+Chapters:
+00:00:00 Intro
+00:00:28 Five Eyes warns frontier AI could reshape...
+00:02:23 Samsung deploys ChatGPT Enterprise and...
+00:04:07 Vibe-coded apps carry serious security...
+00:05:56 Analysis argues Anthropic's own safety...
+00:07:52 Getty Images signs multi-year deal to...
+00:09:05 Sakana AI's Fugu system orchestrates...
+00:10:24 Outro
+
+Sources:
+1. Top Story: Five Eyes warns frontier AI could reshape offensive cyber ops within months
+Source: https://the-decoder.com/five-eyes-intelligence-alliance-says-frontier-ai-models-could-reshape-offensive-cyber-ops-in-months
+2. AI Business Watch: Samsung deploys ChatGPT Enterprise and Codex to employees worldwide
+Source: https://openai.com/index/samsung-electronics-chatgpt-codex-deployment
+Source: https://the-decoder.com/samsung-rolls-out-chatgpt-enterprise-and-codex-to-employees-in-south-korea
+3. AI Culture Signal: Vibe-coded apps carry serious security risks developers are overlooking
+Source: https://www.theverge.com/ai-artificial-intelligence/950844/vibe-coding-security-risks-apps
+Source: https://the-decoder.com/vibecoding-is-becoming-a-deal-breaker-test-for-software-acquisitions
+4. Policy & Regulation Watch: Analysis argues Anthropic's own safety rhetoric may have triggered its export ban
+Source: https://arstechnica.com/ai/2026/06/how-anthropic-may-have-talked-itself-into-an-ai-export-ban/
+Source: https://techcrunch.com/2026/06/21/when-the-trump-administration-cracks-down-on-anthropic-who-benefits/
+5. Policy & Regulation Watch: Getty Images signs multi-year deal to license photos for ChatGPT search
+Source: https://the-decoder.com/getty-images-strikes-multi-year-deal-to-put-licensed-photos-in-chatgpt-search
+6. Research Breakthrough: Sakana AI's Fugu system orchestrates multiple LLMs to match top benchmark scores
+Source: https://the-decoder.com/sakana-ais-fugu-orchestrates-multiple-llms-to-match-anthropics-fable-and-mythos-benchmarks]]></description>
+            <enclosure length="16219422" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-22.mp3"/>
+                    <itunes:duration>676</itunes:duration>
+            <itunes:explicit>false</itunes:explicit>
+            <itunes:season>2026</itunes:season>
+            <itunes:episode>173</itunes:episode>
+            <itunes:episodeType>full</itunes:episodeType>
+            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-22.chapters.json" type="application/json+chapters"/>
+            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-22.transcript.txt" type="text/plain" language="en"/>
+            <podcast:soundbite startTime="28" duration="113">Five Eyes warns frontier AI could reshape...</podcast:soundbite>
+            <podcast:soundbite startTime="143" duration="103">Samsung deploys ChatGPT Enterprise and...</podcast:soundbite>
+            <podcast:soundbite startTime="247" duration="107">Vibe-coded apps carry serious security...</podcast:soundbite>
+            <podcast:soundbite startTime="356" duration="114">Analysis argues Anthropic&apos;s own safety...</podcast:soundbite>
+            <podcast:soundbite startTime="472" duration="72">Getty Images signs multi-year deal to...</podcast:soundbite>
+            <podcast:soundbite startTime="545" duration="77">Sakana AI&apos;s Fugu system orchestrates...</podcast:soundbite>
+        </item>
         <item>
             <title><![CDATA[AI Briefing — June 19, 2026]]></title>
             <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-06-19.mp3</link>
@@ -1389,42 +1437,6 @@ Source: https://techcrunch.com/2026/05/19/openai-is-making-it-easier-to-check-if
             <podcast:soundbite startTime="24" duration="64">Google I/O 2026 unveils Gemini 3.5 Flash,...</podcast:soundbite>
             <podcast:soundbite startTime="89" duration="51">Andrej Karpathy joins Anthropic&apos;s...</podcast:soundbite>
             <podcast:soundbite startTime="140" duration="54">OpenAI and Nvidia adopt Google&apos;s SynthID...</podcast:soundbite>
-        </item>
-        <item>
-            <title><![CDATA[AI Briefing — May 18, 2026]]></title>
-            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-05-18.mp3</link>
-            <guid>ai-briefing-2026-05-18</guid>
-            <pubDate>Mon, 18 May 2026 14:40:43 GMT</pubDate>
-            <description><![CDATA[Top 3 AI stories for 2026-05-18:
-
-Chapters:
-00:00:00 Intro
-00:00:28 Anthropic and OpenAI Capture 89 Percent...
-00:01:26 Anthropic's Claude Mythos Uncovers...
-00:02:20 Graduating Students Boo AI Cheerleading...
-00:03:13 Outro
-
-Sources:
-1. AI Business Watch: Anthropic and OpenAI Capture 89 Percent of Top AI Startup Revenue
-Source: https://the-decoder.com/ai-startup-revenue-hits-80-billion-but-anthropic-and-openai-take-almost-all-of-it/
-2. Research Breakthrough: Anthropic's Claude Mythos Uncovers Financial System Cyber Vulnerabilities for Regulators
-Source: https://the-decoder.com/anthropic-to-brief-global-financial-regulators-on-cyber-flaws-found-by-claude-mythos/
-3. AI Culture Signal: Graduating Students Boo AI Cheerleading at Multiple 2026 Commencement Speeches
-Source: https://www.theverge.com/ai-artificial-intelligence/932203/university-of-arizona-students-boo-eric-schmidt-ai-commencement
-Source: https://www.nbcnews.com/tech/tech-news/former-google-ceo-booed-graduation-speech-ai-rcna345585
-Source: https://www.nbcnews.com/video/multiple-commencement-speakers-booed-for-ai-comments-during-graduation-speeches-263486021518
-Source: https://techcrunch.com/2026/05/17/if-youre-giving-a-commencement-speech-in-2026-maybe-dont-mention-ai/]]></description>
-            <enclosure length="5362709" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-18.mp3"/>
-                    <itunes:duration>223</itunes:duration>
-            <itunes:explicit>false</itunes:explicit>
-            <itunes:season>2026</itunes:season>
-            <itunes:episode>138</itunes:episode>
-            <itunes:episodeType>full</itunes:episodeType>
-            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-18.chapters.json" type="application/json+chapters"/>
-            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-18.transcript.txt" type="text/plain" language="en"/>
-            <podcast:soundbite startTime="28" duration="58">Anthropic and OpenAI Capture 89 Percent...</podcast:soundbite>
-            <podcast:soundbite startTime="86" duration="54">Anthropic&apos;s Claude Mythos Uncovers...</podcast:soundbite>
-            <podcast:soundbite startTime="140" duration="53">Graduating Students Boo AI Cheerleading...</podcast:soundbite>
         </item>
     </channel>
 </rss>

@@ -1,0 +1,46 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — June 23, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 35,
+      "title": "Intro"
+    },
+    {
+      "startTime": 35,
+      "endTime": 155,
+      "title": "Cursor launches in-house AI model, Git..."
+    },
+    {
+      "startTime": 155,
+      "endTime": 281,
+      "title": "OpenAI launches GPT-5.5-Cyber and..."
+    },
+    {
+      "startTime": 281,
+      "endTime": 378,
+      "title": "Groq confirms $650M raise and rebuilds..."
+    },
+    {
+      "startTime": 378,
+      "endTime": 481,
+      "title": "Anthropic and Micron partner to co-design..."
+    },
+    {
+      "startTime": 481,
+      "endTime": 588,
+      "title": "Analysis finds Claude Code's extended..."
+    },
+    {
+      "startTime": 588,
+      "endTime": 661,
+      "title": "ByteDance's Seedance 2.5 breaks 30-second..."
+    },
+    {
+      "startTime": 661,
+      "endTime": 712,
+      "title": "Outro"
+    }
+  ]
+}

@@ -1,0 +1,203 @@
+{
+  "date": "2026-06-24",
+  "title": "AI Briefing — June 24, 2026",
+  "description": "Top 6 AI stories for 2026-06-24:\n\nChapters:\n00:00:00 Intro\n00:00:45 OpenAI and Broadcom unveil Jalapeño...\n00:02:19 Anthropic launches Claude Tag for Slack,...\n00:03:58 Enterprises scramble to control runaway...\n00:05:40 GPT-5 Pro helps immunologist crack...\n00:07:21 Mistral releases OCR 4 model claiming 72...\n00:08:36 Oracle cuts 21,000 jobs to fund...\n00:09:50 Outro\n\nSources:\n1. Top Story: OpenAI and Broadcom unveil Jalapeño custom LLM inference chip\nSource: https://openai.com/index/openai-broadcom-jalapeno-inference-chip\nSource: https://the-decoder.com/openai-and-broadcom-unveil-jalapeno-a-custom-chip-built-for-llm-inference/\n2. Product & Tool Watch: Anthropic launches Claude Tag for Slack, writes 65 percent of internal code\nSource: https://techcrunch.com/2026/06/23/anthropics-claude-tag-is-learning-your-company-one-slack-message-at-a-time/\nSource: https://the-decoder.com/claude-tag-embeds-anthropics-ai-in-slack-already-writes-65-percent-of-internal-code-company-says/\n3. AI Business Watch: Enterprises scramble to control runaway AI token spending costs\nSource: https://www.404media.co/the-tokenpocalypse-is-here-companies-are-scrambling-to-stop-spending-so-much-on-ai/\n4. Research Breakthrough: GPT-5 Pro helps immunologist crack three-year-old T cell mystery\nSource: https://openai.com/index/gpt-5-immunology-mystery\n5. Open Source Watch: Mistral releases OCR 4 model claiming 72 percent blind-test win rate\nSource: https://the-decoder.com/mistrals-new-ocr-model-beats-competitors-in-72-percent-of-blind-test-cases-company-says/\n6. AI Business Watch: Oracle cuts 21,000 jobs to fund debt-driven AI data center expansion\nSource: https://arstechnica.com/ai/2026/06/oracles-21000-layoffs-help-drive-its-debt-fueled-ai-investments/",
+  "durationSeconds": 650,
+  "byteLength": 15599102,
+  "pubDate": "2026-06-24T14:20:47.882Z",
+  "season": 2026,
+  "episodeNumber": 175,
+  "chaptersFilename": "2026-06-24.chapters.json",
+  "transcriptFilename": "2026-06-24.transcript.txt",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 45,
+      "title": "Intro"
+    },
+    {
+      "startTime": 45,
+      "endTime": 139,
+      "title": "OpenAI and Broadcom unveil Jalapeño..."
+    },
+    {
+      "startTime": 139,
+      "endTime": 238,
+      "title": "Anthropic launches Claude Tag for Slack,..."
+    },
+    {
+      "startTime": 238,
+      "endTime": 340,
+      "title": "Enterprises scramble to control runaway..."
+    },
+    {
+      "startTime": 340,
+      "endTime": 441,
+      "title": "GPT-5 Pro helps immunologist crack..."
+    },
+    {
+      "startTime": 441,
+      "endTime": 516,
+      "title": "Mistral releases OCR 4 model claiming 72..."
+    },
+    {
+      "startTime": 516,
+      "endTime": 590,
+      "title": "Oracle cuts 21,000 jobs to fund..."
+    },
+    {
+      "startTime": 590,
+      "endTime": 650,
+      "title": "Outro"
+    }
+  ],
+  "soundbites": [
+    {
+      "startTime": 45,
+      "duration": 93,
+      "title": "OpenAI and Broadcom unveil Jalapeño..."
+    },
+    {
+      "startTime": 139,
+      "duration": 97,
+      "title": "Anthropic launches Claude Tag for Slack,..."
+    },
+    {
+      "startTime": 238,
+      "duration": 101,
+      "title": "Enterprises scramble to control runaway..."
+    },
+    {
+      "startTime": 340,
+      "duration": 99,
+      "title": "GPT-5 Pro helps immunologist crack..."
+    },
+    {
+      "startTime": 441,
+      "duration": 74,
+      "title": "Mistral releases OCR 4 model claiming 72..."
+    },
+    {
+      "startTime": 516,
+      "duration": 72,
+      "title": "Oracle cuts 21,000 jobs to fund..."
+    }
+  ],
+  "curation": [
+    {
+      "canonicalKey": "openai-broadcom-jalapeno-inference-chip",
+      "headline": "OpenAI and Broadcom unveil Jalapeño custom LLM inference chip",
+      "whyItMatters": "A purpose-built inference chip co-designed with Broadcom signals OpenAI is vertically integrating its hardware stack to reduce dependence on Nvidia and cut inference costs at scale, with deployment targeted for late 2026. For AI builders, this could eventually translate to lower API prices and higher throughput.",
+      "caveat": "Performance benchmarks, power efficiency figures, and production yield details have not been disclosed, so competitive claims against Nvidia H100/B200 cannot yet be verified.",
+      "importance": 88,
+      "category": "product-tools"
+    },
+    {
+      "canonicalKey": "anthropic-claude-tag-slack-enterprise",
+      "headline": "Anthropic launches Claude Tag for Slack, writes 65 percent of internal code",
+      "whyItMatters": "Claude Tag embeds an always-on AI assistant directly into Slack channels, capturing organizational context and institutional knowledge over time — a meaningful shift toward persistent, context-aware AI teammates for enterprise teams. The claim that it already generates 65% of Anthropic's own product-team code is a striking real-world signal of AI's impact on software development workflows.",
+      "caveat": "The 65% code-generation figure comes from Anthropic itself and has not been independently audited; enterprise adoption and productivity outcomes outside Anthropic are unknown.",
+      "importance": 82,
+      "category": "product-tools"
+    },
+    {
+      "canonicalKey": "tokenpocalypse-enterprise-ai-cost-crisis",
+      "headline": "Enterprises scramble to control runaway AI token spending costs",
+      "whyItMatters": "Leaked Accenture audio reveals that mundane tasks like PDF-to-slide conversion are consuming enormous token budgets, exposing a gap between AI deployment enthusiasm and cost governance — a practical challenge every engineering and product team deploying LLMs at scale will face. This 'tokenpocalypse' framing signals a coming wave of AI cost-optimization tooling and procurement scrutiny.",
+      "caveat": "The evidence is based on a single leaked audio clip from Accenture and may not be representative of broader enterprise AI spending patterns.",
+      "importance": 78,
+      "category": "business"
+    },
+    {
+      "canonicalKey": "gpt5-immunology-research-breakthrough",
+      "headline": "GPT-5 Pro helps immunologist crack three-year-old T cell mystery",
+      "whyItMatters": "A practicing immunologist credits GPT-5 Pro with surfacing the key insight that resolved a multi-year research impasse on T cell behavior, offering a concrete case study of frontier LLMs accelerating wet-lab scientific discovery rather than just automating text tasks.",
+      "caveat": "This is a single anecdotal case study published on OpenAI's own blog, and the scientific findings have not yet been peer-reviewed or independently replicated.",
+      "importance": 72,
+      "category": "research"
+    },
+    {
+      "canonicalKey": "mistral-ocr-4-document-model",
+      "headline": "Mistral releases OCR 4 model claiming 72 percent blind-test win rate",
+      "whyItMatters": "A specialized OCR model that handles PDFs, Word, and PowerPoint files with claimed state-of-the-art accuracy is directly useful for the document-processing pipelines that underpin most enterprise RAG and data-extraction workflows.",
+      "caveat": "The 72% win-rate figure comes from Mistral's own blind-test evaluation and has not been independently reproduced; competitor models tested and evaluation methodology are not fully disclosed.",
+      "importance": 68,
+      "category": "open-source"
+    },
+    {
+      "canonicalKey": "oracle-layoffs-debt-ai-infrastructure",
+      "headline": "Oracle cuts 21,000 jobs to fund debt-driven AI data center expansion",
+      "whyItMatters": "Oracle's decision to shed a significant portion of its workforce to finance AI infrastructure buildout illustrates the brutal trade-offs large incumbents are making to compete in the AI infrastructure race, with implications for enterprise cloud pricing and competitive dynamics.",
+      "caveat": "It is unclear how much of the layoff is attributable specifically to AI investment versus broader cost restructuring, and Oracle's AI infrastructure ROI remains unproven.",
+      "importance": 65,
+      "category": "business"
+    }
+  ],
+  "curationReport": {
+    "threshold": 45,
+    "maxStories": 6,
+    "total": 8,
+    "selectedCount": 6,
+    "droppedCount": 2,
+    "clusters": [
+      {
+        "canonicalKey": "openai-broadcom-jalapeno-inference-chip",
+        "category": "product-tools",
+        "headline": "OpenAI and Broadcom unveil Jalapeño custom LLM inference chip",
+        "importance": 88,
+        "selected": true
+      },
+      {
+        "canonicalKey": "anthropic-claude-tag-slack-enterprise",
+        "category": "product-tools",
+        "headline": "Anthropic launches Claude Tag for Slack, writes 65 percent of internal code",
+        "importance": 82,
+        "selected": true
+      },
+      {
+        "canonicalKey": "tokenpocalypse-enterprise-ai-cost-crisis",
+        "category": "business",
+        "headline": "Enterprises scramble to control runaway AI token spending costs",
+        "importance": 78,
+        "selected": true
+      },
+      {
+        "canonicalKey": "gpt5-immunology-research-breakthrough",
+        "category": "research",
+        "headline": "GPT-5 Pro helps immunologist crack three-year-old T cell mystery",
+        "importance": 72,
+        "selected": true
+      },
+      {
+        "canonicalKey": "mistral-ocr-4-document-model",
+        "category": "open-source",
+        "headline": "Mistral releases OCR 4 model claiming 72 percent blind-test win rate",
+        "importance": 68,
+        "selected": true
+      },
+      {
+        "canonicalKey": "oracle-layoffs-debt-ai-infrastructure",
+        "category": "business",
+        "headline": "Oracle cuts 21,000 jobs to fund debt-driven AI data center expansion",
+        "importance": 65,
+        "selected": true
+      },
+      {
+        "canonicalKey": "ai-corporate-superpacs-local-elections",
+        "category": "policy-regulation",
+        "headline": "AI industry super PACs spend 27 million dollars on a single local election",
+        "importance": 62,
+        "selected": false,
+        "dropReason": "over_cap"
+      },
+      {
+        "canonicalKey": "midjourney-body-scanner-evidence-gaps",
+        "category": "culture",
+        "headline": "Skeptical reporting questions evidence behind Midjourney's medical body scanner",
+        "importance": 58,
+        "selected": false,
+        "dropReason": "over_cap"
+      }
+    ]
+  }
+}

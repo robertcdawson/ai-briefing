@@ -1,0 +1,86 @@
+AI Briefing — June 25, 2026
+Date: 2026-06-25
+
+Intro
+
+In a shocking turn of events, Anthropic has accused Alibaba of illicitly extracting capabilities from its Claude AI model. This development, revealed on June 25, 2026, raises serious questions about intellectual property security in the AI landscape, especially amid escalating geopolitical tensions.
+
+Today’s news highlights how the actions of major players can reshape the frontier AI space and affect the dynamics between U.S. and Chinese firms. Let’s delve into the implications.
+
+Policy & Regulation Watch: Anthropic accuses Alibaba of illicitly extracting Claude AI model capabilities
+
+Anthropic has publicly accused Alibaba of illegally extracting capabilities from its Claude AI model. This allegation, if substantiated, could represent a serious breach of intellectual property and security protocols in the AI field.
+
+For AI builders and researchers, this incident underscores the risks involved with closed models, particularly concerning how they could be reverse-engineered by well-resourced companies.
+
+The geopolitical implications are stark: accusations like this can strain relationships between U.S. and Chinese tech firms, potentially leading to stricter regulations and oversight.
+
+However, it's worth noting that these allegations are unverified, and Alibaba has not offered a substantive public response yet. The unfolding of this story could trigger significant shifts in AI policy and corporate strategy.
+
+Now, moving from contentious accusations to some exciting product updates.
+Source: https://www.reuters.com/world/china/anthropic-says-alibaba-illicitly-extracted-claude-ai-model-capabilities-2026-06-24/
+
+Product & Tool Watch: Google integrates computer-use capability directly into Gemini 3.5 Flash model
+
+In a notable upgrade, Google has integrated computer-use capabilities directly into its Gemini 3.5 Flash model. This means the model can now perform tasks such as controlling desktop applications and automating browser actions.
+
+For developers, this integration lowers the entry barrier for creating automation agents. The model’s OSWorld score of 78.4 indicates it competes closely with GPT-5.5, providing a viable option for those looking to streamline workflows.
+
+However, a caveat exists: Google's OSWorld benchmark scores are self-reported. The real-world performance in live environments may differ significantly from these controlled benchmarks, raising questions about reliability.
+
+As we shift from Google’s innovations, let’s look at how Figma is enhancing its design tools.
+Source: https://deepmind.google/blog/introducing-computer-use-in-gemini-3-5-flash/
+Source: https://the-decoder.com/google-bakes-computer-control-directly-into-gemini-3-5-flash-letting-the-model-see-and-operate-your-screen/
+
+Product & Tool Watch: Figma unveils AI-powered full-stack canvas with code layers and motion at Config 2026
+
+Figma has unveiled a groundbreaking AI-powered full-stack canvas during its Config 2026 event. This update introduces features such as code layers and AI-generated animations, significantly enhancing collaboration between designers and product engineers.
+
+These updates push Figma closer to a unified design and development environment. However, there's a strategic risk: Figma relies on third-party AI APIs, which could lead to vulnerability if these providers choose to compete directly.
+
+Although these enhancements are promising, they raise concerns about reliance on external technologies that could impact Figma's margins and competitive positioning.
+
+Next, let’s pivot to an intriguing development in the open-source sector.
+Source: https://www.theverge.com/tech/955831/figma-code-design-tools-config-2026-announcements
+Source: https://techcrunch.com/2026/06/24/figma-adds-code-layers-support-for-animations-more-ai-features-in-new-update/
+Source: https://stratechery.com/2026/an-interview-with-figma-ceo-dylan-field-about-design-and-ai/
+Source: https://the-decoder.com/figma-bets-on-human-judgment-at-config-2026-while-the-ai-powering-its-canvas-belongs-to-someone-else/
+
+Open Source Watch: Snowflake CEO finds GLM-5.2 nearly matches Claude Opus at one-fifth the cost
+
+Following up on our previous coverage, Snowflake's CEO has confirmed that the open-weights model GLM-5.2 performs nearly as well as Claude Opus 4.7 on coding tasks, but at just one-fifth of the cost.
+
+This revelation adds competitive pressure on Western AI labs, suggesting that cost-performance parity in AI models is approaching faster than expected.
+
+However, this benchmark only covers 103 coding tasks and GLM-5.2 uses nearly double the tokens per task. Thus, actual cost savings will vary depending on specific workloads and token efficiency.
+
+Now, let’s examine some surprising cultural trends regarding AI and employment.
+Source: https://the-decoder.com/snowflake-ceo-finds-glm-5-2-competitive-with-opus-4-7-at-a-fraction-of-the-cost/
+
+AI Culture Signal: New data shows engineering jobs are growing despite widespread AI displacement fears
+
+Recent data from SignalFire reveals a surprising trend: engineering jobs are actually growing, contradicting the widespread narrative that AI is displacing software engineering roles.
+
+This data is significant for builders and researchers, suggesting that careers in engineering might remain resilient despite fears of automation. It could alter how individuals plan their professional paths in the tech industry.
+
+Yet, a caveat exists: SignalFire's data reflects its own network, which may not represent the broader labor market accurately, potentially skewing the results.
+
+And finally, let’s address a controversial trend emerging from xAI.
+Source: https://techcrunch.com/2026/06/24/ai-was-supposed-to-kill-engineering-jobs-but-new-data-suggests-theyre-the-most-resilient/
+
+AI Culture Signal: Former xAI employees say adult content now accounts for majority of Grok traffic
+
+In a striking report, former employees of xAI claim that adult content now constitutes the majority of traffic for their Grok platform. If true, this could signal a major strategic divergence from other AI labs in the industry.
+
+This shift raises questions about how content policies influence user acquisition and brand positioning, potentially leading to increased regulatory scrutiny for xAI.
+
+However, these figures come from unverified sources and haven't been confirmed by xAI, leaving a cloud of uncertainty over the claim.
+
+As we wrap up, let’s reflect on what these stories reveal about the AI landscape.
+Source: https://the-decoder.com/grok-ai-is-reportedly-a-porn-platform-now-with-over-half-its-traffic-tied-to-adult-content/
+
+Outro
+
+Today's stories illustrate a rapidly evolving AI landscape, marked by fierce competition and unexpected trends. From accusations of intellectual property theft to surprising job growth in engineering, the implications are profound.
+
+As industries wrestle with the integration of AI, the way we navigate these developments will shape the future of work, technology, and regulation. Keep your eyes peeled; this story is far from over.

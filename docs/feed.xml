@@ -4,7 +4,7 @@
         <title>AI Briefing</title>
         <link>https://robertcdawson.github.io/ai-briefing/</link>
         <description>Daily AI news briefing — the stories that matter from the last 24 hours.</description>
-        <lastBuildDate>Wed, 24 Jun 2026 14:20:47 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 25 Jun 2026 14:21:23 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -23,6 +23,55 @@
         <podcast:guid>ea8709f4-3ba2-5b7e-bcdc-e409d84a6443</podcast:guid>
         <podcast:locked owner="manatees@gmail.com">yes</podcast:locked>
         <podcast:person role="host" group="cast">Robert Dawson</podcast:person>
+        <item>
+            <title><![CDATA[AI Briefing — June 25, 2026]]></title>
+            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-06-25.mp3</link>
+            <guid>ai-briefing-2026-06-25</guid>
+            <pubDate>Thu, 25 Jun 2026 14:21:23 GMT</pubDate>
+            <description><![CDATA[Top 6 AI stories for 2026-06-25:
+
+Chapters:
+00:00:00 Intro
+00:00:37 Anthropic accuses Alibaba of illicitly...
+00:01:40 Google integrates computer-use capability...
+00:02:38 Figma unveils AI-powered full-stack...
+00:03:30 Snowflake CEO finds GLM-5.2 nearly...
+00:04:20 New data shows engineering jobs are...
+00:05:08 Former xAI employees say adult content...
+00:05:50 Outro
+
+Sources:
+1. Policy & Regulation Watch: Anthropic accuses Alibaba of illicitly extracting Claude AI model capabilities
+Source: https://www.reuters.com/world/china/anthropic-says-alibaba-illicitly-extracted-claude-ai-model-capabilities-2026-06-24/
+2. Product & Tool Watch: Google integrates computer-use capability directly into Gemini 3.5 Flash model
+Source: https://deepmind.google/blog/introducing-computer-use-in-gemini-3-5-flash/
+Source: https://the-decoder.com/google-bakes-computer-control-directly-into-gemini-3-5-flash-letting-the-model-see-and-operate-your-screen/
+3. Product & Tool Watch: Figma unveils AI-powered full-stack canvas with code layers and motion at Config 2026
+Source: https://www.theverge.com/tech/955831/figma-code-design-tools-config-2026-announcements
+Source: https://techcrunch.com/2026/06/24/figma-adds-code-layers-support-for-animations-more-ai-features-in-new-update/
+Source: https://stratechery.com/2026/an-interview-with-figma-ceo-dylan-field-about-design-and-ai/
+Source: https://the-decoder.com/figma-bets-on-human-judgment-at-config-2026-while-the-ai-powering-its-canvas-belongs-to-someone-else/
+4. Open Source Watch: Snowflake CEO finds GLM-5.2 nearly matches Claude Opus at one-fifth the cost
+Source: https://the-decoder.com/snowflake-ceo-finds-glm-5-2-competitive-with-opus-4-7-at-a-fraction-of-the-cost/
+5. AI Culture Signal: New data shows engineering jobs are growing despite widespread AI displacement fears
+Source: https://techcrunch.com/2026/06/24/ai-was-supposed-to-kill-engineering-jobs-but-new-data-suggests-theyre-the-most-resilient/
+6. AI Culture Signal: Former xAI employees say adult content now accounts for majority of Grok traffic
+Source: https://the-decoder.com/grok-ai-is-reportedly-a-porn-platform-now-with-over-half-its-traffic-tied-to-adult-content/]]></description>
+            <enclosure length="9151319" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-25.mp3"/>
+                    <itunes:duration>381</itunes:duration>
+            <itunes:explicit>false</itunes:explicit>
+            <itunes:season>2026</itunes:season>
+            <itunes:episode>176</itunes:episode>
+            <itunes:episodeType>full</itunes:episodeType>
+            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-25.chapters.json" type="application/json+chapters"/>
+            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-25.transcript.txt" type="text/plain" language="en"/>
+            <podcast:soundbite startTime="37" duration="61">Anthropic accuses Alibaba of illicitly...</podcast:soundbite>
+            <podcast:soundbite startTime="100" duration="56">Google integrates computer-use capability...</podcast:soundbite>
+            <podcast:soundbite startTime="158" duration="51">Figma unveils AI-powered full-stack...</podcast:soundbite>
+            <podcast:soundbite startTime="210" duration="49">Snowflake CEO finds GLM-5.2 nearly...</podcast:soundbite>
+            <podcast:soundbite startTime="260" duration="46">New data shows engineering jobs are...</podcast:soundbite>
+            <podcast:soundbite startTime="308" duration="41">Former xAI employees say adult content...</podcast:soundbite>
+        </item>
         <item>
             <title><![CDATA[AI Briefing — June 24, 2026]]></title>
             <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-06-24.mp3</link>
@@ -1371,74 +1420,6 @@ Source: https://the-decoder.com/trump-pulls-ai-safety-order-after-last-minute-ca
             <podcast:soundbite startTime="25" duration="66">OpenAI Solves Erdős Conjecture</podcast:soundbite>
             <podcast:soundbite startTime="91" duration="58">Anthropic Approaches Profitability</podcast:soundbite>
             <podcast:soundbite startTime="149" duration="63">Trump Withdraws AI Safety Order</podcast:soundbite>
-        </item>
-        <item>
-            <title><![CDATA[AI Briefing — May 21, 2026]]></title>
-            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-05-21.mp3</link>
-            <guid>ai-briefing-2026-05-21</guid>
-            <pubDate>Thu, 21 May 2026 14:27:13 GMT</pubDate>
-            <description><![CDATA[Top 3 AI stories for 2026-05-21:
-
-Chapters:
-00:00:00 Intro
-00:00:32 OpenAI Disproves 80-Year-Old Conjecture
-00:01:37 Anthropic Commits $15B to SpaceX Colossus...
-00:02:31 OpenAI Files for Confidential IPO
-00:03:20 Outro
-
-Sources:
-1. Research Breakthrough: OpenAI Disproves 80-Year-Old Conjecture
-Source: https://news.ycombinator.com/item?id=48212493
-Source: https://techcrunch.com/2026/05/20/openai-claims-it-solved-an-80-year-old-math-problem-for-real-this-time/
-Source: https://openai.com/index/model-disproves-discrete-geometry-conjecture/
-2. AI Business Watch: Anthropic Commits $15B to SpaceX Colossus Compute
-Source: https://www.theverge.com/science/935229/spacex-anthropic-ipo-ai-capacity-deal-colossus
-Source: https://techcrunch.com/2026/05/20/anthropic-will-pay-xai-1-25-billion-per-month-for-compute/
-Source: https://news.ycombinator.com/item?id=48214017
-Source: https://techcrunch.com/2026/05/20/anthropic-says-its-about-to-have-its-first-profitable-quarter/
-Source: https://simonwillison.net/2026/May/20/spacex-s1/#atom-everything
-3. AI Business Watch: OpenAI Files for Confidential IPO
-Source: https://www.cnbc.com/2026/05/20/openai-ipo-filing.html
-Source: https://www.wsj.com/tech/ai/openai-is-preparing-to-file-for-an-ipo-very-soon-0ec95af5
-Source: https://techcrunch.com/2026/05/20/openai-barrels-toward-ipo-that-may-happen-in-september/]]></description>
-            <enclosure length="5425488" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-21.mp3"/>
-                    <itunes:duration>226</itunes:duration>
-            <itunes:explicit>false</itunes:explicit>
-            <itunes:season>2026</itunes:season>
-            <itunes:episode>141</itunes:episode>
-            <itunes:episodeType>full</itunes:episodeType>
-            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-21.chapters.json" type="application/json+chapters"/>
-            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-21.transcript.txt" type="text/plain" language="en"/>
-            <podcast:soundbite startTime="32" duration="65">OpenAI Disproves 80-Year-Old Conjecture</podcast:soundbite>
-            <podcast:soundbite startTime="97" duration="53">Anthropic Commits <guid>ai-briefing-2026-05-21</guid>
-            <pubDate>Thu, 21 May 2026 14:27:13 GMT</pubDate>
-            <description><![CDATA[Top 3 AI stories for 2026-05-21:
-
-Chapters:
-00:00:00 Intro
-00:00:32 OpenAI Disproves 80-Year-Old Conjecture
-00:01:37 Anthropic Commits $15B to SpaceX Colossus...
-00:02:31 OpenAI Files for Confidential IPO
-00:03:20 Outro
-
-Sources:
-1. Research Breakthrough: OpenAI Disproves 80-Year-Old Conjecture
-Source: https://news.ycombinator.com/item?id=48212493
-Source: https://techcrunch.com/2026/05/20/openai-claims-it-solved-an-80-year-old-math-problem-for-real-this-time/
-Source: https://openai.com/index/model-disproves-discrete-geometry-conjecture/
-2. AI Business Watch: Anthropic Commits $15B to SpaceX Colossus Compute
-Source: https://www.theverge.com/science/935229/spacex-anthropic-ipo-ai-capacity-deal-colossus
-Source: https://techcrunch.com/2026/05/20/anthropic-will-pay-xai-1-25-billion-per-month-for-compute/
-Source: https://news.ycombinator.com/item?id=48214017
-Source: https://techcrunch.com/2026/05/20/anthropic-says-its-about-to-have-its-first-profitable-quarter/
-Source: https://simonwillison.net/2026/May/20/spacex-s1/#atom-everything
-3. AI Business Watch: OpenAI Files for Confidential IPO
-Source: https://www.cnbc.com/2026/05/20/openai-ipo-filing.html
-Source: https://www.wsj.com/tech/ai/openai-is-preparing-to-file-for-an-ipo-very-soon-0ec95af5
-Source: https://techcrunch.com/2026/05/20/openai-barrels-toward-ipo-that-may-happen-in-september/]]></description>
-            <enclosure length="5425488" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-21.mp3"/>
-        5B to SpaceX Colossus...</podcast:soundbite>
-            <podcast:soundbite startTime="151" duration="49">OpenAI Files for Confidential IPO</podcast:soundbite>
         </item>
     </channel>
 </rss>

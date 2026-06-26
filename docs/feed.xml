@@ -4,7 +4,7 @@
         <title>AI Briefing</title>
         <link>https://robertcdawson.github.io/ai-briefing/</link>
         <description>Daily AI news briefing — the stories that matter from the last 24 hours.</description>
-        <lastBuildDate>Thu, 25 Jun 2026 14:21:23 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 26 Jun 2026 14:19:57 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -23,6 +23,53 @@
         <podcast:guid>ea8709f4-3ba2-5b7e-bcdc-e409d84a6443</podcast:guid>
         <podcast:locked owner="manatees@gmail.com">yes</podcast:locked>
         <podcast:person role="host" group="cast">Robert Dawson</podcast:person>
+        <item>
+            <title><![CDATA[AI Briefing — June 26, 2026]]></title>
+            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-06-26.mp3</link>
+            <guid>ai-briefing-2026-06-26</guid>
+            <pubDate>Fri, 26 Jun 2026 14:19:57 GMT</pubDate>
+            <description><![CDATA[Top 6 AI stories for 2026-06-26:
+
+Chapters:
+00:00:00 Intro
+00:00:34 Trump Administration Requires...
+00:02:22 Anthropic's Mythos Export-Control Crisis...
+00:03:38 Anthropic Says It No Longer Needs Junior...
+00:04:59 Anthropic Demands Punishment for...
+00:06:31 OpenAI IPO May Slip to 2027 as Altman...
+00:07:39 Patronus AI Raises $50M to Build...
+00:08:39 Outro
+
+Sources:
+1. Top Story: Trump Administration Requires Customer-by-Customer Approval for GPT-5.6 Rollout
+Source: https://www.theverge.com/ai-artificial-intelligence/957372/openai-will-delay-gpt-5-6-after-trump-administration-request
+Source: https://techcrunch.com/2026/06/25/the-white-house-is-asking-openai-to-slow-roll-the-release-of-its-new-model-over-safety-concerns/
+Source: https://the-decoder.com/openais-gpt-5-6-rollout-now-requires-us-government-approval-on-a-customer-by-customer-basis/
+2. Policy & Regulation Watch: Anthropic's Mythos Export-Control Crisis Enters Third Week with No Resolution
+Source: https://www.theverge.com/ai-artificial-intelligence/957327/anthropic-mythos-fable-ai-trump-administration-negotiations
+3. AI Culture Signal: Anthropic Says It No Longer Needs Junior Engineers and Warns of Broader Economic Shock
+Source: https://the-decoder.com/anthropic-doesnt-need-junior-engineers-anymore-thanks-to-ai-and-warns-of-an-economic-shock-when-other-industries-follow/
+4. Policy & Regulation Watch: Anthropic Demands Punishment for Alibaba's Alleged 28.8 Million-Exchange Claude Cloning Attack
+Source: https://arstechnica.com/tech-policy/2026/06/anthropic-claims-alibaba-defied-trump-to-attack-claude-and-steal-capabilities/
+5. AI Business Watch: OpenAI IPO May Slip to 2027 as Altman Holds Out for $1 Trillion Valuation
+Source: https://the-decoder.com/altman-wont-go-public-for-less-than-1-trillion-so-openais-ipo-may-slip-to-2027/
+6. Product & Tool Watch: Patronus AI Raises $50M to Build Synthetic Worlds That Stress-Test AI Agents
+Source: https://techcrunch.com/2026/06/25/patronus-ai-lands-50m-to-build-digital-worlds-that-stress-test-ai-agents/]]></description>
+            <enclosure length="13461516" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-26.mp3"/>
+                    <itunes:duration>561</itunes:duration>
+            <itunes:explicit>false</itunes:explicit>
+            <itunes:season>2026</itunes:season>
+            <itunes:episode>177</itunes:episode>
+            <itunes:episodeType>full</itunes:episodeType>
+            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-26.chapters.json" type="application/json+chapters"/>
+            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-26.transcript.txt" type="text/plain" language="en"/>
+            <podcast:soundbite startTime="34" duration="107">Trump Administration Requires...</podcast:soundbite>
+            <podcast:soundbite startTime="142" duration="74">Anthropic&apos;s Mythos Export-Control Crisis...</podcast:soundbite>
+            <podcast:soundbite startTime="218" duration="79">Anthropic Says It No Longer Needs Junior...</podcast:soundbite>
+            <podcast:soundbite startTime="299" duration="90">Anthropic Demands Punishment for...</podcast:soundbite>
+            <podcast:soundbite startTime="391" duration="67">OpenAI IPO May Slip to 2027 as Altman...</podcast:soundbite>
+            <podcast:soundbite startTime="459" duration="58">Patronus AI Raises $50M to Build...</podcast:soundbite>
+        </item>
         <item>
             <title><![CDATA[AI Briefing — June 25, 2026]]></title>
             <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-06-25.mp3</link>
@@ -1385,41 +1432,6 @@ Source: https://arstechnica.com/tech-policy/2026/05/trump-canceled-ai-safety-tes
 Source: https://the-decoder.com/openai-burned-through-1-22-per-dollar-earned-even-after-stripping-out-stock-based-compensation/]]></description>
             <enclosure length="5442197" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-23.mp3"/>
         .22 for Every Dollar...</podcast:soundbite>
-        </item>
-        <item>
-            <title><![CDATA[AI Briefing — May 22, 2026]]></title>
-            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-05-22.mp3</link>
-            <guid>ai-briefing-2026-05-22</guid>
-            <pubDate>Fri, 22 May 2026 14:19:52 GMT</pubDate>
-            <description><![CDATA[Top 3 AI stories for 2026-05-22:
-
-Chapters:
-00:00:00 Intro
-00:00:25 OpenAI Solves Erdős Conjecture
-00:01:31 Anthropic Approaches Profitability
-00:02:29 Trump Withdraws AI Safety Order
-00:03:32 Outro
-
-Sources:
-1. Research Breakthrough: OpenAI Solves Erdős Conjecture
-Source: https://the-decoder.com/openai-shifts-the-boundary-of-automated-reasoning-with-a-milestone-in-ai-mathematics-that-experts-are-now-unpacking/
-2. AI Business Watch: Anthropic Approaches Profitability
-Source: https://the-decoder.com/anthropic-is-about-to-become-the-first-profitable-ai-lab/
-Source: https://www.technologyreview.com/2026/05/21/1137735/anthropics-code-with-claude-showed-off-codings-future-whether-you-like-it-or-not/
-3. Policy & Regulation Watch: Trump Withdraws AI Safety Order
-Source: https://techcrunch.com/2026/05/21/trump-delays-ai-security-executive-order-i-dont-want-to-get-in-the-way-of-that-leading/
-Source: https://the-decoder.com/trump-pulls-ai-safety-order-after-last-minute-calls-from-musk-zuckerberg-and-sacks/]]></description>
-            <enclosure length="5760732" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-22.mp3"/>
-                    <itunes:duration>240</itunes:duration>
-            <itunes:explicit>false</itunes:explicit>
-            <itunes:season>2026</itunes:season>
-            <itunes:episode>142</itunes:episode>
-            <itunes:episodeType>full</itunes:episodeType>
-            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-22.chapters.json" type="application/json+chapters"/>
-            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-22.transcript.txt" type="text/plain" language="en"/>
-            <podcast:soundbite startTime="25" duration="66">OpenAI Solves Erdős Conjecture</podcast:soundbite>
-            <podcast:soundbite startTime="91" duration="58">Anthropic Approaches Profitability</podcast:soundbite>
-            <podcast:soundbite startTime="149" duration="63">Trump Withdraws AI Safety Order</podcast:soundbite>
         </item>
     </channel>
 </rss>

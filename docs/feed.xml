@@ -4,7 +4,7 @@
         <title>AI Briefing</title>
         <link>https://robertcdawson.github.io/ai-briefing/</link>
         <description>Daily AI news briefing — the stories that matter from the last 24 hours.</description>
-        <lastBuildDate>Fri, 26 Jun 2026 14:19:57 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 29 Jun 2026 14:53:34 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -23,6 +23,52 @@
         <podcast:guid>ea8709f4-3ba2-5b7e-bcdc-e409d84a6443</podcast:guid>
         <podcast:locked owner="manatees@gmail.com">yes</podcast:locked>
         <podcast:person role="host" group="cast">Robert Dawson</podcast:person>
+        <item>
+            <title><![CDATA[AI Briefing — June 29, 2026]]></title>
+            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-06-29.mp3</link>
+            <guid>ai-briefing-2026-06-29</guid>
+            <pubDate>Mon, 29 Jun 2026 14:53:34 GMT</pubDate>
+            <description><![CDATA[Top 6 AI stories for 2026-06-29:
+
+Chapters:
+00:00:00 Intro
+00:00:32 GLM-5.2 beats Claude in cybersecurity...
+00:02:31 Claude Code silently executes hidden...
+00:04:12 US military AI targeting system missed...
+00:05:56 Ford rehires veteran engineers after...
+00:07:26 Samsung and SK Hynix commit $590 billion...
+00:08:54 Brown University professor exposes mass...
+00:10:07 Outro
+
+Sources:
+1. Top Story: GLM-5.2 beats Claude in cybersecurity benchmarks, alarming US officials
+Source: https://semgrep.dev/blog/2026/we-have-mythos-at-home-glm-52-beats-claude-in-our-cyber-benchmarks/
+Source: https://www.theverge.com/ai-artificial-intelligence/958804/chinas-z-ai-glm-52-mythos-cybersecurity
+2. Product & Tool Watch: Claude Code silently executes hidden malware from compromised GitHub repos
+Source: https://the-decoder.com/claude-code-runs-a-github-repos-hidden-malware-without-verification-giving-attackers-full-control/
+3. Policy & Regulation Watch: US military AI targeting system missed school designation before missile strike
+Source: https://the-decoder.com/the-us-military-used-ai-to-pick-thousands-of-targets-but-missed-a-note-saying-one-was-a-school/
+4. AI Culture Signal: Ford rehires veteran engineers after AI-driven quality initiative falls short
+Source: https://techcrunch.com/2026/06/28/ford-rehires-gray-beard-engineers-after-ai-falls-short/
+5. AI Business Watch: Samsung and SK Hynix commit $590 billion to chips as AI memory prices surge
+Source: https://the-decoder.com/samsung-and-sk-hynix-plan-590-billion-chip-investment-as-ai-demand-sends-memory-prices-soaring/
+6. AI Culture Signal: Brown University professor exposes mass AI cheating on a single exam
+Source: https://english.elpais.com/education/2026-06-28/ai-fraud-at-brown-university-academic-integrity-is-at-risk.html]]></description>
+            <enclosure length="15861148" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-29.mp3"/>
+                    <itunes:duration>661</itunes:duration>
+            <itunes:explicit>false</itunes:explicit>
+            <itunes:season>2026</itunes:season>
+            <itunes:episode>180</itunes:episode>
+            <itunes:episodeType>full</itunes:episodeType>
+            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-29.chapters.json" type="application/json+chapters"/>
+            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-29.transcript.txt" type="text/plain" language="en"/>
+            <podcast:soundbite startTime="32" duration="117">GLM-5.2 beats Claude in cybersecurity...</podcast:soundbite>
+            <podcast:soundbite startTime="151" duration="99">Claude Code silently executes hidden...</podcast:soundbite>
+            <podcast:soundbite startTime="252" duration="102">US military AI targeting system missed...</podcast:soundbite>
+            <podcast:soundbite startTime="356" duration="89">Ford rehires veteran engineers after...</podcast:soundbite>
+            <podcast:soundbite startTime="446" duration="86">Samsung and SK Hynix commit $590 billion...</podcast:soundbite>
+            <podcast:soundbite startTime="534" duration="71">Brown University professor exposes mass...</podcast:soundbite>
+        </item>
         <item>
             <title><![CDATA[AI Briefing — June 26, 2026]]></title>
             <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-06-26.mp3</link>
@@ -1380,58 +1426,6 @@ Source: https://the-decoder.com/anthropic-may-keep-supplying-claude-to-the-nsa-d
             <podcast:soundbite startTime="26" duration="69">DeepSeek Makes 75% Discount Permanent</podcast:soundbite>
             <podcast:soundbite startTime="94" duration="56">Claude Code Discovers AI Scaling Algorithms</podcast:soundbite>
             <podcast:soundbite startTime="151" duration="49">Anthropic to Continue Supplying Claude to NSA</podcast:soundbite>
-        </item>
-        <item>
-            <title><![CDATA[AI Briefing — May 23, 2026]]></title>
-            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-05-23.mp3</link>
-            <guid>ai-briefing-2026-05-23</guid>
-            <pubDate>Sat, 23 May 2026 14:08:18 GMT</pubDate>
-            <description><![CDATA[Top 3 AI stories for 2026-05-23:
-
-Chapters:
-00:00:00 Intro
-00:00:35 Claude Mythos Finds Bugs Faster Than...
-00:01:30 Trump Cancels AI Safety Testing Executive...
-00:02:26 OpenAI Loses $1.22 for Every Dollar...
-00:03:19 Outro
-
-Sources:
-1. Research Breakthrough: Claude Mythos Finds Bugs Faster Than Developers Can Patch Them
-Source: https://the-decoder.com/anthropic-warns-claude-mythos-preview-finds-bugs-faster-than-developers-can-patch-them/
-2. Policy & Regulation Watch: Trump Cancels AI Safety Testing Executive Order After Tech CEO Snub
-Source: https://arstechnica.com/tech-policy/2026/05/trump-canceled-ai-safety-testing-eo-after-snub-from-tech-ceos/
-3. AI Business Watch: OpenAI Loses $1.22 for Every Dollar Earned Despite Record Revenue
-Source: https://the-decoder.com/openai-burned-through-1-22-per-dollar-earned-even-after-stripping-out-stock-based-compensation/]]></description>
-            <enclosure length="5442197" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-23.mp3"/>
-                    <itunes:duration>227</itunes:duration>
-            <itunes:explicit>false</itunes:explicit>
-            <itunes:season>2026</itunes:season>
-            <itunes:episode>143</itunes:episode>
-            <itunes:episodeType>full</itunes:episodeType>
-            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-23.chapters.json" type="application/json+chapters"/>
-            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-23.transcript.txt" type="text/plain" language="en"/>
-            <podcast:soundbite startTime="35" duration="55">Claude Mythos Finds Bugs Faster Than...</podcast:soundbite>
-            <podcast:soundbite startTime="90" duration="56">Trump Cancels AI Safety Testing Executive...</podcast:soundbite>
-            <podcast:soundbite startTime="146" duration="53">OpenAI Loses <guid>ai-briefing-2026-05-23</guid>
-            <pubDate>Sat, 23 May 2026 14:08:18 GMT</pubDate>
-            <description><![CDATA[Top 3 AI stories for 2026-05-23:
-
-Chapters:
-00:00:00 Intro
-00:00:35 Claude Mythos Finds Bugs Faster Than...
-00:01:30 Trump Cancels AI Safety Testing Executive...
-00:02:26 OpenAI Loses $1.22 for Every Dollar...
-00:03:19 Outro
-
-Sources:
-1. Research Breakthrough: Claude Mythos Finds Bugs Faster Than Developers Can Patch Them
-Source: https://the-decoder.com/anthropic-warns-claude-mythos-preview-finds-bugs-faster-than-developers-can-patch-them/
-2. Policy & Regulation Watch: Trump Cancels AI Safety Testing Executive Order After Tech CEO Snub
-Source: https://arstechnica.com/tech-policy/2026/05/trump-canceled-ai-safety-testing-eo-after-snub-from-tech-ceos/
-3. AI Business Watch: OpenAI Loses $1.22 for Every Dollar Earned Despite Record Revenue
-Source: https://the-decoder.com/openai-burned-through-1-22-per-dollar-earned-even-after-stripping-out-stock-based-compensation/]]></description>
-            <enclosure length="5442197" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-23.mp3"/>
-        .22 for Every Dollar...</podcast:soundbite>
         </item>
     </channel>
 </rss>

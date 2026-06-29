@@ -1,0 +1,46 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — June 29, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 32,
+      "title": "Intro"
+    },
+    {
+      "startTime": 32,
+      "endTime": 151,
+      "title": "GLM-5.2 beats Claude in cybersecurity..."
+    },
+    {
+      "startTime": 151,
+      "endTime": 252,
+      "title": "Claude Code silently executes hidden..."
+    },
+    {
+      "startTime": 252,
+      "endTime": 356,
+      "title": "US military AI targeting system missed..."
+    },
+    {
+      "startTime": 356,
+      "endTime": 446,
+      "title": "Ford rehires veteran engineers after..."
+    },
+    {
+      "startTime": 446,
+      "endTime": 534,
+      "title": "Samsung and SK Hynix commit $590 billion..."
+    },
+    {
+      "startTime": 534,
+      "endTime": 607,
+      "title": "Brown University professor exposes mass..."
+    },
+    {
+      "startTime": 607,
+      "endTime": 661,
+      "title": "Outro"
+    }
+  ]
+}

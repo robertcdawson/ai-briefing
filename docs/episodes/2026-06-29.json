@@ -1,0 +1,203 @@
+{
+  "date": "2026-06-29",
+  "title": "AI Briefing — June 29, 2026",
+  "description": "Top 6 AI stories for 2026-06-29:\n\nChapters:\n00:00:00 Intro\n00:00:32 GLM-5.2 beats Claude in cybersecurity...\n00:02:31 Claude Code silently executes hidden...\n00:04:12 US military AI targeting system missed...\n00:05:56 Ford rehires veteran engineers after...\n00:07:26 Samsung and SK Hynix commit $590 billion...\n00:08:54 Brown University professor exposes mass...\n00:10:07 Outro\n\nSources:\n1. Top Story: GLM-5.2 beats Claude in cybersecurity benchmarks, alarming US officials\nSource: https://semgrep.dev/blog/2026/we-have-mythos-at-home-glm-52-beats-claude-in-our-cyber-benchmarks/\nSource: https://www.theverge.com/ai-artificial-intelligence/958804/chinas-z-ai-glm-52-mythos-cybersecurity\n2. Product & Tool Watch: Claude Code silently executes hidden malware from compromised GitHub repos\nSource: https://the-decoder.com/claude-code-runs-a-github-repos-hidden-malware-without-verification-giving-attackers-full-control/\n3. Policy & Regulation Watch: US military AI targeting system missed school designation before missile strike\nSource: https://the-decoder.com/the-us-military-used-ai-to-pick-thousands-of-targets-but-missed-a-note-saying-one-was-a-school/\n4. AI Culture Signal: Ford rehires veteran engineers after AI-driven quality initiative falls short\nSource: https://techcrunch.com/2026/06/28/ford-rehires-gray-beard-engineers-after-ai-falls-short/\n5. AI Business Watch: Samsung and SK Hynix commit $590 billion to chips as AI memory prices surge\nSource: https://the-decoder.com/samsung-and-sk-hynix-plan-590-billion-chip-investment-as-ai-demand-sends-memory-prices-soaring/\n6. AI Culture Signal: Brown University professor exposes mass AI cheating on a single exam\nSource: https://english.elpais.com/education/2026-06-28/ai-fraud-at-brown-university-academic-integrity-is-at-risk.html",
+  "durationSeconds": 661,
+  "byteLength": 15861148,
+  "pubDate": "2026-06-29T14:53:34.623Z",
+  "season": 2026,
+  "episodeNumber": 180,
+  "chaptersFilename": "2026-06-29.chapters.json",
+  "transcriptFilename": "2026-06-29.transcript.txt",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 32,
+      "title": "Intro"
+    },
+    {
+      "startTime": 32,
+      "endTime": 151,
+      "title": "GLM-5.2 beats Claude in cybersecurity..."
+    },
+    {
+      "startTime": 151,
+      "endTime": 252,
+      "title": "Claude Code silently executes hidden..."
+    },
+    {
+      "startTime": 252,
+      "endTime": 356,
+      "title": "US military AI targeting system missed..."
+    },
+    {
+      "startTime": 356,
+      "endTime": 446,
+      "title": "Ford rehires veteran engineers after..."
+    },
+    {
+      "startTime": 446,
+      "endTime": 534,
+      "title": "Samsung and SK Hynix commit $590 billion..."
+    },
+    {
+      "startTime": 534,
+      "endTime": 607,
+      "title": "Brown University professor exposes mass..."
+    },
+    {
+      "startTime": 607,
+      "endTime": 661,
+      "title": "Outro"
+    }
+  ],
+  "soundbites": [
+    {
+      "startTime": 32,
+      "duration": 117,
+      "title": "GLM-5.2 beats Claude in cybersecurity..."
+    },
+    {
+      "startTime": 151,
+      "duration": 99,
+      "title": "Claude Code silently executes hidden..."
+    },
+    {
+      "startTime": 252,
+      "duration": 102,
+      "title": "US military AI targeting system missed..."
+    },
+    {
+      "startTime": 356,
+      "duration": 89,
+      "title": "Ford rehires veteran engineers after..."
+    },
+    {
+      "startTime": 446,
+      "duration": 86,
+      "title": "Samsung and SK Hynix commit $590 billion..."
+    },
+    {
+      "startTime": 534,
+      "duration": 71,
+      "title": "Brown University professor exposes mass..."
+    }
+  ],
+  "curation": [
+    {
+      "canonicalKey": "glm52-cybersecurity-mythos-benchmark",
+      "headline": "GLM-5.2 beats Claude in cybersecurity benchmarks, alarming US officials",
+      "whyItMatters": "Semgrep's independent benchmark showing GLM-5.2 outperforming Claude on bug-finding tasks is a credible third-party data point — not just vendor claims — suggesting China has closed a meaningful capability gap in security-relevant AI. This has direct implications for export control policy and for security teams evaluating open-weight models.",
+      "caveat": "Cybersecurity benchmarks are narrow and task-specific; GLM-5.2 still lags on general tasks, so extrapolating to overall frontier parity would be premature.",
+      "importance": 88,
+      "category": "research"
+    },
+    {
+      "canonicalKey": "claude-code-malware-supply-chain-attack",
+      "headline": "Claude Code silently executes hidden malware from compromised GitHub repos",
+      "whyItMatters": "Mozilla's 0DIN researchers demonstrated a supply-chain attack where malicious code loaded at runtime via DNS — invisible to static scanners and to Claude Code itself — gives attackers full machine control, exposing a critical trust boundary gap in AI coding agents that developers are actively using in production.",
+      "caveat": "The attack requires a compromised dependency repo and attacker-controlled DNS infrastructure, so it is not trivially exploitable at scale, but the disclosure has not yet been matched by a public Anthropic patch or mitigation.",
+      "importance": 85,
+      "category": "product-tools"
+    },
+    {
+      "canonicalKey": "us-military-ai-targeting-school-strike",
+      "headline": "US military AI targeting system missed school designation before missile strike",
+      "whyItMatters": "A post-strike probe revealing that AI-assisted targeting processed thousands of targets but failed to surface a critical human annotation about a school is a landmark real-world failure case for autonomous military AI systems, with significant implications for accountability frameworks and AI-in-the-loop doctrine.",
+      "caveat": "The Decoder's account does not specify which AI system or vendor was involved, and the full investigation findings have not been publicly released.",
+      "importance": 82,
+      "category": "policy-regulation"
+    },
+    {
+      "canonicalKey": "ford-rehires-engineers-ai-falls-short",
+      "headline": "Ford rehires veteran engineers after AI-driven quality initiative falls short",
+      "whyItMatters": "Ford's reversal is a concrete, named-company data point that AI cannot yet replace deep domain expertise in complex manufacturing — directly relevant to the ongoing debate about AI's near-term displacement of experienced workers and the limits of current coding and process-automation tools.",
+      "caveat": "TechCrunch's coverage is brief and does not specify which AI tools were used, how broadly they were deployed, or whether the rehires are permanent, making it hard to generalize.",
+      "importance": 78,
+      "category": "culture"
+    },
+    {
+      "canonicalKey": "samsung-skhynix-590b-chip-investment",
+      "headline": "Samsung and SK Hynix commit $590 billion to chips as AI memory prices surge",
+      "whyItMatters": "A $590 billion coordinated investment by the two companies controlling 80% of global HBM supply signals that AI infrastructure buildout is entering a new capital-intensity phase, with memory prices potentially rising 50% per quarter through 2027 — a cost shock that will ripple through every AI product and training budget.",
+      "caveat": "Price forecasts from Jefferies are analyst projections, not confirmed contracts, and geopolitical disruptions or demand softening could materially alter the trajectory.",
+      "importance": 75,
+      "category": "business"
+    },
+    {
+      "canonicalKey": "brown-university-ai-exam-fraud",
+      "headline": "Brown University professor exposes mass AI cheating on a single exam",
+      "whyItMatters": "A documented, named-institution case of widespread AI-assisted academic fraud — generating 486 HN points and 634 comments — crystallizes the systemic challenge AI poses to assessment integrity in higher education, with direct implications for how institutions and employers will need to rethink credentialing.",
+      "caveat": "The article is based on one professor's account at one institution; the scale and detection methodology have not been independently verified.",
+      "importance": 70,
+      "category": "culture"
+    }
+  ],
+  "curationReport": {
+    "threshold": 45,
+    "maxStories": 6,
+    "total": 8,
+    "selectedCount": 6,
+    "droppedCount": 2,
+    "clusters": [
+      {
+        "canonicalKey": "glm52-cybersecurity-mythos-benchmark",
+        "category": "research",
+        "headline": "GLM-5.2 beats Claude in cybersecurity benchmarks, alarming US officials",
+        "importance": 88,
+        "selected": true
+      },
+      {
+        "canonicalKey": "claude-code-malware-supply-chain-attack",
+        "category": "product-tools",
+        "headline": "Claude Code silently executes hidden malware from compromised GitHub repos",
+        "importance": 85,
+        "selected": true
+      },
+      {
+        "canonicalKey": "us-military-ai-targeting-school-strike",
+        "category": "policy-regulation",
+        "headline": "US military AI targeting system missed school designation before missile strike",
+        "importance": 82,
+        "selected": true
+      },
+      {
+        "canonicalKey": "ford-rehires-engineers-ai-falls-short",
+        "category": "culture",
+        "headline": "Ford rehires veteran engineers after AI-driven quality initiative falls short",
+        "importance": 78,
+        "selected": true
+      },
+      {
+        "canonicalKey": "samsung-skhynix-590b-chip-investment",
+        "category": "business",
+        "headline": "Samsung and SK Hynix commit $590 billion to chips as AI memory prices surge",
+        "importance": 75,
+        "selected": true
+      },
+      {
+        "canonicalKey": "brown-university-ai-exam-fraud",
+        "category": "culture",
+        "headline": "Brown University professor exposes mass AI cheating on a single exam",
+        "importance": 70,
+        "selected": true
+      },
+      {
+        "canonicalKey": "ai-boom-financial-crash-warning",
+        "category": "policy-regulation",
+        "headline": "Central bankers warn AI investment boom risks triggering a global financial crash",
+        "importance": 68,
+        "selected": false,
+        "dropReason": "over_cap"
+      },
+      {
+        "canonicalKey": "claude-code-mri-second-opinion",
+        "category": "culture",
+        "headline": "Developer uses Claude Code to analyze personal MRI, sparks wide debate",
+        "importance": 65,
+        "selected": false,
+        "dropReason": "over_cap"
+      }
+    ]
+  }
+}

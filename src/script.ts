@@ -196,6 +196,9 @@ export const BANNED_SCRIPT_PHRASES = [
   "that's a wrap",
 ] as const;
 
+const DISCOURAGED_SPLIT_CONTRAST_PATTERN =
+  /\b(?:that|this|it)(?:(?:\s+is|\s*['\u2019]s)\s+not|\s+isn(?:'|\u2019)t)\b[^.!?]{1,180}[.!?]\s+(?:it|that|this)(?:\s+is|\s*['\u2019]s)\b/iu;
+
 function buildSystemPromptBase(allowAudioTags: boolean): string {
   const chunkPurityRule = allowAudioTags
     ? "- Do not include speaker labels, stage directions, reactions, fake laughter, or audio cues. The ONLY bracketed text allowed is the approved inline delivery tags described below."
@@ -241,6 +244,7 @@ Voice rules:
 - Use light, dry humor sparingly (about one quick line per segment max) when it helps recall, never at the expense of accuracy or clarity.
 - At most ONE analogy or metaphor in the entire episode, and only when it genuinely makes a hard idea click. Do not reach for one every segment.
 - Avoid recycled filler and verbal tics. Never use stock phrases like "This is a big deal.", and never open a chunk with analogy crutches like "Think of it as" or "It's like". Find fresh phrasing every time.
+- Avoid split contrast reversals such as "That's not X. It's Y.", "This isn't X. It's Y.", or "It is not X. It is Y." If a contrast is useful, make it one precise sentence or choose a different rhetorical turn.
 - BANNED PHRASES. Never say any of these, in any tense or close variation: ${BANNED_SCRIPT_PHRASES.map((phrase) => `"${phrase}"`).join(", ")}. They are worn-out podcast filler; find specific, persona-flavored language instead.
 - The sign-off must be one short line that could only belong to today's persona, different every episode. Never a stock farewell.
 - Read-aloud-friendly: short sentences, no parenthetical asides, no stage-direction punctuation; avoid em-dashes that force awkward pauses.
@@ -619,6 +623,14 @@ function validateNarrationChunks(label: string, chunks: unknown): asserts chunks
     if (typeof chunk !== "string" || chunk.trim().length === 0) {
       throw new Error(`script ${chunkLabel} must be a non-empty string`);
     }
+  }
+
+  const readAloudText = chunks.join(" ");
+  if (DISCOURAGED_SPLIT_CONTRAST_PATTERN.test(readAloudText)) {
+    throw new Error(
+      `script ${label} uses discouraged split contrast phrasing; ` +
+        `rewrite contrasts without "That's not X. It's Y." construction`,
+    );
   }
 }
 

@@ -189,6 +189,18 @@ test("buildSystemPrompt bans worn-out podcast filler and demands fresh sign-offs
   assert.match(prompt, /Never a stock farewell/);
 });
 
+test("buildSystemPrompt discourages split contrast reversals", () => {
+  const persona = DAILY_PERSONAS[0];
+  assert.ok(persona, "at least one daily persona must be configured");
+
+  const prompt = buildSystemPrompt(persona);
+
+  assert.match(prompt, /Avoid split contrast reversals/);
+  assert.match(prompt, /That's not X\. It's Y\./);
+  assert.match(prompt, /This isn't X\. It's Y\./);
+  assert.match(prompt, /one precise sentence or choose a different rhetorical turn/);
+});
+
 test("buildSystemPrompt demands concrete specifics and a persona running angle", () => {
   const persona = DAILY_PERSONAS[0];
   assert.ok(persona, "at least one daily persona must be configured");
@@ -394,6 +406,38 @@ test("validateScriptResponse preserves segment count and source URLs", () => {
         clusters,
       ),
     /title must be a non-empty string/,
+  );
+});
+
+test("validateScriptResponse rejects split contrast phrasing across read-aloud chunks", () => {
+  const clusters: StoryCluster[] = [
+    {
+      canonicalKey: "test-story",
+      category: "product-tools",
+      headline: "A model ships a useful feature",
+      whyItMatters: "Builders get a simpler path to production.",
+      caveat: "Benchmarks are still early.",
+      sources: [{ publisher: "Example News", url: "https://example.com/model-feature" }],
+    },
+  ];
+
+  assert.throws(
+    () =>
+      validateScriptResponse(
+        {
+          intro: ["Here is the setup.", "Here is why it matters."],
+          segments: [
+            {
+              title: "Top Story: A model ships a useful feature",
+              chunks: ["That's not just a benchmark.", "It's a procurement signal."],
+              sourceUrls: ["https://example.com/model-feature"],
+            },
+          ],
+          outro: ["The pattern is practical.", "Keep the signal clean."],
+        },
+        clusters,
+      ),
+    /discouraged split contrast phrasing/,
   );
 });
 

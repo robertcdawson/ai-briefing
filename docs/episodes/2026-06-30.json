@@ -1,0 +1,203 @@
+{
+  "date": "2026-06-30",
+  "title": "AI Briefing — June 30, 2026",
+  "description": "Top 6 AI stories for 2026-06-30:\n\nChapters:\n00:00:00 Intro\n00:00:40 DeepSeek's DSpark framework boosts AI...\n00:02:16 Deloitte internal deck warns AI agents...\n00:03:56 Amazon engineers distill Anthropic models...\n00:05:31 Meta bans Claude Code and Codex...\n00:06:59 Tidal demonetizes all 100-percent...\n00:08:32 New report finds high-intensity AI...\n00:09:57 Outro\n\nSources:\n1. Research Breakthrough: DeepSeek's DSpark framework boosts AI inference speed up to 85 percent\nSource: https://the-decoder.com/deepseeks-dspark-boosts-ai-speed-by-up-to-85-percent-a-strategic-win-under-tightening-us-export-controls/\n2. AI Culture Signal: Deloitte internal deck warns AI agents will kill the billable hour by 2035\nSource: https://the-decoder.com/deloitte-tells-its-own-consultants-ai-is-coming-for-the-billable-hour/\n3. AI Business Watch: Amazon engineers distill Anthropic models internally to dodge rising token costs\nSource: https://the-decoder.com/amazon-engineers-are-reportedly-distilling-anthropic-models-to-cut-costs-before-new-token-based-pricing-kicks-in/\n4. AI Business Watch: Meta bans Claude Code and Codex internally to protect its own training data\nSource: https://the-decoder.com/meta-restricts-use-of-claude-code-and-codex-to-keep-rival-ai-out-of-its-training-data/\n5. Policy & Regulation Watch: Tidal demonetizes all 100-percent AI-generated music starting immediately\nSource: https://www.theverge.com/tech/959211/tidal-ai-music-policy-demonetizingdetect-label\nSource: https://techcrunch.com/2026/06/29/tidal-cracks-down-on-ai-music-by-cutting-off-monetization/\nSource: https://www.404media.co/tidal-says-it-wont-pay-royalties-for-ai-generated-music/\n6. AI Culture Signal: New report finds high-intensity AI adopters grew headcount 10 percent including junior roles\nSource: https://techcrunch.com/2026/06/29/the-ai-jobs-debate-just-got-messier/",
+  "durationSeconds": 651,
+  "byteLength": 15623824,
+  "pubDate": "2026-06-30T14:20:25.674Z",
+  "season": 2026,
+  "episodeNumber": 181,
+  "chaptersFilename": "2026-06-30.chapters.json",
+  "transcriptFilename": "2026-06-30.transcript.txt",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 40,
+      "title": "Intro"
+    },
+    {
+      "startTime": 40,
+      "endTime": 136,
+      "title": "DeepSeek's DSpark framework boosts AI..."
+    },
+    {
+      "startTime": 136,
+      "endTime": 236,
+      "title": "Deloitte internal deck warns AI agents..."
+    },
+    {
+      "startTime": 236,
+      "endTime": 331,
+      "title": "Amazon engineers distill Anthropic models..."
+    },
+    {
+      "startTime": 331,
+      "endTime": 419,
+      "title": "Meta bans Claude Code and Codex..."
+    },
+    {
+      "startTime": 419,
+      "endTime": 512,
+      "title": "Tidal demonetizes all 100-percent..."
+    },
+    {
+      "startTime": 512,
+      "endTime": 597,
+      "title": "New report finds high-intensity AI..."
+    },
+    {
+      "startTime": 597,
+      "endTime": 651,
+      "title": "Outro"
+    }
+  ],
+  "soundbites": [
+    {
+      "startTime": 40,
+      "duration": 95,
+      "title": "DeepSeek's DSpark framework boosts AI..."
+    },
+    {
+      "startTime": 136,
+      "duration": 98,
+      "title": "Deloitte internal deck warns AI agents..."
+    },
+    {
+      "startTime": 236,
+      "duration": 94,
+      "title": "Amazon engineers distill Anthropic models..."
+    },
+    {
+      "startTime": 331,
+      "duration": 87,
+      "title": "Meta bans Claude Code and Codex..."
+    },
+    {
+      "startTime": 419,
+      "duration": 92,
+      "title": "Tidal demonetizes all 100-percent..."
+    },
+    {
+      "startTime": 512,
+      "duration": 83,
+      "title": "New report finds high-intensity AI..."
+    }
+  ],
+  "curation": [
+    {
+      "canonicalKey": "deepseek-dspark-inference-speedup",
+      "headline": "DeepSeek's DSpark framework boosts AI inference speed up to 85 percent",
+      "whyItMatters": "DSpark's speculative-decoding approach squeezes 60–85% more per-user throughput from existing chips, potentially letting Chinese labs close the hardware gap imposed by US export controls — a significant capability and geopolitical signal for anyone tracking frontier AI competitiveness.",
+      "caveat": "Benchmarks come from DeepSeek itself and have not been independently reproduced; real-world gains will vary by workload and hardware configuration.",
+      "importance": 82,
+      "category": "research"
+    },
+    {
+      "canonicalKey": "deloitte-billable-hour-ai-disruption",
+      "headline": "Deloitte internal deck warns AI agents will kill the billable hour by 2035",
+      "whyItMatters": "An internal Deloitte presentation projecting that hourly billing will shrink to a 'thin sliver' by 2035 is a rare candid signal from a Big Four firm that AI-driven business model disruption is now being planned for internally, not just discussed externally — directly relevant to how knowledge work is priced and staffed.",
+      "caveat": "The presentation is internal and unverified; projections to 2035 carry enormous uncertainty and may serve change-management purposes within the firm.",
+      "importance": 78,
+      "category": "culture"
+    },
+    {
+      "canonicalKey": "amazon-distilling-anthropic-models-cost",
+      "headline": "Amazon engineers distill Anthropic models internally to dodge rising token costs",
+      "whyItMatters": "Amazon reportedly distilling Claude into cheaper internal variants — while also exploring OpenAI as an alternative — signals that even Anthropic's largest cloud partner is hedging against the new token-based pricing model, with broad implications for how enterprises will manage AI vendor lock-in.",
+      "caveat": "The report relies on unnamed sources and Amazon has not confirmed the distillation effort or its scale.",
+      "importance": 75,
+      "category": "business"
+    },
+    {
+      "canonicalKey": "meta-restricts-claude-codex-training-data",
+      "headline": "Meta bans Claude Code and Codex internally to protect its own training data",
+      "whyItMatters": "Meta's policy reveals a new competitive dynamic: frontier labs must now worry that their AI coding tools could inadvertently enrich rivals' training pipelines, a concern that will likely spread to other large AI developers and reshape enterprise AI tool policies.",
+      "caveat": "The scope of the restriction and whether it applies to all Meta engineers or specific teams has not been fully detailed.",
+      "importance": 72,
+      "category": "business"
+    },
+    {
+      "canonicalKey": "tidal-ai-music-demonetization",
+      "headline": "Tidal demonetizes all 100-percent AI-generated music starting immediately",
+      "whyItMatters": "Tidal's move is one of the first concrete platform-level monetization policies targeting AI-generated music, setting a precedent that other streaming services may follow and directly affecting creators and AI music tool developers.",
+      "caveat": "Tidal's automated detection of '100 percent AI-generated' tracks is technically difficult and the accuracy of its detection tools has not been disclosed.",
+      "importance": 68,
+      "category": "policy-regulation"
+    },
+    {
+      "canonicalKey": "ai-jobs-debate-high-intensity-adopters",
+      "headline": "New report finds high-intensity AI adopters grew headcount 10 percent including junior roles",
+      "whyItMatters": "Counter-evidence to the 'AI kills jobs' narrative — companies most aggressively adopting AI saw entry-level headcount rise 12%, complicating the picture painted by Anthropic's recent 'no junior engineers needed' claim and directly relevant to workforce planning decisions.",
+      "caveat": "The dataset and methodology behind the report have not been fully disclosed, and correlation between AI adoption intensity and headcount growth may reflect selection bias toward fast-growing companies.",
+      "importance": 67,
+      "category": "culture"
+    }
+  ],
+  "curationReport": {
+    "threshold": 45,
+    "maxStories": 6,
+    "total": 8,
+    "selectedCount": 6,
+    "droppedCount": 2,
+    "clusters": [
+      {
+        "canonicalKey": "deepseek-dspark-inference-speedup",
+        "category": "research",
+        "headline": "DeepSeek's DSpark framework boosts AI inference speed up to 85 percent",
+        "importance": 82,
+        "selected": true
+      },
+      {
+        "canonicalKey": "deloitte-billable-hour-ai-disruption",
+        "category": "culture",
+        "headline": "Deloitte internal deck warns AI agents will kill the billable hour by 2035",
+        "importance": 78,
+        "selected": true
+      },
+      {
+        "canonicalKey": "amazon-distilling-anthropic-models-cost",
+        "category": "business",
+        "headline": "Amazon engineers distill Anthropic models internally to dodge rising token costs",
+        "importance": 75,
+        "selected": true
+      },
+      {
+        "canonicalKey": "meta-restricts-claude-codex-training-data",
+        "category": "business",
+        "headline": "Meta bans Claude Code and Codex internally to protect its own training data",
+        "importance": 72,
+        "selected": true
+      },
+      {
+        "canonicalKey": "tidal-ai-music-demonetization",
+        "category": "policy-regulation",
+        "headline": "Tidal demonetizes all 100-percent AI-generated music starting immediately",
+        "importance": 68,
+        "selected": true
+      },
+      {
+        "canonicalKey": "ai-jobs-debate-high-intensity-adopters",
+        "category": "culture",
+        "headline": "New report finds high-intensity AI adopters grew headcount 10 percent including junior roles",
+        "importance": 67,
+        "selected": true
+      },
+      {
+        "canonicalKey": "meta-secret-minor-chatbot-safety-testing",
+        "category": "policy-regulation",
+        "headline": "Meta secretly sent 45,000 crisis prompts from minor perspectives to rival chatbots",
+        "importance": 66,
+        "selected": false,
+        "dropReason": "over_cap"
+      },
+      {
+        "canonicalKey": "openai-codex-hardware-device-teaser",
+        "category": "product-tools",
+        "headline": "OpenAI teases a physical Codex hardware device launching July 15th",
+        "importance": 62,
+        "selected": false,
+        "dropReason": "over_cap"
+      }
+    ]
+  }
+}

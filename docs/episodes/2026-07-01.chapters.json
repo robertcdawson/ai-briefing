@@ -1,0 +1,46 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — July 1, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 36,
+      "title": "Intro"
+    },
+    {
+      "startTime": 36,
+      "endTime": 155,
+      "title": "US lifts export controls on Anthropic's..."
+    },
+    {
+      "startTime": 155,
+      "endTime": 260,
+      "title": "Claude Sonnet 5 launches with stronger..."
+    },
+    {
+      "startTime": 260,
+      "endTime": 363,
+      "title": "Anthropic launches Claude Science..."
+    },
+    {
+      "startTime": 363,
+      "endTime": 462,
+      "title": "Claude Code found secretly..."
+    },
+    {
+      "startTime": 462,
+      "endTime": 549,
+      "title": "Meituan trains 1.6 trillion parameter..."
+    },
+    {
+      "startTime": 549,
+      "endTime": 618,
+      "title": "Godot open-source engine bans AI-authored..."
+    },
+    {
+      "startTime": 618,
+      "endTime": 674,
+      "title": "Outro"
+    }
+  ]
+}

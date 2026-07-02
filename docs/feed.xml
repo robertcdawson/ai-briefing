@@ -4,7 +4,7 @@
         <title>AI Briefing</title>
         <link>https://robertcdawson.github.io/ai-briefing/</link>
         <description>Daily AI news briefing — the stories that matter from the last 24 hours.</description>
-        <lastBuildDate>Wed, 01 Jul 2026 14:21:38 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 02 Jul 2026 14:18:50 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -23,6 +23,54 @@
         <podcast:guid>ea8709f4-3ba2-5b7e-bcdc-e409d84a6443</podcast:guid>
         <podcast:locked owner="manatees@gmail.com">yes</podcast:locked>
         <podcast:person role="host" group="cast">Robert Dawson</podcast:person>
+        <item>
+            <title><![CDATA[AI Briefing — July 2, 2026]]></title>
+            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-07-02.mp3</link>
+            <guid>ai-briefing-2026-07-02</guid>
+            <pubDate>Thu, 02 Jul 2026 14:18:50 GMT</pubDate>
+            <description><![CDATA[Top 6 AI stories for 2026-07-02:
+
+Chapters:
+00:00:00 Intro
+00:00:36 OpenAI Reportedly Offers Trump...
+00:02:31 Enterprises Throttle Employee AI Access...
+00:04:25 AI Agents Now Complete 16 Percent of...
+00:06:11 Meta's Non-Invasive Brain-to-Text AI...
+00:07:42 Microsoft Launches Dedicated AI...
+00:09:02 Cloudflare Gives AI Crawlers Until...
+00:10:23 Outro
+
+Sources:
+1. Top Story: OpenAI Reportedly Offers Trump Administration a Five Percent Ownership Stake
+Source: https://www.theverge.com/ai-artificial-intelligence/960588/openai-government-5-percent-stake-trump
+Source: https://the-decoder.com/openai-reportedly-offers-the-trump-administration-a-five-percent-stake-in-the-company/
+2. AI Business Watch: Enterprises Throttle Employee AI Access as Token Costs Spiral Out of Control
+Source: https://www.404media.co/companies-are-throttling-employees-ai-use-because-its-too-expensive/
+Source: https://mlq.ai/news/meta-caps-internal-ai-token-spending-after-costs-approach-billions-in-2026/
+Source: https://www.404media.co/podcast-the-ai-tokenpocalypse-is-here/
+3. Research Breakthrough: AI Agents Now Complete 16 Percent of Freelance Jobs at Professional Quality
+Source: https://the-decoder.com/ai-agents-can-now-complete-16-percent-of-freelance-jobs-at-pro-quality-up-from-2-5-percent-eight-months-ago/
+4. Research Breakthrough: Meta's Non-Invasive Brain-to-Text AI Narrows Gap with Surgical Implants
+Source: https://the-decoder.com/metas-non-invasive-brain-to-text-ai-is-closing-the-gap-with-surgical-implants/
+5. AI Business Watch: Microsoft Launches Dedicated AI Deployment Company with 2.5 Billion Dollar Commitment
+Source: https://techcrunch.com/2026/07/02/microsoft-launches-its-own-ai-deployment-company-with-2-5-billion-commitment/
+6. Policy & Regulation Watch: Cloudflare Gives AI Crawlers Until September to Pay Publishers or Face Blocks
+Source: https://techcrunch.com/2026/07/01/cloudflares-new-policy-pushes-ai-companies-to-pay-for-publishers-content/]]></description>
+            <enclosure length="16219398" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-07-02.mp3"/>
+                    <itunes:duration>676</itunes:duration>
+            <itunes:explicit>false</itunes:explicit>
+            <itunes:season>2026</itunes:season>
+            <itunes:episode>183</itunes:episode>
+            <itunes:episodeType>full</itunes:episodeType>
+            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-07-02.chapters.json" type="application/json+chapters"/>
+            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-07-02.transcript.txt" type="text/plain" language="en"/>
+            <podcast:soundbite startTime="36" duration="114">OpenAI Reportedly Offers Trump...</podcast:soundbite>
+            <podcast:soundbite startTime="151" duration="113">Enterprises Throttle Employee AI Access...</podcast:soundbite>
+            <podcast:soundbite startTime="265" duration="104">AI Agents Now Complete 16 Percent of...</podcast:soundbite>
+            <podcast:soundbite startTime="371" duration="89">Meta&apos;s Non-Invasive Brain-to-Text AI...</podcast:soundbite>
+            <podcast:soundbite startTime="462" duration="79">Microsoft Launches Dedicated AI...</podcast:soundbite>
+            <podcast:soundbite startTime="542" duration="80">Cloudflare Gives AI Crawlers Until...</podcast:soundbite>
+        </item>
         <item>
             <title><![CDATA[AI Briefing — July 1, 2026]]></title>
             <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-07-01.mp3</link>
@@ -1426,43 +1474,6 @@ Source: https://techcrunch.com/2026/05/27/youtube-will-now-automatically-label-a
             <podcast:soundbite startTime="29" duration="61">Critical &apos;BadHost&apos; vulnerability in...</podcast:soundbite>
             <podcast:soundbite startTime="90" duration="55">Anthropic&apos;s Claude Mythos reportedly...</podcast:soundbite>
             <podcast:soundbite startTime="146" duration="60">YouTube begins automatically labeling...</podcast:soundbite>
-        </item>
-        <item>
-            <title><![CDATA[AI Briefing — May 26, 2026]]></title>
-            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-05-26.mp3</link>
-            <guid>ai-briefing-2026-05-26</guid>
-            <pubDate>Tue, 26 May 2026 14:24:06 GMT</pubDate>
-            <description><![CDATA[Top 3 AI stories for 2026-05-26:
-
-Chapters:
-00:00:00 Intro
-00:00:31 AI-fabricated citations infiltrating...
-00:01:32 Pope Leo XIV issues landmark encyclical...
-00:02:27 AI's real jobs threat may be quietly...
-00:03:23 Outro
-
-Sources:
-1. Research Breakthrough: AI-fabricated citations infiltrating biomedical papers
-Source: https://the-decoder.com/ai-hallucinated-citations-are-creeping-into-papers-that-shape-clinical-guidelines-researchers-warn/
-2. Policy & Regulation Watch: Pope Leo XIV issues landmark encyclical warning against unconstrained AI power
-Source: https://www.theverge.com/news/936945/pope-leo-letter-encyclical-ai-anthropic-labor-warfare
-Source: https://simonwillison.net/2026/May/25/encyclical-on-ai/#atom-everything
-Source: https://techcrunch.com/2026/05/25/the-popes-ai-encyclical-isnt-really-about-ai/
-3. AI Culture Signal: AI's real jobs threat may be quietly hollowing out entry-level career pathways
-Source: https://www.technologyreview.com/2026/05/26/1137855/a-reality-check-on-the-ai-jobs-hysteria/
-Source: https://www.technologyreview.com/2026/05/26/1137865/its-time-to-address-the-looming-crisis-in-entry-level-work/
-Source: https://techcrunch.com/2026/05/25/what-clickups-mass-layoff-tells-us-about-the-future-of-work/]]></description>
-            <enclosure length="5606932" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-26.mp3"/>
-                    <itunes:duration>234</itunes:duration>
-            <itunes:explicit>false</itunes:explicit>
-            <itunes:season>2026</itunes:season>
-            <itunes:episode>146</itunes:episode>
-            <itunes:episodeType>full</itunes:episodeType>
-            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-26.chapters.json" type="application/json+chapters"/>
-            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-26.transcript.txt" type="text/plain" language="en"/>
-            <podcast:soundbite startTime="31" duration="61">AI-fabricated citations infiltrating...</podcast:soundbite>
-            <podcast:soundbite startTime="92" duration="55">Pope Leo XIV issues landmark encyclical...</podcast:soundbite>
-            <podcast:soundbite startTime="147" duration="55">AI&apos;s real jobs threat may be quietly...</podcast:soundbite>
         </item>
     </channel>
 </rss>

@@ -4,7 +4,7 @@
         <title>AI Briefing</title>
         <link>https://robertcdawson.github.io/ai-briefing/</link>
         <description>Daily AI news briefing — the stories that matter from the last 24 hours.</description>
-        <lastBuildDate>Thu, 02 Jul 2026 14:18:50 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 03 Jul 2026 15:37:22 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -23,6 +23,53 @@
         <podcast:guid>ea8709f4-3ba2-5b7e-bcdc-e409d84a6443</podcast:guid>
         <podcast:locked owner="manatees@gmail.com">yes</podcast:locked>
         <podcast:person role="host" group="cast">Robert Dawson</podcast:person>
+        <item>
+            <title><![CDATA[AI Briefing — July 3, 2026]]></title>
+            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-07-03.mp3</link>
+            <guid>ai-briefing-2026-07-03</guid>
+            <pubDate>Fri, 03 Jul 2026 15:37:22 GMT</pubDate>
+            <description><![CDATA[Top 6 AI stories for 2026-07-03:
+
+Chapters:
+00:00:00 Intro
+00:00:33 Zuckerberg admits Meta's AI agent push is...
+00:02:02 Anthropic in early talks with Samsung to...
+00:03:32 Bridgewater fine-tuned open-weight model...
+00:05:07 Anthropic cuts Claude Code system prompt...
+00:06:44 Tesla caps employee AI tool spending at...
+00:07:57 Chinese AI video startup Kling raises 2...
+00:08:58 Outro
+
+Sources:
+1. Top Story: Zuckerberg admits Meta's AI agent push is falling behind internal targets
+Source: https://techcrunch.com/2026/07/02/mark-zuckerberg-tells-staff-that-ai-agents-havent-progressed-as-quickly-as-hed-hoped/
+Source: https://the-decoder.com/metas-ai-agent-push-is-moving-slower-than-zuckerberg-planned/
+2. AI Business Watch: Anthropic in early talks with Samsung to build its own custom AI chip
+Source: https://techcrunch.com/2026/07/02/anthropic-is-discussing-a-new-custom-chip-with-samsung/
+Source: https://the-decoder.com/anthropic-reportedly-explores-custom-chip-manufacturing-with-samsung-while-insisting-nvidia-still-matters/
+3. Research Breakthrough: Bridgewater fine-tuned open-weight model outperforms GPT and Claude on private finance benchmarks
+Source: https://the-decoder.com/gpt-and-claude-failed-bridgewaters-finance-tests-because-the-right-answers-were-never-public/
+4. Product & Tool Watch: Anthropic cuts Claude Code system prompt by 80 percent citing Fable 5 capability gains
+Source: https://the-decoder.com/anthropic-says-it-cut-80-percent-of-claude-codes-system-prompt-because-fable-5-models-want-a-smaller-system-prompt/
+5. AI Business Watch: Tesla caps employee AI tool spending at 200 dollars per week via internal memo
+Source: https://the-decoder.com/tesla-caps-employee-ai-spending-at-200-per-week/
+6. AI Business Watch: Chinese AI video startup Kling raises 2 billion dollars ahead of Hong Kong IPO
+Source: https://the-decoder.com/chinese-ai-video-maker-kling-raises-2-billion-as-it-gears-up-for-hong-kong-ipo/]]></description>
+            <enclosure length="14148711" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-07-03.mp3"/>
+                    <itunes:duration>589</itunes:duration>
+            <itunes:explicit>false</itunes:explicit>
+            <itunes:season>2026</itunes:season>
+            <itunes:episode>184</itunes:episode>
+            <itunes:episodeType>full</itunes:episodeType>
+            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-07-03.chapters.json" type="application/json+chapters"/>
+            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-07-03.transcript.txt" type="text/plain" language="en"/>
+            <podcast:soundbite startTime="33" duration="88">Zuckerberg admits Meta&apos;s AI agent push is...</podcast:soundbite>
+            <podcast:soundbite startTime="122" duration="88">Anthropic in early talks with Samsung to...</podcast:soundbite>
+            <podcast:soundbite startTime="212" duration="94">Bridgewater fine-tuned open-weight model...</podcast:soundbite>
+            <podcast:soundbite startTime="307" duration="95">Anthropic cuts Claude Code system prompt...</podcast:soundbite>
+            <podcast:soundbite startTime="404" duration="72">Tesla caps employee AI tool spending at...</podcast:soundbite>
+            <podcast:soundbite startTime="477" duration="59">Chinese AI video startup Kling raises 2...</podcast:soundbite>
+        </item>
         <item>
             <title><![CDATA[AI Briefing — July 2, 2026]]></title>
             <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-07-02.mp3</link>
@@ -1440,40 +1487,6 @@ Source: https://openai.com/index/openai-frontier-governance-framework]]></descri
             <podcast:soundbite startTime="29" duration="58">Anthropic closes $65B Series H round...</podcast:soundbite>
             <podcast:soundbite startTime="87" duration="50">Anthropic releases Claude Opus 4.8 with...</podcast:soundbite>
             <podcast:soundbite startTime="137" duration="54">Illinois passes landmark AI safety law as...</podcast:soundbite>
-        </item>
-        <item>
-            <title><![CDATA[AI Briefing — May 27, 2026]]></title>
-            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-05-27.mp3</link>
-            <guid>ai-briefing-2026-05-27</guid>
-            <pubDate>Wed, 27 May 2026 14:45:52 GMT</pubDate>
-            <description><![CDATA[Top 3 AI stories for 2026-05-27:
-
-Chapters:
-00:00:00 Intro
-00:00:29 Critical 'BadHost' vulnerability in...
-00:01:30 Anthropic's Claude Mythos reportedly...
-00:02:26 YouTube begins automatically labeling...
-00:03:26 Outro
-
-Sources:
-1. Product & Tool Watch: Critical 'BadHost' vulnerability in Starlette package imperils millions of AI agents
-Source: https://arstechnica.com/information-technology/2026/05/millions-of-ai-agents-imperiled-by-critical-vulnerability-in-open-source-package/
-2. Research Breakthrough: Anthropic's Claude Mythos reportedly solves landmark 1946 Erdős math conjecture
-Source: https://the-decoder.com/claude-mythos-reportedly-solves-openais-landmark-erdos-problem-with-a-cute-simple-proof/
-3. Policy & Regulation Watch: YouTube begins automatically labeling AI-generated content across its platform
-Source: https://www.theverge.com/streaming/937915/youtube-ai-labels-shorts-automatic-identification-updates
-Source: https://techcrunch.com/2026/05/27/youtube-will-now-automatically-label-ai-videos/]]></description>
-            <enclosure length="5659921" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-27.mp3"/>
-                    <itunes:duration>236</itunes:duration>
-            <itunes:explicit>false</itunes:explicit>
-            <itunes:season>2026</itunes:season>
-            <itunes:episode>147</itunes:episode>
-            <itunes:episodeType>full</itunes:episodeType>
-            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-27.chapters.json" type="application/json+chapters"/>
-            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-27.transcript.txt" type="text/plain" language="en"/>
-            <podcast:soundbite startTime="29" duration="61">Critical &apos;BadHost&apos; vulnerability in...</podcast:soundbite>
-            <podcast:soundbite startTime="90" duration="55">Anthropic&apos;s Claude Mythos reportedly...</podcast:soundbite>
-            <podcast:soundbite startTime="146" duration="60">YouTube begins automatically labeling...</podcast:soundbite>
         </item>
     </channel>
 </rss>

@@ -9,7 +9,7 @@
     "start": "tsx src/index.ts",
     "diagnose:script-model": "tsx scripts/diagnose-openrouter-script.ts",
     "test": "tsx test/fetch.smoke.ts",
-    "test:unit": "tsx test/publish.apple-rss.test.ts && tsx --test $(node -e 'const fs = require(\"node:fs\"); console.log(fs.readdirSync(\"test\").filter((f) => f.endsWith(\".test.ts\") && f !== \"publish.apple-rss.test.ts\").sort().map((f) => \"test/\" + f).join(\" \"));')",
+    "test:unit": "tsx test/publish.apple-rss.test.ts && TEST_FILES=$(node -e 'const fs = require(\"node:fs\"); console.log(fs.readdirSync(\"test\").filter((f) => f.endsWith(\".test.ts\") && f !== \"publish.apple-rss.test.ts\").sort().map((f) => \"test/\" + f).join(\" \"));') && { [ -z \"$TEST_FILES\" ] || tsx --test $TEST_FILES; }",
     "tts:sample": "tsx scripts/tts-sample.ts",
     "stingers:generate": "tsx scripts/generate-stinger-assets.ts"
   },

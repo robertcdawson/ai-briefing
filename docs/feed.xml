@@ -4,7 +4,7 @@
         <title>AI Briefing</title>
         <link>https://robertcdawson.github.io/ai-briefing/</link>
         <description>Daily AI news briefing — the stories that matter from the last 24 hours.</description>
-        <lastBuildDate>Fri, 03 Jul 2026 15:37:22 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 06 Jul 2026 16:39:13 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -23,6 +23,53 @@
         <podcast:guid>ea8709f4-3ba2-5b7e-bcdc-e409d84a6443</podcast:guid>
         <podcast:locked owner="manatees@gmail.com">yes</podcast:locked>
         <podcast:person role="host" group="cast">Robert Dawson</podcast:person>
+        <item>
+            <title><![CDATA[AI Briefing — July 6, 2026]]></title>
+            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-07-06.mp3</link>
+            <guid>ai-briefing-2026-07-06</guid>
+            <pubDate>Mon, 06 Jul 2026 16:39:13 GMT</pubDate>
+            <description><![CDATA[Top 6 AI stories for 2026-07-06:
+
+Chapters:
+00:00:00 Intro
+00:00:31 JADEPUFFER Is the First Documented...
+00:02:31 Nvidia's Kyber NVL144 Rack Delayed Over a...
+00:04:16 GPT-5.6 Sol Ultra Confirmed Coming to...
+00:05:38 AI Tutor Matches One-on-One Human...
+00:07:10 Microsoft Cuts 4,800 Jobs at the Start of...
+00:08:22 Amazon Closes Mechanical Turk to New...
+00:09:45 Outro
+
+Sources:
+1. Top Story: JADEPUFFER Is the First Documented Agentic Ransomware Operation
+Source: https://the-decoder.com/jadepuffer-is-the-first-agentic-ransomware-operation-and-it-exposes-old-security-sins-at-machine-speed/
+2. AI Business Watch: Nvidia's Kyber NVL144 Rack Delayed Over a Year to 2028
+Source: https://the-decoder.com/nvidias-kyber-nvl144-reportedly-pushed-back-more-than-a-year-asian-suppliers-drop/
+3. Product & Tool Watch: GPT-5.6 Sol Ultra Confirmed Coming to OpenAI Codex
+Source: https://twitter.com/thsottiaux/status/2073933490513752151
+4. Research Breakthrough: AI Tutor Matches One-on-One Human Tutoring in Dartmouth Study
+Source: https://intextbooks.science.uu.nl/workshop2026/files/itb26_s1s2.pdf
+5. AI Business Watch: Microsoft Cuts 4,800 Jobs at the Start of Its New Fiscal Year
+Source: https://www.theverge.com/news/961528/microsoft-layoffs-july-2026-sales-xbox
+Source: https://techcrunch.com/2026/07/06/microsoft-lays-off-nearly-5000-employees-across-xbox-commercial-sales/
+6. AI Culture Signal: Amazon Closes Mechanical Turk to New Customers
+Source: https://techcrunch.com/2026/07/05/amazon-will-stop-accepting-new-customers-for-mechanical-turk/
+Source: https://the-decoder.com/amazon-sunsets-mechanical-turk-the-original-artificial-artificial-intelligence/]]></description>
+            <enclosure length="15260950" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-07-06.mp3"/>
+                    <itunes:duration>636</itunes:duration>
+            <itunes:explicit>false</itunes:explicit>
+            <itunes:season>2026</itunes:season>
+            <itunes:episode>187</itunes:episode>
+            <itunes:episodeType>full</itunes:episodeType>
+            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-07-06.chapters.json" type="application/json+chapters"/>
+            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-07-06.transcript.txt" type="text/plain" language="en"/>
+            <podcast:soundbite startTime="31" duration="118">JADEPUFFER Is the First Documented...</podcast:soundbite>
+            <podcast:soundbite startTime="151" duration="103">Nvidia&apos;s Kyber NVL144 Rack Delayed Over a...</podcast:soundbite>
+            <podcast:soundbite startTime="256" duration="81">GPT-5.6 Sol Ultra Confirmed Coming to...</podcast:soundbite>
+            <podcast:soundbite startTime="338" duration="90">AI Tutor Matches One-on-One Human...</podcast:soundbite>
+            <podcast:soundbite startTime="430" duration="71">Microsoft Cuts 4,800 Jobs at the Start of...</podcast:soundbite>
+            <podcast:soundbite startTime="502" duration="82">Amazon Closes Mechanical Turk to New...</podcast:soundbite>
+        </item>
         <item>
             <title><![CDATA[AI Briefing — July 3, 2026]]></title>
             <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-07-03.mp3</link>
@@ -1448,45 +1495,6 @@ Source: https://arstechnica.com/tech-policy/2026/05/trump-loses-more-control-ove
             <podcast:soundbite startTime="31" duration="63">Anthropic raises $65 billion Series H,...</podcast:soundbite>
             <podcast:soundbite startTime="94" duration="54">Anthropic releases Claude Opus 4.8 with...</podcast:soundbite>
             <podcast:soundbite startTime="148" duration="45">Illinois passes landmark AI safety law as...</podcast:soundbite>
-        </item>
-        <item>
-            <title><![CDATA[AI Briefing — May 28, 2026]]></title>
-            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-05-28.mp3</link>
-            <guid>ai-briefing-2026-05-28</guid>
-            <pubDate>Thu, 28 May 2026 20:54:55 GMT</pubDate>
-            <description><![CDATA[Top 3 AI stories for 2026-05-28:
-
-Chapters:
-00:00:00 Intro
-00:00:29 Anthropic closes $65B Series H round...
-00:01:27 Anthropic releases Claude Opus 4.8 with...
-00:02:17 Illinois passes landmark AI safety law as...
-00:03:11 Outro
-
-Sources:
-1. AI Business Watch: Anthropic closes $65B Series H round nearing $1 trillion valuation
-Source: https://www.anthropic.com/news/series-h
-Source: https://techcrunch.com/2026/05/28/anthropic-raises-65-billion-nears-1t-valuation-ahead-of-ipo/
-Source: https://techcrunch.com/2026/05/28/how-long-is-anthropics-lease-with-spacex-opinions-vary/
-2. Product & Tool Watch: Anthropic releases Claude Opus 4.8 with honesty improvements and dynamic agent workflows
-Source: https://www.anthropic.com/news/claude-opus-4-8
-Source: https://www.theverge.com/ai-artificial-intelligence/939094/anthropic-claude-4-8-opus-honesty-effort
-Source: https://techcrunch.com/2026/05/28/anthropic-releases-opus-4-8-with-new-dynamic-workflow-tool/
-Source: https://claude.com/blog/introducing-dynamic-workflows-in-claude-code
-3. Policy & Regulation Watch: Illinois passes landmark AI safety law as state regulation outpaces federal action
-Source: https://arstechnica.com/tech-policy/2026/05/trump-loses-more-control-over-ai-regulation-as-illinois-passes-landmark-law/
-Source: https://openai.com/index/openai-frontier-governance-framework]]></description>
-            <enclosure length="5343705" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-28.mp3"/>
-                    <itunes:duration>223</itunes:duration>
-            <itunes:explicit>false</itunes:explicit>
-            <itunes:season>2026</itunes:season>
-            <itunes:episode>148</itunes:episode>
-            <itunes:episodeType>full</itunes:episodeType>
-            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-28.chapters.json" type="application/json+chapters"/>
-            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-28.transcript.txt" type="text/plain" language="en"/>
-            <podcast:soundbite startTime="29" duration="58">Anthropic closes $65B Series H round...</podcast:soundbite>
-            <podcast:soundbite startTime="87" duration="50">Anthropic releases Claude Opus 4.8 with...</podcast:soundbite>
-            <podcast:soundbite startTime="137" duration="54">Illinois passes landmark AI safety law as...</podcast:soundbite>
         </item>
     </channel>
 </rss>

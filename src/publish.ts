@@ -12,6 +12,7 @@ const FEED_PATH = path.join(DOCS_DIR, "feed.xml");
 const FEED_LIMIT = 30;
 const RETENTION_DAYS = 90;
 const PODCAST_GUID_NAMESPACE = "ead4c236-bf58-58c6-a2c6-a6b28d128cb6";
+export const EPISODE_ASSET_PATTERN = /^(\d{4}-\d{2}-\d{2})(?:\.mp3|\.json|\.chapters\.json|\.transcript\.txt)$/;
 
 export interface EpisodeRecord {
   date: string;
@@ -216,7 +217,7 @@ export async function publish(
   await writeFile(FEED_PATH, finalXml);
 
   const keepDates = new Set(top.map((r) => r.date));
-  const pruned = await pruneOldEpisodes(keepDates);
+  const pruned = await pruneOldEpisodes(keepDates, { referenceDate: episode.date });
 
   logJson({
     phase: "publish",
@@ -234,22 +235,42 @@ export async function publish(
 
 // Delete episode files older than RETENTION_DAYS, except any whose date is still
 // listed in feed.xml — we never strand a feed entry pointing at a deleted file.
-async function pruneOldEpisodes(keepDates: Set<string>): Promise<string[]> {
-  const cutoff = new Date();
-  cutoff.setUTCDate(cutoff.getUTCDate() - RETENTION_DAYS);
-  const cutoffStr = cutoff.toISOString().slice(0, 10);
+export function resolveRetentionCutoff(referenceDate: string, retentionDays: number): string {
+  const referenceMs = Date.UTC(
+    Number(referenceDate.slice(0, 4)),
+    Number(referenceDate.slice(5, 7)) - 1,
+    Number(referenceDate.slice(8, 10)),
+  );
+  const cutoffMs = referenceMs - retentionDays * 86_400_000;
+  return new Date(cutoffMs).toISOString().slice(0, 10);
+}
 
-  const entries = await readdir(EPISODES_DIR, { withFileTypes: true }).catch(() => []);
+export function shouldPruneEpisodeFile(
+  filename: string,
+  keepDates: Set<string>,
+  cutoffDate: string,
+): boolean {
+  const match = filename.match(EPISODE_ASSET_PATTERN);
+  if (!match) return false;
+  const episodeDate = match[1]!;
+  return !keepDates.has(episodeDate) && episodeDate < cutoffDate;
+}
+
+export async function pruneOldEpisodes(
+  keepDates: Set<string>,
+  opts: { episodesDir?: string; referenceDate?: string } = {},
+): Promise<string[]> {
+  const targetDir = opts.episodesDir ?? EPISODES_DIR;
+  const referenceDate = opts.referenceDate ?? new Date().toISOString().slice(0, 10);
+  const cutoffStr = resolveRetentionCutoff(referenceDate, RETENTION_DAYS);
+
+  const entries = await readdir(targetDir, { withFileTypes: true }).catch(() => []);
   const pruned: string[] = [];
 
   for (const e of entries) {
     if (!e.isFile()) continue;
-    const match = e.name.match(/^(\d{4}-\d{2}-\d{2})(?:\.mp3|\.json|\.chapters\.json|\.transcript\.txt)$/);
-    if (!match) continue;
-    const episodeDate = match[1]!;
-    if (keepDates.has(episodeDate)) continue;
-    if (episodeDate >= cutoffStr) continue;
-    const fullPath = path.join(EPISODES_DIR, e.name);
+    if (!shouldPruneEpisodeFile(e.name, keepDates, cutoffStr)) continue;
+    const fullPath = path.join(targetDir, e.name);
     try {
       await unlink(fullPath);
       pruned.push(e.name);

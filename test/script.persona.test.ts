@@ -458,6 +458,34 @@ test("validateScriptResponse rejects split contrast phrasing variants across rea
   }
 });
 
+test("validateScriptResponse allows tentative sourcing calibration", () => {
+  const clusters: StoryCluster[] = [
+    {
+      canonicalKey: "test-story",
+      category: "product-tools",
+      headline: "A model ships a useful feature",
+      whyItMatters: "Builders get a simpler path to production.",
+      caveat: "Benchmarks are still early.",
+      sources: [{ publisher: "Example News", url: "https://example.com/model-feature" }],
+    },
+  ];
+
+  validateScriptResponse(
+    {
+      intro: ["Here is the setup.", "Here is why it matters."],
+      segments: [
+        {
+          title: "Top Story: A model ships a useful feature",
+          chunks: ["This isn't confirmed yet.", "It is still worth watching."],
+          sourceUrls: ["https://example.com/model-feature"],
+        },
+      ],
+      outro: ["The pattern is practical.", "Keep the signal clean."],
+    },
+    clusters,
+  );
+});
+
 test("validateScriptResponse rejects malformed narration chunks", () => {
   const clusters: StoryCluster[] = [
     {

@@ -197,7 +197,7 @@ export const BANNED_SCRIPT_PHRASES = [
 ] as const;
 
 const DISCOURAGED_SPLIT_CONTRAST_PATTERN =
-  /\b(?:that|this|it)(?:(?:\s+is|\s*['\u2019]s)\s+not|\s+isn(?:'|\u2019)t)\b[^.!?]{1,180}[.!?]\s+(?:it|that|this)(?:\s+is|\s*['\u2019]s)\b/iu;
+  /\b(?:that|this|it)(?:(?:\s+is|\s*['\u2019]s)\s+not|\s+isn(?:'|\u2019)t)\b[^.!?]{1,180}[.!?]\s+(?:it|that|this)(?:\s+is|\s*['\u2019]s)\s+(?:(?:actually|basically|really|just|rather|instead)\s+)?(?:a|an|the|another|this|that|its|their|our|your)\b/iu;
 
 function buildSystemPromptBase(allowAudioTags: boolean): string {
   const chunkPurityRule = allowAudioTags

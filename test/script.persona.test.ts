@@ -409,7 +409,7 @@ test("validateScriptResponse preserves segment count and source URLs", () => {
   );
 });
 
-test("validateScriptResponse rejects split contrast phrasing across read-aloud chunks", () => {
+test("validateScriptResponse rejects split contrast phrasing variants across read-aloud chunks", () => {
   const clusters: StoryCluster[] = [
     {
       canonicalKey: "test-story",
@@ -421,24 +421,41 @@ test("validateScriptResponse rejects split contrast phrasing across read-aloud c
     },
   ];
 
-  assert.throws(
-    () =>
-      validateScriptResponse(
+  const validSegment = {
+    title: "Top Story: A model ships a useful feature",
+    chunks: ["A concise segment.", "The practical takeaway is simple."],
+    sourceUrls: ["https://example.com/model-feature"],
+  };
+
+  const cases: ScriptResponse[] = [
+    {
+      intro: ["Here is the setup.", "Here is why it matters."],
+      segments: [
         {
-          intro: ["Here is the setup.", "Here is why it matters."],
-          segments: [
-            {
-              title: "Top Story: A model ships a useful feature",
-              chunks: ["That's not just a benchmark.", "It's a procurement signal."],
-              sourceUrls: ["https://example.com/model-feature"],
-            },
-          ],
-          outro: ["The pattern is practical.", "Keep the signal clean."],
+          ...validSegment,
+          chunks: ["That's not just a benchmark.", "It's a procurement signal."],
         },
-        clusters,
-      ),
-    /discouraged split contrast phrasing/,
-  );
+      ],
+      outro: ["The pattern is practical.", "Keep the signal clean."],
+    },
+    {
+      intro: ["This isn't a routine model release.", "That is a pricing signal."],
+      segments: [validSegment],
+      outro: ["The pattern is practical.", "Keep the signal clean."],
+    },
+    {
+      intro: ["Here is the setup.", "Here is why it matters."],
+      segments: [validSegment],
+      outro: ["It is not only a research story.", "This is an infrastructure bet."],
+    },
+  ];
+
+  for (const response of cases) {
+    assert.throws(
+      () => validateScriptResponse(response, clusters),
+      /discouraged split contrast phrasing/,
+    );
+  }
 });
 
 test("validateScriptResponse rejects malformed narration chunks", () => {

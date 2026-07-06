@@ -217,7 +217,7 @@ export async function publish(
   await writeFile(FEED_PATH, finalXml);
 
   const keepDates = new Set(top.map((r) => r.date));
-  const pruned = await pruneOldEpisodes(keepDates, { referenceDate: episode.date });
+  const pruned = await pruneOldEpisodes(keepDates);
 
   logJson({
     phase: "publish",

@@ -1,0 +1,46 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — July 7, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 44,
+      "title": "Intro"
+    },
+    {
+      "startTime": 44,
+      "endTime": 159,
+      "title": "Anthropic discovers Claude developed..."
+    },
+    {
+      "startTime": 159,
+      "endTime": 245,
+      "title": "Tencent releases Hy3 open-weight MoE..."
+    },
+    {
+      "startTime": 245,
+      "endTime": 328,
+      "title": "Anthropic outed for Claude tracker that..."
+    },
+    {
+      "startTime": 328,
+      "endTime": 394,
+      "title": "DeepSeek moves to design its own AI chip..."
+    },
+    {
+      "startTime": 394,
+      "endTime": 465,
+      "title": "Chinese AI models cross 30 percent share..."
+    },
+    {
+      "startTime": 465,
+      "endTime": 531,
+      "title": "OpenAI and Anthropic race to give..."
+    },
+    {
+      "startTime": 531,
+      "endTime": 576,
+      "title": "Outro"
+    }
+  ]
+}

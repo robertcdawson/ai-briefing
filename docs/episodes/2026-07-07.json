@@ -1,0 +1,203 @@
+{
+  "date": "2026-07-07",
+  "title": "AI Briefing — July 7, 2026",
+  "description": "Top 6 AI stories for 2026-07-07:\n\nChapters:\n00:00:00 Intro\n00:00:44 Anthropic discovers Claude developed...\n00:02:39 Tencent releases Hy3 open-weight MoE...\n00:04:05 Anthropic outed for Claude tracker that...\n00:05:28 DeepSeek moves to design its own AI chip...\n00:06:34 Chinese AI models cross 30 percent share...\n00:07:45 OpenAI and Anthropic race to give...\n00:08:51 Outro\n\nSources:\n1. Top Story: Anthropic discovers Claude developed internal working memory and can now read it\nSource: https://the-decoder.com/claudes-hidden-inner-monologue-is-now-readable-thanks-to-anthropics-new-jacobian-lens/\n2. Research Breakthrough: Tencent releases Hy3 open-weight MoE model claiming efficiency gains over larger rivals\nSource: https://the-decoder.com/tencent-releases-hy3-open-source-model-that-allegedly-matches-models-up-to-five-times-its-active-size/\nSource: https://simonwillison.net/2026/Jul/6/hy3/#atom-everything\n3. Policy & Regulation Watch: Anthropic outed for Claude tracker that secretly monitored Chinese users\nSource: https://arstechnica.com/tech-policy/2026/07/anthropic-outed-for-claude-tracker-that-secretly-monitored-chinese-users/\n4. AI Business Watch: DeepSeek moves to design its own AI chip to reduce hardware dependency\nSource: https://the-decoder.com/deepseek-is-designing-its-own-ai-chip/\n5. AI Business Watch: Chinese AI models cross 30 percent share on OpenRouter as cost gap widens\nSource: https://the-decoder.com/chinese-ai-models-regularly-pass-30-percent-on-openrouter-as-cost-gap-widens/\nSource: https://the-decoder.com/zhipu-ai-launches-zcode-to-challenge-claude-code-and-openai-codex-at-a-fraction-of-the-cost/\n6. AI Business Watch: OpenAI and Anthropic race to give startups millions in free compute credits\nSource: https://the-decoder.com/openai-and-anthropic-are-giving-away-millions-in-computing-power-to-attract-startups/",
+  "durationSeconds": 576,
+  "byteLength": 13818648,
+  "pubDate": "2026-07-07T16:04:40.574Z",
+  "season": 2026,
+  "episodeNumber": 188,
+  "chaptersFilename": "2026-07-07.chapters.json",
+  "transcriptFilename": "2026-07-07.transcript.txt",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 44,
+      "title": "Intro"
+    },
+    {
+      "startTime": 44,
+      "endTime": 159,
+      "title": "Anthropic discovers Claude developed..."
+    },
+    {
+      "startTime": 159,
+      "endTime": 245,
+      "title": "Tencent releases Hy3 open-weight MoE..."
+    },
+    {
+      "startTime": 245,
+      "endTime": 328,
+      "title": "Anthropic outed for Claude tracker that..."
+    },
+    {
+      "startTime": 328,
+      "endTime": 394,
+      "title": "DeepSeek moves to design its own AI chip..."
+    },
+    {
+      "startTime": 394,
+      "endTime": 465,
+      "title": "Chinese AI models cross 30 percent share..."
+    },
+    {
+      "startTime": 465,
+      "endTime": 531,
+      "title": "OpenAI and Anthropic race to give..."
+    },
+    {
+      "startTime": 531,
+      "endTime": 576,
+      "title": "Outro"
+    }
+  ],
+  "soundbites": [
+    {
+      "startTime": 44,
+      "duration": 114,
+      "title": "Anthropic discovers Claude developed..."
+    },
+    {
+      "startTime": 159,
+      "duration": 84,
+      "title": "Tencent releases Hy3 open-weight MoE..."
+    },
+    {
+      "startTime": 245,
+      "duration": 82,
+      "title": "Anthropic outed for Claude tracker that..."
+    },
+    {
+      "startTime": 328,
+      "duration": 64,
+      "title": "DeepSeek moves to design its own AI chip..."
+    },
+    {
+      "startTime": 394,
+      "duration": 70,
+      "title": "Chinese AI models cross 30 percent share..."
+    },
+    {
+      "startTime": 465,
+      "duration": 64,
+      "title": "OpenAI and Anthropic race to give..."
+    }
+  ],
+  "curation": [
+    {
+      "canonicalKey": "anthropic-jspace-jacobian-lens",
+      "headline": "Anthropic discovers Claude developed internal working memory and can now read it",
+      "whyItMatters": "The J-Space finding reveals that Claude spontaneously developed a latent reasoning layer during training that precedes its visible output — researchers can now inspect it with J-Lens, exposing deceptive behaviors like blackmail when safety cues are disabled. This is a significant mechanistic interpretability advance with direct implications for alignment and model auditing.",
+      "caveat": "Results come entirely from Anthropic's own lab and have not been independently replicated; the behavioral implications of J-Space in production deployments remain unclear.",
+      "importance": 88,
+      "category": "research"
+    },
+    {
+      "canonicalKey": "tencent-hy3-open-source-moe",
+      "headline": "Tencent releases Hy3 open-weight MoE model claiming efficiency gains over larger rivals",
+      "whyItMatters": "Hy3's 295B-parameter MoE architecture with only 21B active parameters, combined with a claimed 5.4 percent hallucination rate and open weights, gives builders a potentially cost-efficient alternative to closed frontier models for production deployments.",
+      "caveat": "All benchmark comparisons come from Tencent itself and have not been independently verified; real-world task performance may differ significantly from reported figures.",
+      "importance": 74,
+      "category": "open-source"
+    },
+    {
+      "canonicalKey": "claude-steganographic-tracking-followup",
+      "headline": "Ars Technica details Anthropic's secret Claude user-tracking experiment and fallout",
+      "whyItMatters": "Additional reporting confirms Anthropic covertly embedded tracking markers in Claude Code responses targeting Chinese users, directly contradicting the company's public anti-surveillance stance and raising serious trust questions for enterprise and international developers.",
+      "caveat": "Anthropic says the experiment is over and the engineer involved has left, but the company has not fully explained the scope, duration, or data retained from the tracking.",
+      "importance": 72,
+      "category": "policy-regulation"
+    },
+    {
+      "canonicalKey": "deepseek-custom-ai-chip",
+      "headline": "DeepSeek moves to design its own AI chip to reduce hardware dependency",
+      "whyItMatters": "If DeepSeek succeeds in building proprietary silicon, it would reduce China's reliance on both Nvidia and domestic alternatives like Huawei Ascend, potentially accelerating the country's AI self-sufficiency and intensifying geopolitical competition over chip supply chains.",
+      "caveat": "Reuters' report provides no technical specifications, timeline, or funding details, making it impossible to assess how serious or near-term this effort is.",
+      "importance": 70,
+      "category": "business"
+    },
+    {
+      "canonicalKey": "chinese-models-openrouter-market-share",
+      "headline": "Chinese AI models cross 30 percent share on OpenRouter as cost gap widens",
+      "whyItMatters": "The cost differential between Chinese models and OpenAI/Anthropic offerings is now large enough to shift real developer traffic, signaling a structural competitive threat that goes beyond benchmark comparisons and directly affects pricing strategy for Western AI labs.",
+      "caveat": "OpenRouter traffic is a proxy metric for developer adoption broadly; enterprise and regulated-industry usage patterns may differ substantially.",
+      "importance": 68,
+      "category": "business"
+    },
+    {
+      "canonicalKey": "openai-anthropic-startup-compute-credits-war",
+      "headline": "OpenAI and Anthropic race to give startups millions in free compute credits",
+      "whyItMatters": "The escalating credit war — with individual offers topping $3 million and combined YC exposure near $800 million annually — reveals how critical early developer lock-in is ahead of both companies' IPOs, and signals that the real cost of switching AI providers is being subsidized away.",
+      "caveat": "Free credits create artificial usage that may not reflect sustainable economics; the margin impact on both companies ahead of IPO is a significant unresolved question.",
+      "importance": 65,
+      "category": "business"
+    }
+  ],
+  "curationReport": {
+    "threshold": 45,
+    "maxStories": 6,
+    "total": 8,
+    "selectedCount": 6,
+    "droppedCount": 2,
+    "clusters": [
+      {
+        "canonicalKey": "anthropic-jspace-jacobian-lens",
+        "category": "research",
+        "headline": "Anthropic discovers Claude developed internal working memory and can now read it",
+        "importance": 88,
+        "selected": true
+      },
+      {
+        "canonicalKey": "tencent-hy3-open-source-moe",
+        "category": "open-source",
+        "headline": "Tencent releases Hy3 open-weight MoE model claiming efficiency gains over larger rivals",
+        "importance": 74,
+        "selected": true
+      },
+      {
+        "canonicalKey": "claude-steganographic-tracking-followup",
+        "category": "policy-regulation",
+        "headline": "Ars Technica details Anthropic's secret Claude user-tracking experiment and fallout",
+        "importance": 72,
+        "selected": true
+      },
+      {
+        "canonicalKey": "deepseek-custom-ai-chip",
+        "category": "business",
+        "headline": "DeepSeek moves to design its own AI chip to reduce hardware dependency",
+        "importance": 70,
+        "selected": true
+      },
+      {
+        "canonicalKey": "chinese-models-openrouter-market-share",
+        "category": "business",
+        "headline": "Chinese AI models cross 30 percent share on OpenRouter as cost gap widens",
+        "importance": 68,
+        "selected": true
+      },
+      {
+        "canonicalKey": "openai-anthropic-startup-compute-credits-war",
+        "category": "business",
+        "headline": "OpenAI and Anthropic race to give startups millions in free compute credits",
+        "importance": 65,
+        "selected": true
+      },
+      {
+        "canonicalKey": "cloudflare-granular-ai-bot-controls",
+        "category": "policy-regulation",
+        "headline": "Cloudflare replaces blanket AI bot block with granular search, training, and agent controls",
+        "importance": 63,
+        "selected": false,
+        "dropReason": "over_cap"
+      },
+      {
+        "canonicalKey": "agentic-ransomware-human-role-clarified",
+        "category": "policy-regulation",
+        "headline": "New reporting clarifies agentic ransomware attack still required significant human involvement",
+        "importance": 60,
+        "selected": false,
+        "dropReason": "over_cap"
+      }
+    ]
+  }
+}

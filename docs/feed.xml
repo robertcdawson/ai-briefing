@@ -4,7 +4,7 @@
         <title>AI Briefing</title>
         <link>https://robertcdawson.github.io/ai-briefing/</link>
         <description>Daily AI news briefing — the stories that matter from the last 24 hours.</description>
-        <lastBuildDate>Mon, 06 Jul 2026 16:39:13 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 07 Jul 2026 16:04:40 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -23,6 +23,53 @@
         <podcast:guid>ea8709f4-3ba2-5b7e-bcdc-e409d84a6443</podcast:guid>
         <podcast:locked owner="manatees@gmail.com">yes</podcast:locked>
         <podcast:person role="host" group="cast">Robert Dawson</podcast:person>
+        <item>
+            <title><![CDATA[AI Briefing — July 7, 2026]]></title>
+            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-07-07.mp3</link>
+            <guid>ai-briefing-2026-07-07</guid>
+            <pubDate>Tue, 07 Jul 2026 16:04:40 GMT</pubDate>
+            <description><![CDATA[Top 6 AI stories for 2026-07-07:
+
+Chapters:
+00:00:00 Intro
+00:00:44 Anthropic discovers Claude developed...
+00:02:39 Tencent releases Hy3 open-weight MoE...
+00:04:05 Anthropic outed for Claude tracker that...
+00:05:28 DeepSeek moves to design its own AI chip...
+00:06:34 Chinese AI models cross 30 percent share...
+00:07:45 OpenAI and Anthropic race to give...
+00:08:51 Outro
+
+Sources:
+1. Top Story: Anthropic discovers Claude developed internal working memory and can now read it
+Source: https://the-decoder.com/claudes-hidden-inner-monologue-is-now-readable-thanks-to-anthropics-new-jacobian-lens/
+2. Research Breakthrough: Tencent releases Hy3 open-weight MoE model claiming efficiency gains over larger rivals
+Source: https://the-decoder.com/tencent-releases-hy3-open-source-model-that-allegedly-matches-models-up-to-five-times-its-active-size/
+Source: https://simonwillison.net/2026/Jul/6/hy3/#atom-everything
+3. Policy & Regulation Watch: Anthropic outed for Claude tracker that secretly monitored Chinese users
+Source: https://arstechnica.com/tech-policy/2026/07/anthropic-outed-for-claude-tracker-that-secretly-monitored-chinese-users/
+4. AI Business Watch: DeepSeek moves to design its own AI chip to reduce hardware dependency
+Source: https://the-decoder.com/deepseek-is-designing-its-own-ai-chip/
+5. AI Business Watch: Chinese AI models cross 30 percent share on OpenRouter as cost gap widens
+Source: https://the-decoder.com/chinese-ai-models-regularly-pass-30-percent-on-openrouter-as-cost-gap-widens/
+Source: https://the-decoder.com/zhipu-ai-launches-zcode-to-challenge-claude-code-and-openai-codex-at-a-fraction-of-the-cost/
+6. AI Business Watch: OpenAI and Anthropic race to give startups millions in free compute credits
+Source: https://the-decoder.com/openai-and-anthropic-are-giving-away-millions-in-computing-power-to-attract-startups/]]></description>
+            <enclosure length="13818648" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-07-07.mp3"/>
+                    <itunes:duration>576</itunes:duration>
+            <itunes:explicit>false</itunes:explicit>
+            <itunes:season>2026</itunes:season>
+            <itunes:episode>188</itunes:episode>
+            <itunes:episodeType>full</itunes:episodeType>
+            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-07-07.chapters.json" type="application/json+chapters"/>
+            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-07-07.transcript.txt" type="text/plain" language="en"/>
+            <podcast:soundbite startTime="44" duration="114">Anthropic discovers Claude developed...</podcast:soundbite>
+            <podcast:soundbite startTime="159" duration="84">Tencent releases Hy3 open-weight MoE...</podcast:soundbite>
+            <podcast:soundbite startTime="245" duration="82">Anthropic outed for Claude tracker that...</podcast:soundbite>
+            <podcast:soundbite startTime="328" duration="64">DeepSeek moves to design its own AI chip...</podcast:soundbite>
+            <podcast:soundbite startTime="394" duration="70">Chinese AI models cross 30 percent share...</podcast:soundbite>
+            <podcast:soundbite startTime="465" duration="64">OpenAI and Anthropic race to give...</podcast:soundbite>
+        </item>
         <item>
             <title><![CDATA[AI Briefing — July 6, 2026]]></title>
             <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-07-06.mp3</link>
@@ -1454,47 +1501,6 @@ Source: https://arstechnica.com/ai/2026/05/robot-training-startup-will-send-huma
             <podcast:soundbite startTime="27" duration="68">AI coding agents drive productivity...</podcast:soundbite>
             <podcast:soundbite startTime="95" duration="60">Liquid AI releases 8B MoE model trained...</podcast:soundbite>
             <podcast:soundbite startTime="156" duration="52">AI startups pay with free home cleaning...</podcast:soundbite>
-        </item>
-        <item>
-            <title><![CDATA[AI Briefing — May 29, 2026]]></title>
-            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-05-29.mp3</link>
-            <guid>ai-briefing-2026-05-29</guid>
-            <pubDate>Fri, 29 May 2026 14:25:30 GMT</pubDate>
-            <description><![CDATA[Top 3 AI stories for 2026-05-29:
-
-Chapters:
-00:00:00 Intro
-00:00:31 Anthropic raises $65 billion Series H,...
-00:01:34 Anthropic releases Claude Opus 4.8 with...
-00:02:28 Illinois passes landmark AI safety law as...
-00:03:13 Outro
-
-Sources:
-1. AI Business Watch: Anthropic raises $65 billion Series H, nears trillion-dollar valuation
-Source: https://techcrunch.com/2026/05/28/anthropic-raises-65-billion-nears-1t-valuation-ahead-of-ipo/
-Source: https://www.anthropic.com/news/series-h
-Source: https://the-decoder.com/claude-company-anthropic-nears-a-trillion-dollar-valuation-after-raising-65-billion-in-series-h/
-Source: https://simonwillison.net/2026/May/29/anthropic/#atom-everything
-2. Product & Tool Watch: Anthropic releases Claude Opus 4.8 with dynamic multi-agent workflow orchestration
-Source: https://www.anthropic.com/news/claude-opus-4-8
-Source: https://techcrunch.com/2026/05/28/anthropic-releases-opus-4-8-with-new-dynamic-workflow-tool/
-Source: https://the-decoder.com/anthropic-ships-claude-opus-4-8-as-a-modest-but-tangible-improvement-that-tops-gpt-5-5-in-most-benchmarks/
-Source: https://www.theverge.com/ai-artificial-intelligence/939094/anthropic-claude-4-8-opus-honesty-effort
-Source: https://simonwillison.net/2026/May/28/claude-opus-4-8/#atom-everything
-Source: https://claude.com/blog/introducing-dynamic-workflows-in-claude-code
-3. Policy & Regulation Watch: Illinois passes landmark AI safety law as state regulation outpaces federal inaction
-Source: https://arstechnica.com/tech-policy/2026/05/trump-loses-more-control-over-ai-regulation-as-illinois-passes-landmark-law/]]></description>
-            <enclosure length="5499227" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-29.mp3"/>
-                    <itunes:duration>229</itunes:duration>
-            <itunes:explicit>false</itunes:explicit>
-            <itunes:season>2026</itunes:season>
-            <itunes:episode>149</itunes:episode>
-            <itunes:episodeType>full</itunes:episodeType>
-            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-29.chapters.json" type="application/json+chapters"/>
-            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-29.transcript.txt" type="text/plain" language="en"/>
-            <podcast:soundbite startTime="31" duration="63">Anthropic raises $65 billion Series H,...</podcast:soundbite>
-            <podcast:soundbite startTime="94" duration="54">Anthropic releases Claude Opus 4.8 with...</podcast:soundbite>
-            <podcast:soundbite startTime="148" duration="45">Illinois passes landmark AI safety law as...</podcast:soundbite>
         </item>
     </channel>
 </rss>

@@ -196,8 +196,12 @@ export const BANNED_SCRIPT_PHRASES = [
   "that's a wrap",
 ] as const;
 
-const DISCOURAGED_SPLIT_CONTRAST_PATTERN =
-  /\b(?:that|this|it)(?:(?:\s+is|\s*['\u2019]s)\s+not|\s+isn(?:'|\u2019)t)\b[^.!?]{1,180}[.!?]\s+(?:it|that|this)(?:\s+is|\s*['\u2019]s)\s+(?:(?:actually|basically|really|just|rather|instead)\s+)?(?:a|an|the|another|this|that|its|their|our|your)\b/iu;
+const SPLIT_CONTRAST_NOUN_PHRASE_PATTERN = String.raw`(?:(?:just|only|merely|simply)\s+)?(?:a|an|the|another|this|that|its|their|our|your)\b`;
+const SPLIT_CONTRAST_REFRAME_PATTERN = String.raw`(?:(?:actually|basically|really|just|rather|instead)\s+)?(?:a|an|the|another|this|that|its|their|our|your)\b`;
+const DISCOURAGED_SPLIT_CONTRAST_PATTERN = new RegExp(
+  String.raw`\b(?:that|this|it)(?:(?:\s+is|\s*['\u2019]s)\s+not|\s+isn(?:'|\u2019)t)\s+${SPLIT_CONTRAST_NOUN_PHRASE_PATTERN}[^.!?]{0,180}[.!?]\s+(?:it|that|this)(?:\s+is|\s*['\u2019]s)\s+${SPLIT_CONTRAST_REFRAME_PATTERN}`,
+  "iu",
+);
 
 function buildSystemPromptBase(allowAudioTags: boolean): string {
   const chunkPurityRule = allowAudioTags

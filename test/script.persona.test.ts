@@ -470,20 +470,28 @@ test("validateScriptResponse allows tentative sourcing calibration", () => {
     },
   ];
 
-  validateScriptResponse(
-    {
-      intro: ["Here is the setup.", "Here is why it matters."],
-      segments: [
-        {
-          title: "Top Story: A model ships a useful feature",
-          chunks: ["This isn't confirmed yet.", "It is still worth watching."],
-          sourceUrls: ["https://example.com/model-feature"],
-        },
-      ],
-      outro: ["The pattern is practical.", "Keep the signal clean."],
-    },
-    clusters,
-  );
+  const cases: string[][] = [
+    ["This isn't confirmed yet.", "It is still worth watching."],
+    ["This isn't verified yet.", "It is an unconfirmed report worth watching."],
+    ["That isn't official yet.", "This is a rumor builders should treat carefully."],
+  ];
+
+  for (const chunks of cases) {
+    validateScriptResponse(
+      {
+        intro: ["Here is the setup.", "Here is why it matters."],
+        segments: [
+          {
+            title: "Top Story: A model ships a useful feature",
+            chunks,
+            sourceUrls: ["https://example.com/model-feature"],
+          },
+        ],
+        outro: ["The pattern is practical.", "Keep the signal clean."],
+      },
+      clusters,
+    );
+  }
 });
 
 test("validateScriptResponse rejects malformed narration chunks", () => {

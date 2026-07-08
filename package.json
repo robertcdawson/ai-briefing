@@ -6,6 +6,7 @@
   "description": "Daily AI news podcast pipeline",
   "scripts": {
     "build": "tsc --noEmit",
+    "preflight": "tsx scripts/preflight.ts",
     "start": "tsx src/index.ts",
     "diagnose:script-model": "tsx scripts/diagnose-openrouter-script.ts",
     "test": "tsx test/fetch.smoke.ts",

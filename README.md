@@ -96,7 +96,15 @@ cp .env.example .env
 
 `FEED_BASE_URL` is the public URL where `docs/` will be served — typically `https://USER.github.io/ai-briefing`.
 
-### 4. Smoke test the feeds
+### 4. Preflight local configuration
+
+```bash
+npm run preflight
+```
+
+This validates required configuration and local audio tools before the pipeline can spend model/TTS quota. It does **not** call OpenRouter, OpenAI, or RSS feeds.
+
+### 5. Smoke test the feeds
 
 ```bash
 npm test
@@ -104,7 +112,7 @@ npm test
 
 This hits all sources in `src/feeds.ts` live and asserts at least one article comes back. Expected output is one JSON line per source plus a `{"phase":"smoke","status":"pass",...}` at the end. If a source 404s, the smoke test still passes — see "Maintaining the source list" below.
 
-### 5. First end-to-end run
+### 6. First end-to-end run
 
 ```bash
 npm start
@@ -121,7 +129,7 @@ Inspect the MP3 in any audio player and confirm:
 - Loudness sounds even (no jarring jumps between segments).
 - ID3 tags show `title=AI Briefing — Month D, YYYY`, `artist=AI Briefing`.
 
-### 6. Commit and push docs/
+### 7. Commit and push docs/
 
 ```bash
 git add docs/
@@ -129,7 +137,7 @@ git commit -m "First episode"
 git push
 ```
 
-### 7. Enable GitHub Pages
+### 8. Enable GitHub Pages
 
 In the repo's GitHub Settings → Pages:
 
@@ -139,7 +147,7 @@ In the repo's GitHub Settings → Pages:
 
 After ~30s, visit `https://USER.github.io/ai-briefing/feed.xml`. You should see your RSS XML.
 
-### 8. Validate the feed
+### 9. Validate the feed
 
 Paste your feed URL into https://castfeedvalidator.com. Fix anything red before subscribing on iPhone — Apple is unforgiving about malformed feeds and the cached error state can stick around.
 
@@ -153,7 +161,7 @@ If Cast Feed Validator flags missing Apple metadata, make sure these are set bef
 
 The default artwork path is `docs/podcast-cover.jpg`. Place a square JPG there (1400x1400 to 3000x3000), then commit and push it so GitHub Pages can serve it.
 
-### 9. Configure GitHub Actions
+### 10. Configure GitHub Actions
 
 In the repo's **Settings → Secrets and variables → Actions**:
 
@@ -187,11 +195,11 @@ In the repo's **Settings → Secrets and variables → Actions**:
 
 The workflow checks out code without persisting credentials, then exposes `DAILY_PUSH_DEPLOY_KEY` only to the final commit step after dependencies are installed and the episode pipeline has finished. Keep this deploy key scoped to this repository and do not add deploy keys as protected-branch bypass actors; if branch protection blocks direct pushes, prefer publishing from an unprotected release branch or changing the workflow to open a pull request for generated episodes.
 
-### 10. Trigger the first scheduled run manually
+### 11. Trigger the first scheduled run manually
 
 Go to **Actions → daily → Run workflow → main → Run workflow**. Watch the run; it should complete green in 3–5 minutes and push a new commit with the day's episode.
 
-### 11. Subscribe on iPhone
+### 12. Subscribe on iPhone
 
 1. Open **Apple Podcasts**.
 2. **Library** tab → top-right **•••** menu → **Follow a Show by URL**.

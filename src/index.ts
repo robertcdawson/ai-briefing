@@ -9,6 +9,7 @@ import { resolveEpisodeDate } from "./episode-date.js";
 import { publish } from "./publish.js";
 import { pingHealthcheck } from "./healthcheck.js";
 import { withStageCache } from "./stageCache.js";
+import { assertPreflight } from "./preflight.js";
 import { logJson } from "./util.js";
 
 async function main(): Promise<void> {
@@ -21,6 +22,8 @@ async function main(): Promise<void> {
     // Fire-and-forget: a slow/down monitor must not delay the pipeline. The
     // ping self-swallows errors; the event loop still flushes it before exit.
     void pingHealthcheck("start");
+
+    await assertPreflight();
 
     const fetchStart = Date.now();
     const articles = await fetchAll();

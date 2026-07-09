@@ -488,6 +488,21 @@ test("validateScriptResponse allows tentative sourcing calibration", () => {
     },
     clusters,
   );
+
+  validateScriptResponse(
+    {
+      intro: ["Here is the setup.", "Here is why it matters."],
+      segments: [
+        {
+          title: "Top Story: A model ships a useful feature",
+          chunks: ["This isn't confirmed yet.", "It is the strongest signal we have."],
+          sourceUrls: ["https://example.com/model-feature"],
+        },
+      ],
+      outro: ["The pattern is practical.", "Keep the signal clean."],
+    },
+    clusters,
+  );
 });
 
 test("validateScriptResponse rejects malformed narration chunks", () => {

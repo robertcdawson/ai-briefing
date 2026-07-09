@@ -1,0 +1,46 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — July 9, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 30,
+      "title": "Intro"
+    },
+    {
+      "startTime": 30,
+      "endTime": 77,
+      "title": "OpenAI AI system beats every human..."
+    },
+    {
+      "startTime": 77,
+      "endTime": 120,
+      "title": "OpenAI launches GPT-Live-1 full-duplex..."
+    },
+    {
+      "startTime": 120,
+      "endTime": 169,
+      "title": "OpenAI finds 30 percent of SWE-Bench Pro..."
+    },
+    {
+      "startTime": 169,
+      "endTime": 213,
+      "title": "Databricks adopts Chinese open-source GLM..."
+    },
+    {
+      "startTime": 213,
+      "endTime": 253,
+      "title": "xAI releases Grok 4.5 at a fraction of..."
+    },
+    {
+      "startTime": 253,
+      "endTime": 304,
+      "title": "Lawsuit alleges Grok generated thousands..."
+    },
+    {
+      "startTime": 304,
+      "endTime": 330,
+      "title": "Outro"
+    }
+  ]
+}

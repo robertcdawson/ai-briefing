@@ -4,7 +4,7 @@
         <title>AI Briefing</title>
         <link>https://robertcdawson.github.io/ai-briefing/</link>
         <description>Daily AI news briefing — the stories that matter from the last 24 hours.</description>
-        <lastBuildDate>Wed, 08 Jul 2026 15:45:26 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 09 Jul 2026 15:52:18 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -23,6 +23,56 @@
         <podcast:guid>ea8709f4-3ba2-5b7e-bcdc-e409d84a6443</podcast:guid>
         <podcast:locked owner="manatees@gmail.com">yes</podcast:locked>
         <podcast:person role="host" group="cast">Robert Dawson</podcast:person>
+        <item>
+            <title><![CDATA[AI Briefing — July 9, 2026]]></title>
+            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-07-09.mp3</link>
+            <guid>ai-briefing-2026-07-09</guid>
+            <pubDate>Thu, 09 Jul 2026 15:52:18 GMT</pubDate>
+            <description><![CDATA[Top 6 AI stories for 2026-07-09:
+
+Chapters:
+00:00:00 Intro
+00:00:30 OpenAI AI system beats every human...
+00:01:17 OpenAI launches GPT-Live-1 full-duplex...
+00:02:00 OpenAI finds 30 percent of SWE-Bench Pro...
+00:02:49 Databricks adopts Chinese open-source GLM...
+00:03:33 xAI releases Grok 4.5 at a fraction of...
+00:04:13 Lawsuit alleges Grok generated thousands...
+00:05:04 Outro
+
+Sources:
+1. Top Story: OpenAI AI system beats every human competitor at AtCoder World Tour Finals
+Source: https://the-decoder.com/openais-ai-beats-every-human-at-atcoder-a-top-competitive-programming-contest/
+2. Product & Tool Watch: OpenAI launches GPT-Live-1 full-duplex voice model for ChatGPT
+Source: https://www.theverge.com/ai-artificial-intelligence/962856/chatgpt-upgraded-voice-mode-gpt-live
+Source: https://techcrunch.com/2026/07/08/openai-releases-new-voice-models-for-more-natural-live-conversations/
+Source: https://the-decoder.com/chatgpt-can-now-listen-and-talk-at-the-same-time-making-ai-conversations-seem-more-human/
+Source: https://simonwillison.net/2026/Jul/8/introducing-gptlive/#atom-everything
+3. Research Breakthrough: OpenAI finds 30 percent of SWE-Bench Pro coding benchmark is broken
+Source: https://the-decoder.com/openai-finds-roughly-30-percent-of-popular-ai-coding-test-is-broken/
+4. Open Source Watch: Databricks adopts Chinese open-source GLM 5.2 as default coding engine over Anthropic
+Source: https://the-decoder.com/databricks-makes-chinese-open-source-model-glm-5-2-its-default-coding-engine-after-it-matched-opus-at-lower-cost/
+5. Product & Tool Watch: xAI releases Grok 4.5 at a fraction of frontier model prices
+Source: https://techcrunch.com/2026/07/08/spacexai-releases-grok-4-5-which-elon-describes-as-an-opus-class-model/
+Source: https://the-decoder.com/grok-4-5-is-so-cheap-compared-to-fable-5-and-gpt-5-5-that-benchmark-gaps-may-not-matter-much/
+Source: https://stratechery.com/2026/muse-image-grok-4-5-alex-karp-on-cnbc/
+6. Policy & Regulation Watch: Lawsuit alleges Grok generated thousands of child sex abuse images with minimal reporting
+Source: https://arstechnica.com/tech-policy/2026/07/lawsuit-grok-user-made-7k-child-sex-images-xai-only-reported-one-gang-rape-prompt/]]></description>
+            <enclosure length="7927903" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-07-09.mp3"/>
+                    <itunes:duration>330</itunes:duration>
+            <itunes:explicit>false</itunes:explicit>
+            <itunes:season>2026</itunes:season>
+            <itunes:episode>190</itunes:episode>
+            <itunes:episodeType>full</itunes:episodeType>
+            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-07-09.chapters.json" type="application/json+chapters"/>
+            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-07-09.transcript.txt" type="text/plain" language="en"/>
+            <podcast:soundbite startTime="30" duration="45">OpenAI AI system beats every human...</podcast:soundbite>
+            <podcast:soundbite startTime="77" duration="41">OpenAI launches GPT-Live-1 full-duplex...</podcast:soundbite>
+            <podcast:soundbite startTime="120" duration="47">OpenAI finds 30 percent of SWE-Bench Pro...</podcast:soundbite>
+            <podcast:soundbite startTime="169" duration="43">Databricks adopts Chinese open-source GLM...</podcast:soundbite>
+            <podcast:soundbite startTime="213" duration="39">xAI releases Grok 4.5 at a fraction of...</podcast:soundbite>
+            <podcast:soundbite startTime="253" duration="49">Lawsuit alleges Grok generated thousands...</podcast:soundbite>
+        </item>
         <item>
             <title><![CDATA[AI Briefing — July 8, 2026]]></title>
             <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-07-08.mp3</link>
@@ -1479,40 +1529,6 @@ Source: https://the-decoder.com/minimax-m3-open-weight-model-with-a-million-toke
             <podcast:soundbite startTime="24" duration="62">Nvidia launches Cosmos 3 world model and...</podcast:soundbite>
             <podcast:soundbite startTime="86" duration="50">OpenAI model solves 80-year-old famous...</podcast:soundbite>
             <podcast:soundbite startTime="137" duration="53">MiniMax M3 open-weight model offers...</podcast:soundbite>
-        </item>
-        <item>
-            <title><![CDATA[AI Briefing — May 31, 2026]]></title>
-            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-05-31.mp3</link>
-            <guid>ai-briefing-2026-05-31</guid>
-            <pubDate>Sun, 31 May 2026 14:11:52 GMT</pubDate>
-            <description><![CDATA[Top 3 AI stories for 2026-05-31:
-
-Chapters:
-00:00:00 Intro
-00:00:24 SoftBank pledges up to €75 billion for...
-00:01:13 New benchmark reveals AI search agents...
-00:02:02 GitHub Copilot shifts to token-based...
-00:02:46 Outro
-
-Sources:
-1. AI Business Watch: SoftBank pledges up to €75 billion for French AI data centers
-Source: https://techcrunch.com/2026/05/30/softbank-says-it-will-invest-up-to-e75-billion-to-build-french-data-centers/
-Source: https://the-decoder.com/softbank-plans-75-billion-euro-ai-data-center-buildout-in-france/
-2. Research Breakthrough: New benchmark reveals AI search agents mostly confirm training knowledge not browse
-Source: https://the-decoder.com/ai-search-agents-often-confirm-what-they-already-know-instead-of-actually-researching-the-web/
-3. Product & Tool Watch: GitHub Copilot shifts to token-based billing triggering developer backlash
-Source: https://techcrunch.com/2026/05/30/what-a-joke-github-copilots-new-token-based-billing-spurs-consternation-among-devs/]]></description>
-            <enclosure length="4519489" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-31.mp3"/>
-                    <itunes:duration>188</itunes:duration>
-            <itunes:explicit>false</itunes:explicit>
-            <itunes:season>2026</itunes:season>
-            <itunes:episode>151</itunes:episode>
-            <itunes:episodeType>full</itunes:episodeType>
-            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-31.chapters.json" type="application/json+chapters"/>
-            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-05-31.transcript.txt" type="text/plain" language="en"/>
-            <podcast:soundbite startTime="24" duration="49">SoftBank pledges up to €75 billion for...</podcast:soundbite>
-            <podcast:soundbite startTime="73" duration="49">New benchmark reveals AI search agents...</podcast:soundbite>
-            <podcast:soundbite startTime="122" duration="44">GitHub Copilot shifts to token-based...</podcast:soundbite>
         </item>
     </channel>
 </rss>

@@ -4,42 +4,42 @@
   "chapters": [
     {
       "startTime": 0,
-      "endTime": 30,
+      "endTime": 33,
       "title": "Intro"
     },
     {
-      "startTime": 30,
-      "endTime": 77,
-      "title": "OpenAI AI system beats every human..."
+      "startTime": 33,
+      "endTime": 113,
+      "title": "OpenAI AI System Beats Every Human at..."
     },
     {
-      "startTime": 77,
-      "endTime": 120,
-      "title": "OpenAI launches GPT-Live-1 full-duplex..."
+      "startTime": 113,
+      "endTime": 218,
+      "title": "OpenAI Launches GPT-Live-1 Full-Duplex..."
     },
     {
-      "startTime": 120,
-      "endTime": 169,
-      "title": "OpenAI finds 30 percent of SWE-Bench Pro..."
+      "startTime": 218,
+      "endTime": 312,
+      "title": "OpenAI Finds Roughly 30 Percent of..."
     },
     {
-      "startTime": 169,
-      "endTime": 213,
-      "title": "Databricks adopts Chinese open-source GLM..."
+      "startTime": 312,
+      "endTime": 408,
+      "title": "Databricks Makes Chinese Open-Source..."
     },
     {
-      "startTime": 213,
-      "endTime": 253,
-      "title": "xAI releases Grok 4.5 at a fraction of..."
+      "startTime": 408,
+      "endTime": 494,
+      "title": "Grok 4.5 Is So Cheap Compared to Fable 5..."
     },
     {
-      "startTime": 253,
-      "endTime": 304,
-      "title": "Lawsuit alleges Grok generated thousands..."
+      "startTime": 494,
+      "endTime": 556,
+      "title": "Ollama Raises 65 Million Dollars, Grows..."
     },
     {
-      "startTime": 304,
-      "endTime": 330,
+      "startTime": 556,
+      "endTime": 621,
       "title": "Outro"
     }
   ]

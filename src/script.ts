@@ -197,7 +197,17 @@ export const BANNED_SCRIPT_PHRASES = [
 ] as const;
 
 const DISCOURAGED_SPLIT_CONTRAST_PATTERN =
-  /\b(?:that|this|it)(?:(?:\s+is|\s*['\u2019]s)\s+not|\s+isn(?:'|\u2019)t)\b[^.!?]{1,180}[.!?]\s+(?:it|that|this)(?:\s+is|\s*['\u2019]s)\s+(?:(?:actually|basically|really|just|rather|instead)\s+)?(?:a|an|the|another|this|that|its|their|our|your)\b/iu;
+  /\b(?:that|this|it)(?:(?:\s+is|\s*['\u2019]s)\s+not|\s+isn(?:'|\u2019)t)\b[^.!?]{1,180}[.!?]\s+(?:it|that|this)(?:\s+is|\s*['\u2019]s)\s+(?:(?:actually|basically|really|just|rather|instead)\s+)?(?:a|an|the|another|this|that|its|their|our|your)\b/giu;
+const SOURCING_HEDGE_PATTERN = /\b(?:confirmed|verified|corroborated|official|established|settled|final)\b/iu;
+
+function usesDiscouragedSplitContrast(readAloudText: string): boolean {
+  for (const match of readAloudText.matchAll(DISCOURAGED_SPLIT_CONTRAST_PATTERN)) {
+    if (!SOURCING_HEDGE_PATTERN.test(match[0])) {
+      return true;
+    }
+  }
+  return false;
+}
 
 function buildSystemPromptBase(allowAudioTags: boolean): string {
   const chunkPurityRule = allowAudioTags
@@ -626,7 +636,7 @@ function validateNarrationChunks(label: string, chunks: unknown): asserts chunks
   }
 
   const readAloudText = chunks.join(" ");
-  if (DISCOURAGED_SPLIT_CONTRAST_PATTERN.test(readAloudText)) {
+  if (usesDiscouragedSplitContrast(readAloudText)) {
     throw new Error(
       `script ${label} uses discouraged split contrast phrasing; ` +
         `rewrite contrasts without "That's not X. It's Y." construction`,

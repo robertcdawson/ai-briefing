@@ -476,7 +476,11 @@ test("validateScriptResponse allows tentative sourcing calibration", () => {
       segments: [
         {
           title: "Top Story: A model ships a useful feature",
-          chunks: ["This isn't confirmed yet.", "It is still worth watching."],
+          chunks: [
+            "This isn't confirmed yet.",
+            "It is still worth watching.",
+            "It is the strongest signal we have.",
+          ],
           sourceUrls: ["https://example.com/model-feature"],
         },
       ],

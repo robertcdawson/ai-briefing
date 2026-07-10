@@ -1,0 +1,203 @@
+{
+  "date": "2026-07-10",
+  "title": "AI Briefing — July 10, 2026",
+  "description": "Top 6 AI stories for 2026-07-10:\n\nChapters:\n00:00:00 Intro\n00:00:35 OpenAI launches ChatGPT Work agent...\n00:02:38 NYT accuses OpenAI of hiding evidence and...\n00:03:49 Meta launches Muse Spark 1.1 coding model...\n00:05:09 Bun rewrites over a million lines from...\n00:06:34 Surgeons remotely operate humanoid robots...\n00:07:55 OpenAI AGI chief Fidji Simo steps down...\n00:08:55 Outro\n\nSources:\n1. Top Story: OpenAI launches ChatGPT Work agent alongside full GPT-5.6 public rollout\nSource: https://www.theverge.com/ai-artificial-intelligence/963464/openai-gpt-5-6-codex-chatgpt-work\nSource: https://arstechnica.com/ai/2026/07/openai-wants-its-new-tool-to-do-your-work-for-you-and-with-you/\nSource: https://techcrunch.com/2026/07/09/openai-launches-its-new-family-of-models-with-gpt-5-6/\nSource: https://the-decoder.com/openai-pairs-its-gpt-5-6-public-rollout-with-chatgpt-work-a-new-agent-that-handles-entire-workflows/\nSource: https://the-decoder.com/gpt-5-6-sol-nearly-matches-fable-5-on-aggregated-benchmarks-at-one-third-the-cost/\nSource: https://simonwillison.net/2026/Jul/9/gpt-5-6/#atom-everything\nSource: https://techcrunch.com/2026/07/09/openai-says-gpt-5-6-is-the-preferred-model-for-microsoft-copilot-amid-breakup-chatter/\n2. Policy & Regulation Watch: NYT accuses OpenAI of hiding evidence and deleting logs in copyright lawsuit\nSource: https://arstechnica.com/tech-policy/2026/07/openai-faked-inability-to-search-training-data-hid-billions-of-logs-nyt-says/\nSource: https://techcrunch.com/2026/07/09/new-york-times-says-openai-hid-evidence-in-chatgpt-copyright-trial/\n3. Product & Tool Watch: Meta launches Muse Spark 1.1 coding model with prices undercutting all rivals\nSource: https://techcrunch.com/2026/07/09/meta-enters-the-crowded-ai-coding-battle-with-muse-spark-1-1/\nSource: https://the-decoder.com/metas-muse-spark-1-1-api-pricing-squeezes-openai-and-anthropic-as-the-ai-price-war-heats-up/\nSource: https://simonwillison.net/2026/Jul/9/muse-spark-1-1/#atom-everything\n4. AI Culture Signal: Bun rewrites over a million lines from Zig to Rust using Claude Fable 5 in eleven days\nSource: https://the-decoder.com/bun-ditches-zig-for-rust-with-help-from-claude-fable-5-writes-over-a-million-lines-of-code-in-11-days/\n5. Research Breakthrough: Surgeons remotely operate humanoid robots in world-first live animal surgery\nSource: https://arstechnica.com/ai/2026/07/humanoid-robots-controlled-by-surgeons-did-world-first-operation-on-live-pigs/\n6. AI Business Watch: OpenAI AGI chief Fidji Simo steps down due to prolonged illness, creating leadership gap\nSource: https://www.theverge.com/ai-artificial-intelligence/963738/openai-fidji-simo-steps-down-ceo-advisor\nSource: https://techcrunch.com/2026/07/09/fidji-simo-steps-down-from-openais-no-2-role/",
+  "durationSeconds": 590,
+  "byteLength": 14164835,
+  "pubDate": "2026-07-10T15:48:04.562Z",
+  "season": 2026,
+  "episodeNumber": 191,
+  "chaptersFilename": "2026-07-10.chapters.json",
+  "transcriptFilename": "2026-07-10.transcript.txt",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 35,
+      "title": "Intro"
+    },
+    {
+      "startTime": 35,
+      "endTime": 158,
+      "title": "OpenAI launches ChatGPT Work agent..."
+    },
+    {
+      "startTime": 158,
+      "endTime": 229,
+      "title": "NYT accuses OpenAI of hiding evidence and..."
+    },
+    {
+      "startTime": 229,
+      "endTime": 309,
+      "title": "Meta launches Muse Spark 1.1 coding model..."
+    },
+    {
+      "startTime": 309,
+      "endTime": 394,
+      "title": "Bun rewrites over a million lines from..."
+    },
+    {
+      "startTime": 394,
+      "endTime": 475,
+      "title": "Surgeons remotely operate humanoid robots..."
+    },
+    {
+      "startTime": 475,
+      "endTime": 535,
+      "title": "OpenAI AGI chief Fidji Simo steps down..."
+    },
+    {
+      "startTime": 535,
+      "endTime": 590,
+      "title": "Outro"
+    }
+  ],
+  "soundbites": [
+    {
+      "startTime": 35,
+      "duration": 120,
+      "title": "OpenAI launches ChatGPT Work agent..."
+    },
+    {
+      "startTime": 158,
+      "duration": 70,
+      "title": "NYT accuses OpenAI of hiding evidence and..."
+    },
+    {
+      "startTime": 229,
+      "duration": 78,
+      "title": "Meta launches Muse Spark 1.1 coding model..."
+    },
+    {
+      "startTime": 309,
+      "duration": 83,
+      "title": "Bun rewrites over a million lines from..."
+    },
+    {
+      "startTime": 394,
+      "duration": 79,
+      "title": "Surgeons remotely operate humanoid robots..."
+    },
+    {
+      "startTime": 475,
+      "duration": 59,
+      "title": "OpenAI AGI chief Fidji Simo steps down..."
+    }
+  ],
+  "curation": [
+    {
+      "canonicalKey": "chatgpt-work-gpt56-public-launch",
+      "headline": "OpenAI launches ChatGPT Work agent alongside full GPT-5.6 public rollout",
+      "whyItMatters": "ChatGPT Work combines Codex with GPT-5.6 to handle multi-hour autonomous workflows across Google Drive, Slack, and Salesforce — a direct bid for enterprise agentic workloads that previously required custom integrations. Simultaneously, GPT-5.6 Sol nearly matches Claude Fable 5 on aggregated benchmarks at one-third the price, intensifying pressure on Anthropic.",
+      "caveat": "Benchmark comparisons come from third-party aggregators and OpenAI itself; real-world reliability of multi-hour autonomous workflows remains unproven at scale.",
+      "importance": 88,
+      "category": "product-tools"
+    },
+    {
+      "canonicalKey": "openai-nyt-copyright-evidence-sanctions",
+      "headline": "NYT accuses OpenAI of hiding evidence and deleting logs in copyright lawsuit",
+      "whyItMatters": "If the sanctions motion succeeds, OpenAI could face severe evidentiary penalties that reshape the entire AI training copyright litigation landscape, affecting every lab that scraped web content. This is a material escalation beyond the original filing.",
+      "caveat": "The allegations come from the NYT's legal filings rather than independent investigation, and courts have not yet ruled on the sanctions motion.",
+      "importance": 82,
+      "category": "policy-regulation"
+    },
+    {
+      "canonicalKey": "meta-muse-spark-11-coding-api",
+      "headline": "Meta launches Muse Spark 1.1 coding model with prices undercutting all rivals",
+      "whyItMatters": "Muse Spark 1.1 enters the agentic coding market at $4.25 per million output tokens — cheaper than Grok 4.5 and a fraction of Anthropic or OpenAI pricing — adding a well-resourced competitor to a space already under severe price compression. Developers evaluating cost-sensitive coding pipelines now have a new option from a hyperscaler with its own chip roadmap.",
+      "caveat": "Meta's API infrastructure, reliability, and enterprise support are unproven compared to established providers, and independent benchmark validation is not yet available.",
+      "importance": 78,
+      "category": "product-tools"
+    },
+    {
+      "canonicalKey": "bun-rewrite-zig-rust-claude-fable5",
+      "headline": "Bun rewrites over a million lines from Zig to Rust using Claude Fable 5 in eleven days",
+      "whyItMatters": "This is one of the largest documented real-world AI-assisted code migrations to date, demonstrating that frontier models can now handle non-trivial language-level rewrites of production developer tooling at a pace impossible for human teams alone — a concrete signal of how AI is changing software engineering workflows.",
+      "caveat": "The Bun team has not yet published detailed quality metrics, test coverage comparisons, or post-migration bug rates, so the full cost-benefit picture is incomplete.",
+      "importance": 75,
+      "category": "culture"
+    },
+    {
+      "canonicalKey": "humanoid-robot-surgery-pig-trial",
+      "headline": "Surgeons remotely operate humanoid robots in world-first live animal surgery",
+      "whyItMatters": "The preclinical trial demonstrates that general-purpose humanoid robots — rather than purpose-built surgical systems — can be teleoperated for live surgery, a potential step toward dramatically expanding access to specialist surgical care in remote or underserved settings.",
+      "caveat": "This is a preclinical pig trial and the path to human surgical use involves extensive regulatory approval, safety validation, and latency challenges that could take many years.",
+      "importance": 70,
+      "category": "research"
+    },
+    {
+      "canonicalKey": "openai-fidji-simo-departure",
+      "headline": "OpenAI AGI chief Fidji Simo steps down due to prolonged illness, creating leadership gap",
+      "whyItMatters": "Simo's departure removes OpenAI's second-ranking executive at a critical moment — the company is pursuing an IPO, competing aggressively with Anthropic in enterprise, and navigating government scrutiny — leaving a significant leadership vacuum at the top.",
+      "caveat": "OpenAI has not named a successor or clarified how AGI product responsibilities will be redistributed, so the organizational impact is still unclear.",
+      "importance": 68,
+      "category": "business"
+    }
+  ],
+  "curationReport": {
+    "threshold": 45,
+    "maxStories": 6,
+    "total": 8,
+    "selectedCount": 6,
+    "droppedCount": 2,
+    "clusters": [
+      {
+        "canonicalKey": "chatgpt-work-gpt56-public-launch",
+        "category": "product-tools",
+        "headline": "OpenAI launches ChatGPT Work agent alongside full GPT-5.6 public rollout",
+        "importance": 88,
+        "selected": true
+      },
+      {
+        "canonicalKey": "openai-nyt-copyright-evidence-sanctions",
+        "category": "policy-regulation",
+        "headline": "NYT accuses OpenAI of hiding evidence and deleting logs in copyright lawsuit",
+        "importance": 82,
+        "selected": true
+      },
+      {
+        "canonicalKey": "meta-muse-spark-11-coding-api",
+        "category": "product-tools",
+        "headline": "Meta launches Muse Spark 1.1 coding model with prices undercutting all rivals",
+        "importance": 78,
+        "selected": true
+      },
+      {
+        "canonicalKey": "bun-rewrite-zig-rust-claude-fable5",
+        "category": "culture",
+        "headline": "Bun rewrites over a million lines from Zig to Rust using Claude Fable 5 in eleven days",
+        "importance": 75,
+        "selected": true
+      },
+      {
+        "canonicalKey": "humanoid-robot-surgery-pig-trial",
+        "category": "research",
+        "headline": "Surgeons remotely operate humanoid robots in world-first live animal surgery",
+        "importance": 70,
+        "selected": true
+      },
+      {
+        "canonicalKey": "openai-fidji-simo-departure",
+        "category": "business",
+        "headline": "OpenAI AGI chief Fidji Simo steps down due to prolonged illness, creating leadership gap",
+        "importance": 68,
+        "selected": true
+      },
+      {
+        "canonicalKey": "patreon-cloudflare-ai-crawler-block",
+        "category": "policy-regulation",
+        "headline": "Patreon partners with Cloudflare to block AI crawlers from creator content",
+        "importance": 65,
+        "selected": false,
+        "dropReason": "over_cap"
+      },
+      {
+        "canonicalKey": "openai-atlas-browser-shutdown",
+        "category": "product-tools",
+        "headline": "OpenAI kills Atlas AI browser after eight months, folds features into ChatGPT",
+        "importance": 62,
+        "selected": false,
+        "dropReason": "over_cap"
+      }
+    ]
+  }
+}

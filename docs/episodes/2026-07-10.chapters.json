@@ -1,0 +1,46 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — July 10, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 35,
+      "title": "Intro"
+    },
+    {
+      "startTime": 35,
+      "endTime": 158,
+      "title": "OpenAI launches ChatGPT Work agent..."
+    },
+    {
+      "startTime": 158,
+      "endTime": 229,
+      "title": "NYT accuses OpenAI of hiding evidence and..."
+    },
+    {
+      "startTime": 229,
+      "endTime": 309,
+      "title": "Meta launches Muse Spark 1.1 coding model..."
+    },
+    {
+      "startTime": 309,
+      "endTime": 394,
+      "title": "Bun rewrites over a million lines from..."
+    },
+    {
+      "startTime": 394,
+      "endTime": 475,
+      "title": "Surgeons remotely operate humanoid robots..."
+    },
+    {
+      "startTime": 475,
+      "endTime": 535,
+      "title": "OpenAI AGI chief Fidji Simo steps down..."
+    },
+    {
+      "startTime": 535,
+      "endTime": 590,
+      "title": "Outro"
+    }
+  ]
+}

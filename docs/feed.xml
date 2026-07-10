@@ -4,7 +4,7 @@
         <title>AI Briefing</title>
         <link>https://robertcdawson.github.io/ai-briefing/</link>
         <description>Daily AI news briefing — the stories that matter from the last 24 hours.</description>
-        <lastBuildDate>Thu, 09 Jul 2026 16:16:19 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 10 Jul 2026 15:48:04 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -23,6 +23,61 @@
         <podcast:guid>ea8709f4-3ba2-5b7e-bcdc-e409d84a6443</podcast:guid>
         <podcast:locked owner="manatees@gmail.com">yes</podcast:locked>
         <podcast:person role="host" group="cast">Robert Dawson</podcast:person>
+        <item>
+            <title><![CDATA[AI Briefing — July 10, 2026]]></title>
+            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-07-10.mp3</link>
+            <guid>ai-briefing-2026-07-10</guid>
+            <pubDate>Fri, 10 Jul 2026 15:48:04 GMT</pubDate>
+            <description><![CDATA[Top 6 AI stories for 2026-07-10:
+
+Chapters:
+00:00:00 Intro
+00:00:35 OpenAI launches ChatGPT Work agent...
+00:02:38 NYT accuses OpenAI of hiding evidence and...
+00:03:49 Meta launches Muse Spark 1.1 coding model...
+00:05:09 Bun rewrites over a million lines from...
+00:06:34 Surgeons remotely operate humanoid robots...
+00:07:55 OpenAI AGI chief Fidji Simo steps down...
+00:08:55 Outro
+
+Sources:
+1. Top Story: OpenAI launches ChatGPT Work agent alongside full GPT-5.6 public rollout
+Source: https://www.theverge.com/ai-artificial-intelligence/963464/openai-gpt-5-6-codex-chatgpt-work
+Source: https://arstechnica.com/ai/2026/07/openai-wants-its-new-tool-to-do-your-work-for-you-and-with-you/
+Source: https://techcrunch.com/2026/07/09/openai-launches-its-new-family-of-models-with-gpt-5-6/
+Source: https://the-decoder.com/openai-pairs-its-gpt-5-6-public-rollout-with-chatgpt-work-a-new-agent-that-handles-entire-workflows/
+Source: https://the-decoder.com/gpt-5-6-sol-nearly-matches-fable-5-on-aggregated-benchmarks-at-one-third-the-cost/
+Source: https://simonwillison.net/2026/Jul/9/gpt-5-6/#atom-everything
+Source: https://techcrunch.com/2026/07/09/openai-says-gpt-5-6-is-the-preferred-model-for-microsoft-copilot-amid-breakup-chatter/
+2. Policy & Regulation Watch: NYT accuses OpenAI of hiding evidence and deleting logs in copyright lawsuit
+Source: https://arstechnica.com/tech-policy/2026/07/openai-faked-inability-to-search-training-data-hid-billions-of-logs-nyt-says/
+Source: https://techcrunch.com/2026/07/09/new-york-times-says-openai-hid-evidence-in-chatgpt-copyright-trial/
+3. Product & Tool Watch: Meta launches Muse Spark 1.1 coding model with prices undercutting all rivals
+Source: https://techcrunch.com/2026/07/09/meta-enters-the-crowded-ai-coding-battle-with-muse-spark-1-1/
+Source: https://the-decoder.com/metas-muse-spark-1-1-api-pricing-squeezes-openai-and-anthropic-as-the-ai-price-war-heats-up/
+Source: https://simonwillison.net/2026/Jul/9/muse-spark-1-1/#atom-everything
+4. AI Culture Signal: Bun rewrites over a million lines from Zig to Rust using Claude Fable 5 in eleven days
+Source: https://the-decoder.com/bun-ditches-zig-for-rust-with-help-from-claude-fable-5-writes-over-a-million-lines-of-code-in-11-days/
+5. Research Breakthrough: Surgeons remotely operate humanoid robots in world-first live animal surgery
+Source: https://arstechnica.com/ai/2026/07/humanoid-robots-controlled-by-surgeons-did-world-first-operation-on-live-pigs/
+6. AI Business Watch: OpenAI AGI chief Fidji Simo steps down due to prolonged illness, creating leadership gap
+Source: https://www.theverge.com/ai-artificial-intelligence/963738/openai-fidji-simo-steps-down-ceo-advisor
+Source: https://techcrunch.com/2026/07/09/fidji-simo-steps-down-from-openais-no-2-role/]]></description>
+            <enclosure length="14164835" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-07-10.mp3"/>
+                    <itunes:duration>590</itunes:duration>
+            <itunes:explicit>false</itunes:explicit>
+            <itunes:season>2026</itunes:season>
+            <itunes:episode>191</itunes:episode>
+            <itunes:episodeType>full</itunes:episodeType>
+            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-07-10.chapters.json" type="application/json+chapters"/>
+            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-07-10.transcript.txt" type="text/plain" language="en"/>
+            <podcast:soundbite startTime="35" duration="120">OpenAI launches ChatGPT Work agent...</podcast:soundbite>
+            <podcast:soundbite startTime="158" duration="70">NYT accuses OpenAI of hiding evidence and...</podcast:soundbite>
+            <podcast:soundbite startTime="229" duration="78">Meta launches Muse Spark 1.1 coding model...</podcast:soundbite>
+            <podcast:soundbite startTime="309" duration="83">Bun rewrites over a million lines from...</podcast:soundbite>
+            <podcast:soundbite startTime="394" duration="79">Surgeons remotely operate humanoid robots...</podcast:soundbite>
+            <podcast:soundbite startTime="475" duration="59">OpenAI AGI chief Fidji Simo steps down...</podcast:soundbite>
+        </item>
         <item>
             <title><![CDATA[AI Briefing — July 9, 2026]]></title>
             <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-07-09.mp3</link>
@@ -1494,41 +1549,6 @@ Source: https://simonwillison.net/2026/Jun/1/hackers-simply-asked-meta-ai/#atom-
             <podcast:soundbite startTime="28" duration="60">Anthropic Files for IPO</podcast:soundbite>
             <podcast:soundbite startTime="88" duration="59">Alphabet Raises $80 Billion for AI Expansion</podcast:soundbite>
             <podcast:soundbite startTime="147" duration="52">Meta&apos;s AI Chatbot Exploited</podcast:soundbite>
-        </item>
-        <item>
-            <title><![CDATA[AI Briefing — June 1, 2026]]></title>
-            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-06-01.mp3</link>
-            <guid>ai-briefing-2026-06-01</guid>
-            <pubDate>Mon, 01 Jun 2026 15:38:27 GMT</pubDate>
-            <description><![CDATA[Top 3 AI stories for 2026-06-01:
-
-Chapters:
-00:00:00 Intro
-00:00:24 Nvidia launches Cosmos 3 world model and...
-00:01:26 OpenAI model solves 80-year-old famous...
-00:02:17 MiniMax M3 open-weight model offers...
-00:03:09 Outro
-
-Sources:
-1. Open Source Watch: Nvidia launches Cosmos 3 world model and open humanoid robot platform
-Source: https://huggingface.co/blog/nvidia/cosmos-3-for-physical-ai
-Source: https://the-decoder.com/nvidia-bets-big-on-physical-ai-at-gtc-taipei-with-a-new-world-model-driving-brain-and-open-humanoid-robot/
-Source: https://the-decoder.com/nvidias-nemotron-3-ultra-becomes-the-smartest-open-us-model-but-china-still-leads/
-2. Research Breakthrough: OpenAI model solves 80-year-old famous mathematics problem
-Source: https://arstechnica.com/ai/2026/06/openais-math-breakthrough-played-to-ais-strengths/
-3. Open Source Watch: MiniMax M3 open-weight model offers million-token context with multimodality
-Source: https://the-decoder.com/minimax-m3-open-weight-model-with-a-million-token-context-challenges-proprietary-leaders/]]></description>
-            <enclosure length="5217558" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-01.mp3"/>
-                    <itunes:duration>217</itunes:duration>
-            <itunes:explicit>false</itunes:explicit>
-            <itunes:season>2026</itunes:season>
-            <itunes:episode>152</itunes:episode>
-            <itunes:episodeType>full</itunes:episodeType>
-            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-01.chapters.json" type="application/json+chapters"/>
-            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-01.transcript.txt" type="text/plain" language="en"/>
-            <podcast:soundbite startTime="24" duration="62">Nvidia launches Cosmos 3 world model and...</podcast:soundbite>
-            <podcast:soundbite startTime="86" duration="50">OpenAI model solves 80-year-old famous...</podcast:soundbite>
-            <podcast:soundbite startTime="137" duration="53">MiniMax M3 open-weight model offers...</podcast:soundbite>
         </item>
     </channel>
 </rss>

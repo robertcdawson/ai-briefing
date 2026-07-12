@@ -9,8 +9,53 @@ const FRESHNESS_MS = 24 * 60 * 60 * 1000;
 
 const parser = new Parser({ timeout: PER_FEED_TIMEOUT_MS });
 
+const TRACKING_QUERY_PREFIXES = ["utm_"] as const;
+const TRACKING_QUERY_PARAMS = new Set([
+  "fbclid",
+  "gclid",
+  "dclid",
+  "mc_cid",
+  "mc_eid",
+  "igshid",
+]);
+
 function stripHtml(s: string): string {
   return s.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
+}
+
+export function canonicalArticleUrl(rawUrl: string): string {
+  const trimmed = rawUrl.trim();
+  try {
+    const parsed = new URL(trimmed);
+    parsed.hash = "";
+
+    const meaningfulParams = [...parsed.searchParams.entries()]
+      .filter(([key]) => !isTrackingQueryParam(key))
+      .sort(([keyA, valueA], [keyB, valueB]) => keyA.localeCompare(keyB) || valueA.localeCompare(valueB));
+
+    parsed.search = "";
+    for (const [key, value] of meaningfulParams) {
+      parsed.searchParams.append(key, value);
+    }
+
+    return parsed.toString();
+  } catch {
+    return trimmed;
+  }
+}
+
+export function deduplicateFetchedArticles(articles: readonly Article[]): Article[] {
+  const seen = new Set<string>();
+  const deduped: Article[] = [];
+
+  for (const article of articles) {
+    const key = canonicalArticleUrl(article.url);
+    if (seen.has(key)) continue;
+    seen.add(key);
+    deduped.push(article);
+  }
+
+  return deduped;
 }
 
 async function fetchSource(source: FeedSource): Promise<Article[]> {
@@ -82,14 +127,24 @@ export async function fetchAll(): Promise<Article[]> {
     }
   }
 
+  const dedupedArticles = deduplicateFetchedArticles(articles);
+
   logJson({
     phase: "fetch",
     status: "ok",
     durationMs: Date.now() - started,
     sources: SOURCES.length,
     sourcesOk: settled.filter((s) => s.status === "fulfilled").length,
-    totalArticles: articles.length,
+    rawArticles: articles.length,
+    duplicateArticles: articles.length - dedupedArticles.length,
+    totalArticles: dedupedArticles.length,
   });
 
-  return articles;
+  return dedupedArticles;
+}
+
+function isTrackingQueryParam(key: string): boolean {
+  const normalised = key.toLowerCase();
+  return TRACKING_QUERY_PARAMS.has(normalised)
+    || TRACKING_QUERY_PREFIXES.some((prefix) => normalised.startsWith(prefix));
 }

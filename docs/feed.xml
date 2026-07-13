@@ -4,7 +4,7 @@
         <title>AI Briefing</title>
         <link>https://robertcdawson.github.io/ai-briefing/</link>
         <description>Daily AI news briefing — the stories that matter from the last 24 hours.</description>
-        <lastBuildDate>Fri, 10 Jul 2026 15:48:04 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 13 Jul 2026 16:06:51 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -23,6 +23,51 @@
         <podcast:guid>ea8709f4-3ba2-5b7e-bcdc-e409d84a6443</podcast:guid>
         <podcast:locked owner="manatees@gmail.com">yes</podcast:locked>
         <podcast:person role="host" group="cast">Robert Dawson</podcast:person>
+        <item>
+            <title><![CDATA[AI Briefing — July 13, 2026]]></title>
+            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-07-13.mp3</link>
+            <guid>ai-briefing-2026-07-13</guid>
+            <pubDate>Mon, 13 Jul 2026 16:06:51 GMT</pubDate>
+            <description><![CDATA[Top 6 AI stories for 2026-07-13:
+
+Chapters:
+00:00:00 Intro
+00:00:39 Apple Sues OpenAI Over Alleged AI Trade...
+00:02:25 Google SensorFM Trains on a Trillion...
+00:04:13 Over 200 Economists and AI Leaders Warn...
+00:05:53 Nadella Calls Out OpenAI and Anthropic...
+00:07:31 Study Finds Claude Code Sends 33K Tokens...
+00:08:53 Anthropic Extends Free Fable 5 Access as...
+00:10:01 Outro
+
+Sources:
+1. Top Story: Apple Sues OpenAI Over Alleged AI Trade Secret Theft
+Source: https://stratechery.com/2026/apple-sues-openai-apples-real-problem
+2. Research Breakthrough: Google SensorFM Trains on a Trillion Minutes of Wearable Data
+Source: https://the-decoder.com/sensorfm/
+3. Policy & Regulation Watch: Over 200 Economists and AI Leaders Warn the Window to Prepare Is Closing
+Source: https://the-decoder.com/nobel-laureates-and-ai-leaders-warn-the-window-to-prepare-for-ais-economic-impact-is-closing-fast/
+4. AI Business Watch: Nadella Calls Out OpenAI and Anthropic for Distillation Double Standard
+Source: https://the-decoder.com/nadella-calls-out-ai-labs-like-openai-and-anthropic-for-banning-distillation-while-training-on-everyone-elses-data/
+5. Product & Tool Watch: Study Finds Claude Code Sends 33K Tokens of Overhead Per Session
+Source: https://systima.ai/blog/claude-code-vs-opencode-token-overhead
+6. Product & Tool Watch: Anthropic Extends Free Fable 5 Access as Pricing War Heats Up
+Source: https://the-decoder.com/anthropic-extends-free-fable-5-access-for-subscribers-as-openais-gpt-5-6-sol-heats-up-the-pricing-war/]]></description>
+            <enclosure length="15810466" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-07-13.mp3"/>
+                    <itunes:duration>659</itunes:duration>
+            <itunes:explicit>false</itunes:explicit>
+            <itunes:season>2026</itunes:season>
+            <itunes:episode>194</itunes:episode>
+            <itunes:episodeType>full</itunes:episodeType>
+            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-07-13.chapters.json" type="application/json+chapters"/>
+            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-07-13.transcript.txt" type="text/plain" language="en"/>
+            <podcast:soundbite startTime="39" duration="105">Apple Sues OpenAI Over Alleged AI Trade...</podcast:soundbite>
+            <podcast:soundbite startTime="145" duration="106">Google SensorFM Trains on a Trillion...</podcast:soundbite>
+            <podcast:soundbite startTime="253" duration="99">Over 200 Economists and AI Leaders Warn...</podcast:soundbite>
+            <podcast:soundbite startTime="353" duration="97">Nadella Calls Out OpenAI and Anthropic...</podcast:soundbite>
+            <podcast:soundbite startTime="451" duration="80">Study Finds Claude Code Sends 33K Tokens...</podcast:soundbite>
+            <podcast:soundbite startTime="533" duration="67">Anthropic Extends Free Fable 5 Access as...</podcast:soundbite>
+        </item>
         <item>
             <title><![CDATA[AI Briefing — July 10, 2026]]></title>
             <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-07-10.mp3</link>
@@ -1505,50 +1550,6 @@ Source: https://techcrunch.com/2026/06/03/publishers-will-be-able-to-opt-out-of-
             <podcast:soundbite startTime="22" duration="64">Microsoft Build 2026 Unveils New AI Tools</podcast:soundbite>
             <podcast:soundbite startTime="87" duration="46">Trump Signs Weakened AI Executive Order</podcast:soundbite>
             <podcast:soundbite startTime="133" duration="48">UK Regulator Forces Google to Allow...</podcast:soundbite>
-        </item>
-        <item>
-            <title><![CDATA[AI Briefing — June 2, 2026]]></title>
-            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-06-02.mp3</link>
-            <guid>ai-briefing-2026-06-02</guid>
-            <pubDate>Tue, 02 Jun 2026 14:49:47 GMT</pubDate>
-            <description><![CDATA[Top 3 AI stories for 2026-06-02:
-
-Chapters:
-00:00:00 Intro
-00:00:28 Anthropic Files for IPO
-00:01:28 Alphabet Raises $80 Billion for AI Expansion
-00:02:27 Meta's AI Chatbot Exploited
-00:03:19 Outro
-
-Sources:
-1. AI Business Watch: Anthropic Files for IPO
-Source: https://www.theverge.com/ai-artificial-intelligence/941016/anthropic-has-officially-filed-to-go-public
-Source: https://techcrunch.com/2026/06/01/anthropic-files-to-go-public/
-Source: https://the-decoder.com/claude-maker-anthropic-files-for-ipo-with-the-sec/
-Source: https://www.anthropic.com/news/confidential-draft-s1-sec
-Source: https://www.economist.com/finance-and-economics/2026/06/01/can-the-stockmarket-swallow-anthropic-spacex-and-openai
-2. AI Business Watch: Alphabet Raises $80 Billion for AI Expansion
-Source: https://techcrunch.com/2026/06/01/alphabet-plans-to-raise-80-billion-to-pay-for-ai-buildout/
-Source: https://the-decoder.com/warren-buffetts-berkshire-hathaway-bets-10-billion-on-alphabets-ai-infrastructure-buildout/
-Source: https://abc.xyz/investor/news/news-details/2026/Alphabet-Announces-Proposed-80-Billion-Equity-Capital-Raise-to-Expand-AI-Infrastructure-and-Compute-2026-b0myAMewCa/default.aspx
-Source: https://stratechery.com/2026/the-google-capital-company/
-3. Product & Tool Watch: Meta's AI Chatbot Exploited
-Source: https://www.404media.co/hackers-simply-asked-meta-ai-to-give-them-access-to-high-profile-instagram-accounts-it-worked/
-Source: https://www.theverge.com/tech/941179/meta-instagram-ai-support-chatbot-exploit-hacked
-Source: https://arstechnica.com/ai/2026/06/meta-ai-support-chatbot-gave-hackers-access-to-notable-instagram-accounts/
-Source: https://the-decoder.com/hackers-hijacked-high-profile-instagram-accounts-by-simply-asking-metas-ai-chatbot-to-change-the-email/
-Source: https://simonwillison.net/2026/Jun/1/hackers-simply-asked-meta-ai/#atom-everything]]></description>
-            <enclosure length="5577530" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-02.mp3"/>
-                    <itunes:duration>232</itunes:duration>
-            <itunes:explicit>false</itunes:explicit>
-            <itunes:season>2026</itunes:season>
-            <itunes:episode>153</itunes:episode>
-            <itunes:episodeType>full</itunes:episodeType>
-            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-02.chapters.json" type="application/json+chapters"/>
-            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-02.transcript.txt" type="text/plain" language="en"/>
-            <podcast:soundbite startTime="28" duration="60">Anthropic Files for IPO</podcast:soundbite>
-            <podcast:soundbite startTime="88" duration="59">Alphabet Raises $80 Billion for AI Expansion</podcast:soundbite>
-            <podcast:soundbite startTime="147" duration="52">Meta&apos;s AI Chatbot Exploited</podcast:soundbite>
         </item>
     </channel>
 </rss>

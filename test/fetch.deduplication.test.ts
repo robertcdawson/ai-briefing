@@ -21,6 +21,13 @@ test("canonicalArticleUrl removes fragments and tracking-only URL differences", 
   );
 });
 
+test("canonicalArticleUrl removes common click-id tracking parameters case-insensitively", () => {
+  assert.equal(
+    canonicalArticleUrl("https://example.com/story?FBCLID=meta&GCLID=google&DCLID=display&mc_cid=newsletter"),
+    "https://example.com/story",
+  );
+});
+
 test("canonicalArticleUrl preserves meaningful query parameters deterministically", () => {
   assert.equal(
     canonicalArticleUrl("https://example.com/search?b=2&utm_campaign=feed&a=1"),
@@ -52,5 +59,32 @@ test("deduplicateFetchedArticles keeps the first article for a canonical URL", (
   assert.deepEqual(
     deduped.map((item) => item.title),
     ["Original", "Distinct"],
+  );
+});
+
+test("deduplicateFetchedArticles treats click-id variants as the same article", () => {
+  const articles = [
+    article({
+      title: "Newswire copy",
+      source: "Source A",
+      url: "https://example.com/story?fbclid=meta&utm_source=rss",
+    }),
+    article({
+      title: "Syndicated duplicate",
+      source: "Source B",
+      url: "https://example.com/story?gclid=google&mc_eid=subscriber",
+    }),
+    article({
+      title: "Meaningful variant",
+      source: "Source C",
+      url: "https://example.com/story?section=analysis&fbclid=meta",
+    }),
+  ];
+
+  const deduped = deduplicateFetchedArticles(articles);
+
+  assert.deepEqual(
+    deduped.map((item) => item.title),
+    ["Newswire copy", "Meaningful variant"],
   );
 });

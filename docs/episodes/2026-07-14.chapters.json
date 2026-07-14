@@ -1,0 +1,46 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — July 14, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 41,
+      "title": "Intro"
+    },
+    {
+      "startTime": 41,
+      "endTime": 144,
+      "title": "New York Enacts First US Statewide Data..."
+    },
+    {
+      "startTime": 144,
+      "endTime": 249,
+      "title": "DeepMind CEO Hassabis Proposes US-Led..."
+    },
+    {
+      "startTime": 249,
+      "endTime": 341,
+      "title": "Turing Award Winner Rich Sutton Founds..."
+    },
+    {
+      "startTime": 341,
+      "endTime": 430,
+      "title": "Apple's OpenAI Trade-Secrets Lawsuit Gets..."
+    },
+    {
+      "startTime": 430,
+      "endTime": 509,
+      "title": "Reflection AI Signs $1 Billion Compute..."
+    },
+    {
+      "startTime": 509,
+      "endTime": 576,
+      "title": "Hugging Face CEO Says the Real AI Race..."
+    },
+    {
+      "startTime": 576,
+      "endTime": 637,
+      "title": "Outro"
+    }
+  ]
+}

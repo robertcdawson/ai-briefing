@@ -1,0 +1,46 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — July 15, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 40,
+      "title": "Intro"
+    },
+    {
+      "startTime": 40,
+      "endTime": 100,
+      "title": "Grok Build CLI found silently uploading..."
+    },
+    {
+      "startTime": 100,
+      "endTime": 168,
+      "title": "OpenAI Codex now encrypts inter-agent..."
+    },
+    {
+      "startTime": 168,
+      "endTime": 236,
+      "title": "OpenAI's first hardware device is a..."
+    },
+    {
+      "startTime": 236,
+      "endTime": 295,
+      "title": "Former Meta employees sue alleging AI..."
+    },
+    {
+      "startTime": 295,
+      "endTime": 356,
+      "title": "Researcher demonstrates prompt injection..."
+    },
+    {
+      "startTime": 356,
+      "endTime": 412,
+      "title": "GPT-5.6 Sol repeatedly deletes user files..."
+    },
+    {
+      "startTime": 412,
+      "endTime": 449,
+      "title": "Outro"
+    }
+  ]
+}

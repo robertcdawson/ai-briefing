@@ -4,7 +4,7 @@
         <title>AI Briefing</title>
         <link>https://robertcdawson.github.io/ai-briefing/</link>
         <description>Daily AI news briefing — the stories that matter from the last 24 hours.</description>
-        <lastBuildDate>Tue, 14 Jul 2026 15:12:06 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 15 Jul 2026 15:13:16 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -23,6 +23,55 @@
         <podcast:guid>ea8709f4-3ba2-5b7e-bcdc-e409d84a6443</podcast:guid>
         <podcast:locked owner="manatees@gmail.com">yes</podcast:locked>
         <podcast:person role="host" group="cast">Robert Dawson</podcast:person>
+        <item>
+            <title><![CDATA[AI Briefing — July 15, 2026]]></title>
+            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-07-15.mp3</link>
+            <guid>ai-briefing-2026-07-15</guid>
+            <pubDate>Wed, 15 Jul 2026 15:13:16 GMT</pubDate>
+            <description><![CDATA[Top 6 AI stories for 2026-07-15:
+
+Chapters:
+00:00:00 Intro
+00:00:40 Grok Build CLI found silently uploading...
+00:01:40 OpenAI Codex now encrypts inter-agent...
+00:02:48 OpenAI's first hardware device is a...
+00:03:56 Former Meta employees sue alleging AI...
+00:04:55 Researcher demonstrates prompt injection...
+00:05:56 GPT-5.6 Sol repeatedly deletes user files...
+00:06:52 Outro
+
+Sources:
+1. Top Story: Grok Build CLI found silently uploading entire user codebases to cloud storage
+Source: https://www.theverge.com/ai-artificial-intelligence/965600/spacexai-grok-build-repository-upload
+2. Product & Tool Watch: OpenAI Codex now encrypts inter-agent instructions, blocking developer visibility into task delegation
+Source: https://the-decoder.com/openais-codex-now-encrypts-instructions-between-ai-agents-leaving-developers-blind-to-internal-delegation/
+3. Product & Tool Watch: OpenAI's first hardware device is a screenless AI companion speaker with moving parts
+Source: https://www.theverge.com/ai-artificial-intelligence/965670/openai-chatgpt-ai-smart-speaker-hardware-device
+Source: https://techcrunch.com/2026/07/14/openais-first-hardware-device-is-reportedly-a-screenless-speaker-that-can-move/
+Source: https://the-decoder.com/openais-first-hardware-product-is-a-screenless-ai-speaker-designed-to-feel-alive/
+4. Policy & Regulation Watch: Former Meta employees sue alleging AI systems discriminated in mass layoff selections
+Source: https://www.theverge.com/tech/965486/meta-lawsuit-former-employees-ai-layoffs
+Source: https://arstechnica.com/tech-policy/2026/07/lawsuit-claims-metas-layoff-decisions-were-made-by-ai-not-humans/
+Source: https://the-decoder.com/meta-employees-sue-over-layoffs-they-say-were-driven-by-discriminatory-ai-selection-systems/
+5. Research Breakthrough: Researcher demonstrates prompt injection attack exfiltrating data via Claude's web fetch tool
+Source: https://simonwillison.net/2026/Jul/15/claude-web-fetch-exfiltration/#atom-everything
+6. Product & Tool Watch: GPT-5.6 Sol repeatedly deletes user files autonomously, OpenAI had pre-disclosed the risk
+Source: https://techcrunch.com/2026/07/14/openais-new-flagship-model-deletes-files-on-its-own-people-keep-warning/]]></description>
+            <enclosure length="10772767" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-07-15.mp3"/>
+                    <itunes:duration>449</itunes:duration>
+            <itunes:explicit>false</itunes:explicit>
+            <itunes:season>2026</itunes:season>
+            <itunes:episode>196</itunes:episode>
+            <itunes:episodeType>full</itunes:episodeType>
+            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-07-15.chapters.json" type="application/json+chapters"/>
+            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-07-15.transcript.txt" type="text/plain" language="en"/>
+            <podcast:soundbite startTime="40" duration="59">Grok Build CLI found silently uploading...</podcast:soundbite>
+            <podcast:soundbite startTime="100" duration="66">OpenAI Codex now encrypts inter-agent...</podcast:soundbite>
+            <podcast:soundbite startTime="168" duration="67">OpenAI&apos;s first hardware device is a...</podcast:soundbite>
+            <podcast:soundbite startTime="236" duration="58">Former Meta employees sue alleging AI...</podcast:soundbite>
+            <podcast:soundbite startTime="295" duration="59">Researcher demonstrates prompt injection...</podcast:soundbite>
+            <podcast:soundbite startTime="356" duration="54">GPT-5.6 Sol repeatedly deletes user files...</podcast:soundbite>
+        </item>
         <item>
             <title><![CDATA[AI Briefing — July 14, 2026]]></title>
             <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-07-14.mp3</link>
@@ -1544,43 +1593,6 @@ Source: https://techcrunch.com/2026/06/05/google-will-pay-spacex-920m-per-month-
             <podcast:soundbite startTime="224" duration="60">Microsoft trained MAI models on...</podcast:soundbite>
             <podcast:soundbite startTime="284" duration="55">New York legislature passes first...</podcast:soundbite>
             <podcast:soundbite startTime="339" duration="54">Google commits $920 million per month to...</podcast:soundbite>
-        </item>
-        <item>
-            <title><![CDATA[AI Briefing — June 4, 2026]]></title>
-            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-06-04.mp3</link>
-            <guid>ai-briefing-2026-06-04</guid>
-            <pubDate>Thu, 04 Jun 2026 14:22:24 GMT</pubDate>
-            <description><![CDATA[Top 3 AI stories for 2026-06-04:
-
-Chapters:
-00:00:00 Intro
-00:00:22 AI leaders urge Congress to mandate...
-00:01:22 Google DeepMind releases Gemma 4 12B...
-00:02:10 UK regulator forces Google to offer...
-00:03:03 Outro
-
-Sources:
-1. Policy & Regulation Watch: AI leaders urge Congress to mandate synthetic DNA screening amid bioweapon risks
-Source: https://www.theverge.com/ai-artificial-intelligence/942956/ai-biological-weapons-open-letter-congress
-Source: https://the-decoder.com/ai-can-now-coach-amateur-virologists-and-top-tech-leaders-want-congress-to-act-on-dna-security/
-2. Open Source Watch: Google DeepMind releases Gemma 4 12B multimodal model for 16GB laptops
-Source: https://arstechnica.com/google/2026/06/googles-new-gemma-4-open-ai-model-is-sized-for-your-laptop/
-Source: https://the-decoder.com/google-deepminds-gemma-4-12b-squeezes-multimodal-ai-onto-a-laptop-with-just-16-gb-of-ram/
-3. Policy & Regulation Watch: UK regulator forces Google to offer publishers opt-out from AI search features
-Source: https://arstechnica.com/tech-policy/2026/06/google-ordered-to-put-clearer-links-in-ai-search-and-let-uk-publishers-opt-out/
-Source: https://techcrunch.com/2026/06/03/publishers-will-be-able-to-opt-out-of-ai-search-thanks-to-new-regulation/
-Source: https://the-decoder.com/google-lets-sites-opt-out-of-ai-search-results-knowing-most-have-nowhere-else-to-go/]]></description>
-            <enclosure length="4947407" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-04.mp3"/>
-                    <itunes:duration>206</itunes:duration>
-            <itunes:explicit>false</itunes:explicit>
-            <itunes:season>2026</itunes:season>
-            <itunes:episode>155</itunes:episode>
-            <itunes:episodeType>full</itunes:episodeType>
-            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-04.chapters.json" type="application/json+chapters"/>
-            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-04.transcript.txt" type="text/plain" language="en"/>
-            <podcast:soundbite startTime="22" duration="60">AI leaders urge Congress to mandate...</podcast:soundbite>
-            <podcast:soundbite startTime="82" duration="48">Google DeepMind releases Gemma 4 12B...</podcast:soundbite>
-            <podcast:soundbite startTime="130" duration="52">UK regulator forces Google to offer...</podcast:soundbite>
         </item>
     </channel>
 </rss>

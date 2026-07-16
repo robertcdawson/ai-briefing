@@ -1,0 +1,203 @@
+{
+  "date": "2026-07-16",
+  "title": "AI Briefing — July 16, 2026",
+  "description": "Top 6 AI stories for 2026-07-16:\n\nChapters:\n00:00:00 Intro\n00:00:28 EU orders Google to open Android and...\n00:02:08 OpenAI's GPT-Red AI red-teamer...\n00:04:00 GPT-5.6 Sol disproves 30-year-old...\n00:05:23 Mira Murati's Thinking Machines releases...\n00:06:58 xAI open-sources Grok Build after...\n00:08:25 1Password integrates with Claude to...\n00:09:43 Outro\n\nSources:\n1. Top Story: EU orders Google to open Android and Search to rival AI assistants\nSource: https://www.theverge.com/policy/966438/eu-google-android-ai-interoperability-search-data-dma\n2. Research Breakthrough: OpenAI's GPT-Red AI red-teamer outperforms human attackers by sixfold\nSource: https://www.technologyreview.com/2026/07/15/1140514/meet-gpt-red-an-llm-super-hacker-openai-built-to-make-its-models-safer/\nSource: https://the-decoder.com/openai-is-now-using-ai-to-attack-its-own-ai-and-its-working-better-than-humans-ever-did/\n3. Research Breakthrough: GPT-5.6 Sol disproves 30-year-old statistics conjecture in 90 minutes\nSource: https://the-decoder.com/gpt-5-6-sol-reportedly-disproves-a-30-year-old-statistics-conjecture-in-90-minutes-after-humans-couldnt-crack-it/\n4. Open Source Watch: Mira Murati's Thinking Machines releases 975B open-weights multimodal model Inkling\nSource: https://the-decoder.com/ex-openai-cto-muratis-thinking-machines-drops-inkling-a-975b-parameter-model-that-leads-us-labs-but-trails-china/\nSource: https://techcrunch.com/2026/07/15/thinking-machines-amps-up-its-bet-against-one-size-fits-all-ai-with-its-first-open-model-inkling/\nSource: https://news.ycombinator.com/item?id=48924929\n5. Open Source Watch: xAI open-sources Grok Build after codebase-upload data breach backlash\nSource: https://the-decoder.com/xai-open-sources-grok-build-on-github-after-massive-data-breach/\nSource: https://simonwillison.net/2026/Jul/15/grok-build/#atom-everything\n6. Product & Tool Watch: 1Password integrates with Claude to handle login credentials in agentic tasks\nSource: https://www.theverge.com/tech/966442/1password-anthropic-claude-browser-integration",
+  "durationSeconds": 639,
+  "byteLength": 15349065,
+  "pubDate": "2026-07-16T15:21:40.433Z",
+  "season": 2026,
+  "episodeNumber": 197,
+  "chaptersFilename": "2026-07-16.chapters.json",
+  "transcriptFilename": "2026-07-16.transcript.txt",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 28,
+      "title": "Intro"
+    },
+    {
+      "startTime": 28,
+      "endTime": 128,
+      "title": "EU orders Google to open Android and..."
+    },
+    {
+      "startTime": 128,
+      "endTime": 240,
+      "title": "OpenAI's GPT-Red AI red-teamer..."
+    },
+    {
+      "startTime": 240,
+      "endTime": 323,
+      "title": "GPT-5.6 Sol disproves 30-year-old..."
+    },
+    {
+      "startTime": 323,
+      "endTime": 418,
+      "title": "Mira Murati's Thinking Machines releases..."
+    },
+    {
+      "startTime": 418,
+      "endTime": 505,
+      "title": "xAI open-sources Grok Build after..."
+    },
+    {
+      "startTime": 505,
+      "endTime": 583,
+      "title": "1Password integrates with Claude to..."
+    },
+    {
+      "startTime": 583,
+      "endTime": 639,
+      "title": "Outro"
+    }
+  ],
+  "soundbites": [
+    {
+      "startTime": 28,
+      "duration": 99,
+      "title": "EU orders Google to open Android and..."
+    },
+    {
+      "startTime": 128,
+      "duration": 110,
+      "title": "OpenAI's GPT-Red AI red-teamer..."
+    },
+    {
+      "startTime": 240,
+      "duration": 81,
+      "title": "GPT-5.6 Sol disproves 30-year-old..."
+    },
+    {
+      "startTime": 323,
+      "duration": 93,
+      "title": "Mira Murati's Thinking Machines releases..."
+    },
+    {
+      "startTime": 418,
+      "duration": 86,
+      "title": "xAI open-sources Grok Build after..."
+    },
+    {
+      "startTime": 505,
+      "duration": 76,
+      "title": "1Password integrates with Claude to..."
+    }
+  ],
+  "curation": [
+    {
+      "canonicalKey": "eu-google-android-search-dma-ai-ruling",
+      "headline": "EU orders Google to open Android and Search to rival AI assistants",
+      "whyItMatters": "The DMA enforcement decisions could structurally weaken Google's ability to default Gemini across Android and Search, creating mandatory distribution channels for competing AI assistants and search engines across the EU's 450 million users.",
+      "caveat": "Google has indicated it will appeal, and the practical timeline for compliance and the specific technical requirements are still being negotiated.",
+      "importance": 80,
+      "category": "policy-regulation"
+    },
+    {
+      "canonicalKey": "openai-gpt-red-ai-red-teaming",
+      "headline": "OpenAI's GPT-Red AI red-teamer outperforms human attackers by sixfold",
+      "whyItMatters": "GPT-Red finds successful attack vectors in 84% of test scenarios versus 13% for human red teamers, and its adversarial outputs feed directly into hardening production models like GPT-5.6 Sol — a concrete example of AI-assisted safety work scaling beyond human capacity.",
+      "caveat": "All figures come from OpenAI's own reporting and the methodology for comparing AI versus human red-teaming has not been independently validated.",
+      "importance": 78,
+      "category": "research"
+    },
+    {
+      "canonicalKey": "gpt56-sol-disproves-statistics-conjecture",
+      "headline": "GPT-5.6 Sol disproves 30-year-old statistics conjecture in 90 minutes",
+      "whyItMatters": "A University of Pennsylvania professor used GPT-5.6 Sol to crack an open problem in Benjamini-Hochberg multiple testing theory that GPT-5.5 failed to solve in 20 hours — a striking demonstration of the capability jump between model generations on genuine research tasks.",
+      "caveat": "This is a single anecdotal case reported informally; the proof has not yet been peer-reviewed and it is unclear whether the model produced novel reasoning or a novel recombination of known techniques.",
+      "importance": 76,
+      "category": "research"
+    },
+    {
+      "canonicalKey": "thinking-machines-inkling-975b-open-weights",
+      "headline": "Mira Murati's Thinking Machines releases 975B open-weights multimodal model Inkling",
+      "whyItMatters": "Inkling is the first public model from ex-OpenAI CTO Mira Murati's lab and leads US open-weights models on the Artificial Analysis Intelligence Index, offering a strong fine-tuning base at $1.87 per million input tokens — a credible new entrant in the open-weights frontier race.",
+      "caveat": "Thinking Machines pitches Inkling as a fine-tuning base rather than a top-capability model, and it still trails leading Chinese open models on some benchmarks.",
+      "importance": 74,
+      "category": "open-source"
+    },
+    {
+      "canonicalKey": "grok-build-open-sourced-after-breach",
+      "headline": "xAI open-sources Grok Build after codebase-upload data breach backlash",
+      "whyItMatters": "xAI releasing the full 844k-line Rust codebase under Apache 2.0 gives the community the ability to audit exactly what the tool was doing — a meaningful accountability step after a serious privacy incident. Elon Musk also promised to delete all uploaded user data, which closes one loop for affected developers.",
+      "caveat": "Open-sourcing after a breach is damage control as much as transparency; independent audits of the deletion claim have not yet been confirmed.",
+      "importance": 72,
+      "category": "open-source"
+    },
+    {
+      "canonicalKey": "1password-claude-browser-credential-integration",
+      "headline": "1Password integrates with Claude to handle login credentials in agentic tasks",
+      "whyItMatters": "This is one of the first production-grade credential delegation systems for AI agents, letting Claude complete multi-step authenticated workflows without exposing raw passwords to Anthropic's models — a meaningful step toward trustworthy autonomous agents for developers and power users.",
+      "caveat": "The security architecture relies on 1Password's implementation claims and has not yet been independently audited for credential leakage or prompt-injection risks.",
+      "importance": 72,
+      "category": "product-tools"
+    }
+  ],
+  "curationReport": {
+    "threshold": 45,
+    "maxStories": 6,
+    "total": 8,
+    "selectedCount": 6,
+    "droppedCount": 2,
+    "clusters": [
+      {
+        "canonicalKey": "eu-google-android-search-dma-ai-ruling",
+        "category": "policy-regulation",
+        "headline": "EU orders Google to open Android and Search to rival AI assistants",
+        "importance": 80,
+        "selected": true
+      },
+      {
+        "canonicalKey": "openai-gpt-red-ai-red-teaming",
+        "category": "research",
+        "headline": "OpenAI's GPT-Red AI red-teamer outperforms human attackers by sixfold",
+        "importance": 78,
+        "selected": true
+      },
+      {
+        "canonicalKey": "gpt56-sol-disproves-statistics-conjecture",
+        "category": "research",
+        "headline": "GPT-5.6 Sol disproves 30-year-old statistics conjecture in 90 minutes",
+        "importance": 76,
+        "selected": true
+      },
+      {
+        "canonicalKey": "thinking-machines-inkling-975b-open-weights",
+        "category": "open-source",
+        "headline": "Mira Murati's Thinking Machines releases 975B open-weights multimodal model Inkling",
+        "importance": 74,
+        "selected": true
+      },
+      {
+        "canonicalKey": "grok-build-open-sourced-after-breach",
+        "category": "open-source",
+        "headline": "xAI open-sources Grok Build after codebase-upload data breach backlash",
+        "importance": 72,
+        "selected": true
+      },
+      {
+        "canonicalKey": "1password-claude-browser-credential-integration",
+        "category": "product-tools",
+        "headline": "1Password integrates with Claude to handle login credentials in agentic tasks",
+        "importance": 72,
+        "selected": true
+      },
+      {
+        "canonicalKey": "suno-training-data-scraping-exposed",
+        "category": "policy-regulation",
+        "headline": "Hacked Suno data reveals AI music generator scraped YouTube and Deezer at scale",
+        "importance": 71,
+        "selected": false,
+        "dropReason": "over_cap"
+      },
+      {
+        "canonicalKey": "bonsai-27b-iphone-on-device-reasoning",
+        "category": "research",
+        "headline": "PrismML compresses 27B reasoning model to under 4 GB for on-device iPhone use",
+        "importance": 70,
+        "selected": false,
+        "dropReason": "over_cap"
+      }
+    ]
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — July 16, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 28,
+      "title": "Intro"
+    },
+    {
+      "startTime": 28,
+      "endTime": 128,
+      "title": "EU orders Google to open Android and..."
+    },
+    {
+      "startTime": 128,
+      "endTime": 240,
+      "title": "OpenAI's GPT-Red AI red-teamer..."
+    },
+    {
+      "startTime": 240,
+      "endTime": 323,
+      "title": "GPT-5.6 Sol disproves 30-year-old..."
+    },
+    {
+      "startTime": 323,
+      "endTime": 418,
+      "title": "Mira Murati's Thinking Machines releases..."
+    },
+    {
+      "startTime": 418,
+      "endTime": 505,
+      "title": "xAI open-sources Grok Build after..."
+    },
+    {
+      "startTime": 505,
+      "endTime": 583,
+      "title": "1Password integrates with Claude to..."
+    },
+    {
+      "startTime": 583,
+      "endTime": 639,
+      "title": "Outro"
+    }
+  ]
+}

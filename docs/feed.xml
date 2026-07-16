@@ -4,7 +4,7 @@
         <title>AI Briefing</title>
         <link>https://robertcdawson.github.io/ai-briefing/</link>
         <description>Daily AI news briefing — the stories that matter from the last 24 hours.</description>
-        <lastBuildDate>Wed, 15 Jul 2026 15:13:16 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 16 Jul 2026 15:21:40 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -23,6 +23,55 @@
         <podcast:guid>ea8709f4-3ba2-5b7e-bcdc-e409d84a6443</podcast:guid>
         <podcast:locked owner="manatees@gmail.com">yes</podcast:locked>
         <podcast:person role="host" group="cast">Robert Dawson</podcast:person>
+        <item>
+            <title><![CDATA[AI Briefing — July 16, 2026]]></title>
+            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-07-16.mp3</link>
+            <guid>ai-briefing-2026-07-16</guid>
+            <pubDate>Thu, 16 Jul 2026 15:21:40 GMT</pubDate>
+            <description><![CDATA[Top 6 AI stories for 2026-07-16:
+
+Chapters:
+00:00:00 Intro
+00:00:28 EU orders Google to open Android and...
+00:02:08 OpenAI's GPT-Red AI red-teamer...
+00:04:00 GPT-5.6 Sol disproves 30-year-old...
+00:05:23 Mira Murati's Thinking Machines releases...
+00:06:58 xAI open-sources Grok Build after...
+00:08:25 1Password integrates with Claude to...
+00:09:43 Outro
+
+Sources:
+1. Top Story: EU orders Google to open Android and Search to rival AI assistants
+Source: https://www.theverge.com/policy/966438/eu-google-android-ai-interoperability-search-data-dma
+2. Research Breakthrough: OpenAI's GPT-Red AI red-teamer outperforms human attackers by sixfold
+Source: https://www.technologyreview.com/2026/07/15/1140514/meet-gpt-red-an-llm-super-hacker-openai-built-to-make-its-models-safer/
+Source: https://the-decoder.com/openai-is-now-using-ai-to-attack-its-own-ai-and-its-working-better-than-humans-ever-did/
+3. Research Breakthrough: GPT-5.6 Sol disproves 30-year-old statistics conjecture in 90 minutes
+Source: https://the-decoder.com/gpt-5-6-sol-reportedly-disproves-a-30-year-old-statistics-conjecture-in-90-minutes-after-humans-couldnt-crack-it/
+4. Open Source Watch: Mira Murati's Thinking Machines releases 975B open-weights multimodal model Inkling
+Source: https://the-decoder.com/ex-openai-cto-muratis-thinking-machines-drops-inkling-a-975b-parameter-model-that-leads-us-labs-but-trails-china/
+Source: https://techcrunch.com/2026/07/15/thinking-machines-amps-up-its-bet-against-one-size-fits-all-ai-with-its-first-open-model-inkling/
+Source: https://news.ycombinator.com/item?id=48924929
+5. Open Source Watch: xAI open-sources Grok Build after codebase-upload data breach backlash
+Source: https://the-decoder.com/xai-open-sources-grok-build-on-github-after-massive-data-breach/
+Source: https://simonwillison.net/2026/Jul/15/grok-build/#atom-everything
+6. Product & Tool Watch: 1Password integrates with Claude to handle login credentials in agentic tasks
+Source: https://www.theverge.com/tech/966442/1password-anthropic-claude-browser-integration]]></description>
+            <enclosure length="15349065" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-07-16.mp3"/>
+                    <itunes:duration>639</itunes:duration>
+            <itunes:explicit>false</itunes:explicit>
+            <itunes:season>2026</itunes:season>
+            <itunes:episode>197</itunes:episode>
+            <itunes:episodeType>full</itunes:episodeType>
+            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-07-16.chapters.json" type="application/json+chapters"/>
+            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-07-16.transcript.txt" type="text/plain" language="en"/>
+            <podcast:soundbite startTime="28" duration="99">EU orders Google to open Android and...</podcast:soundbite>
+            <podcast:soundbite startTime="128" duration="110">OpenAI&apos;s GPT-Red AI red-teamer...</podcast:soundbite>
+            <podcast:soundbite startTime="240" duration="81">GPT-5.6 Sol disproves 30-year-old...</podcast:soundbite>
+            <podcast:soundbite startTime="323" duration="93">Mira Murati&apos;s Thinking Machines releases...</podcast:soundbite>
+            <podcast:soundbite startTime="418" duration="86">xAI open-sources Grok Build after...</podcast:soundbite>
+            <podcast:soundbite startTime="505" duration="76">1Password integrates with Claude to...</podcast:soundbite>
+        </item>
         <item>
             <title><![CDATA[AI Briefing — July 15, 2026]]></title>
             <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-07-15.mp3</link>
@@ -1547,52 +1596,6 @@ Source: https://the-decoder.com/sakana-ai-bets-ai-that-improves-itself-can-break
             <podcast:soundbite startTime="228" duration="63">OpenAI and Trump administration negotiate...</podcast:soundbite>
             <podcast:soundbite startTime="291" duration="61">New York legislature passes one-year...</podcast:soundbite>
             <podcast:soundbite startTime="352" duration="64">Sakana AI launches dedicated lab for...</podcast:soundbite>
-        </item>
-        <item>
-            <title><![CDATA[AI Briefing — June 5, 2026]]></title>
-            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-06-05.mp3</link>
-            <guid>ai-briefing-2026-06-05</guid>
-            <pubDate>Fri, 05 Jun 2026 22:57:42 GMT</pubDate>
-            <description><![CDATA[Top 6 AI stories for 2026-06-05:
-
-Chapters:
-00:00:00 Intro
-00:00:34 Anthropic's Mythos model reportedly...
-00:01:37 Anthropic reports Claude writes over 90%...
-00:02:42 Florida sues OpenAI and Sam Altman...
-00:03:44 Microsoft trained MAI models on...
-00:04:44 New York legislature passes first...
-00:05:39 Google commits $920 million per month to...
-00:06:33 Outro
-
-Sources:
-1. Policy & Regulation Watch: Anthropic's Mythos model reportedly powers NSA offensive cyber operations against China and Iran
-Source: https://the-decoder.com/anthropics-mythos-model-is-reportedly-powering-nsa-offensive-cyber-ops-against-china-and-iran/
-Source: https://technologyreview.com/2026/06/05/1138437/the-meta-hack-shows-theres-more-to-ai-security-than-mythos/
-2. Research Breakthrough: Anthropic reports Claude writes over 90% of its code and advocates for a global AI pause mechanism
-Source: https://the-decoder.com/anthropic-says-claude-now-writes-over-90-of-its-code-and-wants-the-world-to-have-an-ai-pause-button/
-3. Policy & Regulation Watch: Florida sues OpenAI and Sam Altman personally treating ChatGPT as a defective product
-Source: https://the-decoder.com/floridas-lawsuit-against-openai-and-ceo-altman-treats-chatgpt-as-a-defective-product-and-public-nuisance/
-4. Policy & Regulation Watch: Microsoft trained MAI models on unlicensed web data despite clean-data marketing claims
-Source: https://the-decoder.com/microsoft-trained-its-mai-models-on-unlicensed-web-data-despite-promising-enterprise-grade-clean-and-commercially-licensed-data/
-5. Policy & Regulation Watch: New York legislature passes first statewide one-year ban on new large data centers
-Source: https://www.theverge.com/policy/944041/new-york-data-center-moratorium
-6. AI Business Watch: Google commits $920 million per month to SpaceX for AI compute capacity
-Source: https://techcrunch.com/2026/06/05/google-will-pay-spacex-920m-per-month-for-compute/]]></description>
-            <enclosure length="10269325" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-05.mp3"/>
-                    <itunes:duration>428</itunes:duration>
-            <itunes:explicit>false</itunes:explicit>
-            <itunes:season>2026</itunes:season>
-            <itunes:episode>156</itunes:episode>
-            <itunes:episodeType>full</itunes:episodeType>
-            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-05.chapters.json" type="application/json+chapters"/>
-            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-05.transcript.txt" type="text/plain" language="en"/>
-            <podcast:soundbite startTime="34" duration="63">Anthropic&apos;s Mythos model reportedly...</podcast:soundbite>
-            <podcast:soundbite startTime="97" duration="65">Anthropic reports Claude writes over 90%...</podcast:soundbite>
-            <podcast:soundbite startTime="162" duration="62">Florida sues OpenAI and Sam Altman...</podcast:soundbite>
-            <podcast:soundbite startTime="224" duration="60">Microsoft trained MAI models on...</podcast:soundbite>
-            <podcast:soundbite startTime="284" duration="55">New York legislature passes first...</podcast:soundbite>
-            <podcast:soundbite startTime="339" duration="54">Google commits $920 million per month to...</podcast:soundbite>
         </item>
     </channel>
 </rss>

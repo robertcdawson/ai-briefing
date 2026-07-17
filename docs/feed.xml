@@ -4,7 +4,7 @@
         <title>AI Briefing</title>
         <link>https://robertcdawson.github.io/ai-briefing/</link>
         <description>Daily AI news briefing — the stories that matter from the last 24 hours.</description>
-        <lastBuildDate>Thu, 16 Jul 2026 15:21:40 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 17 Jul 2026 15:00:23 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -23,6 +23,54 @@
         <podcast:guid>ea8709f4-3ba2-5b7e-bcdc-e409d84a6443</podcast:guid>
         <podcast:locked owner="manatees@gmail.com">yes</podcast:locked>
         <podcast:person role="host" group="cast">Robert Dawson</podcast:person>
+        <item>
+            <title><![CDATA[AI Briefing — July 17, 2026]]></title>
+            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-07-17.mp3</link>
+            <guid>ai-briefing-2026-07-17</guid>
+            <pubDate>Fri, 17 Jul 2026 15:00:23 GMT</pubDate>
+            <description><![CDATA[Top 6 AI stories for 2026-07-17:
+
+Chapters:
+00:00:00 Intro
+00:00:40 Moonshot AI releases Kimi K3, a...
+00:02:42 Linus Torvalds tells AI critics in Linux...
+00:04:19 Germany classifies Google AI Overviews...
+00:06:10 LM Studio Bionic launches as an agentic...
+00:07:33 xAI files first lawsuit against users for...
+00:09:22 Hyundai factory workers strike over fear...
+00:10:46 Outro
+
+Sources:
+1. Open Source Watch: Moonshot AI releases Kimi K3, a near-frontier open-weight model
+Source: https://the-decoder.com/kimis-open-model-k3-nears-gpt-5-6-sol-and-fable-5-while-signaling-the-end-of-super-cheap-chinese-ai/
+Source: https://simonwillison.net/2026/Jul/16/kimi-k3/
+Source: https://simonwillison.net/2026/Jul/17/kimi-k3/
+2. AI Culture Signal: Linus Torvalds tells AI critics in Linux to fork off or walk away
+Source: https://arstechnica.com/ai/2026/07/linus-torvalds-to-critics-of-ai-coding-in-linux-fork-it-or-just-walk-away/
+Source: https://the-decoder.com/linus-torvalds-tells-ai-critics-in-the-linux-kernel-community-to-fork-off/
+3. Policy & Regulation Watch: Germany classifies Google AI Overviews and Perplexity as regulated media content
+Source: https://the-decoder.com/germany-puts-googles-ai-overviews-and-perplexity-under-media-law-in-first-of-its-kind-ruling/
+4. Product & Tool Watch: LM Studio Bionic launches as an agentic runtime for local open models
+Source: https://lmstudio.ai/blog/introducing-lm-studio-bionic
+5. Policy & Regulation Watch: xAI files first lawsuit against users for generating CSAM with Grok
+Source: https://arstechnica.com/tech-policy/2026/07/xai-cant-deny-grok-makes-csam-anymore-so-its-suing-users/
+6. AI Culture Signal: Hyundai factory workers strike over fear of Atlas humanoid robot deployment
+Source: https://arstechnica.com/ai/2026/07/fear-of-humanoid-robots-spurs-human-workers-to-strike-at-hyundai-auto-factory/]]></description>
+            <enclosure length="17011999" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-07-17.mp3"/>
+                    <itunes:duration>709</itunes:duration>
+            <itunes:explicit>false</itunes:explicit>
+            <itunes:season>2026</itunes:season>
+            <itunes:episode>198</itunes:episode>
+            <itunes:episodeType>full</itunes:episodeType>
+            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-07-17.chapters.json" type="application/json+chapters"/>
+            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-07-17.transcript.txt" type="text/plain" language="en"/>
+            <podcast:soundbite startTime="40" duration="120">Moonshot AI releases Kimi K3, a...</podcast:soundbite>
+            <podcast:soundbite startTime="162" duration="96">Linus Torvalds tells AI critics in Linux...</podcast:soundbite>
+            <podcast:soundbite startTime="259" duration="109">Germany classifies Google AI Overviews...</podcast:soundbite>
+            <podcast:soundbite startTime="370" duration="82">LM Studio Bionic launches as an agentic...</podcast:soundbite>
+            <podcast:soundbite startTime="453" duration="107">xAI files first lawsuit against users for...</podcast:soundbite>
+            <podcast:soundbite startTime="562" duration="83">Hyundai factory workers strike over fear...</podcast:soundbite>
+        </item>
         <item>
             <title><![CDATA[AI Briefing — July 16, 2026]]></title>
             <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-07-16.mp3</link>
@@ -1549,53 +1597,6 @@ Source: https://www.ft.com/content/229e5949-3ebc-4151-8a86-a01b5e259241]]></desc
             <podcast:soundbite startTime="184" duration="51">New study explains mechanistically why...</podcast:soundbite>
             <podcast:soundbite startTime="235" duration="41">Trump administration reportedly exploring...</podcast:soundbite>
             <podcast:soundbite startTime="275" duration="42">England and Wales police ordered to stop...</podcast:soundbite>
-        </item>
-        <item>
-            <title><![CDATA[AI Briefing — June 6, 2026]]></title>
-            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-06-06.mp3</link>
-            <guid>ai-briefing-2026-06-06</guid>
-            <pubDate>Sat, 06 Jun 2026 14:11:08 GMT</pubDate>
-            <description><![CDATA[Top 6 AI stories for 2026-06-06:
-
-Chapters:
-00:00:00 Intro
-00:00:36 Google pays SpaceX $920M monthly for...
-00:01:43 xAI reportedly trained coding models on...
-00:02:47 Florida sues OpenAI treating ChatGPT as...
-00:03:48 OpenAI and Trump administration negotiate...
-00:04:51 New York legislature passes one-year...
-00:05:52 Sakana AI launches dedicated lab for...
-00:06:56 Outro
-
-Sources:
-1. AI Business Watch: Google pays SpaceX $920M monthly for 110,000 Nvidia AI chips
-Source: https://techcrunch.com/2026/06/05/google-will-pay-spacex-920m-per-month-for-compute/
-Source: https://the-decoder.com/spacex-signs-920-million-per-month-deal-with-google-for-110000-nvidia-ai-chips-ahead-of-ipo/
-2. AI Business Watch: xAI reportedly trained coding models on Claude outputs for months
-Source: https://the-decoder.com/elon-musks-xai-reportedly-trained-its-coding-models-on-claude-outputs-for-months-before-getting-cut-off/
-3. Policy & Regulation Watch: Florida sues OpenAI treating ChatGPT as defective product and public nuisance
-Source: https://the-decoder.com/floridas-lawsuit-against-openai-and-ceo-altman-treats-chatgpt-as-a-defective-product-and-public-nuisance/
-4. Policy & Regulation Watch: OpenAI and Trump administration negotiate direct US government ownership stake
-Source: https://the-decoder.com/openai-and-the-trump-administration-are-negotiating-a-government-stake-in-the-ai-startup/
-5. Policy & Regulation Watch: New York legislature passes one-year moratorium on new large data centers
-Source: https://www.theverge.com/policy/944041/new-york-data-center-moratorium
-Source: https://arstechnica.com/tech-policy/2026/06/we-pissed-off-a-lot-of-people-giant-data-center-plan-cut-50-amid-protests/
-6. Research Breakthrough: Sakana AI launches dedicated lab for recursive AI self-improvement research
-Source: https://the-decoder.com/sakana-ai-bets-ai-that-improves-itself-can-break-the-compute-arms-race-of-frontier-labs/]]></description>
-            <enclosure length="10982427" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-06.mp3"/>
-                    <itunes:duration>458</itunes:duration>
-            <itunes:explicit>false</itunes:explicit>
-            <itunes:season>2026</itunes:season>
-            <itunes:episode>157</itunes:episode>
-            <itunes:episodeType>full</itunes:episodeType>
-            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-06.chapters.json" type="application/json+chapters"/>
-            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-06.transcript.txt" type="text/plain" language="en"/>
-            <podcast:soundbite startTime="36" duration="67">Google pays SpaceX $920M monthly for...</podcast:soundbite>
-            <podcast:soundbite startTime="103" duration="64">xAI reportedly trained coding models on...</podcast:soundbite>
-            <podcast:soundbite startTime="167" duration="60">Florida sues OpenAI treating ChatGPT as...</podcast:soundbite>
-            <podcast:soundbite startTime="228" duration="63">OpenAI and Trump administration negotiate...</podcast:soundbite>
-            <podcast:soundbite startTime="291" duration="61">New York legislature passes one-year...</podcast:soundbite>
-            <podcast:soundbite startTime="352" duration="64">Sakana AI launches dedicated lab for...</podcast:soundbite>
         </item>
     </channel>
 </rss>

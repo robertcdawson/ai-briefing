@@ -138,8 +138,8 @@ try {
     "episode descriptions should include AI-curated why-it-matters show notes",
   );
   assert.ok(
-    xml.includes("Caveat: The claim still needs validation from R&amp;D teams."),
-    "episode descriptions should include escaped AI-curated caveat show notes",
+    xml.includes("Caveat: The claim still needs validation from R&D teams."),
+    "episode descriptions should include AI-curated caveat show notes",
   );
   assert.equal(
     xml.includes(`<itunes:image href="https://example.com/ai-briefing/episodes/${TEST_DATE}.jpg"`),

@@ -298,6 +298,8 @@ To produce music stingers once, run `npm run stingers:generate` — it generates
 
 Chapters are published two ways: a Podcasting 2.0 JSON sidecar linked from `<podcast:chapters>` and embedded MP3 ID3 chapters. Apple Podcasts supports both, but embedding the ID3 chapter metadata makes chapter markers travel with the audio file even when the hosting layer cannot serve `.chapters.json` as `application/json+chapters`.
 
+Episode descriptions include AI-curated show notes for each aired story — the segment title, why it matters, caveat, and source links — so podcast apps expose the useful briefing context before you tap through to sources.
+
 ### Change the model or feed sources
 
 For script generation, set `OPENROUTER_SCRIPT_MODEL` in Actions variables (or `.env` locally). The value can be a comma-separated ordered fallback list; the default is `anthropic/claude-sonnet-4.6, openai/gpt-4o-mini, google/gemini-3.1-pro-preview` — Sonnet leads for prose quality (wit, persona adherence, varied phrasing), with cheaper models as availability fallbacks. Entries beginning with `openai/` are sent directly to OpenAI when `OPENAI_API_KEY` is available. All configured models must support JSON schema structured output. Each model gets two attempts before the script step logs `script.model_fallback` and tries the next candidate.
@@ -391,7 +393,6 @@ Expected: modest OpenRouter usage for curation and default (Sonnet) script gener
 ## v2 ideas (not in scope)
 
 - Cloudflare R2 + custom domain + signed URLs (real privacy)
-- Show-notes generation in `<description>`
 - Source-quality scoring dashboard
 - ElevenLabs TTS swap
 - Slack/Discord webhook on workflow failure

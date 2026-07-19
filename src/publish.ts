@@ -98,7 +98,7 @@ export async function publish(
   const episodePath = path.join(EPISODES_DIR, targetFilename);
   await copyFile(audioPath, episodePath);
 
-  const description = buildEpisodeDescription(episode, durationSeconds, partTimings);
+  const description = buildEpisodeDescription(episode, durationSeconds, partTimings, airedClusters);
   const chapters = buildChapters(partTimings, durationSeconds);
   const soundbites = buildSoundbites(partTimings);
   const transcriptFilename = `${episode.date}.transcript.txt`;
@@ -309,13 +309,23 @@ function buildEpisodeDescription(
   ep: Episode,
   durationSeconds: number,
   partTimings: EpisodePartTiming[] = [],
+  airedClusters: StoryCluster[] = [],
 ): string {
   const chapterLines = buildChapters(partTimings, durationSeconds)
     .map((chapter) => `${formatTimestamp(chapter.startTime)} ${chapter.title}`);
-  const sourceLines = ep.segments.flatMap((segment, index) => [
-    `${index + 1}. ${segment.title}`,
-    ...segment.sourceUrls.map((url) => `Source: ${url}`),
-  ]);
+  const sourceLines = ep.segments.flatMap((segment, index) => {
+    const cluster = airedClusters[index];
+    return [
+      `${index + 1}. ${segment.title}`,
+      ...(cluster
+        ? [
+            `Why it matters: ${oneLine(cluster.whyItMatters)}`,
+            `Caveat: ${oneLine(cluster.caveat)}`,
+          ]
+        : []),
+      ...segment.sourceUrls.map((url) => `Source: ${url}`),
+    ];
+  });
 
   const lines = [
     `Top ${ep.segments.length} AI ${ep.segments.length === 1 ? "story" : "stories"} for ${ep.date}:`,
@@ -325,6 +335,10 @@ function buildEpisodeDescription(
     ...sourceLines,
   ];
   return lines.join("\n");
+}
+
+function oneLine(value: string): string {
+  return value.replace(/\s+/g, " ").trim();
 }
 
 function stripTrailingSlash(s: string): string {

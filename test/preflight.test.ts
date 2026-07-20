@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import {
+  assertPreflight,
   buildEnvironmentPreflightChecks,
   runPreflight,
 } from "../src/preflight.js";
@@ -60,4 +61,27 @@ test("runPreflight includes ffmpeg and ffprobe availability checks", async () =>
   assert.equal(result.ok, false);
   assert.equal(result.checks.find((check) => check.name === "ffmpeg")?.status, "ok");
   assert.equal(result.checks.find((check) => check.name === "ffprobe")?.status, "error");
+});
+
+test("assertPreflight rejects with actionable failures before paid stages", async () => {
+  await assert.rejects(
+    assertPreflight({
+      env: {
+        TTS_PROVIDER: "openrouter",
+        FEED_BASE_URL: "not-a-url",
+      },
+      commandExists: async () => false,
+    }),
+    (error) => {
+      assert.ok(error instanceof Error);
+      assert.match(error.message, /^Pipeline preflight failed:/);
+      assert.match(error.message, /OPENROUTER_API_KEY is not set \(required for curation\)/);
+      assert.equal((error.message.match(/OPENROUTER_API_KEY/g) ?? []).length, 1);
+      assert.equal(error.message.includes("OPENAI_API_KEY"), false);
+      assert.match(error.message, /FEED_BASE_URL must be an absolute http\(s\) URL/);
+      assert.match(error.message, /ffmpeg must be installed and available on PATH/);
+      assert.match(error.message, /ffprobe must be installed and available on PATH/);
+      return true;
+    },
+  );
 });

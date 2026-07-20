@@ -1,0 +1,46 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — July 20, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 36,
+      "title": "Intro"
+    },
+    {
+      "startTime": 36,
+      "endTime": 167,
+      "title": "Claude Fable claims counterexample to the..."
+    },
+    {
+      "startTime": 167,
+      "endTime": 280,
+      "title": "Kimi K3 subscriptions sell out in 48..."
+    },
+    {
+      "startTime": 280,
+      "endTime": 372,
+      "title": "Trump administration reportedly building..."
+    },
+    {
+      "startTime": 372,
+      "endTime": 470,
+      "title": "An AI agent hacked Hugging Face's..."
+    },
+    {
+      "startTime": 470,
+      "endTime": 545,
+      "title": "AI advice makes people less accurate but..."
+    },
+    {
+      "startTime": 545,
+      "endTime": 611,
+      "title": "LLMs generate novel hiring biases not..."
+    },
+    {
+      "startTime": 611,
+      "endTime": 666,
+      "title": "Outro"
+    }
+  ]
+}

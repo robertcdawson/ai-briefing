@@ -76,7 +76,10 @@ test("assertPreflight rejects with actionable failures before paid stages", asyn
       assert.ok(error instanceof Error);
       assert.match(error.message, /^Pipeline preflight failed:/);
       assert.match(error.message, /OPENROUTER_API_KEY is not set \(required for curation\)/);
-      assert.equal((error.message.match(/OPENROUTER_API_KEY/g) ?? []).length, 1);
+      assert.equal(
+        error.message.split("\n").filter((line) => line.startsWith("- OPENROUTER_API_KEY:")).length,
+        1,
+      );
       assert.equal(error.message.includes("OPENAI_API_KEY"), false);
       assert.match(error.message, /FEED_BASE_URL must be an absolute http\(s\) URL/);
       assert.match(error.message, /ffmpeg must be installed and available on PATH/);

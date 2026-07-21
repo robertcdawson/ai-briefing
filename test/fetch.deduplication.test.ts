@@ -35,6 +35,10 @@ test("canonicalArticleUrl preserves meaningful query parameters deterministicall
   );
 });
 
+test("canonicalArticleUrl falls back to a trimmed malformed link", () => {
+  assert.equal(canonicalArticleUrl("  not a url  "), "not a url");
+});
+
 test("deduplicateFetchedArticles keeps the first article for a canonical URL", () => {
   const articles = [
     article({
@@ -86,5 +90,27 @@ test("deduplicateFetchedArticles treats click-id variants as the same article", 
   assert.deepEqual(
     deduped.map((item) => item.title),
     ["Newswire copy", "Meaningful variant"],
+  );
+});
+
+test("deduplicateFetchedArticles deduplicates malformed links by trimmed value", () => {
+  const articles = [
+    article({
+      title: "Malformed original",
+      source: "Source A",
+      url: "  not a url  ",
+    }),
+    article({
+      title: "Malformed duplicate",
+      source: "Source B",
+      url: "not a url",
+    }),
+  ];
+
+  const deduped = deduplicateFetchedArticles(articles);
+
+  assert.deepEqual(
+    deduped.map((item) => item.title),
+    ["Malformed original"],
   );
 });

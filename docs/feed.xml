@@ -4,7 +4,7 @@
         <title>AI Briefing</title>
         <link>https://robertcdawson.github.io/ai-briefing/</link>
         <description>Daily AI news briefing — the stories that matter from the last 24 hours.</description>
-        <lastBuildDate>Mon, 20 Jul 2026 15:31:00 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 21 Jul 2026 15:26:01 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -23,6 +23,81 @@
         <podcast:guid>ea8709f4-3ba2-5b7e-bcdc-e409d84a6443</podcast:guid>
         <podcast:locked owner="manatees@gmail.com">yes</podcast:locked>
         <podcast:person role="host" group="cast">Robert Dawson</podcast:person>
+        <item>
+            <title><![CDATA[AI Briefing — July 21, 2026]]></title>
+            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-07-21.mp3</link>
+            <guid>ai-briefing-2026-07-21</guid>
+            <pubDate>Tue, 21 Jul 2026 15:26:01 GMT</pubDate>
+            <description><![CDATA[Top 6 AI stories for 2026-07-21:
+
+Chapters:
+00:00:00 Intro
+00:00:41 Court approves Anthropic's landmark $1.5...
+00:02:29 Nvidia's AI chip dominance weakens as...
+00:04:09 Google DeepMind launches Gemini 3.6 Flash...
+00:05:26 Google's Frozen v2 chip reportedly bakes...
+00:07:03 Sony sues Udio AI music generator over...
+00:08:24 Microsoft and Mistral sign...
+00:09:51 Outro
+
+Sources:
+1. Top Story: Court approves Anthropic's landmark $1.5 billion AI copyright settlement
+Source: https://techcrunch.com/2026/07/20/anthropics-landmark-1-5b-copyright-settlement-is-approved/
+2. AI Business Watch: Nvidia's AI chip dominance weakens as Microsoft and Anthropic test AMD hardware
+Source: https://the-decoder.com/nvidias-grip-on-ai-chips-weakens-as-microsoft-turns-to-amd-and-anthropic-may-follow/
+3. Product & Tool Watch: Google DeepMind launches Gemini 3.6 Flash and two companion models
+Source: https://deepmind.google/blog/introducing-gemini-36-flash-35-flash-lite-and-35-flash-cyber/
+4. Research Breakthrough: Google's Frozen v2 chip reportedly bakes Gemini architecture directly into silicon
+Source: https://the-decoder.com/googles-frozen-v2-chip-reportedly-bakes-geminis-architecture-directly-into-silicon-for-efficiency-gains/
+Source: https://techcrunch.com/2026/07/20/google-is-working-on-a-new-ai-chip-designed-to-make-gemini-more-efficient/
+5. Policy & Regulation Watch: Sony sues Udio AI music generator over 30,000 copyrighted songs
+Source: https://www.theverge.com/tech/968375/sony-udio-lawsuit-songs-ai-copyright
+6. AI Business Watch: Microsoft and Mistral sign multi-billion-dollar European AI infrastructure deal
+Source: https://the-decoder.com/microsoft-and-mistral-strike-multi-billion-dollar-deal-to-build-ai-infrastructure-across-europe/]]></description>
+            <enclosure length="15456792" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-07-21.mp3"/>
+                    <itunes:duration>644</itunes:duration>
+            <itunes:explicit>false</itunes:explicit>
+            <itunes:season>2026</itunes:season>
+            <itunes:episode>202</itunes:episode>
+            <itunes:episodeType>full</itunes:episodeType>
+            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-07-21.chapters.json" type="application/json+chapters"/>
+            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-07-21.transcript.txt" type="text/plain" language="en"/>
+            <podcast:soundbite startTime="41" duration="106">Court approves Anthropic&apos;s landmark <guid>ai-briefing-2026-07-21</guid>
+            <pubDate>Tue, 21 Jul 2026 15:26:01 GMT</pubDate>
+            <description><![CDATA[Top 6 AI stories for 2026-07-21:
+
+Chapters:
+00:00:00 Intro
+00:00:41 Court approves Anthropic's landmark $1.5...
+00:02:29 Nvidia's AI chip dominance weakens as...
+00:04:09 Google DeepMind launches Gemini 3.6 Flash...
+00:05:26 Google's Frozen v2 chip reportedly bakes...
+00:07:03 Sony sues Udio AI music generator over...
+00:08:24 Microsoft and Mistral sign...
+00:09:51 Outro
+
+Sources:
+1. Top Story: Court approves Anthropic's landmark $1.5 billion AI copyright settlement
+Source: https://techcrunch.com/2026/07/20/anthropics-landmark-1-5b-copyright-settlement-is-approved/
+2. AI Business Watch: Nvidia's AI chip dominance weakens as Microsoft and Anthropic test AMD hardware
+Source: https://the-decoder.com/nvidias-grip-on-ai-chips-weakens-as-microsoft-turns-to-amd-and-anthropic-may-follow/
+3. Product & Tool Watch: Google DeepMind launches Gemini 3.6 Flash and two companion models
+Source: https://deepmind.google/blog/introducing-gemini-36-flash-35-flash-lite-and-35-flash-cyber/
+4. Research Breakthrough: Google's Frozen v2 chip reportedly bakes Gemini architecture directly into silicon
+Source: https://the-decoder.com/googles-frozen-v2-chip-reportedly-bakes-geminis-architecture-directly-into-silicon-for-efficiency-gains/
+Source: https://techcrunch.com/2026/07/20/google-is-working-on-a-new-ai-chip-designed-to-make-gemini-more-efficient/
+5. Policy & Regulation Watch: Sony sues Udio AI music generator over 30,000 copyrighted songs
+Source: https://www.theverge.com/tech/968375/sony-udio-lawsuit-songs-ai-copyright
+6. AI Business Watch: Microsoft and Mistral sign multi-billion-dollar European AI infrastructure deal
+Source: https://the-decoder.com/microsoft-and-mistral-strike-multi-billion-dollar-deal-to-build-ai-infrastructure-across-europe/]]></description>
+            <enclosure length="15456792" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-07-21.mp3"/>
+        .5...</podcast:soundbite>
+            <podcast:soundbite startTime="149" duration="98">Nvidia&apos;s AI chip dominance weakens as...</podcast:soundbite>
+            <podcast:soundbite startTime="249" duration="76">Google DeepMind launches Gemini 3.6 Flash...</podcast:soundbite>
+            <podcast:soundbite startTime="326" duration="95">Google&apos;s Frozen v2 chip reportedly bakes...</podcast:soundbite>
+            <podcast:soundbite startTime="423" duration="80">Sony sues Udio AI music generator over...</podcast:soundbite>
+            <podcast:soundbite startTime="504" duration="86">Microsoft and Mistral sign...</podcast:soundbite>
+        </item>
         <item>
             <title><![CDATA[AI Briefing — July 20, 2026]]></title>
             <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-07-20.mp3</link>
@@ -1552,53 +1627,6 @@ Source: https://the-decoder.com/microsoft-researchs-lens-proves-detailed-caption
             <podcast:soundbite startTime="161" duration="35">China plans $295 billion AI data center...</podcast:soundbite>
             <podcast:soundbite startTime="196" duration="35">Google and Nvidia explore Intel foundry...</podcast:soundbite>
             <podcast:soundbite startTime="231" duration="41">Microsoft Research Lens shows rich...</podcast:soundbite>
-        </item>
-        <item>
-            <title><![CDATA[AI Briefing — June 8, 2026]]></title>
-            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-06-08.mp3</link>
-            <guid>ai-briefing-2026-06-08</guid>
-            <pubDate>Mon, 08 Jun 2026 14:49:09 GMT</pubDate>
-            <description><![CDATA[Top 6 AI stories for 2026-06-08:
-
-Chapters:
-00:00:00 Intro
-00:00:25 OpenAI plans major ChatGPT overhaul as...
-00:01:18 AI billing shifts from flat subscriptions...
-00:02:00 Microsoft tightens conflict-zone rules...
-00:02:41 Meta discloses Instagram AI chatbot...
-00:03:21 DeepSeek tops Ramp's trending vendor list...
-00:03:55 Open source community rallies behind...
-00:04:26 Outro
-
-Sources:
-1. Product & Tool Watch: OpenAI plans major ChatGPT overhaul as 'chat is dead' internally
-Source: https://arstechnica.com/ai/2026/06/chat-is-dead-openai-preps-overhaul-of-chatgpt/
-Source: https://techcrunch.com/2026/06/07/openai-is-still-working-on-that-super-app/
-2. AI Business Watch: AI billing shifts from flat subscriptions to consumption-based token pricing
-Source: https://techcrunch.com/2026/06/07/is-this-the-dawn-of-the-tokenpocalypse/
-Source: https://the-decoder.com/frontier-radar-3-how-agentic-ai-is-turning-tokens-into-a-business-metric/
-3. Policy & Regulation Watch: Microsoft tightens conflict-zone rules after Israel military Azure investigation
-Source: https://the-decoder.com/microsoft-tightens-rules-for-conflict-zones-after-investigation-into-israels-military-use-of-azure/
-4. Policy & Regulation Watch: Meta discloses Instagram AI chatbot breach affecting over 20,000 accounts
-Source: https://the-decoder.com/instagram-ai-chatbot-breach-may-have-affected-over-to-20000-accounts-meta-discloses/
-5. AI Business Watch: DeepSeek tops Ramp's trending vendor list as US firms chase cheaper AI
-Source: https://the-decoder.com/deepseek-topped-ramps-trending-software-vendors-in-june-2026-as-us-companies-chase-cheaper-ai/
-6. Open Source Watch: Open source community rallies behind OpenEnv for agentic reinforcement learning
-Source: https://huggingface.co/blog/openenv-agentic-rl]]></description>
-            <enclosure length="7130141" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-08.mp3"/>
-                    <itunes:duration>297</itunes:duration>
-            <itunes:explicit>false</itunes:explicit>
-            <itunes:season>2026</itunes:season>
-            <itunes:episode>159</itunes:episode>
-            <itunes:episodeType>full</itunes:episodeType>
-            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-08.chapters.json" type="application/json+chapters"/>
-            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-08.transcript.txt" type="text/plain" language="en"/>
-            <podcast:soundbite startTime="25" duration="53">OpenAI plans major ChatGPT overhaul as...</podcast:soundbite>
-            <podcast:soundbite startTime="78" duration="42">AI billing shifts from flat subscriptions...</podcast:soundbite>
-            <podcast:soundbite startTime="120" duration="41">Microsoft tightens conflict-zone rules...</podcast:soundbite>
-            <podcast:soundbite startTime="161" duration="40">Meta discloses Instagram AI chatbot...</podcast:soundbite>
-            <podcast:soundbite startTime="201" duration="33">DeepSeek tops Ramp&apos;s trending vendor list...</podcast:soundbite>
-            <podcast:soundbite startTime="235" duration="32">Open source community rallies behind...</podcast:soundbite>
         </item>
     </channel>
 </rss>

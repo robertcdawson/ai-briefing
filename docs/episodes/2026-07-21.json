@@ -1,0 +1,203 @@
+{
+  "date": "2026-07-21",
+  "title": "AI Briefing — July 21, 2026",
+  "description": "Top 6 AI stories for 2026-07-21:\n\nChapters:\n00:00:00 Intro\n00:00:41 Court approves Anthropic's landmark $1.5...\n00:02:29 Nvidia's AI chip dominance weakens as...\n00:04:09 Google DeepMind launches Gemini 3.6 Flash...\n00:05:26 Google's Frozen v2 chip reportedly bakes...\n00:07:03 Sony sues Udio AI music generator over...\n00:08:24 Microsoft and Mistral sign...\n00:09:51 Outro\n\nSources:\n1. Top Story: Court approves Anthropic's landmark $1.5 billion AI copyright settlement\nSource: https://techcrunch.com/2026/07/20/anthropics-landmark-1-5b-copyright-settlement-is-approved/\n2. AI Business Watch: Nvidia's AI chip dominance weakens as Microsoft and Anthropic test AMD hardware\nSource: https://the-decoder.com/nvidias-grip-on-ai-chips-weakens-as-microsoft-turns-to-amd-and-anthropic-may-follow/\n3. Product & Tool Watch: Google DeepMind launches Gemini 3.6 Flash and two companion models\nSource: https://deepmind.google/blog/introducing-gemini-36-flash-35-flash-lite-and-35-flash-cyber/\n4. Research Breakthrough: Google's Frozen v2 chip reportedly bakes Gemini architecture directly into silicon\nSource: https://the-decoder.com/googles-frozen-v2-chip-reportedly-bakes-geminis-architecture-directly-into-silicon-for-efficiency-gains/\nSource: https://techcrunch.com/2026/07/20/google-is-working-on-a-new-ai-chip-designed-to-make-gemini-more-efficient/\n5. Policy & Regulation Watch: Sony sues Udio AI music generator over 30,000 copyrighted songs\nSource: https://www.theverge.com/tech/968375/sony-udio-lawsuit-songs-ai-copyright\n6. AI Business Watch: Microsoft and Mistral sign multi-billion-dollar European AI infrastructure deal\nSource: https://the-decoder.com/microsoft-and-mistral-strike-multi-billion-dollar-deal-to-build-ai-infrastructure-across-europe/",
+  "durationSeconds": 644,
+  "byteLength": 15456792,
+  "pubDate": "2026-07-21T15:26:01.512Z",
+  "season": 2026,
+  "episodeNumber": 202,
+  "chaptersFilename": "2026-07-21.chapters.json",
+  "transcriptFilename": "2026-07-21.transcript.txt",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 41,
+      "title": "Intro"
+    },
+    {
+      "startTime": 41,
+      "endTime": 149,
+      "title": "Court approves Anthropic's landmark $1.5..."
+    },
+    {
+      "startTime": 149,
+      "endTime": 249,
+      "title": "Nvidia's AI chip dominance weakens as..."
+    },
+    {
+      "startTime": 249,
+      "endTime": 326,
+      "title": "Google DeepMind launches Gemini 3.6 Flash..."
+    },
+    {
+      "startTime": 326,
+      "endTime": 423,
+      "title": "Google's Frozen v2 chip reportedly bakes..."
+    },
+    {
+      "startTime": 423,
+      "endTime": 504,
+      "title": "Sony sues Udio AI music generator over..."
+    },
+    {
+      "startTime": 504,
+      "endTime": 591,
+      "title": "Microsoft and Mistral sign..."
+    },
+    {
+      "startTime": 591,
+      "endTime": 644,
+      "title": "Outro"
+    }
+  ],
+  "soundbites": [
+    {
+      "startTime": 41,
+      "duration": 106,
+      "title": "Court approves Anthropic's landmark $1.5..."
+    },
+    {
+      "startTime": 149,
+      "duration": 98,
+      "title": "Nvidia's AI chip dominance weakens as..."
+    },
+    {
+      "startTime": 249,
+      "duration": 76,
+      "title": "Google DeepMind launches Gemini 3.6 Flash..."
+    },
+    {
+      "startTime": 326,
+      "duration": 95,
+      "title": "Google's Frozen v2 chip reportedly bakes..."
+    },
+    {
+      "startTime": 423,
+      "duration": 80,
+      "title": "Sony sues Udio AI music generator over..."
+    },
+    {
+      "startTime": 504,
+      "duration": 86,
+      "title": "Microsoft and Mistral sign..."
+    }
+  ],
+  "curation": [
+    {
+      "canonicalKey": "anthropic-copyright-settlement-approved",
+      "headline": "Court approves Anthropic's landmark $1.5 billion AI copyright settlement",
+      "whyItMatters": "The approved settlement sets a concrete financial precedent for AI training data liability and may shape how other labs structure licensing deals or litigation risk going forward.",
+      "caveat": "The settlement resolves only one case and leaves the broader legal question of whether AI training on copyrighted works is permissible entirely unresolved.",
+      "importance": 78,
+      "category": "policy-regulation"
+    },
+    {
+      "canonicalKey": "nvidia-amd-challenge-microsoft-anthropic",
+      "headline": "Nvidia's AI chip dominance weakens as Microsoft and Anthropic test AMD hardware",
+      "whyItMatters": "If major hyperscalers and frontier labs diversify away from Nvidia GPUs, it would compress Nvidia's pricing power and reduce the hardware moat that has shaped AI infrastructure costs for the past three years.",
+      "caveat": "Anthropic's AMD testing is inferred from a public GitHub profile rather than confirmed by the company, and AMD's Helios platform has not yet shipped at scale.",
+      "importance": 74,
+      "category": "business"
+    },
+    {
+      "canonicalKey": "google-gemini-36-flash-new-models",
+      "headline": "Google DeepMind launches Gemini 3.6 Flash and two companion models",
+      "whyItMatters": "New Flash-tier Gemini models signal continued rapid iteration on Google's inference-optimized lineup, with Gemini 3.5 Flash-Cyber suggesting a security-focused variant that could matter for enterprise and agentic deployments.",
+      "caveat": "Benchmark details, pricing, and availability windows are not yet fully disclosed in the announcement.",
+      "importance": 72,
+      "category": "product-tools"
+    },
+    {
+      "canonicalKey": "google-frozen-v2-chip-gemini-silicon",
+      "headline": "Google's Frozen v2 chip reportedly bakes Gemini architecture directly into silicon",
+      "whyItMatters": "A 6-10x efficiency gain over current TPUs would dramatically cut Google's inference costs and could give it a durable price advantage over OpenAI and Anthropic in the API market by 2028.",
+      "caveat": "The chip is scheduled for 2028 and all efficiency figures come from unnamed internal sources, so the claims remain unverified.",
+      "importance": 72,
+      "category": "research"
+    },
+    {
+      "canonicalKey": "sony-udio-30000-song-copyright-lawsuit",
+      "headline": "Sony sues Udio AI music generator over 30,000 copyrighted songs",
+      "whyItMatters": "The scale of this suit — 30,000 named tracks described as only a fraction of infringed works — raises the stakes for AI-generated audio and could threaten the viability of music-generation startups.",
+      "caveat": "The lawsuit is newly filed and no court rulings have been made; Udio has not yet publicly responded to this specific complaint.",
+      "importance": 70,
+      "category": "policy-regulation"
+    },
+    {
+      "canonicalKey": "microsoft-mistral-europe-ai-infrastructure-deal",
+      "headline": "Microsoft and Mistral sign multi-billion-dollar European AI infrastructure deal",
+      "whyItMatters": "The deal deepens Microsoft's European AI footprint while giving Mistral capital and compute to compete with US and Chinese frontier labs, with potential implications for EU AI sovereignty and Azure's market position.",
+      "caveat": "Financial terms and specific infrastructure commitments have not been publicly detailed beyond the headline figure.",
+      "importance": 68,
+      "category": "business"
+    }
+  ],
+  "curationReport": {
+    "threshold": 45,
+    "maxStories": 6,
+    "total": 8,
+    "selectedCount": 6,
+    "droppedCount": 2,
+    "clusters": [
+      {
+        "canonicalKey": "anthropic-copyright-settlement-approved",
+        "category": "policy-regulation",
+        "headline": "Court approves Anthropic's landmark $1.5 billion AI copyright settlement",
+        "importance": 78,
+        "selected": true
+      },
+      {
+        "canonicalKey": "nvidia-amd-challenge-microsoft-anthropic",
+        "category": "business",
+        "headline": "Nvidia's AI chip dominance weakens as Microsoft and Anthropic test AMD hardware",
+        "importance": 74,
+        "selected": true
+      },
+      {
+        "canonicalKey": "google-gemini-36-flash-new-models",
+        "category": "product-tools",
+        "headline": "Google DeepMind launches Gemini 3.6 Flash and two companion models",
+        "importance": 72,
+        "selected": true
+      },
+      {
+        "canonicalKey": "google-frozen-v2-chip-gemini-silicon",
+        "category": "research",
+        "headline": "Google's Frozen v2 chip reportedly bakes Gemini architecture directly into silicon",
+        "importance": 72,
+        "selected": true
+      },
+      {
+        "canonicalKey": "sony-udio-30000-song-copyright-lawsuit",
+        "category": "policy-regulation",
+        "headline": "Sony sues Udio AI music generator over 30,000 copyrighted songs",
+        "importance": 70,
+        "selected": true
+      },
+      {
+        "canonicalKey": "microsoft-mistral-europe-ai-infrastructure-deal",
+        "category": "business",
+        "headline": "Microsoft and Mistral sign multi-billion-dollar European AI infrastructure deal",
+        "importance": 68,
+        "selected": true
+      },
+      {
+        "canonicalKey": "deezer-ai-music-50-percent-uploads",
+        "category": "culture",
+        "headline": "Deezer reports over half of daily uploads are now AI-generated music",
+        "importance": 65,
+        "selected": false,
+        "dropReason": "over_cap"
+      },
+      {
+        "canonicalKey": "ai-training-data-old-books-slop-avoidance",
+        "category": "research",
+        "headline": "AI companies buying old printed books to avoid AI-contaminated training data",
+        "importance": 63,
+        "selected": false,
+        "dropReason": "over_cap"
+      }
+    ]
+  }
+}

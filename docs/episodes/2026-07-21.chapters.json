@@ -1,0 +1,46 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — July 21, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 41,
+      "title": "Intro"
+    },
+    {
+      "startTime": 41,
+      "endTime": 149,
+      "title": "Court approves Anthropic's landmark $1.5..."
+    },
+    {
+      "startTime": 149,
+      "endTime": 249,
+      "title": "Nvidia's AI chip dominance weakens as..."
+    },
+    {
+      "startTime": 249,
+      "endTime": 326,
+      "title": "Google DeepMind launches Gemini 3.6 Flash..."
+    },
+    {
+      "startTime": 326,
+      "endTime": 423,
+      "title": "Google's Frozen v2 chip reportedly bakes..."
+    },
+    {
+      "startTime": 423,
+      "endTime": 504,
+      "title": "Sony sues Udio AI music generator over..."
+    },
+    {
+      "startTime": 504,
+      "endTime": 591,
+      "title": "Microsoft and Mistral sign..."
+    },
+    {
+      "startTime": 591,
+      "endTime": 644,
+      "title": "Outro"
+    }
+  ]
+}

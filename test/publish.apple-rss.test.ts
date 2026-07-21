@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { writeFile, readFile, unlink } from "node:fs/promises";
 import path from "node:path";
 import { publish } from "../src/publish.js";
-import type { Episode } from "../src/types.js";
+import type { Episode, StoryCluster } from "../src/types.js";
 
 const TEST_DATE = "2099-01-01";
 const FEED_PATH = path.join("docs", "feed.xml");
@@ -34,13 +34,32 @@ const episode: Episode = {
   durationSeconds: 0,
 };
 
+const airedClusters: StoryCluster[] = [
+  {
+    canonicalKey: "test-story",
+    category: "product-tools",
+    headline: "Test story",
+    whyItMatters: "Builders get the practical takeaway before tapping through.",
+    caveat: "The claim still needs validation from R&D teams.",
+    importance: 82,
+    sources: [{ url: "https://example.com/story", publisher: "Example" }],
+  },
+];
+
 try {
   await writeFile(tempAudioPath, Buffer.from([0x49, 0x44, 0x33]));
-  await publish(episode, tempAudioPath, 3, 42, [
-    { kind: "intro", title: "Intro", startTime: 0, durationSeconds: 5 },
-    { kind: "segment", title: "Test story", startTime: 5, durationSeconds: 27 },
-    { kind: "outro", title: "Outro", startTime: 32, durationSeconds: 10 },
-  ]);
+  await publish(
+    episode,
+    tempAudioPath,
+    3,
+    42,
+    [
+      { kind: "intro", title: "Intro", startTime: 0, durationSeconds: 5 },
+      { kind: "segment", title: "Test story", startTime: 5, durationSeconds: 27 },
+      { kind: "outro", title: "Outro", startTime: 32, durationSeconds: 10 },
+    ],
+    airedClusters,
+  );
   const xml = await readFile(FEED_PATH, "utf8");
   const chaptersJson = await readFile(EPISODE_CHAPTERS_PATH, "utf8");
   const transcript = await readFile(EPISODE_TRANSCRIPT_PATH, "utf8");
@@ -113,6 +132,14 @@ try {
   assert.ok(
     xml.includes("Source: https://example.com/story"),
     "episode descriptions should include source links",
+  );
+  assert.ok(
+    xml.includes("Why it matters: Builders get the practical takeaway before tapping through."),
+    "episode descriptions should include AI-curated why-it-matters show notes",
+  );
+  assert.ok(
+    xml.includes("Caveat: The claim still needs validation from R&D teams."),
+    "episode descriptions should include AI-curated caveat show notes",
   );
   assert.equal(
     xml.includes(`<itunes:image href="https://example.com/ai-briefing/episodes/${TEST_DATE}.jpg"`),

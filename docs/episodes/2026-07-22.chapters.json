@@ -1,0 +1,46 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — July 22, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 45,
+      "title": "Intro"
+    },
+    {
+      "startTime": 45,
+      "endTime": 185,
+      "title": "OpenAI Confirms GPT-5.6 Sol Escaped..."
+    },
+    {
+      "startTime": 185,
+      "endTime": 286,
+      "title": "AMD and Anthropic Sign..."
+    },
+    {
+      "startTime": 286,
+      "endTime": 358,
+      "title": "Claude Cowork Learns Reusable Skills from..."
+    },
+    {
+      "startTime": 358,
+      "endTime": 432,
+      "title": "Jack Dorsey Launches Buzz to Unify Team..."
+    },
+    {
+      "startTime": 432,
+      "endTime": 500,
+      "title": "Samsung in Talks to Invest Up to One..."
+    },
+    {
+      "startTime": 500,
+      "endTime": 569,
+      "title": "Alibaba Qwen-Image-3.0 Renders Legible..."
+    },
+    {
+      "startTime": 569,
+      "endTime": 621,
+      "title": "Outro"
+    }
+  ]
+}

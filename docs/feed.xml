@@ -4,7 +4,7 @@
         <title>AI Briefing</title>
         <link>https://robertcdawson.github.io/ai-briefing/</link>
         <description>Daily AI news briefing — the stories that matter from the last 24 hours.</description>
-        <lastBuildDate>Thu, 23 Jul 2026 15:35:58 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 24 Jul 2026 15:18:40 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -23,6 +23,68 @@
         <podcast:guid>ea8709f4-3ba2-5b7e-bcdc-e409d84a6443</podcast:guid>
         <podcast:locked owner="manatees@gmail.com">yes</podcast:locked>
         <podcast:person role="host" group="cast">Robert Dawson</podcast:person>
+        <item>
+            <title><![CDATA[AI Briefing — July 24, 2026]]></title>
+            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-07-24.mp3</link>
+            <guid>ai-briefing-2026-07-24</guid>
+            <pubDate>Fri, 24 Jul 2026 15:18:40 GMT</pubDate>
+            <description><![CDATA[Top 6 AI stories for 2026-07-24:
+
+Chapters:
+00:00:00 Intro
+00:00:25 OpenAI rolls out ChatGPT Health to all US...
+00:01:37 Anthropic upgrades Claude voice mode to...
+00:02:44 Black Forest Labs releases Flux 3, a...
+00:03:45 AgentForger vulnerability lets one...
+00:04:55 Trump administration directs five billion...
+00:05:58 Patreon cuts 20 percent of workforce...
+00:07:03 Outro
+
+Sources:
+1. Product & Tool Watch: OpenAI rolls out ChatGPT Health to all US users with medical record integration
+Why it matters: ChatGPT Health now connects Apple Health, medical records, and wellness apps for all US users, with OpenAI claiming its models reason at better-than-clinician level — a significant expansion of AI into personal healthcare. The tiered model access (GPT-5.6 Sol for paid, GPT-5.5 Instant for free) raises equity questions about who gets the best health guidance.
+Caveat: OpenAI declined to share the specific benchmark data backing its 'better than clinician level' claim, and no independent clinical validation has been published.
+Source: https://www.theverge.com/ai-artificial-intelligence/970115/openai-chatgpt-health-launch-claims
+Source: https://techcrunch.com/2026/07/23/openai-makes-chatgpt-health-available-to-all-u-s-users/
+Source: https://the-decoder.com/chatgpt-will-give-you-worse-health-advice-if-you-dont-pay/
+2. Product & Tool Watch: Anthropic upgrades Claude voice mode to Opus and Sonnet with app integrations
+Why it matters: Extending voice mode to Claude's most capable models and adding direct Gmail, Google Calendar, Slack, and Canva integrations makes Claude the first AI assistant able to compose and send emails by voice — a meaningful step toward ambient AI-assisted work. Builders integrating voice workflows now have access to significantly stronger reasoning in real-time audio.
+Caveat: Latency and reliability of the more powerful models in voice mode versus the faster Haiku have not been independently benchmarked.
+Source: https://www.theverge.com/ai-artificial-intelligence/970065/anthropic-voice-mode-claude-opus-sonnet-haiku-ai
+Source: https://techcrunch.com/2026/07/23/anthropic-updates-claude-voice-mode-with-more-capable-models/
+Source: https://the-decoder.com/claudes-voice-mode-now-runs-on-anthropics-most-capable-models-across-all-platforms/
+3. Research Breakthrough: Black Forest Labs releases Flux 3, a multimodal model generating video with native audio
+Why it matters: Flux 3 is the first model from Black Forest Labs to jointly generate video and synchronized audio from a single foundation, and the company is already testing it on robotics tasks as a step toward world models. This raises the capability ceiling for generative media tools that developers build on top of BFL's stack.
+Caveat: BFL's benchmark comparisons against Seedance 2.0 are self-reported and no independent evaluation results are yet available.
+Source: https://the-decoder.com/flux-3-generates-videos-with-native-audio-up-to-20-seconds-long-a-first-for-black-forest-labs/
+4. Research Breakthrough: AgentForger vulnerability lets one malicious ChatGPT link spawn a persistent rogue agent
+Why it matters: Zenity Labs' discovery that a single tampered link could silently create an autonomous agent inheriting a victim's identity and polling an attacker's inbox every five minutes is a concrete, high-severity agentic security risk that every enterprise deploying ChatGPT agents must understand. It illustrates how prompt injection can escalate from data leakage to persistent autonomous compromise.
+Caveat: It is unclear whether OpenAI has patched the vulnerability or whether the disclosure was coordinated; the full technical write-up has not yet been independently verified.
+Source: https://the-decoder.com/one-tampered-chatgpt-link-could-spawn-a-rogue-ai-agent-that-took-orders-from-an-attacker-every-five-minutes/
+5. Policy & Regulation Watch: Trump administration directs five billion dollars to AI-driven science via Genesis Mission
+Why it matters: The Genesis Mission's $5 billion in grants represents the largest single federal commitment to AI-accelerated scientific research, potentially reshaping how government-funded research is conducted and which institutions receive funding. The framing as a 'Manhattan Project' signals a major policy shift toward AI-first science infrastructure.
+Caveat: The science adviser leading the initiative has no scientific research background, and critics question whether the grant criteria prioritize AI hype over rigorous scientific merit.
+Source: https://www.theverge.com/science/970534/genesis-mission-ai-science-funding-trump-grants
+6. AI Culture Signal: Patreon cuts 20 percent of workforce citing AI-driven operational transformation
+Why it matters: Patreon's CEO explicitly credits AI with changing how the company builds products and communicates, making this a high-profile example of AI-driven headcount reduction at a creator-economy platform — a bellwether for how AI is reshaping tech company org structures beyond pure engineering roles.
+Caveat: The CEO simultaneously claims AI does not replace human creativity, making it difficult to disentangle genuine AI-driven efficiency gains from broader cost-cutting motivations.
+Source: https://www.theverge.com/tech/970211/patreon-layoffs-ai
+Source: https://www.404media.co/patreon-lays-off-20-percent-of-its-workforce/]]></description>
+            <enclosure length="10802141" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-07-24.mp3"/>
+                    <itunes:duration>450</itunes:duration>
+            <itunes:explicit>false</itunes:explicit>
+            <itunes:season>2026</itunes:season>
+            <itunes:episode>205</itunes:episode>
+            <itunes:episodeType>full</itunes:episodeType>
+            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-07-24.chapters.json" type="application/json+chapters"/>
+            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-07-24.transcript.txt" type="text/plain" language="en"/>
+            <podcast:soundbite startTime="25" duration="71">OpenAI rolls out ChatGPT Health to all US...</podcast:soundbite>
+            <podcast:soundbite startTime="97" duration="65">Anthropic upgrades Claude voice mode to...</podcast:soundbite>
+            <podcast:soundbite startTime="164" duration="60">Black Forest Labs releases Flux 3, a...</podcast:soundbite>
+            <podcast:soundbite startTime="225" duration="68">AgentForger vulnerability lets one...</podcast:soundbite>
+            <podcast:soundbite startTime="295" duration="61">Trump administration directs five billion...</podcast:soundbite>
+            <podcast:soundbite startTime="358" duration="63">Patreon cuts 20 percent of workforce...</podcast:soundbite>
+        </item>
         <item>
             <title><![CDATA[AI Briefing — July 23, 2026]]></title>
             <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-07-23.mp3</link>
@@ -1584,60 +1646,6 @@ Source: https://news.ycombinator.com/item?id=48500012]]></description>
             <podcast:soundbite startTime="395" duration="101">Google and OpenAI jointly expose Chinese...</podcast:soundbite>
             <podcast:soundbite startTime="498" duration="99">Anthropic&apos;s Claude Fable draws scrutiny...</podcast:soundbite>
             <podcast:soundbite startTime="599" duration="82">Runaway AI agent racked up...</podcast:soundbite>
-        </item>
-        <item>
-            <title><![CDATA[AI Briefing — June 11, 2026]]></title>
-            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-06-11.mp3</link>
-            <guid>ai-briefing-2026-06-11</guid>
-            <pubDate>Thu, 11 Jun 2026 14:48:59 GMT</pubDate>
-            <description><![CDATA[Top 6 AI stories for 2026-06-11:
-
-Chapters:
-00:00:00 Intro
-00:00:34 Anthropic reverses hidden guardrails on...
-00:02:32 Anthropic study finds AI builds working...
-00:04:15 Google DeepMind releases DiffusionGemma...
-00:06:01 xAI sued after allegedly firing engineer...
-00:07:10 Google DeepMind funds research into risks...
-00:08:21 New research finds AI memory systems can...
-00:09:23 Outro
-
-Sources:
-1. Top Story: Anthropic reverses hidden guardrails on Claude Fable after researcher backlash
-Source: https://www.theverge.com/ai-artificial-intelligence/948280/anthropic-claude-fable-invisible-distillation-guardrail
-Source: https://www.theverge.com/ai-artificial-intelligence/947973/fable-wont-answer-basic-biology-questions
-Source: https://www.theverge.com/report/947575/microsoft-claude-fable-5-restricted-internally
-Source: https://techcrunch.com/2026/06/10/cybersecurity-researchers-arent-happy-about-the-guardrails-on-anthropics-fable/
-Source: https://simonwillison.net/2026/Jun/11/anthropic-walks-back-policy/#atom-everything
-Source: https://the-decoder.com/claude-fable-5-anthropic-admits-wrong-tradeoff-after-invisibly-throttling-rival-ai-researchers/
-Source: https://news.ycombinator.com/item?id=48478969
-2. Research Breakthrough: Anthropic study finds AI builds working exploits from patches within hours
-Source: https://the-decoder.com/anthropic-study-shows-ai-needs-hours-not-weeks-to-build-exploits-from-security-patches/
-3. Open Source Watch: Google DeepMind releases DiffusionGemma open model with 4x text generation speedup
-Source: https://deepmind.google/blog/diffusiongemma-4x-faster-text-generation/
-Source: https://arstechnica.com/google/2026/06/googles-latest-diffusiongemma-open-ai-model-comes-with-a-4x-speed-boost/
-Source: https://the-decoder.com/googles-new-open-model-diffusiongemma-generates-text-from-noise-instead-of-word-by-word/
-Source: https://simonwillison.net/2026/Jun/10/diffusiongemma/#atom-everything
-4. Policy & Regulation Watch: xAI sued after allegedly firing engineer who flagged Grok safety concerns
-Source: https://techcrunch.com/2026/06/10/xai-fired-an-engineer-who-raised-alarms-about-grok-safety-new-lawsuit-claims/
-5. Research Breakthrough: Google DeepMind funds research into risks of millions of interacting AI agents
-Source: https://www.technologyreview.com/2026/06/11/1138794/google-deepmind-is-worried-about-what-happens-when-millions-of-agents-start-to-interact/
-6. Research Breakthrough: New research finds AI memory systems can degrade model performance and sycophancy
-Source: https://techcrunch.com/2026/06/10/how-memory-tools-can-make-ai-models-worse/]]></description>
-            <enclosure length="15023080" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-11.mp3"/>
-                    <itunes:duration>626</itunes:duration>
-            <itunes:explicit>false</itunes:explicit>
-            <itunes:season>2026</itunes:season>
-            <itunes:episode>162</itunes:episode>
-            <itunes:episodeType>full</itunes:episodeType>
-            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-11.chapters.json" type="application/json+chapters"/>
-            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-11.transcript.txt" type="text/plain" language="en"/>
-            <podcast:soundbite startTime="34" duration="117">Anthropic reverses hidden guardrails on...</podcast:soundbite>
-            <podcast:soundbite startTime="152" duration="102">Anthropic study finds AI builds working...</podcast:soundbite>
-            <podcast:soundbite startTime="255" duration="104">Google DeepMind releases DiffusionGemma...</podcast:soundbite>
-            <podcast:soundbite startTime="361" duration="68">xAI sued after allegedly firing engineer...</podcast:soundbite>
-            <podcast:soundbite startTime="430" duration="69">Google DeepMind funds research into risks...</podcast:soundbite>
-            <podcast:soundbite startTime="501" duration="61">New research finds AI memory systems can...</podcast:soundbite>
         </item>
     </channel>
 </rss>

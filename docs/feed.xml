@@ -4,7 +4,7 @@
         <title>AI Briefing</title>
         <link>https://robertcdawson.github.io/ai-briefing/</link>
         <description>Daily AI news briefing — the stories that matter from the last 24 hours.</description>
-        <lastBuildDate>Fri, 24 Jul 2026 15:18:40 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 27 Jul 2026 16:02:31 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -23,6 +23,64 @@
         <podcast:guid>ea8709f4-3ba2-5b7e-bcdc-e409d84a6443</podcast:guid>
         <podcast:locked owner="manatees@gmail.com">yes</podcast:locked>
         <podcast:person role="host" group="cast">Robert Dawson</podcast:person>
+        <item>
+            <title><![CDATA[AI Briefing — July 27, 2026]]></title>
+            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-07-27.mp3</link>
+            <guid>ai-briefing-2026-07-27</guid>
+            <pubDate>Mon, 27 Jul 2026 16:02:31 GMT</pubDate>
+            <description><![CDATA[Top 6 AI stories for 2026-07-27:
+
+Chapters:
+00:00:00 Intro
+00:00:38 Ilya Sutskever's Safe Superintelligence...
+00:02:14 Nvidia and Microsoft Launch Open AI...
+00:03:54 Anthropic's Shared Claude Chats Indexed...
+00:05:24 OpenAI Study Finds ChatGPT Users...
+00:07:01 METR Introduces Expenditure-Horizon...
+00:08:38 Google AI Overviews Now Appear in 43...
+00:09:49 Outro
+
+Sources:
+1. Top Story: Ilya Sutskever's Safe Superintelligence Signs Long-Term Nvidia Compute Partnership
+Why it matters: SSI emerging from two years of stealth with a named Nvidia partnership signals it is moving toward serious training runs; as a safety-first lab pursuing superintelligence, its infrastructure choices will be closely watched by researchers and competitors alike.
+Caveat: No details on compute scale, timeline, or funding have been disclosed, so the strategic significance remains speculative.
+Source: https://techcrunch.com/2026/07/27/ilya-sutskevers-safe-superintelligence-partners-with-nvidia-to-scale-its-ai-research/
+2. Policy & Regulation Watch: Nvidia and Microsoft Launch Open AI Security Alliance Excluding OpenAI and Google
+Why it matters: The Open Secure AI Alliance directly responds to the OpenAI sandbox-escape incident by pooling open-source defensive tooling across major infrastructure players, potentially setting a new industry baseline for AI security practices.
+Caveat: The alliance's effectiveness depends on adoption breadth and whether open-source tooling can keep pace with rapidly evolving frontier-model attack surfaces.
+Source: https://www.theverge.com/ai-artificial-intelligence/971281/nvidia-open-secure-ai-alliance-cybersecurity
+3. Product & Tool Watch: Anthropic's Shared Claude Chats Indexed by Google Exposing Sensitive User Data
+Why it matters: The missing noindex tag means private-feeling shared conversations — including crypto keys and legal queries — were publicly searchable, highlighting a systemic gap in how AI chat platforms handle user-generated share links.
+Caveat: Anthropic has reportedly fixed the issue, and it is unclear how many users were materially harmed or how long the exposure lasted.
+Source: https://the-decoder.com/shared-claude-chats-were-reportedly-showing-up-in-search-engines/
+Source: https://www.404media.co/tons-of-peoples-claude-chats-and-creations-are-exposed-on-google/
+4. Research Breakthrough: OpenAI Study Finds ChatGPT Users Expanding Into Cross-Role Tasks at Work
+Why it matters: The study provides early empirical evidence that AI tools are blurring job boundaries rather than simply automating discrete tasks, which has direct implications for how builders design AI-augmented workflows and how organizations plan workforce strategy.
+Caveat: The research is self-reported by OpenAI, creating an obvious incentive to frame findings favorably; methodology and sample details are not yet independently verified.
+Source: https://openai.com/index/how-ai-is-expanding-what-people-do-at-work
+5. Research Breakthrough: METR Introduces Expenditure-Horizon Metric to Benchmark AI Agent Cost-Effectiveness
+Why it matters: A rigorous, dollar-denominated metric for comparing agent versus human task costs gives builders and researchers a practical tool to evaluate when deploying AI agents actually makes economic sense, grounding hype in measurable tradeoffs.
+Caveat: Early results on the NanoGPT speedrun benchmark are underwhelming, and the metric has acknowledged blind spots that may limit generalizability across task types.
+Source: https://the-decoder.com/metr-introduces-a-new-metric-to-calculate-exactly-when-ai-agents-become-more-expensive-than-humans/
+6. Product & Tool Watch: Google AI Overviews Now Appear in 43 Percent of All Searches Globally
+Why it matters: Rapid default adoption of AI-generated answers reshapes the web's information distribution layer, with major downstream effects on publishers, SEO, and how users form beliefs — a structural shift relevant to anyone building on or competing with search.
+Caveat: The data source and methodology behind the 43 percent figure are not detailed in the article, and regional variation could make the global average misleading.
+Source: https://techcrunch.com/2026/07/27/googles-ai-search-is-rapidly-becoming-the-default-new-data-shows/]]></description>
+            <enclosure length="15263250" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-07-27.mp3"/>
+                    <itunes:duration>636</itunes:duration>
+            <itunes:explicit>false</itunes:explicit>
+            <itunes:season>2026</itunes:season>
+            <itunes:episode>208</itunes:episode>
+            <itunes:episodeType>full</itunes:episodeType>
+            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-07-27.chapters.json" type="application/json+chapters"/>
+            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-07-27.transcript.txt" type="text/plain" language="en"/>
+            <podcast:soundbite startTime="38" duration="94">Ilya Sutskever&apos;s Safe Superintelligence...</podcast:soundbite>
+            <podcast:soundbite startTime="134" duration="98">Nvidia and Microsoft Launch Open AI...</podcast:soundbite>
+            <podcast:soundbite startTime="234" duration="89">Anthropic&apos;s Shared Claude Chats Indexed...</podcast:soundbite>
+            <podcast:soundbite startTime="324" duration="95">OpenAI Study Finds ChatGPT Users...</podcast:soundbite>
+            <podcast:soundbite startTime="421" duration="95">METR Introduces Expenditure-Horizon...</podcast:soundbite>
+            <podcast:soundbite startTime="518" duration="70">Google AI Overviews Now Appear in 43...</podcast:soundbite>
+        </item>
         <item>
             <title><![CDATA[AI Briefing — July 24, 2026]]></title>
             <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-07-24.mp3</link>
@@ -1561,91 +1619,6 @@ Source: https://techcrunch.com/2026/06/15/sarvam-becomes-indias-newest-ai-unicor
             <enclosure length="14220175" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-15.mp3"/>
         50M Partner Network to...</podcast:soundbite>
             <podcast:soundbite startTime="478" duration="65">Sarvam raises $234M to become India&apos;s...</podcast:soundbite>
-        </item>
-        <item>
-            <title><![CDATA[AI Briefing — June 12, 2026]]></title>
-            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-06-12.mp3</link>
-            <guid>ai-briefing-2026-06-12</guid>
-            <pubDate>Fri, 12 Jun 2026 14:28:31 GMT</pubDate>
-            <description><![CDATA[Top 6 AI stories for 2026-06-12:
-
-Chapters:
-00:00:00 Intro
-00:00:39 German court rules Google liable for...
-00:02:47 Jeff Bezos's Prometheus raises $12B at...
-00:04:41 OpenAI weighs token price cuts to...
-00:06:35 Google and OpenAI jointly expose Chinese...
-00:08:18 Anthropic's Claude Fable draws scrutiny...
-00:09:59 Runaway AI agent racked up...
-00:11:22 Outro
-
-Sources:
-1. Top Story: German court rules Google liable for false AI Overview search answers
-Source: https://the-decoder.com/landmark-german-ruling-declares-googles-ai-overviews-are-googles-own-words-and-makes-it-liable-for-false-answers/
-2. AI Business Watch: Jeff Bezos's Prometheus raises $12B at $41B valuation for physical AI
-Source: https://techcrunch.com/2026/06/11/jeff-bezoss-prometheus-raises-12b-to-build-an-artificial-general-engineer-for-the-physical-world/
-Source: https://the-decoder.com/jeff-bezos-ai-startup-prometheus-closes-12-billion-round-at-a-41-billion-valuation/
-3. AI Business Watch: OpenAI weighs token price cuts to undercut Anthropic in API market
-Source: https://the-decoder.com/openai-vs-anthropic-a-price-war-over-api-tokens-is-brewing/
-Source: https://the-decoder.com/the-ai-industrys-platform-trap-is-starting-to-look-a-lot-like-microsofts/
-4. Policy & Regulation Watch: Google and OpenAI jointly expose Chinese AI-powered scam and influence networks
-Source: https://the-decoder.com/google-files-first-joint-lawsuit-with-fbi-over-chinese-ai-scam-network-openai-blocks-prc-influence-clusters/
-5. Product & Tool Watch: Anthropic's Claude Fable draws scrutiny for aggressive autonomous agent behavior
-Source: https://simonwillison.net/2026/Jun/11/fable-is-relentlessly-proactive/
-Source: https://news.ycombinator.com/item?id=48498573
-Source: https://www.endorlabs.com/learn/claude-fable-5-mythos-grade-hype
-Source: https://news.ycombinator.com/item?id=48492210
-6. AI Culture Signal: Runaway AI agent racked up bankruptcy-level costs scanning a network
-Source: https://lantian.pub/en/article/fun/ai-agent-bankrupted-their-operator-scan-dn42lantian.lantian/
-Source: https://news.ycombinator.com/item?id=48500012]]></description>
-            <enclosure length="17942222" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-12.mp3"/>
-                    <itunes:duration>748</itunes:duration>
-            <itunes:explicit>false</itunes:explicit>
-            <itunes:season>2026</itunes:season>
-            <itunes:episode>163</itunes:episode>
-            <itunes:episodeType>full</itunes:episodeType>
-            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-12.chapters.json" type="application/json+chapters"/>
-            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-12.transcript.txt" type="text/plain" language="en"/>
-            <podcast:soundbite startTime="39" duration="120">German court rules Google liable for...</podcast:soundbite>
-            <podcast:soundbite startTime="167" duration="113">Jeff Bezos&apos;s Prometheus raises <guid>ai-briefing-2026-06-12</guid>
-            <pubDate>Fri, 12 Jun 2026 14:28:31 GMT</pubDate>
-            <description><![CDATA[Top 6 AI stories for 2026-06-12:
-
-Chapters:
-00:00:00 Intro
-00:00:39 German court rules Google liable for...
-00:02:47 Jeff Bezos's Prometheus raises $12B at...
-00:04:41 OpenAI weighs token price cuts to...
-00:06:35 Google and OpenAI jointly expose Chinese...
-00:08:18 Anthropic's Claude Fable draws scrutiny...
-00:09:59 Runaway AI agent racked up...
-00:11:22 Outro
-
-Sources:
-1. Top Story: German court rules Google liable for false AI Overview search answers
-Source: https://the-decoder.com/landmark-german-ruling-declares-googles-ai-overviews-are-googles-own-words-and-makes-it-liable-for-false-answers/
-2. AI Business Watch: Jeff Bezos's Prometheus raises $12B at $41B valuation for physical AI
-Source: https://techcrunch.com/2026/06/11/jeff-bezoss-prometheus-raises-12b-to-build-an-artificial-general-engineer-for-the-physical-world/
-Source: https://the-decoder.com/jeff-bezos-ai-startup-prometheus-closes-12-billion-round-at-a-41-billion-valuation/
-3. AI Business Watch: OpenAI weighs token price cuts to undercut Anthropic in API market
-Source: https://the-decoder.com/openai-vs-anthropic-a-price-war-over-api-tokens-is-brewing/
-Source: https://the-decoder.com/the-ai-industrys-platform-trap-is-starting-to-look-a-lot-like-microsofts/
-4. Policy & Regulation Watch: Google and OpenAI jointly expose Chinese AI-powered scam and influence networks
-Source: https://the-decoder.com/google-files-first-joint-lawsuit-with-fbi-over-chinese-ai-scam-network-openai-blocks-prc-influence-clusters/
-5. Product & Tool Watch: Anthropic's Claude Fable draws scrutiny for aggressive autonomous agent behavior
-Source: https://simonwillison.net/2026/Jun/11/fable-is-relentlessly-proactive/
-Source: https://news.ycombinator.com/item?id=48498573
-Source: https://www.endorlabs.com/learn/claude-fable-5-mythos-grade-hype
-Source: https://news.ycombinator.com/item?id=48492210
-6. AI Culture Signal: Runaway AI agent racked up bankruptcy-level costs scanning a network
-Source: https://lantian.pub/en/article/fun/ai-agent-bankrupted-their-operator-scan-dn42lantian.lantian/
-Source: https://news.ycombinator.com/item?id=48500012]]></description>
-            <enclosure length="17942222" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-12.mp3"/>
-        2B at...</podcast:soundbite>
-            <podcast:soundbite startTime="281" duration="113">OpenAI weighs token price cuts to...</podcast:soundbite>
-            <podcast:soundbite startTime="395" duration="101">Google and OpenAI jointly expose Chinese...</podcast:soundbite>
-            <podcast:soundbite startTime="498" duration="99">Anthropic&apos;s Claude Fable draws scrutiny...</podcast:soundbite>
-            <podcast:soundbite startTime="599" duration="82">Runaway AI agent racked up...</podcast:soundbite>
         </item>
     </channel>
 </rss>

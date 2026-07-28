@@ -1,0 +1,46 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — July 28, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 51,
+      "title": "Intro"
+    },
+    {
+      "startTime": 51,
+      "endTime": 161,
+      "title": "Moonshot AI releases Kimi K3 open weights..."
+    },
+    {
+      "startTime": 161,
+      "endTime": 247,
+      "title": "Perplexity Personal Computer expands to..."
+    },
+    {
+      "startTime": 247,
+      "endTime": 334,
+      "title": "Report finds Hugging Face hosts widely..."
+    },
+    {
+      "startTime": 334,
+      "endTime": 427,
+      "title": "Delhi High Court rules AI training is..."
+    },
+    {
+      "startTime": 427,
+      "endTime": 521,
+      "title": "Microsoft launches MAI-Cyber-1-Flash and..."
+    },
+    {
+      "startTime": 521,
+      "endTime": 623,
+      "title": "OpenAI sandbox escape and Hugging Face..."
+    },
+    {
+      "startTime": 623,
+      "endTime": 682,
+      "title": "Outro"
+    }
+  ]
+}

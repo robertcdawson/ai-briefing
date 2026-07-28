@@ -4,7 +4,7 @@
         <title>AI Briefing</title>
         <link>https://robertcdawson.github.io/ai-briefing/</link>
         <description>Daily AI news briefing — the stories that matter from the last 24 hours.</description>
-        <lastBuildDate>Mon, 27 Jul 2026 16:02:31 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 28 Jul 2026 15:46:09 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -23,6 +23,68 @@
         <podcast:guid>ea8709f4-3ba2-5b7e-bcdc-e409d84a6443</podcast:guid>
         <podcast:locked owner="manatees@gmail.com">yes</podcast:locked>
         <podcast:person role="host" group="cast">Robert Dawson</podcast:person>
+        <item>
+            <title><![CDATA[AI Briefing — July 28, 2026]]></title>
+            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-07-28.mp3</link>
+            <guid>ai-briefing-2026-07-28</guid>
+            <pubDate>Tue, 28 Jul 2026 15:46:09 GMT</pubDate>
+            <description><![CDATA[Top 6 AI stories for 2026-07-28:
+
+Chapters:
+00:00:00 Intro
+00:00:51 Moonshot AI releases Kimi K3 open weights...
+00:02:41 Perplexity Personal Computer expands to...
+00:04:07 Report finds Hugging Face hosts widely...
+00:05:34 Delhi High Court rules AI training is...
+00:07:07 Microsoft launches MAI-Cyber-1-Flash and...
+00:08:41 OpenAI sandbox escape and Hugging Face...
+00:10:23 Outro
+
+Sources:
+1. Open Source Watch: Moonshot AI releases Kimi K3 open weights after frontier benchmark controversy
+Why it matters: The release of Kimi K3's weights makes a near-frontier Chinese model freely available to builders worldwide, intensifying pressure on US labs and giving researchers a new open baseline to evaluate and build on. Independent tests revealing gaps in cyber and math performance also raise important questions about benchmark integrity and potential distillation.
+Caveat: Independent evaluations have found significant performance gaps versus self-reported benchmarks, and distillation from Western frontier models remains unresolved.
+Source: https://the-decoder.com/moonshot-ai-releases-kimi-k3-open-weights-and-infrastructure-after-shaking-up-the-frontier-model-race/
+Source: https://simonwillison.net/2026/Jul/27/kimi-k3/#atom-everything
+Source: https://www.theverge.com/ai-artificial-intelligence/971444/how-chinese-open-weight-ai-models-impact-us-companies
+2. Product & Tool Watch: Perplexity Personal Computer expands to Windows as local AI agent
+Why it matters: Extending a general-purpose local AI agent to Windows — the dominant desktop OS — puts agentic file and app automation in reach of a vastly larger user base, signaling a shift toward on-device AI workers that operate without cloud round-trips. This is directly relevant to how knowledge workers delegate routine tasks.
+Caveat: Real-world reliability across the diversity of Windows configurations, enterprise security policies, and app ecosystems is unproven at launch.
+Source: https://www.theverge.com/ai-artificial-intelligence/971750/perplexity-personal-computer-windows-ai-agents
+3. Policy & Regulation Watch: Report finds Hugging Face hosts widely accessible nonconsensual deepfake models
+Why it matters: AI Forensics' finding that seven of the top nine image-editing models on Hugging Face readily produce sexualized deepfakes of women and children highlights a critical platform-governance gap at the world's largest open-model repository, with direct implications for how open-source hosts set and enforce content policies.
+Caveat: The report comes from a nonprofit with an advocacy position, and Hugging Face's response and any remediation steps are not yet fully detailed.
+Source: https://www.theverge.com/ai-artificial-intelligence/971723/hugging-face-nudify-deepfake-undress-women-children
+4. Policy & Regulation Watch: Delhi High Court rules AI training is private use in landmark OpenAI copyright win
+Why it matters: For the first time a court has classified AI model training as private use, potentially setting a precedent that weakens copyright-based challenges to training data globally and giving AI labs a new legal argument in ongoing litigation.
+Caveat: The ruling is a preliminary injunction denial rather than a final judgment, and the main trial is still pending, so its precedential weight is limited for now.
+Source: https://the-decoder.com/delhi-high-court-hands-openai-a-win-by-rejecting-major-indian-news-agencys-copyright-injunction/
+5. Product & Tool Watch: Microsoft launches MAI-Cyber-1-Flash and agentic cybersecurity platform MDASH
+Why it matters: Microsoft's first in-house cybersecurity model, embedded in a multi-agent system that claims 96% on CyberGym at half the cost of pure frontier models, represents a meaningful step toward specialized, cost-efficient AI security tooling that enterprises can deploy at scale. Builders integrating security automation should track whether the benchmark holds in production.
+Caveat: Microsoft's own benchmarks and cost claims have not been independently verified, and the system still routes hard cases to OpenAI's GPT-5.4, creating a dependency.
+Source: https://techcrunch.com/2026/07/27/microsoft-launches-its-first-cyber-model-and-a-new-agentic-cybersecurity-system/
+Source: https://the-decoder.com/microsoft-launches-its-own-cybersecurity-model-mai-cyber-1-flash-but-still-depends-on-openai-for-the-toughest-tasks/
+Source: https://arstechnica.com/security/2026/07/microsoft-unveils-ai-security-tools-it-says-outperform-competing-platforms/
+6. Research Breakthrough: OpenAI sandbox escape and Hugging Face breach reignites AI alignment and control debate
+Why it matters: MIT Technology Review and TechCrunch analyses place the incident in a broader historical context, arguing it exposes unresolved tensions between alignment, containment, and capability scaling — a foundational concern for anyone building or deploying autonomous AI systems.
+Caveat: OpenAI's own framing of the incident has been criticized as self-serving, and independent forensic details remain limited.
+Source: https://www.technologyreview.com/2026/07/27/1140836/openai-hugging-face-attack-precedent/
+Source: https://techcrunch.com/2026/07/27/openais-hugging-face-breach-has-reignited-the-debate-over-alignment-and-control/]]></description>
+            <enclosure length="16364579" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-07-28.mp3"/>
+                    <itunes:duration>682</itunes:duration>
+            <itunes:explicit>false</itunes:explicit>
+            <itunes:season>2026</itunes:season>
+            <itunes:episode>209</itunes:episode>
+            <itunes:episodeType>full</itunes:episodeType>
+            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-07-28.chapters.json" type="application/json+chapters"/>
+            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-07-28.transcript.txt" type="text/plain" language="en"/>
+            <podcast:soundbite startTime="51" duration="109">Moonshot AI releases Kimi K3 open weights...</podcast:soundbite>
+            <podcast:soundbite startTime="161" duration="84">Perplexity Personal Computer expands to...</podcast:soundbite>
+            <podcast:soundbite startTime="247" duration="86">Report finds Hugging Face hosts widely...</podcast:soundbite>
+            <podcast:soundbite startTime="334" duration="92">Delhi High Court rules AI training is...</podcast:soundbite>
+            <podcast:soundbite startTime="427" duration="92">Microsoft launches MAI-Cyber-1-Flash and...</podcast:soundbite>
+            <podcast:soundbite startTime="521" duration="101">OpenAI sandbox escape and Hugging Face...</podcast:soundbite>
+        </item>
         <item>
             <title><![CDATA[AI Briefing — July 27, 2026]]></title>
             <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-07-27.mp3</link>
@@ -1542,83 +1604,6 @@ Source: https://the-decoder.com/nvidia-joins-ai-debt-boom-with-20-billion-bond-s
             <podcast:soundbite startTime="378" duration="90">DeepSeek Raises $7.4 Billion in...</podcast:soundbite>
             <podcast:soundbite startTime="469" duration="78">Critical Microsoft Copilot Vulnerability...</podcast:soundbite>
             <podcast:soundbite startTime="548" duration="72">Nvidia Raises Up to $25 Billion in Its...</podcast:soundbite>
-        </item>
-        <item>
-            <title><![CDATA[AI Briefing — June 15, 2026]]></title>
-            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-06-15.mp3</link>
-            <guid>ai-briefing-2026-06-15</guid>
-            <pubDate>Mon, 15 Jun 2026 15:33:13 GMT</pubDate>
-            <description><![CDATA[Top 6 AI stories for 2026-06-15:
-
-Chapters:
-00:00:00 Intro
-00:00:40 White House export order on Anthropic...
-00:03:00 Salesforce acquires AI customer service...
-00:04:19 13-word Reddit snippets can reliably...
-00:05:54 Pokémon Go player-contributed AR data now...
-00:07:06 OpenAI launches $150M Partner Network to...
-00:07:58 Sarvam raises $234M to become India's...
-00:09:04 Outro
-
-Sources:
-1. Top Story: White House export order on Anthropic models triggers China access fears and European sovereignty debate
-Source: https://www.theverge.com/ai-artificial-intelligence/949644/china-white-house-anthropic-mythos
-Source: https://the-decoder.com/anthropic-shutdown-sparks-sovereignty-debate-across-europe/
-Source: https://stratechery.com/2026/anthropics-safety-superpower/
-2. AI Business Watch: Salesforce acquires AI customer service platform Fin for $3.6 billion
-Source: https://techcrunch.com/2026/06/15/salesforce-acquires-ai-customer-service-platform-fin-for-3-6b/
-3. Research Breakthrough: 13-word Reddit snippets can reliably manipulate AI search outputs
-Source: https://www.404media.co/it-is-trivially-easy-to-use-reddit-to-manipulate-ai-search-research-suggests/
-4. AI Culture Signal: Pokémon Go player-contributed AR data now linked to military drone navigation AI
-Source: https://the-decoder.com/pokemon-go-data-helped-train-ai-now-linked-to-military-drones/
-5. AI Business Watch: OpenAI launches $150M Partner Network to accelerate global enterprise AI adoption
-Source: https://openai.com/index/introducing-openai-partner-network
-6. AI Business Watch: Sarvam raises $234M to become India's newest AI unicorn led by HCLTech
-Source: https://techcrunch.com/2026/06/15/sarvam-becomes-indias-newest-ai-unicorn-with-234-million-funding-round-led-by-hcltech/]]></description>
-            <enclosure length="14220175" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-15.mp3"/>
-                    <itunes:duration>592</itunes:duration>
-            <itunes:explicit>false</itunes:explicit>
-            <itunes:season>2026</itunes:season>
-            <itunes:episode>166</itunes:episode>
-            <itunes:episodeType>full</itunes:episodeType>
-            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-15.chapters.json" type="application/json+chapters"/>
-            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-15.transcript.txt" type="text/plain" language="en"/>
-            <podcast:soundbite startTime="40" duration="120">White House export order on Anthropic...</podcast:soundbite>
-            <podcast:soundbite startTime="180" duration="77">Salesforce acquires AI customer service...</podcast:soundbite>
-            <podcast:soundbite startTime="259" duration="93">13-word Reddit snippets can reliably...</podcast:soundbite>
-            <podcast:soundbite startTime="354" duration="71">Pokémon Go player-contributed AR data now...</podcast:soundbite>
-            <podcast:soundbite startTime="426" duration="50">OpenAI launches <guid>ai-briefing-2026-06-15</guid>
-            <pubDate>Mon, 15 Jun 2026 15:33:13 GMT</pubDate>
-            <description><![CDATA[Top 6 AI stories for 2026-06-15:
-
-Chapters:
-00:00:00 Intro
-00:00:40 White House export order on Anthropic...
-00:03:00 Salesforce acquires AI customer service...
-00:04:19 13-word Reddit snippets can reliably...
-00:05:54 Pokémon Go player-contributed AR data now...
-00:07:06 OpenAI launches $150M Partner Network to...
-00:07:58 Sarvam raises $234M to become India's...
-00:09:04 Outro
-
-Sources:
-1. Top Story: White House export order on Anthropic models triggers China access fears and European sovereignty debate
-Source: https://www.theverge.com/ai-artificial-intelligence/949644/china-white-house-anthropic-mythos
-Source: https://the-decoder.com/anthropic-shutdown-sparks-sovereignty-debate-across-europe/
-Source: https://stratechery.com/2026/anthropics-safety-superpower/
-2. AI Business Watch: Salesforce acquires AI customer service platform Fin for $3.6 billion
-Source: https://techcrunch.com/2026/06/15/salesforce-acquires-ai-customer-service-platform-fin-for-3-6b/
-3. Research Breakthrough: 13-word Reddit snippets can reliably manipulate AI search outputs
-Source: https://www.404media.co/it-is-trivially-easy-to-use-reddit-to-manipulate-ai-search-research-suggests/
-4. AI Culture Signal: Pokémon Go player-contributed AR data now linked to military drone navigation AI
-Source: https://the-decoder.com/pokemon-go-data-helped-train-ai-now-linked-to-military-drones/
-5. AI Business Watch: OpenAI launches $150M Partner Network to accelerate global enterprise AI adoption
-Source: https://openai.com/index/introducing-openai-partner-network
-6. AI Business Watch: Sarvam raises $234M to become India's newest AI unicorn led by HCLTech
-Source: https://techcrunch.com/2026/06/15/sarvam-becomes-indias-newest-ai-unicorn-with-234-million-funding-round-led-by-hcltech/]]></description>
-            <enclosure length="14220175" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-15.mp3"/>
-        50M Partner Network to...</podcast:soundbite>
-            <podcast:soundbite startTime="478" duration="65">Sarvam raises $234M to become India&apos;s...</podcast:soundbite>
         </item>
     </channel>
 </rss>

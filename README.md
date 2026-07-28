@@ -211,16 +211,27 @@ You'll have new episodes auto-downloaded overnight on weekdays. Lock screen, Car
 
 ## Day 2+
 
-Nothing for you to do on weekdays. The cron fires at 13:30 UTC Monday through Friday, the pipeline runs, the episode publishes. Apple Podcasts pulls the new feed within a couple of hours and downloads.
+Nothing for you to do on weekdays. The primary cron fires at 11:17 UTC Monday through Friday (with a 14:47 UTC backup), the pipeline runs, the episode publishes. Apple Podcasts pulls the new feed within a couple of hours and downloads.
 
-## Schedule drift (PST vs. PDT)
+## Schedule drift (PST vs. PDT + Actions jitter)
 
-The cron is fixed at `30 13 * * 1-5` UTC (weekdays only) year-round. That gives:
+The workflow has **two weekday crons**, both deliberately earlier/offset from the top of the hour:
 
-- **PDT (mid-March → early November):** episode arrives at **06:30 PT** ✓
-- **PST (early November → mid-March):** episode arrives at **05:30 PT** (one hour earlier)
+| Cron (UTC) | Role | Intent |
+|---|---|---|
+| `17 11 * * 1-5` | Primary | Fire early enough that GitHub's typical 1–3h schedule delay still lands near **06:30 PT** |
+| `47 14 * * 1-5` | Backup | Catch a dropped primary run; the pipeline **skips** (no LLM/TTS spend) if today's episode is already on disk |
 
-Acceptable for v1 — the iPhone shows it whenever you wake up. If you want a stable 06:30 local arrival, add a second cron entry (`30 14 * * *` for PST) and remove the first during PST months. Not worth the complexity for v1.
+GitHub Actions schedules are best-effort — this repo's observed delays past the scheduled minute have been roughly **45–180 minutes** (median ~2h). That is why a single `13:30 UTC` cron often delivered closer to 08:00–09:30 PT than the documented 06:30.
+
+Seasonal clock note (unchanged):
+
+- **PDT (mid-March → early November):** target arrival ~**06:30 PT**
+- **PST (early November → mid-March):** same UTC crons arrive **one hour earlier** local
+
+Acceptable for v1. For a hard local-time guarantee, drive `workflow_dispatch` from an external scheduler instead of relying on Actions cron alone.
+
+Optional: set `HEALTHCHECK_URL` (Actions secret) so a Healthchecks.io-style check alerts when a weekday run never pings success. Expected period ~25h absorbs remaining jitter.
 
 ## Retention
 

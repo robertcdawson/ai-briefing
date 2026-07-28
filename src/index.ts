@@ -6,7 +6,7 @@ import { writeScript } from "./script.js";
 import { synthesize } from "./tts.js";
 import { buildEpisodeAudio } from "./audio.js";
 import { resolveEpisodeDate } from "./episode-date.js";
-import { publish } from "./publish.js";
+import { hasPublishedEpisode, publish } from "./publish.js";
 import { pingHealthcheck } from "./healthcheck.js";
 import { withStageCache } from "./stageCache.js";
 import { assertPreflight } from "./preflight.js";
@@ -22,6 +22,20 @@ async function main(): Promise<void> {
     // Fire-and-forget: a slow/down monitor must not delay the pipeline. The
     // ping self-swallows errors; the event loop still flushes it before exit.
     void pingHealthcheck("start");
+
+    // Backup cron / same-day re-runs: exit before paid stages when today's
+    // episode is already published (sidecar + mp3 present on disk).
+    if (await hasPublishedEpisode(date)) {
+      logJson({
+        phase: "pipeline",
+        status: "skipped",
+        reason: "episode_already_published",
+        date,
+        durationMs: Date.now() - overallStart,
+      });
+      void pingHealthcheck("success");
+      return;
+    }
 
     await assertPreflight();
 

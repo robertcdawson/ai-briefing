@@ -1,4 +1,5 @@
-import { copyFile, mkdir, readdir, readFile, unlink, writeFile } from "node:fs/promises";
+import { access, copyFile, mkdir, readdir, readFile, unlink, writeFile } from "node:fs/promises";
+import { constants as fsConstants } from "node:fs";
 import { createHash } from "node:crypto";
 import path from "node:path";
 import { Feed } from "feed";
@@ -13,6 +14,25 @@ const FEED_LIMIT = 30;
 const RETENTION_DAYS = 90;
 const PODCAST_GUID_NAMESPACE = "ead4c236-bf58-58c6-a2c6-a6b28d128cb6";
 export const EPISODE_ASSET_PATTERN = /^(\d{4}-\d{2}-\d{2})(?:\.mp3|\.json|\.chapters\.json|\.transcript\.txt)$/;
+
+/**
+ * True when today's episode assets are already on disk (sidecar + audio).
+ * Used by backup cron runs to exit before paid LLM/TTS stages.
+ */
+export async function hasPublishedEpisode(
+  date: string,
+  episodesDir: string = EPISODES_DIR,
+): Promise<boolean> {
+  const sidecar = path.join(episodesDir, `${date}.json`);
+  const audio = path.join(episodesDir, `${date}.mp3`);
+  try {
+    await access(sidecar, fsConstants.R_OK);
+    await access(audio, fsConstants.R_OK);
+    return true;
+  } catch {
+    return false;
+  }
+}
 
 export interface EpisodeRecord {
   date: string;

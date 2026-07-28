@@ -2,9 +2,14 @@ name: daily
 
 on:
   schedule:
-    # Weekdays only (Mon–Fri). 13:30 UTC = 06:30 PT during PDT (Mar–Nov), 05:30 PT during PST (Nov–Mar).
-    # See README "Schedule drift" for why we don't bother adjusting.
-    - cron: "30 13 * * 1-5"
+    # Weekdays only (Mon–Fri). GitHub Actions cron is best-effort and this repo
+    # historically sees ~1–3h delay past the scheduled minute — so we schedule
+    # earlier than the target 06:30 PT arrival and keep a late backup.
+    # Primary 11:17 UTC ≈ 04:17 PT; with median ~2h jitter → ~06:15 PT.
+    # Backup 14:47 UTC catches dropped primary runs; pipeline skips if already published.
+    # Off-:00/:30 minutes to dodge peak scheduler congestion. See README "Schedule drift".
+    - cron: "17 11 * * 1-5"
+    - cron: "47 14 * * 1-5"
   workflow_dispatch:
 
 permissions:
@@ -73,6 +78,7 @@ jobs:
           PODCAST_CATEGORIES: ${{ vars.PODCAST_CATEGORIES }}
           PODCAST_EXPLICIT: ${{ vars.PODCAST_EXPLICIT }}
           PODCAST_TYPE: ${{ vars.PODCAST_TYPE }}
+          HEALTHCHECK_URL: ${{ secrets.HEALTHCHECK_URL }}
         run: npx tsx src/index.ts
 
       - name: Commit episode

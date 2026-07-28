@@ -43,7 +43,7 @@ For `npm start` (full pipeline), a `.env` file is required with:
 - `TTS_VOICE` (optional; single-host voice — openai default `marin` via `src/speakerProfiles.ts`, Gemini TTS default `Charon`)
 - `TTS_GLOBAL_STYLE`, `TTS_NARRATOR_STYLE`, `TTS_INTRO_STYLE`, `TTS_STORY_STYLE`, `TTS_OUTRO_STYLE` (optional delivery-instruction overrides; OpenAI `gpt-4o-mini-tts` only)
 - `AUDIO_CUE_STYLE` (optional; `tone` (default), `chime`, `tick`, or `asset` for committed music stingers in `assets/audio/`, generated once via `npm run stingers:generate`)
-- `HEALTHCHECK_URL` (optional; dead-man's-switch monitoring. The base ping URL of a Healthchecks.io-style check — the pipeline pings `<url>/start` at the start, `<url>` on success, and `<url>/fail` on failure. Unset disables monitoring. To use it in CI, add it as an Actions secret/variable and expose it to the daily workflow's env.)
+- `HEALTHCHECK_URL` (optional; dead-man's-switch monitoring. The base ping URL of a Healthchecks.io-style check — the pipeline pings `<url>/start` at the start, `<url>` on success, and `<url>/fail` on failure. Unset disables monitoring. Exposed to the daily workflow via the `HEALTHCHECK_URL` Actions secret.)
 - `STAGE_CACHE_DIR` (optional; local dev only. When set, the curate and script stages cache their output by a content hash of their input, so re-running `npm start` after a later-stage failure reuses the LLM results instead of re-paying for them. Unset disables it. Single-machine only — the daily CI run uses a fresh runner, so this does not affect CI.)
 
 Copy `.env.example` to `.env` and fill in. `npm test` and `npm run build` work without any API keys.

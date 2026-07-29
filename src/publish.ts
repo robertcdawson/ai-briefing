@@ -177,6 +177,40 @@ export async function publish(
     JSON.stringify(record, null, 2),
   );
 
+  const { feedItemCount, feedBytes, pruned } = await writePodcastFeed(trimmedBase, metadata);
+
+  logJson({
+    phase: "publish",
+    status: "ok",
+    durationMs: Date.now() - started,
+    episodePath,
+    feedItemCount,
+    feedBytes,
+    pruned: pruned.length,
+    prunedFiles: pruned,
+  });
+
+  return { episodePath, feedPath: FEED_PATH, feedItemCount };
+}
+
+/**
+ * Rebuild `docs/feed.xml` from on-disk episode sidecars.
+ * Used by publish and by one-off repairs when feed XML was corrupted.
+ */
+export async function rebuildFeed(): Promise<{ feedPath: string; feedItemCount: number }> {
+  const baseUrl = process.env.FEED_BASE_URL;
+  if (!baseUrl) throw new Error("FEED_BASE_URL is not set");
+  const trimmedBase = stripTrailingSlash(baseUrl);
+  const metadata = getPodcastMetadata(trimmedBase);
+  const { feedItemCount } = await writePodcastFeed(trimmedBase, metadata, { prune: false });
+  return { feedPath: FEED_PATH, feedItemCount };
+}
+
+async function writePodcastFeed(
+  trimmedBase: string,
+  metadata: PodcastMetadata,
+  opts: { prune?: boolean } = {},
+): Promise<{ feedItemCount: number; feedBytes: number; pruned: string[] }> {
   const all = await loadAllRecords();
   const sorted = all.sort((a, b) => b.date.localeCompare(a.date));
   const top = sorted.slice(0, FEED_LIMIT);
@@ -237,20 +271,9 @@ export async function publish(
   await writeFile(FEED_PATH, finalXml);
 
   const keepDates = new Set(top.map((r) => r.date));
-  const pruned = await pruneOldEpisodes(keepDates);
+  const pruned = opts.prune === false ? [] : await pruneOldEpisodes(keepDates);
 
-  logJson({
-    phase: "publish",
-    status: "ok",
-    durationMs: Date.now() - started,
-    episodePath,
-    feedItemCount: top.length,
-    feedBytes: finalXml.length,
-    pruned: pruned.length,
-    prunedFiles: pruned,
-  });
-
-  return { episodePath, feedPath: FEED_PATH, feedItemCount: top.length };
+  return { feedItemCount: top.length, feedBytes: finalXml.length, pruned };
 }
 
 // Delete episode files older than RETENTION_DAYS, except any whose date is still
@@ -422,9 +445,10 @@ function injectItunesTags(
         `            <podcast:soundbite startTime="${formatSeconds(soundbite.startTime)}" duration="${formatSeconds(soundbite.duration)}">${xmlEscape(soundbite.title)}</podcast:soundbite>\n`
       )
       .join("");
-    out = out.replace(
-      guidPattern,
-      `$1            <itunes:duration>${Math.max(0, Math.round(item.durationSeconds))}</itunes:duration>\n            <itunes:explicit>${opts.metadata.explicit}</itunes:explicit>\n            <itunes:season>${item.season}</itunes:season>\n            <itunes:episode>${item.episodeNumber}</itunes:episode>\n            <itunes:episodeType>full</itunes:episodeType>\n${chaptersTag}${transcriptTag}${soundbiteTags}        </item>`,
+    // Use a function replacer — a string replacer treats `$1` / `$&` inside
+    // dynamic titles (e.g. "$1.5 billion") as backreferences and corrupts the feed.
+    out = out.replace(guidPattern, (_match, itemXml: string) =>
+      `${itemXml}            <itunes:duration>${Math.max(0, Math.round(item.durationSeconds))}</itunes:duration>\n            <itunes:explicit>${opts.metadata.explicit}</itunes:explicit>\n            <itunes:season>${item.season}</itunes:season>\n            <itunes:episode>${item.episodeNumber}</itunes:episode>\n            <itunes:episodeType>full</itunes:episodeType>\n${chaptersTag}${transcriptTag}${soundbiteTags}        </item>`,
     );
   }
 

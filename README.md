@@ -7,12 +7,12 @@
 
 A weekday, fully-automated AI news podcast. Every Monday–Friday morning at ~06:30 Pacific, GitHub Actions:
 
-1. Pulls the last 24h of articles from a curated set of AI news RSS feeds.
+1. Pulls the last 24h of articles from a curated set of AI news RSS feeds, then drops duplicate/tracking-variant URLs before curation.
 2. Asks Claude (via OpenRouter) to cluster duplicates and score each story against a rolling ~14-day memory of what already aired — suppressing stories already covered, threading genuine developments as follow-ups — then keeps the ones that matter (a variable number that follows the day's news).
 3. Writes a natural, single-host script up to ~10 minutes (engaging hook → one segment per story, with depth scaled to importance → synthesis outro), defaulting to Claude Sonnet via OpenRouter with `openai/...` and Gemini fallbacks (`openai/...` entries go direct to OpenAI when `OPENAI_API_KEY` is set).
 4. Synthesizes each intro/story/outro part in a single TTS request for continuous prosody (falling back to chunked synthesis with breathing gaps for oversized parts), via OpenAI `gpt-4o-mini-tts` or an OpenRouter TTS model such as Gemini 3.1 Flash TTS (`TTS_PROVIDER=openrouter`).
 5. Builds a full program master with ffmpeg (section stingers + concat), normalizes loudness to EBU R128 (-16 LUFS), encodes 192 kbps MP3 with ID3 tags and embedded chapters.
-6. Drops the file at `docs/episodes/YYYY-MM-DD.mp3`, regenerates `docs/feed.xml`, commits, and pushes.
+6. Drops the file at `docs/episodes/YYYY-MM-DD.mp3`, regenerates `docs/feed.xml` (with curated per-story show notes), commits, and pushes.
 7. GitHub Pages serves the feed; Apple Podcasts polls and downloads.
 
 You subscribe once via "Follow a Show by URL" on iPhone. Every morning a new episode lands on your phone before 8 AM. No daily action required.
@@ -38,21 +38,27 @@ Estimated cost is usually low for a personal daily show, but depends on the sele
 ai-briefing/
 ├── .github/workflows/daily.yml   # Cron + pipeline + commit
 ├── src/
-│   ├── index.ts                  # Orchestrator
-│   ├── fetch.ts                  # RSS aggregation
+│   ├── index.ts                  # Orchestrator (skip-if-published → preflight → stages)
+│   ├── preflight.ts              # Fail-fast env + ffmpeg/ffprobe checks
+│   ├── fetch.ts                  # RSS aggregation + URL canonicalization/dedup
 │   ├── curate.ts                 # Cluster + score; suppress/thread vs. recent coverage
 │   ├── ledger.ts                 # Rolling 14-day prior-coverage window (cross-episode memory)
 │   ├── script.ts                 # Generate spoken script
 │   ├── tts.ts                    # Text → MP3 chunks
+│   ├── ttsProvider.ts            # TTS provider/model/voice resolution
 │   ├── audio.ts                  # ffmpeg stingers + concat + loudnorm + ID3
-│   ├── publish.ts                # Move MP3, regenerate feed.xml
+│   ├── publish.ts                # Move MP3, regenerate feed.xml, retention prune
+│   ├── healthcheck.ts            # Optional Healthchecks.io-style pings
+│   ├── stageCache.ts             # Content-hash cache for curate/script (opt-in, local re-runs)
+│   ├── episode-date.ts           # Episode date from EPISODE_TIME_ZONE / Pacific
 │   ├── feeds.ts                  # Curated source list
 │   ├── types.ts                  # Article, StoryCluster, CurationRecord, Episode
-│   ├── stageCache.ts             # Content-hash cache for curate/script (opt-in, local re-runs)
 │   └── util.ts                   # logJson, withRetry, withHardTimeout
-├── test/fetch.smoke.ts           # Live-feed smoke test
+├── scripts/preflight.ts          # `npm run preflight` CLI entry
+├── test/                         # Smoke + unit tests
 ├── docs/                         # GitHub Pages root
 │   ├── feed.xml                  # Regenerated each run
+│   ├── solutions/                # Documented fixes / operational patterns
 │   └── episodes/
 │       ├── YYYY-MM-DD.mp3        # The audio
 │       ├── YYYY-MM-DD.json       # Sidecar metadata (title, duration, bytes, feed options, curation records)
@@ -61,6 +67,8 @@ ai-briefing/
 ├── .env.example
 ├── package.json
 ├── tsconfig.json
+├── CONCEPTS.md                   # Domain vocabulary
+├── AGENTS.md                     # Cloud/agent runtime notes
 ├── LICENSE.md
 └── README.md
 ```
@@ -169,6 +177,7 @@ In the repo's **Settings → Secrets and variables → Actions**:
 - `OPENROUTER_API_KEY`
 - `OPENAI_API_KEY`
 - `DAILY_PUSH_DEPLOY_KEY` — private key for a write-enabled deploy key used only by the final commit step to push generated episodes
+- `HEALTHCHECK_URL` — optional dead-man's-switch monitoring. Base ping URL of a Healthchecks.io-style check; the pipeline pings `<url>/start`, `<url>` (success), and `<url>/fail`. Unset disables it. Set the check's expected period to ~25h to absorb cron jitter and alert when a weekday run is missed.
 
 **Variables:**
 - `FEED_BASE_URL` — same as `.env`, e.g. `https://USER.github.io/ai-briefing`
@@ -181,7 +190,6 @@ In the repo's **Settings → Secrets and variables → Actions**:
 - `TTS_TIMEOUT_MS` — `180000` by default; raise only if speech generation is still timing out
 - `AUDIO_CUES_ENABLED` — `true` (set `false` to disable section stingers)
 - `AUDIO_CUE_STYLE` — `tone`, `chime`, `tick`, or `asset` (committed music stingers from `assets/audio/`)
-- `HEALTHCHECK_URL` — optional dead-man's-switch monitoring. Base ping URL of a Healthchecks.io-style check; the pipeline pings `<url>/start`, `<url>` (success), and `<url>/fail`. Unset disables it. Set the check's expected period to ~25h to absorb cron jitter and alert when a weekday run is missed.
 - `PODCAST_AUTHOR`
 - `PODCAST_SUMMARY`
 - `PODCAST_OWNER_NAME`
@@ -309,7 +317,11 @@ To produce music stingers once, run `npm run stingers:generate` — it generates
 
 Chapters are published two ways: a Podcasting 2.0 JSON sidecar linked from `<podcast:chapters>` and embedded MP3 ID3 chapters. Apple Podcasts supports both, but embedding the ID3 chapter metadata makes chapter markers travel with the audio file even when the hosting layer cannot serve `.chapters.json` as `application/json+chapters`.
 
-Episode descriptions include AI-curated show notes for each aired story — the segment title, why it matters, caveat, and source links — so podcast apps expose the useful briefing context before you tap through to sources.
+Episode descriptions include AI-curated show notes for each aired story — the segment title, why it matters, caveat, and source links — so podcast apps expose the useful briefing context before you tap through to sources. `buildEpisodeDescription` in `src/publish.ts` assembles this from the selected clusters at publish time; unit tests in `test/publish.apple-rss.test.ts` assert caveats appear in the feed item.
+
+### Local stage cache (dev re-runs)
+
+When iterating locally after a late-stage failure (TTS/audio/publish), set `STAGE_CACHE_DIR` (for example `tmp/stage-cache`) so curate and script reuse prior LLM output keyed by a content hash of their inputs. Unset disables caching. Single-machine only — the daily Actions runner is ephemeral, so this never applies in CI.
 
 ### Change the model or feed sources
 
@@ -344,6 +356,23 @@ If they restore feeds, add them back.
 
 ## Troubleshooting
 
+### Preflight fails before the pipeline spends money
+
+`npm start` (and `npm run preflight`) exits early with `Pipeline preflight failed:` plus one line per bad check. Typical fixes:
+
+| Check | Fix |
+|---|---|
+| `OPENROUTER_API_KEY` | Set in `.env` / Actions secrets — required for curation (and OpenRouter TTS). |
+| `OPENAI_API_KEY` | Required when `TTS_PROVIDER=openai` (default). Not required when TTS is OpenRouter-only. |
+| `FEED_BASE_URL` | Must be an absolute `http://` or `https://` URL (enclosure base). |
+| `ffmpeg` / `ffprobe` | Install and ensure both are on `PATH` (`brew install ffmpeg` / `apt install ffmpeg`). |
+
+Preflight does **not** call providers or RSS — a green preflight only means local config looks runnable.
+
+### Pipeline logs `episode_already_published` and exits
+
+Both `docs/episodes/YYYY-MM-DD.json` and `.mp3` already exist for today's episode date (backup cron or a same-day re-dispatch). This is intentional and spends no LLM/TTS quota. To regenerate, delete those two files (and related chapter/transcript sidecars if present) then re-run.
+
 ### Workflow runs but no episode shows up in Apple Podcasts
 
 1. **Validate the feed:** https://castfeedvalidator.com. Fix any red errors.
@@ -365,6 +394,7 @@ GitHub emails the repo owner on first failure of any workflow. Triage:
 1. Open the failed run, expand **Run pipeline** step.
 2. Look for the JSON log line with `"status":"error"`. The `error` field is the proximate cause; `stack` shows where.
 3. Common causes:
+   - **Preflight failed:** missing secret/variable or ffmpeg on the runner — see "Preflight fails" above. Failures happen before any paid LLM/TTS call.
    - **All RSS sources failed:** unusual — usually means the runner has no outbound network. Wait and re-run.
    - **OpenRouter 401:** key revoked or out of credit.
    - **OpenAI 429:** rate-limited. Wait, then re-run.

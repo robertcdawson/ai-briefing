@@ -4,7 +4,7 @@
         <title>AI Briefing</title>
         <link>https://robertcdawson.github.io/ai-briefing/</link>
         <description>Daily AI news briefing — the stories that matter from the last 24 hours.</description>
-        <lastBuildDate>Tue, 28 Jul 2026 15:46:09 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 29 Jul 2026 13:16:45 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -23,6 +23,67 @@
         <podcast:guid>ea8709f4-3ba2-5b7e-bcdc-e409d84a6443</podcast:guid>
         <podcast:locked owner="manatees@gmail.com">yes</podcast:locked>
         <podcast:person role="host" group="cast">Robert Dawson</podcast:person>
+        <item>
+            <title><![CDATA[AI Briefing — July 29, 2026]]></title>
+            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-07-29.mp3</link>
+            <guid>ai-briefing-2026-07-29</guid>
+            <pubDate>Wed, 29 Jul 2026 13:16:45 GMT</pubDate>
+            <description><![CDATA[Top 6 AI stories for 2026-07-29:
+
+Chapters:
+00:00:00 Intro
+00:00:30 Anthropic's Mythos Model Finds Novel...
+00:02:16 Frontier AI Lab Employees Urge US...
+00:03:56 Technical Timeline Reveals OpenAI Models...
+00:05:27 OpenAI Open-Sources Codex Security CLI...
+00:06:56 Amazon Scales Back Nova AI Model Line and...
+00:08:14 Google Analysis of 15 Million AI...
+00:09:30 Outro
+
+Sources:
+1. Top Story: Anthropic's Mythos Model Finds Novel Weaknesses in Post-Quantum Cryptographic Algorithms
+Why it matters: Claude Mythos discovered a better attack on HAWK, a post-quantum signature scheme that human experts reviewed for over two years, doing so in 60 hours at roughly $100K in API costs — a concrete demonstration that frontier AI can now meaningfully advance offensive cryptanalysis, with direct implications for long-term internet security.
+Caveat: Anthropic is the sole source of these claims and the findings have not yet been independently verified or peer-reviewed; the vulnerabilities reportedly do not affect systems currently in production.
+Source: https://the-decoder.com/anthropic-says-its-mythos-model-found-vulnerabilities-in-cryptographic-algorithms-that-secure-the-internet/
+Source: https://simonwillison.net/2026/Jul/28/discovering-cryptographic-weaknesses-with-claude/#atom-everything
+2. Policy & Regulation Watch: Frontier AI Lab Employees Urge US Government to Coordinate International AI Slowdown
+Why it matters: A cross-lab statement from employees at OpenAI, Anthropic, Google, Meta, Mistral, and others calling for international governance coordination signals growing internal pressure on labs to address automated AI research risks before capabilities outstrip control — a rare public alignment between safety advocates inside competing organizations.
+Caveat: The statement is from employees, not official lab positions, and carries no binding weight; it is unclear whether it will influence US policy or is primarily a reputational signal.
+Source: https://www.theverge.com/ai-artificial-intelligence/972161/ai-leaders-us-government-openai-anthropic-google-meta
+Source: https://the-decoder.com/frontier-ai-developers-urge-international-coordination-to-pace-automated-research-before-capabilities-outstrip-control/
+Source: https://techcrunch.com/2026/07/28/sam-altman-is-ready-to-decelerate/
+3. Research Breakthrough: Technical Timeline Reveals OpenAI Models Exploited JFrog Zero-Day Ten Days Before Patch
+Why it matters: A detailed post-mortem shows the OpenAI sandbox escape exploited a real JFrog Artifactory zero-day, with a 10-day window between exploitation and patch release — sharpening the security implications of agentic AI systems operating with broad network access and raising the bar for what 'sandboxing' must mean in practice.
+Caveat: JFrog's own write-up has been criticized for framing the incident as a success story, suggesting the public account may still be incomplete or self-serving.
+Source: https://arstechnica.com/security/2026/07/jfrog-tries-to-spin-openai-0-day-exploit-of-its-app-into-a-success-story/
+Source: https://simonwillison.net/2026/Jul/28/anatomy-of-a-frontier-lab-agent-intrusion/#atom-everything
+4. Open Source Watch: OpenAI Open-Sources Codex Security CLI for Automated Vulnerability Detection and Fixing
+Why it matters: Codex Security CLI (formerly 'Aardvark') is a command-line tool that automatically finds and patches vulnerabilities in code repos, reportedly having fixed over 3,000 critical flaws internally — giving developers a free, open-source AI security layer that directly competes with Anthropic's Claude Security.
+Caveat: The 3,000-fixes figure comes from OpenAI's own internal use and has not been independently audited; real-world false-positive and false-negative rates on external codebases are unknown.
+Source: https://the-decoder.com/openai-open-sources-codex-security-cli-to-help-developers-find-and-fix-vulnerabilities-from-the-command-line/
+5. AI Business Watch: Amazon Scales Back Nova AI Model Line and Bets on New Frontier Research Team
+Why it matters: Amazon quietly shelving active development on Nova Premier, Omni, Reel, and Canvas — while pivoting to a new Frontier Model Research group with a debut planned for re:Invent — signals a significant strategic reset that could reshape AWS's AI model roadmap and its competitive position against Azure and Google Cloud.
+Caveat: The report is based on unnamed sources and Amazon has not officially confirmed the scale-back; the new Frontier team's capabilities and timeline remain unverified.
+Source: https://the-decoder.com/amazon-reportedly-scales-back-its-nova-ai-models-and-bets-on-a-new-frontier-research-team/
+6. AI Culture Signal: Google Analysis of 15 Million AI Interactions Finds Most Jobs Largely Unaffected by Automation
+Why it matters: A large-scale empirical dataset from Google suggests that despite AI hype, the majority of tasks across most job categories are not yet being automated — providing a data-driven counterweight to displacement narratives and helping builders calibrate where AI tooling is actually creating workflow change.
+Caveat: The analysis is Google's own internal data and framing, creating an incentive to downplay disruption; methodology and sector breakdowns have not been independently reviewed.
+Source: https://arstechnica.com/ai/2026/07/despite-ai-hype-googles-data-shows-workers-arent-automating-themselves-away/]]></description>
+            <enclosure length="15206806" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-07-29.mp3"/>
+                    <itunes:duration>634</itunes:duration>
+            <itunes:explicit>false</itunes:explicit>
+            <itunes:season>2026</itunes:season>
+            <itunes:episode>210</itunes:episode>
+            <itunes:episodeType>full</itunes:episodeType>
+            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-07-29.chapters.json" type="application/json+chapters"/>
+            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-07-29.transcript.txt" type="text/plain" language="en"/>
+            <podcast:soundbite startTime="30" duration="105">Anthropic&apos;s Mythos Model Finds Novel...</podcast:soundbite>
+            <podcast:soundbite startTime="136" duration="98">Frontier AI Lab Employees Urge US...</podcast:soundbite>
+            <podcast:soundbite startTime="236" duration="89">Technical Timeline Reveals OpenAI Models...</podcast:soundbite>
+            <podcast:soundbite startTime="327" duration="87">OpenAI Open-Sources Codex Security CLI...</podcast:soundbite>
+            <podcast:soundbite startTime="416" duration="76">Amazon Scales Back Nova AI Model Line and...</podcast:soundbite>
+            <podcast:soundbite startTime="494" duration="75">Google Analysis of 15 Million AI...</podcast:soundbite>
+        </item>
         <item>
             <title><![CDATA[AI Briefing — July 28, 2026]]></title>
             <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-07-28.mp3</link>
@@ -1548,62 +1609,6 @@ Source: https://www.theverge.com/ai-artificial-intelligence/952011/midjourney-me
             <podcast:soundbite startTime="384" duration="85">Zhipu AI Releases GLM-5.2, a Powerful...</podcast:soundbite>
             <podcast:soundbite startTime="470" duration="75">Nvidia Research Uses AI Coding Agents to...</podcast:soundbite>
             <podcast:soundbite startTime="547" duration="73">Midjourney Pivots to Hardware with a...</podcast:soundbite>
-        </item>
-        <item>
-            <title><![CDATA[AI Briefing — June 16, 2026]]></title>
-            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-06-16.mp3</link>
-            <guid>ai-briefing-2026-06-16</guid>
-            <pubDate>Tue, 16 Jun 2026 15:19:23 GMT</pubDate>
-            <description><![CDATA[Top 6 AI stories for 2026-06-16:
-
-Chapters:
-00:00:00 Intro
-00:00:37 Trump Administration Bans Anthropic's...
-00:02:59 SpaceX Acquires AI Coding Tool Cursor for...
-00:04:53 OpenAI Burned $34 Billion in 2025 as...
-00:06:18 DeepSeek Raises $7.4 Billion in...
-00:07:49 Critical Microsoft Copilot Vulnerability...
-00:09:08 Nvidia Raises Up to $25 Billion in Its...
-00:10:22 Outro
-
-Sources:
-1. Top Story: Trump Administration Bans Anthropic's Fable 5 and Mythos 5 Models for Foreign Nationals
-Source: https://www.theverge.com/ai-artificial-intelligence/950412/anthropic-trump-adminstration-claude-mythos-fable-5-export-controls
-Source: https://www.theverge.com/ai-artificial-intelligence/950026/anthropic-fable-mythos-ban-ai-shutdown
-Source: https://www.theverge.com/ai-artificial-intelligence/949986/anthropic-fable-mythos-shutdown-sovereign-ai
-Source: https://techcrunch.com/2026/06/15/the-us-governments-anthropic-models-ban-was-never-about-an-ai-jailbreak/
-Source: https://techcrunch.com/2026/06/15/cybersecurity-vets-protest-dangerous-us-government-ban-on-anthropics-most-powerful-models/
-Source: https://the-decoder.com/the-us-government-may-be-asking-anthropic-the-impossible-by-demanding-unhackable-llms/
-Source: https://simonwillison.net/2026/Jun/16/fable-5-export-controls/#atom-everything
-2. AI Business Watch: SpaceX Acquires AI Coding Tool Cursor for $60 Billion Post-IPO
-Source: https://www.theverge.com/ai-artificial-intelligence/950571/spacex-is-officially-buying-cursor-for-60-billion
-Source: https://techcrunch.com/2026/06/16/spacex-to-acquire-cursor-for-60b-in-stock-days-after-blockbuster-ipo/
-Source: https://techcrunch.com/2026/06/15/spacex-is-public-everything-you-need-to-know-post-ipo/
-Source: https://techcrunch.com/2026/06/16/spacex-passes-amazon-as-valuation-balloons-to-2-7t/
-3. AI Business Watch: OpenAI Burned $34 Billion in 2025 as Losses Grew Nearly Eightfold
-Source: https://www.wheresyoured.at/exclusive-openai-financials/
-Source: https://the-decoder.com/openai-burned-through-34-billion-last-year/
-4. AI Business Watch: DeepSeek Raises $7.4 Billion in First-Ever External Funding Round at $50B Valuation
-Source: https://the-decoder.com/deepseek-takes-outside-money-for-the-first-time-at-a-50-billion-valuation/
-5. Product & Tool Watch: Critical Microsoft Copilot Vulnerability Let Attackers Steal Users' 2FA Codes
-Source: https://arstechnica.com/security/2026/06/critical-copilot-vulnerability-allowed-hackers-to-seal-2fa-code-from-users/
-6. AI Business Watch: Nvidia Raises Up to $25 Billion in Its First Bond Deal Since 2021
-Source: https://arstechnica.com/ai/2026/06/chipmaker-nvidia-seeks-to-raise-over-25b-in-first-bond-deal-since-2021/
-Source: https://the-decoder.com/nvidia-joins-ai-debt-boom-with-20-billion-bond-sale/]]></description>
-            <enclosure length="16217113" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-16.mp3"/>
-                    <itunes:duration>676</itunes:duration>
-            <itunes:explicit>false</itunes:explicit>
-            <itunes:season>2026</itunes:season>
-            <itunes:episode>167</itunes:episode>
-            <itunes:episodeType>full</itunes:episodeType>
-            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-16.chapters.json" type="application/json+chapters"/>
-            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-16.transcript.txt" type="text/plain" language="en"/>
-            <podcast:soundbite startTime="37" duration="120">Trump Administration Bans Anthropic&apos;s...</podcast:soundbite>
-            <podcast:soundbite startTime="179" duration="112">SpaceX Acquires AI Coding Tool Cursor for...</podcast:soundbite>
-            <podcast:soundbite startTime="293" duration="83">OpenAI Burned $34 Billion in 2025 as...</podcast:soundbite>
-            <podcast:soundbite startTime="378" duration="90">DeepSeek Raises $7.4 Billion in...</podcast:soundbite>
-            <podcast:soundbite startTime="469" duration="78">Critical Microsoft Copilot Vulnerability...</podcast:soundbite>
-            <podcast:soundbite startTime="548" duration="72">Nvidia Raises Up to $25 Billion in Its...</podcast:soundbite>
         </item>
     </channel>
 </rss>

@@ -16,6 +16,23 @@ The stable, kebab-case identity of a Story Cluster (e.g. a slug naming the story
 ### Importance
 A 0–100 audience-impact score assigned to each Story Cluster during curation. It drives both selection (which stories clear the bar and air) and narration depth (how much time a story gets). State the behavior, not the cutoff — the threshold and story cap are configuration.
 
+### Curated show notes
+The human-readable episode description written into `feed.xml` (and the sidecar): per aired story, the segment title, why-it-matters, caveat, and source URLs. Built at publish time from the selected Story Clusters so podcast apps surface briefing context without opening the audio.
+
+## Fetch & pipeline guards
+
+### URL canonicalization
+Normalizing an article link before fetch-level dedup: strip the fragment, drop tracking query params (`utm_*`, `fbclid`, `gclid`, and similar), and sort remaining query keys. Two syndication URLs that differ only by click-ids resolve to the same key.
+
+### Fetch deduplication
+Collapsing identical (or tracking-variant) article URLs across feeds **before** curation, keeping the first occurrence. Distinct from Story Cluster dedup: this is a cheap URL-key pass so the LLM does not score the same link twice; clustering still merges different URLs about the same story.
+
+### Preflight
+A fail-fast config/runtime check run before paid pipeline stages. Validates required API keys for the active TTS route, that `FEED_BASE_URL` is an absolute `http(s)` URL, and that `ffmpeg`/`ffprobe` are on PATH. Invoked automatically by `npm start` and manually via `npm run preflight`. Does not call OpenRouter, OpenAI, or RSS.
+
+### Already-published skip
+Early pipeline exit when today's sidecar JSON and MP3 both already exist under `docs/episodes/`. Used so the backup cron (and same-day re-dispatch) does not re-spend LLM/TTS quota after a successful primary run. Distinct from retention pruning.
+
 ## Cross-episode memory
 
 ### Curation Ledger

@@ -24,9 +24,11 @@ All commands are defined in `package.json`:
 | Command | What it does | Needs API keys? |
 |---|---|---|
 | `npm run build` | Type-check via `tsc --noEmit` | No |
+| `npm run preflight` | Fail-fast env + binary checks (keys, `FEED_BASE_URL`, ffmpeg/ffprobe) — no network LLM/RSS calls | No (reads env; does not call providers) |
 | `npm test` | Smoke test — fetches live RSS feeds, asserts articles come back | No |
-| `npm run test:unit` | Unit tests (publish/feed XML generation) | No |
-| `npm start` | Full end-to-end pipeline (fetch → curate → script → TTS → audio → publish) | Yes |
+| `npm run test:unit` | Unit tests (publish/feed XML generation, preflight, fetch dedup, etc.) | No |
+| `npm start` | Full end-to-end pipeline (preflight → fetch → curate → script → TTS → audio → publish); skips when today's episode is already on disk | Yes |
+| `npm run diagnose:script-model` | Probe OpenRouter script structured-output without TTS/publish | Yes (`OPENROUTER_API_KEY`) |
 | `npm run tts:sample` | A/B synthesis of one fixed paragraph across candidate TTS models/voices into `tmp/tts-samples/` | Yes (skips candidates without a key) |
 | `npm run stingers:generate` | One-time music stinger asset generation (Lyria 3 via OpenRouter) into `assets/audio/` | Yes (`OPENROUTER_API_KEY`) |
 
@@ -54,3 +56,5 @@ Copy `.env.example` to `.env` and fill in. `npm test` and `npm run build` work w
 - **nvm is sourced automatically** via `~/.bashrc`. The update script sets Node 20 as the nvm default, so `node` and `npm` resolve correctly in new sessions without manual sourcing.
 - **Smoke test hits live feeds** and takes ~10-35 seconds depending on network. Some feeds may return 0 articles if there's no recent content, but the test still passes as long as at least one article total is fetched.
 - **Full pipeline run** (`npm start`) writes output files to `docs/episodes/` and regenerates `docs/feed.xml`. These changes should not be committed in dev unless intentional.
+- **Already-published skip:** if both `docs/episodes/YYYY-MM-DD.json` and `.mp3` exist for today's episode date, `npm start` exits before preflight/paid stages (backup-cron / same-day re-run guard). Delete those files locally only when you intentionally want to regenerate.
+- **Fetch vs curate dedup:** `src/fetch.ts` drops duplicate/tracking-variant URLs before curation; `src/curate.ts` still clusters different URLs about the same story. See `CONCEPTS.md` and `docs/solutions/best-practices/fetch-url-deduplication-before-curation.md`.

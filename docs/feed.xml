@@ -4,7 +4,7 @@
         <title>AI Briefing</title>
         <link>https://robertcdawson.github.io/ai-briefing/</link>
         <description>Daily AI news briefing — the stories that matter from the last 24 hours.</description>
-        <lastBuildDate>Wed, 29 Jul 2026 23:44:58 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 30 Jul 2026 13:02:39 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -23,6 +23,70 @@
         <podcast:guid>ea8709f4-3ba2-5b7e-bcdc-e409d84a6443</podcast:guid>
         <podcast:locked owner="manatees@gmail.com">yes</podcast:locked>
         <podcast:person role="host" group="cast">Robert Dawson</podcast:person>
+        <item>
+            <title><![CDATA[AI Briefing — July 30, 2026]]></title>
+            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-07-30.mp3</link>
+            <guid>ai-briefing-2026-07-30</guid>
+            <pubDate>Thu, 30 Jul 2026 13:02:39 GMT</pubDate>
+            <description><![CDATA[Top 6 AI stories for 2026-07-30:
+
+Chapters:
+00:00:00 Intro
+00:00:39 Researchers argue LLMs have an unfixable...
+00:02:26 OpenAI claims GPT-5.6 Sol beats Opus 5 on...
+00:04:12 Microsoft and Meta earnings reveal...
+00:05:53 DeepMind dismantles AlphaFold team as key...
+00:07:15 OpenAI president confirms company is...
+00:08:35 xAI sues Minnesota to block nudification...
+00:09:59 Outro
+
+Sources:
+1. Top Story: Researchers argue LLMs have an unfixable fundamental vulnerability to adversarial attacks
+Why it matters: A paper presented at ICML claims the architecture of LLMs makes them structurally impossible to fully secure against prompt injection and related attacks, which has sweeping implications for anyone deploying AI agents or production systems.
+Caveat: The paper's claim of an absolute impossibility is a strong theoretical assertion that will need scrutiny and replication from the broader security research community.
+Source: https://www.technologyreview.com/2026/07/30/1140927/a-fundamental-flaw-leaves-llms-vulnerable-to-attack/
+2. Research Breakthrough: OpenAI claims GPT-5.6 Sol beats Opus 5 on ARC-AGI-3 using non-standard API settings
+Why it matters: The benchmark dispute highlights how evaluation methodology can dramatically swing results — GPT-5.6 Sol scores 38.3% with OpenAI's own API features versus 7.8% under the official test setup, raising questions about comparability of frontier model benchmarks.
+Caveat: ARC Prize says its environment is provider-neutral but may have used an outdated API, and OpenAI's non-standard settings make direct comparison with Anthropic's Opus 5 score unreliable.
+Source: https://openai.com/index/how-two-settings-tripled-our-arc-agi-3-scores
+Source: https://the-decoder.com/openai-claims-gpt-5-6-sol-beats-opus-5-on-arc-agi-3-with-its-latest-api-and-two-additional-settings/
+3. AI Business Watch: Microsoft and Meta earnings reveal diverging but aggressive AI platform strategies
+Why it matters: Microsoft confirmed a Copilot 'super app' unifying chat, coding, and agents launching this year, while Zuckerberg predicted billions of people will use personal AI agents within five years and outlined a broad enterprise AI push — both signals of where the industry's largest players are placing their bets.
+Caveat: Both announcements are high-level strategic visions from earnings calls, with few concrete product details, timelines, or pricing disclosed.
+Source: https://www.theverge.com/tech/972927/microsoft-copilot-super-app-confirmed
+Source: https://www.theverge.com/tech/972294/meta-q2-2026-earnings-mark-zuckerberg-personal-ai-agents
+Source: https://techcrunch.com/2026/07/29/mark-zuckerberg-predicts-that-billions-of-people-will-have-personal-ai-agents-in-five-years/
+Source: https://techcrunch.com/2026/07/29/zuckerberg-says-metas-enterprise-ai-opportunity-extends-beyond-agents/
+Source: https://techcrunch.com/2026/07/29/microsoft-is-openly-competing-with-openai-anthropic-more-than-ever/
+Source: https://techcrunch.com/2026/07/29/microsoft-logs-3-2b-from-anthropic-investment-but-openai-was-a-mixed-bag/
+4. Research Breakthrough: DeepMind dismantles AlphaFold team as key researchers depart for Anthropic
+Why it matters: The dispersal of the team behind one of AI's most celebrated scientific breakthroughs signals a strategic pivot at DeepMind away from biology-focused research, and a talent drain toward safety-focused labs that could reshape the landscape of AI-for-science.
+Caveat: It is unclear whether DeepMind has a successor program or whether the AlphaFold line of research will continue under new leadership.
+Source: https://the-decoder.com/deepmind-dismantles-its-alphafold-team-as-key-authors-leave-for-anthropic/
+5. Product & Tool Watch: OpenAI president confirms company is building a family of AI hardware devices
+Why it matters: Greg Brockman's public confirmation that OpenAI is developing multiple consumer devices — not just a single product — suggests the company is pursuing a hardware platform strategy that could reshape how people interact with AI models daily.
+Caveat: No release dates, form factors, or pricing were disclosed, and the announcement follows a pattern of OpenAI hardware rumors that have not yet materialized.
+Source: https://www.theverge.com/ai-artificial-intelligence/972709/openai-hardware-greg-brockman-interview
+6. Policy & Regulation Watch: xAI sues Minnesota to block nudification app ban citing First Amendment
+Why it matters: The lawsuit is a direct test of whether state-level laws targeting AI-generated nonconsensual intimate imagery can survive First Amendment challenges, setting a precedent that will affect how AI image tools are regulated across the US.
+Caveat: xAI's legal argument is contested and the case is at an early stage; the outcome will depend heavily on how courts interpret AI-generated content as protected speech.
+Source: https://www.theverge.com/policy/972850/xai-grok-minnesota-nudification-lawsuit
+Source: https://arstechnica.com/tech-policy/2026/07/elon-musks-xai-is-trying-to-sue-its-way-out-of-a-grok-reckoning/]]></description>
+            <enclosure length="15751138" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-07-30.mp3"/>
+                    <itunes:duration>656</itunes:duration>
+            <itunes:explicit>false</itunes:explicit>
+            <itunes:season>2026</itunes:season>
+            <itunes:episode>211</itunes:episode>
+            <itunes:episodeType>full</itunes:episodeType>
+            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-07-30.chapters.json" type="application/json+chapters"/>
+            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-07-30.transcript.txt" type="text/plain" language="en"/>
+            <podcast:soundbite startTime="39" duration="105">Researchers argue LLMs have an unfixable...</podcast:soundbite>
+            <podcast:soundbite startTime="146" duration="104">OpenAI claims GPT-5.6 Sol beats Opus 5 on...</podcast:soundbite>
+            <podcast:soundbite startTime="252" duration="100">Microsoft and Meta earnings reveal...</podcast:soundbite>
+            <podcast:soundbite startTime="353" duration="80">DeepMind dismantles AlphaFold team as key...</podcast:soundbite>
+            <podcast:soundbite startTime="435" duration="79">OpenAI president confirms company is...</podcast:soundbite>
+            <podcast:soundbite startTime="515" duration="82">xAI sues Minnesota to block nudification...</podcast:soundbite>
+        </item>
         <item>
             <title><![CDATA[AI Briefing — July 29, 2026]]></title>
             <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-07-29.mp3</link>
@@ -1497,58 +1561,6 @@ Source: https://the-decoder.com/alleged-china-ties-at-sk-telecom-alarmed-us-offi
             <podcast:soundbite startTime="365" duration="80">ChatGPT health upgrade with GPT-5.5...</podcast:soundbite>
             <podcast:soundbite startTime="447" duration="84">Two Nature studies show specialized AI...</podcast:soundbite>
             <podcast:soundbite startTime="532" duration="95">Alleged SK Telecom China ties triggered...</podcast:soundbite>
-        </item>
-        <item>
-            <title><![CDATA[AI Briefing — June 17, 2026]]></title>
-            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-06-17.mp3</link>
-            <guid>ai-briefing-2026-06-17</guid>
-            <pubDate>Thu, 18 Jun 2026 06:11:49 GMT</pubDate>
-            <description><![CDATA[Top 6 AI stories for 2026-06-17:
-
-Chapters:
-00:00:00 Intro
-00:00:55 Trump Administration Invokes Export...
-00:03:29 Leaked Financial Documents Reveal OpenAI...
-00:05:05 OpenAI and Molecule.one Deploy...
-00:06:24 Zhipu AI Releases GLM-5.2, a Powerful...
-00:07:50 Nvidia Research Uses AI Coding Agents to...
-00:09:07 Midjourney Pivots to Hardware with a...
-00:10:22 Outro
-
-Sources:
-1. Top Story: Trump Administration Invokes Export Controls to Block Anthropic's Fable and Mythos Models
-Source: https://www.theverge.com/ai-artificial-intelligence/951703/anthropic-shutdown-export-controls
-Source: https://www.theverge.com/column/951516/trump-anthropic-feud-mythos-fable-white-house
-Source: https://stratechery.com/2026/the-state-of-fable-the-jailbreak-problem-spacex-acquires-cursor/
-Source: https://www.nytimes.com/2026/06/17/technology/anthropic-trump-administration-fable.html
-Source: https://techcrunch.com/2026/06/17/world-leaders-want-american-ai-they-just-dont-want-america-to-be-able-to-turn-it-off/
-2. AI Business Watch: Leaked Financial Documents Reveal OpenAI Is Losing Billions Annually
-Source: https://arstechnica.com/ai/2026/06/leaked-financial-docs-show-openai-is-losing-billions-of-dollars-a-year/
-3. Research Breakthrough: OpenAI and Molecule.one Deploy Near-Autonomous AI Chemist Using GPT-5.4 for Drug Synthesis
-Source: https://openai.com/index/ai-chemist-improves-reaction
-4. Open Source Watch: Zhipu AI Releases GLM-5.2, a Powerful Open-Weights Model Rivaling Closed-Source Leaders in Coding
-Source: https://huggingface.co/blog/zai-org/glm-52-blog
-Source: https://simonwillison.net/2026/Jun/17/glm-52/#atom-everything
-Source: https://the-decoder.com/zhipu-ais-glm-5-2-closes-in-on-closed-source-leaders-in-coding-marathons/
-5. Research Breakthrough: Nvidia Research Uses AI Coding Agents to Autonomously Train Robots for Dexterous Tasks
-Source: https://arstechnica.com/ai/2026/06/ai-coding-agents-can-autonomously-direct-robot-training/
-Source: https://the-decoder.com/nvidia-research-shows-robots-that-train-themselves-through-ai-coding-agents/
-6. Product & Tool Watch: Midjourney Pivots to Hardware with a Full-Body Ultrasound Scanner
-Source: https://www.theverge.com/ai-artificial-intelligence/952011/midjourney-medical-ai-ultrasound-scan]]></description>
-            <enclosure length="16097876" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-17.mp3"/>
-                    <itunes:duration>671</itunes:duration>
-            <itunes:explicit>false</itunes:explicit>
-            <itunes:season>2026</itunes:season>
-            <itunes:episode>168</itunes:episode>
-            <itunes:episodeType>full</itunes:episodeType>
-            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-17.chapters.json" type="application/json+chapters"/>
-            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-17.transcript.txt" type="text/plain" language="en"/>
-            <podcast:soundbite startTime="55" duration="120">Trump Administration Invokes Export...</podcast:soundbite>
-            <podcast:soundbite startTime="209" duration="95">Leaked Financial Documents Reveal OpenAI...</podcast:soundbite>
-            <podcast:soundbite startTime="305" duration="77">OpenAI and Molecule.one Deploy...</podcast:soundbite>
-            <podcast:soundbite startTime="384" duration="85">Zhipu AI Releases GLM-5.2, a Powerful...</podcast:soundbite>
-            <podcast:soundbite startTime="470" duration="75">Nvidia Research Uses AI Coding Agents to...</podcast:soundbite>
-            <podcast:soundbite startTime="547" duration="73">Midjourney Pivots to Hardware with a...</podcast:soundbite>
         </item>
     </channel>
 </rss>

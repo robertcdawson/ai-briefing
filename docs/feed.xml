@@ -4,7 +4,7 @@
         <title>AI Briefing</title>
         <link>https://robertcdawson.github.io/ai-briefing/</link>
         <description>Daily AI news briefing — the stories that matter from the last 24 hours.</description>
-        <lastBuildDate>Wed, 29 Jul 2026 13:16:45 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 29 Jul 2026 23:44:58 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -430,36 +430,7 @@ Source: https://the-decoder.com/microsoft-and-mistral-strike-multi-billion-dolla
             <itunes:episodeType>full</itunes:episodeType>
             <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-07-21.chapters.json" type="application/json+chapters"/>
             <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-07-21.transcript.txt" type="text/plain" language="en"/>
-            <podcast:soundbite startTime="41" duration="106">Court approves Anthropic&apos;s landmark <guid>ai-briefing-2026-07-21</guid>
-            <pubDate>Tue, 21 Jul 2026 15:26:01 GMT</pubDate>
-            <description><![CDATA[Top 6 AI stories for 2026-07-21:
-
-Chapters:
-00:00:00 Intro
-00:00:41 Court approves Anthropic's landmark $1.5...
-00:02:29 Nvidia's AI chip dominance weakens as...
-00:04:09 Google DeepMind launches Gemini 3.6 Flash...
-00:05:26 Google's Frozen v2 chip reportedly bakes...
-00:07:03 Sony sues Udio AI music generator over...
-00:08:24 Microsoft and Mistral sign...
-00:09:51 Outro
-
-Sources:
-1. Top Story: Court approves Anthropic's landmark $1.5 billion AI copyright settlement
-Source: https://techcrunch.com/2026/07/20/anthropics-landmark-1-5b-copyright-settlement-is-approved/
-2. AI Business Watch: Nvidia's AI chip dominance weakens as Microsoft and Anthropic test AMD hardware
-Source: https://the-decoder.com/nvidias-grip-on-ai-chips-weakens-as-microsoft-turns-to-amd-and-anthropic-may-follow/
-3. Product & Tool Watch: Google DeepMind launches Gemini 3.6 Flash and two companion models
-Source: https://deepmind.google/blog/introducing-gemini-36-flash-35-flash-lite-and-35-flash-cyber/
-4. Research Breakthrough: Google's Frozen v2 chip reportedly bakes Gemini architecture directly into silicon
-Source: https://the-decoder.com/googles-frozen-v2-chip-reportedly-bakes-geminis-architecture-directly-into-silicon-for-efficiency-gains/
-Source: https://techcrunch.com/2026/07/20/google-is-working-on-a-new-ai-chip-designed-to-make-gemini-more-efficient/
-5. Policy & Regulation Watch: Sony sues Udio AI music generator over 30,000 copyrighted songs
-Source: https://www.theverge.com/tech/968375/sony-udio-lawsuit-songs-ai-copyright
-6. AI Business Watch: Microsoft and Mistral sign multi-billion-dollar European AI infrastructure deal
-Source: https://the-decoder.com/microsoft-and-mistral-strike-multi-billion-dollar-deal-to-build-ai-infrastructure-across-europe/]]></description>
-            <enclosure length="15456792" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-07-21.mp3"/>
-        .5...</podcast:soundbite>
+            <podcast:soundbite startTime="41" duration="106">Court approves Anthropic&apos;s landmark $1.5...</podcast:soundbite>
             <podcast:soundbite startTime="149" duration="98">Nvidia&apos;s AI chip dominance weakens as...</podcast:soundbite>
             <podcast:soundbite startTime="249" duration="76">Google DeepMind launches Gemini 3.6 Flash...</podcast:soundbite>
             <podcast:soundbite startTime="326" duration="95">Google&apos;s Frozen v2 chip reportedly bakes...</podcast:soundbite>
@@ -705,38 +676,7 @@ Source: https://techcrunch.com/2026/07/14/the-real-ai-race-may-no-longer-be-at-t
             <podcast:soundbite startTime="144" duration="103">DeepMind CEO Hassabis Proposes US-Led...</podcast:soundbite>
             <podcast:soundbite startTime="249" duration="91">Turing Award Winner Rich Sutton Founds...</podcast:soundbite>
             <podcast:soundbite startTime="341" duration="87">Apple&apos;s OpenAI Trade-Secrets Lawsuit Gets...</podcast:soundbite>
-            <podcast:soundbite startTime="430" duration="78">Reflection AI Signs <guid>ai-briefing-2026-07-14</guid>
-            <pubDate>Tue, 14 Jul 2026 15:12:06 GMT</pubDate>
-            <description><![CDATA[Top 6 AI stories for 2026-07-14:
-
-Chapters:
-00:00:00 Intro
-00:00:41 New York Enacts First US Statewide Data...
-00:02:24 DeepMind CEO Hassabis Proposes US-Led...
-00:04:09 Turing Award Winner Rich Sutton Founds...
-00:05:41 Apple's OpenAI Trade-Secrets Lawsuit Gets...
-00:07:10 Reflection AI Signs $1 Billion Compute...
-00:08:29 Hugging Face CEO Says the Real AI Race...
-00:09:36 Outro
-
-Sources:
-1. Top Story: New York Enacts First US Statewide Data Center Moratorium
-Source: https://www.theverge.com/policy/965110/new-york-ai-data-center-moratorium
-2. Policy & Regulation Watch: DeepMind CEO Hassabis Proposes US-Led Global AI Regulatory Watchdog
-Source: https://www.theverge.com/tech/965270/google-deepmind-demis-hassabis-global-ai-watchdog
-Source: https://the-decoder.com/deepmind-ceo-hassabis-says-nobody-in-the-world-knows-what-happens-next-so-cautious-optimism-means-building-guardrails-now
-3. Research Breakthrough: Turing Award Winner Rich Sutton Founds Oak Lab for Continual-Learning AI Agents
-Source: https://the-decoder.com/turing-award-winner-rich-sutton-founds-oak-lab-to-build-ai-agents-that-learn-on-their-own/
-4. Policy & Regulation Watch: Apple's OpenAI Trade-Secrets Lawsuit Gets Specific and Strange
-Source: https://www.theverge.com/tech/964843/apple-openai-lawsuit-wildest-claims
-Source: https://arstechnica.com/tech-policy/2026/07/apple-sues-openai-after-ex-engineer-allegedly-used-bug-to-steal-trade-secrets/
-Source: https://techcrunch.com/2026/07/13/the-wildest-allegations-in-apples-trade-secrets-lawsuit-against-openai/
-5. AI Business Watch: Reflection AI Signs $1 Billion Compute Deal with Nebius
-Source: https://techcrunch.com/2026/07/14/reflection-inks-1b-compute-deal-with-nebius/
-6. Open Source Watch: Hugging Face CEO Says the Real AI Race Has Left the Frontier
-Source: https://techcrunch.com/2026/07/14/the-real-ai-race-may-no-longer-be-at-the-frontier-open-models-hugging-face/]]></description>
-            <enclosure length="15278241" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-07-14.mp3"/>
-         Billion Compute...</podcast:soundbite>
+            <podcast:soundbite startTime="430" duration="78">Reflection AI Signs $1 Billion Compute...</podcast:soundbite>
             <podcast:soundbite startTime="509" duration="65">Hugging Face CEO Says the Real AI Race...</podcast:soundbite>
         </item>
         <item>

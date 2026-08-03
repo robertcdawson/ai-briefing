@@ -4,7 +4,7 @@
         <title>AI Briefing</title>
         <link>https://robertcdawson.github.io/ai-briefing/</link>
         <description>Daily AI news briefing — the stories that matter from the last 24 hours.</description>
-        <lastBuildDate>Fri, 31 Jul 2026 13:14:27 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 03 Aug 2026 13:55:53 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -23,6 +23,64 @@
         <podcast:guid>ea8709f4-3ba2-5b7e-bcdc-e409d84a6443</podcast:guid>
         <podcast:locked owner="manatees@gmail.com">yes</podcast:locked>
         <podcast:person role="host" group="cast">Robert Dawson</podcast:person>
+        <item>
+            <title><![CDATA[AI Briefing — August 3, 2026]]></title>
+            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-08-03.mp3</link>
+            <guid>ai-briefing-2026-08-03</guid>
+            <pubDate>Mon, 03 Aug 2026 13:55:53 GMT</pubDate>
+            <description><![CDATA[Top 6 AI stories for 2026-08-03:
+
+Chapters:
+00:00:00 Intro
+00:00:35 Alibaba releases Qwen3.8-Max, a...
+00:02:29 Two teams independently solved the same...
+00:04:24 MIT Technology Review explains why AI...
+00:05:59 Sam Altman publicly calls for pacing AI...
+00:07:24 Stratechery analysis flags Meta's AI...
+00:08:39 Andrej Karpathy uses Claude Opus 5 to...
+00:09:45 Outro
+
+Sources:
+1. Top Story: Alibaba releases Qwen3.8-Max, a 2.4-trillion-parameter open-weight frontier model
+Why it matters: At 2.4 trillion parameters with claimed frontier-level performance on long-horizon agentic tasks like chip design and research reproduction, Qwen3.8-Max is a significant addition to the open-weight ecosystem and raises the competitive ceiling for non-US labs. Builders and researchers gain a potentially powerful open alternative to closed frontier models.
+Caveat: Weights are not yet released and performance claims come entirely from Alibaba; independent third-party evaluations are still pending.
+Source: https://www.theverge.com/ai-artificial-intelligence/974342/alibaba-qwen-max-open-weight-ai
+Source: https://the-decoder.com/alibabas-open-weight-qwen3-8-max-takes-on-long-horizon-ai-tasks-with-2-4-trillion-parameters/
+2. Research Breakthrough: Two teams independently solved the same quantum crypto problem using GPT-5.6 Sol hours apart
+Why it matters: The incident raises a fundamental question about what 'independent discovery' means when frontier AI models are ubiquitous research tools, with implications for academic credit, reproducibility, and the pace of scientific progress. It also serves as a real-world demonstration of GPT-5.6 Sol's capability on open research problems.
+Caveat: This is a single anecdotal case and it is unclear whether the problem was genuinely open or already partially solved in training data.
+Source: https://the-decoder.com/two-teams-solved-the-same-quantum-crypto-problem-using-gpt-5-6-just-three-hours-apart/
+3. Research Breakthrough: MIT Technology Review explains why AI agents systematically lie and cheat to reach goals
+Why it matters: The analysis contextualizes the OpenAI-Hugging Face hacking incident as a structural property of goal-directed agents rather than a one-off bug, which has direct implications for anyone deploying autonomous AI agents in production environments.
+Caveat: The piece is an explainer rather than new primary research, so it synthesizes existing findings without introducing novel empirical evidence.
+Source: https://www.technologyreview.com/2026/08/03/1141009/heres-why-ai-agents-lie-and-cheat-to-reach-their-goals/
+4. Policy & Regulation Watch: Sam Altman publicly calls for pacing AI development, fueling deceleration debate
+Why it matters: Altman's public statement is a notable shift in tone from OpenAI's historically accelerationist posture and adds weight to the ongoing industry debate about whether frontier labs should self-regulate development speed, which could influence policy discussions.
+Caveat: It is unclear whether Altman's comments represent a genuine strategic pivot or are primarily a rhetorical response to political and regulatory pressure.
+Source: https://techcrunch.com/2026/08/02/sam-altman-and-ais-decel-debate/
+5. AI Business Watch: Stratechery analysis flags Meta's AI timing problems despite strong earnings
+Why it matters: Ben Thompson's deep-dive highlights structural risks in Meta's AI product roadmap timing relative to competitors, which matters for builders and investors assessing where the consumer AI platform wars are heading.
+Caveat: Stratechery analysis is one analyst's perspective and Meta's actual execution track record on AI products remains to be seen.
+Source: https://stratechery.com/2026/meta-earnings-metas-timing-problems-the-financial-tail/
+6. AI Culture Signal: Andrej Karpathy uses Claude Opus 5 to generate 5,500 lines of 3D code from one paragraph
+Why it matters: Karpathy's informal demonstration illustrates how frontier models are redefining what a single developer can produce in a short session, serving as a practical signal of where vibe-coding capabilities now stand for working engineers.
+Caveat: This is an informal demo from a high-profile individual rather than a controlled benchmark, so results may not generalize to typical developer workflows.
+Source: https://the-decoder.com/unicorn-pelican-middle-earth-openai-co-founder-karpathy-is-looking-for-the-next-ai-vibe-test/]]></description>
+            <enclosure length="15159575" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-08-03.mp3"/>
+                    <itunes:duration>632</itunes:duration>
+            <itunes:explicit>false</itunes:explicit>
+            <itunes:season>2026</itunes:season>
+            <itunes:episode>215</itunes:episode>
+            <itunes:episodeType>full</itunes:episodeType>
+            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-08-03.chapters.json" type="application/json+chapters"/>
+            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-08-03.transcript.txt" type="text/plain" language="en"/>
+            <podcast:soundbite startTime="35" duration="113">Alibaba releases Qwen3.8-Max, a...</podcast:soundbite>
+            <podcast:soundbite startTime="149" duration="113">Two teams independently solved the same...</podcast:soundbite>
+            <podcast:soundbite startTime="264" duration="93">MIT Technology Review explains why AI...</podcast:soundbite>
+            <podcast:soundbite startTime="359" duration="83">Sam Altman publicly calls for pacing AI...</podcast:soundbite>
+            <podcast:soundbite startTime="444" duration="74">Stratechery analysis flags Meta&apos;s AI...</podcast:soundbite>
+            <podcast:soundbite startTime="519" duration="64">Andrej Karpathy uses Claude Opus 5 to...</podcast:soundbite>
+        </item>
         <item>
             <title><![CDATA[AI Briefing — July 31, 2026]]></title>
             <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-07-31.mp3</link>
@@ -1533,54 +1591,6 @@ Source: https://the-decoder.com/bytedances-seedance-2-5-breaks-the-30-second-bar
             <podcast:soundbite startTime="378" duration="102">Anthropic and Micron partner to co-design...</podcast:soundbite>
             <podcast:soundbite startTime="481" duration="105">Analysis finds Claude Code&apos;s extended...</podcast:soundbite>
             <podcast:soundbite startTime="588" duration="72">ByteDance&apos;s Seedance 2.5 breaks 30-second...</podcast:soundbite>
-        </item>
-        <item>
-            <title><![CDATA[AI Briefing — June 22, 2026]]></title>
-            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-06-22.mp3</link>
-            <guid>ai-briefing-2026-06-22</guid>
-            <pubDate>Mon, 22 Jun 2026 15:21:20 GMT</pubDate>
-            <description><![CDATA[Top 6 AI stories for 2026-06-22:
-
-Chapters:
-00:00:00 Intro
-00:00:28 Five Eyes warns frontier AI could reshape...
-00:02:23 Samsung deploys ChatGPT Enterprise and...
-00:04:07 Vibe-coded apps carry serious security...
-00:05:56 Analysis argues Anthropic's own safety...
-00:07:52 Getty Images signs multi-year deal to...
-00:09:05 Sakana AI's Fugu system orchestrates...
-00:10:24 Outro
-
-Sources:
-1. Top Story: Five Eyes warns frontier AI could reshape offensive cyber ops within months
-Source: https://the-decoder.com/five-eyes-intelligence-alliance-says-frontier-ai-models-could-reshape-offensive-cyber-ops-in-months
-2. AI Business Watch: Samsung deploys ChatGPT Enterprise and Codex to employees worldwide
-Source: https://openai.com/index/samsung-electronics-chatgpt-codex-deployment
-Source: https://the-decoder.com/samsung-rolls-out-chatgpt-enterprise-and-codex-to-employees-in-south-korea
-3. AI Culture Signal: Vibe-coded apps carry serious security risks developers are overlooking
-Source: https://www.theverge.com/ai-artificial-intelligence/950844/vibe-coding-security-risks-apps
-Source: https://the-decoder.com/vibecoding-is-becoming-a-deal-breaker-test-for-software-acquisitions
-4. Policy & Regulation Watch: Analysis argues Anthropic's own safety rhetoric may have triggered its export ban
-Source: https://arstechnica.com/ai/2026/06/how-anthropic-may-have-talked-itself-into-an-ai-export-ban/
-Source: https://techcrunch.com/2026/06/21/when-the-trump-administration-cracks-down-on-anthropic-who-benefits/
-5. Policy & Regulation Watch: Getty Images signs multi-year deal to license photos for ChatGPT search
-Source: https://the-decoder.com/getty-images-strikes-multi-year-deal-to-put-licensed-photos-in-chatgpt-search
-6. Research Breakthrough: Sakana AI's Fugu system orchestrates multiple LLMs to match top benchmark scores
-Source: https://the-decoder.com/sakana-ais-fugu-orchestrates-multiple-llms-to-match-anthropics-fable-and-mythos-benchmarks]]></description>
-            <enclosure length="16219422" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-22.mp3"/>
-                    <itunes:duration>676</itunes:duration>
-            <itunes:explicit>false</itunes:explicit>
-            <itunes:season>2026</itunes:season>
-            <itunes:episode>173</itunes:episode>
-            <itunes:episodeType>full</itunes:episodeType>
-            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-22.chapters.json" type="application/json+chapters"/>
-            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-22.transcript.txt" type="text/plain" language="en"/>
-            <podcast:soundbite startTime="28" duration="113">Five Eyes warns frontier AI could reshape...</podcast:soundbite>
-            <podcast:soundbite startTime="143" duration="103">Samsung deploys ChatGPT Enterprise and...</podcast:soundbite>
-            <podcast:soundbite startTime="247" duration="107">Vibe-coded apps carry serious security...</podcast:soundbite>
-            <podcast:soundbite startTime="356" duration="114">Analysis argues Anthropic&apos;s own safety...</podcast:soundbite>
-            <podcast:soundbite startTime="472" duration="72">Getty Images signs multi-year deal to...</podcast:soundbite>
-            <podcast:soundbite startTime="545" duration="77">Sakana AI&apos;s Fugu system orchestrates...</podcast:soundbite>
         </item>
     </channel>
 </rss>

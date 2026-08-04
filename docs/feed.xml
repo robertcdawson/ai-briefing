@@ -4,7 +4,7 @@
         <title>AI Briefing</title>
         <link>https://robertcdawson.github.io/ai-briefing/</link>
         <description>Daily AI news briefing — the stories that matter from the last 24 hours.</description>
-        <lastBuildDate>Mon, 03 Aug 2026 13:55:53 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 04 Aug 2026 13:17:39 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -23,6 +23,65 @@
         <podcast:guid>ea8709f4-3ba2-5b7e-bcdc-e409d84a6443</podcast:guid>
         <podcast:locked owner="manatees@gmail.com">yes</podcast:locked>
         <podcast:person role="host" group="cast">Robert Dawson</podcast:person>
+        <item>
+            <title><![CDATA[AI Briefing — August 4, 2026]]></title>
+            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-08-04.mp3</link>
+            <guid>ai-briefing-2026-08-04</guid>
+            <pubDate>Tue, 04 Aug 2026 13:17:39 GMT</pubDate>
+            <description><![CDATA[Top 6 AI stories for 2026-08-04:
+
+Chapters:
+00:00:00 Intro
+00:00:32 Silicon Valley infighting stalls White...
+00:02:23 OpenAI publicly releases chat logs to...
+00:04:15 EU AI Act transparency and labeling...
+00:05:49 China's MiniMax H3 becomes first...
+00:07:20 AI-proctored remote exam fails so badly...
+00:08:57 IBM finds 92 percent of AI security...
+00:10:22 Outro
+
+Sources:
+1. Top Story: Silicon Valley infighting stalls White House plans to ban Chinese open-source AI
+Why it matters: The internal split — with OpenAI and Anthropic pushing for restrictions while Nvidia, Google, and Meta resist — reveals how deeply geopolitical AI policy is now entangled with commercial interests, and a decision before Xi's September visit could reshape open-source access globally.
+Caveat: The report relies on unnamed sources and the situation remains fluid, with a final decision still pending.
+Source: https://the-decoder.com/silicon-valleys-rift-over-open-source-pushes-back-contemplated-white-house-bans-on-chinese-ai
+2. AI Business Watch: OpenAI publicly releases chat logs to counter Apple trade secret lawsuit
+Why it matters: The public airing of internal communications escalates a high-stakes legal battle between two AI giants, with implications for how employee mobility and knowledge transfer are treated in the AI industry.
+Caveat: OpenAI is selectively releasing evidence favorable to its position; Apple's full legal arguments and evidence have not been made public.
+Source: https://openai.com/index/apple-is-getting-this-wrong
+Source: https://www.theverge.com/ai-artificial-intelligence/974914/openai-blog-response-apple-lawsuit-messages
+Source: https://the-decoder.com/openai-fires-back-at-apples-trade-secret-lawsuit-with-chat-logs-showing-apple-employees-kept-texting-their-former-colleague
+3. Policy & Regulation Watch: EU AI Act transparency and labeling obligations take effect across Europe
+Why it matters: Builders deploying AI-facing products in Europe must now disclose chatbot interactions and AI-generated content, creating concrete compliance obligations for the first time under the AI Act.
+Caveat: Enforcement mechanisms and penalties for non-compliance are still being clarified, so real-world impact may lag the legal effective date.
+Source: https://www.theverge.com/ai-artificial-intelligence/974571/eu-ai-act-transparency-labels-rules-deepfakes
+4. Open Source Watch: China's MiniMax H3 becomes first open-weight model to top AI video benchmark
+Why it matters: An open-weight model reaching the top of a video generation ranking is a significant milestone, giving developers access to frontier-quality video generation without proprietary API lock-in.
+Caveat: Rankings on AI video leaderboards are often contested and may not reflect real-world production quality across diverse use cases.
+Source: https://the-decoder.com/chinas-minimax-h3-is-the-first-open-model-to-top-an-ai-video-ranking
+5. AI Culture Signal: AI-proctored remote exam fails so badly 58,000 students must retake it
+Why it matters: The mass retake — driven by a fivefold inflation in top scores — is a stark real-world data point on the risks of deploying AI proctoring at scale without adequate safeguards.
+Caveat: Details on the specific AI system used, the nature of the failures, and who bears accountability for the retake costs are not yet public.
+Source: https://arstechnica.com/culture/2026/08/an-ai-supervised-remote-exam-went-so-badly-that-58000-students-must-retake-it/
+6. Research Breakthrough: IBM finds 92 percent of AI security breach victims lacked basic access controls
+Why it matters: The finding reframes AI security risk away from model-level vulnerabilities toward infrastructure hygiene, giving builders a concrete and actionable priority for hardening AI deployments.
+Caveat: IBM has commercial interests in security consulting and the report's methodology and sample size have not been independently validated.
+Source: https://the-decoder.com/ibm-finds-92-of-companies-hit-by-ai-security-breaches-lacked-basic-access-controls]]></description>
+            <enclosure length="16294868" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-08-04.mp3"/>
+                    <itunes:duration>679</itunes:duration>
+            <itunes:explicit>false</itunes:explicit>
+            <itunes:season>2026</itunes:season>
+            <itunes:episode>216</itunes:episode>
+            <itunes:episodeType>full</itunes:episodeType>
+            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-08-04.chapters.json" type="application/json+chapters"/>
+            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-08-04.transcript.txt" type="text/plain" language="en"/>
+            <podcast:soundbite startTime="32" duration="109">Silicon Valley infighting stalls White...</podcast:soundbite>
+            <podcast:soundbite startTime="143" duration="110">OpenAI publicly releases chat logs to...</podcast:soundbite>
+            <podcast:soundbite startTime="255" duration="93">EU AI Act transparency and labeling...</podcast:soundbite>
+            <podcast:soundbite startTime="349" duration="89">China&apos;s MiniMax H3 becomes first...</podcast:soundbite>
+            <podcast:soundbite startTime="440" duration="95">AI-proctored remote exam fails so badly...</podcast:soundbite>
+            <podcast:soundbite startTime="537" duration="84">IBM finds 92 percent of AI security...</podcast:soundbite>
+        </item>
         <item>
             <title><![CDATA[AI Briefing — August 3, 2026]]></title>
             <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-08-03.mp3</link>
@@ -1544,53 +1603,6 @@ Source: https://arstechnica.com/ai/2026/06/oracles-21000-layoffs-help-drive-its-
             <podcast:soundbite startTime="340" duration="99">GPT-5 Pro helps immunologist crack...</podcast:soundbite>
             <podcast:soundbite startTime="441" duration="74">Mistral releases OCR 4 model claiming 72...</podcast:soundbite>
             <podcast:soundbite startTime="516" duration="72">Oracle cuts 21,000 jobs to fund...</podcast:soundbite>
-        </item>
-        <item>
-            <title><![CDATA[AI Briefing — June 23, 2026]]></title>
-            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-06-23.mp3</link>
-            <guid>ai-briefing-2026-06-23</guid>
-            <pubDate>Tue, 23 Jun 2026 14:23:22 GMT</pubDate>
-            <description><![CDATA[Top 6 AI stories for 2026-06-23:
-
-Chapters:
-00:00:00 Intro
-00:00:35 Cursor launches in-house AI model, Git...
-00:02:35 OpenAI launches GPT-5.5-Cyber and...
-00:04:41 Groq confirms $650M raise and rebuilds...
-00:06:18 Anthropic and Micron partner to co-design...
-00:08:01 Analysis finds Claude Code's extended...
-00:09:48 ByteDance's Seedance 2.5 breaks 30-second...
-00:11:01 Outro
-
-Sources:
-1. Top Story: Cursor launches in-house AI model, Git platform, and mobile app
-Source: https://the-decoder.com/cursor-announces-its-own-ai-model-a-new-git-platform-and-a-mobile-app/
-2. Product & Tool Watch: OpenAI launches GPT-5.5-Cyber and Daybreak security initiative with 25 partners
-Source: https://openai.com/index/daybreak-securing-the-world/
-Source: https://the-decoder.com/openai-says-new-gpt-5-5-cyber-outperforms-anthropics-mythos-on-cybersecurity-benchmark/
-Source: https://techcrunch.com/2026/06/22/openai-launches-new-initiative-to-help-find-and-patch-open-source-bugs/
-3. AI Business Watch: Groq confirms $650M raise and rebuilds after Nvidia's not-acqui-hire
-Source: https://techcrunch.com/2026/06/22/ai-chipmaker-groq-confirms-650m-raise-re-staffs-after-nvidias-20b-not-acqui-hire-deal/
-4. AI Business Watch: Anthropic and Micron partner to co-design AI memory architecture for Claude
-Source: https://the-decoder.com/anthropic-and-micron-want-to-co-design-ai-memory-architecture/
-5. Research Breakthrough: Analysis finds Claude Code's extended thinking output is not authentic reasoning
-Source: https://patrickmccanna.net/the-text-in-claude-codes-extended-thinking-output-is-not-authentic/
-6. Product & Tool Watch: ByteDance's Seedance 2.5 breaks 30-second barrier for AI video generation
-Source: https://the-decoder.com/bytedances-seedance-2-5-breaks-the-30-second-barrier-for-ai-video-generation/]]></description>
-            <enclosure length="17094942" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-23.mp3"/>
-                    <itunes:duration>712</itunes:duration>
-            <itunes:explicit>false</itunes:explicit>
-            <itunes:season>2026</itunes:season>
-            <itunes:episode>174</itunes:episode>
-            <itunes:episodeType>full</itunes:episodeType>
-            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-23.chapters.json" type="application/json+chapters"/>
-            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-06-23.transcript.txt" type="text/plain" language="en"/>
-            <podcast:soundbite startTime="35" duration="119">Cursor launches in-house AI model, Git...</podcast:soundbite>
-            <podcast:soundbite startTime="155" duration="120">OpenAI launches GPT-5.5-Cyber and...</podcast:soundbite>
-            <podcast:soundbite startTime="281" duration="95">Groq confirms $650M raise and rebuilds...</podcast:soundbite>
-            <podcast:soundbite startTime="378" duration="102">Anthropic and Micron partner to co-design...</podcast:soundbite>
-            <podcast:soundbite startTime="481" duration="105">Analysis finds Claude Code&apos;s extended...</podcast:soundbite>
-            <podcast:soundbite startTime="588" duration="72">ByteDance&apos;s Seedance 2.5 breaks 30-second...</podcast:soundbite>
         </item>
     </channel>
 </rss>

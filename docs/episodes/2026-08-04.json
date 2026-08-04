@@ -1,0 +1,203 @@
+{
+  "date": "2026-08-04",
+  "title": "AI Briefing — August 4, 2026",
+  "description": "Top 6 AI stories for 2026-08-04:\n\nChapters:\n00:00:00 Intro\n00:00:32 Silicon Valley infighting stalls White...\n00:02:23 OpenAI publicly releases chat logs to...\n00:04:15 EU AI Act transparency and labeling...\n00:05:49 China's MiniMax H3 becomes first...\n00:07:20 AI-proctored remote exam fails so badly...\n00:08:57 IBM finds 92 percent of AI security...\n00:10:22 Outro\n\nSources:\n1. Top Story: Silicon Valley infighting stalls White House plans to ban Chinese open-source AI\nWhy it matters: The internal split — with OpenAI and Anthropic pushing for restrictions while Nvidia, Google, and Meta resist — reveals how deeply geopolitical AI policy is now entangled with commercial interests, and a decision before Xi's September visit could reshape open-source access globally.\nCaveat: The report relies on unnamed sources and the situation remains fluid, with a final decision still pending.\nSource: https://the-decoder.com/silicon-valleys-rift-over-open-source-pushes-back-contemplated-white-house-bans-on-chinese-ai\n2. AI Business Watch: OpenAI publicly releases chat logs to counter Apple trade secret lawsuit\nWhy it matters: The public airing of internal communications escalates a high-stakes legal battle between two AI giants, with implications for how employee mobility and knowledge transfer are treated in the AI industry.\nCaveat: OpenAI is selectively releasing evidence favorable to its position; Apple's full legal arguments and evidence have not been made public.\nSource: https://openai.com/index/apple-is-getting-this-wrong\nSource: https://www.theverge.com/ai-artificial-intelligence/974914/openai-blog-response-apple-lawsuit-messages\nSource: https://the-decoder.com/openai-fires-back-at-apples-trade-secret-lawsuit-with-chat-logs-showing-apple-employees-kept-texting-their-former-colleague\n3. Policy & Regulation Watch: EU AI Act transparency and labeling obligations take effect across Europe\nWhy it matters: Builders deploying AI-facing products in Europe must now disclose chatbot interactions and AI-generated content, creating concrete compliance obligations for the first time under the AI Act.\nCaveat: Enforcement mechanisms and penalties for non-compliance are still being clarified, so real-world impact may lag the legal effective date.\nSource: https://www.theverge.com/ai-artificial-intelligence/974571/eu-ai-act-transparency-labels-rules-deepfakes\n4. Open Source Watch: China's MiniMax H3 becomes first open-weight model to top AI video benchmark\nWhy it matters: An open-weight model reaching the top of a video generation ranking is a significant milestone, giving developers access to frontier-quality video generation without proprietary API lock-in.\nCaveat: Rankings on AI video leaderboards are often contested and may not reflect real-world production quality across diverse use cases.\nSource: https://the-decoder.com/chinas-minimax-h3-is-the-first-open-model-to-top-an-ai-video-ranking\n5. AI Culture Signal: AI-proctored remote exam fails so badly 58,000 students must retake it\nWhy it matters: The mass retake — driven by a fivefold inflation in top scores — is a stark real-world data point on the risks of deploying AI proctoring at scale without adequate safeguards.\nCaveat: Details on the specific AI system used, the nature of the failures, and who bears accountability for the retake costs are not yet public.\nSource: https://arstechnica.com/culture/2026/08/an-ai-supervised-remote-exam-went-so-badly-that-58000-students-must-retake-it/\n6. Research Breakthrough: IBM finds 92 percent of AI security breach victims lacked basic access controls\nWhy it matters: The finding reframes AI security risk away from model-level vulnerabilities toward infrastructure hygiene, giving builders a concrete and actionable priority for hardening AI deployments.\nCaveat: IBM has commercial interests in security consulting and the report's methodology and sample size have not been independently validated.\nSource: https://the-decoder.com/ibm-finds-92-of-companies-hit-by-ai-security-breaches-lacked-basic-access-controls",
+  "durationSeconds": 679,
+  "byteLength": 16294868,
+  "pubDate": "2026-08-04T13:17:39.807Z",
+  "season": 2026,
+  "episodeNumber": 216,
+  "chaptersFilename": "2026-08-04.chapters.json",
+  "transcriptFilename": "2026-08-04.transcript.txt",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 32,
+      "title": "Intro"
+    },
+    {
+      "startTime": 32,
+      "endTime": 143,
+      "title": "Silicon Valley infighting stalls White..."
+    },
+    {
+      "startTime": 143,
+      "endTime": 255,
+      "title": "OpenAI publicly releases chat logs to..."
+    },
+    {
+      "startTime": 255,
+      "endTime": 349,
+      "title": "EU AI Act transparency and labeling..."
+    },
+    {
+      "startTime": 349,
+      "endTime": 440,
+      "title": "China's MiniMax H3 becomes first..."
+    },
+    {
+      "startTime": 440,
+      "endTime": 537,
+      "title": "AI-proctored remote exam fails so badly..."
+    },
+    {
+      "startTime": 537,
+      "endTime": 622,
+      "title": "IBM finds 92 percent of AI security..."
+    },
+    {
+      "startTime": 622,
+      "endTime": 679,
+      "title": "Outro"
+    }
+  ],
+  "soundbites": [
+    {
+      "startTime": 32,
+      "duration": 109,
+      "title": "Silicon Valley infighting stalls White..."
+    },
+    {
+      "startTime": 143,
+      "duration": 110,
+      "title": "OpenAI publicly releases chat logs to..."
+    },
+    {
+      "startTime": 255,
+      "duration": 93,
+      "title": "EU AI Act transparency and labeling..."
+    },
+    {
+      "startTime": 349,
+      "duration": 89,
+      "title": "China's MiniMax H3 becomes first..."
+    },
+    {
+      "startTime": 440,
+      "duration": 95,
+      "title": "AI-proctored remote exam fails so badly..."
+    },
+    {
+      "startTime": 537,
+      "duration": 84,
+      "title": "IBM finds 92 percent of AI security..."
+    }
+  ],
+  "curation": [
+    {
+      "canonicalKey": "white-house-chinese-ai-ban-pushback",
+      "headline": "Silicon Valley infighting stalls White House plans to ban Chinese open-source AI",
+      "whyItMatters": "The internal split — with OpenAI and Anthropic pushing for restrictions while Nvidia, Google, and Meta resist — reveals how deeply geopolitical AI policy is now entangled with commercial interests, and a decision before Xi's September visit could reshape open-source access globally.",
+      "caveat": "The report relies on unnamed sources and the situation remains fluid, with a final decision still pending.",
+      "importance": 82,
+      "category": "policy-regulation"
+    },
+    {
+      "canonicalKey": "openai-apple-trade-secret-lawsuit-response",
+      "headline": "OpenAI publicly releases chat logs to counter Apple trade secret lawsuit",
+      "whyItMatters": "The public airing of internal communications escalates a high-stakes legal battle between two AI giants, with implications for how employee mobility and knowledge transfer are treated in the AI industry.",
+      "caveat": "OpenAI is selectively releasing evidence favorable to its position; Apple's full legal arguments and evidence have not been made public.",
+      "importance": 78,
+      "category": "business"
+    },
+    {
+      "canonicalKey": "eu-ai-act-transparency-rules-live",
+      "headline": "EU AI Act transparency and labeling obligations take effect across Europe",
+      "whyItMatters": "Builders deploying AI-facing products in Europe must now disclose chatbot interactions and AI-generated content, creating concrete compliance obligations for the first time under the AI Act.",
+      "caveat": "Enforcement mechanisms and penalties for non-compliance are still being clarified, so real-world impact may lag the legal effective date.",
+      "importance": 76,
+      "category": "policy-regulation"
+    },
+    {
+      "canonicalKey": "minimax-h3-open-video-model-top-ranking",
+      "headline": "China's MiniMax H3 becomes first open-weight model to top AI video benchmark",
+      "whyItMatters": "An open-weight model reaching the top of a video generation ranking is a significant milestone, giving developers access to frontier-quality video generation without proprietary API lock-in.",
+      "caveat": "Rankings on AI video leaderboards are often contested and may not reflect real-world production quality across diverse use cases.",
+      "importance": 74,
+      "category": "open-source"
+    },
+    {
+      "canonicalKey": "ai-exam-proctoring-failure-58000-students",
+      "headline": "AI-proctored remote exam fails so badly 58,000 students must retake it",
+      "whyItMatters": "The mass retake — driven by a fivefold inflation in top scores — is a stark real-world data point on the risks of deploying AI proctoring at scale without adequate safeguards.",
+      "caveat": "Details on the specific AI system used, the nature of the failures, and who bears accountability for the retake costs are not yet public.",
+      "importance": 72,
+      "category": "culture"
+    },
+    {
+      "canonicalKey": "ibm-ai-security-breach-access-controls",
+      "headline": "IBM finds 92 percent of AI security breach victims lacked basic access controls",
+      "whyItMatters": "The finding reframes AI security risk away from model-level vulnerabilities toward infrastructure hygiene, giving builders a concrete and actionable priority for hardening AI deployments.",
+      "caveat": "IBM has commercial interests in security consulting and the report's methodology and sample size have not been independently validated.",
+      "importance": 68,
+      "category": "research"
+    }
+  ],
+  "curationReport": {
+    "threshold": 45,
+    "maxStories": 6,
+    "total": 8,
+    "selectedCount": 6,
+    "droppedCount": 2,
+    "clusters": [
+      {
+        "canonicalKey": "white-house-chinese-ai-ban-pushback",
+        "category": "policy-regulation",
+        "headline": "Silicon Valley infighting stalls White House plans to ban Chinese open-source AI",
+        "importance": 82,
+        "selected": true
+      },
+      {
+        "canonicalKey": "openai-apple-trade-secret-lawsuit-response",
+        "category": "business",
+        "headline": "OpenAI publicly releases chat logs to counter Apple trade secret lawsuit",
+        "importance": 78,
+        "selected": true
+      },
+      {
+        "canonicalKey": "eu-ai-act-transparency-rules-live",
+        "category": "policy-regulation",
+        "headline": "EU AI Act transparency and labeling obligations take effect across Europe",
+        "importance": 76,
+        "selected": true
+      },
+      {
+        "canonicalKey": "minimax-h3-open-video-model-top-ranking",
+        "category": "open-source",
+        "headline": "China's MiniMax H3 becomes first open-weight model to top AI video benchmark",
+        "importance": 74,
+        "selected": true
+      },
+      {
+        "canonicalKey": "ai-exam-proctoring-failure-58000-students",
+        "category": "culture",
+        "headline": "AI-proctored remote exam fails so badly 58,000 students must retake it",
+        "importance": 72,
+        "selected": true
+      },
+      {
+        "canonicalKey": "ibm-ai-security-breach-access-controls",
+        "category": "research",
+        "headline": "IBM finds 92 percent of AI security breach victims lacked basic access controls",
+        "importance": 68,
+        "selected": true
+      },
+      {
+        "canonicalKey": "interpol-ai-cybercrime-africa",
+        "category": "policy-regulation",
+        "headline": "Interpol reports AI now drives 55 percent of cybercrime cases across Africa",
+        "importance": 65,
+        "selected": false,
+        "dropReason": "over_cap"
+      },
+      {
+        "canonicalKey": "trump-ai-protectionism-robotics",
+        "category": "policy-regulation",
+        "headline": "Trump administration extends AI protectionism to humanoid robotics sector",
+        "importance": 63,
+        "selected": false,
+        "dropReason": "over_cap"
+      }
+    ]
+  }
+}

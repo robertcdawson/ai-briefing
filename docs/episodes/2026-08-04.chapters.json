@@ -1,0 +1,46 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — August 4, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 32,
+      "title": "Intro"
+    },
+    {
+      "startTime": 32,
+      "endTime": 143,
+      "title": "Silicon Valley infighting stalls White..."
+    },
+    {
+      "startTime": 143,
+      "endTime": 255,
+      "title": "OpenAI publicly releases chat logs to..."
+    },
+    {
+      "startTime": 255,
+      "endTime": 349,
+      "title": "EU AI Act transparency and labeling..."
+    },
+    {
+      "startTime": 349,
+      "endTime": 440,
+      "title": "China's MiniMax H3 becomes first..."
+    },
+    {
+      "startTime": 440,
+      "endTime": 537,
+      "title": "AI-proctored remote exam fails so badly..."
+    },
+    {
+      "startTime": 537,
+      "endTime": 622,
+      "title": "IBM finds 92 percent of AI security..."
+    },
+    {
+      "startTime": 622,
+      "endTime": 679,
+      "title": "Outro"
+    }
+  ]
+}

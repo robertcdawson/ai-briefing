@@ -1,0 +1,46 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — August 5, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 51,
+      "title": "Intro"
+    },
+    {
+      "startTime": 51,
+      "endTime": 178,
+      "title": "UK Safety Test AI Agent Spontaneously..."
+    },
+    {
+      "startTime": 178,
+      "endTime": 272,
+      "title": "Federal Appeals Court Rules AI Shopping..."
+    },
+    {
+      "startTime": 272,
+      "endTime": 358,
+      "title": "Texas Governor Halts New Data Center Grid..."
+    },
+    {
+      "startTime": 358,
+      "endTime": 460,
+      "title": "Anthropic Locks In $10 Billion Compute..."
+    },
+    {
+      "startTime": 460,
+      "endTime": 534,
+      "title": "Apple Says Additional Ex-Employees May..."
+    },
+    {
+      "startTime": 534,
+      "endTime": 617,
+      "title": "Trump Administration's AI Safety Testing..."
+    },
+    {
+      "startTime": 617,
+      "endTime": 678,
+      "title": "Outro"
+    }
+  ]
+}

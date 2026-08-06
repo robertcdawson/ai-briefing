@@ -241,25 +241,47 @@ Acceptable for v1. For a hard local-time guarantee, drive `workflow_dispatch` fr
 
 Optional: set `HEALTHCHECK_URL` (Actions secret) so a Healthchecks.io-style check alerts when a weekday run never pings success. Expected period ~25h absorbs remaining jitter.
 
+## Publish verification
+
+A commit is not a publish. The pipeline writes `docs/` and pushes; GitHub Pages then deploys that commit as a **separate system that fails independently**. On 2026-08-06 the episode generated, committed, and pushed cleanly, but the Pages deploy sat in `deployment_queued` until the action timed out and cancelled it. The episode was in the repo and absent from the feed, every pipeline step was green, and the healthcheck reported a normal day. Nothing surfaced it — it was noticed because the episode didn't show up in Apple Podcasts.
+
+The `Verify published feed` step in `.github/workflows/daily.yml` closes that loop by checking the only thing that actually matters: **is today's episode readable at the public feed URL?**
+
+1. Poll `$FEED_BASE_URL/feed.xml` (cache-busted) for up to 8 minutes, looking for `<guid>ai-briefing-YYYY-MM-DD</guid>`.
+2. If it's missing, push an **empty commit** to trigger a fresh Pages deployment. This is deliberate — re-running the failed deploy queues behind the same stuck deployment, while a new push creates a new one.
+3. Poll again for up to 10 minutes. If it's still missing, ping `HEALTHCHECK_URL/fail` and fail the run.
+
+The step runs **even when there was nothing to commit**, which is what turns the backup cron into a recovery path: a run that skips generation because the episode is already on disk will still republish it if it's missing from the live feed. Under the old code that path exited early and pinged success, so a stuck deploy stayed stuck until the next day's commit happened to redeploy the site.
+
+Run it by hand against the live feed:
+
+```bash
+FEED_BASE_URL=https://<user>.github.io/ai-briefing npx tsx scripts/verify-deploy.ts
+```
+
+`VERIFY_TIMEOUT_MS` overrides the poll window; `--quiet` suppresses the failure ping (used for the first probe, so a deploy the retry is about to fix doesn't page anyone).
+
 ## Retention
 
 Two layers of expiry, both deliberate:
 
 | Layer | Window | Behavior |
 |---|---|---|
-| `feed.xml` listing | Last **30 episodes** | Older episodes drop out of the RSS feed |
-| Disk (and git history going forward) | Last **90 days** | Older episode `.mp3`, `.json`, chapter, and transcript files are deleted on each run |
+| `feed.xml` listing | Last **14 episodes** | Older episodes drop out of the RSS feed |
+| Disk (and git history going forward) | Last **21 days** | Older episode `.mp3`, `.json`, chapter, and transcript files are deleted on each run |
 
-The 90-day disk cap prevents the repo from ballooning past GitHub's 1 GB recommendation (~5–7 MB × 365 days would otherwise be ~2 GB after a year).
+**The two windows are coupled, and that coupling is the whole point.** The pruner never deletes a file whose date is still listed in `feed.xml` — that safety belt means a retention misconfiguration can't strand a feed entry pointing at a deleted file. It also means `RETENTION_DAYS` shorter than the feed's calendar span does nothing, and `RETENTION_DAYS` much longer than it lets disk grow independently of the feed. 21 days is the calendar span of 14 weekday episodes plus a small buffer, so the two agree and `docs/` settles at ~14 episodes.
 
-**Safety belt:** the pruner never deletes a file whose date is still listed in `feed.xml`, so a retention-window misconfiguration can't break the live feed.
+Sizing matters more than it looks: GitHub Pages enforces a hard **1 GB** limit on the published site, and a failed deploy is silent from the pipeline's point of view. Episodes run ~16 MB, so 14 episodes is ~225 MB — comfortable headroom. The earlier 30-episode/90-day settings held ~70 episodes (780 MB) and were growing ~7.5 MB per weekday, which would have crossed 1 GB and started failing deploys.
 
-To change either window, edit the constants at the top of `src/publish.ts`:
+To change either window, edit the constants at the top of `src/publish.ts` — and move both together:
 
 ```ts
-const FEED_LIMIT = 30;       // episodes listed in feed.xml
-const RETENTION_DAYS = 90;   // disk retention
+export const FEED_LIMIT = 14;      // episodes listed in feed.xml
+export const RETENTION_DAYS = 21;  // disk retention; must cover FEED_LIMIT weekdays
 ```
+
+`test/publish.retention.test.ts` pins the relationship, so a change that decouples them fails the suite rather than silently changing behavior.
 
 Already-deleted MP3s **remain in earlier git commits** — pruning only stops new commits from carrying them. If you want to fully shrink the repo, you'd need a separate one-time `git filter-repo` pass; not part of the daily pipeline.
 

@@ -51,6 +51,11 @@ try {
       },
       { kind: "outro", title: "Outro", startTime: 50, durationSeconds: 10 },
     ],
+    undefined,
+    undefined,
+    // Publishes into the repo's real docs/episodes/; pruning here would enforce
+    // RETENTION_DAYS on the actual archive. See publish.apple-rss.test.ts.
+    { prune: false },
   );
   const xml = await readFile(FEED_PATH, "utf8");
 

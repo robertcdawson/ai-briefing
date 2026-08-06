@@ -10,8 +10,15 @@ import { logJson } from "./util.js";
 const DOCS_DIR = "docs";
 const EPISODES_DIR = path.join(DOCS_DIR, "episodes");
 const FEED_PATH = path.join(DOCS_DIR, "feed.xml");
-const FEED_LIMIT = 30;
-const RETENTION_DAYS = 90;
+// Episodes listed in feed.xml. Also the floor for on-disk retention: prune never
+// deletes a date that is still in the feed (see pruneOldEpisodes).
+export const FEED_LIMIT = 14;
+// On-disk grace window. Must stay >= the calendar span of FEED_LIMIT weekday
+// episodes (14 weekdays ~= 20 days) or it has no effect — the keepDates guard
+// already protects everything in the feed. Together these bound docs/episodes/
+// at ~FEED_LIMIT episodes, which is what keeps the GitHub Pages site under its
+// 1 GB limit.
+export const RETENTION_DAYS = 21;
 const PODCAST_GUID_NAMESPACE = "ead4c236-bf58-58c6-a2c6-a6b28d128cb6";
 export const EPISODE_ASSET_PATTERN = /^(\d{4}-\d{2}-\d{2})(?:\.mp3|\.json|\.chapters\.json|\.transcript\.txt)$/;
 
@@ -105,6 +112,10 @@ export async function publish(
   partTimings: EpisodePartTiming[] = [],
   airedClusters: StoryCluster[] = [],
   curationReport?: CurationReport,
+  // Pruning deletes real files under docs/episodes/. Tests that exercise publish()
+  // against the working tree must pass { prune: false } — otherwise they enforce
+  // the retention window on the repo's actual episode archive as a side effect.
+  opts: { prune?: boolean } = {},
 ): Promise<PublishResult> {
   const started = Date.now();
   const baseUrl = process.env.FEED_BASE_URL;
@@ -177,7 +188,9 @@ export async function publish(
     JSON.stringify(record, null, 2),
   );
 
-  const { feedItemCount, feedBytes, pruned } = await writePodcastFeed(trimmedBase, metadata);
+  const { feedItemCount, feedBytes, pruned } = await writePodcastFeed(trimmedBase, metadata, {
+    prune: opts.prune !== false,
+  });
 
   logJson({
     phase: "publish",
@@ -301,11 +314,11 @@ export function shouldPruneEpisodeFile(
 
 export async function pruneOldEpisodes(
   keepDates: Set<string>,
-  opts: { episodesDir?: string; referenceDate?: string } = {},
+  opts: { episodesDir?: string; referenceDate?: string; retentionDays?: number } = {},
 ): Promise<string[]> {
   const targetDir = opts.episodesDir ?? EPISODES_DIR;
   const referenceDate = opts.referenceDate ?? new Date().toISOString().slice(0, 10);
-  const cutoffStr = resolveRetentionCutoff(referenceDate, RETENTION_DAYS);
+  const cutoffStr = resolveRetentionCutoff(referenceDate, opts.retentionDays ?? RETENTION_DAYS);
 
   const entries = await readdir(targetDir, { withFileTypes: true }).catch(() => []);
   const pruned: string[] = [];

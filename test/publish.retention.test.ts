@@ -4,6 +4,8 @@ import os from "node:os";
 import path from "node:path";
 import test from "node:test";
 import {
+  FEED_LIMIT,
+  RETENTION_DAYS,
   pruneOldEpisodes,
   resolveRetentionCutoff,
   shouldPruneEpisodeFile,
@@ -50,6 +52,7 @@ test("pruneOldEpisodes deletes expired asset families without stranding feed-lis
     const pruned = await pruneOldEpisodes(new Set(["2026-02-01"]), {
       episodesDir: dir,
       referenceDate: "2026-07-06",
+      retentionDays: 90,
     });
     assert.deepEqual(pruned.sort(), [
       "2026-03-01.chapters.json",
@@ -66,6 +69,46 @@ test("pruneOldEpisodes deletes expired asset families without stranding feed-lis
       "2026-05-01.json",
       "podcast-cover.jpg",
     ]);
+  } finally {
+    await rm(dir, { recursive: true, force: true });
+  }
+});
+
+test("shipped retention window covers the calendar span of a full feed", () => {
+  // The keepDates guard already protects everything in the feed, so RETENTION_DAYS
+  // only does work beyond that span. Set it shorter than the feed and the feed
+  // silently becomes the real retention policy; set it much longer (the old 90)
+  // and disk grows unbounded relative to the feed. FEED_LIMIT weekdays spans
+  // ceil(FEED_LIMIT / 5) weekends' worth of extra days.
+  const weekdaySpanDays = FEED_LIMIT + 2 * Math.ceil(FEED_LIMIT / 5);
+  assert.ok(
+    RETENTION_DAYS >= weekdaySpanDays,
+    `RETENTION_DAYS (${RETENTION_DAYS}) must cover ${weekdaySpanDays} days of weekday episodes`,
+  );
+  assert.ok(
+    RETENTION_DAYS <= weekdaySpanDays + 7,
+    `RETENTION_DAYS (${RETENTION_DAYS}) keeps far more on disk than the ${FEED_LIMIT}-episode feed`,
+  );
+});
+
+test("shipped constants prune episodes that have aged out of the feed", async () => {
+  const dir = await makeTempEpisodesDir({
+    // In the feed — always kept, regardless of age.
+    "2026-08-06.mp3": "current audio",
+    "2026-08-06.json": "{}",
+    // Off the feed and outside the retention window — the case that keeps
+    // docs/ under the GitHub Pages 1 GB limit.
+    "2026-06-01.mp3": "stale audio",
+    "2026-06-01.transcript.txt": "stale transcript",
+  });
+
+  try {
+    const pruned = await pruneOldEpisodes(new Set(["2026-08-06"]), {
+      episodesDir: dir,
+      referenceDate: "2026-08-06",
+    });
+    assert.deepEqual(pruned.sort(), ["2026-06-01.mp3", "2026-06-01.transcript.txt"]);
+    assert.deepEqual((await readdir(dir)).sort(), ["2026-08-06.json", "2026-08-06.mp3"]);
   } finally {
     await rm(dir, { recursive: true, force: true });
   }

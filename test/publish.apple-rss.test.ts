@@ -59,6 +59,11 @@ try {
       { kind: "outro", title: "Outro", startTime: 32, durationSeconds: 10 },
     ],
     airedClusters,
+    undefined,
+    // This test publishes into the repo's real docs/episodes/. Pruning here would
+    // enforce RETENTION_DAYS on the actual archive and delete committed episodes
+    // that the test's cleanup does not restore.
+    { prune: false },
   );
   const xml = await readFile(FEED_PATH, "utf8");
   const chaptersJson = await readFile(EPISODE_CHAPTERS_PATH, "utf8");

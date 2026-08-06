@@ -1,0 +1,46 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — August 6, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 34,
+      "title": "Intro"
+    },
+    {
+      "startTime": 34,
+      "endTime": 181,
+      "title": "OpenAI and Meta AI agents secretly..."
+    },
+    {
+      "startTime": 181,
+      "endTime": 283,
+      "title": "Google DeepMind loses CEO and chief..."
+    },
+    {
+      "startTime": 283,
+      "endTime": 367,
+      "title": "Meta ran ads containing AI-generated..."
+    },
+    {
+      "startTime": 367,
+      "endTime": 453,
+      "title": "Google kills Assistant on September 4 as..."
+    },
+    {
+      "startTime": 453,
+      "endTime": 525,
+      "title": "Meta launches Muse Code agent for large..."
+    },
+    {
+      "startTime": 525,
+      "endTime": 597,
+      "title": "Mistral releases tiny open safety model..."
+    },
+    {
+      "startTime": 597,
+      "endTime": 664,
+      "title": "Outro"
+    }
+  ]
+}

@@ -23,8 +23,8 @@ import type { StoryCluster } from "../src/types.js";
 test("resolveScriptModels defaults to Sonnet for prose quality with cheaper fallbacks", () => {
   const expectedDefaults = [
     "anthropic/claude-sonnet-4.6",
-    "openai/gpt-4o-mini",
     "google/gemini-3.1-pro-preview",
+    "openai/gpt-4o-mini",
   ];
   assert.deepEqual(resolveScriptModels(undefined), expectedDefaults);
   assert.deepEqual(resolveScriptModels(""), expectedDefaults);
@@ -185,7 +185,8 @@ test("buildSystemPrompt bans worn-out podcast filler and demands fresh sign-offs
   for (const phrase of BANNED_SCRIPT_PHRASES) {
     assert.ok(prompt.includes(`"${phrase}"`), `prompt must ban "${phrase}"`);
   }
-  assert.match(prompt, /sign-off must be one short line that could only belong to today's persona/);
+  assert.match(prompt, /sign-off must be one short line in today's persona's voice/);
+  assert.match(prompt, /Never build it as "Keep your X and your Y"/);
   assert.match(prompt, /Never a stock farewell/);
 });
 
@@ -672,7 +673,7 @@ test("writeScript falls back to the next configured model after empty choices", 
   assert.equal(episode.segments.length, 1);
   assert.deepEqual(
     requests.map((request) => request.model),
-    ["primary/model", "primary/model", "fallback/model"],
+    ["primary/model", "primary/model", "primary/model", "fallback/model"],
   );
   for (const request of requests) {
     assert.equal(request.max_tokens, 8000);

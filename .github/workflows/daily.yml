@@ -22,7 +22,8 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    # Covers the pipeline plus the two publish-verification windows below.
+    timeout-minutes: 60
     steps:
       - name: Checkout
         uses: actions/checkout@v6.0.2
@@ -110,3 +111,48 @@ jobs:
           git fetch origin "$branch"
           git rebase "origin/$branch"
           git push origin "HEAD:$branch"
+
+      # A commit is not a publish. GitHub Pages deploys the pushed commit as a
+      # separate, independently-failing system — on 2026-08-06 that deploy sat in
+      # `deployment_queued` until it timed out and was cancelled, so the episode
+      # was in the repo but never reached the feed and nothing alerted. This step
+      # verifies the episode is readable at the public URL, retriggers the deploy
+      # once if it is not, and fails the run if it still is not.
+      #
+      # It runs even when the commit step found nothing to commit, which is what
+      # makes the backup cron a recovery path: a run that skips generation still
+      # republishes an episode that is on disk but missing from the live feed.
+      - name: Verify published feed
+        env:
+          FEED_BASE_URL: ${{ vars.FEED_BASE_URL }}
+          EPISODE_TIME_ZONE: ${{ vars.EPISODE_TIME_ZONE }}
+          HEALTHCHECK_URL: ${{ secrets.HEALTHCHECK_URL }}
+          DAILY_PUSH_DEPLOY_KEY: ${{ secrets.DAILY_PUSH_DEPLOY_KEY }}
+        run: |
+          if VERIFY_TIMEOUT_MS=480000 npx tsx scripts/verify-deploy.ts --quiet; then
+            echo "Episode is live in the published feed."
+            exit 0
+          fi
+
+          echo "Episode is not in the published feed — retriggering the Pages deployment."
+
+          deploy_key="$(mktemp)"
+          trap 'rm -f "$deploy_key"' EXIT
+          printf '%s\n' "$DAILY_PUSH_DEPLOY_KEY" > "$deploy_key"
+          chmod 600 "$deploy_key"
+          export GIT_SSH_COMMAND="ssh -i $deploy_key -o IdentitiesOnly=yes -o StrictHostKeyChecking=accept-new"
+
+          git config user.email "actions@github.com"
+          git config user.name "github-actions"
+          branch="${{ github.ref_name }}"
+          git remote set-url origin "git@github.com:${{ github.repository }}.git"
+          git fetch origin "$branch"
+          git reset --hard "origin/$branch"
+
+          # An empty commit, not a re-run of the failed deploy: a re-run queues
+          # behind the same stuck deployment (confirmed on 2026-08-06), while a
+          # fresh push creates a new one.
+          git commit --allow-empty -m "Redeploy Pages for $(TZ="${EPISODE_TIME_ZONE:-America/Los_Angeles}" date +%Y-%m-%d)"
+          git push origin "HEAD:$branch"
+
+          npx tsx scripts/verify-deploy.ts

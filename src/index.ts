@@ -3,6 +3,7 @@ import { rm } from "node:fs/promises";
 import { fetchAll } from "./fetch.js";
 import { curate } from "./curate.js";
 import { writeScript } from "./script.js";
+import { loadRecentStyleSnippets } from "./ledger.js";
 import { synthesize } from "./tts.js";
 import { buildEpisodeAudio } from "./audio.js";
 import { resolveEpisodeDate } from "./episode-date.js";
@@ -64,7 +65,14 @@ async function main(): Promise<void> {
     });
 
     const scriptStart = Date.now();
-    const episode = await withStageCache("script", { date, clusters }, () => writeScript(date, clusters));
+    // Non-blocking: [] on any failure. Included in the stage-cache key so a
+    // change in the anti-repetition examples invalidates a cached script.
+    const recentStyle = await loadRecentStyleSnippets(date);
+    const episode = await withStageCache(
+      "script",
+      { date, clusters, recentStyle },
+      () => writeScript(date, clusters, { recentStyle }),
+    );
     logJson({
       phase: "pipeline.step",
       step: "script",

@@ -3,7 +3,11 @@ import test from "node:test";
 import { mkdtemp, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
 import os from "node:os";
-import { loadRecentCoverage } from "../src/ledger.js";
+import {
+  loadRecentCoverage,
+  loadRecentStyleSnippets,
+  parseTranscriptStyleSnippets,
+} from "../src/ledger.js";
 import type { CurationRecord } from "../src/types.js";
 
 /** Build a minimal sidecar JSON with optional curation records. */
@@ -236,4 +240,119 @@ test("custom windowDays parameter limits the window correctly", async () => {
   } finally {
     await rm(dir, { recursive: true, force: true });
   }
+});
+
+// ---------------------------------------------------------------------------
+// Style snippets: transcript parsing (buildTranscript format from publish.ts)
+// ---------------------------------------------------------------------------
+
+/** Build a transcript exactly the way buildTranscript in publish.ts does. */
+function makeTranscript(date: string, options?: { signOff?: string }): string {
+  const signOff = options?.signOff ?? "The evidence is in. Back tomorrow with the next lead.";
+  return [
+    `AI Briefing — Episode ${date}`,
+    `Date: ${date}`,
+    "",
+    "Intro",
+    "",
+    "An AI agent went rogue during safety testing this week. Nobody told it to.",
+    "",
+    "It is a strange day for the industry, and this is the setup paragraph.",
+    "",
+    "Top Story: Something Happened",
+    "",
+    "First segment chunk with detail.",
+    "",
+    "Second segment chunk with more detail.",
+    "Source: https://example.com/story-1",
+    "",
+    "Outro",
+    "",
+    "One question hangs over all of this: who checks the results?",
+    "",
+    signOff,
+    "",
+  ].join("\n");
+}
+
+test("parseTranscriptStyleSnippets extracts intro opener, outro opener, and sign-off", () => {
+  const parsed = parseTranscriptStyleSnippets("2026-08-05", makeTranscript("2026-08-05"));
+
+  assert.ok(parsed, "transcript in the standard layout must parse");
+  assert.equal(parsed.episodeDate, "2026-08-05");
+  assert.equal(
+    parsed.introOpener,
+    "An AI agent went rogue during safety testing this week.",
+  );
+  assert.equal(
+    parsed.outroOpener,
+    "One question hangs over all of this: who checks the results?",
+  );
+  assert.equal(parsed.signOff, "The evidence is in. Back tomorrow with the next lead.");
+});
+
+test("parseTranscriptStyleSnippets truncates long snippets to about 30 words", () => {
+  const longSentence = `${Array.from({ length: 45 }, (_, i) => `word${i + 1}`).join(" ")}.`;
+  const transcript = [
+    "Title",
+    "Date: 2026-08-05",
+    "",
+    "Intro",
+    "",
+    longSentence,
+    "",
+    "Outro",
+    "",
+    "Short closing thought.",
+    "",
+    "Short sign-off.",
+    "",
+  ].join("\n");
+
+  const parsed = parseTranscriptStyleSnippets("2026-08-05", transcript);
+  assert.ok(parsed);
+  assert.equal(parsed.introOpener.split(/\s+/).length, 30);
+  assert.ok(parsed.introOpener.endsWith("…"));
+});
+
+test("parseTranscriptStyleSnippets returns undefined for layouts it cannot parse", () => {
+  assert.equal(parseTranscriptStyleSnippets("2026-05-19", "The Anchor: welcome back."), undefined);
+  assert.equal(parseTranscriptStyleSnippets("2026-05-19", ""), undefined);
+  // Outro header but no Intro header
+  assert.equal(
+    parseTranscriptStyleSnippets("2026-05-19", ["Outro", "", "Closing."].join("\n")),
+    undefined,
+  );
+});
+
+test("loadRecentStyleSnippets returns the most recent transcripts before today, newest first", async () => {
+  const dir = await makeTempDir({
+    "2026-08-01.transcript.txt": makeTranscript("2026-08-01", { signOff: "Sign-off one." }),
+    "2026-08-02.transcript.txt": makeTranscript("2026-08-02", { signOff: "Sign-off two." }),
+    "2026-08-03.transcript.txt": makeTranscript("2026-08-03", { signOff: "Sign-off three." }),
+    // today: must be excluded
+    "2026-08-04.transcript.txt": makeTranscript("2026-08-04", { signOff: "Sign-off today." }),
+    // unparseable legacy transcript: skipped silently
+    "2026-07-30.transcript.txt": "The Anchor: legacy two-host format.",
+    // non-transcript files: ignored
+    "2026-08-02.json": "{}",
+  });
+
+  try {
+    const snippets = await loadRecentStyleSnippets("2026-08-04", 2, dir);
+
+    assert.equal(snippets.length, 2);
+    assert.deepEqual(
+      snippets.map((s) => s.episodeDate),
+      ["2026-08-03", "2026-08-02"],
+    );
+    assert.equal(snippets[0]!.signOff, "Sign-off three.");
+  } finally {
+    await rm(dir, { recursive: true, force: true });
+  }
+});
+
+test("loadRecentStyleSnippets returns [] for a missing directory", async () => {
+  const nonexistent = path.join(os.tmpdir(), `ledger-style-nonexistent-${Date.now()}`);
+  assert.deepEqual(await loadRecentStyleSnippets("2026-08-04", 8, nonexistent), []);
 });

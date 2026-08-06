@@ -1,12 +1,15 @@
 import "dotenv/config";
 import OpenAI from "openai";
 import type { ChatCompletion } from "openai/resources/chat/completions";
+import { loadRecentStyleSnippets } from "../src/ledger.js";
+import { loadAllRecords } from "../src/publish.js";
 import {
   buildScriptCompletionParams,
   resolveScriptModel,
   resolveScriptTimeoutMs,
   selectDailyPersona,
   type ScriptCompletionParams,
+  type ScriptResponse,
   validateScriptResponse,
 } from "../src/script.js";
 import type { StoryCluster } from "../src/types.js";
@@ -58,22 +61,77 @@ async function main(): Promise<void> {
     probes: ["minimal_schema", "script_schema"],
   });
 
+  const { clusters, realEpisode } = await resolveProbeClusters();
+  logJson({
+    phase: "diagnostic.clusters",
+    realEpisode,
+    clusters: clusters.length,
+    date: process.env.EPISODE_DATE,
+  });
+
   const minimalOk = await runProbe(
     client,
     "minimal_schema",
     buildMinimalCompletionParams(model),
     timeoutMs,
+    clusters,
   );
   const scriptOk = await runProbe(
     client,
     "script_schema",
-    buildProductionScriptProbeParams(model),
+    await buildProductionScriptProbeParams(model, clusters),
     timeoutMs,
+    clusters,
   );
 
   if (!minimalOk || !scriptOk) {
     process.exitCode = 1;
   }
+}
+
+/**
+ * Real-episode mode: when EPISODE_DATE names a published episode whose sidecar
+ * carries curation records, replay those stories through the current prompt so
+ * prompt changes can be compared against the actually-published transcript.
+ * Sidecars don't store per-story source URLs, so a placeholder source stands in.
+ */
+async function resolveProbeClusters(): Promise<{
+  clusters: StoryCluster[];
+  realEpisode: boolean;
+}> {
+  const date = process.env.EPISODE_DATE;
+  if (!date) return { clusters: SCRIPT_PROBE_CLUSTERS, realEpisode: false };
+
+  const records = await loadAllRecords();
+  const record = records.find((r) => r.date === date);
+  if (!record || !Array.isArray(record.curation) || record.curation.length === 0) {
+    return { clusters: SCRIPT_PROBE_CLUSTERS, realEpisode: false };
+  }
+
+  const clusters = record.curation.map((cr, index) => ({
+    canonicalKey: cr.canonicalKey,
+    category: cr.category,
+    headline: cr.headline,
+    whyItMatters: cr.whyItMatters,
+    caveat: cr.caveat,
+    importance: cr.importance,
+    sources: [
+      {
+        publisher: "Replayed Episode",
+        url: `https://example.com/replay/${date}/story-${index + 1}`,
+      },
+    ],
+  }));
+  return { clusters, realEpisode: true };
+}
+
+function printGeneratedScript(response: ScriptResponse): void {
+  const parts: string[] = ["", "===== GENERATED SCRIPT =====", "", ...response.intro];
+  for (const segment of response.segments) {
+    parts.push("", `## ${segment.title}`, "", ...segment.chunks);
+  }
+  parts.push("", "## Outro", "", ...response.outro, "", "===== END SCRIPT =====");
+  console.log(parts.join("\n"));
 }
 
 function buildMinimalCompletionParams(model: string): ScriptCompletionParams {
@@ -106,13 +164,18 @@ function buildMinimalCompletionParams(model: string): ScriptCompletionParams {
   };
 }
 
-function buildProductionScriptProbeParams(model: string): ScriptCompletionParams {
+async function buildProductionScriptProbeParams(
+  model: string,
+  clusters: StoryCluster[],
+): Promise<ScriptCompletionParams> {
   const date = process.env.EPISODE_DATE ?? new Date().toISOString().slice(0, 10);
+  const recentStyle = await loadRecentStyleSnippets(date).catch(() => []);
   return buildScriptCompletionParams(
     model,
     selectDailyPersona(date),
     date,
-    SCRIPT_PROBE_CLUSTERS,
+    clusters,
+    { recentStyle },
   );
 }
 
@@ -121,6 +184,7 @@ async function runProbe(
   label: string,
   params: ScriptCompletionParams,
   timeoutMs: number,
+  clusters: StoryCluster[],
 ): Promise<boolean> {
   const started = Date.now();
   logJson({
@@ -183,7 +247,8 @@ async function runProbe(
   try {
     const parsed = JSON.parse(content);
     if (label === "script_schema") {
-      validateScriptResponse(parsed, SCRIPT_PROBE_CLUSTERS);
+      validateScriptResponse(parsed, clusters);
+      printGeneratedScript(parsed as ScriptResponse);
     }
   } catch (err) {
     logJson({

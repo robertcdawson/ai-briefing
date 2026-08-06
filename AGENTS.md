@@ -58,3 +58,4 @@ Copy `.env.example` to `.env` and fill in. `npm test` and `npm run build` work w
 - **Full pipeline run** (`npm start`) writes output files to `docs/episodes/` and regenerates `docs/feed.xml`. These changes should not be committed in dev unless intentional.
 - **Already-published skip:** if both `docs/episodes/YYYY-MM-DD.json` and `.mp3` exist for today's episode date, `npm start` exits before preflight/paid stages (backup-cron / same-day re-run guard). Delete those files locally only when you intentionally want to regenerate.
 - **Fetch vs curate dedup:** `src/fetch.ts` drops duplicate/tracking-variant URLs before curation; `src/curate.ts` still clusters different URLs about the same story. See `CONCEPTS.md` and `docs/solutions/best-practices/fetch-url-deduplication-before-curation.md`.
+

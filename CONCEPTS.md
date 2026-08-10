@@ -44,3 +44,19 @@ A Story Cluster that is a development of something already covered, aired as a c
 
 ### Suppression
 Dropping a Story Cluster from an Episode because it was already covered and has not materially developed, freeing its slot for genuinely new stories. The opposite outcome to a Follow-up for a recurring story.
+
+## Script voice & anti-repetition
+
+### Style snippets
+Intro-opener, outro-opener, and sign-off excerpts parsed from recent on-disk transcripts (`YYYY-MM-DD.transcript.txt`). The script step loads the last ~8 prior episodes via `loadRecentStyleSnippets` and injects them as a **RECENTLY USED** do-not-reuse block so openings, closings, and farewells do not recycle yesterday's phrasing. Zero extra API calls; included in the script stage-cache key. Distinct from the Curation Ledger (story coverage vs prose shape).
+
+### Intro / outro move
+A deterministic per-day structural instruction for how the opening or closing should be shaped (`INTRO_MOVES` / `OUTRO_MOVES` in `src/script.ts`), selected by a salted `stableHash` of the episode date so it rotates independently of the daily persona. Prescribing a different *move* each day reduces collapse into one outro mold when the model is only told "write something fresh."
+
+### Outro mold validator
+Hard-fail regex checks on the generated closing (e.g. "pull/step/zoom back" openers, "a pattern emerges", "Keep your X and your Y", "That's the {bulletin} for {date}"). A hit rejects the script attempt so the model can re-roll (3 attempts per model). Soft bans for announced-beat tics live in `BANNED_SCRIPT_PHRASES` instead.
+
+## Publish & hosting
+
+### Publish verification
+Post-push check that today's episode GUID is actually present in the **live** public `feed.xml` (GitHub Pages deploy), not merely committed in git. Polls the feed, may push an empty commit to unstick a queued deploy, and fails the workflow (with a healthcheck fail ping) if the episode never appears. Turns the backup cron into a recovery path even when generation was skipped.

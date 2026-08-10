@@ -9,7 +9,7 @@ A weekday, fully-automated AI news podcast. Every Monday–Friday morning at ~06
 
 1. Pulls the last 24h of articles from a curated set of AI news RSS feeds, then drops duplicate/tracking-variant URLs before curation.
 2. Asks Claude (via OpenRouter) to cluster duplicates and score each story against a rolling ~14-day memory of what already aired — suppressing stories already covered, threading genuine developments as follow-ups — then keeps the ones that matter (a variable number that follows the day's news).
-3. Writes a natural, single-host script up to ~10 minutes (engaging hook → one segment per story, with depth scaled to importance → synthesis outro), defaulting to Claude Sonnet via OpenRouter with `openai/...` and Gemini fallbacks (`openai/...` entries go direct to OpenAI when `OPENAI_API_KEY` is set).
+3. Writes a natural, single-host script up to ~10 minutes (engaging hook → one segment per story, with depth scaled to importance → shaped outro), defaulting to Claude Sonnet via OpenRouter with Gemini then `openai/gpt-4o-mini` fallbacks (`openai/...` entries go direct to OpenAI when `OPENAI_API_KEY` is set). Style snippets from recent transcripts plus daily intro/outro moves keep openings and sign-offs from recycling.
 4. Synthesizes each intro/story/outro part in a single TTS request for continuous prosody (falling back to chunked synthesis with breathing gaps for oversized parts), via OpenAI `gpt-4o-mini-tts` or an OpenRouter TTS model such as Gemini 3.1 Flash TTS (`TTS_PROVIDER=openrouter`).
 5. Builds a full program master with ffmpeg (section stingers + concat), normalizes loudness to EBU R128 (-16 LUFS), encodes 192 kbps MP3 with ID3 tags and embedded chapters.
 6. Drops the file at `docs/episodes/YYYY-MM-DD.mp3`, regenerates `docs/feed.xml` (with curated per-story show notes), commits, and pushes.
@@ -42,19 +42,23 @@ ai-briefing/
 │   ├── preflight.ts              # Fail-fast env + ffmpeg/ffprobe checks
 │   ├── fetch.ts                  # RSS aggregation + URL canonicalization/dedup
 │   ├── curate.ts                 # Cluster + score; suppress/thread vs. recent coverage
-│   ├── ledger.ts                 # Rolling 14-day prior-coverage window (cross-episode memory)
-│   ├── script.ts                 # Generate spoken script
+│   ├── ledger.ts                 # Prior-coverage window + recent style snippets
+│   ├── script.ts                 # Spoken script (persona, daily moves, anti-repetition)
 │   ├── tts.ts                    # Text → MP3 chunks
 │   ├── ttsProvider.ts            # TTS provider/model/voice resolution
 │   ├── audio.ts                  # ffmpeg stingers + concat + loudnorm + ID3
 │   ├── publish.ts                # Move MP3, regenerate feed.xml, retention prune
+│   ├── verifyDeploy.ts           # Poll live Pages feed for today's episode GUID
 │   ├── healthcheck.ts            # Optional Healthchecks.io-style pings
 │   ├── stageCache.ts             # Content-hash cache for curate/script (opt-in, local re-runs)
 │   ├── episode-date.ts           # Episode date from EPISODE_TIME_ZONE / Pacific
 │   ├── feeds.ts                  # Curated source list
 │   ├── types.ts                  # Article, StoryCluster, CurationRecord, Episode
 │   └── util.ts                   # logJson, withRetry, withHardTimeout
-├── scripts/preflight.ts          # `npm run preflight` CLI entry
+├── scripts/
+│   ├── preflight.ts              # `npm run preflight` CLI entry
+│   ├── verify-deploy.ts          # Manual / CI publish verification
+│   └── diagnose-openrouter-script.ts
 ├── test/                         # Smoke + unit tests
 ├── docs/                         # GitHub Pages root
 │   ├── feed.xml                  # Regenerated each run
@@ -64,7 +68,6 @@ ai-briefing/
 │       ├── YYYY-MM-DD.json       # Sidecar metadata (title, duration, bytes, feed options, curation records)
 │       ├── YYYY-MM-DD.chapters.json
 │       └── YYYY-MM-DD.transcript.txt
-├── .env.example
 ├── package.json
 ├── tsconfig.json
 ├── CONCEPTS.md                   # Domain vocabulary
@@ -97,12 +100,15 @@ sudo apt install ffmpeg      # Debian/Ubuntu
 
 ### 3. Local `.env`
 
+Create a `.env` in the repo root (there is no checked-in `.env.example`). Minimum for a full local run:
+
 ```bash
-cp .env.example .env
-# edit .env and fill in OPENROUTER_API_KEY, OPENAI_API_KEY, FEED_BASE_URL, and PODCAST_* values
+OPENROUTER_API_KEY=...
+OPENAI_API_KEY=...          # required when TTS_PROVIDER=openai (default)
+FEED_BASE_URL=https://USER.github.io/ai-briefing
 ```
 
-`FEED_BASE_URL` is the public URL where `docs/` will be served — typically `https://USER.github.io/ai-briefing`.
+Optional keys (`TTS_*`, `PODCAST_*`, `HEALTHCHECK_URL`, `STAGE_CACHE_DIR`, script model overrides) are listed under **Configure GitHub Actions** below and in `AGENTS.md`. `FEED_BASE_URL` is the public URL where `docs/` will be served.
 
 ### 4. Preflight local configuration
 
@@ -181,11 +187,11 @@ In the repo's **Settings → Secrets and variables → Actions**:
 
 **Variables:**
 - `FEED_BASE_URL` — same as `.env`, e.g. `https://USER.github.io/ai-briefing`
-- `OPENROUTER_SCRIPT_MODEL` — optional script model override; accepts a comma-separated fallback list and defaults to `anthropic/claude-sonnet-4.6, openai/gpt-4o-mini, google/gemini-3.1-pro-preview`; `openai/...` entries use `OPENAI_API_KEY` directly when available
+- `OPENROUTER_SCRIPT_MODEL` — optional script model override; accepts a comma-separated fallback list and defaults to `anthropic/claude-sonnet-4.6, google/gemini-3.1-pro-preview, openai/gpt-4o-mini` (`gpt-4o-mini` last — it ignores much of the voice-rule block); `openai/...` entries use `OPENAI_API_KEY` directly when available
 - `TTS_PROVIDER` — `openai` (default) or `openrouter`
 - `TTS_MODEL` — per provider; openai default `gpt-4o-mini-tts` (supports delivery instructions), openrouter default `google/gemini-3.1-flash-tts-preview` (supports inline delivery tags)
 - `TTS_VOICE` — the single host's voice; defaults to `marin` (OpenAI) or `Charon` (Gemini TTS) when unset
-- `TTS_GLOBAL_STYLE`, `TTS_NARRATOR_STYLE` — composed TTS delivery instructions (OpenAI `gpt-4o-mini-tts` only; see `.env.example` and `src/speakerProfiles.ts`)
+- `TTS_GLOBAL_STYLE`, `TTS_NARRATOR_STYLE` — composed TTS delivery instructions (OpenAI `gpt-4o-mini-tts` only; see `src/speakerProfiles.ts`)
 - `TTS_INTRO_STYLE`, `TTS_STORY_STYLE`, `TTS_OUTRO_STYLE` — per-section delivery overrides for intro, story segments, and outro
 - `TTS_TIMEOUT_MS` — `180000` by default; raise only if speech generation is still timing out
 - `AUDIO_CUES_ENABLED` — `true` (set `false` to disable section stingers)
@@ -319,6 +325,14 @@ OpenAI does not label built-in voices by gender in the API docs, but the current
 
 The show is a single-host monologue. The host is a sharp, witty, occasionally cynical guide who weighs each story's real-world stakes — who benefits, who gets hurt, and what could go right or wrong. A daily persona (rotated by date, see `DAILY_PERSONAS` in `src/script.ts`) sets the day's tonal lens on top of that.
 
+Cross-episode **prose** variety is enforced separately from story memory (the Curation Ledger):
+
+1. **Daily intro/outro moves** — deterministic per-day structural instructions (`INTRO_MOVES` / `OUTRO_MOVES`), hashed independently of the persona so openings and closings do not collapse into one mold.
+2. **Style snippets** — `loadRecentStyleSnippets` reads the last ~8 transcripts and injects their intro openers, outro openers, and sign-offs as a **RECENTLY USED** do-not-reuse block (~800 input tokens/day, no extra API calls; part of the script stage-cache key).
+3. **Validators** — hard-fail regexes reject known outro molds ("pull back…", "a pattern emerges", "Keep your X and your Y", …); soft bans cover announced-beat tics via `BANNED_SCRIPT_PHRASES`. Each model gets **3** attempts so a mold hit can re-roll.
+
+See `docs/solutions/best-practices/script-anti-repetition-style-memory.md` and `CONCEPTS.md`.
+
 The script arrives as ordered narration chunks. Each intro/story/outro part is synthesized in a **single TTS request** so prosody flows continuously across the whole part; if a part exceeds the provider's input limit, the pipeline falls back to per-chunk synthesis and rejoins the chunks with a short breathing gap. Parts map one-to-one to chapters, so chapter markers stay aligned to the episode structure.
 
 ### Toggle section stingers
@@ -347,9 +361,9 @@ When iterating locally after a late-stage failure (TTS/audio/publish), set `STAG
 
 ### Change the model or feed sources
 
-For script generation, set `OPENROUTER_SCRIPT_MODEL` in Actions variables (or `.env` locally). The value can be a comma-separated ordered fallback list; the default is `anthropic/claude-sonnet-4.6, openai/gpt-4o-mini, google/gemini-3.1-pro-preview` — Sonnet leads for prose quality (wit, persona adherence, varied phrasing), with cheaper models as availability fallbacks. Entries beginning with `openai/` are sent directly to OpenAI when `OPENAI_API_KEY` is available. All configured models must support JSON schema structured output. Each model gets two attempts before the script step logs `script.model_fallback` and tries the next candidate.
+For script generation, set `OPENROUTER_SCRIPT_MODEL` in Actions variables (or `.env` locally). The value can be a comma-separated ordered fallback list; the default is `anthropic/claude-sonnet-4.6, google/gemini-3.1-pro-preview, openai/gpt-4o-mini` — Sonnet leads for prose quality (wit, persona adherence, varied phrasing); Gemini is the mid fallback; `gpt-4o-mini` is last-resort because it ignores much of the voice-rule block. Entries beginning with `openai/` are sent directly to OpenAI when `OPENAI_API_KEY` is available. All configured models must support JSON schema structured output. Each model gets **three** attempts (so an outro-mold validator rejection can re-roll) before the script step logs `script.model_fallback` and tries the next candidate.
 
-To diagnose an OpenRouter-routed model's structured-output behavior without running TTS or writing episode files, run `npm run diagnose:script-model`. The probe uses `OPENROUTER_API_KEY`, targets `OPENROUTER_DIAGNOSTIC_MODEL` or the first configured script model through OpenRouter, and logs safe request/response metadata for both a tiny JSON-schema call and the production script-schema call. `OPENROUTER_DIAGNOSTIC_MODEL` is optional and local-only. The probe does not print generated script content.
+To diagnose an OpenRouter-routed model's structured-output behavior without running TTS or writing episode files, run `npm run diagnose:script-model`. The probe uses `OPENROUTER_API_KEY`, targets `OPENROUTER_DIAGNOSTIC_MODEL` or the first configured script model through OpenRouter, and logs safe request/response metadata for both a tiny JSON-schema call and the production script-schema call. `OPENROUTER_DIAGNOSTIC_MODEL` is optional and local-only. Set `EPISODE_DATE=YYYY-MM-DD` to replay that day's published curation records through the current prompt (including style snippets) and print the generated script for prompt A/B — useful after anti-repetition or persona edits.
 
 For curation, edit `src/curate.ts` (`MODEL` constant). For feed sources, edit `src/feeds.ts` (`SOURCES`) and push. The next scheduled run picks up the change.
 
@@ -397,11 +411,12 @@ Both `docs/episodes/YYYY-MM-DD.json` and `.mp3` already exist for today's episod
 
 ### Workflow runs but no episode shows up in Apple Podcasts
 
-1. **Validate the feed:** https://castfeedvalidator.com. Fix any red errors.
-2. **Check cache:** Apple Podcasts can take 1–24h to poll a feed. The first time you subscribe, give it up to 24h before assuming something's broken.
-3. **Force refresh:** in Apple Podcasts, swipe down on the show page to pull-to-refresh.
-4. **Check the GUID:** open `docs/feed.xml` and confirm each `<guid>` is `ai-briefing-YYYY-MM-DD`. If GUIDs mutate between regenerations, Apple drops the episode.
-5. **Check the enclosure URL:** `curl -I <enclosure-url>` should return `200` with `Content-Type: audio/mpeg`. If it 404s, GH Pages may not be deployed yet — give it 1–2 minutes after the push.
+1. **Check publish verification:** did the daily workflow's **Verify published feed** step pass? A green "Run pipeline" + commit is not enough — Pages can fail independently. See **Publish verification** above and `docs/solutions/workflow-issues/github-pages-publish-verification.md`.
+2. **Validate the feed:** https://castfeedvalidator.com. Fix any red errors.
+3. **Check cache:** Apple Podcasts can take 1–24h to poll a feed. The first time you subscribe, give it up to 24h before assuming something's broken.
+4. **Force refresh:** in Apple Podcasts, swipe down on the show page to pull-to-refresh.
+5. **Check the GUID:** open the *live* `$FEED_BASE_URL/feed.xml` (not only the repo file) and confirm each `<guid>` is `ai-briefing-YYYY-MM-DD`. If GUIDs mutate between regenerations, Apple drops the episode.
+6. **Check the enclosure URL:** `curl -I <enclosure-url>` should return `200` with `Content-Type: audio/mpeg`. If it 404s, GH Pages may not be deployed yet — give it 1–2 minutes after the push, or re-run verify-deploy.
 
 ### Episode is silent, garbled, or wrong duration
 

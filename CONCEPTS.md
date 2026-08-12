@@ -17,7 +17,7 @@ The stable, kebab-case identity of a Story Cluster (e.g. a slug naming the story
 A 0–100 audience-impact score assigned to each Story Cluster during curation. It drives both selection (which stories clear the bar and air) and narration depth (how much time a story gets). State the behavior, not the cutoff — the threshold and story cap are configuration.
 
 ### Curated show notes
-The human-readable episode description written into `feed.xml` (and the sidecar): per aired story, the segment title, why-it-matters, caveat, and source URLs. Built at publish time from the selected Story Clusters so podcast apps surface briefing context without opening the audio.
+The human-readable episode description written into `feed.xml` (and the sidecar). Built at publish time from the selected Story Clusters: HTML story cards (`<p>` + publisher-named `<a>` links) with the segment title, why-it-matters, caveat, and sources, followed by a contiguous `HH:MM:SS Title` chapter list so Apple Podcasts / Spotify / YouTube can parse jumpable chapters. Not a catalog deep link — Apple has not assigned an episode ID at publish time.
 
 ## Fetch & pipeline guards
 

@@ -40,7 +40,7 @@ const airedClusters: StoryCluster[] = [
     category: "product-tools",
     headline: "Test story",
     whyItMatters: "Builders get the practical takeaway before tapping through.",
-    caveat: "The claim still needs validation from R&D teams.",
+    caveat: "The claim still needs validation from R&D teams; n < 30 samples.",
     importance: 82,
     sources: [{ url: "https://example.com/story", publisher: "Example" }],
   },
@@ -131,20 +131,36 @@ try {
     "episodes should expose story highlights as podcast:soundbite entries",
   );
   assert.ok(
-    xml.includes("00:00:05 Test story"),
-    "episode descriptions should include timestamped show notes",
+    xml.includes("Top 1 AI story for January 1, 2099."),
+    "episode descriptions should use a human-readable date",
+  );
+  assert.equal(
+    xml.includes("Top 1 AI story for 2099-01-01"),
+    false,
+    "episode description header should not use the ISO date",
+  );
+  assert.ok(xml.includes("<p>"), "episode descriptions should use paragraph tags for spacing");
+  const whyIdx = xml.indexOf("Why it matters: Builders get the practical takeaway before tapping through.");
+  const chapterHeadingIdx = xml.indexOf("<p>Chapters</p>");
+  const introChapterIdx = xml.indexOf("00:00:00 Intro");
+  const storyChapterIdx = xml.indexOf("00:00:05 Test story");
+  assert.ok(whyIdx >= 0, "episode descriptions should include AI-curated why-it-matters show notes");
+  assert.ok(
+    chapterHeadingIdx > whyIdx && introChapterIdx > chapterHeadingIdx && storyChapterIdx > introChapterIdx,
+    "timestamped chapters should appear after story cards",
   );
   assert.ok(
+    xml.includes('<a href="https://example.com/story">Example</a>'),
+    "episode descriptions should include publisher-named source links",
+  );
+  assert.equal(
     xml.includes("Source: https://example.com/story"),
-    "episode descriptions should include source links",
+    false,
+    "episode descriptions should not use raw Source: URL lines",
   );
   assert.ok(
-    xml.includes("Why it matters: Builders get the practical takeaway before tapping through."),
-    "episode descriptions should include AI-curated why-it-matters show notes",
-  );
-  assert.ok(
-    xml.includes("Caveat: The claim still needs validation from R&D teams."),
-    "episode descriptions should include AI-curated caveat show notes",
+    xml.includes("Caveat: The claim still needs validation from R&amp;D teams; n &lt; 30 samples."),
+    "episode descriptions should escape HTML in curated caveat text",
   );
   assert.equal(
     xml.includes(`<itunes:image href="https://example.com/ai-briefing/episodes/${TEST_DATE}.jpg"`),

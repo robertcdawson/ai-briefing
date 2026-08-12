@@ -1,0 +1,46 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — August 12, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 48,
+      "title": "Intro"
+    },
+    {
+      "startTime": 48,
+      "endTime": 154,
+      "title": "ChatGPT and Gemini both cross one billion..."
+    },
+    {
+      "startTime": 154,
+      "endTime": 260,
+      "title": "Hidden LLM reasoning traces expose leaked..."
+    },
+    {
+      "startTime": 260,
+      "endTime": 349,
+      "title": "xAI launches Grok Bot as always-on AI..."
+    },
+    {
+      "startTime": 349,
+      "endTime": 438,
+      "title": "Anthropic's planned mega-IPO faces tough..."
+    },
+    {
+      "startTime": 438,
+      "endTime": 510,
+      "title": "xAI co-founder's two-month-old River AI..."
+    },
+    {
+      "startTime": 510,
+      "endTime": 580,
+      "title": "Microsoft's MAI Code 1.1 Flash..."
+    },
+    {
+      "startTime": 580,
+      "endTime": 628,
+      "title": "Outro"
+    }
+  ]
+}

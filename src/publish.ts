@@ -367,30 +367,81 @@ function buildEpisodeDescription(
   partTimings: EpisodePartTiming[] = [],
   airedClusters: StoryCluster[] = [],
 ): string {
-  const chapterLines = buildChapters(partTimings, durationSeconds)
-    .map((chapter) => `${formatTimestamp(chapter.startTime)} ${chapter.title}`);
-  const sourceLines = ep.segments.flatMap((segment, index) => {
-    const cluster = airedClusters[index];
-    return [
-      `${index + 1}. ${segment.title}`,
-      ...(cluster
-        ? [
-            `Why it matters: ${oneLine(cluster.whyItMatters)}`,
-            `Caveat: ${oneLine(cluster.caveat)}`,
-          ]
-        : []),
-      ...segment.sourceUrls.map((url) => `Source: ${url}`),
-    ];
-  });
-
-  const lines = [
-    `Top ${ep.segments.length} AI ${ep.segments.length === 1 ? "story" : "stories"} for ${ep.date}:`,
-    "",
-    ...(chapterLines.length > 0 ? ["Chapters:", ...chapterLines, ""] : []),
-    "Sources:",
-    ...sourceLines,
+  const storyWord = ep.segments.length === 1 ? "story" : "stories";
+  const paragraphs: string[] = [
+    htmlParagraph(`Top ${ep.segments.length} AI ${storyWord} for ${formatDisplayDate(ep.date)}.`),
   ];
-  return lines.join("\n");
+
+  for (const [index, segment] of ep.segments.entries()) {
+    const cluster = airedClusters[index];
+    paragraphs.push(htmlParagraph(`${index + 1}. ${oneLine(segment.title)}`));
+    if (cluster) {
+      paragraphs.push(htmlParagraph(`Why it matters: ${oneLine(cluster.whyItMatters)}`));
+      paragraphs.push(htmlParagraph(`Caveat: ${oneLine(cluster.caveat)}`));
+    }
+    const sourceLinks = buildSourceLinkParagraph(segment.sourceUrls, cluster);
+    if (sourceLinks) paragraphs.push(sourceLinks);
+  }
+
+  const chapters = buildChapters(partTimings, durationSeconds);
+  if (chapters.length > 0) {
+    paragraphs.push(htmlParagraph("Chapters"));
+    for (const chapter of chapters) {
+      paragraphs.push(htmlParagraph(`${formatTimestamp(chapter.startTime)} ${chapter.title}`));
+    }
+  }
+
+  return paragraphs.join("\n");
+}
+
+function htmlParagraph(text: string): string {
+  return `<p>${htmlEscape(text)}</p>`;
+}
+
+function htmlEscape(value: string): string {
+  return value.replace(/[&<>]/g, (char) => {
+    switch (char) {
+      case "&": return "&amp;";
+      case "<": return "&lt;";
+      case ">": return "&gt;";
+      default: return char;
+    }
+  });
+}
+
+function htmlAttrEscape(value: string): string {
+  return htmlEscape(value).replace(/"/g, "&quot;");
+}
+
+function formatDisplayDate(isoDate: string): string {
+  const [year, month, day] = isoDate.split("-").map(Number);
+  if (!year || !month || !day) return isoDate;
+  return new Intl.DateTimeFormat("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+    timeZone: "UTC",
+  }).format(new Date(Date.UTC(year, month - 1, day)));
+}
+
+function buildSourceLinkParagraph(urls: string[], cluster?: StoryCluster): string | undefined {
+  if (urls.length === 0) return undefined;
+  const publisherByUrl = new Map(
+    (cluster?.sources ?? []).map((source) => [source.url, source.publisher.trim()]),
+  );
+  const links = urls.map((url) => {
+    const label = publisherByUrl.get(url) || hostnameFromUrl(url) || url;
+    return `<a href="${htmlAttrEscape(url)}">${htmlEscape(label)}</a>`;
+  });
+  return `<p>${links.join(" · ")}</p>`;
+}
+
+function hostnameFromUrl(url: string): string {
+  try {
+    return new URL(url).hostname.replace(/^www\./i, "");
+  } catch {
+    return "";
+  }
 }
 
 function oneLine(value: string): string {

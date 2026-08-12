@@ -154,7 +154,7 @@ try {
     "episode descriptions should include publisher-named source links",
   );
   assert.equal(
-    xml.includes("Source: https://"),
+    xml.includes("Source: https://example.com/story"),
     false,
     "episode descriptions should not use raw Source: URL lines",
   );

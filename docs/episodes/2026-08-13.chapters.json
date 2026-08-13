@@ -1,0 +1,46 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — August 13, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 27,
+      "title": "Intro"
+    },
+    {
+      "startTime": 27,
+      "endTime": 138,
+      "title": "xAI Grok 4.6 matches GPT-5.6 Sol and..."
+    },
+    {
+      "startTime": 138,
+      "endTime": 223,
+      "title": "Researchers reconstruct LLM system..."
+    },
+    {
+      "startTime": 223,
+      "endTime": 315,
+      "title": "Anthropic's most powerful model captures..."
+    },
+    {
+      "startTime": 315,
+      "endTime": 401,
+      "title": "Researcher survey finds predicted AI..."
+    },
+    {
+      "startTime": 401,
+      "endTime": 468,
+      "title": "AI coding startup Cognition in talks to..."
+    },
+    {
+      "startTime": 468,
+      "endTime": 545,
+      "title": "Amazon trained on Twitch streams for..."
+    },
+    {
+      "startTime": 545,
+      "endTime": 579,
+      "title": "Outro"
+    }
+  ]
+}

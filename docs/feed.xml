@@ -4,7 +4,7 @@
         <title>AI Briefing</title>
         <link>https://robertcdawson.github.io/ai-briefing/</link>
         <description>Daily AI news briefing — the stories that matter from the last 24 hours.</description>
-        <lastBuildDate>Wed, 12 Aug 2026 12:09:29 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 13 Aug 2026 12:07:48 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -23,6 +23,60 @@
         <podcast:guid>ea8709f4-3ba2-5b7e-bcdc-e409d84a6443</podcast:guid>
         <podcast:locked owner="manatees@gmail.com">yes</podcast:locked>
         <podcast:person role="host" group="cast">Robert Dawson</podcast:person>
+        <item>
+            <title><![CDATA[AI Briefing — August 13, 2026]]></title>
+            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-08-13.mp3</link>
+            <guid>ai-briefing-2026-08-13</guid>
+            <pubDate>Thu, 13 Aug 2026 12:07:48 GMT</pubDate>
+            <description><![CDATA[<p>Top 6 AI stories for August 13, 2026.</p>
+<p>1. Top Story: xAI Grok 4.6 matches GPT-5.6 Sol and undercuts it by 60 percent</p>
+<p>Why it matters: Grok 4.6 ties OpenAI's best model on the Artificial Analysis Intelligence Index while completing agentic workflows in roughly half the steps at a dramatically lower price, giving builders a credible frontier alternative with significant cost advantages.</p>
+<p>Caveat: Benchmark parity does not guarantee real-world task equivalence, and the step-count comparison for agentic tasks may not reflect the quality or correctness of outputs.</p>
+<p><a href="https://the-decoder.com/spacexais-grok-4-6-matches-openais-best-model-and-undercuts-it-on-price/">The Decoder</a></p>
+<p>2. Research Breakthrough: Researchers reconstruct LLM system prompts from outputs with near-perfect accuracy</p>
+<p>Why it matters: The 'Previous-Token Prediction' method from IIT Bombay and Adobe Research can recover proprietary system prompts without model weight access, threatening the confidentiality of any product built on hidden instructions.</p>
+<p>Caveat: The technique's effectiveness across all model families and deployment configurations has not yet been independently replicated or stress-tested at scale.</p>
+<p><a href="https://the-decoder.com/researchers-can-now-reverse-engineer-llm-prompts-from-output-text-with-near-perfect-accuracy/">The Decoder</a></p>
+<p>3. AI Business Watch: Anthropic's most powerful model captures only six percent of its token sales</p>
+<p>Why it matters: Ramp spending data showing Fable 5 at just 6 percent of Anthropic tokens sold suggests enterprises are hitting a price-to-value ceiling on frontier models, with direct implications for how labs price and position next-generation releases.</p>
+<p>Caveat: Ramp's dataset covers only companies using Ramp for expense management and may skew toward certain company sizes or industries, limiting generalizability.</p>
+<p><a href="https://the-decoder.com/fable-5s-slow-adoption-suggests-corporate-willingness-to-pay-for-frontier-ai-has-hit-a-ceiling/">The Decoder</a></p>
+<p>4. Research Breakthrough: Researcher survey finds predicted AI self-improvement milestones already surpassed</p>
+<p>Why it matters: An IAPS fellow's follow-up to interviews with 25 researchers at top labs finds that several milestones flagged as early warning signs for dangerous recursive self-improvement have already been crossed, raising the urgency of safety planning timelines.</p>
+<p>Caveat: The milestone definitions and the assessment of whether they have been 'hit' reflect the original researchers' subjective framing, and the blog post format limits methodological transparency.</p>
+<p><a href="https://the-decoder.com/top-ai-lab-researchers-warned-about-automated-ai-research-and-several-of-their-predicted-milestones-have-already-fallen/">The Decoder</a></p>
+<p>5. AI Business Watch: AI coding startup Cognition in talks to raise at 40 billion dollar valuation</p>
+<p>Why it matters: A potential jump from a $26B to $40B valuation just months after its last round signals continued investor conviction in autonomous coding agents despite mixed real-world adoption signals across the sector.</p>
+<p>Caveat: The raise is reportedly still in talks and unconfirmed; valuations at this stage can shift significantly before a deal closes.</p>
+<p><a href="https://techcrunch.com/2026/08/12/ai-coding-startup-cognition-reportedly-already-in-talks-to-raise-at-40b-valuation/">TechCrunch AI</a></p>
+<p>6. Policy &amp; Regulation Watch: Amazon trained on Twitch streams for years; opt-out now available by default</p>
+<p>Why it matters: The revelation that years of user-generated video, audio, and chat were used for generative AI training without explicit consent — and that opt-out is the only recourse — sets a precedent for how platforms handle creator data rights at scale.</p>
+<p>Caveat: The opt-out only covers future training, leaving years of already-ingested content unaddressed, and the scope of what was actually trained on remains vague.</p>
+<p><a href="https://www.theverge.com/tech/979112/twitch-streamers-can-now-opt-out-from-training-amazons-ai">The Verge AI</a> · <a href="https://arstechnica.com/ai/2026/08/twitch-content-has-trained-amazon-ai-for-years-but-users-can-opt-out-now/">Ars Technica AI</a> · <a href="https://techcrunch.com/2026/08/12/amazon-will-train-on-twitch-streamers-content-by-default-unless-they-opt-out/">TechCrunch AI</a> · <a href="https://www.404media.co/twitch-training-amazon-ai-models-how-to-opt-out-setting/">404 Media</a></p>
+<p>Chapters</p>
+<p>00:00:00 Intro</p>
+<p>00:00:27 xAI Grok 4.6 matches GPT-5.6 Sol and...</p>
+<p>00:02:18 Researchers reconstruct LLM system...</p>
+<p>00:03:43 Anthropic's most powerful model captures...</p>
+<p>00:05:15 Researcher survey finds predicted AI...</p>
+<p>00:06:41 AI coding startup Cognition in talks to...</p>
+<p>00:07:48 Amazon trained on Twitch streams for...</p>
+<p>00:09:05 Outro</p>]]></description>
+            <enclosure length="13894107" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-08-13.mp3"/>
+                    <itunes:duration>579</itunes:duration>
+            <itunes:explicit>false</itunes:explicit>
+            <itunes:season>2026</itunes:season>
+            <itunes:episode>225</itunes:episode>
+            <itunes:episodeType>full</itunes:episodeType>
+            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-08-13.chapters.json" type="application/json+chapters"/>
+            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-08-13.transcript.txt" type="text/plain" language="en"/>
+            <podcast:soundbite startTime="27" duration="109">xAI Grok 4.6 matches GPT-5.6 Sol and...</podcast:soundbite>
+            <podcast:soundbite startTime="138" duration="84">Researchers reconstruct LLM system...</podcast:soundbite>
+            <podcast:soundbite startTime="223" duration="91">Anthropic&apos;s most powerful model captures...</podcast:soundbite>
+            <podcast:soundbite startTime="315" duration="84">Researcher survey finds predicted AI...</podcast:soundbite>
+            <podcast:soundbite startTime="401" duration="65">AI coding startup Cognition in talks to...</podcast:soundbite>
+            <podcast:soundbite startTime="468" duration="76">Amazon trained on Twitch streams for...</podcast:soundbite>
+        </item>
         <item>
             <title><![CDATA[AI Briefing — August 12, 2026]]></title>
             <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-08-12.mp3</link>
@@ -815,68 +869,6 @@ Source: https://techcrunch.com/2026/07/27/googles-ai-search-is-rapidly-becoming-
             <podcast:soundbite startTime="324" duration="95">OpenAI Study Finds ChatGPT Users...</podcast:soundbite>
             <podcast:soundbite startTime="421" duration="95">METR Introduces Expenditure-Horizon...</podcast:soundbite>
             <podcast:soundbite startTime="518" duration="70">Google AI Overviews Now Appear in 43...</podcast:soundbite>
-        </item>
-        <item>
-            <title><![CDATA[AI Briefing — July 24, 2026]]></title>
-            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-07-24.mp3</link>
-            <guid>ai-briefing-2026-07-24</guid>
-            <pubDate>Fri, 24 Jul 2026 15:18:40 GMT</pubDate>
-            <description><![CDATA[Top 6 AI stories for 2026-07-24:
-
-Chapters:
-00:00:00 Intro
-00:00:25 OpenAI rolls out ChatGPT Health to all US...
-00:01:37 Anthropic upgrades Claude voice mode to...
-00:02:44 Black Forest Labs releases Flux 3, a...
-00:03:45 AgentForger vulnerability lets one...
-00:04:55 Trump administration directs five billion...
-00:05:58 Patreon cuts 20 percent of workforce...
-00:07:03 Outro
-
-Sources:
-1. Product & Tool Watch: OpenAI rolls out ChatGPT Health to all US users with medical record integration
-Why it matters: ChatGPT Health now connects Apple Health, medical records, and wellness apps for all US users, with OpenAI claiming its models reason at better-than-clinician level — a significant expansion of AI into personal healthcare. The tiered model access (GPT-5.6 Sol for paid, GPT-5.5 Instant for free) raises equity questions about who gets the best health guidance.
-Caveat: OpenAI declined to share the specific benchmark data backing its 'better than clinician level' claim, and no independent clinical validation has been published.
-Source: https://www.theverge.com/ai-artificial-intelligence/970115/openai-chatgpt-health-launch-claims
-Source: https://techcrunch.com/2026/07/23/openai-makes-chatgpt-health-available-to-all-u-s-users/
-Source: https://the-decoder.com/chatgpt-will-give-you-worse-health-advice-if-you-dont-pay/
-2. Product & Tool Watch: Anthropic upgrades Claude voice mode to Opus and Sonnet with app integrations
-Why it matters: Extending voice mode to Claude's most capable models and adding direct Gmail, Google Calendar, Slack, and Canva integrations makes Claude the first AI assistant able to compose and send emails by voice — a meaningful step toward ambient AI-assisted work. Builders integrating voice workflows now have access to significantly stronger reasoning in real-time audio.
-Caveat: Latency and reliability of the more powerful models in voice mode versus the faster Haiku have not been independently benchmarked.
-Source: https://www.theverge.com/ai-artificial-intelligence/970065/anthropic-voice-mode-claude-opus-sonnet-haiku-ai
-Source: https://techcrunch.com/2026/07/23/anthropic-updates-claude-voice-mode-with-more-capable-models/
-Source: https://the-decoder.com/claudes-voice-mode-now-runs-on-anthropics-most-capable-models-across-all-platforms/
-3. Research Breakthrough: Black Forest Labs releases Flux 3, a multimodal model generating video with native audio
-Why it matters: Flux 3 is the first model from Black Forest Labs to jointly generate video and synchronized audio from a single foundation, and the company is already testing it on robotics tasks as a step toward world models. This raises the capability ceiling for generative media tools that developers build on top of BFL's stack.
-Caveat: BFL's benchmark comparisons against Seedance 2.0 are self-reported and no independent evaluation results are yet available.
-Source: https://the-decoder.com/flux-3-generates-videos-with-native-audio-up-to-20-seconds-long-a-first-for-black-forest-labs/
-4. Research Breakthrough: AgentForger vulnerability lets one malicious ChatGPT link spawn a persistent rogue agent
-Why it matters: Zenity Labs' discovery that a single tampered link could silently create an autonomous agent inheriting a victim's identity and polling an attacker's inbox every five minutes is a concrete, high-severity agentic security risk that every enterprise deploying ChatGPT agents must understand. It illustrates how prompt injection can escalate from data leakage to persistent autonomous compromise.
-Caveat: It is unclear whether OpenAI has patched the vulnerability or whether the disclosure was coordinated; the full technical write-up has not yet been independently verified.
-Source: https://the-decoder.com/one-tampered-chatgpt-link-could-spawn-a-rogue-ai-agent-that-took-orders-from-an-attacker-every-five-minutes/
-5. Policy & Regulation Watch: Trump administration directs five billion dollars to AI-driven science via Genesis Mission
-Why it matters: The Genesis Mission's $5 billion in grants represents the largest single federal commitment to AI-accelerated scientific research, potentially reshaping how government-funded research is conducted and which institutions receive funding. The framing as a 'Manhattan Project' signals a major policy shift toward AI-first science infrastructure.
-Caveat: The science adviser leading the initiative has no scientific research background, and critics question whether the grant criteria prioritize AI hype over rigorous scientific merit.
-Source: https://www.theverge.com/science/970534/genesis-mission-ai-science-funding-trump-grants
-6. AI Culture Signal: Patreon cuts 20 percent of workforce citing AI-driven operational transformation
-Why it matters: Patreon's CEO explicitly credits AI with changing how the company builds products and communicates, making this a high-profile example of AI-driven headcount reduction at a creator-economy platform — a bellwether for how AI is reshaping tech company org structures beyond pure engineering roles.
-Caveat: The CEO simultaneously claims AI does not replace human creativity, making it difficult to disentangle genuine AI-driven efficiency gains from broader cost-cutting motivations.
-Source: https://www.theverge.com/tech/970211/patreon-layoffs-ai
-Source: https://www.404media.co/patreon-lays-off-20-percent-of-its-workforce/]]></description>
-            <enclosure length="10802141" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-07-24.mp3"/>
-                    <itunes:duration>450</itunes:duration>
-            <itunes:explicit>false</itunes:explicit>
-            <itunes:season>2026</itunes:season>
-            <itunes:episode>205</itunes:episode>
-            <itunes:episodeType>full</itunes:episodeType>
-            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-07-24.chapters.json" type="application/json+chapters"/>
-            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-07-24.transcript.txt" type="text/plain" language="en"/>
-            <podcast:soundbite startTime="25" duration="71">OpenAI rolls out ChatGPT Health to all US...</podcast:soundbite>
-            <podcast:soundbite startTime="97" duration="65">Anthropic upgrades Claude voice mode to...</podcast:soundbite>
-            <podcast:soundbite startTime="164" duration="60">Black Forest Labs releases Flux 3, a...</podcast:soundbite>
-            <podcast:soundbite startTime="225" duration="68">AgentForger vulnerability lets one...</podcast:soundbite>
-            <podcast:soundbite startTime="295" duration="61">Trump administration directs five billion...</podcast:soundbite>
-            <podcast:soundbite startTime="358" duration="63">Patreon cuts 20 percent of workforce...</podcast:soundbite>
         </item>
     </channel>
 </rss>

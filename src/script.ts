@@ -568,7 +568,8 @@ export async function writeScript(
   return episode;
 }
 
-function createScriptCompletionClient(
+/** Exported for reuse by src/earEdit.ts, which needs the same OpenRouter/OpenAI routing. */
+export function createScriptCompletionClient(
   openRouterApiKey: string | undefined,
   openAiApiKey: string | undefined,
   timeoutMs: number,

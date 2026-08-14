@@ -3,6 +3,7 @@ import { rm } from "node:fs/promises";
 import { fetchAll } from "./fetch.js";
 import { curate } from "./curate.js";
 import { writeScript } from "./script.js";
+import { earEdit, resolveEarEditEnabled } from "./earEdit.js";
 import { buildRecentPhraseProfile, loadRecentStyleSnippets } from "./ledger.js";
 import { synthesize } from "./tts.js";
 import { buildEpisodeAudio } from "./audio.js";
@@ -82,8 +83,42 @@ async function main(): Promise<void> {
       segments: episode.segments.length,
     });
 
+    // Non-blocking copy-editing pass: falls back to the unedited script on
+    // any failure, so this stage can never fail the pipeline. Downstream
+    // stages (tts, audio, publish) consume the possibly-edited episode —
+    // the edited text becomes canonical (transcript, sidecar stance). The
+    // stage-cache result carries `edited`/`edits` explicitly rather than
+    // being inferred from object identity, which a cache hit (a fresh
+    // JSON.parse'd object either way) would always break.
+    let spokenEpisode = episode;
+    if (resolveEarEditEnabled()) {
+      const earEditStart = Date.now();
+      const earEditResult = await withStageCache(
+        "earEdit",
+        {
+          date,
+          episode: { intro: episode.intro, segments: episode.segments, outro: episode.outro },
+          notes: clusters.map((c) => ({
+            headline: c.headline,
+            whyItMatters: c.whyItMatters,
+            caveat: c.caveat,
+          })),
+        },
+        () => earEdit(episode, clusters, phraseProfile),
+      );
+      spokenEpisode = earEditResult.episode;
+      logJson({
+        phase: "pipeline.step",
+        step: "earEdit",
+        durationMs: Date.now() - earEditStart,
+        segments: spokenEpisode.segments.length,
+        edited: earEditResult.edited,
+        edits: earEditResult.edits.length,
+      });
+    }
+
     const ttsStart = Date.now();
-    const tts = await synthesize(episode);
+    const tts = await synthesize(spokenEpisode);
     workDir = tts.segmentDir;
     logJson({
       phase: "pipeline.step",
@@ -93,7 +128,7 @@ async function main(): Promise<void> {
     });
 
     const audioStart = Date.now();
-    const audio = await buildEpisodeAudio(episode, tts.segmentPaths, workDir);
+    const audio = await buildEpisodeAudio(spokenEpisode, tts.segmentPaths, workDir);
     logJson({
       phase: "pipeline.step",
       step: "audio",
@@ -104,7 +139,7 @@ async function main(): Promise<void> {
 
     const publishStart = Date.now();
     const pub = await publish(
-      episode,
+      spokenEpisode,
       audio.finalPath,
       audio.byteLength,
       audio.durationSeconds,

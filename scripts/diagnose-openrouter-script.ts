@@ -7,7 +7,6 @@ import {
   buildScriptCompletionParams,
   resolveScriptModel,
   resolveScriptTimeoutMs,
-  selectDailyPersona,
   type ScriptCompletionParams,
   type ScriptResponse,
   validateScriptResponse,
@@ -171,13 +170,7 @@ async function buildProductionScriptProbeParams(
   const date = process.env.EPISODE_DATE ?? new Date().toISOString().slice(0, 10);
   const recentStyle = await loadRecentStyleSnippets(date).catch(() => []);
   const phraseProfile = await buildRecentPhraseProfile(date).catch(() => []);
-  return buildScriptCompletionParams(
-    model,
-    selectDailyPersona(date),
-    date,
-    clusters,
-    { recentStyle, phraseProfile },
-  );
+  return buildScriptCompletionParams(model, date, clusters, { recentStyle, phraseProfile });
 }
 
 async function runProbe(

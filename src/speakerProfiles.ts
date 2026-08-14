@@ -1,3 +1,4 @@
+import { HOST_IDENTITY } from "./voice.js";
 import type { TTSVoice } from "./voices.js";
 
 export type EpisodeSectionKind = "intro" | "story" | "outro";
@@ -13,8 +14,9 @@ export interface NarratorProfile {
 
 export const NARRATOR_PROFILE: NarratorProfile = {
   name: "The Host",
-  persona:
-    "The Host is a sharp, witty solo guide to the day's AI news: curious and fair, occasionally cynical, and always weighing the real-world stakes — who benefits, who gets hurt, and what could go right or wrong.",
+  // Single source of truth for "who the host is" shared with the script
+  // writer's prompt (src/voice.ts HOST_IDENTITY feeds src/script.ts too).
+  persona: HOST_IDENTITY.ttsPersonaLine,
   delivery:
     "Natural, conversational solo host; relaxed pace; dry wit; sounds like a smart person thinking out loud, not reading a bulletin.",
   defaultVoice: "marin",

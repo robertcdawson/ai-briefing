@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { buildSystemPrompt, buildUserPrompt, DAILY_PERSONAS } from "../src/script.js";
+import { buildSystemPrompt, buildUserPrompt } from "../src/script.js";
 import type { StoryCluster } from "../src/types.js";
 
 const BASE_CLUSTER: StoryCluster = {
@@ -78,10 +78,7 @@ test("buildUserPrompt: mixed clusters — only the follow-up cluster gets the Pr
 });
 
 test("buildSystemPrompt: contains continuity-narration instruction for follow-up stories", () => {
-  const persona = DAILY_PERSONAS[0];
-  assert.ok(persona, "at least one daily persona must be configured");
-
-  const prompt = buildSystemPrompt(persona);
+  const prompt = buildSystemPrompt();
 
   // Must contain the follow-up handling instruction
   assert.match(prompt, /FOLLOW-UP STORIES/);

@@ -9,8 +9,9 @@ import type { RecentPhraseProfile, RecentStyleSnippets } from "./ledger.js";
 import { PHRASE_PROFILE_WINDOW, PHRASE_REJECT_MIN_EPISODES } from "./ledger.js";
 import type { ChatCompletionLike } from "./util.js";
 import { getChatCompletionAssistantText, logJson, withHardTimeout, withRetry } from "./util.js";
+import { VOICE_EXEMPLARS, formatHostIdentityBlock } from "./voice.js";
 
-// Sonnet leads for prose quality (wit, persona adherence, varied phrasing);
+// Sonnet leads for prose quality (voice adherence, wit, varied phrasing);
 // the cheaper models remain as availability fallbacks. Sonnet was briefly the
 // default before (removed when strict-schema minLength/pattern constraints
 // broke Bedrock-routed structured output); those constraints are long gone and
@@ -51,15 +52,6 @@ export interface WriteScriptOptions {
   phraseProfile?: RecentPhraseProfile;
 }
 
-export interface DailyPersona {
-  name: string;
-  inspiration: string;
-  delivery: string;
-  opinionStance: string;
-  humor: string;
-  avoid: string;
-}
-
 export interface ScriptResponse {
   intro: NarrationChunk[];
   segments: ScriptSegmentResponse[];
@@ -71,74 +63,6 @@ export interface ScriptSegmentResponse {
   chunks: NarrationChunk[];
   sourceUrls: string[];
 }
-
-export const DAILY_PERSONAS: readonly DailyPersona[] = [
-  {
-    name: "The Golden-Age Newsreel Announcer",
-    inspiration:
-      "1940s radio newsreels: crisp headline cadence, theatrical urgency, and clean signposting.",
-    delivery:
-      "Authoritative, polished, and kinetic. Use strong verbs, short declarative sentences, and dramatic but controlled pacing.",
-    opinionStance:
-      "Make confident judgments when the evidence is solid. Call out weak claims, vague demos, and strategic spin.",
-    humor:
-      "A quick dry aside is fine, but keep the segment moving like a bulletin with a brain.",
-    avoid:
-      "Fake old-time slang, melodrama, patriotic bombast, celebrity impressions, or invented newsroom details.",
-  },
-  {
-    name: "The Late-Night FM Futurist",
-    inspiration:
-      "1970s and 1980s FM radio intimacy: close-mic warmth, smooth transitions, and reflective pacing.",
-    delivery:
-      "Warm, unhurried, and slightly mysterious. Close-mic intimacy: long, easy sentences, and the confidence to let a striking fact sit for a beat before moving on.",
-    opinionStance:
-      "Offer thoughtful, sometimes pointed analysis, especially when incentives or tradeoffs are hiding in plain sight.",
-    humor:
-      "Use low-key wit and understated irony. No bits that require acting or sound effects in the text.",
-    avoid:
-      "Mysticism, vague futurism, breathless hype, fake reverb cues, dreamy language that muddies the facts, or radio-metaphor vocabulary (signal, frequency, transmission, airwaves).",
-  },
-  {
-    name: "The Hardboiled Tech Detective",
-    inspiration:
-      "Classic radio noir narration: investigative framing, skeptical questions, and economical atmosphere.",
-    delivery:
-      "Lean, vivid, and suspicious in the useful sense. Frame each story as a case: evidence, motive, and loose ends.",
-    opinionStance:
-      "Be willing to say when a company story does not add up, while separating facts from inference.",
-    humor:
-      "One sharp noir-flavored line per segment at most, then return immediately to the reporting.",
-    avoid:
-      "Pastiche overload, fake accents, cynicism for its own sake, violence metaphors, or made-up scenes.",
-  },
-  {
-    name: "The Morning Drive Contrarian",
-    inspiration:
-      "Classic morning radio energy: bright pacing, memorable hooks, quick turns, and personality-forward hosting.",
-    delivery:
-      "Energetic, direct, and conversational. Make the big takeaway easy to remember before the listener has finished coffee.",
-    opinionStance:
-      "Have strong opinions. Challenge lazy consensus, but anchor every critique in the provided story facts.",
-    humor:
-      "Use quick, clean punchlines and lightly opinionated phrasing. Keep jokes subordinate to comprehension.",
-    avoid:
-      "Shouting, forced banter, imaginary co-hosts, shock-jock tone, or contrarianism unsupported by evidence.",
-  },
-  {
-    name: "The Global Shortwave Correspondent",
-    inspiration:
-      "International field correspondence: compact reports, crisp clarity, and worldwide context.",
-    delivery:
-      "Measured, worldly, and vivid. Report each story like a correspondent on the ground: concrete detail first, then what it means beyond one country or company.",
-    opinionStance:
-      "Draw clear conclusions about global stakes, power shifts, and practical consequences without overstating certainty.",
-    humor:
-      "Sparse, wry, and observational. Let the occasional line land, then move on.",
-    avoid:
-      "Fake static cues, accents, geopolitical grandstanding, travelogue filler, unsupported global claims, or radio-metaphor vocabulary (dispatch, signal, frequency, transmission, antenna, receiver).",
-  },
-];
 
 const NARRATION_CHUNK_SCHEMA = {
   type: "string",
@@ -180,7 +104,7 @@ export const SCRIPT_RESPONSE_SCHEMA = {
       type: "array",
       items: NARRATION_CHUNK_SCHEMA,
       description:
-        "Closing 2-4 narration chunks. Follow today's closing instruction for the ending's shape. Do not re-list the day's stories one by one, and do not open by 'pulling back' or 'stepping back' to find a pattern across them. Finish with one short sign-off in today's persona's voice that does not reuse any recently used construction.",
+        "Closing 2-4 narration chunks. Follow today's closing instruction for the ending's shape. Do not re-list the day's stories one by one, and do not open by 'pulling back' or 'stepping back' to find a pattern across them. Finish with one short sign-off in the host's voice that does not reuse any recently used construction.",
     },
   },
   required: ["intro", "segments", "outro"],
@@ -247,10 +171,9 @@ const BANNED_OUTRO_PATTERNS: ReadonlyArray<{ pattern: RegExp; reason: string }> 
   },
 ];
 
-// Deterministic per-day shape rotation for the opening and closing, salted so
-// it cycles independently of the persona rotation. "Write a fresh outro every
-// day" reliably collapses into one mold; prescribing a different structural
-// move per day does not.
+// Deterministic per-day shape rotation for the opening and closing. "Write a
+// fresh outro every day" reliably collapses into one mold; prescribing a
+// different structural move per day does not.
 export const INTRO_MOVES = [
   "Cold-open inside the lead story: start with its single most striking concrete detail \u2014 no date, no episode preview \u2014 and work the date in a chunk or two later.",
   "Open with the day's sharpest number or quote, put the date in the same breath, then move straight into the first story without previewing the rest of the episode.",
@@ -288,7 +211,7 @@ function buildSystemPromptBase(allowAudioTags: boolean): string {
   - FOLLOW-UP STORIES: When a story cluster is marked as a follow-up (it includes a "Previously" line with prior framing), open that segment as a continuation, not a fresh introduction. Reference how the situation has developed since the prior coverage — e.g. "the rumor we flagged Monday is now confirmed", "what started as a proposal has become policy". Do NOT re-introduce the topic as if the listener has never heard of it. New stories (no "Previously" line) are introduced normally.
   - CONFIDENCE AND SOURCING: Calibrate how firmly you state each story to its corroboration (each cluster includes a "Corroboration: N independent source(s)" line). A single-source story must be voiced as tentative and attributed — "one outlet reports", "this isn't confirmed yet" — never as established fact. When several independent sources corroborate a story, you can state its core facts plainly. When a story reads as vendor hype or an unverified claim, name that skepticism briefly rather than relaying it credulously. Do NOT over-hedge well-corroborated facts — calibration cuts both ways.
   - Do NOT use the same beat order in every segment. Vary how each story unfolds so the episode doesn't read as a template.
-- CLOSING (2-4 narration chunks): Shape the ending with today's closing instruction in the user message. Never open the closing by "pulling back" or "stepping back" to find a pattern, never announce that a pattern, theme, or thread "emerges" or "runs through" the stories, never lean on "the gap between X and Y" framing, and never re-list the day's stories as a parallel run of one-clause sentences. End with a short, persona-flavored sign-off.
+- CLOSING (2-4 narration chunks): Shape the ending with today's closing instruction in the user message. Never open the closing by "pulling back" or "stepping back" to find a pattern, never announce that a pattern, theme, or thread "emerges" or "runs through" the stories, never lean on "the gap between X and Y" framing, and never re-list the day's stories as a parallel run of one-clause sentences. End with a short sign-off in the host's voice.
 
 Length and depth:
 - This is a solo show, not a fixed-length one. Let the news set the length: cover everything that matters, but keep the whole episode under about ten minutes (roughly 1500 spoken words total).
@@ -305,48 +228,46 @@ Recurring segment labels:
 ${SEGMENT_LABEL_RULES}
 - Keep titles compact. Do not invent new segment label names.
 
-Voice rules:
-- Conversational and intelligent, not breathless or hyped. Sound like a smart person talking through the news, not reading a bulletin. Use contractions.
-- Sound alert and genuinely engaged, while staying skeptical and precise; never announcer-y or fake-enthusiastic.
-- Bring some attitude: witty, occasionally cynical, with opinions grounded in evidence. Care visibly about who a story helps or hurts. Never a neutral press-release reader.
-- Every opinion must be grounded in the provided facts. Prefer sharp analysis over neutral summary, but never sacrifice accuracy for personality.
-- Ground every story in the concrete: each segment must carry at least one specific number, named person or organization, or short direct quote drawn from the provided material. Specifics beat adjectives.
-- Optimize for information retention: vary sentence rhythm, front-load concrete details, and reinforce each segment's key takeaway once near the end.
-- Spoken pacing: mix crisp short sentences with medium explanatory sentences. Avoid dense clauses; keep most sentences under about 24 words.
-- TTS-friendly prosody: use commas for natural breath pauses; prefer short clauses over nested lists; one rhetorical question per segment at most when it sharpens the point.
-- Use light, dry humor sparingly (about one quick line per segment max) when it helps recall, never at the expense of accuracy or clarity.
-- At most ONE analogy or metaphor in the entire episode, and only when it genuinely makes a hard idea click. Do not reach for one every segment.
-- Avoid recycled filler and verbal tics. Never use stock phrases like "This is a big deal.", and never open a chunk with analogy crutches like "Think of it as" or "It's like". Find fresh phrasing every time.
+${formatHostIdentityBlock()}
+
+${formatVoiceExemplarsBlock()}
+
+EMPHASIS BUDGET
+- Baseline register is flat, declarative, and specific — most sentences should simply state what happened.
+- Spend ONE deliberate rhetorical peak per episode, placed at the day's most consequential story; everywhere else, let the facts carry the weight.
+- At most one analogy per episode, and only when it maps to something the listener has actually lived through. Do not reach for one every segment.
+- Rhetorical questions and antitheses are allowed, but never as a run of consecutive-sentence patterns — if two sentences in a row share a shape, break one of them.
+
+FATAL
 - Avoid split contrast reversals such as "That's not X. It's Y.", "This isn't X. It's Y.", or "It is not X. It is Y." If a contrast is useful, make it one precise sentence or choose a different rhetorical turn.
-- BANNED PHRASES. Never say any of these, in any tense or close variation: ${BANNED_SCRIPT_PHRASES.map((phrase) => `"${phrase}"`).join(", ")}. They are worn-out podcast filler; find specific, persona-flavored language instead.
-- The sign-off must be one short line in today's persona's voice, different every episode. Never build it as "Keep your X and your Y" in any wording, and never precede it with "That's the {bulletin/signal/briefing/dispatch/file} for {date}". Never a stock farewell.
+- No "Welcome to" or "Today on AI Briefing" boilerplate openings, which go stale fast.
+- Never invent facts, quotes, scenes, sound effects, audio cues, or source details to fit the moment.
+- The sign-off must be one short line in the host's voice, different every episode. Never build it as "Keep your X and your Y" in any wording, and never precede it with "That's the {bulletin/signal/briefing/dispatch/file} for {date}". Never a stock farewell.
 - If the user message lists RECENTLY USED constructions or worn-out phrasing, never use any of them word-for-word or lightly reworded — a script that reuses one is rejected and rewritten.
+- Never announce a beat by name (no "the honest caveat is", "the takeaway here is", "worth noting").
+- BANNED PHRASES. Never say any of these, in any tense or close variation: ${BANNED_SCRIPT_PHRASES.map((phrase) => `"${phrase}"`).join(", ")}. They are worn-out podcast filler; find specific language instead.
+
+SPOKEN-DELIVERY MECHANICS
+- Use contractions; sound like a smart person talking through the news, not reading a bulletin.
 - Read-aloud-friendly: short sentences, no parenthetical asides, no stage-direction punctuation; avoid em-dashes that force awkward pauses.
+- Ground every story in the concrete: each segment must carry at least one specific number, named person or organization, or short direct quote drawn from the provided material. Specifics beat adjectives.
 - Explain jargon only when it helps: define specialized terms in 8-14 plain words and keep moving.
 - Transitions must be one sentence, under about 12 words, and specific to the next story. Vary them, and avoid formulaic phrases like "next up", "now, onto our next story", or "now, let's turn to".
-- No "Welcome to" or "Today on AI Briefing" boilerplate openings, which go stale fast.
 ${noMarkupRule}
 - Numbers in spoken form when natural ("about three billion" not "3,000,000,000").
 - Don't read URLs aloud.
-
-Daily persona rules:
-- Use the provided daily persona to shape the whole episode's tone, word choice, and pacing. It is a style lens, not a character bit, and its flavor should be noticeable across the script, not decorative.
-- Persona flavor must come from rhythm, attitude, and what the host chooses to care about — not a recurring vocabulary. Radio-metaphor nouns (signal, dispatch, frequency, bulletin, transmission, airwaves, broadcast) appear at most once per episode, if at all.
-- Let the persona visibly shape the hook, the word choice, and the sign-off, and give it one understated running angle that surfaces two or three times across the episode in different words.
-- Keep the episode recognizably "AI Briefing": accurate, useful, skeptical, and concise.
-- Do not imitate real people or copyrighted characters. No celebrity impressions.
-- Do not invent audio cues, accents, scenes, sound effects, facts, quotes, reactions, or source details to fit the persona or the conversation.
 
 Each segment's sourceUrls MUST be exactly the urls provided for that cluster. Do not invent or omit any.
 
 Return only JSON matching the provided schema.${audioTagSection}`;
 }
 
-export function selectDailyPersona(date: string): DailyPersona {
-  const index = stableHash(date) % DAILY_PERSONAS.length;
-  const persona = DAILY_PERSONAS[index];
-  if (!persona) throw new Error("No daily personas configured");
-  return persona;
+function formatVoiceExemplarsBlock(): string {
+  const quoted = VOICE_EXEMPLARS.map((exemplar) => `"${exemplar}"`).join("\n\n");
+  return `REGISTER EXEMPLARS
+These passages are the show at its best. Match their register — the flatness, the specificity, the way a judgment lands without being announced — never their wording:
+
+${quoted}`;
 }
 
 export interface ScriptPromptOptions {
@@ -358,19 +279,8 @@ export interface ScriptPromptOptions {
   phraseProfile?: RecentPhraseProfile;
 }
 
-export function buildSystemPrompt(
-  persona: DailyPersona,
-  options: ScriptPromptOptions = {},
-): string {
-  return `${buildSystemPromptBase(options.allowAudioTags === true)}
-
-Today's original broadcast persona:
-- Persona: ${persona.name}
-- Inspired by: ${persona.inspiration}
-- Delivery: ${persona.delivery}
-- Opinion stance: ${persona.opinionStance}
-- Humor: ${persona.humor}
-- Avoid: ${persona.avoid}`;
+export function buildSystemPrompt(options: ScriptPromptOptions = {}): string {
+  return buildSystemPromptBase(options.allowAudioTags === true);
 }
 
 function formatRecentStyleBlock(
@@ -489,7 +399,6 @@ export async function writeScript(
     throw new Error("OPENAI_API_KEY or OPENROUTER_API_KEY is not set");
   }
   if (clusters.length === 0) throw new Error("writeScript: no clusters provided");
-  const persona = selectDailyPersona(date);
   const models = resolveScriptModels(process.env.OPENROUTER_SCRIPT_MODEL);
   const timeoutMs = resolveScriptTimeoutMs(process.env.OPENROUTER_SCRIPT_TIMEOUT_MS);
   // Inline delivery tags are only written when the configured TTS model will
@@ -514,7 +423,7 @@ export async function writeScript(
         async () => {
           const completion = await withHardTimeout(
             completionClient.create(
-              buildScriptCompletionParams(model, persona, date, clusters, promptOptions),
+              buildScriptCompletionParams(model, date, clusters, promptOptions),
             ),
             timeoutMs,
             `script.openrouter.${model}`,
@@ -579,7 +488,6 @@ export async function writeScript(
     durationMs: Date.now() - started,
     segments: episode.segments.length,
     wordCount,
-    persona: persona.name,
     model: selectedModel,
     candidateModels: models.length,
     timeoutMs,
@@ -649,7 +557,6 @@ function stripOpenRouterOpenAIPrefix(model: string): string {
 
 export function buildScriptCompletionParams(
   model: string,
-  persona: DailyPersona,
   date: string,
   clusters: StoryCluster[],
   promptOptions: ScriptPromptOptions = {},
@@ -657,7 +564,7 @@ export function buildScriptCompletionParams(
   return {
     model,
     messages: [
-      { role: "system", content: buildSystemPrompt(persona, promptOptions) },
+      { role: "system", content: buildSystemPrompt(promptOptions) },
       {
         role: "user",
         content: buildUserPrompt(date, clusters, promptOptions.recentStyle, promptOptions.phraseProfile),

@@ -3,7 +3,6 @@ import test from "node:test";
 import { ALLOWED_INLINE_AUDIO_TAGS } from "../src/audioTags.js";
 import {
   BANNED_SCRIPT_PHRASES,
-  DAILY_PERSONAS,
   SCRIPT_RESPONSE_SCHEMA,
   buildDirectOpenAICompletionParams,
   buildScriptCompletionParams,
@@ -13,12 +12,12 @@ import {
   resolveScriptModels,
   resolveScriptTimeoutMs,
   reconcileScriptSourceUrls,
-  selectDailyPersona,
   validateScriptResponse,
   writeScript,
 } from "../src/script.js";
 import type { ScriptCompletionClient, ScriptCompletionParams, ScriptResponse } from "../src/script.js";
 import type { StoryCluster } from "../src/types.js";
+import { HOST_IDENTITY, VOICE_EXEMPLARS } from "../src/voice.js";
 
 test("resolveScriptModels defaults to Sonnet for prose quality with cheaper fallbacks", () => {
   const expectedDefaults = [
@@ -56,7 +55,6 @@ test("resolveScriptModel preserves single-model compatibility", () => {
 test("buildDirectOpenAICompletionParams strips OpenRouter provider routing", () => {
   const params = buildScriptCompletionParams(
     "openai/gpt-4o-mini",
-    DAILY_PERSONAS[0] ?? selectDailyPersona("2026-05-16"),
     "2026-05-16",
     [
       {
@@ -88,39 +86,23 @@ test("resolveScriptTimeoutMs uses a realistic default and accepts valid override
   assert.equal(resolveScriptTimeoutMs("not-a-number"), 360_000);
 });
 
-test("selectDailyPersona is stable for the same episode date", () => {
-  const first = selectDailyPersona("2026-05-11");
-  const second = selectDailyPersona("2026-05-11");
+test("buildSystemPrompt describes a persistent host bounded by factual constraints", () => {
+  const prompt = buildSystemPrompt();
 
-  assert.equal(second.name, first.name);
-});
-
-test("selectDailyPersona rotates across dates", () => {
-  const selectedNames = new Set(
-    [
-      "2026-05-11",
-      "2026-05-12",
-      "2026-05-13",
-      "2026-05-14",
-      "2026-05-15",
-    ].map((date) => selectDailyPersona(date).name),
+  assert.match(prompt, /THE HOST/);
+  assert.ok(prompt.includes(HOST_IDENTITY.refusals), "the host's refusals must appear verbatim");
+  assert.match(prompt, /REGISTER EXEMPLARS/);
+  assert.match(prompt, /match their register/i);
+  assert.ok(VOICE_EXEMPLARS.length > 0, "at least one voice exemplar must be configured");
+  assert.ok(
+    prompt.includes(VOICE_EXEMPLARS[0] as string),
+    "the first exemplar must appear in the prompt",
   );
-
-  assert.ok(selectedNames.size > 1, "date-based selection should vary the delivery persona");
-});
-
-test("buildSystemPrompt keeps persona style bounded by factual constraints", () => {
-  const persona = DAILY_PERSONAS[0];
-  assert.ok(persona, "at least one daily persona must be configured");
-
-  const prompt = buildSystemPrompt(persona);
-
-  assert.match(prompt, new RegExp(`Persona: ${escapeRegExp(persona.name)}`));
-  assert.match(prompt, /style lens, not a character bit/);
-  assert.match(prompt, /opinions grounded in evidence/);
-  assert.match(prompt, /grounded in the provided facts/);
-  assert.match(prompt, /No celebrity impressions/);
-  assert.match(prompt, /Do not invent .* facts/);
+  assert.match(prompt, /EMPHASIS BUDGET/);
+  assert.match(prompt, /ONE deliberate rhetorical peak/i);
+  assert.match(prompt, /one analogy per episode/i);
+  assert.match(prompt, /two sentences in a row share a shape/);
+  assert.match(prompt, /never invent facts/i);
   assert.match(prompt, /sourceUrls MUST be exactly the urls provided/);
   assert.match(prompt, /single host speaking solo/);
   assert.match(prompt, /solo show/);
@@ -151,11 +133,8 @@ test("buildUserPrompt preserves source publisher, URL, and importance context", 
   assert.match(prompt, /Example News: https:\/\/example\.com\/model-feature/);
 });
 
-test("buildSystemPrompt enforces hook, labels, concise transitions, pacing, and explainers", () => {
-  const persona = DAILY_PERSONAS[0];
-  assert.ok(persona, "at least one daily persona must be configured");
-
-  const prompt = buildSystemPrompt(persona);
+test("buildSystemPrompt enforces hook, labels, concise transitions, and explainers", () => {
+  const prompt = buildSystemPrompt();
 
   assert.match(prompt, /Begin with an engaging hook/);
   assert.match(prompt, /exactly one segment per provided story cluster/);
@@ -167,34 +146,24 @@ test("buildSystemPrompt enforces hook, labels, concise transitions, pacing, and 
   assert.match(prompt, /Product & Tool Watch: \{headline\}/);
   assert.match(prompt, /smooth, short, specific transition/);
   assert.match(prompt, /under about 12 words/);
-  assert.match(prompt, /most sentences under about 24 words/);
   assert.match(prompt, /define specialized terms in 8-14 plain words/);
-  assert.match(prompt, /TTS-friendly prosody/);
-  assert.match(prompt, /commas for natural breath pauses/);
-  assert.match(prompt, /one rhetorical question per segment at most/);
   assert.match(prompt, /never announcer-y or fake-enthusiastic/);
 });
 
 test("buildSystemPrompt bans worn-out podcast filler and demands fresh sign-offs", () => {
-  const persona = DAILY_PERSONAS[0];
-  assert.ok(persona, "at least one daily persona must be configured");
-
-  const prompt = buildSystemPrompt(persona);
+  const prompt = buildSystemPrompt();
 
   assert.match(prompt, /BANNED PHRASES/);
   for (const phrase of BANNED_SCRIPT_PHRASES) {
     assert.ok(prompt.includes(`"${phrase}"`), `prompt must ban "${phrase}"`);
   }
-  assert.match(prompt, /sign-off must be one short line in today's persona's voice/);
+  assert.match(prompt, /sign-off must be one short line in the host's voice/);
   assert.match(prompt, /Never build it as "Keep your X and your Y"/);
   assert.match(prompt, /Never a stock farewell/);
 });
 
 test("buildSystemPrompt discourages split contrast reversals", () => {
-  const persona = DAILY_PERSONAS[0];
-  assert.ok(persona, "at least one daily persona must be configured");
-
-  const prompt = buildSystemPrompt(persona);
+  const prompt = buildSystemPrompt();
 
   assert.match(prompt, /Avoid split contrast reversals/);
   assert.match(prompt, /That's not X\. It's Y\./);
@@ -202,26 +171,19 @@ test("buildSystemPrompt discourages split contrast reversals", () => {
   assert.match(prompt, /one precise sentence or choose a different rhetorical turn/);
 });
 
-test("buildSystemPrompt demands concrete specifics and a persona running angle", () => {
-  const persona = DAILY_PERSONAS[0];
-  assert.ok(persona, "at least one daily persona must be configured");
-
-  const prompt = buildSystemPrompt(persona);
+test("buildSystemPrompt demands concrete specifics", () => {
+  const prompt = buildSystemPrompt();
 
   assert.match(prompt, /at least one specific number, named person or organization, or short direct quote/);
   assert.match(prompt, /Specifics beat adjectives/);
-  assert.match(prompt, /one understated running angle that surfaces two or three times/);
 });
 
 test("buildSystemPrompt gates inline delivery tags on the TTS model capability", () => {
-  const persona = DAILY_PERSONAS[0];
-  assert.ok(persona, "at least one daily persona must be configured");
-
-  const plainPrompt = buildSystemPrompt(persona);
+  const plainPrompt = buildSystemPrompt();
   assert.equal(plainPrompt.includes("Inline delivery tags"), false);
   assert.match(plainPrompt, /audio cues, or bracketed pauses/);
 
-  const taggedPrompt = buildSystemPrompt(persona, { allowAudioTags: true });
+  const taggedPrompt = buildSystemPrompt({ allowAudioTags: true });
   assert.match(taggedPrompt, /Inline delivery tags:/);
   for (const tag of ALLOWED_INLINE_AUDIO_TAGS) {
     assert.ok(taggedPrompt.includes(tag), `tagged prompt must allow ${tag}`);
@@ -681,10 +643,6 @@ test("writeScript falls back to the next configured model after empty choices", 
     assert.deepEqual(request.provider, { require_parameters: true });
   }
 });
-
-function escapeRegExp(value: string): string {
-  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-}
 
 function restoreEnv(key: string, value: string | undefined): void {
   if (value === undefined) {

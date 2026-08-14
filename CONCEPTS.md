@@ -45,16 +45,43 @@ A Story Cluster that is a development of something already covered, aired as a c
 ### Suppression
 Dropping a Story Cluster from an Episode because it was already covered and has not materially developed, freeing its slot for genuinely new stories. The opposite outcome to a Follow-up for a recurring story.
 
+### Stance memory
+The host's on-air judgment on a story, carried forward across episodes. The script records one sentence per segment as `stance` (nullable — purely factual segments have none), it rides the sidecar's curation record, and when the story resurfaces as a Follow-up the curator threads it back as `priorStance` so the writer can explicitly revisit it — say whether the earlier call held up, was wrong, or is still open. Distinct from Follow-up itself, which tracks that a story continues; stance memory tracks what the host said about it last time.
+
 ## Script voice & anti-repetition
 
 ### Style snippets
 Intro-opener, outro-opener, and sign-off excerpts parsed from recent on-disk transcripts (`YYYY-MM-DD.transcript.txt`). The script step loads the last ~8 prior episodes via `loadRecentStyleSnippets` and injects them as a **RECENTLY USED** do-not-reuse block so openings, closings, and farewells do not recycle yesterday's phrasing. Zero extra API calls; included in the script stage-cache key. Distinct from the Curation Ledger (story coverage vs prose shape).
 
 ### Intro / outro move
-A deterministic per-day structural instruction for how the opening or closing should be shaped (`INTRO_MOVES` / `OUTRO_MOVES` in `src/script.ts`), selected by a salted `stableHash` of the episode date so it rotates independently of the daily persona. Prescribing a different *move* each day reduces collapse into one outro mold when the model is only told "write something fresh."
+A deterministic per-day structural instruction for how the opening or closing should be shaped (`INTRO_MOVES` / `OUTRO_MOVES` in `src/script.ts`), selected by a salted `stableHash` of the episode date. Prescribing a different *move* each day reduces collapse into one outro mold when the model is only told "write something fresh." Distinct from Segment shape, which does the same job for individual story segments rather than the open/close.
 
 ### Outro mold validator
-Hard-fail regex checks on the generated closing (e.g. "pull/step/zoom back" openers, "a pattern emerges", "Keep your X and your Y", "That's the {bulletin} for {date}"). A hit rejects the script attempt so the model can re-roll (3 attempts per model). Soft bans for announced-beat tics live in `BANNED_SCRIPT_PHRASES` instead.
+Hard-fail regex checks on the generated closing (e.g. "pull/step/zoom back" openers, "a pattern emerges", "Keep your X and your Y", "That's the {bulletin} for {date}"). A hit rejects the script attempt so the model can re-roll (3 attempts per model). Soft bans for a small set of timeless announced-beat tics live in `BANNED_SCRIPT_PHRASES`, which is frozen — new phrasing drift is caught by the Phrase tripwire instead of by adding entries.
+
+### Host identity
+The single persistent host's identity — background, beat, what they care about, their humor, and what they refuse to do (hype, hedge everything equally, perform surprise, moralize) — defined once in `src/voice.ts` (`HOST_IDENTITY`) and rendered into every script prompt via `formatHostIdentityBlock()`. Replaced the five rotating `DAILY_PERSONAS`; the tonal lens is now constant across episodes instead of selected by date.
+
+### Voice exemplars
+Three to five passages from the show's own published transcripts (`VOICE_EXEMPLARS` in `src/voice.ts`), quoted into the script prompt as "the show at its best." The model is told to match their register — the flatness, the specificity, the way a judgment lands without being announced — never their wording. Curated by hand; replace with better passages as new episodes publish.
+
+### Emphasis budget
+The prompt's positive replacement for a list of banned rhetorical moves: baseline register stays flat, declarative, and specific; the script gets one deliberate rhetorical peak at its most consequential story, at most one analogy (and only if it maps to something the listener has lived), and no two consecutive sentences sharing the same rhetorical shape. Spends rhetoric like a budget instead of forbidding it outright.
+
+### Segment shape
+A deterministic per-story structural instruction (`SEGMENT_SHAPES` in `src/script.ts`, e.g. verdict-first, mystery-first, listener-objection) selected by a salted `stableHash` of the episode date and the segment index, so adjacent stories in the same episode take different shapes and the rotation itself varies day to day. Distinct from Intro / outro move, which shapes only the open and close.
+
+### Phrase tripwire
+Statistical, not enumerated, anti-repetition: `buildRecentPhraseProfile` extracts 3- and 4-word phrases from the last 8 transcripts and counts, per phrase, how many *distinct episodes* it appeared in — not raw occurrences. A phrase appearing in ≥3 of 8 is surfaced in the prompt as worn-out; one appearing in ≥4 hard-rejects the script attempt (`assertNoWornPhrases`) so it re-rolls. Replaces most of the enumeration work `BANNED_SCRIPT_PHRASES` used to do — see Outro mold validator — by catching drift from what the show has actually said recently instead of waiting for someone to notice and add an entry.
+
+### Ear edit
+A low-temperature copy-editing pass (`src/earEdit.ts`) that runs between script and TTS: the same script comes back as JSON, with only the Emphasis budget mechanically enforced — warm-up sentences and self-endorsements deleted, runs of same-shape sentences broken up, unearned triads collapsed. Non-blocking: any failure (bad JSON, a validator trip, a word-count blowout) falls back to the unedited script, so this stage can only leave an episode equal to or better than what the script stage produced. Toggle with `EAR_EDIT_ENABLED` (default on).
+
+### Delivery hint
+An optional 3-6 word per-segment spoken-delivery note (e.g. "flat — let the number speak") that the script writer attaches to a segment; `src/tts.ts` folds it into that segment's TTS instructions. OpenAI `gpt-4o-mini-tts` path only — the OpenRouter/Gemini TTS path has no delivery-instructions channel and uses inline audio tags instead. Transient: carried from script to tts, not persisted to the sidecar.
+
+### Style report
+`npm run style:report` — a read-only CLI (`scripts/style-report.ts`) that prints per-episode prose metrics (sentence-length variance, antithesis/triad/metadiscourse counts) and the top repeated 3/4-grams across recent transcripts, for checking whether the register is actually varying over time rather than just reading better on one sample episode. Reads local transcripts only; makes no API calls and always exits 0.
 
 ## Publish & hosting
 

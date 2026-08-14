@@ -4,6 +4,7 @@ import { mkdtemp, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
 import os from "node:os";
 import {
+  extractNarrationText,
   loadRecentCoverage,
   loadRecentStyleSnippets,
   parseTranscriptStyleSnippets,
@@ -355,4 +356,60 @@ test("loadRecentStyleSnippets returns the most recent transcripts before today, 
 test("loadRecentStyleSnippets returns [] for a missing directory", async () => {
   const nonexistent = path.join(os.tmpdir(), `ledger-style-nonexistent-${Date.now()}`);
   assert.deepEqual(await loadRecentStyleSnippets("2026-08-04", 8, nonexistent), []);
+});
+
+// ---------------------------------------------------------------------------
+// extractNarrationText: narration-only text for the phrase tripwire / style report
+// ---------------------------------------------------------------------------
+
+test("extractNarrationText keeps narration and drops title/date/headers/segment-titles/source lines", () => {
+  const transcript = makeTranscript("2026-08-05");
+  const narration = extractNarrationText(transcript);
+
+  assert.ok(!narration.includes("AI Briefing — Episode"), "title line must be stripped");
+  assert.ok(!narration.includes("Date: 2026-08-05"), "Date line must be stripped");
+  assert.ok(!narration.includes("Top Story: Something Happened"), "segment title line must be stripped");
+  assert.ok(!narration.includes("Source: https://example.com/story-1"), "Source line must be stripped");
+
+  const words = narration.split(/\s+/);
+  assert.ok(!words.includes("Intro"), "Intro header must not leak into narration");
+  assert.ok(!words.includes("Outro"), "Outro header must not leak into narration");
+
+  assert.ok(narration.includes("An AI agent went rogue during safety testing this week."));
+  assert.ok(narration.includes("First segment chunk with detail."));
+  assert.ok(narration.includes("One question hangs over all of this: who checks the results?"));
+  assert.ok(narration.includes("The evidence is in. Back tomorrow with the next lead."));
+});
+
+test("extractNarrationText strips category-label segment titles beyond Top Story", () => {
+  const transcript = [
+    "AI Briefing — Test",
+    "Date: 2026-08-06",
+    "",
+    "Intro",
+    "",
+    "Intro sentence here.",
+    "",
+    "Research Breakthrough: A new benchmark result",
+    "",
+    "Segment narration line.",
+    "Source: https://example.com/a",
+    "",
+    "Outro",
+    "",
+    "Closing sentence.",
+    "",
+    "Sign-off line.",
+    "",
+  ].join("\n");
+
+  const narration = extractNarrationText(transcript);
+  assert.ok(!narration.includes("Research Breakthrough: A new benchmark result"));
+  assert.ok(narration.includes("Segment narration line."));
+  assert.ok(narration.includes("Sign-off line."));
+});
+
+test("extractNarrationText returns an empty string for a transcript with no narration lines", () => {
+  assert.equal(extractNarrationText(""), "");
+  assert.equal(extractNarrationText("Just a title line"), "");
 });

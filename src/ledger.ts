@@ -3,6 +3,7 @@ import path from "node:path";
 import { loadAllRecords } from "./publish.js";
 import type { EpisodeRecord } from "./publish.js";
 import { isDateInWindow } from "./episode-date.js";
+import { STORY_CATEGORY_DEFINITIONS } from "./types.js";
 import type { CurationRecord } from "./types.js";
 
 const DEFAULT_EPISODES_DIR = path.join("docs", "episodes");
@@ -69,6 +70,28 @@ const TRANSCRIPT_FILENAME_PATTERN = /^(\d{4}-\d{2}-\d{2})\.transcript\.txt$/;
 const MAX_SNIPPET_WORDS = 30;
 
 /**
+ * Transcript dates strictly before `today` in `dir`, newest first. Shared by
+ * loadRecentStyleSnippets and buildRecentPhraseProfile so both read the same
+ * directory listing logic; each caller applies its own "keep reading until N
+ * successfully-parsed transcripts" loop over the returned dates. A missing
+ * directory yields [].
+ */
+async function listRecentTranscriptDates(dir: string, today: string): Promise<string[]> {
+  const entries = await readdir(dir, { withFileTypes: true }).catch(() => []);
+
+  const dates: string[] = [];
+  for (const entry of entries) {
+    if (!entry.isFile()) continue;
+    const match = TRANSCRIPT_FILENAME_PATTERN.exec(entry.name);
+    const date = match?.[1];
+    if (!date || date >= today) continue;
+    dates.push(date);
+  }
+  dates.sort().reverse();
+  return dates;
+}
+
+/**
  * Loads intro-opener / outro-opener / sign-off snippets from the most recent
  * `count` transcripts strictly before `today`, newest first.
  *
@@ -82,17 +105,7 @@ export async function loadRecentStyleSnippets(
   episodesDir?: string,
 ): Promise<RecentStyleSnippets[]> {
   const dir = episodesDir ?? DEFAULT_EPISODES_DIR;
-  const entries = await readdir(dir, { withFileTypes: true }).catch(() => []);
-
-  const dates: string[] = [];
-  for (const entry of entries) {
-    if (!entry.isFile()) continue;
-    const match = TRANSCRIPT_FILENAME_PATTERN.exec(entry.name);
-    const date = match?.[1];
-    if (!date || date >= today) continue;
-    dates.push(date);
-  }
-  dates.sort().reverse();
+  const dates = await listRecentTranscriptDates(dir, today);
 
   const snippets: RecentStyleSnippets[] = [];
   for (const date of dates) {
@@ -151,6 +164,35 @@ export function parseTranscriptStyleSnippets(
     outroOpener: truncateWords(firstSentence(outroParagraph)),
     signOff: truncateWords(signOff),
   };
+}
+
+const SEGMENT_TITLE_PREFIXES = [
+  "Top Story: ",
+  ...STORY_CATEGORY_DEFINITIONS.map((category) => `${category.label}: `),
+];
+
+/**
+ * Narration-only text from a buildTranscript-format transcript (src/publish.ts):
+ * strips the title line, the `Date:` line, the exact `Intro`/`Outro` header
+ * lines, segment-title lines ("Top Story: …" or "{category label}: …"), and
+ * `Source:` lines, leaving only the spoken narration chunks joined by spaces.
+ */
+export function extractNarrationText(transcript: string): string {
+  const lines = transcript.split("\n");
+  const narrationLines: string[] = [];
+
+  for (const [index, rawLine] of lines.entries()) {
+    if (index === 0) continue; // title line
+    const line = rawLine.trim();
+    if (!line) continue;
+    if (line.startsWith("Date: ")) continue;
+    if (line === "Intro" || line === "Outro") continue;
+    if (line.startsWith("Source:")) continue;
+    if (SEGMENT_TITLE_PREFIXES.some((prefix) => line.startsWith(prefix))) continue;
+    narrationLines.push(line);
+  }
+
+  return narrationLines.join(" ");
 }
 
 function firstSentence(text: string): string {

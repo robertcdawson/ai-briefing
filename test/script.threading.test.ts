@@ -63,7 +63,7 @@ test("buildUserPrompt: cluster WITHOUT followUp renders no Previously line or fo
   assert.equal(prompt.includes("FOLLOW-UP"), false);
   // Must still contain the standard fields
   assert.match(prompt, /STORY 1: A major lab ships a long-awaited model update/);
-  assert.match(prompt, /Why it matters: Builders get significantly better reasoning/);
+  assert.match(prompt, /Editor's note \(context only — never echo its wording\): Builders get significantly better reasoning/);
 });
 
 test("buildUserPrompt: mixed clusters — only the follow-up cluster gets the Previously line", () => {

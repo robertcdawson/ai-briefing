@@ -134,6 +134,58 @@ test("buildUserPrompt preserves source publisher, URL, and importance context", 
   assert.match(prompt, /Example News: https:\/\/example\.com\/model-feature/);
 });
 
+test("buildUserPrompt renders Specifics as a sub-list and reframes whyItMatters/caveat as an Editor's note", () => {
+  const clusters: StoryCluster[] = [
+    {
+      canonicalKey: "test-story",
+      category: "product-tools",
+      headline: "A model ships a useful feature",
+      whyItMatters: "Builders get a simpler path to production.",
+      caveat: "Benchmarks are still early.",
+      importance: 72,
+      sources: [{ publisher: "Example News", url: "https://example.com/model-feature" }],
+      specifics: ["Revenue grew 40% year over year.", 'CEO said: "we shipped early."'],
+    },
+  ];
+
+  const prompt = buildUserPrompt("2026-05-11", clusters);
+
+  assert.match(prompt, /Specifics:/);
+  assert.ok(prompt.includes("- Revenue grew 40% year over year."));
+  assert.ok(prompt.includes('- CEO said: "we shipped early."'));
+  assert.ok(
+    prompt.includes(
+      "Editor's note (context only — never echo its wording): Builders get a simpler path to production. Benchmarks are still early.",
+    ),
+  );
+  // The old "Why it matters:" / "Caveat:" labels must be gone entirely.
+  assert.equal(prompt.includes("Why it matters:"), false);
+  assert.equal(prompt.includes("Caveat:"), false);
+});
+
+test("buildUserPrompt omits the Specifics sub-list when a cluster has none", () => {
+  const clusters: StoryCluster[] = [
+    {
+      canonicalKey: "test-story",
+      category: "product-tools",
+      headline: "A model ships a useful feature",
+      whyItMatters: "Builders get a simpler path to production.",
+      caveat: "Benchmarks are still early.",
+      sources: [{ publisher: "Example News", url: "https://example.com/model-feature" }],
+    },
+  ];
+
+  const prompt = buildUserPrompt("2026-05-11", clusters);
+  assert.equal(prompt.includes("Specifics:"), false);
+  assert.match(prompt, /Editor's note \(context only — never echo its wording\):/);
+});
+
+test("buildSystemPrompt instructs building sentences from Specifics, not the Editor's note", () => {
+  const prompt = buildSystemPrompt();
+  assert.match(prompt, /Build your sentences from each story's Specifics/);
+  assert.match(prompt, /never repeat or lightly rephrase the Editor's note's wording/);
+});
+
 test("buildSystemPrompt enforces hook, labels, concise transitions, and explainers", () => {
   const prompt = buildSystemPrompt();
 

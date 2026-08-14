@@ -63,6 +63,8 @@ export interface StoryCluster {
     /** The host's prior on-air stance for this story, copied from the ledger's "take:" so the writer can revisit it. */
     priorStance?: string;
   };
+  /** 3-6 verbatim concrete details (figures, named people/orgs, a short quote) pulled from the source articles for the writer to build sentences from. */
+  specifics?: string[];
 }
 
 /** Minimal record of a story that aired in an episode, stored in the sidecar for future threading. */
@@ -75,6 +77,8 @@ export interface CurationRecord {
   category: StoryCategory;
   /** The host's committed on-air judgment or prediction for this story, if any (additive-optional; absent on older sidecars). */
   stance?: string;
+  /** Concrete details extracted from the source articles for this story, if any (additive-optional; absent on older sidecars). */
+  specifics?: string[];
 }
 
 /** Why a scored cluster did not make the episode. */

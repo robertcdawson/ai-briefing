@@ -297,6 +297,7 @@ SPOKEN-DELIVERY MECHANICS
 - Use contractions; sound like a smart person talking through the news, not reading a bulletin.
 - Read-aloud-friendly: short sentences, no parenthetical asides, no stage-direction punctuation; avoid em-dashes that force awkward pauses.
 - Ground every story in the concrete: each segment must carry at least one specific number, named person or organization, or short direct quote drawn from the provided material. Specifics beat adjectives.
+- Build your sentences from each story's Specifics — the numbers, names, and quotes — and use the Editor's note only to steer judgment; never repeat or lightly rephrase the Editor's note's wording on air.
 - Explain jargon only when it helps: define specialized terms in 8-14 plain words and keep moving.
 - Transitions must be one sentence, under about 12 words, and specific to the next story. Vary them, and avoid formulaic phrases like "next up", "now, onto our next story", or "now, let's turn to".
 ${noMarkupRule}
@@ -396,14 +397,16 @@ export function buildUserPrompt(
     const followUpLine = c.followUp
       ? `\n  Previously (${c.followUp.priorDate.replace(/\s+/g, " ").trim()}): ${c.followUp.priorFraming.replace(/\s+/g, " ").trim()} — this is a FOLLOW-UP/update, not a new story.${priorStanceSuffix}`
       : "";
+    const specificsBlock = c.specifics && c.specifics.length > 0
+      ? `\n  Specifics:\n${c.specifics.map((item) => `      - ${item}`).join("\n")}`
+      : "";
     const shape = selectSegmentShape(date, i);
     return `STORY ${i + 1}: ${c.headline}
   Category: ${categoryLabel} (${c.category})
   Importance: ${importance}
   Corroboration: ${corroboration}
-  Shape this segment as: ${shape.name} — ${shape.instruction}
-  Why it matters: ${c.whyItMatters}
-  Caveat: ${c.caveat}${followUpLine}
+  Shape this segment as: ${shape.name} — ${shape.instruction}${specificsBlock}
+  Editor's note (context only — never echo its wording): ${c.whyItMatters} ${c.caveat}${followUpLine}
   Sources:
       ${sources}`;
   });

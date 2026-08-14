@@ -119,6 +119,7 @@ async function resolveProbeClusters(): Promise<{
     headline: cr.headline,
     whyItMatters: cr.whyItMatters,
     caveat: cr.caveat,
+    specifics: cr.specifics,
     importance: cr.importance,
     sources: [
       {

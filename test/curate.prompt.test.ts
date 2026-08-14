@@ -38,6 +38,14 @@ test("system prompt instructs: always surface a major escalation", () => {
   assert.match(prompt, /ALWAYS surface a major escalation/);
 });
 
+test("system prompt instructs extracting verbatim specifics per cluster", () => {
+  const prompt = buildSystemPrompt();
+  assert.match(prompt, /specifics/i);
+  assert.match(prompt, /verbatim quote/);
+  assert.match(prompt, /15 words/);
+  assert.match(prompt, /never invent or estimate/i);
+});
+
 test("system prompt instructs: emit followUp field with priorDate, priorFraming, and priorStance", () => {
   const prompt = buildSystemPrompt();
   assert.match(prompt, /followUp/);

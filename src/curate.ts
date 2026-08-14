@@ -49,6 +49,12 @@ const RESPONSE_SCHEMA = {
             type: "string",
             description: "1 sentence on what's uncertain, missing, or potentially overhyped",
           },
+          specifics: {
+            type: "array",
+            items: { type: "string" },
+            description:
+              "3-5 concrete details pulled from the articles, each 15 words max: exact figures with comparisons, named people or orgs with their roles, and one short verbatim quote with its speaker.",
+          },
           importance: {
             type: "number",
             description: "0-100 importance score for ranking",
@@ -96,6 +102,7 @@ const RESPONSE_SCHEMA = {
           "headline",
           "whyItMatters",
           "caveat",
+          "specifics",
           "importance",
           "sources",
           "followUp",
@@ -142,6 +149,7 @@ ${categoryLines}
 4. RETURN the strongest distinct, credible stories as separate clusters — at most ${MODEL_CLUSTER_LIMIT}, fewer when the day is quiet — each with an honest importance score. Prefer a diverse mix of categories. Never pad with weak material: if it isn't worth a listener's time, leave it out. A slow day may yield only one or two strong stories.
 5. SUPPRESS already-covered stories: if today's articles revisit a story from the recently-covered list below, omit that cluster UNLESS it has materially developed (new facts, confirmed outcomes, significant escalation). When UNCERTAIN whether it developed enough, PREFER including it as a short follow-up rather than dropping it — bias toward surfacing. ALWAYS surface a major escalation even if you covered it recently.
 6. Every cluster MUST include a "followUp" field. When threading a follow-up (a story that recurred with material development), set followUp to an object containing priorDate (the episode date from the recently-covered list), priorFraming (a 1-sentence recall of what was said before), and priorStance (copy the "| take: ..." text from that story's line in the recently-covered list, verbatim, or null if it has no take). For a brand-new story, set followUp to null.
+7. EXTRACT 3-5 specifics per cluster from the articles, each under 15 words: exact figures with a comparison (not bare numbers), named people or organizations with their role, and one short verbatim quote with its speaker. Only what the articles actually state — never invent or estimate one.
 ${interestBlock}
 For each cluster:
 - canonicalKey: short kebab-case slug
@@ -149,6 +157,7 @@ For each cluster:
 - headline: 8-14 word neutral framing
 - whyItMatters: 1-2 sentences on significance for AI builders/researchers
 - caveat: 1 sentence on what's uncertain, missing, or potentially overhyped
+- specifics: 3-5 concrete details as described above
 - sources: every article in the cluster as {url, publisher}
 - followUp: required on every cluster — an object {priorDate, priorFraming, priorStance} when this is a follow-up to a recently-covered story, otherwise null
 
@@ -363,6 +372,20 @@ export function normaliseCluster(
       ...(priorStance !== undefined ? { priorStance } : {}),
     };
   }
+
+  // Guard against a malformed/non-array specifics field the same way F5
+  // guards clusters; keep only non-empty trimmed strings, cap at 6, and
+  // omit the field entirely rather than carry an empty array.
+  const specifics = Array.isArray(raw.specifics)
+    ? raw.specifics
+        .filter((s): s is string => typeof s === "string" && s.trim().length > 0)
+        .map((s) => s.trim())
+        .slice(0, 6)
+    : [];
+  if (specifics.length > 0) {
+    result.specifics = specifics;
+  }
+
   return result;
 }
 

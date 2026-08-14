@@ -157,6 +157,65 @@ test("normaliseCluster does not add followUp when absent", () => {
   assert.equal(result.followUp, undefined);
 });
 
+// --- specifics passthrough tests ---
+
+test("normaliseCluster carries specifics through, trimmed", () => {
+  const raw: StoryCluster & { importance?: number } = {
+    canonicalKey: "story-with-specifics",
+    category: "research",
+    headline: "A benchmark result",
+    whyItMatters: "Matters.",
+    caveat: "Early.",
+    importance: 70,
+    sources: [{ publisher: "Example", url: "https://example.com/story" }],
+    specifics: ["  Revenue grew 40% year over year.  ", "CEO Jane Doe said: \"we shipped early.\""],
+  };
+  const result = normaliseCluster(raw);
+  assert.deepEqual(result.specifics, [
+    "Revenue grew 40% year over year.",
+    'CEO Jane Doe said: "we shipped early."',
+  ]);
+});
+
+test("normaliseCluster filters blank entries and caps specifics at 6", () => {
+  const raw: StoryCluster & { importance?: number } = {
+    canonicalKey: "story-with-many-specifics",
+    category: "research",
+    headline: "A benchmark result",
+    whyItMatters: "Matters.",
+    caveat: "Early.",
+    importance: 70,
+    sources: [{ publisher: "Example", url: "https://example.com/story" }],
+    specifics: ["one", "  ", "two", "", "three", "four", "five", "six", "seven", "eight"],
+  };
+  const result = normaliseCluster(raw);
+  assert.deepEqual(result.specifics, ["one", "two", "three", "four", "five", "six"]);
+});
+
+test("normaliseCluster omits specifics entirely when absent, malformed, or empty after filtering", () => {
+  const base: StoryCluster & { importance?: number } = {
+    canonicalKey: "story",
+    category: "research",
+    headline: "A benchmark result",
+    whyItMatters: "Matters.",
+    caveat: "Early.",
+    importance: 70,
+    sources: [{ publisher: "Example", url: "https://example.com/story" }],
+  };
+
+  assert.equal(normaliseCluster(base).specifics, undefined);
+  assert.equal(
+    normaliseCluster({ ...base, specifics: ["   ", ""] }).specifics,
+    undefined,
+    "an array of only blank strings must collapse to absent",
+  );
+  assert.equal(
+    normaliseCluster({ ...base, specifics: "not an array" as unknown as string[] }).specifics,
+    undefined,
+    "a non-array specifics value must be treated as absent",
+  );
+});
+
 test("selectStoryClusters preserves followUp field on selected clusters", () => {
   const followUpCluster: StoryCluster & { importance?: number } = {
     canonicalKey: "openai-o3-confirmed",

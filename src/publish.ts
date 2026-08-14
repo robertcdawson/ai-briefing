@@ -171,6 +171,7 @@ export async function publish(
         importance: c.importance,
         category: c.category,
         stance: episode.segments[i]?.stance,
+        specifics: c.specifics,
       }))
     : undefined;
 

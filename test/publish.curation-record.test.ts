@@ -42,6 +42,7 @@ function buildCurationArray(
     importance: c.importance,
     category: c.category,
     stance: stances[i],
+    specifics: c.specifics,
   }));
 }
 
@@ -242,6 +243,45 @@ test("round-trip: a segment's recorded stance persists; a story with no stance s
       false,
       "stance must be absent, not null, when the segment had no take",
     );
+  } finally {
+    await rm(dir, { recursive: true, force: true });
+  }
+});
+
+// ---------------------------------------------------------------------------
+// Specifics: a cluster's extracted specifics round-trip through the sidecar;
+// a story with none leaves the field absent (additive-optional).
+// ---------------------------------------------------------------------------
+test("round-trip: a cluster's specifics persist; a story with none stays absent", async () => {
+  const dir = await makeTempDir();
+  try {
+    const date = "2099-06-23";
+    const clusters: StoryCluster[] = [
+      makeCluster("story-with-specifics", {
+        importance: 82,
+        category: "research",
+        specifics: ["Revenue grew 40% year over year.", "CTO Jane Doe confirmed the rollout."],
+      }),
+      makeCluster("story-without-specifics", { importance: 60, category: "business" }),
+    ];
+
+    const curation = buildCurationArray(clusters);
+    const sidecar = buildSidecar(date, curation);
+    await writeFile(path.join(dir, `${date}.json`), JSON.stringify(sidecar, null, 2), "utf8");
+
+    const records = await loadAllRecords(dir);
+    const record = records[0]!;
+    const cr0 = record.curation![0]!;
+    const cr1 = record.curation![1]!;
+
+    assert.equal(cr0.canonicalKey, "story-with-specifics");
+    assert.deepEqual(cr0.specifics, [
+      "Revenue grew 40% year over year.",
+      "CTO Jane Doe confirmed the rollout.",
+    ]);
+
+    assert.equal(cr1.canonicalKey, "story-without-specifics");
+    assert.equal(cr1.specifics, undefined);
   } finally {
     await rm(dir, { recursive: true, force: true });
   }

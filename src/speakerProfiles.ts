@@ -55,14 +55,38 @@ export function resolveTTSDirection(env: NodeJS.ProcessEnv = process.env): TTSDi
 export function buildChunkSpeechInstructions(
   section: EpisodeSectionKind,
   direction: TTSDirectionConfig = resolveTTSDirection(),
+  segmentHint?: string,
 ): string {
+  const sanitizedHint = sanitizeSegmentDeliveryHint(segmentHint);
   return [
     direction.global,
     `Host: ${NARRATOR_PROFILE.persona}`,
     `Delivery: ${direction.narrator}`,
     `Section: ${direction[section]}`,
+    ...(sanitizedHint ? [`This segment: ${sanitizedHint}`] : []),
     TTS_DIALOGUE_FOOTER,
   ].join("\n");
+}
+
+const MAX_SEGMENT_DELIVERY_HINT_LENGTH = 60;
+
+/**
+ * Sanitizes a writer-supplied per-segment delivery hint before it reaches a
+ * TTS `instructions` field: strips brackets and newlines (this must never
+ * become a stage direction or a stray inline audio tag), collapses
+ * whitespace, and caps length. Returns undefined for anything that reduces
+ * to nothing.
+ */
+export function sanitizeSegmentDeliveryHint(hint: string | undefined): string | undefined {
+  if (!hint) return undefined;
+  const cleaned = hint
+    .replace(/[[\]{}<>]/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+  if (!cleaned) return undefined;
+  return cleaned.length > MAX_SEGMENT_DELIVERY_HINT_LENGTH
+    ? cleaned.slice(0, MAX_SEGMENT_DELIVERY_HINT_LENGTH).trim()
+    : cleaned;
 }
 
 function readStyleEnv(value: string | undefined): string | undefined {

@@ -277,13 +277,31 @@ test("SCRIPT_RESPONSE_SCHEMA requires a nullable stance field with no length con
   assert.equal("pattern" in stanceSchema, false);
 });
 
-test("normalizeScriptResponse strips null/blank stance and trims a real one", () => {
+test("SCRIPT_RESPONSE_SCHEMA requires a nullable delivery field with no length constraints", () => {
+  const deliverySchema = SCRIPT_RESPONSE_SCHEMA.properties.segments.items.properties.delivery;
+  assert.deepEqual(deliverySchema.type, ["string", "null"]);
+  assert.ok(
+    SCRIPT_RESPONSE_SCHEMA.properties.segments.items.required.includes("delivery"),
+    "delivery must be required (strict-mode: optionality is expressed via nullable type, not omission)",
+  );
+  assert.equal("minLength" in deliverySchema, false);
+  assert.equal("pattern" in deliverySchema, false);
+});
+
+test("normalizeScriptResponse strips null/blank stance and delivery independently and trims real values", () => {
   const response: ScriptResponse = {
     intro: ["Setup."],
     segments: [
-      { title: "Top Story: A", chunks: ["A."], sourceUrls: [], stance: null },
-      { title: "Top Story: B", chunks: ["B."], sourceUrls: [], stance: "   " },
-      { title: "Top Story: C", chunks: ["C."], sourceUrls: [], stance: "  I called this correctly.  " },
+      { title: "Top Story: A", chunks: ["A."], sourceUrls: [], stance: null, delivery: null },
+      { title: "Top Story: B", chunks: ["B."], sourceUrls: [], stance: "   ", delivery: "   " },
+      {
+        title: "Top Story: C",
+        chunks: ["C."],
+        sourceUrls: [],
+        stance: "  I called this correctly.  ",
+        delivery: "  flat — let the number speak  ",
+      },
+      { title: "Top Story: D", chunks: ["D."], sourceUrls: [], stance: null, delivery: "quickening" },
     ],
     outro: ["Close."],
   };
@@ -291,8 +309,14 @@ test("normalizeScriptResponse strips null/blank stance and trims a real one", ()
   normalizeScriptResponse(response);
 
   assert.equal("stance" in (response.segments[0] as object), false);
+  assert.equal("delivery" in (response.segments[0] as object), false);
   assert.equal("stance" in (response.segments[1] as object), false);
+  assert.equal("delivery" in (response.segments[1] as object), false);
   assert.equal(response.segments[2]?.stance, "I called this correctly.");
+  assert.equal(response.segments[2]?.delivery, "flat — let the number speak");
+  // A field normalizing to absent must not affect the other on the same segment.
+  assert.equal("stance" in (response.segments[3] as object), false);
+  assert.equal(response.segments[3]?.delivery, "quickening");
 });
 
 test("validateScriptResponse tolerates absent, null, or string stance but rejects other types", () => {
@@ -355,6 +379,65 @@ test("validateScriptResponse tolerates absent, null, or string stance but reject
       ),
     /stance must be a string/,
   );
+});
+
+test("validateScriptResponse tolerates absent, null, or string delivery but rejects other types", () => {
+  const clusters: StoryCluster[] = [
+    {
+      canonicalKey: "test-story",
+      category: "product-tools",
+      headline: "A model ships a useful feature",
+      whyItMatters: "Builders get a simpler path to production.",
+      caveat: "Benchmarks are still early.",
+      sources: [{ publisher: "Example News", url: "https://example.com/model-feature" }],
+    },
+  ];
+  const base = {
+    intro: ["Here is the setup."],
+    outro: ["That is the close."],
+  };
+
+  // Explicit string delivery: fine.
+  validateScriptResponse(
+    {
+      ...base,
+      segments: [
+        {
+          title: "Top Story: A model ships a useful feature",
+          chunks: ["A."],
+          sourceUrls: ["https://example.com/model-feature"],
+          delivery: "flat — let the number speak",
+        },
+      ],
+    },
+    clusters,
+  );
+
+  // A non-string, non-null delivery (malformed API output) must be rejected.
+  assert.throws(
+    () =>
+      validateScriptResponse(
+        {
+          ...base,
+          segments: [
+            {
+              title: "Top Story: A model ships a useful feature",
+              chunks: ["A."],
+              sourceUrls: ["https://example.com/model-feature"],
+              delivery: ["not", "a", "string"],
+            },
+          ],
+        } as unknown as ScriptResponse,
+        clusters,
+      ),
+    /delivery must be a string/,
+  );
+});
+
+test("buildSystemPrompt describes the optional per-segment delivery hint", () => {
+  const prompt = buildSystemPrompt();
+  assert.match(prompt, /"delivery" field/);
+  assert.match(prompt, /3-6 word spoken-delivery hint/);
 });
 
 test("buildUserPrompt tells the model not to pad fewer-than-three clusters", () => {

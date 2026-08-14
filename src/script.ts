@@ -63,6 +63,7 @@ export interface ScriptSegmentResponse {
   chunks: NarrationChunk[];
   sourceUrls: string[];
   stance?: string | null;
+  delivery?: string | null;
 }
 
 const NARRATION_CHUNK_SCHEMA = {
@@ -101,8 +102,13 @@ export const SCRIPT_RESPONSE_SCHEMA = {
             description:
               "One sentence, 25 words max, first person: the judgment or prediction you committed to on air for this story. Null if the segment is purely factual with no committed take.",
           },
+          delivery: {
+            type: ["string", "null"],
+            description:
+              "Spoken-delivery hint for this segment, 3-6 words (e.g. 'flat — let the number speak'). Null when standard delivery fits.",
+          },
         },
-        required: ["title", "chunks", "sourceUrls", "stance"],
+        required: ["title", "chunks", "sourceUrls", "stance", "delivery"],
         additionalProperties: false,
       },
     },
@@ -303,6 +309,7 @@ SPOKEN-DELIVERY MECHANICS
 ${noMarkupRule}
 - Numbers in spoken form when natural ("about three billion" not "3,000,000,000").
 - Don't read URLs aloud.
+- Optionally set a segment's "delivery" field to a 3-6 word spoken-delivery hint (e.g. "flat — let the number speak") when this segment calls for something other than the default delivery; leave it null otherwise.
 
 Each segment's sourceUrls MUST be exactly the urls provided for that cluster. Do not invent or omit any.
 
@@ -530,14 +537,15 @@ export async function writeScript(
     date,
     title: `AI Briefing — ${formatLongDate(date)}`,
     intro: parsed.intro,
-    // normalizeScriptResponse already stripped null stance to undefined at
-    // runtime; this map only reconciles that with EpisodeSegment's stricter
-    // (non-nullable) type.
+    // normalizeScriptResponse already stripped null stance/delivery to
+    // undefined at runtime; this map only reconciles that with
+    // EpisodeSegment's stricter (non-nullable) type.
     segments: parsed.segments.map((s) => ({
       title: s.title,
       chunks: s.chunks,
       sourceUrls: s.sourceUrls,
       stance: s.stance ?? undefined,
+      delivery: s.delivery ?? undefined,
     })),
     outro: parsed.outro,
     audioPath: "",
@@ -657,12 +665,13 @@ export function buildScriptCompletionParams(
 export function normalizeScriptResponse(response: ScriptResponse): void {
   for (const segment of response.segments) {
     normalizeNullableSegmentField(segment, "stance");
+    normalizeNullableSegmentField(segment, "delivery");
   }
 }
 
 function normalizeNullableSegmentField(
   segment: ScriptSegmentResponse,
-  key: "stance",
+  key: "stance" | "delivery",
 ): void {
   const value = segment[key];
   if (value === null || value === undefined) {
@@ -735,6 +744,9 @@ export function validateScriptResponse(
     }
     if (segment.stance !== undefined && typeof segment.stance !== "string") {
       throw new Error(`script segment ${i + 1} stance must be a string when present`);
+    }
+    if (segment.delivery !== undefined && typeof segment.delivery !== "string") {
+      throw new Error(`script segment ${i + 1} delivery must be a string when present`);
     }
     validateNarrationChunks(`segment ${i + 1}`, segment.chunks);
 

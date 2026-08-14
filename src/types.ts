@@ -117,6 +117,8 @@ export interface EpisodeSegment {
   sourceUrls: string[];
   /** The host's committed on-air judgment or prediction for this story, if any. Persisted to the sidecar for future stance-threading. */
   stance?: string;
+  /** Spoken-delivery hint for this segment, if any. Transient: script-to-tts only, never persisted to the sidecar. */
+  delivery?: string;
 }
 
 export type EpisodePartKind = "intro" | "segment" | "outro";

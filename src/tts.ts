@@ -49,6 +49,14 @@ export interface SpeechRequest {
   instructions?: string;
 }
 
+interface TTSPart {
+  label: string;
+  section: EpisodeSectionKind;
+  chunks: NarrationChunk[];
+  /** Per-segment spoken-delivery hint (story parts only); undefined for intro/outro. */
+  hint?: string;
+}
+
 export async function synthesize(episode: Episode): Promise<TTSResult> {
   const started = Date.now();
   const config = resolveTTSProviderConfig();
@@ -68,12 +76,13 @@ export async function synthesize(episode: Episode): Promise<TTSResult> {
   const segmentDir = path.join(tmpdir(), `ai-briefing-${episode.date}-${process.pid}`);
   await mkdir(segmentDir, { recursive: true });
 
-  const parts: { label: string; section: EpisodeSectionKind; chunks: NarrationChunk[] }[] = [
+  const parts: TTSPart[] = [
     { label: "00-intro", section: "intro", chunks: episode.intro },
     ...episode.segments.map((s, i) => ({
       label: `${pad2(i + 1)}-${slug(s.title)}`,
       section: "story" as const,
       chunks: s.chunks,
+      hint: s.delivery,
     })),
     { label: `${pad2(episode.segments.length + 1)}-outro`, section: "outro", chunks: episode.outro },
   ];
@@ -113,7 +122,7 @@ export async function synthesize(episode: Episode): Promise<TTSResult> {
 
 async function synthesizePart(
   client: OpenAI,
-  part: { label: string; section: EpisodeSectionKind; chunks: NarrationChunk[] },
+  part: TTSPart,
   config: TTSProviderConfig,
   direction: TTSDirectionConfig,
   segmentDir: string,
@@ -125,7 +134,7 @@ async function synthesizePart(
 
   // Prefer one request per part: continuous prosody across the whole monologue
   // beats per-chunk synthesis, which resets intonation at every boundary.
-  const partRequest = buildPartSpeechRequest(part.chunks, config, part.section, direction);
+  const partRequest = buildPartSpeechRequest(part.chunks, config, part.section, direction, part.hint);
   if (partRequest.input.length <= config.maxRequestChars) {
     await withRetry(
       () => writeSpeechFile(client, partRequest, outputPath, timeoutMs, part.label),
@@ -147,7 +156,7 @@ async function synthesizePart(
       () =>
         writeSpeechFile(
           client,
-          buildPartSpeechRequest([chunk], config, part.section, direction),
+          buildPartSpeechRequest([chunk], config, part.section, direction, part.hint),
           chunkPath,
           timeoutMs,
           chunkLabel,
@@ -232,12 +241,13 @@ export function buildChunkSpeechRequest(
   model: string = DEFAULT_OPENAI_TTS_MODEL,
   section: EpisodeSectionKind = "story",
   direction: TTSDirectionConfig = resolveTTSDirection(),
+  segmentHint?: string,
 ): SpeechRequest {
   return buildSpeechRequest(
     text,
     voice,
     model,
-    buildChunkSpeechInstructions(section, direction),
+    buildChunkSpeechInstructions(section, direction, segmentHint),
   );
 }
 
@@ -245,13 +255,17 @@ export function buildChunkSpeechRequest(
  * Build one speech request for a whole part (or a single chunk on fallback):
  * chunks are joined into one continuous monologue, inline delivery tags are
  * stripped for models that would read them aloud, and the OpenAI-style
- * `instructions` field is sent only to models that honor it.
+ * `instructions` field is sent only to models that honor it. `segmentHint`
+ * (the writer's per-segment delivery note) only ever reaches `instructions`
+ * — the OpenRouter/Gemini path has supportsDeliveryInstructions hard-coded
+ * false and uses inline audio tags as its own per-segment channel instead.
  */
 export function buildPartSpeechRequest(
   chunks: readonly NarrationChunk[],
   config: TTSProviderConfig,
   section: EpisodeSectionKind = "story",
   direction: TTSDirectionConfig = resolveTTSDirection(),
+  segmentHint?: string,
 ): SpeechRequest {
   const joined = chunks
     .map((chunk) => chunk.trim())
@@ -271,7 +285,7 @@ export function buildPartSpeechRequest(
   };
 
   if (config.supportsDeliveryInstructions) {
-    request.instructions = buildChunkSpeechInstructions(section, direction);
+    request.instructions = buildChunkSpeechInstructions(section, direction, segmentHint);
   }
 
   return request;

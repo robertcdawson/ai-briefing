@@ -4,6 +4,7 @@ import {
   buildChunkSpeechInstructions,
   NARRATOR_PROFILE,
   resolveTTSDirection,
+  sanitizeSegmentDeliveryHint,
 } from "../src/speakerProfiles.js";
 
 test("NARRATOR_PROFILE defines a single host with a natural default voice", () => {
@@ -44,4 +45,58 @@ test("buildChunkSpeechInstructions composes global, host persona, delivery, sect
   assert.match(instructions, /Delivery: narrator delivery/);
   assert.match(instructions, /Section: intro section/);
   assert.match(instructions, /solo podcast monologue/);
+});
+
+test("sanitizeSegmentDeliveryHint strips brackets, angle brackets, and newlines, and collapses whitespace", () => {
+  assert.equal(sanitizeSegmentDeliveryHint("[flat] let the\nnumber speak"), "flat let the number speak");
+  assert.equal(sanitizeSegmentDeliveryHint("  <tag> {brace}  "), "tag brace");
+});
+
+test("sanitizeSegmentDeliveryHint returns undefined for empty, blank, or bracket-only input", () => {
+  assert.equal(sanitizeSegmentDeliveryHint(undefined), undefined);
+  assert.equal(sanitizeSegmentDeliveryHint(""), undefined);
+  assert.equal(sanitizeSegmentDeliveryHint("   "), undefined);
+  assert.equal(sanitizeSegmentDeliveryHint("[[[]]]"), undefined);
+});
+
+test("sanitizeSegmentDeliveryHint caps length at 60 characters", () => {
+  const result = sanitizeSegmentDeliveryHint("x".repeat(100));
+  assert.ok(result);
+  assert.ok(result!.length <= 60, `expected <= 60 chars, got ${result!.length}`);
+});
+
+test("buildChunkSpeechInstructions appends a sanitized segment hint between Section and the footer", () => {
+  const direction = {
+    global: "global",
+    narrator: "narrator delivery",
+    intro: "intro section",
+    story: "story section",
+    outro: "outro section",
+  };
+  const instructions = buildChunkSpeechInstructions("story", direction, "[flat] let the number speak");
+
+  assert.match(instructions, /This segment: flat let the number speak/);
+  const lines = instructions.split("\n");
+  const sectionIndex = lines.findIndex((l) => l.startsWith("Section:"));
+  const hintIndex = lines.findIndex((l) => l.startsWith("This segment:"));
+  const footerIndex = lines.findIndex((l) => l.includes("solo podcast monologue"));
+  assert.ok(sectionIndex > -1 && hintIndex > -1 && footerIndex > -1);
+  assert.ok(sectionIndex < hintIndex && hintIndex < footerIndex);
+});
+
+test("buildChunkSpeechInstructions omits the segment-hint line when absent or blank, byte-identical to the no-arg call", () => {
+  const direction = {
+    global: "global",
+    narrator: "narrator delivery",
+    intro: "intro section",
+    story: "story section",
+    outro: "outro section",
+  };
+  const withoutArg = buildChunkSpeechInstructions("story", direction);
+  const withUndefined = buildChunkSpeechInstructions("story", direction, undefined);
+  const withBlank = buildChunkSpeechInstructions("story", direction, "   ");
+
+  assert.equal(withoutArg.includes("This segment:"), false);
+  assert.equal(withoutArg, withUndefined);
+  assert.equal(withoutArg, withBlank);
 });

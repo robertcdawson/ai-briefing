@@ -80,8 +80,13 @@ const RESPONSE_SCHEMA = {
                 type: "string",
                 description: "Brief (1 sentence) recall of what was said about this story before",
               },
+              priorStance: {
+                type: ["string", "null"],
+                description:
+                  "Copy of the 'take:' recorded in the recently-covered list for this story, verbatim. Null when no take was recorded.",
+              },
             },
-            required: ["priorDate", "priorFraming"],
+            required: ["priorDate", "priorFraming", "priorStance"],
             additionalProperties: false,
           },
         },
@@ -136,7 +141,7 @@ ${categoryLines}
 3. SCORE each cluster's audience impact for researchers, builders, and technical leaders on a 0-100 scale. Weight practical usefulness, strategic consequence, evidence quality, and timeliness above novelty; novelty is only a tiebreaker. Down-weight SEO clickbait, thin rewrites, listicles, and pure opinion.
 4. RETURN the strongest distinct, credible stories as separate clusters — at most ${MODEL_CLUSTER_LIMIT}, fewer when the day is quiet — each with an honest importance score. Prefer a diverse mix of categories. Never pad with weak material: if it isn't worth a listener's time, leave it out. A slow day may yield only one or two strong stories.
 5. SUPPRESS already-covered stories: if today's articles revisit a story from the recently-covered list below, omit that cluster UNLESS it has materially developed (new facts, confirmed outcomes, significant escalation). When UNCERTAIN whether it developed enough, PREFER including it as a short follow-up rather than dropping it — bias toward surfacing. ALWAYS surface a major escalation even if you covered it recently.
-6. Every cluster MUST include a "followUp" field. When threading a follow-up (a story that recurred with material development), set followUp to an object containing priorDate (the episode date from the recently-covered list) and priorFraming (a 1-sentence recall of what was said before). For a brand-new story, set followUp to null.
+6. Every cluster MUST include a "followUp" field. When threading a follow-up (a story that recurred with material development), set followUp to an object containing priorDate (the episode date from the recently-covered list), priorFraming (a 1-sentence recall of what was said before), and priorStance (copy the "| take: ..." text from that story's line in the recently-covered list, verbatim, or null if it has no take). For a brand-new story, set followUp to null.
 ${interestBlock}
 For each cluster:
 - canonicalKey: short kebab-case slug
@@ -145,7 +150,7 @@ For each cluster:
 - whyItMatters: 1-2 sentences on significance for AI builders/researchers
 - caveat: 1 sentence on what's uncertain, missing, or potentially overhyped
 - sources: every article in the cluster as {url, publisher}
-- followUp: required on every cluster — an object {priorDate, priorFraming} when this is a follow-up to a recently-covered story, otherwise null
+- followUp: required on every cluster — an object {priorDate, priorFraming, priorStance} when this is a follow-up to a recently-covered story, otherwise null
 
 Return only JSON matching the provided schema. No prose outside the JSON.`;
 }
@@ -153,7 +158,11 @@ Return only JSON matching the provided schema. No prose outside the JSON.`;
 // Maximum lines to include in the prior-coverage block (F9 cap).
 const MAX_PRIOR_COVERAGE_LINES = 40;
 // Maximum character length for a single prior-coverage line (F9 compactness).
-const MAX_PRIOR_LINE_LENGTH = 200;
+// Raised from 200 to make room for the optional "| take: ..." stance suffix.
+const MAX_PRIOR_LINE_LENGTH = 300;
+// Cap on the stance excerpt within a prior-coverage line, separate from the
+// overall line cap so a long stance doesn't crowd out the headline/caveat.
+const MAX_PRIOR_STANCE_LENGTH = 100;
 
 /**
  * Builds a compact "recently covered" block for the user prompt.
@@ -173,7 +182,11 @@ export function buildPriorCoverageBlock(priorCoverage: PriorCoverageEntry[], win
   const lines = capped.map((e) => {
     const headline = e.headline.replace(/\s+/g, " ").trim().slice(0, 80);
     const caveat = e.caveat.replace(/\s+/g, " ").trim().slice(0, 80);
-    const line = `  ${e.episodeDate} | ${e.canonicalKey} | ${headline} | caveat: ${caveat}`;
+    const stance = e.stance?.trim();
+    const stanceSuffix = stance
+      ? ` | take: ${stance.replace(/\s+/g, " ").slice(0, MAX_PRIOR_STANCE_LENGTH)}`
+      : "";
+    const line = `  ${e.episodeDate} | ${e.canonicalKey} | ${headline} | caveat: ${caveat}${stanceSuffix}`;
     // Ensure the whole line stays compact
     return line.length > MAX_PRIOR_LINE_LENGTH ? line.slice(0, MAX_PRIOR_LINE_LENGTH) : line;
   });
@@ -311,7 +324,10 @@ export function computeThreadingTally(
  * followUp field the model emitted.
  */
 export function normaliseCluster(
-  raw: StoryCluster & { importance?: number; followUp?: { priorDate: string; priorFraming: string } | null },
+  raw: Omit<StoryCluster, "followUp"> & {
+    importance?: number;
+    followUp?: { priorDate: string; priorFraming: string; priorStance?: string | null } | null;
+  },
 ): StoryCluster & { importance?: number } {
   const result: StoryCluster & { importance?: number } = {
     canonicalKey: raw.canonicalKey,
@@ -334,7 +350,18 @@ export function normaliseCluster(
     typeof raw.followUp.priorFraming === "string" &&
     raw.followUp.priorFraming.trim().length > 0
   ) {
-    result.followUp = raw.followUp;
+    // priorStance carries through only when a non-empty trimmed string —
+    // null (no prior take recorded) or garbage collapses to absent, same
+    // posture as priorDate/priorFraming above.
+    const priorStance =
+      typeof raw.followUp.priorStance === "string" && raw.followUp.priorStance.trim().length > 0
+        ? raw.followUp.priorStance.trim()
+        : undefined;
+    result.followUp = {
+      priorDate: raw.followUp.priorDate,
+      priorFraming: raw.followUp.priorFraming,
+      ...(priorStance !== undefined ? { priorStance } : {}),
+    };
   }
   return result;
 }
@@ -410,7 +437,10 @@ export async function curate(
   const content = getChatCompletionAssistantText(completion, "OpenRouter curate");
 
   const parsed = JSON.parse(content) as {
-    clusters: (StoryCluster & { importance: number; followUp?: { priorDate: string; priorFraming: string } | null })[];
+    clusters: (StoryCluster & {
+      importance: number;
+      followUp?: { priorDate: string; priorFraming: string; priorStance?: string | null } | null;
+    })[];
   };
 
   // F5: guard against malformed/non-array clusters before mapping

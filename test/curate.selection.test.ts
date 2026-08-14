@@ -95,6 +95,54 @@ test("normaliseCluster carries followUp through when present", () => {
   assert.equal(result.followUp.priorFraming, "We flagged unverified O3 benchmark claims on Monday.");
 });
 
+test("normaliseCluster carries priorStance through when present and non-empty", () => {
+  const raw: StoryCluster & {
+    importance?: number;
+    followUp?: { priorDate: string; priorFraming: string; priorStance?: string | null };
+  } = {
+    canonicalKey: "openai-o3-confirmed",
+    category: "research",
+    headline: "OpenAI confirms O3 performance claims",
+    whyItMatters: "Third-party verification of benchmark results.",
+    caveat: "Limited external access so far.",
+    importance: 75,
+    sources: [{ publisher: "Reuters", url: "https://reuters.com/openai-o3" }],
+    followUp: {
+      priorDate: "2026-06-15",
+      priorFraming: "We flagged unverified O3 benchmark claims on Monday.",
+      priorStance: "  I said this would hold up.  ",
+    },
+  };
+  const result = normaliseCluster(raw);
+  assert.equal(result.followUp?.priorStance, "I said this would hold up.");
+});
+
+test("normaliseCluster drops priorStance when null or blank", () => {
+  const base = {
+    canonicalKey: "openai-o3-confirmed",
+    category: "research" as const,
+    headline: "OpenAI confirms O3 performance claims",
+    whyItMatters: "Third-party verification of benchmark results.",
+    caveat: "Limited external access so far.",
+    importance: 75,
+    sources: [{ publisher: "Reuters", url: "https://reuters.com/openai-o3" }],
+  };
+
+  const withNullStance = normaliseCluster({
+    ...base,
+    followUp: { priorDate: "2026-06-15", priorFraming: "Flagged Monday.", priorStance: null },
+  });
+  assert.ok(withNullStance.followUp);
+  assert.equal("priorStance" in withNullStance.followUp, false);
+
+  const withBlankStance = normaliseCluster({
+    ...base,
+    followUp: { priorDate: "2026-06-15", priorFraming: "Flagged Monday.", priorStance: "   " },
+  });
+  assert.ok(withBlankStance.followUp);
+  assert.equal("priorStance" in withBlankStance.followUp, false);
+});
+
 test("normaliseCluster does not add followUp when absent", () => {
   const raw: StoryCluster & { importance?: number } = {
     canonicalKey: "new-story",

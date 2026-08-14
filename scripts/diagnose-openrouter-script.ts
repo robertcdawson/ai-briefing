@@ -93,6 +93,12 @@ async function main(): Promise<void> {
  * carries curation records, replay those stories through the current prompt so
  * prompt changes can be compared against the actually-published transcript.
  * Sidecars don't store per-story source URLs, so a placeholder source stands in.
+ *
+ * Note: `stance` is not replayed here. It's an OUTPUT of the day being
+ * replayed (what the host said), not an input to its own script prompt —
+ * its input-side use is as `followUp.priorStance` on a *later* day's
+ * replay, which this sidecar-to-cluster mapping doesn't have a "later day"
+ * to attach to. Carrying it in here would misrepresent the original prompt.
  */
 async function resolveProbeClusters(): Promise<{
   clusters: StoryCluster[];

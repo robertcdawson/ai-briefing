@@ -62,6 +62,7 @@ export interface ScriptSegmentResponse {
   title: string;
   chunks: NarrationChunk[];
   sourceUrls: string[];
+  stance?: string | null;
 }
 
 const NARRATION_CHUNK_SCHEMA = {
@@ -95,8 +96,13 @@ export const SCRIPT_RESPONSE_SCHEMA = {
             type: "array",
             items: { type: "string" },
           },
+          stance: {
+            type: ["string", "null"],
+            description:
+              "One sentence, 25 words max, first person: the judgment or prediction you committed to on air for this story. Null if the segment is purely factual with no committed take.",
+          },
         },
-        required: ["title", "chunks", "sourceUrls"],
+        required: ["title", "chunks", "sourceUrls", "stance"],
         additionalProperties: false,
       },
     },
@@ -247,7 +253,7 @@ function buildSystemPromptBase(allowAudioTags: boolean): string {
 
 - INTRO (2-3 narration chunks): Begin with an engaging hook built on the single most surprising or consequential fact of the day, shaped by today's opening instruction in the user message. Mention the date once, wherever it lands naturally — do not open every episode with "It's {date}" followed by a list of coming stories. Not a vague teaser question, and not a dry table of contents.
 - STORY SEGMENTS: Write exactly one segment per provided story cluster, in the order provided (most important first). For each story, cover (in whatever order feels natural) what concretely happened, why it matters for AI builders and researchers with a listener-oriented takeaway, a plain-English gloss of any jargon on first use, the potential impact both good and bad, and an honest caveat about what's uncertain, missing, or overhyped. End each segment with a smooth, short, specific transition into the next story (or, for the last segment, into the outro).
-  - FOLLOW-UP STORIES: When a story cluster is marked as a follow-up (it includes a "Previously" line with prior framing), open that segment as a continuation, not a fresh introduction. Reference how the situation has developed since the prior coverage — e.g. "the rumor we flagged Monday is now confirmed", "what started as a proposal has become policy". Do NOT re-introduce the topic as if the listener has never heard of it. New stories (no "Previously" line) are introduced normally.
+  - FOLLOW-UP STORIES: When a story cluster is marked as a follow-up (it includes a "Previously" line with prior framing), open that segment as a continuation, not a fresh introduction. Reference how the situation has developed since the prior coverage — e.g. "the rumor we flagged Monday is now confirmed", "what started as a proposal has become policy". Do NOT re-introduce the topic as if the listener has never heard of it. New stories (no "Previously" line) are introduced normally. When the "Previously" line includes your prior take, revisit that call explicitly — say in fresh wording whether it held up, was wrong, or is still open.
   - CONFIDENCE AND SOURCING: Calibrate how firmly you state each story to its corroboration (each cluster includes a "Corroboration: N independent source(s)" line). A single-source story must be voiced as tentative and attributed — "one outlet reports", "this isn't confirmed yet" — never as established fact. When several independent sources corroborate a story, you can state its core facts plainly. When a story reads as vendor hype or an unverified claim, name that skepticism briefly rather than relaying it credulously. Do NOT over-hedge well-corroborated facts — calibration cuts both ways.
   - Do NOT use the same beat order in every segment. Vary how each story unfolds so the episode doesn't read as a template.
   - Each story in the user message carries an assigned shape; reach the essentials — what happened, why it matters, what's uncertain — through that shape, and never announce a shape or beat by name.
@@ -384,8 +390,11 @@ export function buildUserPrompt(
       sourceCount === 0
         ? "none listed (treat as unverified)"
         : `${sourceCount} independent source${sourceCount === 1 ? "" : "s"}`;
+    const priorStanceSuffix = c.followUp?.priorStance
+      ? ` Your prior take: "${c.followUp.priorStance.replace(/\s+/g, " ").trim()}"`
+      : "";
     const followUpLine = c.followUp
-      ? `\n  Previously (${c.followUp.priorDate.replace(/\s+/g, " ").trim()}): ${c.followUp.priorFraming.replace(/\s+/g, " ").trim()} — this is a FOLLOW-UP/update, not a new story.`
+      ? `\n  Previously (${c.followUp.priorDate.replace(/\s+/g, " ").trim()}): ${c.followUp.priorFraming.replace(/\s+/g, " ").trim()} — this is a FOLLOW-UP/update, not a new story.${priorStanceSuffix}`
       : "";
     const shape = selectSegmentShape(date, i);
     return `STORY ${i + 1}: ${c.headline}
@@ -474,6 +483,7 @@ export async function writeScript(
           const content = getChatCompletionAssistantText(completion, "OpenRouter script");
 
           const response = JSON.parse(content) as ScriptResponse;
+          normalizeScriptResponse(response);
           const repairedSegments = reconcileScriptSourceUrls(response, clusters);
           if (repairedSegments > 0) {
             logJson({
@@ -517,7 +527,15 @@ export async function writeScript(
     date,
     title: `AI Briefing — ${formatLongDate(date)}`,
     intro: parsed.intro,
-    segments: parsed.segments,
+    // normalizeScriptResponse already stripped null stance to undefined at
+    // runtime; this map only reconciles that with EpisodeSegment's stricter
+    // (non-nullable) type.
+    segments: parsed.segments.map((s) => ({
+      title: s.title,
+      chunks: s.chunks,
+      sourceUrls: s.sourceUrls,
+      stance: s.stance ?? undefined,
+    })),
     outro: parsed.outro,
     audioPath: "",
     byteLength: 0,
@@ -625,6 +643,39 @@ export function buildScriptCompletionParams(
   };
 }
 
+/**
+ * Normalizes nullable per-segment fields in place: null or blank becomes
+ * absent (deleted), a non-blank string is trimmed. A malformed non-string,
+ * non-null value is left untouched so validateScriptResponse can reject it
+ * explicitly with a clear error instead of this function silently coercing
+ * or swallowing it. Called immediately after JSON.parse, before reconcile
+ * and validation.
+ */
+export function normalizeScriptResponse(response: ScriptResponse): void {
+  for (const segment of response.segments) {
+    normalizeNullableSegmentField(segment, "stance");
+  }
+}
+
+function normalizeNullableSegmentField(
+  segment: ScriptSegmentResponse,
+  key: "stance",
+): void {
+  const value = segment[key];
+  if (value === null || value === undefined) {
+    delete segment[key];
+    return;
+  }
+  if (typeof value === "string") {
+    const trimmed = value.trim();
+    if (trimmed.length === 0) {
+      delete segment[key];
+    } else {
+      segment[key] = trimmed;
+    }
+  }
+}
+
 /** Fill omitted cluster source URLs from curation; still reject invented extras. */
 export function reconcileScriptSourceUrls(
   response: ScriptResponse,
@@ -678,6 +729,9 @@ export function validateScriptResponse(
     if (!segment || !cluster) throw new Error(`script response missing segment ${i + 1}`);
     if (typeof segment.title !== "string" || segment.title.trim().length === 0) {
       throw new Error(`script segment ${i + 1} title must be a non-empty string`);
+    }
+    if (segment.stance !== undefined && typeof segment.stance !== "string") {
+      throw new Error(`script segment ${i + 1} stance must be a string when present`);
     }
     validateNarrationChunks(`segment ${i + 1}`, segment.chunks);
 

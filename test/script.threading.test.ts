@@ -30,6 +30,26 @@ test("buildUserPrompt: cluster WITH followUp includes prior framing and follow-u
   assert.match(prompt, /A major lab hinted at an imminent model upgrade affecting pricing\./);
   // Must include the follow-up marker phrase
   assert.match(prompt, /FOLLOW-UP\/update, not a new story/);
+  // No priorStance was set on this cluster, so no prior-take line renders.
+  assert.equal(prompt.includes("Your prior take"), false);
+});
+
+test("buildUserPrompt: cluster WITH followUp AND priorStance includes the prior take", () => {
+  const cluster: StoryCluster = {
+    ...BASE_CLUSTER,
+    followUp: {
+      priorDate: "2026-06-10",
+      priorFraming: "A major lab hinted at an imminent model upgrade affecting pricing.",
+      priorStance: "I said this would slip past the announced date.",
+    },
+  };
+
+  const prompt = buildUserPrompt("2026-06-17", [cluster]);
+
+  assert.match(prompt, /Previously \(2026-06-10\)/);
+  assert.ok(
+    prompt.includes('Your prior take: "I said this would slip past the announced date."'),
+  );
 });
 
 test("buildUserPrompt: cluster WITHOUT followUp renders no Previously line or follow-up marker", () => {
@@ -88,4 +108,7 @@ test("buildSystemPrompt: contains continuity-narration instruction for follow-up
   assert.match(prompt, /"Previously" line/);
   // Must give a concrete example of update phrasing
   assert.match(prompt, /the rumor we flagged/);
+  // Must instruct revisiting a recorded prior take
+  assert.match(prompt, /prior take/);
+  assert.match(prompt, /held up, was wrong, or is still open/);
 });

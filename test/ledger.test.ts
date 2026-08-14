@@ -214,6 +214,31 @@ test("multiple curation records within a single sidecar are all returned", async
 });
 
 // ---------------------------------------------------------------------------
+// Stance passthrough: an aired story's recorded stance survives the
+// sidecar -> loadRecentCoverage round trip (additive-optional field)
+// ---------------------------------------------------------------------------
+test("loadRecentCoverage carries a curation record's stance through when present", async () => {
+  const today = "2026-06-17";
+
+  const dir = await makeTempDir({
+    "2026-06-16.json": makeSidecar("2026-06-16", [
+      { ...makeCuration("story-with-take"), stance: "I said this would ship on time." },
+      makeCuration("story-without-take"),
+    ]),
+  });
+
+  try {
+    const entries = await loadRecentCoverage(today, 14, dir);
+    const withTake = entries.find((e) => e.canonicalKey === "story-with-take");
+    const withoutTake = entries.find((e) => e.canonicalKey === "story-without-take");
+    assert.equal(withTake?.stance, "I said this would ship on time.");
+    assert.equal(withoutTake?.stance, undefined);
+  } finally {
+    await rm(dir, { recursive: true, force: true });
+  }
+});
+
+// ---------------------------------------------------------------------------
 // Window boundary: custom windowDays parameter is honored
 // ---------------------------------------------------------------------------
 test("custom windowDays parameter limits the window correctly", async () => {

@@ -57,7 +57,12 @@ export interface StoryCluster {
   importance?: number;
   sources: { url: string; publisher: string }[];
   /** Present when this story is a follow-up to a previously covered story. */
-  followUp?: { priorDate: string; priorFraming: string };
+  followUp?: {
+    priorDate: string;
+    priorFraming: string;
+    /** The host's prior on-air stance for this story, copied from the ledger's "take:" so the writer can revisit it. */
+    priorStance?: string;
+  };
 }
 
 /** Minimal record of a story that aired in an episode, stored in the sidecar for future threading. */
@@ -68,6 +73,8 @@ export interface CurationRecord {
   caveat: string;
   importance?: number;
   category: StoryCategory;
+  /** The host's committed on-air judgment or prediction for this story, if any (additive-optional; absent on older sidecars). */
+  stance?: string;
 }
 
 /** Why a scored cluster did not make the episode. */
@@ -104,6 +111,8 @@ export interface EpisodeSegment {
   title: string;
   chunks: NarrationChunk[];
   sourceUrls: string[];
+  /** The host's committed on-air judgment or prediction for this story, if any. Persisted to the sidecar for future stance-threading. */
+  stance?: string;
 }
 
 export type EpisodePartKind = "intro" | "segment" | "outro";

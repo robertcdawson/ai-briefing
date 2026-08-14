@@ -8,6 +8,7 @@ import {
   buildScriptCompletionParams,
   buildSystemPrompt,
   buildUserPrompt,
+  normalizeScriptResponse,
   resolveScriptModel,
   resolveScriptModels,
   resolveScriptTimeoutMs,
@@ -210,6 +211,97 @@ test("SCRIPT_RESPONSE_SCHEMA requires string narration chunks", () => {
   assert.equal(
     "pattern" in schema.properties.segments.items.properties.chunks.items,
     false,
+  );
+});
+
+test("SCRIPT_RESPONSE_SCHEMA requires a nullable stance field with no length constraints", () => {
+  const stanceSchema = SCRIPT_RESPONSE_SCHEMA.properties.segments.items.properties.stance;
+  assert.deepEqual(stanceSchema.type, ["string", "null"]);
+  assert.ok(
+    SCRIPT_RESPONSE_SCHEMA.properties.segments.items.required.includes("stance"),
+    "stance must be required (strict-mode: optionality is expressed via nullable type, not omission)",
+  );
+  assert.equal("minLength" in stanceSchema, false);
+  assert.equal("pattern" in stanceSchema, false);
+});
+
+test("normalizeScriptResponse strips null/blank stance and trims a real one", () => {
+  const response: ScriptResponse = {
+    intro: ["Setup."],
+    segments: [
+      { title: "Top Story: A", chunks: ["A."], sourceUrls: [], stance: null },
+      { title: "Top Story: B", chunks: ["B."], sourceUrls: [], stance: "   " },
+      { title: "Top Story: C", chunks: ["C."], sourceUrls: [], stance: "  I called this correctly.  " },
+    ],
+    outro: ["Close."],
+  };
+
+  normalizeScriptResponse(response);
+
+  assert.equal("stance" in (response.segments[0] as object), false);
+  assert.equal("stance" in (response.segments[1] as object), false);
+  assert.equal(response.segments[2]?.stance, "I called this correctly.");
+});
+
+test("validateScriptResponse tolerates absent, null, or string stance but rejects other types", () => {
+  const clusters: StoryCluster[] = [
+    {
+      canonicalKey: "test-story",
+      category: "product-tools",
+      headline: "A model ships a useful feature",
+      whyItMatters: "Builders get a simpler path to production.",
+      caveat: "Benchmarks are still early.",
+      sources: [{ publisher: "Example News", url: "https://example.com/model-feature" }],
+    },
+  ];
+  const base = {
+    intro: ["Here is the setup."],
+    outro: ["That is the close."],
+  };
+
+  // Absent stance: fine.
+  validateScriptResponse(
+    {
+      ...base,
+      segments: [{ title: "Top Story: A model ships a useful feature", chunks: ["A."], sourceUrls: ["https://example.com/model-feature"] }],
+    },
+    clusters,
+  );
+
+  // Explicit string stance: fine.
+  validateScriptResponse(
+    {
+      ...base,
+      segments: [
+        {
+          title: "Top Story: A model ships a useful feature",
+          chunks: ["A."],
+          sourceUrls: ["https://example.com/model-feature"],
+          stance: "This will ship on time.",
+        },
+      ],
+    },
+    clusters,
+  );
+
+  // A non-string, non-null stance (malformed API output) must be rejected.
+  assert.throws(
+    () =>
+      validateScriptResponse(
+        {
+          ...base,
+          segments: [
+            {
+              title: "Top Story: A model ships a useful feature",
+              chunks: ["A."],
+              sourceUrls: ["https://example.com/model-feature"],
+              stance: 42,
+            },
+          ],
+        } as unknown as ScriptResponse,
+        clusters,
+      ),
+    /stance must be a string/,
   );
 });
 

@@ -25,17 +25,23 @@ function makeCluster(key: string, overrides: Partial<StoryCluster> = {}): StoryC
 
 /**
  * Mirrors the curation serialization logic from publish() without invoking
- * publish()'s full side-effects (audio copy, feed.xml write, etc.).
+ * publish()'s full side-effects (audio copy, feed.xml write, etc.). `stances`
+ * mirrors the positional join against episode.segments[i]?.stance in the
+ * real implementation — index i's entry, if any, becomes cluster i's stance.
  */
-function buildCurationArray(clusters: StoryCluster[]): CurationRecord[] | undefined {
+function buildCurationArray(
+  clusters: StoryCluster[],
+  stances: (string | undefined)[] = [],
+): CurationRecord[] | undefined {
   if (clusters.length === 0) return undefined;
-  return clusters.map((c) => ({
+  return clusters.map((c, i) => ({
     canonicalKey: c.canonicalKey,
     headline: c.headline,
     whyItMatters: c.whyItMatters,
     caveat: c.caveat,
     importance: c.importance,
     category: c.category,
+    stance: stances[i],
   }));
 }
 
@@ -199,6 +205,43 @@ test("round-trip: EpisodeRecord with curation array survives loadAllRecords fiel
     assert.equal(cr1.canonicalKey, "round-trip-key-2");
     assert.equal(cr1.category, "policy-regulation");
     assert.equal(cr1.importance, 55);
+  } finally {
+    await rm(dir, { recursive: true, force: true });
+  }
+});
+
+// ---------------------------------------------------------------------------
+// Stance: an aired story's recorded stance round-trips through the sidecar;
+// a story with no stance leaves the field absent (additive-optional).
+// ---------------------------------------------------------------------------
+test("round-trip: a segment's recorded stance persists; a story with no stance stays absent", async () => {
+  const dir = await makeTempDir();
+  try {
+    const date = "2099-06-22";
+    const clusters: StoryCluster[] = [
+      makeCluster("story-with-stance", { importance: 82, category: "research" }),
+      makeCluster("story-without-stance", { importance: 60, category: "business" }),
+    ];
+
+    const curation = buildCurationArray(clusters, ["I called this correctly.", undefined]);
+    const sidecar = buildSidecar(date, curation);
+    await writeFile(path.join(dir, `${date}.json`), JSON.stringify(sidecar, null, 2), "utf8");
+
+    const records = await loadAllRecords(dir);
+    const record = records[0]!;
+    const cr0 = record.curation![0]!;
+    const cr1 = record.curation![1]!;
+
+    assert.equal(cr0.canonicalKey, "story-with-stance");
+    assert.equal(cr0.stance, "I called this correctly.");
+
+    assert.equal(cr1.canonicalKey, "story-without-stance");
+    assert.equal(cr1.stance, undefined);
+    assert.equal(
+      Object.prototype.hasOwnProperty.call(cr1, "stance"),
+      false,
+      "stance must be absent, not null, when the segment had no take",
+    );
   } finally {
     await rm(dir, { recursive: true, force: true });
   }

@@ -144,6 +144,7 @@ test("buildSystemPrompt enforces hook, labels, concise transitions, and explaine
   assert.match(prompt, /potential impact both good and bad/);
   assert.match(prompt, /first segment title MUST begin "Top Story:/);
   assert.match(prompt, /Product & Tool Watch: \{headline\}/);
+  assert.match(prompt, /assigned shape/);
   assert.match(prompt, /smooth, short, specific transition/);
   assert.match(prompt, /under about 12 words/);
   assert.match(prompt, /define specialized terms in 8-14 plain words/);

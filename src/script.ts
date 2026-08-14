@@ -195,6 +195,45 @@ export function selectOutroMove(date: string): string {
   return OUTRO_MOVES[stableHash(`${date}:outro-move`) % OUTRO_MOVES.length] as string;
 }
 
+// Extends the intro/outro MOVES mechanism into the segment bodies, where
+// most of the episode's words actually live. Each story gets a deterministic
+// shape independent of the others, so adjacent segments in the same episode
+// read differently and the show doesn't fall into a single template.
+export const SEGMENT_SHAPES: readonly { name: string; instruction: string }[] = [
+  {
+    name: "verdict-first",
+    instruction: "Open on your judgment about this story, then earn it with the evidence.",
+  },
+  {
+    name: "mystery-first",
+    instruction: "Open on the detail that doesn't add up; resolve it, or leave it honestly open.",
+  },
+  {
+    name: "listener-objection",
+    instruction: "Open by voicing the smart listener's pushback on this story, then answer it.",
+  },
+  {
+    name: "how-we-got-here",
+    instruction: "Give a compressed timeline that makes today's development the inevitable next line.",
+  },
+  {
+    name: "follow-the-money",
+    instruction: "Start from who pays and who collects, and read the announcement through the incentives.",
+  },
+  {
+    name: "builder-impact-first",
+    instruction: "Open with what changes Monday morning for someone building on this, then widen out.",
+  },
+] as const;
+
+export function selectSegmentShape(date: string, segmentIndex: number): { name: string; instruction: string } {
+  const shape = SEGMENT_SHAPES[
+    (stableHash(`${date}:segment-shapes`) + segmentIndex) % SEGMENT_SHAPES.length
+  ];
+  if (!shape) throw new Error("No segment shapes configured");
+  return shape;
+}
+
 function buildSystemPromptBase(allowAudioTags: boolean): string {
   const chunkPurityRule = allowAudioTags
     ? "- Do not include speaker labels, stage directions, reactions, fake laughter, or audio cues. The ONLY bracketed text allowed is the approved inline delivery tags described below."
@@ -211,6 +250,7 @@ function buildSystemPromptBase(allowAudioTags: boolean): string {
   - FOLLOW-UP STORIES: When a story cluster is marked as a follow-up (it includes a "Previously" line with prior framing), open that segment as a continuation, not a fresh introduction. Reference how the situation has developed since the prior coverage — e.g. "the rumor we flagged Monday is now confirmed", "what started as a proposal has become policy". Do NOT re-introduce the topic as if the listener has never heard of it. New stories (no "Previously" line) are introduced normally.
   - CONFIDENCE AND SOURCING: Calibrate how firmly you state each story to its corroboration (each cluster includes a "Corroboration: N independent source(s)" line). A single-source story must be voiced as tentative and attributed — "one outlet reports", "this isn't confirmed yet" — never as established fact. When several independent sources corroborate a story, you can state its core facts plainly. When a story reads as vendor hype or an unverified claim, name that skepticism briefly rather than relaying it credulously. Do NOT over-hedge well-corroborated facts — calibration cuts both ways.
   - Do NOT use the same beat order in every segment. Vary how each story unfolds so the episode doesn't read as a template.
+  - Each story in the user message carries an assigned shape; reach the essentials — what happened, why it matters, what's uncertain — through that shape, and never announce a shape or beat by name.
 - CLOSING (2-4 narration chunks): Shape the ending with today's closing instruction in the user message. Never open the closing by "pulling back" or "stepping back" to find a pattern, never announce that a pattern, theme, or thread "emerges" or "runs through" the stories, never lean on "the gap between X and Y" framing, and never re-list the day's stories as a parallel run of one-clause sentences. End with a short sign-off in the host's voice.
 
 Length and depth:
@@ -347,10 +387,12 @@ export function buildUserPrompt(
     const followUpLine = c.followUp
       ? `\n  Previously (${c.followUp.priorDate.replace(/\s+/g, " ").trim()}): ${c.followUp.priorFraming.replace(/\s+/g, " ").trim()} — this is a FOLLOW-UP/update, not a new story.`
       : "";
+    const shape = selectSegmentShape(date, i);
     return `STORY ${i + 1}: ${c.headline}
   Category: ${categoryLabel} (${c.category})
   Importance: ${importance}
   Corroboration: ${corroboration}
+  Shape this segment as: ${shape.name} — ${shape.instruction}
   Why it matters: ${c.whyItMatters}
   Caveat: ${c.caveat}${followUpLine}
   Sources:

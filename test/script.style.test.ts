@@ -3,10 +3,12 @@ import test from "node:test";
 import {
   INTRO_MOVES,
   OUTRO_MOVES,
+  SEGMENT_SHAPES,
   assertNoWornPhrases,
   buildUserPrompt,
   selectIntroMove,
   selectOutroMove,
+  selectSegmentShape,
   validateScriptResponse,
 } from "../src/script.js";
 import type { ScriptResponse } from "../src/script.js";
@@ -138,6 +140,50 @@ test("intro and outro moves are deterministic per date and vary across a week", 
 
   assert.ok(new Set(dates.map(selectIntroMove)).size > 1, "intro moves should rotate");
   assert.ok(new Set(dates.map(selectOutroMove)).size > 1, "outro moves should rotate");
+});
+
+test("selectSegmentShape is deterministic for the same date and index", () => {
+  assert.deepEqual(selectSegmentShape("2026-08-06", 0), selectSegmentShape("2026-08-06", 0));
+  assert.deepEqual(selectSegmentShape("2026-08-06", 2), selectSegmentShape("2026-08-06", 2));
+});
+
+test("selectSegmentShape always returns a member of SEGMENT_SHAPES", () => {
+  for (let index = 0; index < 10; index += 1) {
+    const shape = selectSegmentShape("2026-08-06", index);
+    assert.ok(SEGMENT_SHAPES.includes(shape), `shape at index ${index} must be a configured shape`);
+  }
+});
+
+test("selectSegmentShape varies between adjacent segment indices", () => {
+  const shapesForOneDay = Array.from({ length: SEGMENT_SHAPES.length }, (_, i) =>
+    selectSegmentShape("2026-08-06", i).name,
+  );
+  const uniqueShapes = new Set(shapesForOneDay);
+  // Cycling through every index in one day, across SEGMENT_SHAPES.length
+  // slots, must hit every distinct shape at least once (no index collapses
+  // to a single repeated shape).
+  assert.equal(uniqueShapes.size, SEGMENT_SHAPES.length);
+  // Adjacent stories on the same day must not share a shape.
+  for (let i = 0; i < shapesForOneDay.length - 1; i += 1) {
+    assert.notEqual(shapesForOneDay[i], shapesForOneDay[i + 1]);
+  }
+});
+
+test("selectSegmentShape rotates across dates for a fixed index", () => {
+  const dates = [
+    "2026-08-01", "2026-08-02", "2026-08-03", "2026-08-04",
+    "2026-08-05", "2026-08-06", "2026-08-07",
+  ];
+  const shapes = new Set(dates.map((date) => selectSegmentShape(date, 0).name));
+  assert.ok(shapes.size > 1, "segment shapes at a fixed index should rotate across days");
+});
+
+test("buildUserPrompt renders the assigned shape for each story", () => {
+  const prompt = buildUserPrompt("2026-08-06", CLUSTERS);
+  const expectedShape = selectSegmentShape("2026-08-06", 0);
+
+  assert.match(prompt, /Shape this segment as: /);
+  assert.ok(prompt.includes(`Shape this segment as: ${expectedShape.name} — ${expectedShape.instruction}`));
 });
 
 test("buildUserPrompt injects the daily opening and closing instructions", () => {

@@ -4,6 +4,7 @@ import { mkdtemp, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
 import os from "node:os";
 import {
+  buildRecentPhraseProfile,
   extractNarrationText,
   loadRecentCoverage,
   loadRecentStyleSnippets,
@@ -412,4 +413,159 @@ test("extractNarrationText strips category-label segment titles beyond Top Story
 test("extractNarrationText returns an empty string for a transcript with no narration lines", () => {
   assert.equal(extractNarrationText(""), "");
   assert.equal(extractNarrationText("Just a title line"), "");
+});
+
+// ---------------------------------------------------------------------------
+// buildRecentPhraseProfile: statistical anti-repetition tripwire
+// ---------------------------------------------------------------------------
+
+/** A transcript in buildTranscript's layout with caller-controlled narration sentences. */
+function makeTranscriptWithNarration(date: string, sentences: string[]): string {
+  return [
+    `AI Briefing — Episode ${date}`,
+    `Date: ${date}`,
+    "",
+    "Intro",
+    "",
+    sentences[0] ?? "An unremarkable intro sentence for this episode.",
+    "",
+    "Top Story: Something Happened",
+    "",
+    sentences[1] ?? "An unremarkable segment sentence for this episode.",
+    "Source: https://example.com/story-1",
+    "",
+    "Outro",
+    "",
+    sentences[2] ?? "An unremarkable closing sentence for this episode.",
+    "",
+    sentences[3] ?? `Sign-off for ${date}.`,
+    "",
+  ].join("\n");
+}
+
+test("buildRecentPhraseProfile flags grams appearing in >= 3 of the last N episodes, ranked by episode count", async () => {
+  const today = "2026-08-09";
+  const dates = [
+    "2026-08-01", "2026-08-02", "2026-08-03", "2026-08-04",
+    "2026-08-05", "2026-08-06", "2026-08-07", "2026-08-08",
+  ];
+  // Planted 4-gram "worth sitting with it" in 5 of 8 episodes.
+  const wornDates = new Set(["2026-08-01", "2026-08-03", "2026-08-04", "2026-08-06", "2026-08-08"]);
+  // A distinct phrase in only 2 episodes -- below the prompt threshold (3).
+  const belowThresholdDates = new Set(["2026-08-02", "2026-08-05"]);
+
+  const files: Record<string, string> = {};
+  for (const date of dates) {
+    const sentences = [
+      wornDates.has(date)
+        ? "This number is worth sitting with it for a while."
+        : "Nothing unusual happens in this particular opening line today.",
+      belowThresholdDates.has(date)
+        ? "A rare phrase shows up only occasionally here."
+        : "A perfectly ordinary segment sentence goes here instead.",
+      "A closing thought for this episode.",
+      `Sign-off for ${date}.`,
+    ];
+    files[`${date}.transcript.txt`] = makeTranscriptWithNarration(date, sentences);
+  }
+
+  const dir = await makeTempDir(files);
+  try {
+    const profile = await buildRecentPhraseProfile(today, 8, dir);
+
+    const worn = profile.find((p) => p.gram === "worth sitting with it");
+    assert.ok(worn, "expected the 5-episode gram to be flagged");
+    assert.equal(worn!.episodeCount, 5);
+
+    const belowThreshold = profile.find((p) => p.gram === "a rare phrase shows");
+    assert.equal(belowThreshold, undefined, "a gram in only 2 episodes must not surface");
+
+    // Sorted by episodeCount descending: the 5-episode gram must be first
+    // among any grams sharing its count tier is fine, but it must not be
+    // beaten by a lower-count gram.
+    assert.ok(profile[0]!.episodeCount >= worn!.episodeCount);
+  } finally {
+    await rm(dir, { recursive: true, force: true });
+  }
+});
+
+test("buildRecentPhraseProfile excludes all-stopword grams even above the episode threshold", async () => {
+  const today = "2026-08-05";
+  const dates = ["2026-08-01", "2026-08-02", "2026-08-03", "2026-08-04"];
+
+  const files: Record<string, string> = {};
+  for (const date of dates) {
+    files[`${date}.transcript.txt`] = makeTranscriptWithNarration(date, [
+      "Consider whether of the a is relevant here.",
+    ]);
+  }
+
+  const dir = await makeTempDir(files);
+  try {
+    const profile = await buildRecentPhraseProfile(today, 8, dir);
+    assert.ok(
+      !profile.some((p) => p.gram === "of the a is"),
+      "an all-stopword gram must never be flagged, regardless of episode count",
+    );
+  } finally {
+    await rm(dir, { recursive: true, force: true });
+  }
+});
+
+test("buildRecentPhraseProfile returns [] for a missing directory", async () => {
+  const nonexistent = path.join(os.tmpdir(), `ledger-phrase-nonexistent-${Date.now()}`);
+  assert.deepEqual(await buildRecentPhraseProfile("2026-08-09", 8, nonexistent), []);
+});
+
+test("buildRecentPhraseProfile excludes today's own transcript", async () => {
+  const today = "2026-08-05";
+  const dir = await makeTempDir({
+    [`${today}.transcript.txt`]: makeTranscriptWithNarration(today, [
+      "Only today mentions this unique zephyr cascade phrase today.",
+    ]),
+    "2026-08-04.transcript.txt": makeTranscriptWithNarration("2026-08-04", [
+      "Only today mentions this unique zephyr cascade phrase today.",
+    ]),
+    "2026-08-03.transcript.txt": makeTranscriptWithNarration("2026-08-03", [
+      "Only today mentions this unique zephyr cascade phrase today.",
+    ]),
+  });
+  try {
+    const profile = await buildRecentPhraseProfile(today, 8, dir);
+    const hit = profile.find((p) => p.gram === "mentions this unique zephyr");
+    // Present via the two prior days, but today's own transcript must not
+    // contribute to its own count.
+    assert.ok(!hit || hit.episodeCount === 2);
+  } finally {
+    await rm(dir, { recursive: true, force: true });
+  }
+});
+
+test("buildRecentPhraseProfile respects the count window", async () => {
+  const today = "2026-08-09";
+  const dates = ["2026-08-04", "2026-08-05", "2026-08-06", "2026-08-07", "2026-08-08"];
+  const files: Record<string, string> = {};
+  for (const date of dates) {
+    files[`${date}.transcript.txt`] = makeTranscriptWithNarration(date, [
+      "This shared phrase about widening gaps appears everywhere lately.",
+    ]);
+  }
+
+  const dir = await makeTempDir(files);
+  try {
+    const fullWindow = await buildRecentPhraseProfile(today, 8, dir);
+    const narrowWindow = await buildRecentPhraseProfile(today, 2, dir);
+
+    const fullHit = fullWindow.find((p) => p.gram === "shared phrase about widening");
+    assert.ok(fullHit);
+    assert.equal(fullHit!.episodeCount, 5);
+
+    // Only 2 of the 5 transcripts are read with count=2, so the same gram
+    // cannot show more than 2 episodes -- or clears the 3-episode threshold
+    // at all, in which case it's absent entirely.
+    const narrowHit = narrowWindow.find((p) => p.gram === "shared phrase about widening");
+    assert.ok(!narrowHit || narrowHit.episodeCount <= 2);
+  } finally {
+    await rm(dir, { recursive: true, force: true });
+  }
 });

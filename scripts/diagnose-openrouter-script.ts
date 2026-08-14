@@ -1,7 +1,7 @@
 import "dotenv/config";
 import OpenAI from "openai";
 import type { ChatCompletion } from "openai/resources/chat/completions";
-import { loadRecentStyleSnippets } from "../src/ledger.js";
+import { buildRecentPhraseProfile, loadRecentStyleSnippets } from "../src/ledger.js";
 import { loadAllRecords } from "../src/publish.js";
 import {
   buildScriptCompletionParams,
@@ -170,12 +170,13 @@ async function buildProductionScriptProbeParams(
 ): Promise<ScriptCompletionParams> {
   const date = process.env.EPISODE_DATE ?? new Date().toISOString().slice(0, 10);
   const recentStyle = await loadRecentStyleSnippets(date).catch(() => []);
+  const phraseProfile = await buildRecentPhraseProfile(date).catch(() => []);
   return buildScriptCompletionParams(
     model,
     selectDailyPersona(date),
     date,
     clusters,
-    { recentStyle },
+    { recentStyle, phraseProfile },
   );
 }
 

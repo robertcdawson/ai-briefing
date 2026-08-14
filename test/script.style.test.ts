@@ -3,13 +3,14 @@ import test from "node:test";
 import {
   INTRO_MOVES,
   OUTRO_MOVES,
+  assertNoWornPhrases,
   buildUserPrompt,
   selectIntroMove,
   selectOutroMove,
   validateScriptResponse,
 } from "../src/script.js";
 import type { ScriptResponse } from "../src/script.js";
-import type { RecentStyleSnippets } from "../src/ledger.js";
+import type { RecentPhraseProfile, RecentStyleSnippets } from "../src/ledger.js";
 import type { StoryCluster } from "../src/types.js";
 
 const CLUSTERS: StoryCluster[] = [
@@ -177,4 +178,69 @@ test("buildUserPrompt lists recent style snippets under RECENTLY USED", () => {
 test("buildUserPrompt omits the RECENTLY USED block when there are no snippets", () => {
   assert.doesNotMatch(buildUserPrompt("2026-08-06", CLUSTERS), /RECENTLY USED/);
   assert.doesNotMatch(buildUserPrompt("2026-08-06", CLUSTERS, []), /RECENTLY USED/);
+});
+
+// ---------------------------------------------------------------------------
+// Phrase tripwire: worn-out phrasing subsection + hard-fail validator
+// ---------------------------------------------------------------------------
+
+const PHRASE_PROFILE: RecentPhraseProfile = [
+  { gram: "worth sitting with", episodeCount: 5 },
+  { gram: "the gap between promise", episodeCount: 4 },
+  { gram: "a lot of", episodeCount: 3 },
+];
+
+test("buildUserPrompt lists worn-out phrasing under RECENTLY USED", () => {
+  const prompt = buildUserPrompt("2026-08-06", CLUSTERS, undefined, PHRASE_PROFILE);
+
+  assert.match(prompt, /RECENTLY USED/);
+  assert.match(prompt, /Worn-out phrasing/);
+  assert.ok(prompt.includes('- "worth sitting with" (5 episodes)'));
+  assert.ok(prompt.includes('- "the gap between promise" (4 episodes)'));
+});
+
+test("buildUserPrompt renders the RECENTLY USED block from phraseProfile alone", () => {
+  const prompt = buildUserPrompt("2026-08-06", CLUSTERS, undefined, PHRASE_PROFILE);
+  assert.match(prompt, /RECENTLY USED/);
+  assert.doesNotMatch(prompt, /Intro openers:/);
+});
+
+test("buildUserPrompt omits RECENTLY USED when both snippets and phraseProfile are empty", () => {
+  assert.doesNotMatch(buildUserPrompt("2026-08-06", CLUSTERS, [], []), /RECENTLY USED/);
+});
+
+function responseWithNarration(text: string): ScriptResponse {
+  return {
+    intro: [text],
+    segments: [
+      {
+        title: "Top Story: A model ships a useful feature",
+        chunks: ["An ordinary segment sentence."],
+        sourceUrls: ["https://example.com/model-feature"],
+      },
+    ],
+    outro: ["An ordinary closing sentence.", "Back tomorrow."],
+  };
+}
+
+test("assertNoWornPhrases rejects a gram appearing in >= 4 recent episodes", () => {
+  assert.throws(
+    () => assertNoWornPhrases(responseWithNarration("This number is worth sitting with today."), PHRASE_PROFILE),
+    /worn-out phrasing/,
+  );
+  // Punctuation and case variants still normalize to the same gram.
+  assert.throws(
+    () =>
+      assertNoWornPhrases(responseWithNarration("Worth Sitting With, honestly."), PHRASE_PROFILE),
+    /worn-out phrasing/,
+  );
+});
+
+test("assertNoWornPhrases allows a gram below the reject threshold", () => {
+  // "a lot of" is at episodeCount 3, below PHRASE_REJECT_MIN_EPISODES (4).
+  assertNoWornPhrases(responseWithNarration("There is a lot of nuance here."), PHRASE_PROFILE);
+});
+
+test("assertNoWornPhrases is a no-op for an empty profile", () => {
+  assertNoWornPhrases(responseWithNarration("Worth sitting with this all day."), []);
 });

@@ -1,10 +1,12 @@
 import OpenAI from "openai";
 import type { ChatCompletionCreateParamsNonStreaming } from "openai/resources/chat/completions";
 import { buildInlineAudioTagRules } from "./audioTags.js";
+import { normalizeForNgrams } from "./ngrams.js";
 import { resolveTTSProviderConfig } from "./ttsProvider.js";
 import { getStoryCategoryLabel, STORY_CATEGORY_DEFINITIONS } from "./types.js";
 import type { Episode, NarrationChunk, StoryCluster } from "./types.js";
-import type { RecentStyleSnippets } from "./ledger.js";
+import type { RecentPhraseProfile, RecentStyleSnippets } from "./ledger.js";
+import { PHRASE_PROFILE_WINDOW, PHRASE_REJECT_MIN_EPISODES } from "./ledger.js";
 import type { ChatCompletionLike } from "./util.js";
 import { getChatCompletionAssistantText, logJson, withHardTimeout, withRetry } from "./util.js";
 
@@ -45,6 +47,8 @@ export interface WriteScriptOptions {
   retryBaseMs?: number;
   /** Recent episodes' intro openers / outro openers / sign-offs, injected as "do not reuse" examples. */
   recentStyle?: RecentStyleSnippets[];
+  /** Recent episodes' recurring 3/4-grams (src/ledger.ts buildRecentPhraseProfile), the statistical anti-repetition tripwire. */
+  phraseProfile?: RecentPhraseProfile;
 }
 
 export interface DailyPersona {
@@ -187,29 +191,24 @@ const SEGMENT_LABEL_RULES = STORY_CATEGORY_DEFINITIONS
   .map((category) => `  - ${category.id}: "${category.label}: {headline}"`)
   .join("\n");
 
+// FROZEN: do not add entries here. This list is only for timeless podcast
+// filler that reads as stale in any era; statistical drift in what this show
+// actually repeats is owned by the phrase tripwire (buildRecentPhraseProfile
+// in src/ledger.ts + assertNoWornPhrases below), which adapts automatically
+// instead of chasing yesterday's mold with a new regex.
 export const BANNED_SCRIPT_PHRASES = [
   "dive in",
   "diving in",
-  "stay curious",
-  "stay informed",
   "stay tuned",
   "until next time",
-  "pivotal moment",
   "let's not forget",
-  "the stakes",
-  "crucial",
   "game-changer",
   "buckle up",
   "that's a wrap",
   "the honest caveat",
-  "the honest read",
   "worth noting",
-  "worth watching",
-  "the practical takeaway",
   "the takeaway here",
-  "genuinely different",
   "a pattern emerges",
-  "pull back and look",
 ] as const;
 
 const SPLIT_CONTRAST_NOUN_PHRASE_PATTERN = String.raw`(?:(?:just|only|merely|simply)\s+)?(?:a|an|the|another|this|that|its|their|our|your)\b`;
@@ -320,7 +319,8 @@ Voice rules:
 - Avoid recycled filler and verbal tics. Never use stock phrases like "This is a big deal.", and never open a chunk with analogy crutches like "Think of it as" or "It's like". Find fresh phrasing every time.
 - Avoid split contrast reversals such as "That's not X. It's Y.", "This isn't X. It's Y.", or "It is not X. It is Y." If a contrast is useful, make it one precise sentence or choose a different rhetorical turn.
 - BANNED PHRASES. Never say any of these, in any tense or close variation: ${BANNED_SCRIPT_PHRASES.map((phrase) => `"${phrase}"`).join(", ")}. They are worn-out podcast filler; find specific, persona-flavored language instead.
-- The sign-off must be one short line in today's persona's voice, different every episode. Never build it as "Keep your X and your Y" in any wording, and never precede it with "That's the {bulletin/signal/briefing/dispatch/file} for {date}". If the user message lists RECENTLY USED constructions, do not reuse or lightly rephrase any of them. Never a stock farewell.
+- The sign-off must be one short line in today's persona's voice, different every episode. Never build it as "Keep your X and your Y" in any wording, and never precede it with "That's the {bulletin/signal/briefing/dispatch/file} for {date}". Never a stock farewell.
+- If the user message lists RECENTLY USED constructions or worn-out phrasing, never use any of them word-for-word or lightly reworded — a script that reuses one is rejected and rewritten.
 - Read-aloud-friendly: short sentences, no parenthetical asides, no stage-direction punctuation; avoid em-dashes that force awkward pauses.
 - Explain jargon only when it helps: define specialized terms in 8-14 plain words and keep moving.
 - Transitions must be one sentence, under about 12 words, and specific to the next story. Vary them, and avoid formulaic phrases like "next up", "now, onto our next story", or "now, let's turn to".
@@ -354,6 +354,8 @@ export interface ScriptPromptOptions {
   allowAudioTags?: boolean;
   /** Recent episodes' style snippets to list under RECENTLY USED in the user prompt. */
   recentStyle?: RecentStyleSnippets[];
+  /** Recent episodes' recurring 3/4-grams, listed under RECENTLY USED as worn-out phrasing. */
+  phraseProfile?: RecentPhraseProfile;
 }
 
 export function buildSystemPrompt(
@@ -371,29 +373,48 @@ Today's original broadcast persona:
 - Avoid: ${persona.avoid}`;
 }
 
-function formatRecentStyleBlock(recentStyle: RecentStyleSnippets[] | undefined): string {
-  if (!recentStyle || recentStyle.length === 0) return "";
+function formatRecentStyleBlock(
+  recentStyle: RecentStyleSnippets[] | undefined,
+  phraseProfile: RecentPhraseProfile | undefined,
+): string {
+  const hasSnippets = !!recentStyle && recentStyle.length > 0;
+  const hasPhrases = !!phraseProfile && phraseProfile.length > 0;
+  if (!hasSnippets && !hasPhrases) return "";
+
   const bullet = (snippet: string, episodeDate: string): string =>
     `- (${episodeDate}) "${snippet}"`;
   const sections: string[] = [];
-  const introOpeners = recentStyle.filter((s) => s.introOpener);
-  const outroOpeners = recentStyle.filter((s) => s.outroOpener);
-  const signOffs = recentStyle.filter((s) => s.signOff);
-  if (introOpeners.length > 0) {
+
+  if (hasSnippets) {
+    const introOpeners = recentStyle!.filter((s) => s.introOpener);
+    const outroOpeners = recentStyle!.filter((s) => s.outroOpener);
+    const signOffs = recentStyle!.filter((s) => s.signOff);
+    if (introOpeners.length > 0) {
+      sections.push(
+        `Intro openers:\n${introOpeners.map((s) => bullet(s.introOpener, s.episodeDate)).join("\n")}`,
+      );
+    }
+    if (outroOpeners.length > 0) {
+      sections.push(
+        `Closing openers:\n${outroOpeners.map((s) => bullet(s.outroOpener, s.episodeDate)).join("\n")}`,
+      );
+    }
+    if (signOffs.length > 0) {
+      sections.push(
+        `Sign-offs:\n${signOffs.map((s) => bullet(s.signOff, s.episodeDate)).join("\n")}`,
+      );
+    }
+  }
+
+  if (hasPhrases) {
+    const phraseLines = phraseProfile!
+      .map((p) => `- "${p.gram}" (${p.episodeCount} episodes)`)
+      .join("\n");
     sections.push(
-      `Intro openers:\n${introOpeners.map((s) => bullet(s.introOpener, s.episodeDate)).join("\n")}`,
+      `Worn-out phrasing (appeared in several of the last ${PHRASE_PROFILE_WINDOW} episodes) — never use these word-for-word or lightly reworded:\n${phraseLines}`,
     );
   }
-  if (outroOpeners.length > 0) {
-    sections.push(
-      `Closing openers:\n${outroOpeners.map((s) => bullet(s.outroOpener, s.episodeDate)).join("\n")}`,
-    );
-  }
-  if (signOffs.length > 0) {
-    sections.push(
-      `Sign-offs:\n${signOffs.map((s) => bullet(s.signOff, s.episodeDate)).join("\n")}`,
-    );
-  }
+
   if (sections.length === 0) return "";
   return `\n\nRECENTLY USED (recent episodes) — these constructions are worn out. Do not reuse or lightly rephrase any of them; find a genuinely different shape for today's opening, closing, and sign-off:\n\n${sections.join("\n\n")}`;
 }
@@ -402,6 +423,7 @@ export function buildUserPrompt(
   date: string,
   clusters: StoryCluster[],
   recentStyle?: RecentStyleSnippets[],
+  phraseProfile?: RecentPhraseProfile,
 ): string {
   const lines = clusters.map((c, i) => {
     const sources = c.sources.map((s) => `${s.publisher}: ${s.url}`).join("\n      ");
@@ -429,7 +451,7 @@ export function buildUserPrompt(
 Today's opening instruction: ${selectIntroMove(date)}
 Today's closing instruction: ${selectOutroMove(date)}
 
-${lines.join("\n\n")}${formatRecentStyleBlock(recentStyle)}`;
+${lines.join("\n\n")}${formatRecentStyleBlock(recentStyle, phraseProfile)}`;
 }
 
 export function resolveScriptModels(requestedModel: string | undefined): string[] {
@@ -475,6 +497,7 @@ export async function writeScript(
   const promptOptions: ScriptPromptOptions = {
     allowAudioTags: resolveTTSProviderConfig().supportsInlineAudioTags,
     recentStyle: options.recentStyle,
+    phraseProfile: options.phraseProfile,
   };
   const completionClient =
     options.completionClient ??
@@ -509,6 +532,7 @@ export async function writeScript(
             });
           }
           validateScriptResponse(response, clusters);
+          assertNoWornPhrases(response, options.phraseProfile ?? []);
           return response;
         },
         { attempts: SCRIPT_ATTEMPTS_PER_MODEL, baseMs: retryBaseMs, label: "script" },
@@ -634,7 +658,10 @@ export function buildScriptCompletionParams(
     model,
     messages: [
       { role: "system", content: buildSystemPrompt(persona, promptOptions) },
-      { role: "user", content: buildUserPrompt(date, clusters, promptOptions.recentStyle) },
+      {
+        role: "user",
+        content: buildUserPrompt(date, clusters, promptOptions.recentStyle, promptOptions.phraseProfile),
+      },
     ],
     response_format: {
       type: "json_schema",
@@ -760,6 +787,38 @@ function validateOutroStyle(chunks: readonly NarrationChunk[]): void {
     if (pattern.test(readAloudText)) {
       throw new Error(`script outro uses a banned recurring construction (${reason})`);
     }
+  }
+}
+
+/**
+ * Statistical anti-repetition hard-fail: rejects the script if it reuses a
+ * gram (word-for-word) that appeared in enough recent episodes to have
+ * become a mold (>= PHRASE_REJECT_MIN_EPISODES). Mirrors the "worn-out
+ * phrasing" prompt sentence in buildSystemPromptBase's Voice rules — a
+ * compliant model shouldn't hit this, but a re-roll clears it when one does.
+ */
+export function assertNoWornPhrases(response: ScriptResponse, profile: RecentPhraseProfile): void {
+  if (!profile || profile.length === 0) return;
+
+  const readAloudText = [
+    ...response.intro,
+    ...response.segments.flatMap((segment) => segment.chunks),
+    ...response.outro,
+  ].join(" ");
+  const normalized = ` ${normalizeForNgrams(readAloudText)} `;
+
+  const offenders: string[] = [];
+  for (const { gram, episodeCount } of profile) {
+    if (episodeCount < PHRASE_REJECT_MIN_EPISODES) continue;
+    if (normalized.includes(` ${gram} `)) {
+      offenders.push(gram);
+    }
+  }
+
+  if (offenders.length > 0) {
+    throw new Error(
+      `script reuses worn-out phrasing from recent episodes: ${offenders.map((g) => `"${g}"`).join(", ")}`,
+    );
   }
 }
 

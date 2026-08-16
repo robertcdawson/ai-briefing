@@ -3,13 +3,16 @@ import test from "node:test";
 import {
   INTRO_MOVES,
   OUTRO_MOVES,
+  SEGMENT_SHAPES,
+  assertNoWornPhrases,
   buildUserPrompt,
   selectIntroMove,
   selectOutroMove,
+  selectSegmentShape,
   validateScriptResponse,
 } from "../src/script.js";
 import type { ScriptResponse } from "../src/script.js";
-import type { RecentStyleSnippets } from "../src/ledger.js";
+import type { RecentPhraseProfile, RecentStyleSnippets } from "../src/ledger.js";
 import type { StoryCluster } from "../src/types.js";
 
 const CLUSTERS: StoryCluster[] = [
@@ -139,6 +142,50 @@ test("intro and outro moves are deterministic per date and vary across a week", 
   assert.ok(new Set(dates.map(selectOutroMove)).size > 1, "outro moves should rotate");
 });
 
+test("selectSegmentShape is deterministic for the same date and index", () => {
+  assert.deepEqual(selectSegmentShape("2026-08-06", 0), selectSegmentShape("2026-08-06", 0));
+  assert.deepEqual(selectSegmentShape("2026-08-06", 2), selectSegmentShape("2026-08-06", 2));
+});
+
+test("selectSegmentShape always returns a member of SEGMENT_SHAPES", () => {
+  for (let index = 0; index < 10; index += 1) {
+    const shape = selectSegmentShape("2026-08-06", index);
+    assert.ok(SEGMENT_SHAPES.includes(shape), `shape at index ${index} must be a configured shape`);
+  }
+});
+
+test("selectSegmentShape varies between adjacent segment indices", () => {
+  const shapesForOneDay = Array.from({ length: SEGMENT_SHAPES.length }, (_, i) =>
+    selectSegmentShape("2026-08-06", i).name,
+  );
+  const uniqueShapes = new Set(shapesForOneDay);
+  // Cycling through every index in one day, across SEGMENT_SHAPES.length
+  // slots, must hit every distinct shape at least once (no index collapses
+  // to a single repeated shape).
+  assert.equal(uniqueShapes.size, SEGMENT_SHAPES.length);
+  // Adjacent stories on the same day must not share a shape.
+  for (let i = 0; i < shapesForOneDay.length - 1; i += 1) {
+    assert.notEqual(shapesForOneDay[i], shapesForOneDay[i + 1]);
+  }
+});
+
+test("selectSegmentShape rotates across dates for a fixed index", () => {
+  const dates = [
+    "2026-08-01", "2026-08-02", "2026-08-03", "2026-08-04",
+    "2026-08-05", "2026-08-06", "2026-08-07",
+  ];
+  const shapes = new Set(dates.map((date) => selectSegmentShape(date, 0).name));
+  assert.ok(shapes.size > 1, "segment shapes at a fixed index should rotate across days");
+});
+
+test("buildUserPrompt renders the assigned shape for each story", () => {
+  const prompt = buildUserPrompt("2026-08-06", CLUSTERS);
+  const expectedShape = selectSegmentShape("2026-08-06", 0);
+
+  assert.match(prompt, /Shape this segment as: /);
+  assert.ok(prompt.includes(`Shape this segment as: ${expectedShape.name} — ${expectedShape.instruction}`));
+});
+
 test("buildUserPrompt injects the daily opening and closing instructions", () => {
   const prompt = buildUserPrompt("2026-08-06", CLUSTERS);
 
@@ -177,4 +224,69 @@ test("buildUserPrompt lists recent style snippets under RECENTLY USED", () => {
 test("buildUserPrompt omits the RECENTLY USED block when there are no snippets", () => {
   assert.doesNotMatch(buildUserPrompt("2026-08-06", CLUSTERS), /RECENTLY USED/);
   assert.doesNotMatch(buildUserPrompt("2026-08-06", CLUSTERS, []), /RECENTLY USED/);
+});
+
+// ---------------------------------------------------------------------------
+// Phrase tripwire: worn-out phrasing subsection + hard-fail validator
+// ---------------------------------------------------------------------------
+
+const PHRASE_PROFILE: RecentPhraseProfile = [
+  { gram: "worth sitting with", episodeCount: 5 },
+  { gram: "the gap between promise", episodeCount: 4 },
+  { gram: "a lot of", episodeCount: 3 },
+];
+
+test("buildUserPrompt lists worn-out phrasing under RECENTLY USED", () => {
+  const prompt = buildUserPrompt("2026-08-06", CLUSTERS, undefined, PHRASE_PROFILE);
+
+  assert.match(prompt, /RECENTLY USED/);
+  assert.match(prompt, /Worn-out phrasing/);
+  assert.ok(prompt.includes('- "worth sitting with" (5 episodes)'));
+  assert.ok(prompt.includes('- "the gap between promise" (4 episodes)'));
+});
+
+test("buildUserPrompt renders the RECENTLY USED block from phraseProfile alone", () => {
+  const prompt = buildUserPrompt("2026-08-06", CLUSTERS, undefined, PHRASE_PROFILE);
+  assert.match(prompt, /RECENTLY USED/);
+  assert.doesNotMatch(prompt, /Intro openers:/);
+});
+
+test("buildUserPrompt omits RECENTLY USED when both snippets and phraseProfile are empty", () => {
+  assert.doesNotMatch(buildUserPrompt("2026-08-06", CLUSTERS, [], []), /RECENTLY USED/);
+});
+
+function responseWithNarration(text: string): ScriptResponse {
+  return {
+    intro: [text],
+    segments: [
+      {
+        title: "Top Story: A model ships a useful feature",
+        chunks: ["An ordinary segment sentence."],
+        sourceUrls: ["https://example.com/model-feature"],
+      },
+    ],
+    outro: ["An ordinary closing sentence.", "Back tomorrow."],
+  };
+}
+
+test("assertNoWornPhrases rejects a gram appearing in >= 4 recent episodes", () => {
+  assert.throws(
+    () => assertNoWornPhrases(responseWithNarration("This number is worth sitting with today."), PHRASE_PROFILE),
+    /worn-out phrasing/,
+  );
+  // Punctuation and case variants still normalize to the same gram.
+  assert.throws(
+    () =>
+      assertNoWornPhrases(responseWithNarration("Worth Sitting With, honestly."), PHRASE_PROFILE),
+    /worn-out phrasing/,
+  );
+});
+
+test("assertNoWornPhrases allows a gram below the reject threshold", () => {
+  // "a lot of" is at episodeCount 3, below PHRASE_REJECT_MIN_EPISODES (4).
+  assertNoWornPhrases(responseWithNarration("There is a lot of nuance here."), PHRASE_PROFILE);
+});
+
+test("assertNoWornPhrases is a no-op for an empty profile", () => {
+  assertNoWornPhrases(responseWithNarration("Worth sitting with this all day."), []);
 });

@@ -1,3 +1,4 @@
+import { HOST_IDENTITY } from "./voice.js";
 import type { TTSVoice } from "./voices.js";
 
 export type EpisodeSectionKind = "intro" | "story" | "outro";
@@ -13,8 +14,9 @@ export interface NarratorProfile {
 
 export const NARRATOR_PROFILE: NarratorProfile = {
   name: "The Host",
-  persona:
-    "The Host is a sharp, witty solo guide to the day's AI news: curious and fair, occasionally cynical, and always weighing the real-world stakes — who benefits, who gets hurt, and what could go right or wrong.",
+  // Single source of truth for "who the host is" shared with the script
+  // writer's prompt (src/voice.ts HOST_IDENTITY feeds src/script.ts too).
+  persona: HOST_IDENTITY.ttsPersonaLine,
   delivery:
     "Natural, conversational solo host; relaxed pace; dry wit; sounds like a smart person thinking out loud, not reading a bulletin.",
   defaultVoice: "marin",
@@ -53,14 +55,38 @@ export function resolveTTSDirection(env: NodeJS.ProcessEnv = process.env): TTSDi
 export function buildChunkSpeechInstructions(
   section: EpisodeSectionKind,
   direction: TTSDirectionConfig = resolveTTSDirection(),
+  segmentHint?: string,
 ): string {
+  const sanitizedHint = sanitizeSegmentDeliveryHint(segmentHint);
   return [
     direction.global,
     `Host: ${NARRATOR_PROFILE.persona}`,
     `Delivery: ${direction.narrator}`,
     `Section: ${direction[section]}`,
+    ...(sanitizedHint ? [`This segment: ${sanitizedHint}`] : []),
     TTS_DIALOGUE_FOOTER,
   ].join("\n");
+}
+
+const MAX_SEGMENT_DELIVERY_HINT_LENGTH = 60;
+
+/**
+ * Sanitizes a writer-supplied per-segment delivery hint before it reaches a
+ * TTS `instructions` field: strips brackets and newlines (this must never
+ * become a stage direction or a stray inline audio tag), collapses
+ * whitespace, and caps length. Returns undefined for anything that reduces
+ * to nothing.
+ */
+export function sanitizeSegmentDeliveryHint(hint: string | undefined): string | undefined {
+  if (!hint) return undefined;
+  const cleaned = hint
+    .replace(/[[\]{}<>]/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+  if (!cleaned) return undefined;
+  return cleaned.length > MAX_SEGMENT_DELIVERY_HINT_LENGTH
+    ? cleaned.slice(0, MAX_SEGMENT_DELIVERY_HINT_LENGTH).trim()
+    : cleaned;
 }
 
 function readStyleEnv(value: string | undefined): string | undefined {

@@ -9,7 +9,7 @@ A weekday, fully-automated AI news podcast. Every Monday–Friday morning at ~06
 
 1. Pulls the last 24h of articles from a curated set of AI news RSS feeds, then drops duplicate/tracking-variant URLs before curation.
 2. Asks Claude (via OpenRouter) to cluster duplicates and score each story against a rolling ~14-day memory of what already aired — suppressing stories already covered, threading genuine developments as follow-ups — then keeps the ones that matter (a variable number that follows the day's news).
-3. Writes a natural, single-host script up to ~10 minutes (engaging hook → one segment per story, with depth scaled to importance → shaped outro), defaulting to Claude Sonnet via OpenRouter with Gemini then `openai/gpt-4o-mini` fallbacks (`openai/...` entries go direct to OpenAI when `OPENAI_API_KEY` is set). Style snippets from recent transcripts plus daily intro/outro moves keep openings and sign-offs from recycling.
+3. Writes a natural, single-host script up to ~10 minutes (engaging hook → one segment per story, with depth scaled to importance → shaped outro), defaulting to Claude Sonnet via OpenRouter with Gemini then `openai/gpt-4o-mini` fallbacks (`openai/...` entries go direct to OpenAI when `OPENAI_API_KEY` is set). A persistent host voice, per-segment structural shapes, and a statistical phrase tripwire keep the prose specific and unrepetitive; a light, non-blocking ear-edit pass then tightens the result before it goes to voice.
 4. Synthesizes each intro/story/outro part in a single TTS request for continuous prosody (falling back to chunked synthesis with breathing gaps for oversized parts), via OpenAI `gpt-4o-mini-tts` or an OpenRouter TTS model such as Gemini 3.1 Flash TTS (`TTS_PROVIDER=openrouter`).
 5. Builds a full program master with ffmpeg (section stingers + concat), normalizes loudness to EBU R128 (-16 LUFS), encodes 192 kbps MP3 with ID3 tags and embedded chapters.
 6. Drops the file at `docs/episodes/YYYY-MM-DD.mp3`, regenerates `docs/feed.xml` (with curated per-story show notes), commits, and pushes.
@@ -42,15 +42,19 @@ ai-briefing/
 │   ├── preflight.ts              # Fail-fast env + ffmpeg/ffprobe checks
 │   ├── fetch.ts                  # RSS aggregation + URL canonicalization/dedup
 │   ├── curate.ts                 # Cluster + score; suppress/thread vs. recent coverage
-│   ├── ledger.ts                 # Prior-coverage window + recent style snippets
-│   ├── script.ts                 # Spoken script (persona, daily moves, anti-repetition)
+│   ├── ledger.ts                 # Prior-coverage window + recent style/phrase profiles
+│   ├── voice.ts                  # Persistent host identity + register exemplars
+│   ├── script.ts                 # Spoken script (host voice, segment shapes, anti-repetition)
+│   ├── earEdit.ts                # Non-blocking copy-edit pass between script and tts
+│   ├── ngrams.ts                 # Shared n-gram extraction (phrase tripwire + style report)
+│   ├── styleMetrics.ts           # Per-episode prose metrics for `npm run style:report`
 │   ├── tts.ts                    # Text → MP3 chunks
 │   ├── ttsProvider.ts            # TTS provider/model/voice resolution
 │   ├── audio.ts                  # ffmpeg stingers + concat + loudnorm + ID3
 │   ├── publish.ts                # Move MP3, regenerate feed.xml, retention prune
 │   ├── verifyDeploy.ts           # Poll live Pages feed for today's episode GUID
 │   ├── healthcheck.ts            # Optional Healthchecks.io-style pings
-│   ├── stageCache.ts             # Content-hash cache for curate/script (opt-in, local re-runs)
+│   ├── stageCache.ts             # Content-hash cache for curate/script/earEdit (opt-in, local re-runs)
 │   ├── episode-date.ts           # Episode date from EPISODE_TIME_ZONE / Pacific
 │   ├── feeds.ts                  # Curated source list
 │   ├── types.ts                  # Article, StoryCluster, CurationRecord, Episode
@@ -58,6 +62,7 @@ ai-briefing/
 ├── scripts/
 │   ├── preflight.ts              # `npm run preflight` CLI entry
 │   ├── verify-deploy.ts          # Manual / CI publish verification
+│   ├── style-report.ts           # `npm run style:report` CLI entry
 │   └── diagnose-openrouter-script.ts
 ├── test/                         # Smoke + unit tests
 ├── docs/                         # GitHub Pages root
@@ -132,7 +137,7 @@ This hits all sources in `src/feeds.ts` live and asserts at least one article co
 npm start
 ```
 
-Watches the full pipeline run end to end (fetch → curate → script → tts → audio → publish). Takes ~3–5 minutes. On success:
+Watches the full pipeline run end to end (fetch → curate → script → earEdit → tts → audio → publish). Takes ~3–5 minutes. On success:
 
 - `docs/episodes/YYYY-MM-DD.mp3` exists and plays.
 - `docs/episodes/YYYY-MM-DD.json` sidecar exists.
@@ -188,6 +193,8 @@ In the repo's **Settings → Secrets and variables → Actions**:
 **Variables:**
 - `FEED_BASE_URL` — same as `.env`, e.g. `https://USER.github.io/ai-briefing`
 - `OPENROUTER_SCRIPT_MODEL` — optional script model override; accepts a comma-separated fallback list and defaults to `anthropic/claude-sonnet-4.6, google/gemini-3.1-pro-preview, openai/gpt-4o-mini` (`gpt-4o-mini` last — it ignores much of the voice-rule block); `openai/...` entries use `OPENAI_API_KEY` directly when available
+- `EAR_EDIT_ENABLED` — optional, default `true`; set to `false`/`0`/`off`/`no` to skip the post-script copy-edit pass (`src/earEdit.ts`) and synthesize the script stage's output unedited
+- `OPENROUTER_EAR_EDIT_MODEL` — optional model override for the ear-edit pass; same comma-separated fallback format as `OPENROUTER_SCRIPT_MODEL`; defaults to `OPENROUTER_SCRIPT_MODEL`'s value when unset
 - `TTS_PROVIDER` — `openai` (default) or `openrouter`
 - `TTS_MODEL` — per provider; openai default `gpt-4o-mini-tts` (supports delivery instructions), openrouter default `google/gemini-3.1-flash-tts-preview` (supports inline delivery tags)
 - `TTS_VOICE` — the single host's voice; defaults to `marin` (OpenAI) or `Charon` (Gemini TTS) when unset
@@ -319,17 +326,26 @@ Set `TTS_PROVIDER`, `TTS_MODEL`, and `TTS_VOICE` in Actions variables (or `.env`
 
 The **voice ID controls timbre** — it's the only lever for *how the voice sounds*; delivery instructions can't change it. For OpenAI models, tune performance separately with `TTS_GLOBAL_STYLE`, `TTS_NARRATOR_STYLE`, and optional `TTS_INTRO_STYLE` / `TTS_STORY_STYLE` / `TTS_OUTRO_STYLE` — see `src/speakerProfiles.ts` for built-in defaults. Takes effect on the next run only — past episodes remain in their original voice.
 
+On top of those fixed per-section styles, the script writer can also attach a short per-segment **delivery hint** (3–6 words, e.g. "flat — let the number speak") to an individual story; `src/tts.ts` folds it into that segment's instructions on the OpenAI path only — the OpenRouter/Gemini path has no delivery-instructions channel and relies on inline audio tags instead. It's transient: carried from script to tts, not persisted to the sidecar.
+
 To choose by ear, run `npm run tts:sample` — it synthesizes one fixed paragraph across candidate provider/model/voice combinations into `tmp/tts-samples/` (skipping candidates whose API key isn't set). Pass extra candidates as `npm run tts:sample -- openrouter:google/gemini-3.1-flash-tts-preview:Puck`.
 
 OpenAI does not label built-in voices by gender in the API docs, but the current Speech API includes `alloy`, `ash`, `ballad`, `coral`, `echo`, `fable`, `nova`, `onyx`, `sage`, `shimmer`, `verse`, `marin`, and `cedar`. In practice, `marin` (the default) and `cedar` are OpenAI's recommended best quality; `sage` and `verse` are good natural-sounding alternates; `coral`, `nova`, or `shimmer` read brighter/feminine-coded.
 
-The show is a single-host monologue. The host is a sharp, witty, occasionally cynical guide who weighs each story's real-world stakes — who benefits, who gets hurt, and what could go right or wrong. A daily persona (rotated by date, see `DAILY_PERSONAS` in `src/script.ts`) sets the day's tonal lens on top of that.
+The show is a single-host monologue with one persistent host — a sharp, witty, occasionally cynical guide who weighs each story's real-world stakes: who benefits, who gets hurt, and what could go right or wrong. The host's identity (background, beat, what they care about, what they refuse to do) and a handful of curated exemplar passages from the show's own past episodes live in `src/voice.ts` and are rendered into every script prompt, so the model is shown the register it's aiming for rather than only told what to avoid. There is no daily persona rotation — the five rotating `DAILY_PERSONAS` were retired in favor of this one consistent voice.
 
 Cross-episode **prose** variety is enforced separately from story memory (the Curation Ledger):
 
-1. **Daily intro/outro moves** — deterministic per-day structural instructions (`INTRO_MOVES` / `OUTRO_MOVES`), hashed independently of the persona so openings and closings do not collapse into one mold.
+1. **Daily moves** — deterministic per-day structural instructions for the open and close (`INTRO_MOVES` / `OUTRO_MOVES`), plus a per-segment **segment shape** (`SEGMENT_SHAPES`, e.g. verdict-first, mystery-first, listener-objection) that does the same job for each story body. Both are hashed off the episode date (and, for segment shapes, the segment index) so adjacent stories and consecutive days don't collapse into one mold.
 2. **Style snippets** — `loadRecentStyleSnippets` reads the last ~8 transcripts and injects their intro openers, outro openers, and sign-offs as a **RECENTLY USED** do-not-reuse block (~800 input tokens/day, no extra API calls; part of the script stage-cache key).
-3. **Validators** — hard-fail regexes reject known outro molds ("pull back…", "a pattern emerges", "Keep your X and your Y", …); soft bans cover announced-beat tics via `BANNED_SCRIPT_PHRASES`. Each model gets **3** attempts so a mold hit can re-roll.
+3. **Phrase tripwire** — `buildRecentPhraseProfile` counts 3- and 4-word phrases by how many *distinct episodes* (of the last 8) they appear in, not raw occurrences. Phrases in ≥3 episodes are surfaced in the prompt as worn-out; phrases in ≥4 hard-reject the attempt (`assertNoWornPhrases`) so it re-rolls. This is what actually chases drift now — `BANNED_SCRIPT_PHRASES` is frozen to a small set of timeless entries rather than growing every time a new tic shows up.
+4. **Emphasis budget** — a positive spec instead of a list of banned moves: baseline register stays flat and specific, the script gets one deliberate rhetorical peak at its most consequential story, at most one analogy, and never two consecutive sentences sharing the same rhetorical shape.
+5. **Validators** — hard-fail regexes reject known outro molds ("pull back…", "a pattern emerges", "Keep your X and your Y", …); soft bans cover a few timeless announced-beat tics via the frozen `BANNED_SCRIPT_PHRASES`. Each model gets **3** attempts so a mold hit (or a phrase-tripwire or word-count rejection) can re-roll.
+6. **Ear edit** — a low-temperature copy-edit pass (`src/earEdit.ts`) that runs between script and TTS, mechanically enforcing the emphasis budget on the script the writer already produced: cutting warm-up sentences and self-endorsements, breaking up runs of same-shape sentences, collapsing unearned triads. Non-blocking — any failure (bad JSON, a validator trip, a word-count blowout) falls back to the unedited script, so this stage can only leave an episode equal to or better than what the script stage wrote. Toggle with `EAR_EDIT_ENABLED` (default on); override its model with `OPENROUTER_EAR_EDIT_MODEL`.
+
+The host also carries a **stance** forward across episodes: each segment records a one-sentence on-air judgment (nullable — purely factual segments have none), which rides the sidecar's curation record, and when the story resurfaces as a follow-up the curator threads it back so the writer explicitly revisits it — held up, was wrong, or still open — instead of re-arguing from scratch.
+
+Run `npm run style:report` to print per-episode prose metrics (sentence-length variance, antithesis/triad/metadiscourse counts) and the top repeated n-grams across recent transcripts — useful for checking whether a prompt change actually moved the register, not just whether it reads better on one sample episode.
 
 See `docs/solutions/best-practices/script-anti-repetition-style-memory.md` and `CONCEPTS.md`.
 

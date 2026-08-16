@@ -1,13 +1,12 @@
 import "dotenv/config";
 import OpenAI from "openai";
 import type { ChatCompletion } from "openai/resources/chat/completions";
-import { loadRecentStyleSnippets } from "../src/ledger.js";
+import { buildRecentPhraseProfile, loadRecentStyleSnippets } from "../src/ledger.js";
 import { loadAllRecords } from "../src/publish.js";
 import {
   buildScriptCompletionParams,
   resolveScriptModel,
   resolveScriptTimeoutMs,
-  selectDailyPersona,
   type ScriptCompletionParams,
   type ScriptResponse,
   validateScriptResponse,
@@ -94,6 +93,12 @@ async function main(): Promise<void> {
  * carries curation records, replay those stories through the current prompt so
  * prompt changes can be compared against the actually-published transcript.
  * Sidecars don't store per-story source URLs, so a placeholder source stands in.
+ *
+ * Note: `stance` is not replayed here. It's an OUTPUT of the day being
+ * replayed (what the host said), not an input to its own script prompt —
+ * its input-side use is as `followUp.priorStance` on a *later* day's
+ * replay, which this sidecar-to-cluster mapping doesn't have a "later day"
+ * to attach to. Carrying it in here would misrepresent the original prompt.
  */
 async function resolveProbeClusters(): Promise<{
   clusters: StoryCluster[];
@@ -114,6 +119,7 @@ async function resolveProbeClusters(): Promise<{
     headline: cr.headline,
     whyItMatters: cr.whyItMatters,
     caveat: cr.caveat,
+    specifics: cr.specifics,
     importance: cr.importance,
     sources: [
       {
@@ -170,13 +176,8 @@ async function buildProductionScriptProbeParams(
 ): Promise<ScriptCompletionParams> {
   const date = process.env.EPISODE_DATE ?? new Date().toISOString().slice(0, 10);
   const recentStyle = await loadRecentStyleSnippets(date).catch(() => []);
-  return buildScriptCompletionParams(
-    model,
-    selectDailyPersona(date),
-    date,
-    clusters,
-    { recentStyle },
-  );
+  const phraseProfile = await buildRecentPhraseProfile(date).catch(() => []);
+  return buildScriptCompletionParams(model, date, clusters, { recentStyle, phraseProfile });
 }
 
 async function runProbe(

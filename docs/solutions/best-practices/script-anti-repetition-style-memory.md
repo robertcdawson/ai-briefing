@@ -60,6 +60,25 @@ EPISODE_DATE=2026-08-07 npm run diagnose:script-model
 
 ## Related
 
-- Code: `src/script.ts` (`INTRO_MOVES`, `OUTRO_MOVES`, `BANNED_*`, validators), `src/ledger.ts` (`loadRecentStyleSnippets`), `src/index.ts` (wire + stage-cache key)
-- Tests: `test/script.style.test.ts`, `test/ledger.test.ts` (style snippet parsing)
-- Concepts: Style snippets, Intro / outro move, Outro mold validator in `CONCEPTS.md`
+- Code: `src/script.ts` (`INTRO_MOVES`, `OUTRO_MOVES`, `SEGMENT_SHAPES`, `BANNED_*`, `assertNoWornPhrases`, validators), `src/ledger.ts` (`loadRecentStyleSnippets`, `buildRecentPhraseProfile`), `src/voice.ts` (`HOST_IDENTITY`, `VOICE_EXEMPLARS`), `src/earEdit.ts`, `src/ngrams.ts`, `src/index.ts` (wire + stage-cache key)
+- Tests: `test/script.voice.test.ts` (renamed from `test/script.persona.test.ts`), `test/script.style.test.ts`, `test/ledger.test.ts` (style snippet + phrase-profile parsing), `test/earEdit.test.ts`, `test/ngrams.test.ts`, `test/styleMetrics.test.ts`
+- Concepts: Style snippets, Intro / outro move, Outro mold validator, Host identity, Voice exemplars, Emphasis budget, Segment shape, Phrase tripwire, Ear edit, Delivery hint, Style report in `CONCEPTS.md`
+
+## Addendum (2026-08-14): persistent host, phrase tripwire, ear edit
+
+The three-layer model above still holds, but two more layers now stack on top of it, and one of the original three changed shape.
+
+| Layer | Mechanism | Job |
+|---|---|---|
+| Daily moves | `INTRO_MOVES` / `OUTRO_MOVES` via salted `stableHash(date)` | Prescribe a *different structural shape* each day for the open/close; `SEGMENT_SHAPES` (salted by date + segment index) does the same job per story segment |
+| Style snippets | `loadRecentStyleSnippets(today, 8)` from `*.transcript.txt` | Feed last ~8 intro openers, outro openers, and sign-offs as **RECENTLY USED — do not reuse** |
+| Phrase tripwire | `buildRecentPhraseProfile` (`src/ledger.ts`) + `assertNoWornPhrases` (`src/script.ts`) | Count 3/4-word phrases by *episode coverage* across the last 8 transcripts; surface ≥3-episode phrases as worn-out in the prompt, hard-reject ≥4-episode phrases so the attempt re-rolls |
+| Validators | Hard-fail outro molds + soft `BANNED_SCRIPT_PHRASES` | Reject recycled constructions; 3 attempts per model so a mold hit can re-roll |
+| Ear edit | `src/earEdit.ts`, a non-blocking post-script pass | Mechanically enforce the emphasis budget (cut warm-up sentences, break same-shape runs, collapse unearned triads) on a script the writer already produced |
+
+What changed:
+
+- **The five rotating `DAILY_PERSONAS` are retired.** There is one persistent host (`src/voice.ts` — `HOST_IDENTITY`, `VOICE_EXEMPLARS`), so "vary the persona" is no longer a lever anyone should reach for; voice consistency now comes from identity + exemplars, and prose variety comes from the layers in the table above.
+- **`BANNED_SCRIPT_PHRASES` is frozen** at a small set of timeless entries (the comment above it in `src/script.ts` says so). Do not add entries when a new AI-sounding tic shows up — that drift is the Phrase tripwire's job; it catches phrases statistically from what the show has actually said recently instead of waiting for someone to notice and enumerate them.
+- **The mirror-sentence rule (Do #1 above) now also covers `assertNoWornPhrases`**: the system prompt's "never reuse RECENTLY USED constructions or worn-out phrasing" sentence is the required mirror for that validator, same as every outro-mold regex needs its own forbid sentence.
+- **`npm run style:report`** (`scripts/style-report.ts`) prints per-episode sentence-length variance, antithesis/triad/metadiscourse counts, and top repeated n-grams across recent transcripts — use it to check whether a prompt change actually moved the register, not just whether it reads better on one sample episode.

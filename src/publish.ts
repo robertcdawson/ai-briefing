@@ -55,7 +55,10 @@ export interface EpisodeRecord {
   chapters?: ChapterRecord[];
   soundbites?: SoundbiteRecord[];
   // `curation` is the AIRED stories only — it is the field the cross-episode
-  // ledger (src/ledger.ts) reads back, so its shape must stay stable.
+  // ledger (src/ledger.ts) reads back, so its existing fields' shape must
+  // stay stable. Additive optional fields (e.g. stance) are safe to add:
+  // older sidecars simply lack them, and CurationRecord already treats them
+  // as optional.
   curation?: CurationRecord[];
   // `curationReport` is the full audit/observability record (M3): every scored
   // cluster, including dropped ones with the reason, plus summary counts. Not
@@ -156,14 +159,19 @@ export async function publish(
     );
   }
 
+  // Positional join with episode.segments: validateScriptResponse (src/script.ts)
+  // enforces that the script has exactly one segment per cluster, in the same
+  // order, so index i's cluster and index i's segment are always the same story.
   const curation: CurationRecord[] | undefined = airedClusters.length > 0
-    ? airedClusters.map((c) => ({
+    ? airedClusters.map((c, i) => ({
         canonicalKey: c.canonicalKey,
         headline: c.headline,
         whyItMatters: c.whyItMatters,
         caveat: c.caveat,
         importance: c.importance,
         category: c.category,
+        stance: episode.segments[i]?.stance,
+        specifics: c.specifics,
       }))
     : undefined;
 

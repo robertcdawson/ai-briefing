@@ -3,22 +3,22 @@ import test from "node:test";
 import { ALLOWED_INLINE_AUDIO_TAGS } from "../src/audioTags.js";
 import {
   BANNED_SCRIPT_PHRASES,
-  DAILY_PERSONAS,
   SCRIPT_RESPONSE_SCHEMA,
   buildDirectOpenAICompletionParams,
   buildScriptCompletionParams,
   buildSystemPrompt,
   buildUserPrompt,
+  normalizeScriptResponse,
   resolveScriptModel,
   resolveScriptModels,
   resolveScriptTimeoutMs,
   reconcileScriptSourceUrls,
-  selectDailyPersona,
   validateScriptResponse,
   writeScript,
 } from "../src/script.js";
 import type { ScriptCompletionClient, ScriptCompletionParams, ScriptResponse } from "../src/script.js";
 import type { StoryCluster } from "../src/types.js";
+import { HOST_IDENTITY, VOICE_EXEMPLARS } from "../src/voice.js";
 
 test("resolveScriptModels defaults to Sonnet for prose quality with cheaper fallbacks", () => {
   const expectedDefaults = [
@@ -56,7 +56,6 @@ test("resolveScriptModel preserves single-model compatibility", () => {
 test("buildDirectOpenAICompletionParams strips OpenRouter provider routing", () => {
   const params = buildScriptCompletionParams(
     "openai/gpt-4o-mini",
-    DAILY_PERSONAS[0] ?? selectDailyPersona("2026-05-16"),
     "2026-05-16",
     [
       {
@@ -88,39 +87,23 @@ test("resolveScriptTimeoutMs uses a realistic default and accepts valid override
   assert.equal(resolveScriptTimeoutMs("not-a-number"), 360_000);
 });
 
-test("selectDailyPersona is stable for the same episode date", () => {
-  const first = selectDailyPersona("2026-05-11");
-  const second = selectDailyPersona("2026-05-11");
+test("buildSystemPrompt describes a persistent host bounded by factual constraints", () => {
+  const prompt = buildSystemPrompt();
 
-  assert.equal(second.name, first.name);
-});
-
-test("selectDailyPersona rotates across dates", () => {
-  const selectedNames = new Set(
-    [
-      "2026-05-11",
-      "2026-05-12",
-      "2026-05-13",
-      "2026-05-14",
-      "2026-05-15",
-    ].map((date) => selectDailyPersona(date).name),
+  assert.match(prompt, /THE HOST/);
+  assert.ok(prompt.includes(HOST_IDENTITY.refusals), "the host's refusals must appear verbatim");
+  assert.match(prompt, /REGISTER EXEMPLARS/);
+  assert.match(prompt, /match their register/i);
+  assert.ok(VOICE_EXEMPLARS.length > 0, "at least one voice exemplar must be configured");
+  assert.ok(
+    prompt.includes(VOICE_EXEMPLARS[0] as string),
+    "the first exemplar must appear in the prompt",
   );
-
-  assert.ok(selectedNames.size > 1, "date-based selection should vary the delivery persona");
-});
-
-test("buildSystemPrompt keeps persona style bounded by factual constraints", () => {
-  const persona = DAILY_PERSONAS[0];
-  assert.ok(persona, "at least one daily persona must be configured");
-
-  const prompt = buildSystemPrompt(persona);
-
-  assert.match(prompt, new RegExp(`Persona: ${escapeRegExp(persona.name)}`));
-  assert.match(prompt, /style lens, not a character bit/);
-  assert.match(prompt, /opinions grounded in evidence/);
-  assert.match(prompt, /grounded in the provided facts/);
-  assert.match(prompt, /No celebrity impressions/);
-  assert.match(prompt, /Do not invent .* facts/);
+  assert.match(prompt, /EMPHASIS BUDGET/);
+  assert.match(prompt, /ONE deliberate rhetorical peak/i);
+  assert.match(prompt, /one analogy per episode/i);
+  assert.match(prompt, /two sentences in a row share a shape/);
+  assert.match(prompt, /never invent facts/i);
   assert.match(prompt, /sourceUrls MUST be exactly the urls provided/);
   assert.match(prompt, /single host speaking solo/);
   assert.match(prompt, /solo show/);
@@ -151,11 +134,60 @@ test("buildUserPrompt preserves source publisher, URL, and importance context", 
   assert.match(prompt, /Example News: https:\/\/example\.com\/model-feature/);
 });
 
-test("buildSystemPrompt enforces hook, labels, concise transitions, pacing, and explainers", () => {
-  const persona = DAILY_PERSONAS[0];
-  assert.ok(persona, "at least one daily persona must be configured");
+test("buildUserPrompt renders Specifics as a sub-list and reframes whyItMatters/caveat as an Editor's note", () => {
+  const clusters: StoryCluster[] = [
+    {
+      canonicalKey: "test-story",
+      category: "product-tools",
+      headline: "A model ships a useful feature",
+      whyItMatters: "Builders get a simpler path to production.",
+      caveat: "Benchmarks are still early.",
+      importance: 72,
+      sources: [{ publisher: "Example News", url: "https://example.com/model-feature" }],
+      specifics: ["Revenue grew 40% year over year.", 'CEO said: "we shipped early."'],
+    },
+  ];
 
-  const prompt = buildSystemPrompt(persona);
+  const prompt = buildUserPrompt("2026-05-11", clusters);
+
+  assert.match(prompt, /Specifics:/);
+  assert.ok(prompt.includes("- Revenue grew 40% year over year."));
+  assert.ok(prompt.includes('- CEO said: "we shipped early."'));
+  assert.ok(
+    prompt.includes(
+      "Editor's note (context only — never echo its wording): Builders get a simpler path to production. Benchmarks are still early.",
+    ),
+  );
+  // The old "Why it matters:" / "Caveat:" labels must be gone entirely.
+  assert.equal(prompt.includes("Why it matters:"), false);
+  assert.equal(prompt.includes("Caveat:"), false);
+});
+
+test("buildUserPrompt omits the Specifics sub-list when a cluster has none", () => {
+  const clusters: StoryCluster[] = [
+    {
+      canonicalKey: "test-story",
+      category: "product-tools",
+      headline: "A model ships a useful feature",
+      whyItMatters: "Builders get a simpler path to production.",
+      caveat: "Benchmarks are still early.",
+      sources: [{ publisher: "Example News", url: "https://example.com/model-feature" }],
+    },
+  ];
+
+  const prompt = buildUserPrompt("2026-05-11", clusters);
+  assert.equal(prompt.includes("Specifics:"), false);
+  assert.match(prompt, /Editor's note \(context only — never echo its wording\):/);
+});
+
+test("buildSystemPrompt instructs building sentences from Specifics, not the Editor's note", () => {
+  const prompt = buildSystemPrompt();
+  assert.match(prompt, /Build your sentences from each story's Specifics/);
+  assert.match(prompt, /never repeat or lightly rephrase the Editor's note's wording/);
+});
+
+test("buildSystemPrompt enforces hook, labels, concise transitions, and explainers", () => {
+  const prompt = buildSystemPrompt();
 
   assert.match(prompt, /Begin with an engaging hook/);
   assert.match(prompt, /exactly one segment per provided story cluster/);
@@ -165,36 +197,27 @@ test("buildSystemPrompt enforces hook, labels, concise transitions, pacing, and 
   assert.match(prompt, /potential impact both good and bad/);
   assert.match(prompt, /first segment title MUST begin "Top Story:/);
   assert.match(prompt, /Product & Tool Watch: \{headline\}/);
+  assert.match(prompt, /assigned shape/);
   assert.match(prompt, /smooth, short, specific transition/);
   assert.match(prompt, /under about 12 words/);
-  assert.match(prompt, /most sentences under about 24 words/);
   assert.match(prompt, /define specialized terms in 8-14 plain words/);
-  assert.match(prompt, /TTS-friendly prosody/);
-  assert.match(prompt, /commas for natural breath pauses/);
-  assert.match(prompt, /one rhetorical question per segment at most/);
   assert.match(prompt, /never announcer-y or fake-enthusiastic/);
 });
 
 test("buildSystemPrompt bans worn-out podcast filler and demands fresh sign-offs", () => {
-  const persona = DAILY_PERSONAS[0];
-  assert.ok(persona, "at least one daily persona must be configured");
-
-  const prompt = buildSystemPrompt(persona);
+  const prompt = buildSystemPrompt();
 
   assert.match(prompt, /BANNED PHRASES/);
   for (const phrase of BANNED_SCRIPT_PHRASES) {
     assert.ok(prompt.includes(`"${phrase}"`), `prompt must ban "${phrase}"`);
   }
-  assert.match(prompt, /sign-off must be one short line in today's persona's voice/);
+  assert.match(prompt, /sign-off must be one short line in the host's voice/);
   assert.match(prompt, /Never build it as "Keep your X and your Y"/);
   assert.match(prompt, /Never a stock farewell/);
 });
 
 test("buildSystemPrompt discourages split contrast reversals", () => {
-  const persona = DAILY_PERSONAS[0];
-  assert.ok(persona, "at least one daily persona must be configured");
-
-  const prompt = buildSystemPrompt(persona);
+  const prompt = buildSystemPrompt();
 
   assert.match(prompt, /Avoid split contrast reversals/);
   assert.match(prompt, /That's not X\. It's Y\./);
@@ -202,26 +225,19 @@ test("buildSystemPrompt discourages split contrast reversals", () => {
   assert.match(prompt, /one precise sentence or choose a different rhetorical turn/);
 });
 
-test("buildSystemPrompt demands concrete specifics and a persona running angle", () => {
-  const persona = DAILY_PERSONAS[0];
-  assert.ok(persona, "at least one daily persona must be configured");
-
-  const prompt = buildSystemPrompt(persona);
+test("buildSystemPrompt demands concrete specifics", () => {
+  const prompt = buildSystemPrompt();
 
   assert.match(prompt, /at least one specific number, named person or organization, or short direct quote/);
   assert.match(prompt, /Specifics beat adjectives/);
-  assert.match(prompt, /one understated running angle that surfaces two or three times/);
 });
 
 test("buildSystemPrompt gates inline delivery tags on the TTS model capability", () => {
-  const persona = DAILY_PERSONAS[0];
-  assert.ok(persona, "at least one daily persona must be configured");
-
-  const plainPrompt = buildSystemPrompt(persona);
+  const plainPrompt = buildSystemPrompt();
   assert.equal(plainPrompt.includes("Inline delivery tags"), false);
   assert.match(plainPrompt, /audio cues, or bracketed pauses/);
 
-  const taggedPrompt = buildSystemPrompt(persona, { allowAudioTags: true });
+  const taggedPrompt = buildSystemPrompt({ allowAudioTags: true });
   assert.match(taggedPrompt, /Inline delivery tags:/);
   for (const tag of ALLOWED_INLINE_AUDIO_TAGS) {
     assert.ok(taggedPrompt.includes(tag), `tagged prompt must allow ${tag}`);
@@ -248,6 +264,180 @@ test("SCRIPT_RESPONSE_SCHEMA requires string narration chunks", () => {
     "pattern" in schema.properties.segments.items.properties.chunks.items,
     false,
   );
+});
+
+test("SCRIPT_RESPONSE_SCHEMA requires a nullable stance field with no length constraints", () => {
+  const stanceSchema = SCRIPT_RESPONSE_SCHEMA.properties.segments.items.properties.stance;
+  assert.deepEqual(stanceSchema.type, ["string", "null"]);
+  assert.ok(
+    SCRIPT_RESPONSE_SCHEMA.properties.segments.items.required.includes("stance"),
+    "stance must be required (strict-mode: optionality is expressed via nullable type, not omission)",
+  );
+  assert.equal("minLength" in stanceSchema, false);
+  assert.equal("pattern" in stanceSchema, false);
+});
+
+test("SCRIPT_RESPONSE_SCHEMA requires a nullable delivery field with no length constraints", () => {
+  const deliverySchema = SCRIPT_RESPONSE_SCHEMA.properties.segments.items.properties.delivery;
+  assert.deepEqual(deliverySchema.type, ["string", "null"]);
+  assert.ok(
+    SCRIPT_RESPONSE_SCHEMA.properties.segments.items.required.includes("delivery"),
+    "delivery must be required (strict-mode: optionality is expressed via nullable type, not omission)",
+  );
+  assert.equal("minLength" in deliverySchema, false);
+  assert.equal("pattern" in deliverySchema, false);
+});
+
+test("normalizeScriptResponse strips null/blank stance and delivery independently and trims real values", () => {
+  const response: ScriptResponse = {
+    intro: ["Setup."],
+    segments: [
+      { title: "Top Story: A", chunks: ["A."], sourceUrls: [], stance: null, delivery: null },
+      { title: "Top Story: B", chunks: ["B."], sourceUrls: [], stance: "   ", delivery: "   " },
+      {
+        title: "Top Story: C",
+        chunks: ["C."],
+        sourceUrls: [],
+        stance: "  I called this correctly.  ",
+        delivery: "  flat — let the number speak  ",
+      },
+      { title: "Top Story: D", chunks: ["D."], sourceUrls: [], stance: null, delivery: "quickening" },
+    ],
+    outro: ["Close."],
+  };
+
+  normalizeScriptResponse(response);
+
+  assert.equal("stance" in (response.segments[0] as object), false);
+  assert.equal("delivery" in (response.segments[0] as object), false);
+  assert.equal("stance" in (response.segments[1] as object), false);
+  assert.equal("delivery" in (response.segments[1] as object), false);
+  assert.equal(response.segments[2]?.stance, "I called this correctly.");
+  assert.equal(response.segments[2]?.delivery, "flat — let the number speak");
+  // A field normalizing to absent must not affect the other on the same segment.
+  assert.equal("stance" in (response.segments[3] as object), false);
+  assert.equal(response.segments[3]?.delivery, "quickening");
+});
+
+test("validateScriptResponse tolerates absent, null, or string stance but rejects other types", () => {
+  const clusters: StoryCluster[] = [
+    {
+      canonicalKey: "test-story",
+      category: "product-tools",
+      headline: "A model ships a useful feature",
+      whyItMatters: "Builders get a simpler path to production.",
+      caveat: "Benchmarks are still early.",
+      sources: [{ publisher: "Example News", url: "https://example.com/model-feature" }],
+    },
+  ];
+  const base = {
+    intro: ["Here is the setup."],
+    outro: ["That is the close."],
+  };
+
+  // Absent stance: fine.
+  validateScriptResponse(
+    {
+      ...base,
+      segments: [{ title: "Top Story: A model ships a useful feature", chunks: ["A."], sourceUrls: ["https://example.com/model-feature"] }],
+    },
+    clusters,
+  );
+
+  // Explicit string stance: fine.
+  validateScriptResponse(
+    {
+      ...base,
+      segments: [
+        {
+          title: "Top Story: A model ships a useful feature",
+          chunks: ["A."],
+          sourceUrls: ["https://example.com/model-feature"],
+          stance: "This will ship on time.",
+        },
+      ],
+    },
+    clusters,
+  );
+
+  // A non-string, non-null stance (malformed API output) must be rejected.
+  assert.throws(
+    () =>
+      validateScriptResponse(
+        {
+          ...base,
+          segments: [
+            {
+              title: "Top Story: A model ships a useful feature",
+              chunks: ["A."],
+              sourceUrls: ["https://example.com/model-feature"],
+              stance: 42,
+            },
+          ],
+        } as unknown as ScriptResponse,
+        clusters,
+      ),
+    /stance must be a string/,
+  );
+});
+
+test("validateScriptResponse tolerates absent, null, or string delivery but rejects other types", () => {
+  const clusters: StoryCluster[] = [
+    {
+      canonicalKey: "test-story",
+      category: "product-tools",
+      headline: "A model ships a useful feature",
+      whyItMatters: "Builders get a simpler path to production.",
+      caveat: "Benchmarks are still early.",
+      sources: [{ publisher: "Example News", url: "https://example.com/model-feature" }],
+    },
+  ];
+  const base = {
+    intro: ["Here is the setup."],
+    outro: ["That is the close."],
+  };
+
+  // Explicit string delivery: fine.
+  validateScriptResponse(
+    {
+      ...base,
+      segments: [
+        {
+          title: "Top Story: A model ships a useful feature",
+          chunks: ["A."],
+          sourceUrls: ["https://example.com/model-feature"],
+          delivery: "flat — let the number speak",
+        },
+      ],
+    },
+    clusters,
+  );
+
+  // A non-string, non-null delivery (malformed API output) must be rejected.
+  assert.throws(
+    () =>
+      validateScriptResponse(
+        {
+          ...base,
+          segments: [
+            {
+              title: "Top Story: A model ships a useful feature",
+              chunks: ["A."],
+              sourceUrls: ["https://example.com/model-feature"],
+              delivery: ["not", "a", "string"],
+            },
+          ],
+        } as unknown as ScriptResponse,
+        clusters,
+      ),
+    /delivery must be a string/,
+  );
+});
+
+test("buildSystemPrompt describes the optional per-segment delivery hint", () => {
+  const prompt = buildSystemPrompt();
+  assert.match(prompt, /"delivery" field/);
+  assert.match(prompt, /3-6 word spoken-delivery hint/);
 });
 
 test("buildUserPrompt tells the model not to pad fewer-than-three clusters", () => {
@@ -681,10 +871,6 @@ test("writeScript falls back to the next configured model after empty choices", 
     assert.deepEqual(request.provider, { require_parameters: true });
   }
 });
-
-function escapeRegExp(value: string): string {
-  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-}
 
 function restoreEnv(key: string, value: string | undefined): void {
   if (value === undefined) {

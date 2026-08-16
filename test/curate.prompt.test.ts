@@ -38,11 +38,20 @@ test("system prompt instructs: always surface a major escalation", () => {
   assert.match(prompt, /ALWAYS surface a major escalation/);
 });
 
-test("system prompt instructs: emit followUp field with priorDate and priorFraming", () => {
+test("system prompt instructs extracting verbatim specifics per cluster", () => {
+  const prompt = buildSystemPrompt();
+  assert.match(prompt, /specifics/i);
+  assert.match(prompt, /verbatim quote/);
+  assert.match(prompt, /15 words/);
+  assert.match(prompt, /never invent or estimate/i);
+});
+
+test("system prompt instructs: emit followUp field with priorDate, priorFraming, and priorStance", () => {
   const prompt = buildSystemPrompt();
   assert.match(prompt, /followUp/);
   assert.match(prompt, /priorDate/);
   assert.match(prompt, /priorFraming/);
+  assert.match(prompt, /priorStance/);
 });
 
 test("buildUserPrompt with no prior coverage omits the recently-covered block", () => {
@@ -123,6 +132,55 @@ test("buildPriorCoverageBlock includes all prior entries as compact lines", () =
   assert.match(block, /Alpha story headline/);
   assert.match(block, /Very early\./);
   assert.match(block, /2026-06-16/);
+});
+
+test("buildPriorCoverageBlock appends the prior take when stance is present, omits it otherwise", () => {
+  const prior: PriorCoverageEntry[] = [
+    {
+      canonicalKey: "story-with-take",
+      headline: "A story the host already judged",
+      whyItMatters: "Matters a lot.",
+      caveat: "Still developing.",
+      importance: 70,
+      category: "business",
+      episodeDate: "2026-06-16",
+      stance: "I called this overhyped.",
+    },
+    {
+      canonicalKey: "story-without-take",
+      headline: "A purely factual story",
+      whyItMatters: "Matters some.",
+      caveat: "Nothing uncertain.",
+      importance: 55,
+      category: "research",
+      episodeDate: "2026-06-15",
+    },
+  ];
+  const block = buildPriorCoverageBlock(prior);
+  assert.match(block, /story-with-take \| A story the host already judged \| caveat: Still developing\. \| take: I called this overhyped\./);
+  const withoutTakeLine = block.split("\n").find((line) => line.includes("story-without-take"));
+  assert.ok(withoutTakeLine);
+  assert.equal(withoutTakeLine!.includes("| take:"), false);
+});
+
+test("buildPriorCoverageBlock keeps a long stance from blowing out the line length", () => {
+  const longStance = "x".repeat(500);
+  const prior: PriorCoverageEntry[] = [
+    {
+      canonicalKey: "story-long-stance",
+      headline: "A story with an unusually long recorded take",
+      whyItMatters: "Matters.",
+      caveat: "Uncertain.",
+      importance: 60,
+      category: "business",
+      episodeDate: "2026-06-16",
+      stance: longStance,
+    },
+  ];
+  const block = buildPriorCoverageBlock(prior);
+  const line = block.split("\n").find((l) => l.includes("story-long-stance"));
+  assert.ok(line);
+  assert.ok(line!.length <= 300, `line was ${line!.length} chars, expected <= 300`);
 });
 
 function escapeRegExp(value: string): string {

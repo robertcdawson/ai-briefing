@@ -1,14 +1,17 @@
 import OpenAI from "openai";
 import type { ChatCompletionCreateParamsNonStreaming } from "openai/resources/chat/completions";
 import { buildInlineAudioTagRules } from "./audioTags.js";
+import { normalizeForNgrams } from "./ngrams.js";
 import { resolveTTSProviderConfig } from "./ttsProvider.js";
 import { getStoryCategoryLabel, STORY_CATEGORY_DEFINITIONS } from "./types.js";
 import type { Episode, NarrationChunk, StoryCluster } from "./types.js";
-import type { RecentStyleSnippets } from "./ledger.js";
+import type { RecentPhraseProfile, RecentStyleSnippets } from "./ledger.js";
+import { PHRASE_PROFILE_WINDOW, PHRASE_REJECT_MIN_EPISODES } from "./ledger.js";
 import type { ChatCompletionLike } from "./util.js";
 import { getChatCompletionAssistantText, logJson, withHardTimeout, withRetry } from "./util.js";
+import { VOICE_EXEMPLARS, formatHostIdentityBlock } from "./voice.js";
 
-// Sonnet leads for prose quality (wit, persona adherence, varied phrasing);
+// Sonnet leads for prose quality (voice adherence, wit, varied phrasing);
 // the cheaper models remain as availability fallbacks. Sonnet was briefly the
 // default before (removed when strict-schema minLength/pattern constraints
 // broke Bedrock-routed structured output); those constraints are long gone and
@@ -45,15 +48,8 @@ export interface WriteScriptOptions {
   retryBaseMs?: number;
   /** Recent episodes' intro openers / outro openers / sign-offs, injected as "do not reuse" examples. */
   recentStyle?: RecentStyleSnippets[];
-}
-
-export interface DailyPersona {
-  name: string;
-  inspiration: string;
-  delivery: string;
-  opinionStance: string;
-  humor: string;
-  avoid: string;
+  /** Recent episodes' recurring 3/4-grams (src/ledger.ts buildRecentPhraseProfile), the statistical anti-repetition tripwire. */
+  phraseProfile?: RecentPhraseProfile;
 }
 
 export interface ScriptResponse {
@@ -66,75 +62,9 @@ export interface ScriptSegmentResponse {
   title: string;
   chunks: NarrationChunk[];
   sourceUrls: string[];
+  stance?: string | null;
+  delivery?: string | null;
 }
-
-export const DAILY_PERSONAS: readonly DailyPersona[] = [
-  {
-    name: "The Golden-Age Newsreel Announcer",
-    inspiration:
-      "1940s radio newsreels: crisp headline cadence, theatrical urgency, and clean signposting.",
-    delivery:
-      "Authoritative, polished, and kinetic. Use strong verbs, short declarative sentences, and dramatic but controlled pacing.",
-    opinionStance:
-      "Make confident judgments when the evidence is solid. Call out weak claims, vague demos, and strategic spin.",
-    humor:
-      "A quick dry aside is fine, but keep the segment moving like a bulletin with a brain.",
-    avoid:
-      "Fake old-time slang, melodrama, patriotic bombast, celebrity impressions, or invented newsroom details.",
-  },
-  {
-    name: "The Late-Night FM Futurist",
-    inspiration:
-      "1970s and 1980s FM radio intimacy: close-mic warmth, smooth transitions, and reflective pacing.",
-    delivery:
-      "Warm, unhurried, and slightly mysterious. Close-mic intimacy: long, easy sentences, and the confidence to let a striking fact sit for a beat before moving on.",
-    opinionStance:
-      "Offer thoughtful, sometimes pointed analysis, especially when incentives or tradeoffs are hiding in plain sight.",
-    humor:
-      "Use low-key wit and understated irony. No bits that require acting or sound effects in the text.",
-    avoid:
-      "Mysticism, vague futurism, breathless hype, fake reverb cues, dreamy language that muddies the facts, or radio-metaphor vocabulary (signal, frequency, transmission, airwaves).",
-  },
-  {
-    name: "The Hardboiled Tech Detective",
-    inspiration:
-      "Classic radio noir narration: investigative framing, skeptical questions, and economical atmosphere.",
-    delivery:
-      "Lean, vivid, and suspicious in the useful sense. Frame each story as a case: evidence, motive, and loose ends.",
-    opinionStance:
-      "Be willing to say when a company story does not add up, while separating facts from inference.",
-    humor:
-      "One sharp noir-flavored line per segment at most, then return immediately to the reporting.",
-    avoid:
-      "Pastiche overload, fake accents, cynicism for its own sake, violence metaphors, or made-up scenes.",
-  },
-  {
-    name: "The Morning Drive Contrarian",
-    inspiration:
-      "Classic morning radio energy: bright pacing, memorable hooks, quick turns, and personality-forward hosting.",
-    delivery:
-      "Energetic, direct, and conversational. Make the big takeaway easy to remember before the listener has finished coffee.",
-    opinionStance:
-      "Have strong opinions. Challenge lazy consensus, but anchor every critique in the provided story facts.",
-    humor:
-      "Use quick, clean punchlines and lightly opinionated phrasing. Keep jokes subordinate to comprehension.",
-    avoid:
-      "Shouting, forced banter, imaginary co-hosts, shock-jock tone, or contrarianism unsupported by evidence.",
-  },
-  {
-    name: "The Global Shortwave Correspondent",
-    inspiration:
-      "International field correspondence: compact reports, crisp clarity, and worldwide context.",
-    delivery:
-      "Measured, worldly, and vivid. Report each story like a correspondent on the ground: concrete detail first, then what it means beyond one country or company.",
-    opinionStance:
-      "Draw clear conclusions about global stakes, power shifts, and practical consequences without overstating certainty.",
-    humor:
-      "Sparse, wry, and observational. Let the occasional line land, then move on.",
-    avoid:
-      "Fake static cues, accents, geopolitical grandstanding, travelogue filler, unsupported global claims, or radio-metaphor vocabulary (dispatch, signal, frequency, transmission, antenna, receiver).",
-  },
-];
 
 const NARRATION_CHUNK_SCHEMA = {
   type: "string",
@@ -167,8 +97,18 @@ export const SCRIPT_RESPONSE_SCHEMA = {
             type: "array",
             items: { type: "string" },
           },
+          stance: {
+            type: ["string", "null"],
+            description:
+              "One sentence, 25 words max, first person: the judgment or prediction you committed to on air for this story. Null if the segment is purely factual with no committed take.",
+          },
+          delivery: {
+            type: ["string", "null"],
+            description:
+              "Spoken-delivery hint for this segment, 3-6 words (e.g. 'flat — let the number speak'). Null when standard delivery fits.",
+          },
         },
-        required: ["title", "chunks", "sourceUrls"],
+        required: ["title", "chunks", "sourceUrls", "stance", "delivery"],
         additionalProperties: false,
       },
     },
@@ -176,7 +116,7 @@ export const SCRIPT_RESPONSE_SCHEMA = {
       type: "array",
       items: NARRATION_CHUNK_SCHEMA,
       description:
-        "Closing 2-4 narration chunks. Follow today's closing instruction for the ending's shape. Do not re-list the day's stories one by one, and do not open by 'pulling back' or 'stepping back' to find a pattern across them. Finish with one short sign-off in today's persona's voice that does not reuse any recently used construction.",
+        "Closing 2-4 narration chunks. Follow today's closing instruction for the ending's shape. Do not re-list the day's stories one by one, and do not open by 'pulling back' or 'stepping back' to find a pattern across them. Finish with one short sign-off in the host's voice that does not reuse any recently used construction.",
     },
   },
   required: ["intro", "segments", "outro"],
@@ -187,29 +127,24 @@ const SEGMENT_LABEL_RULES = STORY_CATEGORY_DEFINITIONS
   .map((category) => `  - ${category.id}: "${category.label}: {headline}"`)
   .join("\n");
 
+// FROZEN: do not add entries here. This list is only for timeless podcast
+// filler that reads as stale in any era; statistical drift in what this show
+// actually repeats is owned by the phrase tripwire (buildRecentPhraseProfile
+// in src/ledger.ts + assertNoWornPhrases below), which adapts automatically
+// instead of chasing yesterday's mold with a new regex.
 export const BANNED_SCRIPT_PHRASES = [
   "dive in",
   "diving in",
-  "stay curious",
-  "stay informed",
   "stay tuned",
   "until next time",
-  "pivotal moment",
   "let's not forget",
-  "the stakes",
-  "crucial",
   "game-changer",
   "buckle up",
   "that's a wrap",
   "the honest caveat",
-  "the honest read",
   "worth noting",
-  "worth watching",
-  "the practical takeaway",
   "the takeaway here",
-  "genuinely different",
   "a pattern emerges",
-  "pull back and look",
 ] as const;
 
 const SPLIT_CONTRAST_NOUN_PHRASE_PATTERN = String.raw`(?:(?:just|only|merely|simply)\s+)?(?:a|an|the|another|this|that|its|their|our|your)\b`;
@@ -248,10 +183,9 @@ const BANNED_OUTRO_PATTERNS: ReadonlyArray<{ pattern: RegExp; reason: string }> 
   },
 ];
 
-// Deterministic per-day shape rotation for the opening and closing, salted so
-// it cycles independently of the persona rotation. "Write a fresh outro every
-// day" reliably collapses into one mold; prescribing a different structural
-// move per day does not.
+// Deterministic per-day shape rotation for the opening and closing. "Write a
+// fresh outro every day" reliably collapses into one mold; prescribing a
+// different structural move per day does not.
 export const INTRO_MOVES = [
   "Cold-open inside the lead story: start with its single most striking concrete detail \u2014 no date, no episode preview \u2014 and work the date in a chunk or two later.",
   "Open with the day's sharpest number or quote, put the date in the same breath, then move straight into the first story without previewing the rest of the episode.",
@@ -273,6 +207,45 @@ export function selectOutroMove(date: string): string {
   return OUTRO_MOVES[stableHash(`${date}:outro-move`) % OUTRO_MOVES.length] as string;
 }
 
+// Extends the intro/outro MOVES mechanism into the segment bodies, where
+// most of the episode's words actually live. Each story gets a deterministic
+// shape independent of the others, so adjacent segments in the same episode
+// read differently and the show doesn't fall into a single template.
+export const SEGMENT_SHAPES: readonly { name: string; instruction: string }[] = [
+  {
+    name: "verdict-first",
+    instruction: "Open on your judgment about this story, then earn it with the evidence.",
+  },
+  {
+    name: "mystery-first",
+    instruction: "Open on the detail that doesn't add up; resolve it, or leave it honestly open.",
+  },
+  {
+    name: "listener-objection",
+    instruction: "Open by voicing the smart listener's pushback on this story, then answer it.",
+  },
+  {
+    name: "how-we-got-here",
+    instruction: "Give a compressed timeline that makes today's development the inevitable next line.",
+  },
+  {
+    name: "follow-the-money",
+    instruction: "Start from who pays and who collects, and read the announcement through the incentives.",
+  },
+  {
+    name: "builder-impact-first",
+    instruction: "Open with what changes Monday morning for someone building on this, then widen out.",
+  },
+] as const;
+
+export function selectSegmentShape(date: string, segmentIndex: number): { name: string; instruction: string } {
+  const shape = SEGMENT_SHAPES[
+    (stableHash(`${date}:segment-shapes`) + segmentIndex) % SEGMENT_SHAPES.length
+  ];
+  if (!shape) throw new Error("No segment shapes configured");
+  return shape;
+}
+
 function buildSystemPromptBase(allowAudioTags: boolean): string {
   const chunkPurityRule = allowAudioTags
     ? "- Do not include speaker labels, stage directions, reactions, fake laughter, or audio cues. The ONLY bracketed text allowed is the approved inline delivery tags described below."
@@ -286,10 +259,11 @@ function buildSystemPromptBase(allowAudioTags: boolean): string {
 
 - INTRO (2-3 narration chunks): Begin with an engaging hook built on the single most surprising or consequential fact of the day, shaped by today's opening instruction in the user message. Mention the date once, wherever it lands naturally — do not open every episode with "It's {date}" followed by a list of coming stories. Not a vague teaser question, and not a dry table of contents.
 - STORY SEGMENTS: Write exactly one segment per provided story cluster, in the order provided (most important first). For each story, cover (in whatever order feels natural) what concretely happened, why it matters for AI builders and researchers with a listener-oriented takeaway, a plain-English gloss of any jargon on first use, the potential impact both good and bad, and an honest caveat about what's uncertain, missing, or overhyped. End each segment with a smooth, short, specific transition into the next story (or, for the last segment, into the outro).
-  - FOLLOW-UP STORIES: When a story cluster is marked as a follow-up (it includes a "Previously" line with prior framing), open that segment as a continuation, not a fresh introduction. Reference how the situation has developed since the prior coverage — e.g. "the rumor we flagged Monday is now confirmed", "what started as a proposal has become policy". Do NOT re-introduce the topic as if the listener has never heard of it. New stories (no "Previously" line) are introduced normally.
+  - FOLLOW-UP STORIES: When a story cluster is marked as a follow-up (it includes a "Previously" line with prior framing), open that segment as a continuation, not a fresh introduction. Reference how the situation has developed since the prior coverage — e.g. "the rumor we flagged Monday is now confirmed", "what started as a proposal has become policy". Do NOT re-introduce the topic as if the listener has never heard of it. New stories (no "Previously" line) are introduced normally. When the "Previously" line includes your prior take, revisit that call explicitly — say in fresh wording whether it held up, was wrong, or is still open.
   - CONFIDENCE AND SOURCING: Calibrate how firmly you state each story to its corroboration (each cluster includes a "Corroboration: N independent source(s)" line). A single-source story must be voiced as tentative and attributed — "one outlet reports", "this isn't confirmed yet" — never as established fact. When several independent sources corroborate a story, you can state its core facts plainly. When a story reads as vendor hype or an unverified claim, name that skepticism briefly rather than relaying it credulously. Do NOT over-hedge well-corroborated facts — calibration cuts both ways.
   - Do NOT use the same beat order in every segment. Vary how each story unfolds so the episode doesn't read as a template.
-- CLOSING (2-4 narration chunks): Shape the ending with today's closing instruction in the user message. Never open the closing by "pulling back" or "stepping back" to find a pattern, never announce that a pattern, theme, or thread "emerges" or "runs through" the stories, never lean on "the gap between X and Y" framing, and never re-list the day's stories as a parallel run of one-clause sentences. End with a short, persona-flavored sign-off.
+  - Each story in the user message carries an assigned shape; reach the essentials — what happened, why it matters, what's uncertain — through that shape, and never announce a shape or beat by name.
+- CLOSING (2-4 narration chunks): Shape the ending with today's closing instruction in the user message. Never open the closing by "pulling back" or "stepping back" to find a pattern, never announce that a pattern, theme, or thread "emerges" or "runs through" the stories, never lean on "the gap between X and Y" framing, and never re-list the day's stories as a parallel run of one-clause sentences. End with a short sign-off in the host's voice.
 
 Length and depth:
 - This is a solo show, not a fixed-length one. Let the news set the length: cover everything that matters, but keep the whole episode under about ten minutes (roughly 1500 spoken words total).
@@ -306,47 +280,48 @@ Recurring segment labels:
 ${SEGMENT_LABEL_RULES}
 - Keep titles compact. Do not invent new segment label names.
 
-Voice rules:
-- Conversational and intelligent, not breathless or hyped. Sound like a smart person talking through the news, not reading a bulletin. Use contractions.
-- Sound alert and genuinely engaged, while staying skeptical and precise; never announcer-y or fake-enthusiastic.
-- Bring some attitude: witty, occasionally cynical, with opinions grounded in evidence. Care visibly about who a story helps or hurts. Never a neutral press-release reader.
-- Every opinion must be grounded in the provided facts. Prefer sharp analysis over neutral summary, but never sacrifice accuracy for personality.
-- Ground every story in the concrete: each segment must carry at least one specific number, named person or organization, or short direct quote drawn from the provided material. Specifics beat adjectives.
-- Optimize for information retention: vary sentence rhythm, front-load concrete details, and reinforce each segment's key takeaway once near the end.
-- Spoken pacing: mix crisp short sentences with medium explanatory sentences. Avoid dense clauses; keep most sentences under about 24 words.
-- TTS-friendly prosody: use commas for natural breath pauses; prefer short clauses over nested lists; one rhetorical question per segment at most when it sharpens the point.
-- Use light, dry humor sparingly (about one quick line per segment max) when it helps recall, never at the expense of accuracy or clarity.
-- At most ONE analogy or metaphor in the entire episode, and only when it genuinely makes a hard idea click. Do not reach for one every segment.
-- Avoid recycled filler and verbal tics. Never use stock phrases like "This is a big deal.", and never open a chunk with analogy crutches like "Think of it as" or "It's like". Find fresh phrasing every time.
+${formatHostIdentityBlock()}
+
+${formatVoiceExemplarsBlock()}
+
+EMPHASIS BUDGET
+- Baseline register is flat, declarative, and specific — most sentences should simply state what happened.
+- Spend ONE deliberate rhetorical peak per episode, placed at the day's most consequential story; everywhere else, let the facts carry the weight.
+- At most one analogy per episode, and only when it maps to something the listener has actually lived through. Do not reach for one every segment.
+- Rhetorical questions and antitheses are allowed, but never as a run of consecutive-sentence patterns — if two sentences in a row share a shape, break one of them.
+
+FATAL
 - Avoid split contrast reversals such as "That's not X. It's Y.", "This isn't X. It's Y.", or "It is not X. It is Y." If a contrast is useful, make it one precise sentence or choose a different rhetorical turn.
-- BANNED PHRASES. Never say any of these, in any tense or close variation: ${BANNED_SCRIPT_PHRASES.map((phrase) => `"${phrase}"`).join(", ")}. They are worn-out podcast filler; find specific, persona-flavored language instead.
-- The sign-off must be one short line in today's persona's voice, different every episode. Never build it as "Keep your X and your Y" in any wording, and never precede it with "That's the {bulletin/signal/briefing/dispatch/file} for {date}". If the user message lists RECENTLY USED constructions, do not reuse or lightly rephrase any of them. Never a stock farewell.
+- No "Welcome to" or "Today on AI Briefing" boilerplate openings, which go stale fast.
+- Never invent facts, quotes, scenes, sound effects, audio cues, or source details to fit the moment.
+- The sign-off must be one short line in the host's voice, different every episode. Never build it as "Keep your X and your Y" in any wording, and never precede it with "That's the {bulletin/signal/briefing/dispatch/file} for {date}". Never a stock farewell.
+- If the user message lists RECENTLY USED constructions or worn-out phrasing, never use any of them word-for-word or lightly reworded — a script that reuses one is rejected and rewritten.
+- Never announce a beat by name (no "the honest caveat is", "the takeaway here is", "worth noting").
+- BANNED PHRASES. Never say any of these, in any tense or close variation: ${BANNED_SCRIPT_PHRASES.map((phrase) => `"${phrase}"`).join(", ")}. They are worn-out podcast filler; find specific language instead.
+
+SPOKEN-DELIVERY MECHANICS
+- Use contractions; sound like a smart person talking through the news, not reading a bulletin.
 - Read-aloud-friendly: short sentences, no parenthetical asides, no stage-direction punctuation; avoid em-dashes that force awkward pauses.
+- Ground every story in the concrete: each segment must carry at least one specific number, named person or organization, or short direct quote drawn from the provided material. Specifics beat adjectives.
+- Build your sentences from each story's Specifics — the numbers, names, and quotes — and use the Editor's note only to steer judgment; never repeat or lightly rephrase the Editor's note's wording on air.
 - Explain jargon only when it helps: define specialized terms in 8-14 plain words and keep moving.
 - Transitions must be one sentence, under about 12 words, and specific to the next story. Vary them, and avoid formulaic phrases like "next up", "now, onto our next story", or "now, let's turn to".
-- No "Welcome to" or "Today on AI Briefing" boilerplate openings, which go stale fast.
 ${noMarkupRule}
 - Numbers in spoken form when natural ("about three billion" not "3,000,000,000").
 - Don't read URLs aloud.
-
-Daily persona rules:
-- Use the provided daily persona to shape the whole episode's tone, word choice, and pacing. It is a style lens, not a character bit, and its flavor should be noticeable across the script, not decorative.
-- Persona flavor must come from rhythm, attitude, and what the host chooses to care about — not a recurring vocabulary. Radio-metaphor nouns (signal, dispatch, frequency, bulletin, transmission, airwaves, broadcast) appear at most once per episode, if at all.
-- Let the persona visibly shape the hook, the word choice, and the sign-off, and give it one understated running angle that surfaces two or three times across the episode in different words.
-- Keep the episode recognizably "AI Briefing": accurate, useful, skeptical, and concise.
-- Do not imitate real people or copyrighted characters. No celebrity impressions.
-- Do not invent audio cues, accents, scenes, sound effects, facts, quotes, reactions, or source details to fit the persona or the conversation.
+- Optionally set a segment's "delivery" field to a 3-6 word spoken-delivery hint (e.g. "flat — let the number speak") when this segment calls for something other than the default delivery; leave it null otherwise.
 
 Each segment's sourceUrls MUST be exactly the urls provided for that cluster. Do not invent or omit any.
 
 Return only JSON matching the provided schema.${audioTagSection}`;
 }
 
-export function selectDailyPersona(date: string): DailyPersona {
-  const index = stableHash(date) % DAILY_PERSONAS.length;
-  const persona = DAILY_PERSONAS[index];
-  if (!persona) throw new Error("No daily personas configured");
-  return persona;
+function formatVoiceExemplarsBlock(): string {
+  const quoted = VOICE_EXEMPLARS.map((exemplar) => `"${exemplar}"`).join("\n\n");
+  return `REGISTER EXEMPLARS
+These passages are the show at its best. Match their register — the flatness, the specificity, the way a judgment lands without being announced — never their wording:
+
+${quoted}`;
 }
 
 export interface ScriptPromptOptions {
@@ -354,46 +329,56 @@ export interface ScriptPromptOptions {
   allowAudioTags?: boolean;
   /** Recent episodes' style snippets to list under RECENTLY USED in the user prompt. */
   recentStyle?: RecentStyleSnippets[];
+  /** Recent episodes' recurring 3/4-grams, listed under RECENTLY USED as worn-out phrasing. */
+  phraseProfile?: RecentPhraseProfile;
 }
 
-export function buildSystemPrompt(
-  persona: DailyPersona,
-  options: ScriptPromptOptions = {},
+export function buildSystemPrompt(options: ScriptPromptOptions = {}): string {
+  return buildSystemPromptBase(options.allowAudioTags === true);
+}
+
+function formatRecentStyleBlock(
+  recentStyle: RecentStyleSnippets[] | undefined,
+  phraseProfile: RecentPhraseProfile | undefined,
 ): string {
-  return `${buildSystemPromptBase(options.allowAudioTags === true)}
+  const hasSnippets = !!recentStyle && recentStyle.length > 0;
+  const hasPhrases = !!phraseProfile && phraseProfile.length > 0;
+  if (!hasSnippets && !hasPhrases) return "";
 
-Today's original broadcast persona:
-- Persona: ${persona.name}
-- Inspired by: ${persona.inspiration}
-- Delivery: ${persona.delivery}
-- Opinion stance: ${persona.opinionStance}
-- Humor: ${persona.humor}
-- Avoid: ${persona.avoid}`;
-}
-
-function formatRecentStyleBlock(recentStyle: RecentStyleSnippets[] | undefined): string {
-  if (!recentStyle || recentStyle.length === 0) return "";
   const bullet = (snippet: string, episodeDate: string): string =>
     `- (${episodeDate}) "${snippet}"`;
   const sections: string[] = [];
-  const introOpeners = recentStyle.filter((s) => s.introOpener);
-  const outroOpeners = recentStyle.filter((s) => s.outroOpener);
-  const signOffs = recentStyle.filter((s) => s.signOff);
-  if (introOpeners.length > 0) {
+
+  if (hasSnippets) {
+    const introOpeners = recentStyle!.filter((s) => s.introOpener);
+    const outroOpeners = recentStyle!.filter((s) => s.outroOpener);
+    const signOffs = recentStyle!.filter((s) => s.signOff);
+    if (introOpeners.length > 0) {
+      sections.push(
+        `Intro openers:\n${introOpeners.map((s) => bullet(s.introOpener, s.episodeDate)).join("\n")}`,
+      );
+    }
+    if (outroOpeners.length > 0) {
+      sections.push(
+        `Closing openers:\n${outroOpeners.map((s) => bullet(s.outroOpener, s.episodeDate)).join("\n")}`,
+      );
+    }
+    if (signOffs.length > 0) {
+      sections.push(
+        `Sign-offs:\n${signOffs.map((s) => bullet(s.signOff, s.episodeDate)).join("\n")}`,
+      );
+    }
+  }
+
+  if (hasPhrases) {
+    const phraseLines = phraseProfile!
+      .map((p) => `- "${p.gram}" (${p.episodeCount} episodes)`)
+      .join("\n");
     sections.push(
-      `Intro openers:\n${introOpeners.map((s) => bullet(s.introOpener, s.episodeDate)).join("\n")}`,
+      `Worn-out phrasing (appeared in several of the last ${PHRASE_PROFILE_WINDOW} episodes) — never use these word-for-word or lightly reworded:\n${phraseLines}`,
     );
   }
-  if (outroOpeners.length > 0) {
-    sections.push(
-      `Closing openers:\n${outroOpeners.map((s) => bullet(s.outroOpener, s.episodeDate)).join("\n")}`,
-    );
-  }
-  if (signOffs.length > 0) {
-    sections.push(
-      `Sign-offs:\n${signOffs.map((s) => bullet(s.signOff, s.episodeDate)).join("\n")}`,
-    );
-  }
+
   if (sections.length === 0) return "";
   return `\n\nRECENTLY USED (recent episodes) — these constructions are worn out. Do not reuse or lightly rephrase any of them; find a genuinely different shape for today's opening, closing, and sign-off:\n\n${sections.join("\n\n")}`;
 }
@@ -402,6 +387,7 @@ export function buildUserPrompt(
   date: string,
   clusters: StoryCluster[],
   recentStyle?: RecentStyleSnippets[],
+  phraseProfile?: RecentPhraseProfile,
 ): string {
   const lines = clusters.map((c, i) => {
     const sources = c.sources.map((s) => `${s.publisher}: ${s.url}`).join("\n      ");
@@ -412,15 +398,22 @@ export function buildUserPrompt(
       sourceCount === 0
         ? "none listed (treat as unverified)"
         : `${sourceCount} independent source${sourceCount === 1 ? "" : "s"}`;
-    const followUpLine = c.followUp
-      ? `\n  Previously (${c.followUp.priorDate.replace(/\s+/g, " ").trim()}): ${c.followUp.priorFraming.replace(/\s+/g, " ").trim()} — this is a FOLLOW-UP/update, not a new story.`
+    const priorStanceSuffix = c.followUp?.priorStance
+      ? ` Your prior take: "${c.followUp.priorStance.replace(/\s+/g, " ").trim()}"`
       : "";
+    const followUpLine = c.followUp
+      ? `\n  Previously (${c.followUp.priorDate.replace(/\s+/g, " ").trim()}): ${c.followUp.priorFraming.replace(/\s+/g, " ").trim()} — this is a FOLLOW-UP/update, not a new story.${priorStanceSuffix}`
+      : "";
+    const specificsBlock = c.specifics && c.specifics.length > 0
+      ? `\n  Specifics:\n${c.specifics.map((item) => `      - ${item}`).join("\n")}`
+      : "";
+    const shape = selectSegmentShape(date, i);
     return `STORY ${i + 1}: ${c.headline}
   Category: ${categoryLabel} (${c.category})
   Importance: ${importance}
   Corroboration: ${corroboration}
-  Why it matters: ${c.whyItMatters}
-  Caveat: ${c.caveat}${followUpLine}
+  Shape this segment as: ${shape.name} — ${shape.instruction}${specificsBlock}
+  Editor's note (context only — never echo its wording): ${c.whyItMatters} ${c.caveat}${followUpLine}
   Sources:
       ${sources}`;
   });
@@ -429,7 +422,7 @@ export function buildUserPrompt(
 Today's opening instruction: ${selectIntroMove(date)}
 Today's closing instruction: ${selectOutroMove(date)}
 
-${lines.join("\n\n")}${formatRecentStyleBlock(recentStyle)}`;
+${lines.join("\n\n")}${formatRecentStyleBlock(recentStyle, phraseProfile)}`;
 }
 
 export function resolveScriptModels(requestedModel: string | undefined): string[] {
@@ -467,7 +460,6 @@ export async function writeScript(
     throw new Error("OPENAI_API_KEY or OPENROUTER_API_KEY is not set");
   }
   if (clusters.length === 0) throw new Error("writeScript: no clusters provided");
-  const persona = selectDailyPersona(date);
   const models = resolveScriptModels(process.env.OPENROUTER_SCRIPT_MODEL);
   const timeoutMs = resolveScriptTimeoutMs(process.env.OPENROUTER_SCRIPT_TIMEOUT_MS);
   // Inline delivery tags are only written when the configured TTS model will
@@ -475,6 +467,7 @@ export async function writeScript(
   const promptOptions: ScriptPromptOptions = {
     allowAudioTags: resolveTTSProviderConfig().supportsInlineAudioTags,
     recentStyle: options.recentStyle,
+    phraseProfile: options.phraseProfile,
   };
   const completionClient =
     options.completionClient ??
@@ -491,7 +484,7 @@ export async function writeScript(
         async () => {
           const completion = await withHardTimeout(
             completionClient.create(
-              buildScriptCompletionParams(model, persona, date, clusters, promptOptions),
+              buildScriptCompletionParams(model, date, clusters, promptOptions),
             ),
             timeoutMs,
             `script.openrouter.${model}`,
@@ -500,6 +493,7 @@ export async function writeScript(
           const content = getChatCompletionAssistantText(completion, "OpenRouter script");
 
           const response = JSON.parse(content) as ScriptResponse;
+          normalizeScriptResponse(response);
           const repairedSegments = reconcileScriptSourceUrls(response, clusters);
           if (repairedSegments > 0) {
             logJson({
@@ -509,6 +503,7 @@ export async function writeScript(
             });
           }
           validateScriptResponse(response, clusters);
+          assertNoWornPhrases(response, options.phraseProfile ?? []);
           return response;
         },
         { attempts: SCRIPT_ATTEMPTS_PER_MODEL, baseMs: retryBaseMs, label: "script" },
@@ -542,7 +537,16 @@ export async function writeScript(
     date,
     title: `AI Briefing — ${formatLongDate(date)}`,
     intro: parsed.intro,
-    segments: parsed.segments,
+    // normalizeScriptResponse already stripped null stance/delivery to
+    // undefined at runtime; this map only reconciles that with
+    // EpisodeSegment's stricter (non-nullable) type.
+    segments: parsed.segments.map((s) => ({
+      title: s.title,
+      chunks: s.chunks,
+      sourceUrls: s.sourceUrls,
+      stance: s.stance ?? undefined,
+      delivery: s.delivery ?? undefined,
+    })),
     outro: parsed.outro,
     audioPath: "",
     byteLength: 0,
@@ -555,7 +559,6 @@ export async function writeScript(
     durationMs: Date.now() - started,
     segments: episode.segments.length,
     wordCount,
-    persona: persona.name,
     model: selectedModel,
     candidateModels: models.length,
     timeoutMs,
@@ -565,7 +568,8 @@ export async function writeScript(
   return episode;
 }
 
-function createScriptCompletionClient(
+/** Exported for reuse by src/earEdit.ts, which needs the same OpenRouter/OpenAI routing. */
+export function createScriptCompletionClient(
   openRouterApiKey: string | undefined,
   openAiApiKey: string | undefined,
   timeoutMs: number,
@@ -625,7 +629,6 @@ function stripOpenRouterOpenAIPrefix(model: string): string {
 
 export function buildScriptCompletionParams(
   model: string,
-  persona: DailyPersona,
   date: string,
   clusters: StoryCluster[],
   promptOptions: ScriptPromptOptions = {},
@@ -633,8 +636,11 @@ export function buildScriptCompletionParams(
   return {
     model,
     messages: [
-      { role: "system", content: buildSystemPrompt(persona, promptOptions) },
-      { role: "user", content: buildUserPrompt(date, clusters, promptOptions.recentStyle) },
+      { role: "system", content: buildSystemPrompt(promptOptions) },
+      {
+        role: "user",
+        content: buildUserPrompt(date, clusters, promptOptions.recentStyle, promptOptions.phraseProfile),
+      },
     ],
     response_format: {
       type: "json_schema",
@@ -647,6 +653,40 @@ export function buildScriptCompletionParams(
     stream: false,
     temperature: 0.7,
   };
+}
+
+/**
+ * Normalizes nullable per-segment fields in place: null or blank becomes
+ * absent (deleted), a non-blank string is trimmed. A malformed non-string,
+ * non-null value is left untouched so validateScriptResponse can reject it
+ * explicitly with a clear error instead of this function silently coercing
+ * or swallowing it. Called immediately after JSON.parse, before reconcile
+ * and validation.
+ */
+export function normalizeScriptResponse(response: ScriptResponse): void {
+  for (const segment of response.segments) {
+    normalizeNullableSegmentField(segment, "stance");
+    normalizeNullableSegmentField(segment, "delivery");
+  }
+}
+
+function normalizeNullableSegmentField(
+  segment: ScriptSegmentResponse,
+  key: "stance" | "delivery",
+): void {
+  const value = segment[key];
+  if (value === null || value === undefined) {
+    delete segment[key];
+    return;
+  }
+  if (typeof value === "string") {
+    const trimmed = value.trim();
+    if (trimmed.length === 0) {
+      delete segment[key];
+    } else {
+      segment[key] = trimmed;
+    }
+  }
 }
 
 /** Fill omitted cluster source URLs from curation; still reject invented extras. */
@@ -702,6 +742,12 @@ export function validateScriptResponse(
     if (!segment || !cluster) throw new Error(`script response missing segment ${i + 1}`);
     if (typeof segment.title !== "string" || segment.title.trim().length === 0) {
       throw new Error(`script segment ${i + 1} title must be a non-empty string`);
+    }
+    if (segment.stance !== undefined && typeof segment.stance !== "string") {
+      throw new Error(`script segment ${i + 1} stance must be a string when present`);
+    }
+    if (segment.delivery !== undefined && typeof segment.delivery !== "string") {
+      throw new Error(`script segment ${i + 1} delivery must be a string when present`);
     }
     validateNarrationChunks(`segment ${i + 1}`, segment.chunks);
 
@@ -760,6 +806,38 @@ function validateOutroStyle(chunks: readonly NarrationChunk[]): void {
     if (pattern.test(readAloudText)) {
       throw new Error(`script outro uses a banned recurring construction (${reason})`);
     }
+  }
+}
+
+/**
+ * Statistical anti-repetition hard-fail: rejects the script if it reuses a
+ * gram (word-for-word) that appeared in enough recent episodes to have
+ * become a mold (>= PHRASE_REJECT_MIN_EPISODES). Mirrors the "worn-out
+ * phrasing" prompt sentence in buildSystemPromptBase's Voice rules — a
+ * compliant model shouldn't hit this, but a re-roll clears it when one does.
+ */
+export function assertNoWornPhrases(response: ScriptResponse, profile: RecentPhraseProfile): void {
+  if (!profile || profile.length === 0) return;
+
+  const readAloudText = [
+    ...response.intro,
+    ...response.segments.flatMap((segment) => segment.chunks),
+    ...response.outro,
+  ].join(" ");
+  const normalized = ` ${normalizeForNgrams(readAloudText)} `;
+
+  const offenders: string[] = [];
+  for (const { gram, episodeCount } of profile) {
+    if (episodeCount < PHRASE_REJECT_MIN_EPISODES) continue;
+    if (normalized.includes(` ${gram} `)) {
+      offenders.push(gram);
+    }
+  }
+
+  if (offenders.length > 0) {
+    throw new Error(
+      `script reuses worn-out phrasing from recent episodes: ${offenders.map((g) => `"${g}"`).join(", ")}`,
+    );
   }
 }
 

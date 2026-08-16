@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { buildSystemPrompt, buildUserPrompt, selectDailyPersona } from "../src/script.js";
+import { buildSystemPrompt, buildUserPrompt } from "../src/script.js";
 import type { StoryCluster } from "../src/types.js";
 
 function cluster(sources: { url: string; publisher: string }[]): StoryCluster {
@@ -39,7 +39,7 @@ test("buildUserPrompt treats a story with no sources as unverified, not '0 indep
 });
 
 test("system prompt instructs confidence calibration tied to corroboration", () => {
-  const prompt = buildSystemPrompt(selectDailyPersona("2026-06-17"));
+  const prompt = buildSystemPrompt();
   assert.match(prompt, /CONFIDENCE AND SOURCING/);
   assert.match(prompt, /single-source/i);
   assert.match(prompt, /one outlet reports/i);

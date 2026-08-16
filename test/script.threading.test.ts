@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { buildSystemPrompt, buildUserPrompt, DAILY_PERSONAS } from "../src/script.js";
+import { buildSystemPrompt, buildUserPrompt } from "../src/script.js";
 import type { StoryCluster } from "../src/types.js";
 
 const BASE_CLUSTER: StoryCluster = {
@@ -30,6 +30,26 @@ test("buildUserPrompt: cluster WITH followUp includes prior framing and follow-u
   assert.match(prompt, /A major lab hinted at an imminent model upgrade affecting pricing\./);
   // Must include the follow-up marker phrase
   assert.match(prompt, /FOLLOW-UP\/update, not a new story/);
+  // No priorStance was set on this cluster, so no prior-take line renders.
+  assert.equal(prompt.includes("Your prior take"), false);
+});
+
+test("buildUserPrompt: cluster WITH followUp AND priorStance includes the prior take", () => {
+  const cluster: StoryCluster = {
+    ...BASE_CLUSTER,
+    followUp: {
+      priorDate: "2026-06-10",
+      priorFraming: "A major lab hinted at an imminent model upgrade affecting pricing.",
+      priorStance: "I said this would slip past the announced date.",
+    },
+  };
+
+  const prompt = buildUserPrompt("2026-06-17", [cluster]);
+
+  assert.match(prompt, /Previously \(2026-06-10\)/);
+  assert.ok(
+    prompt.includes('Your prior take: "I said this would slip past the announced date."'),
+  );
 });
 
 test("buildUserPrompt: cluster WITHOUT followUp renders no Previously line or follow-up marker", () => {
@@ -43,7 +63,7 @@ test("buildUserPrompt: cluster WITHOUT followUp renders no Previously line or fo
   assert.equal(prompt.includes("FOLLOW-UP"), false);
   // Must still contain the standard fields
   assert.match(prompt, /STORY 1: A major lab ships a long-awaited model update/);
-  assert.match(prompt, /Why it matters: Builders get significantly better reasoning/);
+  assert.match(prompt, /Editor's note \(context only — never echo its wording\): Builders get significantly better reasoning/);
 });
 
 test("buildUserPrompt: mixed clusters — only the follow-up cluster gets the Previously line", () => {
@@ -78,10 +98,7 @@ test("buildUserPrompt: mixed clusters — only the follow-up cluster gets the Pr
 });
 
 test("buildSystemPrompt: contains continuity-narration instruction for follow-up stories", () => {
-  const persona = DAILY_PERSONAS[0];
-  assert.ok(persona, "at least one daily persona must be configured");
-
-  const prompt = buildSystemPrompt(persona);
+  const prompt = buildSystemPrompt();
 
   // Must contain the follow-up handling instruction
   assert.match(prompt, /FOLLOW-UP STORIES/);
@@ -91,4 +108,7 @@ test("buildSystemPrompt: contains continuity-narration instruction for follow-up
   assert.match(prompt, /"Previously" line/);
   // Must give a concrete example of update phrasing
   assert.match(prompt, /the rumor we flagged/);
+  // Must instruct revisiting a recorded prior take
+  assert.match(prompt, /prior take/);
+  assert.match(prompt, /held up, was wrong, or is still open/);
 });

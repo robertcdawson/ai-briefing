@@ -3,6 +3,8 @@ import path from "node:path";
 import { loadAllRecords } from "./publish.js";
 import type { EpisodeRecord } from "./publish.js";
 import { isDateInWindow } from "./episode-date.js";
+import { collectGramEpisodes, isAllStopwords } from "./ngrams.js";
+import { STORY_CATEGORY_DEFINITIONS } from "./types.js";
 import type { CurationRecord } from "./types.js";
 
 const DEFAULT_EPISODES_DIR = path.join("docs", "episodes");
@@ -69,6 +71,28 @@ const TRANSCRIPT_FILENAME_PATTERN = /^(\d{4}-\d{2}-\d{2})\.transcript\.txt$/;
 const MAX_SNIPPET_WORDS = 30;
 
 /**
+ * Transcript dates strictly before `today` in `dir`, newest first. Shared by
+ * loadRecentStyleSnippets and buildRecentPhraseProfile so both read the same
+ * directory listing logic; each caller applies its own "keep reading until N
+ * successfully-parsed transcripts" loop over the returned dates. A missing
+ * directory yields [].
+ */
+async function listRecentTranscriptDates(dir: string, today: string): Promise<string[]> {
+  const entries = await readdir(dir, { withFileTypes: true }).catch(() => []);
+
+  const dates: string[] = [];
+  for (const entry of entries) {
+    if (!entry.isFile()) continue;
+    const match = TRANSCRIPT_FILENAME_PATTERN.exec(entry.name);
+    const date = match?.[1];
+    if (!date || date >= today) continue;
+    dates.push(date);
+  }
+  dates.sort().reverse();
+  return dates;
+}
+
+/**
  * Loads intro-opener / outro-opener / sign-off snippets from the most recent
  * `count` transcripts strictly before `today`, newest first.
  *
@@ -82,17 +106,7 @@ export async function loadRecentStyleSnippets(
   episodesDir?: string,
 ): Promise<RecentStyleSnippets[]> {
   const dir = episodesDir ?? DEFAULT_EPISODES_DIR;
-  const entries = await readdir(dir, { withFileTypes: true }).catch(() => []);
-
-  const dates: string[] = [];
-  for (const entry of entries) {
-    if (!entry.isFile()) continue;
-    const match = TRANSCRIPT_FILENAME_PATTERN.exec(entry.name);
-    const date = match?.[1];
-    if (!date || date >= today) continue;
-    dates.push(date);
-  }
-  dates.sort().reverse();
+  const dates = await listRecentTranscriptDates(dir, today);
 
   const snippets: RecentStyleSnippets[] = [];
   for (const date of dates) {
@@ -153,6 +167,35 @@ export function parseTranscriptStyleSnippets(
   };
 }
 
+const SEGMENT_TITLE_PREFIXES = [
+  "Top Story: ",
+  ...STORY_CATEGORY_DEFINITIONS.map((category) => `${category.label}: `),
+];
+
+/**
+ * Narration-only text from a buildTranscript-format transcript (src/publish.ts):
+ * strips the title line, the `Date:` line, the exact `Intro`/`Outro` header
+ * lines, segment-title lines ("Top Story: …" or "{category label}: …"), and
+ * `Source:` lines, leaving only the spoken narration chunks joined by spaces.
+ */
+export function extractNarrationText(transcript: string): string {
+  const lines = transcript.split("\n");
+  const narrationLines: string[] = [];
+
+  for (const [index, rawLine] of lines.entries()) {
+    if (index === 0) continue; // title line
+    const line = rawLine.trim();
+    if (!line) continue;
+    if (line.startsWith("Date: ")) continue;
+    if (line === "Intro" || line === "Outro") continue;
+    if (line.startsWith("Source:")) continue;
+    if (SEGMENT_TITLE_PREFIXES.some((prefix) => line.startsWith(prefix))) continue;
+    narrationLines.push(line);
+  }
+
+  return narrationLines.join(" ");
+}
+
 function firstSentence(text: string): string {
   const match = /^.*?[.!?](?=\s|$)/.exec(text);
   return (match?.[0] ?? text).trim();
@@ -162,4 +205,90 @@ function truncateWords(text: string, maxWords = MAX_SNIPPET_WORDS): string {
   const words = text.trim().split(/\s+/);
   if (words.length <= maxWords) return text.trim();
   return `${words.slice(0, maxWords).join(" ")}…`;
+}
+
+/** A worn-out phrase (3- or 4-word gram) and how many recent episodes used it. */
+export interface PhraseUsage {
+  gram: string;
+  episodeCount: number;
+}
+
+export type RecentPhraseProfile = PhraseUsage[];
+
+/** How many recent transcripts the phrase tripwire scans. */
+export const PHRASE_PROFILE_WINDOW = 8;
+/** A gram appearing in at least this many recent episodes is flagged in the prompt as worn-out. */
+export const PHRASE_PROMPT_MIN_EPISODES = 3;
+/** A gram appearing in at least this many recent episodes hard-fails validation. */
+export const PHRASE_REJECT_MIN_EPISODES = 4;
+const MAX_PHRASE_PROFILE_ENTRIES = 18;
+
+/**
+ * Builds a statistical anti-repetition profile from the last `count`
+ * transcripts strictly before `today`: 3- and 4-word grams that recurred
+ * across several recent episodes, ranked by how many episodes used them.
+ * This is the tripwire that replaces enumerating banned phrases by hand —
+ * BANNED_SCRIPT_PHRASES (src/script.ts) is frozen to timeless filler; drift
+ * in what actually recurs is caught here instead.
+ *
+ * Non-blocking, like loadRecentCoverage/loadRecentStyleSnippets: any failure
+ * (missing directory, unreadable transcript) is silently absorbed and []
+ * is always a valid outcome.
+ */
+export async function buildRecentPhraseProfile(
+  today: string,
+  count = PHRASE_PROFILE_WINDOW,
+  episodesDir?: string,
+): Promise<RecentPhraseProfile> {
+  try {
+    const dir = episodesDir ?? DEFAULT_EPISODES_DIR;
+    const dates = await listRecentTranscriptDates(dir, today);
+
+    const episodes: { episodeDate: string; text: string }[] = [];
+    for (const date of dates) {
+      if (episodes.length >= count) break;
+      try {
+        const raw = await readFile(path.join(dir, `${date}.transcript.txt`), "utf8");
+        episodes.push({ episodeDate: date, text: extractNarrationText(raw) });
+      } catch {
+        // skip unreadable transcript
+      }
+    }
+
+    const gramEpisodes = collectGramEpisodes(episodes, [3, 4]);
+
+    const survivors = new Map<string, number>();
+    for (const [gram, episodeDates] of gramEpisodes) {
+      if (isAllStopwords(gram)) continue;
+      if (episodeDates.size < PHRASE_PROMPT_MIN_EPISODES) continue;
+      survivors.set(gram, episodeDates.size);
+    }
+
+    // Drop a 3-gram that's fully contained in a surviving 4-gram with an
+    // equal episode count — it's the same repeated phrase, not two distinct
+    // ones, and listing both is just noise in the prompt.
+    const fourGramsByCount = new Map<number, string[]>();
+    for (const [gram, episodeCount] of survivors) {
+      if (gram.split(" ").length !== 4) continue;
+      const bucket = fourGramsByCount.get(episodeCount) ?? [];
+      bucket.push(gram);
+      fourGramsByCount.set(episodeCount, bucket);
+    }
+
+    const deduped: PhraseUsage[] = [];
+    for (const [gram, episodeCount] of survivors) {
+      if (gram.split(" ").length === 3) {
+        const fourGrams = fourGramsByCount.get(episodeCount) ?? [];
+        const containedInFourGram = fourGrams.some((fourGram) => ` ${fourGram} `.includes(` ${gram} `));
+        if (containedInFourGram) continue;
+      }
+      deduped.push({ gram, episodeCount });
+    }
+
+    deduped.sort((a, b) => b.episodeCount - a.episodeCount || a.gram.localeCompare(b.gram));
+
+    return deduped.slice(0, MAX_PHRASE_PROFILE_ENTRIES);
+  } catch {
+    return [];
+  }
 }

@@ -240,3 +240,48 @@ test("buildPartSpeechRequest keeps inline tags and omits instructions for expres
   assert.equal(request.input, "[skeptical] The demo numbers look suspicious.");
   assert.equal(request.instructions, undefined);
 });
+
+test("buildPartSpeechRequest includes a per-segment delivery hint on the OpenAI path", () => {
+  const config: TTSProviderConfig = {
+    provider: "openai",
+    model: "gpt-4o-mini-tts",
+    voice: "marin",
+    apiKeyEnvVar: "OPENAI_API_KEY",
+    supportsDeliveryInstructions: true,
+    supportsInlineAudioTags: false,
+    maxRequestChars: 4096,
+  };
+
+  const request = buildPartSpeechRequest(
+    ["The number speaks for itself."],
+    config,
+    "story",
+    resolveTTSDirection({ TTS_STORY_STYLE: "measured story" }),
+    "flat — let the number speak",
+  );
+
+  assert.match(request.instructions ?? "", /This segment: flat — let the number speak/);
+});
+
+test("buildPartSpeechRequest ignores a delivery hint on the OpenRouter path (instructions stays undefined)", () => {
+  const config: TTSProviderConfig = {
+    provider: "openrouter",
+    model: "google/gemini-3.1-flash-tts-preview",
+    voice: "Charon",
+    baseURL: "https://openrouter.ai/api/v1",
+    apiKeyEnvVar: "OPENROUTER_API_KEY",
+    supportsDeliveryInstructions: false,
+    supportsInlineAudioTags: true,
+    maxRequestChars: 8000,
+  };
+
+  const request = buildPartSpeechRequest(
+    ["The number speaks for itself."],
+    config,
+    "story",
+    resolveTTSDirection(),
+    "flat — let the number speak",
+  );
+
+  assert.equal(request.instructions, undefined);
+});

@@ -87,7 +87,12 @@ async function fetchSource(source: FeedSource): Promise<Article[]> {
       source: source.name,
       url,
       publishedAt: new Date(ts).toISOString(),
-      excerpt: rawExcerpt.slice(0, 500),
+      // 900 (raised from 500): curation now extracts verbatim "specifics"
+      // (numbers, names, quotes) per story, which needs real material to
+      // pull from. Adds roughly +400 chars x ~100 articles/day to the
+      // curate prompt (~10k tokens) — an accepted cost for real detail
+      // reaching the script writer instead of the editor's own paraphrase.
+      excerpt: rawExcerpt.slice(0, 900),
     });
   }
   return articles;

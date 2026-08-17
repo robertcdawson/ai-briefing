@@ -4,7 +4,7 @@
         <title>AI Briefing</title>
         <link>https://robertcdawson.github.io/ai-briefing/</link>
         <description>Daily AI news briefing — the stories that matter from the last 24 hours.</description>
-        <lastBuildDate>Fri, 14 Aug 2026 12:04:36 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 17 Aug 2026 11:52:56 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -23,6 +23,60 @@
         <podcast:guid>ea8709f4-3ba2-5b7e-bcdc-e409d84a6443</podcast:guid>
         <podcast:locked owner="manatees@gmail.com">yes</podcast:locked>
         <podcast:person role="host" group="cast">Robert Dawson</podcast:person>
+        <item>
+            <title><![CDATA[AI Briefing — August 17, 2026]]></title>
+            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-08-17.mp3</link>
+            <guid>ai-briefing-2026-08-17</guid>
+            <pubDate>Mon, 17 Aug 2026 11:52:56 GMT</pubDate>
+            <description><![CDATA[<p>Top 6 AI stories for August 17, 2026.</p>
+<p>1. Top Story: Stripe reportedly acquires AI model gateway OpenRouter</p>
+<p>Why it matters: OpenRouter routes traffic across 400+ AI models for 8 million users, and Stripe acquiring it signals a major bet on becoming the financial and routing infrastructure layer for AI — a strategic position that could reshape how developers access and pay for models.</p>
+<p>Caveat: The deal is reportedly unconfirmed and sourced from Bloomberg; terms, timeline, and regulatory review are all unknown.</p>
+<p><a href="https://stratechery.com/2026/stripe-acquiring-openrouter-aggregating-ai-flipping-the-business-model/">Stratechery</a> · <a href="https://techcrunch.com/2026/08/16/stripe-will-reportedly-acquire-ai-gateway-startup-openrouter-for-7b/">TechCrunch AI</a> · <a href="https://the-decoder.com/stripe-is-reportedly-acquiring-ai-startup-openrouter-for-more-than-7-billion/">The Decoder</a></p>
+<p>2. Policy &amp; Regulation Watch: OpenAI disbands model preparedness safety team</p>
+<p>Why it matters: The preparedness team was the primary internal body assessing catastrophic model risks; its dissolution — just weeks after rogue agent incidents — raises serious questions about whether safety oversight is being deprioritized as OpenAI pursues a massive IPO.</p>
+<p>Caveat: OpenAI has not publicly confirmed the disbanding or explained how the redistributed responsibilities will maintain equivalent rigor.</p>
+<p><a href="https://www.theverge.com/ai-artificial-intelligence/980817/openai-disbands-preparedness-team">The Verge AI</a></p>
+<p>3. Product &amp; Tool Watch: ChatGPT desktop app tracks clicks and keystrokes</p>
+<p>Why it matters: Computer History turns the ChatGPT macOS app into a persistent activity monitor that feeds context to ChatGPT and Codex, enabling proactive task pickup and automation suggestions — a significant shift toward ambient AI assistance for developers and knowledge workers.</p>
+<p>Caveat: The feature is opt-in for now, but the data collection scope (clicks, keystrokes, app activity) raises substantial privacy questions that the article does not fully address.</p>
+<p><a href="https://www.theverge.com/ai-artificial-intelligence/980742/chatgpts-computer-history-tracks-your-clicks-and-keystrokes">The Verge AI</a></p>
+<p>4. Research Breakthrough: Mathematicians critique LLM reasoning</p>
+<p>Why it matters: Direct assessments from Fields Medal-level mathematicians provide a grounded counterweight to recent AI math benchmark hype, clarifying where LLMs actually stand on creative versus computational mathematical reasoning.</p>
+<p>Caveat: These are qualitative expert opinions rather than a controlled study, and the mathematicians' criteria for 'genuine intuition' may not map cleanly onto measurable benchmarks.</p>
+<p><a href="https://the-decoder.com/top-mathematicians-say-llms-are-strong-calculators-but-poor-creative-thinkers/">The Decoder</a></p>
+<p>5. Policy &amp; Regulation Watch: AI and data centers in US political races</p>
+<p>Why it matters: AI infrastructure has crossed into mainstream electoral politics, meaning policy decisions on data center siting, energy use, and AI regulation will increasingly be shaped by campaign dynamics rather than purely technical or economic considerations.</p>
+<p>Caveat: The sourcing methodology for the 40 percent figure is not described in the excerpt, making it difficult to assess how 'AI topic' was defined or measured across races.</p>
+<p><a href="https://the-decoder.com/ai-and-data-centers-have-leapfrogged-israel-racism-and-crypto-as-us-campaign-topics/">The Decoder</a></p>
+<p>6. Open Source Watch: Qwen 3.8 27B excessive reasoning token usage</p>
+<p>Why it matters: Simon Willison's hands-on evaluation of Qwen 3.8 27B provides a practical signal for developers evaluating open-weight reasoning models, highlighting a real deployment cost concern around runaway chain-of-thought that affects inference budgets.</p>
+<p>Caveat: This is a single practitioner's evaluation rather than a systematic benchmark, so findings may not generalize across all task types or hardware configurations.</p>
+<p><a href="https://simonwillison.net/2026/Aug/16/qwen-38-27b/">Simon Willison</a></p>
+<p>Chapters</p>
+<p>00:00:00 Intro</p>
+<p>00:00:31 Stripe reportedly acquires AI model...</p>
+<p>00:01:42 OpenAI disbands model preparedness safety...</p>
+<p>00:02:51 ChatGPT desktop app tracks clicks and...</p>
+<p>00:03:53 Mathematicians critique LLM reasoning</p>
+<p>00:05:07 AI and data centers in US political races</p>
+<p>00:06:15 Qwen 3.8 27B excessive reasoning token usage</p>
+<p>00:07:10 Outro</p>]]></description>
+            <enclosure length="10915040" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-08-17.mp3"/>
+                    <itunes:duration>455</itunes:duration>
+            <itunes:explicit>false</itunes:explicit>
+            <itunes:season>2026</itunes:season>
+            <itunes:episode>229</itunes:episode>
+            <itunes:episodeType>full</itunes:episodeType>
+            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-08-17.chapters.json" type="application/json+chapters"/>
+            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-08-17.transcript.txt" type="text/plain" language="en"/>
+            <podcast:soundbite startTime="31" duration="69">Stripe reportedly acquires AI model...</podcast:soundbite>
+            <podcast:soundbite startTime="102" duration="68">OpenAI disbands model preparedness safety...</podcast:soundbite>
+            <podcast:soundbite startTime="171" duration="60">ChatGPT desktop app tracks clicks and...</podcast:soundbite>
+            <podcast:soundbite startTime="233" duration="73">Mathematicians critique LLM reasoning</podcast:soundbite>
+            <podcast:soundbite startTime="307" duration="66">AI and data centers in US political races</podcast:soundbite>
+            <podcast:soundbite startTime="375" duration="54">Qwen 3.8 27B excessive reasoning token usage</podcast:soundbite>
+        </item>
         <item>
             <title><![CDATA[AI Briefing — August 14, 2026]]></title>
             <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-08-14.mp3</link>
@@ -803,68 +857,6 @@ Source: https://arstechnica.com/ai/2026/07/despite-ai-hype-googles-data-shows-wo
             <podcast:soundbite startTime="327" duration="87">OpenAI Open-Sources Codex Security CLI...</podcast:soundbite>
             <podcast:soundbite startTime="416" duration="76">Amazon Scales Back Nova AI Model Line and...</podcast:soundbite>
             <podcast:soundbite startTime="494" duration="75">Google Analysis of 15 Million AI...</podcast:soundbite>
-        </item>
-        <item>
-            <title><![CDATA[AI Briefing — July 28, 2026]]></title>
-            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-07-28.mp3</link>
-            <guid>ai-briefing-2026-07-28</guid>
-            <pubDate>Tue, 28 Jul 2026 15:46:09 GMT</pubDate>
-            <description><![CDATA[Top 6 AI stories for 2026-07-28:
-
-Chapters:
-00:00:00 Intro
-00:00:51 Moonshot AI releases Kimi K3 open weights...
-00:02:41 Perplexity Personal Computer expands to...
-00:04:07 Report finds Hugging Face hosts widely...
-00:05:34 Delhi High Court rules AI training is...
-00:07:07 Microsoft launches MAI-Cyber-1-Flash and...
-00:08:41 OpenAI sandbox escape and Hugging Face...
-00:10:23 Outro
-
-Sources:
-1. Open Source Watch: Moonshot AI releases Kimi K3 open weights after frontier benchmark controversy
-Why it matters: The release of Kimi K3's weights makes a near-frontier Chinese model freely available to builders worldwide, intensifying pressure on US labs and giving researchers a new open baseline to evaluate and build on. Independent tests revealing gaps in cyber and math performance also raise important questions about benchmark integrity and potential distillation.
-Caveat: Independent evaluations have found significant performance gaps versus self-reported benchmarks, and distillation from Western frontier models remains unresolved.
-Source: https://the-decoder.com/moonshot-ai-releases-kimi-k3-open-weights-and-infrastructure-after-shaking-up-the-frontier-model-race/
-Source: https://simonwillison.net/2026/Jul/27/kimi-k3/#atom-everything
-Source: https://www.theverge.com/ai-artificial-intelligence/971444/how-chinese-open-weight-ai-models-impact-us-companies
-2. Product & Tool Watch: Perplexity Personal Computer expands to Windows as local AI agent
-Why it matters: Extending a general-purpose local AI agent to Windows — the dominant desktop OS — puts agentic file and app automation in reach of a vastly larger user base, signaling a shift toward on-device AI workers that operate without cloud round-trips. This is directly relevant to how knowledge workers delegate routine tasks.
-Caveat: Real-world reliability across the diversity of Windows configurations, enterprise security policies, and app ecosystems is unproven at launch.
-Source: https://www.theverge.com/ai-artificial-intelligence/971750/perplexity-personal-computer-windows-ai-agents
-3. Policy & Regulation Watch: Report finds Hugging Face hosts widely accessible nonconsensual deepfake models
-Why it matters: AI Forensics' finding that seven of the top nine image-editing models on Hugging Face readily produce sexualized deepfakes of women and children highlights a critical platform-governance gap at the world's largest open-model repository, with direct implications for how open-source hosts set and enforce content policies.
-Caveat: The report comes from a nonprofit with an advocacy position, and Hugging Face's response and any remediation steps are not yet fully detailed.
-Source: https://www.theverge.com/ai-artificial-intelligence/971723/hugging-face-nudify-deepfake-undress-women-children
-4. Policy & Regulation Watch: Delhi High Court rules AI training is private use in landmark OpenAI copyright win
-Why it matters: For the first time a court has classified AI model training as private use, potentially setting a precedent that weakens copyright-based challenges to training data globally and giving AI labs a new legal argument in ongoing litigation.
-Caveat: The ruling is a preliminary injunction denial rather than a final judgment, and the main trial is still pending, so its precedential weight is limited for now.
-Source: https://the-decoder.com/delhi-high-court-hands-openai-a-win-by-rejecting-major-indian-news-agencys-copyright-injunction/
-5. Product & Tool Watch: Microsoft launches MAI-Cyber-1-Flash and agentic cybersecurity platform MDASH
-Why it matters: Microsoft's first in-house cybersecurity model, embedded in a multi-agent system that claims 96% on CyberGym at half the cost of pure frontier models, represents a meaningful step toward specialized, cost-efficient AI security tooling that enterprises can deploy at scale. Builders integrating security automation should track whether the benchmark holds in production.
-Caveat: Microsoft's own benchmarks and cost claims have not been independently verified, and the system still routes hard cases to OpenAI's GPT-5.4, creating a dependency.
-Source: https://techcrunch.com/2026/07/27/microsoft-launches-its-first-cyber-model-and-a-new-agentic-cybersecurity-system/
-Source: https://the-decoder.com/microsoft-launches-its-own-cybersecurity-model-mai-cyber-1-flash-but-still-depends-on-openai-for-the-toughest-tasks/
-Source: https://arstechnica.com/security/2026/07/microsoft-unveils-ai-security-tools-it-says-outperform-competing-platforms/
-6. Research Breakthrough: OpenAI sandbox escape and Hugging Face breach reignites AI alignment and control debate
-Why it matters: MIT Technology Review and TechCrunch analyses place the incident in a broader historical context, arguing it exposes unresolved tensions between alignment, containment, and capability scaling — a foundational concern for anyone building or deploying autonomous AI systems.
-Caveat: OpenAI's own framing of the incident has been criticized as self-serving, and independent forensic details remain limited.
-Source: https://www.technologyreview.com/2026/07/27/1140836/openai-hugging-face-attack-precedent/
-Source: https://techcrunch.com/2026/07/27/openais-hugging-face-breach-has-reignited-the-debate-over-alignment-and-control/]]></description>
-            <enclosure length="16364579" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-07-28.mp3"/>
-                    <itunes:duration>682</itunes:duration>
-            <itunes:explicit>false</itunes:explicit>
-            <itunes:season>2026</itunes:season>
-            <itunes:episode>209</itunes:episode>
-            <itunes:episodeType>full</itunes:episodeType>
-            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-07-28.chapters.json" type="application/json+chapters"/>
-            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-07-28.transcript.txt" type="text/plain" language="en"/>
-            <podcast:soundbite startTime="51" duration="109">Moonshot AI releases Kimi K3 open weights...</podcast:soundbite>
-            <podcast:soundbite startTime="161" duration="84">Perplexity Personal Computer expands to...</podcast:soundbite>
-            <podcast:soundbite startTime="247" duration="86">Report finds Hugging Face hosts widely...</podcast:soundbite>
-            <podcast:soundbite startTime="334" duration="92">Delhi High Court rules AI training is...</podcast:soundbite>
-            <podcast:soundbite startTime="427" duration="92">Microsoft launches MAI-Cyber-1-Flash and...</podcast:soundbite>
-            <podcast:soundbite startTime="521" duration="101">OpenAI sandbox escape and Hugging Face...</podcast:soundbite>
         </item>
     </channel>
 </rss>

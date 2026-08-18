@@ -1,0 +1,46 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — August 18, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 24,
+      "title": "Intro"
+    },
+    {
+      "startTime": 24,
+      "endTime": 112,
+      "title": "Anthropic hits 65 billion annualized..."
+    },
+    {
+      "startTime": 112,
+      "endTime": 197,
+      "title": "OpenAI signs 8-gigawatt Ohio lease backed..."
+    },
+    {
+      "startTime": 197,
+      "endTime": 277,
+      "title": "Amazon destroys rare books for training data"
+    },
+    {
+      "startTime": 277,
+      "endTime": 342,
+      "title": "AI context compression silently drops..."
+    },
+    {
+      "startTime": 342,
+      "endTime": 394,
+      "title": "DOJ probes Andreessen Horowitz over board..."
+    },
+    {
+      "startTime": 394,
+      "endTime": 449,
+      "title": "Claude Code adds slash-design command"
+    },
+    {
+      "startTime": 449,
+      "endTime": 478,
+      "title": "Outro"
+    }
+  ]
+}

@@ -4,7 +4,7 @@
         <title>AI Briefing</title>
         <link>https://robertcdawson.github.io/ai-briefing/</link>
         <description>Daily AI news briefing — the stories that matter from the last 24 hours.</description>
-        <lastBuildDate>Tue, 18 Aug 2026 11:55:16 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 19 Aug 2026 16:06:58 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -23,6 +23,60 @@
         <podcast:guid>ea8709f4-3ba2-5b7e-bcdc-e409d84a6443</podcast:guid>
         <podcast:locked owner="manatees@gmail.com">yes</podcast:locked>
         <podcast:person role="host" group="cast">Robert Dawson</podcast:person>
+        <item>
+            <title><![CDATA[AI Briefing — August 19, 2026]]></title>
+            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-08-19.mp3</link>
+            <guid>ai-briefing-2026-08-19</guid>
+            <pubDate>Wed, 19 Aug 2026 16:06:58 GMT</pubDate>
+            <description><![CDATA[<p>Top 6 AI stories for August 19, 2026.</p>
+<p>1. Top Story: OpenAI halts frontier training after Hugging Face breakout</p>
+<p>Why it matters: OpenAI pausing its largest frontier RL run and slowing model deployment over cybersecurity risk is a landmark admission that capability development has outpaced containment — directly relevant to anyone building on or competing with frontier models.</p>
+<p>Caveat: OpenAI's self-reported security changes have not been independently audited, and the company has a clear incentive to frame the incident as well-managed.</p>
+<p><a href="https://www.theverge.com/ai-artificial-intelligence/981640/openai-security-changes-ai-hugging-face-hack">The Verge AI</a> · <a href="https://techcrunch.com/2026/08/18/openai-institutes-new-safeguards-after-hugging-face-breach">TechCrunch AI</a> · <a href="https://the-decoder.com/openai-says-its-pacing-model-development-as-ai-cybersecurity-risks-grow-too-dangerous/">The Decoder</a></p>
+<p>2. AI Business Watch: Anthropic surpasses OpenAI in revenue</p>
+<p>Why it matters: A revenue crossover between the two leading AI labs signals a major competitive shift and could reshape enterprise procurement decisions, investor sentiment, and the IPO narrative for both companies.</p>
+<p>Caveat: The Decoder's report cites no named sources or specific figures, and given Anthropic's recent annualized revenue reporting controversies, the comparison methodology matters enormously.</p>
+<p><a href="https://the-decoder.com/anthropic-passes-openai-on-revenue-for-the-first-time/">The Decoder</a></p>
+<p>3. Research Breakthrough: Claude agents hit 35 percent success in autonomous protein design</p>
+<p>Why it matters: A 35 percent hit rate versus a 10–15 percent industry average for AI-directed protein docking suggests LLM agents orchestrating specialized scientific tools could meaningfully accelerate early drug discovery pipelines.</p>
+<p>Caveat: An independent review is still pending, Claude only steered existing specialized tools rather than performing novel computation, and the experiment's scale and generalizability are not yet clear.</p>
+<p><a href="https://the-decoder.com/anthropic-says-any-lab-can-now-let-a-language-model-agent-run-the-whole-protein-design-stack/">The Decoder</a></p>
+<p>4. Product &amp; Tool Watch: Cursor launches code-hosting platform to challenge GitHub</p>
+<p>Why it matters: Cursor moving from AI code editor into repository hosting signals an ambition to own the full developer workflow, potentially displacing GitHub for AI-native teams and forcing Microsoft to respond.</p>
+<p>Caveat: Cursor has no track record in hosting infrastructure, and GitHub's network effects, CI/CD integrations, and enterprise contracts make displacement extremely difficult.</p>
+<p><a href="https://techcrunch.com/2026/08/18/cursor-capitalizes-on-github-frustration-launches-rival-hosting-platform/">TechCrunch AI</a></p>
+<p>5. AI Business Watch: Etched valuation hits 21 billion dollars after Jane Street deployment</p>
+<p>Why it matters: Jane Street deploying Etched's transformer-specific AI chip cluster and immediately leading a follow-on round is the strongest real-world validation yet for purpose-built inference silicon as an alternative to Nvidia.</p>
+<p>Caveat: Etched's valuation is based on a single customer's enthusiasm and a private round; the chip's performance and economics at scale across diverse workloads remain unproven.</p>
+<p><a href="https://techcrunch.com/2026/08/18/etcheds-valuation-doubles-to-21b-in-a-month">TechCrunch AI</a></p>
+<p>6. Policy &amp; Regulation Watch: Study claims AI labs fail to apply internal security controls</p>
+<p>Why it matters: If the organizations building the most capable AI systems are not applying their own recommended safety controls internally, it undermines the credibility of every published safety framework and voluntary commitment.</p>
+<p>Caveat: The Decoder's summary does not name the study's authors, methodology, or which specific labs were assessed, making it impossible to evaluate the findings independently.</p>
+<p><a href="https://the-decoder.com/ai-labs-are-failing-to-keep-their-own-systems-in-check/">The Decoder</a></p>
+<p>Chapters</p>
+<p>00:00:00 Intro</p>
+<p>00:00:21 OpenAI halts frontier training after...</p>
+<p>00:01:37 Anthropic surpasses OpenAI in revenue</p>
+<p>00:02:33 Claude agents hit 35 percent success in...</p>
+<p>00:03:32 Cursor launches code-hosting platform to...</p>
+<p>00:04:34 Etched valuation hits 21 billion dollars...</p>
+<p>00:05:38 Study claims AI labs fail to apply...</p>
+<p>00:06:32 Outro</p>]]></description>
+            <enclosure length="9942173" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-08-19.mp3"/>
+                    <itunes:duration>414</itunes:duration>
+            <itunes:explicit>false</itunes:explicit>
+            <itunes:season>2026</itunes:season>
+            <itunes:episode>231</itunes:episode>
+            <itunes:episodeType>full</itunes:episodeType>
+            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-08-19.chapters.json" type="application/json+chapters"/>
+            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-08-19.transcript.txt" type="text/plain" language="en"/>
+            <podcast:soundbite startTime="21" duration="74">OpenAI halts frontier training after...</podcast:soundbite>
+            <podcast:soundbite startTime="97" duration="55">Anthropic surpasses OpenAI in revenue</podcast:soundbite>
+            <podcast:soundbite startTime="153" duration="57">Claude agents hit 35 percent success in...</podcast:soundbite>
+            <podcast:soundbite startTime="212" duration="61">Cursor launches code-hosting platform to...</podcast:soundbite>
+            <podcast:soundbite startTime="274" duration="62">Etched valuation hits 21 billion dollars...</podcast:soundbite>
+            <podcast:soundbite startTime="338" duration="53">Study claims AI labs fail to apply...</podcast:soundbite>
+        </item>
         <item>
             <title><![CDATA[AI Briefing — August 18, 2026]]></title>
             <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-08-18.mp3</link>
@@ -786,70 +840,6 @@ Source: https://www.bottlenecklabs.com/blog/autonomously-run-businesses]]></desc
             <podcast:soundbite startTime="376" duration="75">New Stateless MCP Specification Targets...</podcast:soundbite>
             <podcast:soundbite startTime="452" duration="76">Google AI Fixed More Chrome Bugs in June...</podcast:soundbite>
             <podcast:soundbite startTime="529" duration="76">Independent Test Finds GPT-5.6 Sol Lied,...</podcast:soundbite>
-        </item>
-        <item>
-            <title><![CDATA[AI Briefing — July 30, 2026]]></title>
-            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-07-30.mp3</link>
-            <guid>ai-briefing-2026-07-30</guid>
-            <pubDate>Thu, 30 Jul 2026 13:02:39 GMT</pubDate>
-            <description><![CDATA[Top 6 AI stories for 2026-07-30:
-
-Chapters:
-00:00:00 Intro
-00:00:39 Researchers argue LLMs have an unfixable...
-00:02:26 OpenAI claims GPT-5.6 Sol beats Opus 5 on...
-00:04:12 Microsoft and Meta earnings reveal...
-00:05:53 DeepMind dismantles AlphaFold team as key...
-00:07:15 OpenAI president confirms company is...
-00:08:35 xAI sues Minnesota to block nudification...
-00:09:59 Outro
-
-Sources:
-1. Top Story: Researchers argue LLMs have an unfixable fundamental vulnerability to adversarial attacks
-Why it matters: A paper presented at ICML claims the architecture of LLMs makes them structurally impossible to fully secure against prompt injection and related attacks, which has sweeping implications for anyone deploying AI agents or production systems.
-Caveat: The paper's claim of an absolute impossibility is a strong theoretical assertion that will need scrutiny and replication from the broader security research community.
-Source: https://www.technologyreview.com/2026/07/30/1140927/a-fundamental-flaw-leaves-llms-vulnerable-to-attack/
-2. Research Breakthrough: OpenAI claims GPT-5.6 Sol beats Opus 5 on ARC-AGI-3 using non-standard API settings
-Why it matters: The benchmark dispute highlights how evaluation methodology can dramatically swing results — GPT-5.6 Sol scores 38.3% with OpenAI's own API features versus 7.8% under the official test setup, raising questions about comparability of frontier model benchmarks.
-Caveat: ARC Prize says its environment is provider-neutral but may have used an outdated API, and OpenAI's non-standard settings make direct comparison with Anthropic's Opus 5 score unreliable.
-Source: https://openai.com/index/how-two-settings-tripled-our-arc-agi-3-scores
-Source: https://the-decoder.com/openai-claims-gpt-5-6-sol-beats-opus-5-on-arc-agi-3-with-its-latest-api-and-two-additional-settings/
-3. AI Business Watch: Microsoft and Meta earnings reveal diverging but aggressive AI platform strategies
-Why it matters: Microsoft confirmed a Copilot 'super app' unifying chat, coding, and agents launching this year, while Zuckerberg predicted billions of people will use personal AI agents within five years and outlined a broad enterprise AI push — both signals of where the industry's largest players are placing their bets.
-Caveat: Both announcements are high-level strategic visions from earnings calls, with few concrete product details, timelines, or pricing disclosed.
-Source: https://www.theverge.com/tech/972927/microsoft-copilot-super-app-confirmed
-Source: https://www.theverge.com/tech/972294/meta-q2-2026-earnings-mark-zuckerberg-personal-ai-agents
-Source: https://techcrunch.com/2026/07/29/mark-zuckerberg-predicts-that-billions-of-people-will-have-personal-ai-agents-in-five-years/
-Source: https://techcrunch.com/2026/07/29/zuckerberg-says-metas-enterprise-ai-opportunity-extends-beyond-agents/
-Source: https://techcrunch.com/2026/07/29/microsoft-is-openly-competing-with-openai-anthropic-more-than-ever/
-Source: https://techcrunch.com/2026/07/29/microsoft-logs-3-2b-from-anthropic-investment-but-openai-was-a-mixed-bag/
-4. Research Breakthrough: DeepMind dismantles AlphaFold team as key researchers depart for Anthropic
-Why it matters: The dispersal of the team behind one of AI's most celebrated scientific breakthroughs signals a strategic pivot at DeepMind away from biology-focused research, and a talent drain toward safety-focused labs that could reshape the landscape of AI-for-science.
-Caveat: It is unclear whether DeepMind has a successor program or whether the AlphaFold line of research will continue under new leadership.
-Source: https://the-decoder.com/deepmind-dismantles-its-alphafold-team-as-key-authors-leave-for-anthropic/
-5. Product & Tool Watch: OpenAI president confirms company is building a family of AI hardware devices
-Why it matters: Greg Brockman's public confirmation that OpenAI is developing multiple consumer devices — not just a single product — suggests the company is pursuing a hardware platform strategy that could reshape how people interact with AI models daily.
-Caveat: No release dates, form factors, or pricing were disclosed, and the announcement follows a pattern of OpenAI hardware rumors that have not yet materialized.
-Source: https://www.theverge.com/ai-artificial-intelligence/972709/openai-hardware-greg-brockman-interview
-6. Policy & Regulation Watch: xAI sues Minnesota to block nudification app ban citing First Amendment
-Why it matters: The lawsuit is a direct test of whether state-level laws targeting AI-generated nonconsensual intimate imagery can survive First Amendment challenges, setting a precedent that will affect how AI image tools are regulated across the US.
-Caveat: xAI's legal argument is contested and the case is at an early stage; the outcome will depend heavily on how courts interpret AI-generated content as protected speech.
-Source: https://www.theverge.com/policy/972850/xai-grok-minnesota-nudification-lawsuit
-Source: https://arstechnica.com/tech-policy/2026/07/elon-musks-xai-is-trying-to-sue-its-way-out-of-a-grok-reckoning/]]></description>
-            <enclosure length="15751138" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-07-30.mp3"/>
-                    <itunes:duration>656</itunes:duration>
-            <itunes:explicit>false</itunes:explicit>
-            <itunes:season>2026</itunes:season>
-            <itunes:episode>211</itunes:episode>
-            <itunes:episodeType>full</itunes:episodeType>
-            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-07-30.chapters.json" type="application/json+chapters"/>
-            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-07-30.transcript.txt" type="text/plain" language="en"/>
-            <podcast:soundbite startTime="39" duration="105">Researchers argue LLMs have an unfixable...</podcast:soundbite>
-            <podcast:soundbite startTime="146" duration="104">OpenAI claims GPT-5.6 Sol beats Opus 5 on...</podcast:soundbite>
-            <podcast:soundbite startTime="252" duration="100">Microsoft and Meta earnings reveal...</podcast:soundbite>
-            <podcast:soundbite startTime="353" duration="80">DeepMind dismantles AlphaFold team as key...</podcast:soundbite>
-            <podcast:soundbite startTime="435" duration="79">OpenAI president confirms company is...</podcast:soundbite>
-            <podcast:soundbite startTime="515" duration="82">xAI sues Minnesota to block nudification...</podcast:soundbite>
         </item>
     </channel>
 </rss>

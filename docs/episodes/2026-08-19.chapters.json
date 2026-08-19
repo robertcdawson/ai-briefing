@@ -1,0 +1,46 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — August 19, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 21,
+      "title": "Intro"
+    },
+    {
+      "startTime": 21,
+      "endTime": 97,
+      "title": "OpenAI halts frontier training after..."
+    },
+    {
+      "startTime": 97,
+      "endTime": 153,
+      "title": "Anthropic surpasses OpenAI in revenue"
+    },
+    {
+      "startTime": 153,
+      "endTime": 212,
+      "title": "Claude agents hit 35 percent success in..."
+    },
+    {
+      "startTime": 212,
+      "endTime": 274,
+      "title": "Cursor launches code-hosting platform to..."
+    },
+    {
+      "startTime": 274,
+      "endTime": 338,
+      "title": "Etched valuation hits 21 billion dollars..."
+    },
+    {
+      "startTime": 338,
+      "endTime": 392,
+      "title": "Study claims AI labs fail to apply..."
+    },
+    {
+      "startTime": 392,
+      "endTime": 414,
+      "title": "Outro"
+    }
+  ]
+}

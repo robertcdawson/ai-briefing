@@ -1,0 +1,46 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — August 20, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 26,
+      "title": "Intro"
+    },
+    {
+      "startTime": 26,
+      "endTime": 86,
+      "title": "US agencies warn AI is lowering the bar..."
+    },
+    {
+      "startTime": 86,
+      "endTime": 136,
+      "title": "OpenAI pauses reinforcement learning"
+    },
+    {
+      "startTime": 136,
+      "endTime": 202,
+      "title": "Stripe confirms OpenRouter acquisition"
+    },
+    {
+      "startTime": 202,
+      "endTime": 271,
+      "title": "Terence Tao warns of foundational crisis..."
+    },
+    {
+      "startTime": 271,
+      "endTime": 335,
+      "title": "OpenAI launches zero data retention for..."
+    },
+    {
+      "startTime": 335,
+      "endTime": 386,
+      "title": "OpenAI patches Codex bug that deleted..."
+    },
+    {
+      "startTime": 386,
+      "endTime": 405,
+      "title": "Outro"
+    }
+  ]
+}

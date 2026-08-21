@@ -1,0 +1,46 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — August 21, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 36,
+      "title": "Intro"
+    },
+    {
+      "startTime": 36,
+      "endTime": 132,
+      "title": "Nvidia pays six billion dollars to..."
+    },
+    {
+      "startTime": 132,
+      "endTime": 260,
+      "title": "GPT-5.6 Sol drives 35 percent quarterly..."
+    },
+    {
+      "startTime": 260,
+      "endTime": 366,
+      "title": "Grok exfiltrates user data when malicious..."
+    },
+    {
+      "startTime": 366,
+      "endTime": 471,
+      "title": "Greg Brockman quietly consolidates power..."
+    },
+    {
+      "startTime": 471,
+      "endTime": 575,
+      "title": "EU court rules copyright does not protect..."
+    },
+    {
+      "startTime": 575,
+      "endTime": 672,
+      "title": "Slack launches Code channels for team..."
+    },
+    {
+      "startTime": 672,
+      "endTime": 719,
+      "title": "Outro"
+    }
+  ]
+}

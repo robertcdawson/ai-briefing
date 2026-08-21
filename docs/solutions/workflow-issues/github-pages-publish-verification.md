@@ -22,7 +22,7 @@ On 2026-08-06 the pipeline generated, committed, and pushed the episode cleanly,
 Two follow-on traps made recovery worse:
 
 1. **Already-published skip** — the backup cron saw sidecar + MP3 on disk, exited before any republish, and pinged success.
-2. **Site size** — a long retention window (~70 episodes / ~780 MB toward the hard **1 GB** Pages limit) increases the chance of silent deploy failure. Feed listing and disk retention are now coupled at **14 episodes / 21 days** (~225 MB).
+2. **Site size** — a long retention window (~70 episodes / ~780 MB toward the hard **1 GB** Pages limit) increases the chance of silent deploy failure. Feed listing and disk retention are now a single age-based window: **14 days** (~150–225 MB), with `FEED_LIMIT` (14) as a defensive count cap that rarely binds.
 
 ## Guidance
 
@@ -42,7 +42,7 @@ FEED_BASE_URL=https://<user>.github.io/ai-briefing npx tsx scripts/verify-deploy
 VERIFY_TIMEOUT_MS=480000 npx tsx scripts/verify-deploy.ts --quiet
 ```
 
-When changing retention (`FEED_LIMIT` / `RETENTION_DAYS` in `src/publish.ts`), move both together — prune never deletes a date still listed in `feed.xml`, and `test/publish.retention.test.ts` pins the coupling.
+When changing retention, edit `RETENTION_DAYS` in `src/publish.ts` — it now governs both feed membership (`selectFeedRecords`) and disk pruning (`pruneOldEpisodes`) directly. `FEED_LIMIT` is a separate defensive count cap. `test/publish.retention.test.ts` pins the window and exercises `selectFeedRecords`.
 
 ## Related
 

@@ -10,15 +10,19 @@ import { logJson } from "./util.js";
 const DOCS_DIR = "docs";
 const EPISODES_DIR = path.join(DOCS_DIR, "episodes");
 const FEED_PATH = path.join(DOCS_DIR, "feed.xml");
-// Episodes listed in feed.xml. Also the floor for on-disk retention: prune never
-// deletes a date that is still in the feed (see pruneOldEpisodes).
+// Defensive hard cap on feed item count. The primary feed-membership rule is
+// age-based (see RETENTION_DAYS / selectFeedRecords) — at the weekday cadence
+// this repo publishes on, 14 calendar days holds ~10 episodes, so this cap
+// normally does nothing. It only bites if the publish cadence ever changes
+// (e.g. multiple episodes/day), keeping the feed from growing unbounded.
 export const FEED_LIMIT = 14;
-// On-disk grace window. Must stay >= the calendar span of FEED_LIMIT weekday
-// episodes (14 weekdays ~= 20 days) or it has no effect — the keepDates guard
-// already protects everything in the feed. Together these bound docs/episodes/
-// at ~FEED_LIMIT episodes, which is what keeps the GitHub Pages site under its
-// 1 GB limit.
-export const RETENTION_DAYS = 21;
+// Retention window, in days: episodes older than this are dropped from
+// feed.xml and deleted from docs/episodes/ on every publish/rebuild. This is
+// the single source of truth for both — prune never deletes a date that is
+// still in the feed (see pruneOldEpisodes), and the feed itself only keeps
+// dates within this window (see selectFeedRecords), so the two can't drift
+// apart. Sized to keep docs/ well under the GitHub Pages 1 GB site limit.
+export const RETENTION_DAYS = 14;
 const PODCAST_GUID_NAMESPACE = "ead4c236-bf58-58c6-a2c6-a6b28d128cb6";
 export const EPISODE_ASSET_PATTERN = /^(\d{4}-\d{2}-\d{2})(?:\.mp3|\.json|\.chapters\.json|\.transcript\.txt)$/;
 
@@ -233,8 +237,8 @@ async function writePodcastFeed(
   opts: { prune?: boolean } = {},
 ): Promise<{ feedItemCount: number; feedBytes: number; pruned: string[] }> {
   const all = await loadAllRecords();
-  const sorted = all.sort((a, b) => b.date.localeCompare(a.date));
-  const top = sorted.slice(0, FEED_LIMIT);
+  const referenceDate = new Date().toISOString().slice(0, 10);
+  const top = selectFeedRecords(all, referenceDate);
 
   const feed = new Feed({
     title: "AI Briefing",
@@ -292,9 +296,29 @@ async function writePodcastFeed(
   await writeFile(FEED_PATH, finalXml);
 
   const keepDates = new Set(top.map((r) => r.date));
-  const pruned = opts.prune === false ? [] : await pruneOldEpisodes(keepDates);
+  const pruned = opts.prune === false
+    ? []
+    : await pruneOldEpisodes(keepDates, { referenceDate });
 
   return { feedItemCount: top.length, feedBytes: finalXml.length, pruned };
+}
+
+// Age-based feed membership: keep records within RETENTION_DAYS of
+// referenceDate (newest first), then apply FEED_LIMIT as a defensive count
+// cap. This — not a plain top-N slice — is what keeps every feed.xml entry
+// within the retention window, so "older than RETENTION_DAYS" can never be
+// violated regardless of publish cadence.
+export function selectFeedRecords<T extends { date: string }>(
+  records: readonly T[],
+  referenceDate: string,
+  retentionDays: number = RETENTION_DAYS,
+  feedLimit: number = FEED_LIMIT,
+): T[] {
+  const cutoffDate = resolveRetentionCutoff(referenceDate, retentionDays);
+  return records
+    .filter((r) => r.date >= cutoffDate)
+    .sort((a, b) => b.date.localeCompare(a.date))
+    .slice(0, feedLimit);
 }
 
 // Delete episode files older than RETENTION_DAYS, except any whose date is still

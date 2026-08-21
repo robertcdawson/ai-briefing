@@ -8,6 +8,7 @@ import {
   RETENTION_DAYS,
   pruneOldEpisodes,
   resolveRetentionCutoff,
+  selectFeedRecords,
   shouldPruneEpisodeFile,
 } from "../src/publish.js";
 
@@ -74,20 +75,40 @@ test("pruneOldEpisodes deletes expired asset families without stranding feed-lis
   }
 });
 
-test("shipped retention window covers the calendar span of a full feed", () => {
-  // The keepDates guard already protects everything in the feed, so RETENTION_DAYS
-  // only does work beyond that span. Set it shorter than the feed and the feed
-  // silently becomes the real retention policy; set it much longer (the old 90)
-  // and disk grows unbounded relative to the feed. FEED_LIMIT weekdays spans
-  // ceil(FEED_LIMIT / 5) weekends' worth of extra days.
-  const weekdaySpanDays = FEED_LIMIT + 2 * Math.ceil(FEED_LIMIT / 5);
-  assert.ok(
-    RETENTION_DAYS >= weekdaySpanDays,
-    `RETENTION_DAYS (${RETENTION_DAYS}) must cover ${weekdaySpanDays} days of weekday episodes`,
+test("shipped retention window is exactly 14 days", () => {
+  // The requirement is calendar-day age, not episode count: no episode may sit
+  // in feed.xml (or survive on disk) once it is older than 14 days. Feed
+  // membership is age-based (selectFeedRecords), so RETENTION_DAYS is the one
+  // knob that governs both — this pins it against silent drift.
+  assert.equal(RETENTION_DAYS, 14);
+});
+
+test("selectFeedRecords excludes episodes older than the retention window", () => {
+  const records = [
+    { date: "2026-08-21" }, // reference date itself — kept
+    { date: "2026-08-07" }, // exactly 14 days old — kept (boundary)
+    { date: "2026-08-06" }, // 15 days old — dropped
+    { date: "2026-07-31" }, // 21 days old — dropped
+  ];
+
+  const top = selectFeedRecords(records, "2026-08-21", RETENTION_DAYS, FEED_LIMIT);
+  assert.deepEqual(
+    top.map((r) => r.date),
+    ["2026-08-21", "2026-08-07"],
   );
-  assert.ok(
-    RETENTION_DAYS <= weekdaySpanDays + 7,
-    `RETENTION_DAYS (${RETENTION_DAYS}) keeps far more on disk than the ${FEED_LIMIT}-episode feed`,
+});
+
+test("selectFeedRecords applies feedLimit as a defensive count cap within the window", () => {
+  const records = [
+    { date: "2026-08-21" },
+    { date: "2026-08-20" },
+    { date: "2026-08-19" },
+  ];
+
+  const top = selectFeedRecords(records, "2026-08-21", RETENTION_DAYS, 2);
+  assert.deepEqual(
+    top.map((r) => r.date),
+    ["2026-08-21", "2026-08-20"],
   );
 });
 

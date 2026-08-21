@@ -276,25 +276,27 @@ FEED_BASE_URL=https://<user>.github.io/ai-briefing npx tsx scripts/verify-deploy
 
 ## Retention
 
-Two layers of expiry, both deliberate:
+A single age-based window, in days, drives both `feed.xml` and disk:
 
 | Layer | Window | Behavior |
 |---|---|---|
-| `feed.xml` listing | Last **14 episodes** | Older episodes drop out of the RSS feed |
-| Disk (and git history going forward) | Last **21 days** | Older episode `.mp3`, `.json`, chapter, and transcript files are deleted on each run |
+| `feed.xml` listing | Last **14 days** | Episodes older than the window drop out of the RSS feed (`selectFeedRecords`) |
+| Disk (and git history going forward) | Last **14 days** | Older episode `.mp3`, `.json`, chapter, and transcript files are deleted on each run (`pruneOldEpisodes`) |
 
-**The two windows are coupled, and that coupling is the whole point.** The pruner never deletes a file whose date is still listed in `feed.xml` — that safety belt means a retention misconfiguration can't strand a feed entry pointing at a deleted file. It also means `RETENTION_DAYS` shorter than the feed's calendar span does nothing, and `RETENTION_DAYS` much longer than it lets disk grow independently of the feed. 21 days is the calendar span of 14 weekday episodes plus a small buffer, so the two agree and `docs/` settles at ~14 episodes.
+**Both layers read the same `RETENTION_DAYS` constant, so they can't drift apart.** Feed membership is age-based — not a plain top-N slice — so an episode is guaranteed to be gone from the feed the moment it turns 14 days old, regardless of publish cadence. The pruner never deletes a file whose date is still listed in `feed.xml`, which remains a safety belt against stranding a feed entry pointing at a deleted file, but under normal operation the feed's own cutoff already matches the prune cutoff exactly.
 
-Sizing matters more than it looks: GitHub Pages enforces a hard **1 GB** limit on the published site, and a failed deploy is silent from the pipeline's point of view. Episodes run ~16 MB, so 14 episodes is ~225 MB — comfortable headroom. The earlier 30-episode/90-day settings held ~70 episodes (780 MB) and were growing ~7.5 MB per weekday, which would have crossed 1 GB and started failing deploys.
+`FEED_LIMIT` (14) is a separate, defensive hard cap on item count — at this repo's weekday cadence, a 14-day window holds ~10 episodes, so the cap normally never engages. It only matters if the publish cadence changes (e.g. multiple episodes/day).
 
-To change either window, edit the constants at the top of `src/publish.ts` — and move both together:
+Sizing matters more than it looks: GitHub Pages enforces a hard **1 GB** limit on the published site, and a failed deploy is silent from the pipeline's point of view. Episodes run ~16 MB, so a full window is well under 225 MB — comfortable headroom. The earlier 30-episode/90-day settings held ~70 episodes (780 MB) and were growing ~7.5 MB per weekday, which would have crossed 1 GB and started failing deploys.
+
+To change the window, edit the constant at the top of `src/publish.ts`:
 
 ```ts
-export const FEED_LIMIT = 14;      // episodes listed in feed.xml
-export const RETENTION_DAYS = 21;  // disk retention; must cover FEED_LIMIT weekdays
+export const RETENTION_DAYS = 14;  // feed + disk retention window, in days
+export const FEED_LIMIT = 14;      // defensive count cap only, rarely binding
 ```
 
-`test/publish.retention.test.ts` pins the relationship, so a change that decouples them fails the suite rather than silently changing behavior.
+`test/publish.retention.test.ts` pins `RETENTION_DAYS` and exercises `selectFeedRecords`, so a change that reintroduces count-based feed membership (or silently widens the window) fails the suite.
 
 Already-deleted MP3s **remain in earlier git commits** — pruning only stops new commits from carrying them. If you want to fully shrink the repo, you'd need a separate one-time `git filter-repo` pass; not part of the daily pipeline.
 

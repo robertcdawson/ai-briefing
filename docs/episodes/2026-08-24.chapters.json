@@ -1,0 +1,46 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — August 24, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 39,
+      "title": "Intro"
+    },
+    {
+      "startTime": 39,
+      "endTime": 169,
+      "title": "AI agent fires human employee for first..."
+    },
+    {
+      "startTime": 169,
+      "endTime": 284,
+      "title": "Cerebras CS-4 accelerator doubles..."
+    },
+    {
+      "startTime": 284,
+      "endTime": 401,
+      "title": "AI chatbots repeatedly direct pregnant..."
+    },
+    {
+      "startTime": 401,
+      "endTime": 489,
+      "title": "Nvidia in talks to invest in Perplexity..."
+    },
+    {
+      "startTime": 489,
+      "endTime": 591,
+      "title": "Children still outlearn AI on language..."
+    },
+    {
+      "startTime": 591,
+      "endTime": 708,
+      "title": "Anthropic's most capable model struggles..."
+    },
+    {
+      "startTime": 708,
+      "endTime": 739,
+      "title": "Outro"
+    }
+  ]
+}

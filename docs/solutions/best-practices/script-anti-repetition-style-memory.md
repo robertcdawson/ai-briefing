@@ -62,7 +62,7 @@ EPISODE_DATE=2026-08-07 npm run diagnose:script-model
 
 - Code: `src/script.ts` (`INTRO_MOVES`, `OUTRO_MOVES`, `SEGMENT_SHAPES`, `BANNED_*`, `assertNoWornPhrases`, validators), `src/ledger.ts` (`loadRecentStyleSnippets`, `buildRecentPhraseProfile`), `src/voice.ts` (`HOST_IDENTITY`, `VOICE_EXEMPLARS`), `src/earEdit.ts`, `src/ngrams.ts`, `src/index.ts` (wire + stage-cache key)
 - Tests: `test/script.voice.test.ts` (renamed from `test/script.persona.test.ts`), `test/script.style.test.ts`, `test/ledger.test.ts` (style snippet + phrase-profile parsing), `test/earEdit.test.ts`, `test/ngrams.test.ts`, `test/styleMetrics.test.ts`
-- Concepts: Style snippets, Intro / outro move, Outro mold validator, Host identity, Voice exemplars, Emphasis budget, Segment shape, Phrase tripwire, Ear edit, Delivery hint, Style report in `CONCEPTS.md`
+- Concepts: Style snippets, Intro / outro move, Outro mold validator, Host identity, Voice exemplars, Emphasis budget, Segment shape, Phrase tripwire, Ear edit, Delivery hint, Style report, Specifics in `CONCEPTS.md`
 
 ## Addendum (2026-08-14): persistent host, phrase tripwire, ear edit
 

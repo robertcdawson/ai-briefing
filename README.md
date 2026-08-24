@@ -298,6 +298,8 @@ export const FEED_LIMIT = 14;      // defensive count cap only, rarely binding
 
 `test/publish.retention.test.ts` pins `RETENTION_DAYS` and exercises `selectFeedRecords`, so a change that reintroduces count-based feed membership (or silently widens the window) fails the suite.
 
+Design notes and the `{ prune: false }` test gotcha live in `docs/solutions/best-practices/age-based-episode-retention.md`.
+
 Already-deleted MP3s **remain in earlier git commits** — pruning only stops new commits from carrying them. If you want to fully shrink the repo, you'd need a separate one-time `git filter-repo` pass; not part of the daily pipeline.
 
 ## Manual operations
@@ -375,7 +377,7 @@ Episode descriptions are HTML show notes (`<p>` and `<a href>` only): numbered s
 
 ### Local stage cache (dev re-runs)
 
-When iterating locally after a late-stage failure (TTS/audio/publish), set `STAGE_CACHE_DIR` (for example `tmp/stage-cache`) so curate and script reuse prior LLM output keyed by a content hash of their inputs. Unset disables caching. Single-machine only — the daily Actions runner is ephemeral, so this never applies in CI.
+When iterating locally after a late-stage failure (TTS/audio/publish), set `STAGE_CACHE_DIR` (for example `tmp/stage-cache`) so curate, script, and earEdit reuse prior LLM output keyed by a content hash of their inputs. The script key includes style snippets and the phrase profile; the earEdit key includes the script text plus per-cluster notes. Unset disables caching. Single-machine only — the daily Actions runner is ephemeral, so this never applies in CI.
 
 ### Change the model or feed sources
 

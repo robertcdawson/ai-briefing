@@ -1,0 +1,46 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — August 25, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 30,
+      "title": "Intro"
+    },
+    {
+      "startTime": 30,
+      "endTime": 157,
+      "title": "OpenAI's custom Jalapeño ASIC delivers..."
+    },
+    {
+      "startTime": 157,
+      "endTime": 245,
+      "title": "Apple launches M6 and M5 Ultra chips with..."
+    },
+    {
+      "startTime": 245,
+      "endTime": 355,
+      "title": "Alabama AG subpoenas OpenAI over rogue AI..."
+    },
+    {
+      "startTime": 355,
+      "endTime": 453,
+      "title": "Stanford study finds AI is hitting..."
+    },
+    {
+      "startTime": 453,
+      "endTime": 562,
+      "title": "AI tools more than double Chinese..."
+    },
+    {
+      "startTime": 562,
+      "endTime": 666,
+      "title": "Viral essay argues AI coding reliance..."
+    },
+    {
+      "startTime": 666,
+      "endTime": 709,
+      "title": "Outro"
+    }
+  ]
+}

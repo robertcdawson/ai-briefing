@@ -1,0 +1,46 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — August 26, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 34,
+      "title": "Intro"
+    },
+    {
+      "startTime": 34,
+      "endTime": 171,
+      "title": "Bill Gates breaks silence warning AI..."
+    },
+    {
+      "startTime": 171,
+      "endTime": 300,
+      "title": "IBM releases open-weight Granite 4.2..."
+    },
+    {
+      "startTime": 300,
+      "endTime": 404,
+      "title": "OpenAI disrupts Russian covert influence..."
+    },
+    {
+      "startTime": 404,
+      "endTime": 496,
+      "title": "Meta announces paid AI agent Hatch and..."
+    },
+    {
+      "startTime": 496,
+      "endTime": 603,
+      "title": "Ukraine opens five-million-image..."
+    },
+    {
+      "startTime": 603,
+      "endTime": 699,
+      "title": "Israel-funded synthetic think tank uses..."
+    },
+    {
+      "startTime": 699,
+      "endTime": 731,
+      "title": "Outro"
+    }
+  ]
+}

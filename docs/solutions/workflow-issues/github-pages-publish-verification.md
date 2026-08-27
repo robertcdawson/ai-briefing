@@ -49,4 +49,5 @@ When changing retention, edit `RETENTION_DAYS` in `src/publish.ts` — it now go
 - Code: `src/verifyDeploy.ts`, `scripts/verify-deploy.ts`, `.github/workflows/daily.yml`
 - Tests: `test/verifyDeploy.test.ts`, `test/publish.retention.test.ts`
 - Operator docs: README sections **Publish verification** and **Retention**
-- Concepts: Publish verification, Already-published skip in `CONCEPTS.md`
+- Retention design: `docs/solutions/best-practices/age-based-episode-retention.md`
+- Concepts: Publish verification, Already-published skip, Retention in `CONCEPTS.md`

@@ -33,6 +33,9 @@ A fail-fast config/runtime check run before paid pipeline stages. Validates requ
 ### Already-published skip
 Early pipeline exit when today's sidecar JSON and MP3 both already exist under `docs/episodes/`. Used so the backup cron (and same-day re-dispatch) does not re-spend LLM/TTS quota after a successful primary run. Distinct from retention pruning.
 
+### Specifics
+Three to five short, article-grounded details the curator extracts per Story Cluster (exact figures with a comparison, named people/orgs with roles, one short verbatim quote with speaker). They ride the cluster into the script prompt so the writer narrates from real material instead of paraphrasing the headline. Optional on the cluster (`specifics?: string[]`); empty/malformed arrays are dropped at normalize time. Fetch keeps ~900 characters of excerpt per article so there is enough raw text to pull from.
+
 ## Cross-episode memory
 
 ### Curation Ledger
@@ -84,6 +87,9 @@ An optional 3-6 word per-segment spoken-delivery note (e.g. "flat — let the nu
 `npm run style:report` — a read-only CLI (`scripts/style-report.ts`) that prints per-episode prose metrics (sentence-length variance, antithesis/triad/metadiscourse counts) and the top repeated 3/4-grams across recent transcripts, for checking whether the register is actually varying over time rather than just reading better on one sample episode. Reads local transcripts only; makes no API calls and always exits 0.
 
 ## Publish & hosting
+
+### Retention
+The single age-based window (`RETENTION_DAYS = 14` in `src/publish.ts`) that drives both `feed.xml` membership (`selectFeedRecords`) and on-disk episode pruning (`pruneOldEpisodes`). An episode drops out of the feed once its date is older than the window relative to the run's `referenceDate`; the pruner then deletes its asset family unless that date is still in the feed keep-set (safety belt against a stranded enclosure URL). `FEED_LIMIT` is only a defensive count cap inside the window. Distinct from Already-published skip (same-day re-run guard) and from Publish verification (live Pages check).
 
 ### Publish verification
 Post-push check that today's episode GUID is actually present in the **live** public `feed.xml` (GitHub Pages deploy), not merely committed in git. Polls the feed, may push an empty commit to unstick a queued deploy, and fails the workflow (with a healthcheck fail ping) if the episode never appears. Turns the backup cron into a recovery path even when generation was skipped.

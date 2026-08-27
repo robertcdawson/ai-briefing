@@ -1,0 +1,46 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — August 27, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 23,
+      "title": "Intro"
+    },
+    {
+      "startTime": 23,
+      "endTime": 151,
+      "title": "OpenAI's full Hugging Face breach report..."
+    },
+    {
+      "startTime": 151,
+      "endTime": 256,
+      "title": "Nvidia agrees to acquire Hugging Face for..."
+    },
+    {
+      "startTime": 256,
+      "endTime": 329,
+      "title": "Nvidia reports record $96 billion..."
+    },
+    {
+      "startTime": 329,
+      "endTime": 428,
+      "title": "Sam Altman claims OpenAI will reach AGI..."
+    },
+    {
+      "startTime": 428,
+      "endTime": 517,
+      "title": "Anthropic signs $45 billion compute deal..."
+    },
+    {
+      "startTime": 517,
+      "endTime": 595,
+      "title": "Google launches Gemini 3.5 Transcribe..."
+    },
+    {
+      "startTime": 595,
+      "endTime": 627,
+      "title": "Outro"
+    }
+  ]
+}

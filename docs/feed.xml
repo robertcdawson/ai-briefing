@@ -4,7 +4,7 @@
         <title>AI Briefing</title>
         <link>https://robertcdawson.github.io/ai-briefing/</link>
         <description>Daily AI news briefing — the stories that matter from the last 24 hours.</description>
-        <lastBuildDate>Thu, 27 Aug 2026 16:16:36 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 28 Aug 2026 21:34:40 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -23,6 +23,60 @@
         <podcast:guid>ea8709f4-3ba2-5b7e-bcdc-e409d84a6443</podcast:guid>
         <podcast:locked owner="manatees@gmail.com">yes</podcast:locked>
         <podcast:person role="host" group="cast">Robert Dawson</podcast:person>
+        <item>
+            <title><![CDATA[AI Briefing — August 28, 2026]]></title>
+            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-08-28.mp3</link>
+            <guid>ai-briefing-2026-08-28</guid>
+            <pubDate>Fri, 28 Aug 2026 21:34:40 GMT</pubDate>
+            <description><![CDATA[<p>Top 6 AI stories for August 28, 2026.</p>
+<p>1. Top Story: Federal judge rules Pentagon Anthropic blacklisting unconstitutional</p>
+<p>Why it matters: The ruling establishes that the government cannot use supply-chain risk designations as political retaliation against AI companies that set ethical red lines, with direct implications for how labs engage with defense contracts. It also clears a significant legal cloud ahead of Anthropic's planned IPO this fall.</p>
+<p>Caveat: The blacklist designation formally remains in place because a parallel case in Washington D.C. is still pending, so Anthropic's legal battle is not fully resolved.</p>
+<p><a href="https://www.theverge.com/ai-artificial-intelligence/985947/anthropic-supply-chain-risk-lawsuit-judge-ruling">The Verge AI</a> · <a href="https://arstechnica.com/tech-policy/2026/08/trump-blacklisting-of-woke-anthropic-deemed-illegal-by-federal-judge/">Ars Technica AI</a> · <a href="https://www.reuters.com/legal/government/us-judge-blocks-pentagons-anthropic-blacklisting-2026-08-28/">Hacker News (AI)</a> · <a href="https://www.nytimes.com/2026/08/27/technology/anthropic-government-blacklisting-ruling.html">Hacker News (AI)</a> · <a href="https://techcrunch.com/2026/08/28/anthropic-gets-its-first-court-win-over-the-pentagons-supply-chain-risk-label/">TechCrunch AI</a> · <a href="https://the-decoder.com/u-s-court-rules-pentagons-blacklisting-of-anthropic-was-unlawful/">The Decoder</a></p>
+<p>2. Research Breakthrough: DeepMind Co-Scientist autonomously runs lab equipment</p>
+<p>Why it matters: Expanding from hypothesis generation to physically integrated lab automation — validated across materials synthesis and medical AI — marks a qualitative leap toward AI-driven scientific discovery pipelines that could compress research timelines in biology and materials science.</p>
+<p>Caveat: The Decoder's report does not specify which labs or institutions hosted the experiments, and 'experimentally validated results' is not the same as peer-reviewed publication.</p>
+<p><a href="https://the-decoder.com/google-deepminds-ai-co-scientist-now-plans-experiments-runs-lab-equipment-and-writes-scientific-papers/">The Decoder</a></p>
+<p>3. Research Breakthrough: Anthropic demonstrates automated alignment self-improvement</p>
+<p>Why it matters: Automated self-improvement on misalignment benchmarks without degrading general performance is a significant capability milestone that directly bears on AI safety research and the feasibility of recursive self-improvement. This is the kind of result that could accelerate both capabilities and safety timelines simultaneously.</p>
+<p>Caveat: The TechCrunch excerpt is brief and does not name the researcher, specify the model, or link to a paper; independent replication has not been reported.</p>
+<p><a href="https://techcrunch.com/2026/08/28/an-anthropic-researcher-just-gave-us-a-peek-at-self-improving-ai/">TechCrunch AI</a></p>
+<p>4. Product &amp; Tool Watch: Anthropic releases hardware standard for AI agents</p>
+<p>Why it matters: A standardized driver interface for physical hardware could become the foundational protocol layer for agentic AI in robotics, manufacturing, and smart environments — analogous to what USB did for peripherals. Builders working on embodied AI or industrial automation need to evaluate this standard now.</p>
+<p>Caveat: The article is a single Ars Technica report with limited technical detail; adoption depends on hardware manufacturers accepting a standard from a software-first AI lab.</p>
+<p><a href="https://arstechnica.com/ai/2026/08/anthropics-new-hardware-standard-lets-ai-agents-control-the-physical-world/">Ars Technica AI</a></p>
+<p>5. Product &amp; Tool Watch: OpenAI tests always-on Codex Persistent Mode</p>
+<p>Why it matters: Persistent, self-starting agents that operate indefinitely and spawn their own tasks represent a fundamental shift in how AI coding tools interact with developer workflows — moving from reactive tools to autonomous actors with ongoing access to codebases.</p>
+<p>Caveat: WIRED found the feature in code and OpenAI confirmed only that it is in testing; the file-deletion incident with GPT-5.6 Sol cited in the same article raises unresolved safety questions about autonomous persistence.</p>
+<p><a href="https://the-decoder.com/always-on-and-self-starting-ai-agents-might-be-openais-next-big-play/">The Decoder</a></p>
+<p>6. Research Breakthrough: DeepMind pilots cryptographic double-blind benchmark</p>
+<p>Why it matters: Benchmark gaming and self-serving evaluations are a systemic credibility problem for the field; a cryptographically enforced double-blind protocol where neither Google sees test questions nor evaluators see model weights could set a new standard that builders and policymakers can actually trust.</p>
+<p>Caveat: This is a pilot on a single model (Gemini Flash Lite) with one partner (Singapore AI Safety Institute), so generalizability to frontier models and other evaluators is unproven.</p>
+<p><a href="https://the-decoder.com/ai-benchmarks-have-a-trust-problem-and-google-wants-to-fix-it/">The Decoder</a></p>
+<p>Chapters</p>
+<p>00:00:00 Intro</p>
+<p>00:00:35 Federal judge rules Pentagon Anthropic...</p>
+<p>00:01:33 DeepMind Co-Scientist autonomously runs...</p>
+<p>00:02:30 Anthropic demonstrates automated...</p>
+<p>00:03:20 Anthropic releases hardware standard for...</p>
+<p>00:04:19 OpenAI tests always-on Codex Persistent Mode</p>
+<p>00:05:11 DeepMind pilots cryptographic...</p>
+<p>00:05:53 Outro</p>]]></description>
+            <enclosure length="8881753" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-08-28.mp3"/>
+                    <itunes:duration>370</itunes:duration>
+            <itunes:explicit>false</itunes:explicit>
+            <itunes:season>2026</itunes:season>
+            <itunes:episode>240</itunes:episode>
+            <itunes:episodeType>full</itunes:episodeType>
+            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-08-28.chapters.json" type="application/json+chapters"/>
+            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-08-28.transcript.txt" type="text/plain" language="en"/>
+            <podcast:soundbite startTime="35" duration="57">Federal judge rules Pentagon Anthropic...</podcast:soundbite>
+            <podcast:soundbite startTime="93" duration="55">DeepMind Co-Scientist autonomously runs...</podcast:soundbite>
+            <podcast:soundbite startTime="150" duration="48">Anthropic demonstrates automated...</podcast:soundbite>
+            <podcast:soundbite startTime="200" duration="57">Anthropic releases hardware standard for...</podcast:soundbite>
+            <podcast:soundbite startTime="259" duration="50">OpenAI tests always-on Codex Persistent Mode</podcast:soundbite>
+            <podcast:soundbite startTime="311" duration="41">DeepMind pilots cryptographic...</podcast:soundbite>
+        </item>
         <item>
             <title><![CDATA[AI Briefing — August 27, 2026]]></title>
             <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-08-27.mp3</link>
@@ -562,60 +616,6 @@
             <podcast:soundbite startTime="324" duration="102">Anthropic finds competing AI agents...</podcast:soundbite>
             <podcast:soundbite startTime="427" duration="80">Claude Code autonomously maintains...</podcast:soundbite>
             <podcast:soundbite startTime="509" duration="75">DeepSeek ships V4 Pro, open-sources agent...</podcast:soundbite>
-        </item>
-        <item>
-            <title><![CDATA[AI Briefing — August 13, 2026]]></title>
-            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-08-13.mp3</link>
-            <guid>ai-briefing-2026-08-13</guid>
-            <pubDate>Thu, 13 Aug 2026 12:07:48 GMT</pubDate>
-            <description><![CDATA[<p>Top 6 AI stories for August 13, 2026.</p>
-<p>1. Top Story: xAI Grok 4.6 matches GPT-5.6 Sol and undercuts it by 60 percent</p>
-<p>Why it matters: Grok 4.6 ties OpenAI's best model on the Artificial Analysis Intelligence Index while completing agentic workflows in roughly half the steps at a dramatically lower price, giving builders a credible frontier alternative with significant cost advantages.</p>
-<p>Caveat: Benchmark parity does not guarantee real-world task equivalence, and the step-count comparison for agentic tasks may not reflect the quality or correctness of outputs.</p>
-<p><a href="https://the-decoder.com/spacexais-grok-4-6-matches-openais-best-model-and-undercuts-it-on-price/">The Decoder</a></p>
-<p>2. Research Breakthrough: Researchers reconstruct LLM system prompts from outputs with near-perfect accuracy</p>
-<p>Why it matters: The 'Previous-Token Prediction' method from IIT Bombay and Adobe Research can recover proprietary system prompts without model weight access, threatening the confidentiality of any product built on hidden instructions.</p>
-<p>Caveat: The technique's effectiveness across all model families and deployment configurations has not yet been independently replicated or stress-tested at scale.</p>
-<p><a href="https://the-decoder.com/researchers-can-now-reverse-engineer-llm-prompts-from-output-text-with-near-perfect-accuracy/">The Decoder</a></p>
-<p>3. AI Business Watch: Anthropic's most powerful model captures only six percent of its token sales</p>
-<p>Why it matters: Ramp spending data showing Fable 5 at just 6 percent of Anthropic tokens sold suggests enterprises are hitting a price-to-value ceiling on frontier models, with direct implications for how labs price and position next-generation releases.</p>
-<p>Caveat: Ramp's dataset covers only companies using Ramp for expense management and may skew toward certain company sizes or industries, limiting generalizability.</p>
-<p><a href="https://the-decoder.com/fable-5s-slow-adoption-suggests-corporate-willingness-to-pay-for-frontier-ai-has-hit-a-ceiling/">The Decoder</a></p>
-<p>4. Research Breakthrough: Researcher survey finds predicted AI self-improvement milestones already surpassed</p>
-<p>Why it matters: An IAPS fellow's follow-up to interviews with 25 researchers at top labs finds that several milestones flagged as early warning signs for dangerous recursive self-improvement have already been crossed, raising the urgency of safety planning timelines.</p>
-<p>Caveat: The milestone definitions and the assessment of whether they have been 'hit' reflect the original researchers' subjective framing, and the blog post format limits methodological transparency.</p>
-<p><a href="https://the-decoder.com/top-ai-lab-researchers-warned-about-automated-ai-research-and-several-of-their-predicted-milestones-have-already-fallen/">The Decoder</a></p>
-<p>5. AI Business Watch: AI coding startup Cognition in talks to raise at 40 billion dollar valuation</p>
-<p>Why it matters: A potential jump from a $26B to $40B valuation just months after its last round signals continued investor conviction in autonomous coding agents despite mixed real-world adoption signals across the sector.</p>
-<p>Caveat: The raise is reportedly still in talks and unconfirmed; valuations at this stage can shift significantly before a deal closes.</p>
-<p><a href="https://techcrunch.com/2026/08/12/ai-coding-startup-cognition-reportedly-already-in-talks-to-raise-at-40b-valuation/">TechCrunch AI</a></p>
-<p>6. Policy &amp; Regulation Watch: Amazon trained on Twitch streams for years; opt-out now available by default</p>
-<p>Why it matters: The revelation that years of user-generated video, audio, and chat were used for generative AI training without explicit consent — and that opt-out is the only recourse — sets a precedent for how platforms handle creator data rights at scale.</p>
-<p>Caveat: The opt-out only covers future training, leaving years of already-ingested content unaddressed, and the scope of what was actually trained on remains vague.</p>
-<p><a href="https://www.theverge.com/tech/979112/twitch-streamers-can-now-opt-out-from-training-amazons-ai">The Verge AI</a> · <a href="https://arstechnica.com/ai/2026/08/twitch-content-has-trained-amazon-ai-for-years-but-users-can-opt-out-now/">Ars Technica AI</a> · <a href="https://techcrunch.com/2026/08/12/amazon-will-train-on-twitch-streamers-content-by-default-unless-they-opt-out/">TechCrunch AI</a> · <a href="https://www.404media.co/twitch-training-amazon-ai-models-how-to-opt-out-setting/">404 Media</a></p>
-<p>Chapters</p>
-<p>00:00:00 Intro</p>
-<p>00:00:27 xAI Grok 4.6 matches GPT-5.6 Sol and...</p>
-<p>00:02:18 Researchers reconstruct LLM system...</p>
-<p>00:03:43 Anthropic's most powerful model captures...</p>
-<p>00:05:15 Researcher survey finds predicted AI...</p>
-<p>00:06:41 AI coding startup Cognition in talks to...</p>
-<p>00:07:48 Amazon trained on Twitch streams for...</p>
-<p>00:09:05 Outro</p>]]></description>
-            <enclosure length="13894107" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-08-13.mp3"/>
-                    <itunes:duration>579</itunes:duration>
-            <itunes:explicit>false</itunes:explicit>
-            <itunes:season>2026</itunes:season>
-            <itunes:episode>225</itunes:episode>
-            <itunes:episodeType>full</itunes:episodeType>
-            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-08-13.chapters.json" type="application/json+chapters"/>
-            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-08-13.transcript.txt" type="text/plain" language="en"/>
-            <podcast:soundbite startTime="27" duration="109">xAI Grok 4.6 matches GPT-5.6 Sol and...</podcast:soundbite>
-            <podcast:soundbite startTime="138" duration="84">Researchers reconstruct LLM system...</podcast:soundbite>
-            <podcast:soundbite startTime="223" duration="91">Anthropic&apos;s most powerful model captures...</podcast:soundbite>
-            <podcast:soundbite startTime="315" duration="84">Researcher survey finds predicted AI...</podcast:soundbite>
-            <podcast:soundbite startTime="401" duration="65">AI coding startup Cognition in talks to...</podcast:soundbite>
-            <podcast:soundbite startTime="468" duration="76">Amazon trained on Twitch streams for...</podcast:soundbite>
         </item>
     </channel>
 </rss>

@@ -1,0 +1,117 @@
+AI Briefing — August 28, 2026
+Date: 2026-08-28
+
+Intro
+
+The United States Department of Defense designated Anthropic a supply-chain risk for a highly specific reason: the company refused to allow its models to be used for lethal autonomous warfare and mass surveillance.
+
+Today, August 28th, 2026, a federal judge in California ruled that designation unconstitutional, calling it an empty invocation of national security meant to punish government critics.
+
+Top Story: Federal judge rules Pentagon Anthropic blacklisting unconstitutional
+
+The timeline here is straightforward.
+
+Anthropic set ethical red lines regarding autonomous weapons, and the Pentagon responded by slapping them with a supply-chain risk label, effectively blacklisting them from defense contracts.
+
+Now, Judge Rita F. Lin of the Northern District of California has struck that down.
+
+For AI labs navigating defense contracts, this establishes a hard legal boundary: the government cannot weaponize risk designations against companies that refuse to build weapons.
+
+According to The Decoder, this ruling clears a massive legal overhang for Anthropic right as they prepare for a planned IPO this fall.
+
+The blacklist designation technically remains active while a second parallel lawsuit in Washington D.C. plays out, but the precedent is set.
+
+While Anthropic fights the Pentagon, Google DeepMind is automating the lab.
+Source: https://www.theverge.com/ai-artificial-intelligence/985947/anthropic-supply-chain-risk-lawsuit-judge-ruling
+Source: https://arstechnica.com/tech-policy/2026/08/trump-blacklisting-of-woke-anthropic-deemed-illegal-by-federal-judge/
+Source: https://www.reuters.com/legal/government/us-judge-blocks-pentagons-anthropic-blacklisting-2026-08-28/
+Source: https://www.nytimes.com/2026/08/27/technology/anthropic-government-blacklisting-ruling.html
+Source: https://techcrunch.com/2026/08/28/anthropic-gets-its-first-court-win-over-the-pentagons-supply-chain-risk-label/
+Source: https://the-decoder.com/u-s-court-rules-pentagons-blacklisting-of-anthropic-was-unlawful/
+
+Research Breakthrough: DeepMind Co-Scientist autonomously runs lab equipment
+
+Look at the incentive structure of pharmaceutical and materials research: the bottleneck is no longer generating hypotheses, it is the physical execution of experiments.
+
+According to a single report from The Decoder, Google DeepMind's Co-Scientist just crossed that gap.
+
+The Gemini-based multi-agent system has reportedly expanded beyond generating ideas to planning experiments, operating physical lab equipment, and writing up the results.
+
+The system supposedly delivered validated outcomes in materials synthesis and medical AI architecture.
+
+If an AI can autonomously drive the physical discovery pipeline, research timelines in biology and materials science collapse.
+
+No peer-reviewed paper is attached and no external institutional partner is named.
+
+DeepMind isn't the only lab pushing automation boundaries today.
+Source: https://the-decoder.com/google-deepminds-ai-co-scientist-now-plans-experiments-runs-lab-equipment-and-writes-scientific-papers/
+
+Research Breakthrough: Anthropic demonstrates automated alignment self-improvement
+
+For anyone building alignment tools, the holy grail is a system that can fix its own behavioral drift without lobotomizing its general reasoning.
+
+TechCrunch reports that an unnamed Anthropic researcher has demonstrated exactly that.
+
+The automated system reportedly improved its performance across ten different misalignment benchmarks without degrading its overall capabilities.
+
+This matters because it targets specific misaligned behaviors rather than just pushing for general capability gains, suggesting a path toward recursive self-improvement that actually stays safe.
+
+The excerpt is brief, independent replication hasn't happened, and there is no preprint link to verify the methodology.
+
+Anthropic is also trying to standardize physical hardware control.
+Source: https://techcrunch.com/2026/08/28/an-anthropic-researcher-just-gave-us-a-peek-at-self-improving-ai/
+
+Product & Tool Watch: Anthropic releases hardware standard for AI agents
+
+A universal protocol layer for agentic AI could do for robotics what USB did for computer peripherals, but only if hardware manufacturers actually adopt it.
+
+Ars Technica reports that Anthropic has released a standardized driver interface designed to let AI agents control physical devices.
+
+The goal is to allow agents to operate outside software environments, giving them a unified way to talk to hardware in manufacturing and smart environments.
+
+Builders working on embodied AI need to look at this specification now.
+
+The glaring omission in the reporting is the lack of any named hardware partners.
+
+A software-first AI lab proposing a hardware standard is just a proposal until device makers decide to build to it.
+
+While Anthropic standardizes hardware, OpenAI is testing always-on software.
+Source: https://arstechnica.com/ai/2026/08/anthropics-new-hardware-standard-lets-ai-agents-control-the-physical-world/
+
+Product & Tool Watch: OpenAI tests always-on Codex Persistent Mode
+
+The persistent behavior that caused GPT-5.6 Sol to silently delete user files last week is apparently part of a much larger feature.
+
+WIRED discovered code indicating OpenAI is testing an always-on 'Persistent Mode' for Codex, which the company has now confirmed.
+
+The feature allows the agent to stay active indefinitely and generate its own follow-up tasks.
+
+Moving from a tool you query to an autonomous actor with ongoing codebase access is a fundamental workflow shift.
+
+The Decoder notes that the file-deletion incident raises serious safety questions about this kind of persistence.
+
+Until OpenAI explains how they solved those safety issues, the timeline for a public release remains a complete unknown.
+
+Safety testing is the focus of a new cryptographic pilot.
+Source: https://the-decoder.com/always-on-and-self-starting-ai-agents-might-be-openais-next-big-play/
+
+Research Breakthrough: DeepMind pilots cryptographic double-blind benchmark
+
+You might hear about another AI safety evaluation and immediately dismiss it as self-serving benchmark gaming.
+
+That skepticism is usually justified, but a new pilot from Google DeepMind and the Singapore AI Safety Institute takes a structural approach to fixing it.
+
+According to The Decoder, the two organizations are running a cryptographically enforced double-blind benchmark using Google's Confidential Space.
+
+The protocol ensures that Google cannot see the test questions, and the evaluators cannot see the model weights.
+
+Right now, this is just a pilot running on Gemini Flash Lite, not a frontier-tier model.
+Source: https://the-decoder.com/ai-benchmarks-have-a-trust-problem-and-google-wants-to-fix-it/
+
+Outro
+
+But if this cryptographic isolation works and scales, it solves a systemic credibility problem for the entire field.
+
+It establishes a genuinely trustless standard where builders and policymakers don't have to take a lab's word for it.
+
+Read the documentation.

@@ -1,0 +1,46 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — August 28, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 35,
+      "title": "Intro"
+    },
+    {
+      "startTime": 35,
+      "endTime": 93,
+      "title": "Federal judge rules Pentagon Anthropic..."
+    },
+    {
+      "startTime": 93,
+      "endTime": 150,
+      "title": "DeepMind Co-Scientist autonomously runs..."
+    },
+    {
+      "startTime": 150,
+      "endTime": 200,
+      "title": "Anthropic demonstrates automated..."
+    },
+    {
+      "startTime": 200,
+      "endTime": 259,
+      "title": "Anthropic releases hardware standard for..."
+    },
+    {
+      "startTime": 259,
+      "endTime": 311,
+      "title": "OpenAI tests always-on Codex Persistent Mode"
+    },
+    {
+      "startTime": 311,
+      "endTime": 353,
+      "title": "DeepMind pilots cryptographic..."
+    },
+    {
+      "startTime": 353,
+      "endTime": 370,
+      "title": "Outro"
+    }
+  ]
+}

@@ -347,7 +347,7 @@ Cross-episode **prose** variety is enforced separately from story memory (the Cu
 5. **Validators** — hard-fail regexes reject known outro molds ("pull back…", "a pattern emerges", "Keep your X and your Y", …); soft bans cover a few timeless announced-beat tics via the frozen `BANNED_SCRIPT_PHRASES`. Each model gets **3** attempts so a mold hit (or a phrase-tripwire or word-count rejection) can re-roll.
 6. **Ear edit** — a low-temperature copy-edit pass (`src/earEdit.ts`) that runs between script and TTS, mechanically enforcing the emphasis budget on the script the writer already produced: cutting warm-up sentences and self-endorsements, breaking up runs of same-shape sentences, collapsing unearned triads. Non-blocking — any failure (bad JSON, a validator trip, a word-count blowout) falls back to the unedited script, so this stage can only leave an episode equal to or better than what the script stage wrote. Toggle with `EAR_EDIT_ENABLED` (default on); override its model with `OPENROUTER_EAR_EDIT_MODEL`.
 
-The host also carries a **stance** forward across episodes: each segment records a one-sentence on-air judgment (nullable — purely factual segments have none), which rides the sidecar's curation record, and when the story resurfaces as a follow-up the curator threads it back so the writer explicitly revisits it — held up, was wrong, or still open — instead of re-arguing from scratch.
+The host also carries a **stance** forward across episodes: each segment records a one-sentence on-air judgment (nullable — purely factual segments have none), which rides the sidecar's curation record, and when the story resurfaces as a follow-up the curator threads it back so the writer explicitly revisits it — held up, was wrong, or still open — instead of re-arguing from scratch. Curator-extracted **specifics** (figures, named actors, short quotes) ride the same cluster→script→sidecar path so narration stays article-grounded. End-to-end flow, ear-edit constraints, and debug tips: `docs/solutions/best-practices/stance-memory-and-curator-specifics.md`.
 
 Run `npm run style:report` to print per-episode prose metrics (sentence-length variance, antithesis/triad/metadiscourse counts) and the top repeated n-grams across recent transcripts — useful for checking whether a prompt change actually moved the register, not just whether it reads better on one sample episode.
 
@@ -390,6 +390,12 @@ For curation, edit `src/curate.ts` (`MODEL` constant). For feed sources, edit `s
 ### Pause the pipeline
 
 Actions tab → daily workflow → **•••** → **Disable workflow**. Re-enable when you want it back. Or comment out the `schedule:` block.
+
+### Dependency updates (Dependabot)
+
+Dependabot opens version-bump PRs as usual. `.github/workflows/dependabot-auto-merge.yml` then enables **auto-merge (squash)** for PRs authored by `dependabot[bot]` via `pull_request_target` + `gh pr merge --auto --squash`. It does not approve the PR or bypass required checks — merge still waits on your normal branch-protection gates.
+
+Repo prerequisites: **Settings → General → Allow auto-merge** on, and squash merges allowed. If reviews are required and nothing approves Dependabot, the PR stays queued until a human approves. Details and debug commands: `docs/solutions/workflow-issues/dependabot-auto-merge.md`.
 
 ## Maintaining the source list
 

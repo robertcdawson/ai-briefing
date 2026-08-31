@@ -1,0 +1,46 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — August 31, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 30,
+      "title": "Intro"
+    },
+    {
+      "startTime": 30,
+      "endTime": 108,
+      "title": "EU classifies ChatGPT as Very Large..."
+    },
+    {
+      "startTime": 108,
+      "endTime": 179,
+      "title": "OpenAI and Anthropic buy tens of..."
+    },
+    {
+      "startTime": 179,
+      "endTime": 245,
+      "title": "ChatGPT ad business hits one billion..."
+    },
+    {
+      "startTime": 245,
+      "endTime": 313,
+      "title": "China's CXMT produces first HBM3E chips,..."
+    },
+    {
+      "startTime": 313,
+      "endTime": 384,
+      "title": "OpenAI pilots outcome-based pricing..."
+    },
+    {
+      "startTime": 384,
+      "endTime": 449,
+      "title": "Nvidia invests 3.5 billion dollars in..."
+    },
+    {
+      "startTime": 449,
+      "endTime": 475,
+      "title": "Outro"
+    }
+  ]
+}

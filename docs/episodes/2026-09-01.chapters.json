@@ -1,0 +1,46 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — September 1, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 42,
+      "title": "Intro"
+    },
+    {
+      "startTime": 42,
+      "endTime": 164,
+      "title": "Runway's Solaris generates software..."
+    },
+    {
+      "startTime": 164,
+      "endTime": 267,
+      "title": "Pentagon deploys its own versions of..."
+    },
+    {
+      "startTime": 267,
+      "endTime": 383,
+      "title": "Study finds Google's election AI..."
+    },
+    {
+      "startTime": 383,
+      "endTime": 492,
+      "title": "Hugging Face releases 200-plus WebGPU..."
+    },
+    {
+      "startTime": 492,
+      "endTime": 587,
+      "title": "Sony lawsuit cites Anthropic staff chats..."
+    },
+    {
+      "startTime": 587,
+      "endTime": 702,
+      "title": "Bank of England chief warns AI bubble..."
+    },
+    {
+      "startTime": 702,
+      "endTime": 736,
+      "title": "Outro"
+    }
+  ]
+}

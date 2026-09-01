@@ -4,7 +4,7 @@
         <title>AI Briefing</title>
         <link>https://robertcdawson.github.io/ai-briefing/</link>
         <description>Daily AI news briefing — the stories that matter from the last 24 hours.</description>
-        <lastBuildDate>Mon, 31 Aug 2026 18:12:02 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 01 Sep 2026 15:37:56 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -23,6 +23,60 @@
         <podcast:guid>ea8709f4-3ba2-5b7e-bcdc-e409d84a6443</podcast:guid>
         <podcast:locked owner="manatees@gmail.com">yes</podcast:locked>
         <podcast:person role="host" group="cast">Robert Dawson</podcast:person>
+        <item>
+            <title><![CDATA[AI Briefing — September 1, 2026]]></title>
+            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-09-01.mp3</link>
+            <guid>ai-briefing-2026-09-01</guid>
+            <pubDate>Tue, 01 Sep 2026 15:37:56 GMT</pubDate>
+            <description><![CDATA[<p>Top 6 AI stories for September 1, 2026.</p>
+<p>1. Top Story: Runway's Solaris generates software interfaces frame-by-frame in real time</p>
+<p>Why it matters: Solaris represents a new paradigm where UIs are generated dynamically rather than executed as code, which could fundamentally change how developers think about interface construction and prototyping. If the approach scales, it collapses the gap between design intent and running software.</p>
+<p>Caveat: No benchmark data, latency figures, or API access details have been released; the announcement is essentially a demo with a new category label.</p>
+<p><a href="https://the-decoder.com/runways-solaris-is-an-ai-system-that-generates-software-interfaces-in-real-time/">The Decoder</a></p>
+<p>2. Policy &amp; Regulation Watch: Pentagon deploys its own versions of ChatGPT and Grok for military use</p>
+<p>Why it matters: The U.S. Department of Defense adding ChatGPT and Grok to its central AI portal alongside Gemini signals accelerating government adoption of frontier commercial AI, with significant implications for procurement, security standards, and competitive dynamics among AI labs.</p>
+<p>Caveat: The article does not specify what data classifications these deployments can access, what security modifications were made, or how usage will be governed.</p>
+<p><a href="https://techcrunch.com/2026/08/31/the-pentagon-now-has-its-own-version-of-chatgpt-and-grok/">TechCrunch AI</a></p>
+<p>3. Policy &amp; Regulation Watch: Study finds Google's election AI Overviews opaque, source-thin, and sometimes partisan</p>
+<p>Why it matters: Independent DSA-enabled auditing of Google's AI Overviews on election queries reveals structural problems — inconsistent display, over-reliance on YouTube, and occasional political slant — that matter for anyone building on or competing with AI search products and for regulators assessing AI search governance.</p>
+<p>Caveat: The study covers only German-language election queries run by a single advocacy group; results may not generalize to other languages, regions, or query types.</p>
+<p><a href="https://the-decoder.com/googles-election-ai-overviews-are-opaque-rely-on-few-sources-and-sometimes-take-sides/">The Decoder</a></p>
+<p>4. Open Source Watch: Hugging Face releases 200-plus WebGPU kernels for local AI inference</p>
+<p>Why it matters: A library of 200+ optimized WebGPU kernels lowers the barrier for running AI models directly in browsers and on-device without server infrastructure, which matters for privacy-sensitive and offline-capable applications. This is a concrete tooling contribution for developers building local-first AI products.</p>
+<p>Caveat: Browser WebGPU support and GPU hardware requirements vary widely; real-world performance on consumer devices versus the library's benchmarks is unverified.</p>
+<p><a href="https://huggingface.co/blog/webgpu-kernels">Hugging Face</a></p>
+<p>5. Policy &amp; Regulation Watch: Sony lawsuit cites Anthropic staff chats praising piracy site Z-Library</p>
+<p>Why it matters: Internal communications showing Anthropic employees extolling a known piracy platform while training Claude on copyrighted music could significantly strengthen plaintiffs' willful-infringement arguments and set precedent for how AI labs' internal culture affects copyright liability.</p>
+<p>Caveat: The lawsuit is ongoing and the cited chats are plaintiff-selected excerpts; Anthropic's full response and context for the messages have not been reported.</p>
+<p><a href="https://arstechnica.com/tech-policy/2026/08/zlibrary-my-beloved-anthropic-staff-chats-extolling-piracy-cited-in-sony-suit/">Ars Technica AI</a></p>
+<p>6. AI Business Watch: Bank of England chief warns AI bubble valuations could trigger next financial crisis</p>
+<p>Why it matters: A G20-level central bank warning about AI valuation inflation and cross-investment leverage loops between AI companies and hyperscalers is a significant systemic risk signal that could influence institutional investor behavior and accelerate regulatory scrutiny of AI financing structures.</p>
+<p>Caveat: Andrew Bailey's remarks are a qualitative warning to finance ministers, not a formal regulatory action; no specific firms or valuation thresholds were named.</p>
+<p><a href="https://the-decoder.com/bank-of-england-chief-warns-that-inflated-ai-valuations-and-rising-leverage-could-trigger-the-next-financial-crisis/">The Decoder</a></p>
+<p>Chapters</p>
+<p>00:00:00 Intro</p>
+<p>00:00:42 Runway's Solaris generates software...</p>
+<p>00:02:44 Pentagon deploys its own versions of...</p>
+<p>00:04:27 Study finds Google's election AI...</p>
+<p>00:06:23 Hugging Face releases 200-plus WebGPU...</p>
+<p>00:08:12 Sony lawsuit cites Anthropic staff chats...</p>
+<p>00:09:47 Bank of England chief warns AI bubble...</p>
+<p>00:11:42 Outro</p>]]></description>
+            <enclosure length="17661723" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-09-01.mp3"/>
+                    <itunes:duration>736</itunes:duration>
+            <itunes:explicit>false</itunes:explicit>
+            <itunes:season>2026</itunes:season>
+            <itunes:episode>244</itunes:episode>
+            <itunes:episodeType>full</itunes:episodeType>
+            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-09-01.chapters.json" type="application/json+chapters"/>
+            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-09-01.transcript.txt" type="text/plain" language="en"/>
+            <podcast:soundbite startTime="42" duration="120">Runway&apos;s Solaris generates software...</podcast:soundbite>
+            <podcast:soundbite startTime="164" duration="101">Pentagon deploys its own versions of...</podcast:soundbite>
+            <podcast:soundbite startTime="267" duration="115">Study finds Google&apos;s election AI...</podcast:soundbite>
+            <podcast:soundbite startTime="383" duration="107">Hugging Face releases 200-plus WebGPU...</podcast:soundbite>
+            <podcast:soundbite startTime="492" duration="93">Sony lawsuit cites Anthropic staff chats...</podcast:soundbite>
+            <podcast:soundbite startTime="587" duration="114">Bank of England chief warns AI bubble...</podcast:soundbite>
+        </item>
         <item>
             <title><![CDATA[AI Briefing — August 31, 2026]]></title>
             <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-08-31.mp3</link>
@@ -562,60 +616,6 @@
             <podcast:soundbite startTime="277" duration="64">AI context compression silently drops...</podcast:soundbite>
             <podcast:soundbite startTime="342" duration="50">DOJ probes Andreessen Horowitz over board...</podcast:soundbite>
             <podcast:soundbite startTime="394" duration="54">Claude Code adds slash-design command</podcast:soundbite>
-        </item>
-        <item>
-            <title><![CDATA[AI Briefing — August 17, 2026]]></title>
-            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-08-17.mp3</link>
-            <guid>ai-briefing-2026-08-17</guid>
-            <pubDate>Mon, 17 Aug 2026 11:52:56 GMT</pubDate>
-            <description><![CDATA[<p>Top 6 AI stories for August 17, 2026.</p>
-<p>1. Top Story: Stripe reportedly acquires AI model gateway OpenRouter</p>
-<p>Why it matters: OpenRouter routes traffic across 400+ AI models for 8 million users, and Stripe acquiring it signals a major bet on becoming the financial and routing infrastructure layer for AI — a strategic position that could reshape how developers access and pay for models.</p>
-<p>Caveat: The deal is reportedly unconfirmed and sourced from Bloomberg; terms, timeline, and regulatory review are all unknown.</p>
-<p><a href="https://stratechery.com/2026/stripe-acquiring-openrouter-aggregating-ai-flipping-the-business-model/">Stratechery</a> · <a href="https://techcrunch.com/2026/08/16/stripe-will-reportedly-acquire-ai-gateway-startup-openrouter-for-7b/">TechCrunch AI</a> · <a href="https://the-decoder.com/stripe-is-reportedly-acquiring-ai-startup-openrouter-for-more-than-7-billion/">The Decoder</a></p>
-<p>2. Policy &amp; Regulation Watch: OpenAI disbands model preparedness safety team</p>
-<p>Why it matters: The preparedness team was the primary internal body assessing catastrophic model risks; its dissolution — just weeks after rogue agent incidents — raises serious questions about whether safety oversight is being deprioritized as OpenAI pursues a massive IPO.</p>
-<p>Caveat: OpenAI has not publicly confirmed the disbanding or explained how the redistributed responsibilities will maintain equivalent rigor.</p>
-<p><a href="https://www.theverge.com/ai-artificial-intelligence/980817/openai-disbands-preparedness-team">The Verge AI</a></p>
-<p>3. Product &amp; Tool Watch: ChatGPT desktop app tracks clicks and keystrokes</p>
-<p>Why it matters: Computer History turns the ChatGPT macOS app into a persistent activity monitor that feeds context to ChatGPT and Codex, enabling proactive task pickup and automation suggestions — a significant shift toward ambient AI assistance for developers and knowledge workers.</p>
-<p>Caveat: The feature is opt-in for now, but the data collection scope (clicks, keystrokes, app activity) raises substantial privacy questions that the article does not fully address.</p>
-<p><a href="https://www.theverge.com/ai-artificial-intelligence/980742/chatgpts-computer-history-tracks-your-clicks-and-keystrokes">The Verge AI</a></p>
-<p>4. Research Breakthrough: Mathematicians critique LLM reasoning</p>
-<p>Why it matters: Direct assessments from Fields Medal-level mathematicians provide a grounded counterweight to recent AI math benchmark hype, clarifying where LLMs actually stand on creative versus computational mathematical reasoning.</p>
-<p>Caveat: These are qualitative expert opinions rather than a controlled study, and the mathematicians' criteria for 'genuine intuition' may not map cleanly onto measurable benchmarks.</p>
-<p><a href="https://the-decoder.com/top-mathematicians-say-llms-are-strong-calculators-but-poor-creative-thinkers/">The Decoder</a></p>
-<p>5. Policy &amp; Regulation Watch: AI and data centers in US political races</p>
-<p>Why it matters: AI infrastructure has crossed into mainstream electoral politics, meaning policy decisions on data center siting, energy use, and AI regulation will increasingly be shaped by campaign dynamics rather than purely technical or economic considerations.</p>
-<p>Caveat: The sourcing methodology for the 40 percent figure is not described in the excerpt, making it difficult to assess how 'AI topic' was defined or measured across races.</p>
-<p><a href="https://the-decoder.com/ai-and-data-centers-have-leapfrogged-israel-racism-and-crypto-as-us-campaign-topics/">The Decoder</a></p>
-<p>6. Open Source Watch: Qwen 3.8 27B excessive reasoning token usage</p>
-<p>Why it matters: Simon Willison's hands-on evaluation of Qwen 3.8 27B provides a practical signal for developers evaluating open-weight reasoning models, highlighting a real deployment cost concern around runaway chain-of-thought that affects inference budgets.</p>
-<p>Caveat: This is a single practitioner's evaluation rather than a systematic benchmark, so findings may not generalize across all task types or hardware configurations.</p>
-<p><a href="https://simonwillison.net/2026/Aug/16/qwen-38-27b/">Simon Willison</a></p>
-<p>Chapters</p>
-<p>00:00:00 Intro</p>
-<p>00:00:31 Stripe reportedly acquires AI model...</p>
-<p>00:01:42 OpenAI disbands model preparedness safety...</p>
-<p>00:02:51 ChatGPT desktop app tracks clicks and...</p>
-<p>00:03:53 Mathematicians critique LLM reasoning</p>
-<p>00:05:07 AI and data centers in US political races</p>
-<p>00:06:15 Qwen 3.8 27B excessive reasoning token usage</p>
-<p>00:07:10 Outro</p>]]></description>
-            <enclosure length="10915040" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-08-17.mp3"/>
-                    <itunes:duration>455</itunes:duration>
-            <itunes:explicit>false</itunes:explicit>
-            <itunes:season>2026</itunes:season>
-            <itunes:episode>229</itunes:episode>
-            <itunes:episodeType>full</itunes:episodeType>
-            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-08-17.chapters.json" type="application/json+chapters"/>
-            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-08-17.transcript.txt" type="text/plain" language="en"/>
-            <podcast:soundbite startTime="31" duration="69">Stripe reportedly acquires AI model...</podcast:soundbite>
-            <podcast:soundbite startTime="102" duration="68">OpenAI disbands model preparedness safety...</podcast:soundbite>
-            <podcast:soundbite startTime="171" duration="60">ChatGPT desktop app tracks clicks and...</podcast:soundbite>
-            <podcast:soundbite startTime="233" duration="73">Mathematicians critique LLM reasoning</podcast:soundbite>
-            <podcast:soundbite startTime="307" duration="66">AI and data centers in US political races</podcast:soundbite>
-            <podcast:soundbite startTime="375" duration="54">Qwen 3.8 27B excessive reasoning token usage</podcast:soundbite>
         </item>
     </channel>
 </rss>

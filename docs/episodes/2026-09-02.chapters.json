@@ -1,0 +1,46 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — September 2, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 28,
+      "title": "Intro"
+    },
+    {
+      "startTime": 28,
+      "endTime": 110,
+      "title": "Anthropic releases Claude Fable 5.1"
+    },
+    {
+      "startTime": 110,
+      "endTime": 179,
+      "title": "OpenAI delays Astra over critical cyber risks"
+    },
+    {
+      "startTime": 179,
+      "endTime": 244,
+      "title": "World Labs unveils Atlas 3D simulator"
+    },
+    {
+      "startTime": 244,
+      "endTime": 302,
+      "title": "Gemini introduces agentic video analysis"
+    },
+    {
+      "startTime": 302,
+      "endTime": 366,
+      "title": "Apple alleges OpenAI destroyed evidence"
+    },
+    {
+      "startTime": 366,
+      "endTime": 431,
+      "title": "Anthropic opens watermark detection API"
+    },
+    {
+      "startTime": 431,
+      "endTime": 461,
+      "title": "Outro"
+    }
+  ]
+}

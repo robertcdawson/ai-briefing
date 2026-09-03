@@ -1,0 +1,46 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — September 3, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 34,
+      "title": "Intro"
+    },
+    {
+      "startTime": 34,
+      "endTime": 156,
+      "title": "Nvidia officially confirms 12.9 billion..."
+    },
+    {
+      "startTime": 156,
+      "endTime": 282,
+      "title": "OpenAI's Astra model uses opaque..."
+    },
+    {
+      "startTime": 282,
+      "endTime": 414,
+      "title": "Trump DOJ files brief backing fair use..."
+    },
+    {
+      "startTime": 414,
+      "endTime": 512,
+      "title": "Anthropic signs 35 billion dollar compute..."
+    },
+    {
+      "startTime": 512,
+      "endTime": 611,
+      "title": "Google releases Gemini 3.8 Flash, its..."
+    },
+    {
+      "startTime": 611,
+      "endTime": 714,
+      "title": "Texas police used AI to write report on..."
+    },
+    {
+      "startTime": 714,
+      "endTime": 748,
+      "title": "Outro"
+    }
+  ]
+}

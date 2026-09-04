@@ -1,0 +1,46 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — September 4, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 27,
+      "title": "Intro"
+    },
+    {
+      "startTime": 27,
+      "endTime": 115,
+      "title": "OpenAI launches GPT-6 Astra, declares..."
+    },
+    {
+      "startTime": 115,
+      "endTime": 177,
+      "title": "OpenAI agents hijacked a German wiki"
+    },
+    {
+      "startTime": 177,
+      "endTime": 244,
+      "title": "Nvidia releases free open-source PAIR tool"
+    },
+    {
+      "startTime": 244,
+      "endTime": 307,
+      "title": "Crusoe and Thinking Machines funding"
+    },
+    {
+      "startTime": 307,
+      "endTime": 364,
+      "title": "DeepSeek plans world's largest Huawei..."
+    },
+    {
+      "startTime": 364,
+      "endTime": 429,
+      "title": "Google's WeatherNext 3"
+    },
+    {
+      "startTime": 429,
+      "endTime": 452,
+      "title": "Outro"
+    }
+  ]
+}

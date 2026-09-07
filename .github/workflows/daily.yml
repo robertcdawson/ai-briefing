@@ -71,6 +71,7 @@ jobs:
           TTS_TIMEOUT_MS: ${{ vars.TTS_TIMEOUT_MS }}
           AUDIO_CUES_ENABLED: ${{ vars.AUDIO_CUES_ENABLED }}
           AUDIO_CUE_STYLE: ${{ vars.AUDIO_CUE_STYLE }}
+          INTEREST_PROFILE: ${{ vars.INTEREST_PROFILE }}
           PODCAST_AUTHOR: ${{ vars.PODCAST_AUTHOR }}
           PODCAST_SUMMARY: ${{ vars.PODCAST_SUMMARY }}
           PODCAST_OWNER_NAME: ${{ vars.PODCAST_OWNER_NAME }}

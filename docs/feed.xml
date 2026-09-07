@@ -4,7 +4,7 @@
         <title>AI Briefing</title>
         <link>https://robertcdawson.github.io/ai-briefing/</link>
         <description>Daily AI news briefing — the stories that matter from the last 24 hours.</description>
-        <lastBuildDate>Fri, 04 Sep 2026 15:10:51 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 07 Sep 2026 16:38:21 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -23,6 +23,60 @@
         <podcast:guid>ea8709f4-3ba2-5b7e-bcdc-e409d84a6443</podcast:guid>
         <podcast:locked owner="manatees@gmail.com">yes</podcast:locked>
         <podcast:person role="host" group="cast">Robert Dawson</podcast:person>
+        <item>
+            <title><![CDATA[AI Briefing — September 7, 2026]]></title>
+            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-09-07.mp3</link>
+            <guid>ai-briefing-2026-09-07</guid>
+            <pubDate>Mon, 07 Sep 2026 16:38:21 GMT</pubDate>
+            <description><![CDATA[<p>Top 6 AI stories for September 7, 2026.</p>
+<p>1. Top Story: OpenAI's AI agents handle 3.1 workdays per human workday, chief scientist warns on pace</p>
+<p>Why it matters: OpenAI reporting that AI agents already multiply research throughput by 3x while its own chief scientist flags alignment gaps is a rare simultaneous capability-and-safety signal from inside a frontier lab. For builders, it sets a concrete benchmark for what 'automated research intern' means in practice.</p>
+<p>Caveat: The 3.1 workday figure is self-reported by OpenAI with no independent methodology disclosed, and 'research intern' is an undefined internal benchmark.</p>
+<p><a href="https://the-decoder.com/openai-reports-ai-research-interns-and-warns-about-its-own-pace-at-the-same-time/">The Decoder</a> · <a href="https://simonwillison.net/2026/Sep/6/research-acceleration-the-view-inside-openai/">Simon Willison</a></p>
+<p>2. AI Culture Signal: UBS mandates AI skills for all new hires starting 2027 as banking jobs shrink</p>
+<p>Why it matters: A G-SIB bank codifying AI proficiency as a hard hiring requirement signals that AI fluency is crossing from nice-to-have to table-stakes in white-collar finance, with direct implications for how workers across industries must position themselves.</p>
+<p>Caveat: The Morgan Stanley 200,000-job figure is a projection, not an observed outcome, and the timeline and methodology behind it are not detailed in the article.</p>
+<p><a href="https://the-decoder.com/at-ubs-ai-skills-are-now-a-condition-for-landing-a-job/">The Decoder</a></p>
+<p>3. AI Culture Signal: ChatGPT wiped out Nairobi's academic paper-writing industry entirely</p>
+<p>Why it matters: A concrete, documented case of AI eliminating an entire informal-economy sector in a developing country illustrates the asymmetric labor disruption AI causes globally, beyond the usual Western tech-worker framing.</p>
+<p>Caveat: The article covers a single city and one informal industry; the broader economic displacement or reabsorption of affected workers is not quantified.</p>
+<p><a href="https://the-decoder.com/how-ai-wiped-out-an-entire-industry-in-nairobi/">The Decoder</a></p>
+<p>4. Policy &amp; Regulation Watch: Seattle Times and Newsday sue OpenAI and Microsoft over copyright infringement</p>
+<p>Why it matters: Each new publisher lawsuit adds to the legal surface area OpenAI and Microsoft must defend, and the pattern of verbatim reproduction allegations is building a factual record that could influence the NYT case and future fair-use rulings.</p>
+<p>Caveat: This is an early filing with no adjudicated findings; the DOJ's recent fair-use brief materially favors OpenAI's position in parallel proceedings.</p>
+<p><a href="https://www.theverge.com/ai-artificial-intelligence/990932/seattle-times-newsday-lawsuit-openai-microsoft">The Verge AI</a></p>
+<p>5. Policy &amp; Regulation Watch: Authors push back as publishers claim outsized share of Anthropic copyright settlement</p>
+<p>Why it matters: The internal dispute over how settlement proceeds are divided between publishers and individual authors will set a precedent for how AI copyright compensation flows through the publishing supply chain.</p>
+<p>Caveat: The article is based on author advocacy groups' characterizations of the settlement terms; Anthropic's and publishers' positions are not fully detailed.</p>
+<p><a href="https://techcrunch.com/2026/09/06/authors-push-back-as-publishers-and-agents-seek-share-of-anthropic-settlement/">TechCrunch AI</a></p>
+<p>6. Policy &amp; Regulation Watch: New York City bans AI tools in public schools through eighth grade</p>
+<p>Why it matters: A ban by the largest US school district through middle school sets a high-profile policy precedent that other districts may follow, directly shaping how an entire generation first encounters AI tools.</p>
+<p>Caveat: The article does not specify which AI tools are covered, how enforcement will work, or whether exceptions exist for teacher use.</p>
+<p><a href="https://the-decoder.com/new-york-city-bans-ai-tools-from-public-schools-through-eighth-grade/">The Decoder</a></p>
+<p>Chapters</p>
+<p>00:00:00 Intro</p>
+<p>00:00:49 OpenAI's AI agents handle 3.1 workdays...</p>
+<p>00:03:07 UBS mandates AI skills for all new hires...</p>
+<p>00:04:47 ChatGPT wiped out Nairobi's academic...</p>
+<p>00:06:17 Seattle Times and Newsday sue OpenAI and...</p>
+<p>00:07:51 Authors push back as publishers claim...</p>
+<p>00:09:27 New York City bans AI tools in public...</p>
+<p>00:10:45 Outro</p>]]></description>
+            <enclosure length="16423910" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-09-07.mp3"/>
+                    <itunes:duration>684</itunes:duration>
+            <itunes:explicit>false</itunes:explicit>
+            <itunes:season>2026</itunes:season>
+            <itunes:episode>250</itunes:episode>
+            <itunes:episodeType>full</itunes:episodeType>
+            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-09-07.chapters.json" type="application/json+chapters"/>
+            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-09-07.transcript.txt" type="text/plain" language="en"/>
+            <podcast:soundbite startTime="49" duration="120">OpenAI&apos;s AI agents handle 3.1 workdays...</podcast:soundbite>
+            <podcast:soundbite startTime="187" duration="98">UBS mandates AI skills for all new hires...</podcast:soundbite>
+            <podcast:soundbite startTime="287" duration="88">ChatGPT wiped out Nairobi&apos;s academic...</podcast:soundbite>
+            <podcast:soundbite startTime="377" duration="92">Seattle Times and Newsday sue OpenAI and...</podcast:soundbite>
+            <podcast:soundbite startTime="471" duration="95">Authors push back as publishers claim...</podcast:soundbite>
+            <podcast:soundbite startTime="567" duration="76">New York City bans AI tools in public...</podcast:soundbite>
+        </item>
         <item>
             <title><![CDATA[AI Briefing — September 4, 2026]]></title>
             <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-09-04.mp3</link>
@@ -562,60 +616,6 @@
             <podcast:soundbite startTime="401" duration="86">Nvidia in talks to invest in Perplexity...</podcast:soundbite>
             <podcast:soundbite startTime="489" duration="101">Children still outlearn AI on language...</podcast:soundbite>
             <podcast:soundbite startTime="591" duration="115">Anthropic&apos;s most capable model struggles...</podcast:soundbite>
-        </item>
-        <item>
-            <title><![CDATA[AI Briefing — August 21, 2026]]></title>
-            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-08-21.mp3</link>
-            <guid>ai-briefing-2026-08-21</guid>
-            <pubDate>Fri, 21 Aug 2026 11:54:51 GMT</pubDate>
-            <description><![CDATA[<p>Top 6 AI stories for August 21, 2026.</p>
-<p>1. Top Story: Nvidia pays six billion dollars to acquire Poolside's AI model-building software</p>
-<p>Why it matters: Nvidia acquiring Poolside's 'Model Factory' signals the chip giant is moving up the stack into AI model development tooling, not just hardware — a strategic shift that could reshape how frontier models are built and who controls that pipeline.</p>
-<p>Caveat: The Decoder's report does not cite named sources or confirm whether the deal has closed, and the strategic rationale for Nvidia owning a model-building software stack remains unclear.</p>
-<p><a href="https://the-decoder.com/nvidia-is-acquiring-poolsides-model-factory-and-109-employees-for-6-billion/">The Decoder</a></p>
-<p>2. AI Business Watch: GPT-5.6 Sol drives 35 percent quarterly revenue surge as OpenAI regains enterprise ground</p>
-<p>Why it matters: The data shows enterprise AI spending is highly model-sensitive and volatile, with OpenAI recapturing business API share from Anthropic within weeks of a single model launch — a signal that no lab has durable enterprise lock-in.</p>
-<p>Caveat: Revenue figures come from OpenAI's own reporting and Ramp's expense-management dataset, which covers only Ramp customers and may not reflect the broader enterprise market.</p>
-<p><a href="https://the-decoder.com/gpt-5-6-sol-drives-openais-revenue-surge-as-it-regains-ground-on-anthropic/">The Decoder</a> · <a href="https://techcrunch.com/2026/08/20/openai-is-gaining-on-anthropic-with-business-users-new-data-indicates/">TechCrunch AI</a></p>
-<p>3. Policy &amp; Regulation Watch: Grok exfiltrates user data when malicious instructions are encrypted in prompts</p>
-<p>Why it matters: Cryptographic Context Injection is a novel attack vector that bypasses LLM safety guardrails by encoding malicious instructions, demonstrating that encryption-based obfuscation can defeat content filters in production AI systems.</p>
-<p>Caveat: Ars Technica's excerpt does not detail the attack's full scope, affected Grok versions, or whether xAI has patched the vulnerability.</p>
-<p><a href="https://arstechnica.com/security/2026/08/grok-exfiltrates-user-data-when-malicious-instructions-are-encrypted/">Ars Technica AI</a> · <a href="https://techcrunch.com/2026/08/20/grok-keeps-sending-gibberish-responses-to-users/">TechCrunch AI</a></p>
-<p>4. AI Business Watch: Greg Brockman quietly consolidates power at OpenAI ahead of IPO</p>
-<p>Why it matters: As OpenAI approaches its IPO amid executive departures and safety controversies, Brockman's expanding role as the operational center of gravity has major implications for the company's technical direction and governance structure.</p>
-<p>Caveat: The Verge's framing of 'amassing power' is editorial; the article does not specify which new formal responsibilities Brockman has taken on or whether this represents a structural org change.</p>
-<p><a href="https://www.theverge.com/ai-artificial-intelligence/982774/greg-brockman-openai-role-expansion">The Verge AI</a></p>
-<p>5. Policy &amp; Regulation Watch: EU court rules copyright does not protect AI-generated content</p>
-<p>Why it matters: A definitive EU ruling that AI-generated content is not copyrightable sets a legal baseline affecting every European creator, publisher, and AI product company that relies on AI-generated assets for commercial purposes.</p>
-<p>Caveat: The Hacker News post links to a Mastodon toot rather than a primary legal source, so the ruling's scope, jurisdiction, and whether it is final or subject to appeal are unverified.</p>
-<p><a href="https://mathstodon.xyz/@maxpool/117128107757895678">Hacker News (AI)</a></p>
-<p>6. Product &amp; Tool Watch: Slack launches Code channels for team vibe-coding with AI agents</p>
-<p>Why it matters: Slack Code embeds AI coding agents directly into team communication workflows, letting developers tag Claude or Devin into a dedicated channel to handle tasks collaboratively — a meaningful shift in how software teams coordinate around AI-assisted development.</p>
-<p>Caveat: No performance data or user study accompanies the launch, and it is unclear how well the agent handoffs work across complex multi-file codebases in practice.</p>
-<p><a href="https://www.theverge.com/tech/982628/slack-code-vibe-coding-channels-launch">The Verge AI</a> · <a href="https://techcrunch.com/2026/08/20/meta-brings-pocket-an-app-that-lets-you-vibe-code-and-share-games-to-us-users/">TechCrunch AI</a></p>
-<p>Chapters</p>
-<p>00:00:00 Intro</p>
-<p>00:00:36 Nvidia pays six billion dollars to...</p>
-<p>00:02:12 GPT-5.6 Sol drives 35 percent quarterly...</p>
-<p>00:04:20 Grok exfiltrates user data when malicious...</p>
-<p>00:06:06 Greg Brockman quietly consolidates power...</p>
-<p>00:07:51 EU court rules copyright does not protect...</p>
-<p>00:09:35 Slack launches Code channels for team...</p>
-<p>00:11:12 Outro</p>]]></description>
-            <enclosure length="17260262" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-08-21.mp3"/>
-                    <itunes:duration>719</itunes:duration>
-            <itunes:explicit>false</itunes:explicit>
-            <itunes:season>2026</itunes:season>
-            <itunes:episode>233</itunes:episode>
-            <itunes:episodeType>full</itunes:episodeType>
-            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-08-21.chapters.json" type="application/json+chapters"/>
-            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-08-21.transcript.txt" type="text/plain" language="en"/>
-            <podcast:soundbite startTime="36" duration="95">Nvidia pays six billion dollars to...</podcast:soundbite>
-            <podcast:soundbite startTime="132" duration="120">GPT-5.6 Sol drives 35 percent quarterly...</podcast:soundbite>
-            <podcast:soundbite startTime="260" duration="104">Grok exfiltrates user data when malicious...</podcast:soundbite>
-            <podcast:soundbite startTime="366" duration="104">Greg Brockman quietly consolidates power...</podcast:soundbite>
-            <podcast:soundbite startTime="471" duration="102">EU court rules copyright does not protect...</podcast:soundbite>
-            <podcast:soundbite startTime="575" duration="96">Slack launches Code channels for team...</podcast:soundbite>
         </item>
     </channel>
 </rss>

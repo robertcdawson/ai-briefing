@@ -1,0 +1,101 @@
+AI Briefing — September 7, 2026
+Date: 2026-09-07
+
+Intro
+
+OpenAI's chief scientist is publicly warning that his own lab is moving too fast to align safely — and that's not a critic speaking from outside, that's Jakub Pachocki, the person responsible for the research, saying it on September 7th.
+
+The number underneath that warning is 3.1: AI agents are now handling three-point-one workdays of research output for every one workday a human puts in inside OpenAI's pipeline. That ratio has been climbing for years, but this is the first time the lab has named it and flagged the safety gap in the same breath.
+
+The UBS hiring mandate is also worth your attention today — but the OpenAI story is where we start.
+
+Top Story: OpenAI's AI agents handle 3.1 workdays per human workday, chief scientist warns on pace
+
+The trajectory here didn't start this week. A few years ago, AI assisted researchers. Then it accelerated them. Then it started running experiments autonomously. Each step was incremental enough that no single moment felt like a threshold being crossed — until you look at the cumulative ratio and it reads 3.1 to one.
+
+That's the figure OpenAI is now reporting internally: for every human workday going into the research pipeline, AI agents are producing the equivalent of three-point-one workdays of output. OpenAI is calling this the 'automated research intern' milestone — their stated goal, now apparently met.
+
+What that means concretely: agents are not just summarizing papers or drafting code stubs. They're doing enough of the actual research work that the lab considers them intern-level contributors at scale. That's a meaningful internal benchmark, even if OpenAI hasn't published the methodology behind how they're measuring it.
+
+And here's where it gets structurally unusual. Jakub Pachocki, OpenAI's chief scientist — the person whose job is to push capability forward — is the one saying publicly that no lab, including his own, has adequate alignment or monitoring infrastructure to responsibly scale at maximum speed right now. A capability leader flagging a safety ceiling on his own work is not a common thing to see.
+
+The 3.1 figure is self-reported, with no external audit. OpenAI has every incentive to signal progress to investors and recruits. But the simultaneous safety warning from Pachocki cuts against pure hype: you don't publicly constrain your own roadmap unless you believe the constraint is real.
+
+For builders watching this: the 'automated research intern' framing sets a concrete reference point. If OpenAI's agents are doing intern-level research at 3x human throughput, the question for any lab or team running agentic workflows is what their own ratio looks like — and whether their monitoring is keeping pace with it.
+
+The UBS story is a different angle on the same underlying shift.
+Source: https://the-decoder.com/openai-reports-ai-research-interns-and-warns-about-its-own-pace-at-the-same-time/
+Source: https://simonwillison.net/2026/Sep/6/research-acceleration-the-view-inside-openai/
+
+AI Culture Signal: UBS mandates AI skills for all new hires starting 2027 as banking jobs shrink
+
+Follow who's paying for the new requirement and who collects the benefit. UBS isn't mandating AI skills because it wants to help graduates grow. It's mandating them because it intends to run more work through fewer people, and it wants the people it does hire to already know how to operate that way.
+
+Starting in 2027, every graduate and intern entering UBS's Global Banking and Markets division has to demonstrate AI proficiency — not on a test, but in the interview itself, showing concretely how they use AI to improve their own work. Santander is already screening for this. The requirement is spreading before it's been formally announced industry-wide.
+
+Morgan Stanley projects more than two hundred thousand banking jobs in Europe will disappear within five years. That's a projection, not a count, and the methodology isn't detailed. But UBS codifying AI fluency as a hard hiring condition is an observed fact, and it points in the same direction.
+
+The people this hurts most are the ones who trained for finance careers under the old set of assumptions. Those who can get ahead of the requirement before it becomes universal are better positioned. This is one source, so treat the specific UBS details as reported but not yet independently confirmed — the direction of travel, though, is consistent with what multiple banks have been signaling for months.
+
+From UBS's hiring floors to Nairobi's informal economy, the displacement is landing unevenly.
+Source: https://the-decoder.com/at-ubs-ai-skills-are-now-a-condition-for-landing-a-job/
+
+AI Culture Signal: ChatGPT wiped out Nairobi's academic paper-writing industry entirely
+
+If you're building AI writing tools and you're thinking about your market, here's a data point you probably haven't modeled: ChatGPT didn't just compete with the academic ghostwriting industry in Nairobi — it erased it. Total collapse, not a contraction.
+
+The business model was straightforward: Kenyan writers, often university-educated and highly skilled, wrote academic papers for foreign students who needed to submit work in English. It was informal-economy work, meaning no employment contracts, no severance, no retraining programs, no safety net of any kind.
+
+ChatGPT didn't undercut the price. It made the service redundant. A foreign student who previously needed a human writer in Nairobi to produce a passable paper can now produce one themselves in minutes. The demand didn't shrink — the human intermediary was removed entirely.
+
+This is one source covering one city and one sector. The broader economic fate of the workers who lost that income isn't quantified. But as a concrete, documented case of AI eliminating an entire informal-economy sector in a developing country, it's a sharper illustration than most think-pieces offer. The disruption stories that tend to get covered are about Western knowledge workers. This one isn't.
+
+The Seattle Times and Newsday filed a lawsuit this week that touches a related question about who owns the content AI was trained on.
+Source: https://the-decoder.com/how-ai-wiped-out-an-entire-industry-in-nairobi/
+
+Policy & Regulation Watch: Seattle Times and Newsday sue OpenAI and Microsoft over copyright infringement
+
+These lawsuits are not going to be the ones that break OpenAI legally. That's my read, and here's why.
+
+Seattle Times and Newsday filed this week alleging that OpenAI reproduced verbatim passages from their journalism in model outputs. Microsoft is named as a co-defendant because Copilot runs on OpenAI's technology. The allegations mirror what The New York Times, Ziff Davis, Merriam-Webster, and Encyclopedia Britannica have already filed.
+
+We covered this Monday when the Trump DOJ filed a brief backing fair use for AI training in the NYT case. That call — that the DOJ brief materially reduces near-term legal risk for labs — still holds. The government's position now on record favors OpenAI, and that matters in parallel proceedings.
+
+What each new filing does add, though, is factual record. If multiple publishers are independently documenting verbatim reproduction in outputs, that pattern of evidence accumulates across cases. It doesn't determine the fair-use question, but it shapes what judges and juries see.
+
+The legal surface area OpenAI and Microsoft are defending keeps expanding. The DOJ brief is a meaningful counterweight, but it's not a dismissal. This is still an early filing with no adjudicated findings — nothing has been decided.
+
+The Anthropic settlement story has a related but different internal problem.
+Source: https://www.theverge.com/ai-artificial-intelligence/990932/seattle-times-newsday-lawsuit-openai-microsoft
+
+Policy & Regulation Watch: Authors push back as publishers claim outsized share of Anthropic copyright settlement
+
+Here's what doesn't add up: Anthropic settled a copyright case brought on behalf of authors. The money is supposed to flow to the people whose work was used. But authors are now alleging that publishers and literary agents are claiming a disproportionate cut before individual writers see anything.
+
+We've been tracking the Anthropic copyright situation since early September, when Sony's lawsuit surfaced internal Slack messages with staff praising the piracy site Z-Library — a detail with willfulness implications. My read then was that the Slack excerpt was the most legally dangerous element of that case. That question is still open; this week's dispute is about what happens after a settlement, not about liability.
+
+The structure mirrors what happened in music streaming: labels negotiated the royalty rates, and individual artists discovered later that their contracts entitled them to far less than the headline number suggested. Publishers and agents sit between Anthropic's payment and the authors who actually created the work, and that intermediary layer is now contested.
+
+This is being reported through author advocacy groups' characterizations of the settlement terms. Anthropic's position and the publishers' full accounting aren't in the public record yet. The specific amounts are unclear — what's clear is that the distribution mechanism is already in dispute before funds have been paid out, which will slow or complicate the whole process.
+
+New York City's school board took a different kind of action this week.
+Source: https://techcrunch.com/2026/09/06/authors-push-back-as-publishers-and-agents-seek-share-of-anthropic-settlement/
+
+Policy & Regulation Watch: New York City bans AI tools in public schools through eighth grade
+
+The obvious objection is that banning AI from schools doesn't make students less likely to use it — it just means they use it outside school, without any guidance on how to think critically about what it produces. That's a reasonable objection, and it's probably right.
+
+But New York City isn't making a claim about what students will do at home. It's making a claim about what the largest public school district in the United States will teach through eighth grade — and the implicit argument is that foundational skills need to be built before AI becomes a crutch. Whether that's correct is a genuine empirical question that nobody has answered yet.
+
+The ban covers all public schools through the end of middle school. No exceptions are described in the available reporting, and there's no detail on enforcement or whether the restriction applies to teachers as well as students. This is one source, so the specifics of implementation remain unclear.
+
+What is clear is the precedent signal. When the largest district in the country draws a line at eighth grade, other districts have a reference point to cite — in either direction. Some will follow. Some will use it to argue for the opposite approach. Either way, it just became a harder question to ignore.
+Source: https://the-decoder.com/new-york-city-bans-ai-tools-from-public-schools-through-eighth-grade/
+
+Outro
+
+The OpenAI throughput story and the UBS hiring mandate are describing the same underlying dynamic from opposite ends: AI is compressing the human labor required to do knowledge work, and institutions are now reorganizing around that compression rather than waiting to see if it stabilizes.
+
+One is a lab accelerating its own research pipeline past the point its safety infrastructure can confidently track. The other is a bank telling applicants the new floor for entry-level work has already moved.
+
+Know what ratio you're actually running at. Talk to you tomorrow.

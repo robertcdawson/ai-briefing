@@ -4,7 +4,7 @@
         <title>AI Briefing</title>
         <link>https://robertcdawson.github.io/ai-briefing/</link>
         <description>Daily AI news briefing — the stories that matter from the last 24 hours.</description>
-        <lastBuildDate>Mon, 07 Sep 2026 16:38:21 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 08 Sep 2026 11:31:14 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -23,6 +23,60 @@
         <podcast:guid>ea8709f4-3ba2-5b7e-bcdc-e409d84a6443</podcast:guid>
         <podcast:locked owner="manatees@gmail.com">yes</podcast:locked>
         <podcast:person role="host" group="cast">Robert Dawson</podcast:person>
+        <item>
+            <title><![CDATA[AI Briefing — September 8, 2026]]></title>
+            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-09-08.mp3</link>
+            <guid>ai-briefing-2026-09-08</guid>
+            <pubDate>Tue, 08 Sep 2026 11:31:14 GMT</pubDate>
+            <description><![CDATA[<p>Top 6 AI stories for September 8, 2026.</p>
+<p>1. Top Story: Anthropic reportedly signed 517 billion dollars in compute deals despite CEO's warnings</p>
+<p>Why it matters: The scale of Anthropic's compute commitments — $517 billion in eleven months — dwarfs its disclosed revenue and contradicts Dario Amodei's own public warnings about reckless AI investment, raising serious questions about strategic credibility and financial sustainability.</p>
+<p>Caveat: The $517 billion figure is reported by The Decoder as 'reportedly' and deal terms, payment schedules, and whether this overlaps with the previously reported $35 billion Lambda deal remain unconfirmed.</p>
+<p><a href="https://the-decoder.com/anthropic-reportedly-signs-517-billion-in-compute-deals-after-dario-amodei-warned-rivals-about-reckless-risk/">The Decoder</a></p>
+<p>2. AI Business Watch: Mistral AI raises 3 billion euros in Europe's largest-ever tech funding round</p>
+<p>Why it matters: This is the largest tech funding round in European history, signaling that European AI labs are attracting capital at a scale previously reserved for US counterparts. For builders and researchers, it raises the question of whether Mistral can close the capability gap with OpenAI and Anthropic despite acknowledged lag.</p>
+<p>Caveat: The Decoder explicitly notes Mistral is lagging behind rivals on capabilities, making it unclear whether the valuation reflects genuine competitive position or geopolitical demand for a European AI champion.</p>
+<p><a href="https://the-decoder.com/mistral-ai-raises-3-billion-euros-in-europes-largest-ever-tech-funding-round-despite-lagging-behind-rivals/">The Decoder</a></p>
+<p>3. Research Breakthrough: AI-designed drug reverses biological aging markers by up to six years in trial</p>
+<p>Why it matters: Rentosertib is among the first AI-designed drugs to show measurable biological age reversal in a human clinical trial, published in Nature Biotechnology, offering a concrete proof point for AI-accelerated drug discovery pipelines.</p>
+<p>Caveat: The trial covered only 42 patients, the drug has not been tested in healthy people, and biological clock measurements are surrogate markers — not direct evidence of extended lifespan or reduced disease risk.</p>
+<p><a href="https://the-decoder.com/ai-designed-drug-appears-to-turn-back-the-bodys-biological-clock-in-early-trial/">The Decoder</a></p>
+<p>4. Product &amp; Tool Watch: GPT-6 Astra autonomously completes Portal puzzle game in under 24 hours</p>
+<p>Why it matters: An AI model completing a full commercial puzzle game requiring spatial reasoning, physics intuition, and long-horizon planning without any human intervention is a concrete, reproducible demonstration of agentic capability that goes beyond benchmark scores.</p>
+<p>Caveat: This is a single developer's experiment with code published on GitHub but not peer-reviewed; Portal's puzzle structure may be partially represented in training data, and the 24-hour wall-clock time includes idle compute, not just active reasoning.</p>
+<p><a href="https://the-decoder.com/gpt-6-astra-beat-portal-start-to-finish-without-human-help-in-under-24-hours/">The Decoder</a></p>
+<p>5. Research Breakthrough: Qwen-Drive 1.0 tells you why it brakes — just don't expect the explanation to match the maneuver</p>
+<p>Why it matters: Qwen-Drive 1.0 integrates perception, traffic Q&amp;A, and route planning in a single model, advancing the case for unified cockpit-and-driving systems — but its finding that text-image models do not automatically acquire 3D spatial understanding has direct implications for multimodal AI research broadly.</p>
+<p>Caveat: The model's explanations for braking decisions do not reliably match its actual maneuvers, which is a significant safety-relevant gap that the researchers acknowledge but have not resolved.</p>
+<p><a href="https://the-decoder.com/qwen-drive-1-0-tells-you-why-it-brakes-just-dont-expect-the-explanation-to-match-the-maneuver/">The Decoder</a></p>
+<p>6. AI Business Watch: ChatGPT claws back web traffic share to 55.5 percent as Gemini's brief comeback fades</p>
+<p>Why it matters: Web traffic share is a leading indicator of developer and consumer platform lock-in; ChatGPT's recovery after GPT-6 Astra's launch, combined with Claude's nearly fivefold year-over-year growth, signals a consolidating but still contested market structure.</p>
+<p>Caveat: Similarweb data excludes mobile apps and desktop clients, which are increasingly dominant usage channels, meaning the web-traffic figures likely understate Gemini's and Claude's true reach.</p>
+<p><a href="https://the-decoder.com/chatgpt-claws-back-web-traffic-share-to-55-5-percent-as-geminis-brief-comeback-fades/">The Decoder</a></p>
+<p>Chapters</p>
+<p>00:00:00 Intro</p>
+<p>00:00:29 Anthropic reportedly signed 517 billion...</p>
+<p>00:02:17 Mistral AI raises 3 billion euros in...</p>
+<p>00:03:44 AI-designed drug reverses biological...</p>
+<p>00:05:24 GPT-6 Astra autonomously completes Portal...</p>
+<p>00:07:00 Qwen-Drive 1.0 tells you why it brakes —...</p>
+<p>00:08:21 ChatGPT claws back web traffic share to...</p>
+<p>00:09:29 Outro</p>]]></description>
+            <enclosure length="14786391" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-09-08.mp3"/>
+                    <itunes:duration>616</itunes:duration>
+            <itunes:explicit>false</itunes:explicit>
+            <itunes:season>2026</itunes:season>
+            <itunes:episode>251</itunes:episode>
+            <itunes:episodeType>full</itunes:episodeType>
+            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-09-08.chapters.json" type="application/json+chapters"/>
+            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-09-08.transcript.txt" type="text/plain" language="en"/>
+            <podcast:soundbite startTime="29" duration="107">Anthropic reportedly signed 517 billion...</podcast:soundbite>
+            <podcast:soundbite startTime="137" duration="86">Mistral AI raises 3 billion euros in...</podcast:soundbite>
+            <podcast:soundbite startTime="224" duration="98">AI-designed drug reverses biological...</podcast:soundbite>
+            <podcast:soundbite startTime="324" duration="95">GPT-6 Astra autonomously completes Portal...</podcast:soundbite>
+            <podcast:soundbite startTime="420" duration="79">Qwen-Drive 1.0 tells you why it brakes —...</podcast:soundbite>
+            <podcast:soundbite startTime="501" duration="66">ChatGPT claws back web traffic share to...</podcast:soundbite>
+        </item>
         <item>
             <title><![CDATA[AI Briefing — September 7, 2026]]></title>
             <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-09-07.mp3</link>
@@ -562,60 +616,6 @@
             <podcast:soundbite startTime="355" duration="96">Stanford study finds AI is hitting...</podcast:soundbite>
             <podcast:soundbite startTime="453" duration="108">AI tools more than double Chinese...</podcast:soundbite>
             <podcast:soundbite startTime="562" duration="102">Viral essay argues AI coding reliance...</podcast:soundbite>
-        </item>
-        <item>
-            <title><![CDATA[AI Briefing — August 24, 2026]]></title>
-            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-08-24.mp3</link>
-            <guid>ai-briefing-2026-08-24</guid>
-            <pubDate>Mon, 24 Aug 2026 11:52:50 GMT</pubDate>
-            <description><![CDATA[<p>Top 6 AI stories for August 24, 2026.</p>
-<p>1. AI Culture Signal: AI agent fires human employee for first time, needed human prompting to act</p>
-<p>Why it matters: This is the first documented case of an AI agent executing a termination decision in a real workplace, marking a concrete milestone in AI authority over employment — with significant implications for labor and HR workflows.</p>
-<p>Caveat: This is a single case at one small San Francisco store run by Andon Labs, and the AI required human operators to remind it of its own rules before acting.</p>
-<p><a href="https://the-decoder.com/an-ai-boss-fired-its-first-employee-but-only-after-humans-reminded-it-of-its-own-rules/">The Decoder</a></p>
-<p>2. Product &amp; Tool Watch: Cerebras CS-4 accelerator doubles performance on same chip architecture</p>
-<p>Why it matters: A 2x performance jump on the same chip footprint directly affects inference speed and cost for any team running large-scale AI workloads, and Cerebras already powers OpenAI's GPT-5.6 Sol Ultrafast mode.</p>
-<p>Caveat: Performance claims come from Cerebras CEO Andrew Feldman with no independent benchmark validation yet published.</p>
-<p><a href="https://the-decoder.com/cerebras-unveils-cs-4-with-double-the-performance-on-the-same-chip/">The Decoder</a></p>
-<p>3. Policy &amp; Regulation Watch: AI chatbots repeatedly direct pregnant users to anti-abortion sites without disclosure</p>
-<p>Why it matters: An AlgorithmWatch investigation covering four major chatbots reveals systematic bias in health-sensitive queries, raising urgent questions about AI product liability, disclosure requirements, and harm to vulnerable users.</p>
-<p>Caveat: The study covers 270 responses in specific locales and may not generalize across all languages, regions, or chatbot configurations.</p>
-<p><a href="https://the-decoder.com/ai-chatbots-regularly-link-pregnant-users-to-anti-abortion-websites-without-disclosure/">The Decoder</a></p>
-<p>4. AI Business Watch: Nvidia in talks to invest in Perplexity at over 30 billion dollar valuation</p>
-<p>Why it matters: Nvidia's strategic investment pattern — backing AI companies that then buy its chips — signals continued consolidation of the AI infrastructure stack, and Perplexity's tripling revenue shows AI search is a real business.</p>
-<p>Caveat: The deal is unconfirmed and sourced from The Information; valuation and terms could shift before closing.</p>
-<p><a href="https://the-decoder.com/nvidia-in-talks-to-invest-in-perplexity-at-30-billion-plus-valuation/">The Decoder</a></p>
-<p>5. Research Breakthrough: Children still outlearn AI on language acquisition and researchers don't know why</p>
-<p>Why it matters: Understanding the gap between child language learning and LLM training efficiency could unlock fundamentally more data-efficient architectures, a core challenge for AI researchers building next-generation models.</p>
-<p>Caveat: MIT Tech Review's framing is qualitative and the article does not cite a specific new study, making it difficult to assess the empirical basis of the claims.</p>
-<p><a href="https://www.technologyreview.com/2026/08/24/1141740/kids-machines-language-learning/">MIT Tech Review AI</a></p>
-<p>6. AI Business Watch: Anthropic's most capable model struggles to attract users as cheaper alternatives win</p>
-<p>Why it matters: Confirms a structural pattern in AI adoption: cost sensitivity is overriding capability at the margin, which shapes how labs should price and position frontier models and how developers should choose APIs.</p>
-<p>Caveat: Simon Willison's post links to an external article without providing figures, so the depth of the adoption gap is unclear from available excerpts.</p>
-<p><a href="https://simonwillison.net/2026/Aug/23/anthropics-best-ai-model-struggles-to-attract-users-as-cheaper-t/">Simon Willison</a> · <a href="https://simonwillison.net/2026/Aug/23/drew-breunig/">Simon Willison</a></p>
-<p>Chapters</p>
-<p>00:00:00 Intro</p>
-<p>00:00:39 AI agent fires human employee for first...</p>
-<p>00:02:49 Cerebras CS-4 accelerator doubles...</p>
-<p>00:04:44 AI chatbots repeatedly direct pregnant...</p>
-<p>00:06:41 Nvidia in talks to invest in Perplexity...</p>
-<p>00:08:09 Children still outlearn AI on language...</p>
-<p>00:09:51 Anthropic's most capable model struggles...</p>
-<p>00:11:48 Outro</p>]]></description>
-            <enclosure length="17733729" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-08-24.mp3"/>
-                    <itunes:duration>739</itunes:duration>
-            <itunes:explicit>false</itunes:explicit>
-            <itunes:season>2026</itunes:season>
-            <itunes:episode>236</itunes:episode>
-            <itunes:episodeType>full</itunes:episodeType>
-            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-08-24.chapters.json" type="application/json+chapters"/>
-            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-08-24.transcript.txt" type="text/plain" language="en"/>
-            <podcast:soundbite startTime="39" duration="120">AI agent fires human employee for first...</podcast:soundbite>
-            <podcast:soundbite startTime="169" duration="113">Cerebras CS-4 accelerator doubles...</podcast:soundbite>
-            <podcast:soundbite startTime="284" duration="116">AI chatbots repeatedly direct pregnant...</podcast:soundbite>
-            <podcast:soundbite startTime="401" duration="86">Nvidia in talks to invest in Perplexity...</podcast:soundbite>
-            <podcast:soundbite startTime="489" duration="101">Children still outlearn AI on language...</podcast:soundbite>
-            <podcast:soundbite startTime="591" duration="115">Anthropic&apos;s most capable model struggles...</podcast:soundbite>
         </item>
     </channel>
 </rss>

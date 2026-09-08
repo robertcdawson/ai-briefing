@@ -36,6 +36,9 @@ Early pipeline exit when today's sidecar JSON and MP3 both already exist under `
 ### Specifics
 Three to five short, article-grounded details the curator extracts per Story Cluster (exact figures with a comparison, named people/orgs with roles, one short verbatim quote with speaker). They ride the cluster into the script prompt so the writer narrates from real material instead of paraphrasing the headline. Optional on the cluster (`specifics?: string[]`); empty/malformed arrays are dropped at normalize time. Fetch keeps ~900 characters of excerpt per article so there is enough raw text to pull from.
 
+### Interest profile
+A free-text listener salience description (`DEFAULT_INTEREST_PROFILE` in `src/interests.ts`, overridable via `INTEREST_PROFILE`) injected into the curate system prompt as a **LISTENER INTEREST PROFILE** block. It nudges importance scores toward topical leanings; it is not a filter. An empty override disables the block so the prompt matches the pre-personalization shape. The block's major-news floor requires landmark AI developments to surface regardless of profile fit. Distinct from the Curation Ledger (coverage memory vs topical lean).
+
 ## Cross-episode memory
 
 ### Curation Ledger
@@ -82,6 +85,12 @@ A low-temperature copy-editing pass (`src/earEdit.ts`) that runs between script 
 
 ### Delivery hint
 An optional 3-6 word per-segment spoken-delivery note (e.g. "flat — let the number speak") that the script writer attaches to a segment; `src/tts.ts` folds it into that segment's TTS instructions. OpenAI `gpt-4o-mini-tts` path only — the OpenRouter/Gemini TTS path has no delivery-instructions channel and uses inline audio tags instead. Transient: carried from script to tts, not persisted to the sidecar.
+
+### Pronunciation lexicon
+A committed `{ term, say }` list in `src/pronunciations.ts` that respeaks hard-to-pronounce AI/lab/brand/researcher names for the synthesizer. Applied only at the TTS speech-request boundary (`applyPronunciations` in `buildPartSpeechRequest`); whole-word, case-insensitive, longest-match-first. Canonical script, sidecar, chapters, and transcript keep the correct spelling — only the spoken audio gets the phonetic form.
+
+### Inline audio tags
+A small allow-list of bracketed performance cues (`ALLOWED_INLINE_AUDIO_TAGS` in `src/audioTags.ts`, e.g. `[chuckles]`, `[skeptical]`) that Gemini TTS models interpret as delivery hints. Enabled in the script prompt only when the active TTS model id matches `/gemini[^/]*-tts/i`. Non-supporting models strip allow-listed tags before synthesis; transcripts always strip them. Distinct from Delivery hint (OpenAI instructions channel).
 
 ### Style report
 `npm run style:report` — a read-only CLI (`scripts/style-report.ts`) that prints per-episode prose metrics (sentence-length variance, antithesis/triad/metadiscourse counts) and the top repeated 3/4-grams across recent transcripts, for checking whether the register is actually varying over time rather than just reading better on one sample episode. Reads local transcripts only; makes no API calls and always exits 0.

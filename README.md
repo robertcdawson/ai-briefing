@@ -42,12 +42,15 @@ ai-briefing/
 │   ├── preflight.ts              # Fail-fast env + ffmpeg/ffprobe checks
 │   ├── fetch.ts                  # RSS aggregation + URL canonicalization/dedup
 │   ├── curate.ts                 # Cluster + score; suppress/thread vs. recent coverage
+│   ├── interests.ts              # Listener interest profile (curation salience nudge)
 │   ├── ledger.ts                 # Prior-coverage window + recent style/phrase profiles
 │   ├── voice.ts                  # Persistent host identity + register exemplars
 │   ├── script.ts                 # Spoken script (host voice, segment shapes, anti-repetition)
 │   ├── earEdit.ts                # Non-blocking copy-edit pass between script and tts
 │   ├── ngrams.ts                 # Shared n-gram extraction (phrase tripwire + style report)
 │   ├── styleMetrics.ts           # Per-episode prose metrics for `npm run style:report`
+│   ├── pronunciations.ts         # Phonetic respellings applied only at the TTS boundary
+│   ├── audioTags.ts              # Inline delivery-tag allow-list (Gemini TTS)
 │   ├── tts.ts                    # Text → MP3 chunks
 │   ├── ttsProvider.ts            # TTS provider/model/voice resolution
 │   ├── audio.ts                  # ffmpeg stingers + concat + loudnorm + ID3
@@ -113,7 +116,7 @@ OPENAI_API_KEY=...          # required when TTS_PROVIDER=openai (default)
 FEED_BASE_URL=https://USER.github.io/ai-briefing
 ```
 
-Optional keys (`TTS_*`, `PODCAST_*`, `HEALTHCHECK_URL`, `STAGE_CACHE_DIR`, script model overrides) are listed under **Configure GitHub Actions** below and in `AGENTS.md`. `FEED_BASE_URL` is the public URL where `docs/` will be served.
+Optional keys (`TTS_*`, `PODCAST_*`, `INTEREST_PROFILE`, `HEALTHCHECK_URL`, `STAGE_CACHE_DIR`, script model overrides) are listed under **Configure GitHub Actions** below and in `AGENTS.md`. `FEED_BASE_URL` is the public URL where `docs/` will be served.
 
 ### 4. Preflight local configuration
 
@@ -203,6 +206,7 @@ In the repo's **Settings → Secrets and variables → Actions**:
 - `TTS_TIMEOUT_MS` — `180000` by default; raise only if speech generation is still timing out
 - `AUDIO_CUES_ENABLED` — `true` (set `false` to disable section stingers)
 - `AUDIO_CUE_STYLE` — `tone`, `chime`, `tick`, or `asset` (committed music stingers from `assets/audio/`)
+- `INTEREST_PROFILE` — optional free-text override of the listener interest profile used to nudge curation importance scores; unset uses `DEFAULT_INTEREST_PROFILE` in `src/interests.ts`; set to empty to disable personalization for that run
 - `PODCAST_AUTHOR`
 - `PODCAST_SUMMARY`
 - `PODCAST_OWNER_NAME`
@@ -328,6 +332,8 @@ Set `TTS_PROVIDER`, `TTS_MODEL`, and `TTS_VOICE` in Actions variables (or `.env`
 - **`TTS_PROVIDER=openai` (default):** model defaults to `gpt-4o-mini-tts`, which supports delivery instructions. Legacy `tts-1` and `tts-1-hd` still work, but they ignore delivery instructions. Voice defaults to `marin`.
 - **`TTS_PROVIDER=openrouter`:** routes speech through OpenRouter's OpenAI-compatible `/audio/speech` endpoint, opening up third-party voice models. The default is `google/gemini-3.1-flash-tts-preview` (voice `Charon`), which interprets sparse inline delivery tags such as `[chuckles]` that the script writer adds automatically when this provider is active. Uses `OPENROUTER_API_KEY`.
 
+Hard-to-pronounce names are respelled for the synthesizer only via `PRONUNCIATIONS` in `src/pronunciations.ts` (whole-word, case-insensitive). Canonical scripts and transcripts keep the correct spelling. Inline tags are allow-listed in `src/audioTags.ts`, stripped for non-Gemini-TTS models and from published transcripts. Details: `docs/solutions/best-practices/tts-pronunciations-and-inline-audio-tags.md`.
+
 The **voice ID controls timbre** — it's the only lever for *how the voice sounds*; delivery instructions can't change it. For OpenAI models, tune performance separately with `TTS_GLOBAL_STYLE`, `TTS_NARRATOR_STYLE`, and optional `TTS_INTRO_STYLE` / `TTS_STORY_STYLE` / `TTS_OUTRO_STYLE` — see `src/speakerProfiles.ts` for built-in defaults. Takes effect on the next run only — past episodes remain in their original voice.
 
 On top of those fixed per-section styles, the script writer can also attach a short per-segment **delivery hint** (3–6 words, e.g. "flat — let the number speak") to an individual story; `src/tts.ts` folds it into that segment's instructions on the OpenAI path only — the OpenRouter/Gemini path has no delivery-instructions channel and relies on inline audio tags instead. It's transient: carried from script to tts, not persisted to the sidecar.
@@ -386,6 +392,16 @@ For script generation, set `OPENROUTER_SCRIPT_MODEL` in Actions variables (or `.
 To diagnose an OpenRouter-routed model's structured-output behavior without running TTS or writing episode files, run `npm run diagnose:script-model`. The probe uses `OPENROUTER_API_KEY`, targets `OPENROUTER_DIAGNOSTIC_MODEL` or the first configured script model through OpenRouter, and logs safe request/response metadata for both a tiny JSON-schema call and the production script-schema call. `OPENROUTER_DIAGNOSTIC_MODEL` is optional and local-only. Set `EPISODE_DATE=YYYY-MM-DD` to replay that day's published curation records through the current prompt (including style snippets) and print the generated script for prompt A/B — useful after anti-repetition or persona edits.
 
 For curation, edit `src/curate.ts` (`MODEL` constant). For feed sources, edit `src/feeds.ts` (`SOURCES`) and push. The next scheduled run picks up the change.
+
+### Retune listener interest (curation salience)
+
+Curation importance scoring is nudged by a listener interest profile — a weighting hint, not a filter. Landmark AI news still must surface regardless of theme fit.
+
+- **Standing lean for every run (including CI):** edit `DEFAULT_INTEREST_PROFILE` in `src/interests.ts` and commit.
+- **One-off override:** set `INTEREST_PROFILE` in `.env` or as an Actions variable (forwarded by `daily.yml`).
+- **Disable personalization for a run:** set `INTEREST_PROFILE` to an empty string.
+
+Details and the major-news floor: `docs/solutions/best-practices/interest-profile-curation-salience.md`.
 
 ### Pause the pipeline
 
@@ -449,6 +465,7 @@ Both `docs/episodes/YYYY-MM-DD.json` and `.mp3` already exist for today's episod
 1. **ID3 tags:** `ffprobe docs/episodes/YYYY-MM-DD.mp3` — confirm title/artist/album are right.
 2. **Loudness:** play it back on the same device you'd normally use; if it's noticeably quieter or louder than other podcasts, the loudnorm filter isn't working — check the `audio.ts` ffmpeg invocation.
 3. **Section cues:** if stingers are too prominent for your taste, set `AUDIO_CUES_ENABLED=false` and re-run.
+4. **Mispronounced names:** add a `{ term, say }` entry to `PRONUNCIATIONS` in `src/pronunciations.ts` and regenerate — transcripts keep the correct spelling; only the spoken audio changes. See `docs/solutions/best-practices/tts-pronunciations-and-inline-audio-tags.md`.
 
 ### Workflow fails
 
@@ -500,7 +517,7 @@ Expected: modest OpenRouter usage for curation and default (Sonnet) script gener
 - Source-quality scoring dashboard
 - ElevenLabs TTS swap
 - Slack/Discord webhook on workflow failure
-- Topic preferences (more research papers, less fundraising news)
+- Topic preferences beyond the interest-profile nudge (more research papers, less fundraising news)
 
 ## License
 

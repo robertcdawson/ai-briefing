@@ -1,0 +1,46 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — September 10, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 21,
+      "title": "Intro"
+    },
+    {
+      "startTime": 21,
+      "endTime": 71,
+      "title": "Anthropic researcher quits warning..."
+    },
+    {
+      "startTime": 71,
+      "endTime": 126,
+      "title": "Second mathematician accuses OpenAI of..."
+    },
+    {
+      "startTime": 126,
+      "endTime": 174,
+      "title": "AI alignment pioneer Paul Christiano..."
+    },
+    {
+      "startTime": 174,
+      "endTime": 228,
+      "title": "Suno launches v6 music model trained on..."
+    },
+    {
+      "startTime": 228,
+      "endTime": 282,
+      "title": "Top AI spenders cut per-employee costs..."
+    },
+    {
+      "startTime": 282,
+      "endTime": 337,
+      "title": "Apple launches foldable iPhone Duo with..."
+    },
+    {
+      "startTime": 337,
+      "endTime": 356,
+      "title": "Outro"
+    }
+  ]
+}

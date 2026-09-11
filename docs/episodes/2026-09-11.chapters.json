@@ -1,0 +1,46 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — September 11, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 30,
+      "title": "Intro"
+    },
+    {
+      "startTime": 30,
+      "endTime": 103,
+      "title": "OpenAI releases Agents API"
+    },
+    {
+      "startTime": 103,
+      "endTime": 164,
+      "title": "DeepSeek releases 552B flash model"
+    },
+    {
+      "startTime": 164,
+      "endTime": 231,
+      "title": "Anthropic details distillation attacks"
+    },
+    {
+      "startTime": 231,
+      "endTime": 301,
+      "title": "Cognition launches SWE-2 coding model"
+    },
+    {
+      "startTime": 301,
+      "endTime": 364,
+      "title": "Users report OpenAI re-enables training..."
+    },
+    {
+      "startTime": 364,
+      "endTime": 425,
+      "title": "Spirit Airlines data faces sale to Google"
+    },
+    {
+      "startTime": 425,
+      "endTime": 461,
+      "title": "Outro"
+    }
+  ]
+}

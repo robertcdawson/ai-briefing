@@ -377,6 +377,8 @@ Every cue is padded with ~0.7s of silence around section boundaries so the show 
 
 To produce music stingers once, run `npm run stingers:generate` — it generates a ~30s instrumental bed with Google Lyria 3 via OpenRouter (~$0.04), carves the three cues out of it with ffmpeg into `assets/audio/`, and keeps the source bed so cues can be re-cut for free. Listen, commit the assets, and set `AUDIO_CUE_STYLE=asset`.
 
+Details (pad rules, concat order, loudnorm, chapter timing): `docs/solutions/best-practices/audio-section-cues-and-stingers.md`.
+
 Chapters are published two ways: a Podcasting 2.0 JSON sidecar linked from `<podcast:chapters>` and embedded MP3 ID3 chapters. Apple Podcasts supports both, but embedding the ID3 chapter metadata makes chapter markers travel with the audio file even when the hosting layer cannot serve `.chapters.json` as `application/json+chapters`.
 
 Episode descriptions are HTML show notes (`<p>` and `<a href>` only): numbered story cards with why-it-matters, caveat, and publisher-named source links, then a trailing `HH:MM:SS Title` chapter list starting at `00:00:00`. Apple Podcasts turns that timestamp block into jumpable chapters in the app; it does not accept `podcasts.apple.com?t=` deep links at publish time because the catalog episode ID does not exist yet. `buildEpisodeDescription` in `src/publish.ts` assembles this from the selected clusters; unit tests in `test/publish.apple-rss.test.ts` assert layout, escaped markup, and source links.
@@ -384,6 +386,8 @@ Episode descriptions are HTML show notes (`<p>` and `<a href>` only): numbered s
 ### Local stage cache (dev re-runs)
 
 When iterating locally after a late-stage failure (TTS/audio/publish), set `STAGE_CACHE_DIR` (for example `tmp/stage-cache`) so curate, script, and earEdit reuse prior LLM output keyed by a content hash of their inputs. The script key includes style snippets and the phrase profile; the earEdit key includes the script text plus per-cluster notes. Unset disables caching. Single-machine only — the daily Actions runner is ephemeral, so this never applies in CI.
+
+Details (key composition, non-fatal I/O, when to wipe the cache): `docs/solutions/best-practices/stage-cache-for-local-reruns.md`.
 
 ### Change the model or feed sources
 

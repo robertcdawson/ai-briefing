@@ -1,0 +1,106 @@
+AI Briefing — September 14, 2026
+Date: 2026-09-14
+
+Intro
+
+"Whoever wins AI, wins."
+
+That was the geopolitical veto delivered by Donald Trump this morning, September 14th, 2026, aimed squarely at a sudden, coordinated push by Silicon Valley's top executives to slow down their own industry.
+
+We are looking at a fundamental fracture between the people building frontier models and the people regulating them.
+
+Top Story: Amodei's AI slowdown call splits industry leaders and White House
+
+The detail that fails to add up is why Sam Altman, Elon Musk, and Demis Hassabis are suddenly using X to publicly agree with Anthropic's Dario Amodei about hitting the brakes.
+
+Last week, I said public defections over extinction timelines would force frontier labs into a corner, and that happened faster than expected.
+
+Amodei published an open letter calling to pace the frontier, and the CEOs of the world's most fiercely competitive labs fell in line to support it.
+
+Behind the scenes, OpenAI, Anthropic, and Google have reportedly spent months discussing joint self-regulation.
+
+But the mystery of how they actually enforce a pause collided immediately with Washington.
+
+Trump opposed any slowdown that might let China gain ground, framing AI dominance as a winner-take-all race.
+
+David Sacks echoed the resistance, arguing builders do not need regulations to pace themselves.
+
+The pacing proposal lacks any defined mechanism, scope, or enforcement — and Altman is simultaneously promising rapid progress will continue, leaving researchers to guess whether these talks produce binding commitments or just buy time.
+Source: https://www.theverge.com/ai-artificial-intelligence/994441/trump-mike-johnson-ai-industry-overreacting
+Source: https://stratechery.com/2026/pacing-the-frontier-ais-digital-limits-ai-commissars/
+Source: https://the-decoder.com/sam-altman-calls-for-pacing-ai-development-but-promises-rapid-progress-will-continue/
+Source: https://twitter.com/DavidSacks/status/2098973625252708460
+Source: https://techcrunch.com/2026/09/13/whats-behind-the-ai-industrys-latest-warnings-of-doom/
+
+Policy & Regulation Watch: Anthropic confirms Houthis used Claude Code
+
+The immediate reaction to hearing that a sanctioned armed group used an AI coding assistant is to assume it is just another panicked report about someone asking a chatbot for public physics equations.
+
+But a new report claims the Houthis used Claude Code specifically to develop missile guidance software, and that Anthropic itself disclosed the misuse.
+
+On Friday, I noted that Anthropic publicly naming competitors for distillation marked the end of the quiet era of threat intelligence.
+
+Now they are allegedly tracking kinetic weapons development on their own infrastructure, which forces a massive conversation about API access verification and export controls.
+
+Because this comes from a single outlet called Clash Report and Anthropic's statement has not been independently verified, the exact method of access remains opaque.
+Source: https://clashreport.com/world/articles/houthis-used-claude-code-to-develop-missile-guidance-software-anthropic-s52mnx4pwpo
+
+Product & Tool Watch: Perplexity deploys Astra autonomously
+
+Ten days ago, OpenAI launched Astra. Last week, they shipped the Agents API. Today, Perplexity has handed the model the keys to its live production systems — writing communications, changing software, and monitoring infrastructure end-to-end.
+
+When the model launched, I called the AGI marketing push noise, but said its reasoning performance would force infrastructure changes.
+
+Perplexity is proving that out, reporting that the agent checks in far less frequently than previous generations.
+
+This is one of the first major examples of a frontier model operating autonomously in a critical environment.
+
+We only know this from an OpenAI promotional case study, however — no external reliability metrics, incident rates, or details on human oversight have been disclosed.
+Source: https://openai.com/index/perplexity-improving-accuracy-with-astra
+
+Open Source Watch: Garry Tan urges US labs to distill models
+
+Training a frontier model costs billions in compute, but extracting its capabilities costs a fraction of that, which dictates exactly how the open-weight ecosystem is reacting to recent threats.
+
+Friday's Anthropic report framed model distillation as a hostile attack by Chinese firms.
+
+Today, Y Combinator president Garry Tan published a call for US open-weight labs to aggressively distill those same frontier models themselves.
+
+Tan is reframing capability extraction as a legitimate competitive strategy rather than a security breach, which complicates the export-control argument and pushes capability diffusion faster.
+
+Tan's post generated massive interest on Hacker News, though it is strictly a public opinion piece right now, lacking any technical roadmap or named lab partners.
+Source: https://techcrunch.com/2026/09/11/y-combinators-garry-tan-wants-u-s-open-weight-ai-labs-to-distill-frontier-models-too/
+
+Product & Tool Watch: ElevenLabs releases Music v2.5
+
+If you are integrating audio generation into an application this morning, you now have a second major provider offering an API backed entirely by licensed training data.
+
+ElevenLabs just released Music v2.5, explicitly stating the model was trained exclusively on licensed tracks.
+
+This comes right after Suno's v6 launch last week, turning licensed data from a legal shield into a baseline product requirement.
+
+ElevenLabs claims a blind test of nearly forty-eight thousand comparison pairs showed listeners preferred the new version over its predecessor, and they are offering it via app and API with both free and pro tiers.
+
+The quality claim comes entirely from the company's internal testing, with no external audio evaluation published yet.
+Source: https://the-decoder.com/elevenlabs-makes-music-v2-5-available-via-app-and-api-with-free-and-pro-tier-options/
+
+Open Source Watch: AllSpark releases Iris search agents
+
+Open-weight search agents are closing the performance gap with proprietary systems, assuming self-reported benchmarks hold up in the wild.
+
+The AllSpark team released Iris-mini and Iris-pro, built on Qwen models, which now lead their size class for search agent tasks.
+
+The interesting technical detail is that their training data improvements also boosted performance on general tool use and office tasks that were not explicitly in the training set.
+
+They published both the models and the training data as open source.
+
+The strongest-in-class claim relies entirely on the team's own paper and has not been reproduced externally.
+Source: https://the-decoder.com/iris-mini-and-iris-pro-are-the-strongest-open-weight-search-agents-in-their-class/
+
+Outro
+
+Perplexity handing its live production infrastructure over to Astra and the Houthis allegedly using Claude Code for missile guidance are two sides of the same capability overhang.
+
+We are watching the exact moment when frontier coding models transition from generating text snippets to executing critical systems, regardless of who is typing the prompt.
+
+Audit your agent permissions.

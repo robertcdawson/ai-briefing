@@ -1,0 +1,46 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — September 14, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 28,
+      "title": "Intro"
+    },
+    {
+      "startTime": 28,
+      "endTime": 105,
+      "title": "Amodei's AI slowdown call splits industry..."
+    },
+    {
+      "startTime": 105,
+      "endTime": 161,
+      "title": "Anthropic confirms Houthis used Claude Code"
+    },
+    {
+      "startTime": 161,
+      "endTime": 213,
+      "title": "Perplexity deploys Astra autonomously"
+    },
+    {
+      "startTime": 213,
+      "endTime": 268,
+      "title": "Garry Tan urges US labs to distill models"
+    },
+    {
+      "startTime": 268,
+      "endTime": 318,
+      "title": "ElevenLabs releases Music v2.5"
+    },
+    {
+      "startTime": 318,
+      "endTime": 359,
+      "title": "AllSpark releases Iris search agents"
+    },
+    {
+      "startTime": 359,
+      "endTime": 387,
+      "title": "Outro"
+    }
+  ]
+}

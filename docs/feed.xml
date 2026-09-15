@@ -4,7 +4,7 @@
         <title>AI Briefing</title>
         <link>https://robertcdawson.github.io/ai-briefing/</link>
         <description>Daily AI news briefing — the stories that matter from the last 24 hours.</description>
-        <lastBuildDate>Mon, 14 Sep 2026 11:37:21 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 15 Sep 2026 11:37:58 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -23,6 +23,60 @@
         <podcast:guid>ea8709f4-3ba2-5b7e-bcdc-e409d84a6443</podcast:guid>
         <podcast:locked owner="manatees@gmail.com">yes</podcast:locked>
         <podcast:person role="host" group="cast">Robert Dawson</podcast:person>
+        <item>
+            <title><![CDATA[AI Briefing — September 15, 2026]]></title>
+            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-09-15.mp3</link>
+            <guid>ai-briefing-2026-09-15</guid>
+            <pubDate>Tue, 15 Sep 2026 11:37:58 GMT</pubDate>
+            <description><![CDATA[<p>Top 6 AI stories for September 15, 2026.</p>
+<p>1. Top Story: AI slowdown pact draws cartel accusations</p>
+<p>Why it matters: The debate has escalated from Amodei's essay into a geopolitical flashpoint, with China's Foreign Ministry, the White House, and Nvidia's CEO all publicly opposing the pact — making any coordinated slowdown far less likely and shaping the regulatory environment builders will face.</p>
+<p>Caveat: No binding mechanism exists; the 'agreement' remains a loose public statement with no signatories, timelines, or enforcement body.</p>
+<p><a href="https://www.theverge.com/ai-artificial-intelligence/995186/is-big-techs-ai-slowdown-a-safety-pact-or-a-cartel">The Verge AI</a> · <a href="https://www.theverge.com/ai-artificial-intelligence/995141/ai-executives-politicians-safety-regulation-anthropic-dario-amodei">The Verge AI</a> · <a href="https://arstechnica.com/ai/2026/09/ai-leaders-want-to-hit-the-brakes-after-years-of-reckless-speed">Ars Technica AI</a> · <a href="https://www.technologyreview.com/2026/09/14/1144048/the-ai-industry-has-taken-a-doomer-turn-what-now">MIT Tech Review AI</a> · <a href="https://techcrunch.com/2026/09/14/nvidia-ceo-jensen-huang-tells-trump-were-not-going-to-let-an-ai-slowdown-happen">TechCrunch AI</a> · <a href="https://www.theverge.com/tech/995079/president-donald-trump-calls-nvidia-ceo-jensen-huang-all-in-summit">The Verge AI</a> · <a href="https://the-decoder.com/not-everyone-is-convinced-that-big-ais-proposed-development-slowdown-is-really-about-safety">The Decoder</a> · <a href="https://the-decoder.com/china-fires-back-at-u-s-ai-safety-warnings-calling-them-fearmongering-to-lock-in-american-advantage">The Decoder</a></p>
+<p>2. Product &amp; Tool Watch: Apple ships rebuilt Siri on Google Gemini</p>
+<p>Why it matters: Apple's decision to power Siri with Gemini rather than its own models signals a major platform shift — developers building on Apple Intelligence and Siri integrations now depend on Google's model stack, with significant implications for privacy architecture and API design.</p>
+<p>Caveat: Early testers report hallucinations and gaps in personal context handling, and the EU launch timeline is unspecified, limiting the addressable market at launch.</p>
+<p><a href="https://the-decoder.com/apple-brings-a-fully-revamped-siri-built-on-googles-gemini-but-not-to-the-eu">The Decoder</a> · <a href="https://arstechnica.com/apple/2026/09/apple-releases-ios-27-macos-golden-gate-27-with-siri-ai-and-liquid-glass-refinements">Ars Technica AI</a> · <a href="https://techcrunch.com/2026/09/14/with-ios-27-im-actually-using-siri-again">TechCrunch AI</a> · <a href="https://techcrunch.com/2026/09/14/fashion-discovery-app-daydream-uses-apple-intelligence-to-help-you-shop-the-outfits-saved-in-your-camera-roll">TechCrunch AI</a></p>
+<p>3. Policy &amp; Regulation Watch: Contractors reading ChatGPT conversations</p>
+<p>Why it matters: Builders and enterprises deploying ChatGPT need to know that human reviewers can access real user prompts — even anonymized ones containing sensitive data — unless users actively opt out of a default-on setting, raising compliance and data-handling concerns.</p>
+<p>Caveat: OpenAI has not publicly confirmed the 'Project Lily' name or the scale of the program; the primary source is leaked internal documents seen by 404 Media.</p>
+<p><a href="https://www.404media.co/inside-project-lily-the-humans-reading-your-chatgpt-chats">404 Media</a> · <a href="https://the-decoder.com/openai-has-hundreds-of-contract-workers-reading-your-chatgpt-conversations">The Decoder</a></p>
+<p>4. Research Breakthrough: Navier-Stokes Millennium Prize Problem</p>
+<p>Why it matters: If confirmed, this would be the first Millennium Prize Problem solved and a landmark validation of AI-assisted mathematical reasoning, directly relevant to researchers tracking AI's impact on formal proof and scientific discovery.</p>
+<p>Caveat: The Clay Institute's statement says 'apparently settled' and a formal review is still underway — no prize has been awarded and independent peer review is incomplete.</p>
+<p><a href="https://the-decoder.com/clay-mathematics-institute-says-the-navier-stokes-millennium-prize-problem-has-apparently-been-settled">The Decoder</a></p>
+<p>5. AI Business Watch: Anthropic eyes Nasdaq IPO</p>
+<p>Why it matters: A public Anthropic listing would be a defining liquidity event for AI infrastructure investors and would force the company to disclose financials that could reset market expectations for frontier lab unit economics.</p>
+<p>Caveat: The profitability claim uses an adjusted metric excluding stock-based compensation and other costs, making it difficult to assess true financial health ahead of any listing.</p>
+<p><a href="https://the-decoder.com/anthropic-eyes-nasdaq-listing-as-a-second-profitable-quarter-aims-to-win-over-investors-ahead-of-a-mega-ipo">The Decoder</a></p>
+<p>6. AI Business Watch: OpenAI acquires Glass Imaging</p>
+<p>Why it matters: The acquisition signals OpenAI's push into hardware and on-device visual AI, potentially enabling richer multimodal inputs for future products and reducing dependence on third-party camera pipelines.</p>
+<p>Caveat: The $300 million figure is from a report citing unnamed sources; OpenAI has not confirmed the deal or disclosed integration plans.</p>
+<p><a href="https://techcrunch.com/2026/09/14/openai-buys-smartphone-camera-maker-glass-imaging-for-300-million-report-says">TechCrunch AI</a></p>
+<p>Chapters</p>
+<p>00:00:00 Intro</p>
+<p>00:00:20 AI slowdown pact draws cartel accusations</p>
+<p>00:01:46 Apple ships rebuilt Siri on Google Gemini</p>
+<p>00:03:08 Contractors reading ChatGPT conversations</p>
+<p>00:04:15 Navier-Stokes Millennium Prize Problem</p>
+<p>00:05:12 Anthropic eyes Nasdaq IPO</p>
+<p>00:06:12 OpenAI acquires Glass Imaging</p>
+<p>00:07:00 Outro</p>]]></description>
+            <enclosure length="10716297" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-09-15.mp3"/>
+                    <itunes:duration>446</itunes:duration>
+            <itunes:explicit>false</itunes:explicit>
+            <itunes:season>2026</itunes:season>
+            <itunes:episode>258</itunes:episode>
+            <itunes:episodeType>full</itunes:episodeType>
+            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-09-15.chapters.json" type="application/json+chapters"/>
+            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-09-15.transcript.txt" type="text/plain" language="en"/>
+            <podcast:soundbite startTime="20" duration="84">AI slowdown pact draws cartel accusations</podcast:soundbite>
+            <podcast:soundbite startTime="106" duration="81">Apple ships rebuilt Siri on Google Gemini</podcast:soundbite>
+            <podcast:soundbite startTime="188" duration="65">Contractors reading ChatGPT conversations</podcast:soundbite>
+            <podcast:soundbite startTime="255" duration="56">Navier-Stokes Millennium Prize Problem</podcast:soundbite>
+            <podcast:soundbite startTime="312" duration="58">Anthropic eyes Nasdaq IPO</podcast:soundbite>
+            <podcast:soundbite startTime="372" duration="46">OpenAI acquires Glass Imaging</podcast:soundbite>
+        </item>
         <item>
             <title><![CDATA[AI Briefing — September 14, 2026]]></title>
             <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-09-14.mp3</link>
@@ -562,60 +616,6 @@
             <podcast:soundbite startTime="383" duration="107">Hugging Face releases 200-plus WebGPU...</podcast:soundbite>
             <podcast:soundbite startTime="492" duration="93">Sony lawsuit cites Anthropic staff chats...</podcast:soundbite>
             <podcast:soundbite startTime="587" duration="114">Bank of England chief warns AI bubble...</podcast:soundbite>
-        </item>
-        <item>
-            <title><![CDATA[AI Briefing — August 31, 2026]]></title>
-            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-08-31.mp3</link>
-            <guid>ai-briefing-2026-08-31</guid>
-            <pubDate>Mon, 31 Aug 2026 18:12:02 GMT</pubDate>
-            <description><![CDATA[<p>Top 6 AI stories for August 31, 2026.</p>
-<p>1. Top Story: EU classifies ChatGPT as Very Large Online Search Engine under DSA</p>
-<p>Why it matters: OpenAI now faces mandatory risk assessments, transparency reports, and ad archives by end of 2026, setting a compliance precedent that will affect how AI products are designed and governed globally. The classification also opens a disputed legal question about whether the EU can demand access to training data.</p>
-<p>Caveat: Whether the DSA's training-data access provisions actually apply to ChatGPT remains legally contested among experts, so the full compliance burden is still uncertain.</p>
-<p><a href="https://www.theverge.com/ai-artificial-intelligence/986682/openai-chatgpt-eu-dsa">The Verge AI</a> · <a href="https://the-decoder.com/chatgpt-now-faces-stricter-eu-oversight-as-a-very-large-search-engine/">The Decoder</a></p>
-<p>2. Research Breakthrough: OpenAI and Anthropic buy tens of thousands of Mac minis to train computer-use agents</p>
-<p>Why it matters: The scale of Apple hardware procurement reveals that training GUI-navigating computer-use agents requires realistic desktop environments at massive scale, pointing to a near-term capability push that could reshape how AI interacts with software.</p>
-<p>Caveat: The report relies on The Information's sourcing and does not specify which agents are being trained, their capability level, or expected release timelines.</p>
-<p><a href="https://the-decoder.com/openai-and-rival-ai-labs-are-buying-tens-of-thousands-of-mac-minis-to-train-computer-use-agents/">The Decoder</a></p>
-<p>3. AI Business Watch: ChatGPT ad business hits one billion dollar annualized revenue run rate</p>
-<p>Why it matters: OpenAI's advertising revenue milestone signals a meaningful new monetization layer beyond subscriptions and API fees, with implications for how AI interfaces compete with traditional search and social platforms for ad dollars.</p>
-<p>Caveat: The $1 billion figure is an annualized run rate self-reported by OpenAI, not audited revenue, and the pace of growth and margin profile are undisclosed.</p>
-<p><a href="https://openai.com/index/expanding-access-to-ai-with-chatgpt-ads">OpenAI Blog</a> · <a href="https://the-decoder.com/openai-says-its-chatgpt-ad-business-hits-a-1-billion-annual-run-rate/">The Decoder</a></p>
-<p>4. Research Breakthrough: China's CXMT produces first HBM3E chips, narrowing AI memory gap</p>
-<p>Why it matters: HBM3E is the high-bandwidth memory used in leading AI accelerators; domestic Chinese production, even at small scale, reduces dependence on Samsung and SK Hynix and signals a potential future erosion of Western export-control leverage.</p>
-<p>Caveat: CXMT is producing HBM3E in small quantities only, and yield, performance parity with SK Hynix or Samsung, and timeline to volume production are all unconfirmed.</p>
-<p><a href="https://the-decoder.com/chinas-cxmt-makes-its-first-hbm3e-chips-closing-the-ai-memory-gap/">The Decoder</a></p>
-<p>5. AI Business Watch: OpenAI pilots outcome-based pricing charging customers only on task success</p>
-<p>Why it matters: Shifting from subscription to pay-on-success pricing fundamentally changes the economics of enterprise AI deployment and forces a reckoning over how to attribute task credit between AI and human effort.</p>
-<p>Caveat: The rollout is limited to unnamed large customers and the attribution dispute — who gets credit when AI assists rather than completes — remains unresolved.</p>
-<p><a href="https://the-decoder.com/openai-starts-charging-some-customers-only-when-its-ai-actually-works/">The Decoder</a></p>
-<p>6. AI Business Watch: Nvidia invests 3.5 billion dollars in MediaTek to counter Big Tech custom chips</p>
-<p>Why it matters: As hyperscalers like Google, Amazon, and Microsoft build proprietary AI silicon, Nvidia is betting on a partnership with a major Taiwanese chipmaker to stay embedded in the broader AI infrastructure stack beyond its own GPUs.</p>
-<p>Caveat: The strategic rationale is analyst interpretation; deal terms, equity stakes, and specific joint product roadmaps have not been disclosed.</p>
-<p><a href="https://techcrunch.com/2026/08/31/nvidias-3-5b-mediatek-bet-reveals-its-plan-for-tackling-big-techs-ai-chip-buildout/">TechCrunch AI</a></p>
-<p>Chapters</p>
-<p>00:00:00 Intro</p>
-<p>00:00:30 EU classifies ChatGPT as Very Large...</p>
-<p>00:01:48 OpenAI and Anthropic buy tens of...</p>
-<p>00:02:59 ChatGPT ad business hits one billion...</p>
-<p>00:04:05 China's CXMT produces first HBM3E chips,...</p>
-<p>00:05:13 OpenAI pilots outcome-based pricing...</p>
-<p>00:06:24 Nvidia invests 3.5 billion dollars in...</p>
-<p>00:07:29 Outro</p>]]></description>
-            <enclosure length="11394261" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-08-31.mp3"/>
-                    <itunes:duration>475</itunes:duration>
-            <itunes:explicit>false</itunes:explicit>
-            <itunes:season>2026</itunes:season>
-            <itunes:episode>243</itunes:episode>
-            <itunes:episodeType>full</itunes:episodeType>
-            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-08-31.chapters.json" type="application/json+chapters"/>
-            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-08-31.transcript.txt" type="text/plain" language="en"/>
-            <podcast:soundbite startTime="30" duration="77">EU classifies ChatGPT as Very Large...</podcast:soundbite>
-            <podcast:soundbite startTime="108" duration="69">OpenAI and Anthropic buy tens of...</podcast:soundbite>
-            <podcast:soundbite startTime="179" duration="65">ChatGPT ad business hits one billion...</podcast:soundbite>
-            <podcast:soundbite startTime="245" duration="66">China&apos;s CXMT produces first HBM3E chips,...</podcast:soundbite>
-            <podcast:soundbite startTime="313" duration="70">OpenAI pilots outcome-based pricing...</podcast:soundbite>
-            <podcast:soundbite startTime="384" duration="64">Nvidia invests 3.5 billion dollars in...</podcast:soundbite>
         </item>
     </channel>
 </rss>

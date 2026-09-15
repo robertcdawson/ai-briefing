@@ -1,0 +1,137 @@
+AI Briefing — September 15, 2026
+Date: 2026-09-15
+
+Intro
+
+"A cartel by another name."
+
+That is how Cohere CEO Aidan Gomez described the proposed AI slowdown pact this morning, September 15th, as the entire framework threatens to collapse under political and industry pressure.
+
+Top Story: AI slowdown pact draws cartel accusations
+
+The companies pushing hardest for a coordinated pause on frontier model development are the ones who already have frontier models.
+
+Cohere CEO Aidan Gomez looked at those incentives and called the initiative a cartel by another name, designed to shut out competitors who are still training to catch up.
+
+Yesterday we noted that Dario Amodei's pacing proposal lacked any enforcement mechanism, making it a rhetorical exercise.
+
+That take held up, but the situation has now escalated into a geopolitical flashpoint.
+
+Jensen Huang told Donald Trump onstage at the All-In Summit that they are simply not going to let an AI slowdown happen.
+
+Trump backed him up on a live speakerphone call, dismissing AI job displacement fears as a hoax and assuring the crowd that the robots will not be taking over.
+
+Meanwhile, China's Foreign Ministry labeled the United States safety warnings as fearmongering meant to lock in American technological supremacy, with state media citing a silent AI Cold War.
+
+In the middle of this friction, Microsoft published a 37-page humanist AI code of conduct declaring that people matter more than AI.
+
+Any coordinated regulatory slowdown is dead on arrival when the world's largest chipmaker, a sitting US president, and the Chinese government all publicly oppose it.
+Source: https://www.theverge.com/ai-artificial-intelligence/995186/is-big-techs-ai-slowdown-a-safety-pact-or-a-cartel
+Source: https://www.theverge.com/ai-artificial-intelligence/995141/ai-executives-politicians-safety-regulation-anthropic-dario-amodei
+Source: https://arstechnica.com/ai/2026/09/ai-leaders-want-to-hit-the-brakes-after-years-of-reckless-speed
+Source: https://www.technologyreview.com/2026/09/14/1144048/the-ai-industry-has-taken-a-doomer-turn-what-now
+Source: https://techcrunch.com/2026/09/14/nvidia-ceo-jensen-huang-tells-trump-were-not-going-to-let-an-ai-slowdown-happen
+Source: https://www.theverge.com/tech/995079/president-donald-trump-calls-nvidia-ceo-jensen-huang-all-in-summit
+Source: https://the-decoder.com/not-everyone-is-convinced-that-big-ais-proposed-development-slowdown-is-really-about-safety
+Source: https://the-decoder.com/china-fires-back-at-u-s-ai-safety-warnings-calling-them-fearmongering-to-lock-in-american-advantage
+
+Product & Tool Watch: Apple ships rebuilt Siri on Google Gemini
+
+For developers integrating with Siri this morning, your prompts are now being processed by Google's model stack.
+
+Apple just released iOS 27, featuring a completely rebuilt Siri that runs partly on-device and partly through Apple's Private Cloud Compute infrastructure.
+
+According to a report from The Decoder, the backend relies heavily on Google Gemini, a detail Apple has largely kept out of its own marketing materials.
+
+Last week, we predicted Apple's hardware-level privacy isolation would become the industry baseline.
+
+That remains true for local processing, but offloading complex queries to Gemini introduces entirely new privacy architecture questions for developers handling sensitive user data.
+
+Early reviews are positive, with one TechCrunch writer noting they are actually using Siri again after years of the assistant feeling limited.
+
+We are also seeing new developer surfaces open up, like the fashion app Daydream allowing users to search outfit photos via Siri without even opening the application.
+
+The major limitation is that the European Union is excluded from this launch entirely, strictly capping the addressable market.
+
+While Apple changes its architecture, OpenAI is facing serious questions about your prompt data.
+Source: https://the-decoder.com/apple-brings-a-fully-revamped-siri-built-on-googles-gemini-but-not-to-the-eu
+Source: https://arstechnica.com/apple/2026/09/apple-releases-ios-27-macos-golden-gate-27-with-siri-ai-and-liquid-glass-refinements
+Source: https://techcrunch.com/2026/09/14/with-ios-27-im-actually-using-siri-again
+Source: https://techcrunch.com/2026/09/14/fashion-discovery-app-daydream-uses-apple-intelligence-to-help-you-shop-the-outfits-saved-in-your-camera-roll
+
+Policy & Regulation Watch: Contractors reading ChatGPT conversations
+
+Default-on data sharing is a massive liability for enterprise deployment, and OpenAI's current setup appears to be exactly that.
+
+According to leaked internal documents obtained by 404 Media, hundreds of OpenAI contract workers are actively reading and rating real ChatGPT conversations on a scale of one to seven.
+
+The program is reportedly called Project Lily, and its stated goal is to reduce model flattery and human-like behavior.
+
+The core issue is that the setting to improve the model for everyone is enabled by default, meaning users have to actively dig into their preferences to opt out.
+
+While the prompts are supposedly anonymized, 404 Media reports they regularly contain highly sensitive personal and corporate information.
+
+OpenAI has not publicly confirmed the scale of this program or the Project Lily name, so we are relying on these leaked documents.
+
+Protecting your data takes vigilance, much like verifying a million-dollar mathematical breakthrough.
+Source: https://www.404media.co/inside-project-lily-the-humans-reading-your-chatgpt-chats
+Source: https://the-decoder.com/openai-has-hundreds-of-contract-workers-reading-your-chatgpt-conversations
+
+Research Breakthrough: Navier-Stokes Millennium Prize Problem
+
+OpenAI claimed a mathematical breakthrough last week, but researchers immediately accused them of using stolen unpublished work.
+
+Now, the institution that actually hands out the awards is weighing in.
+
+The Clay Mathematics Institute issued a statement saying the Navier-Stokes problem, one of seven Millennium Prize Problems worth one million dollars, has apparently been settled.
+
+We noted last week that the misconduct allegations against OpenAI would be the defining story if verified.
+
+That question remains open, but the actual proof might be legitimate regardless of how it was obtained.
+
+The Institute is only saying it is apparently settled, and a formal review is underway.
+
+No prize has been awarded yet, and independent peer review is incomplete.
+
+Proving that math takes time, just like proving an AI lab is actually profitable.
+Source: https://the-decoder.com/clay-mathematics-institute-says-the-navier-stokes-millennium-prize-problem-has-apparently-been-settled
+
+AI Business Watch: Anthropic eyes Nasdaq IPO
+
+When a frontier AI lab claims it is turning a profit, your immediate question should be what expenses they are hiding to make the math work.
+
+Anthropic just told investors it expects a second straight profitable quarter and is targeting a Nasdaq IPO, according to a report from The Decoder.
+
+The catch is that their profit figure excludes stock-based compensation.
+
+For a company at Anthropic's valuation and headcount, equity is a massive line item.
+
+If they do list on the Nasdaq, they would be the first major frontier lab to go public, and that liquidity event would force them to disclose their true financials.
+
+Until they file public paperwork, we are looking at adjusted metrics designed to win over investors, making it nearly impossible to assess their actual unit economics.
+
+While Anthropic focuses on Wall Street, OpenAI is quietly buying up hardware talent.
+Source: https://the-decoder.com/anthropic-eyes-nasdaq-listing-as-a-second-profitable-quarter-aims-to-win-over-investors-ahead-of-a-mega-ipo
+
+AI Business Watch: OpenAI acquires Glass Imaging
+
+OpenAI started with web interfaces, moved into voice interactions, and has aggressively pursued device partnerships for the last year.
+
+Owning the visual input layer was the obvious next step.
+
+TechCrunch reports, citing unnamed sources, that OpenAI is acquiring smartphone camera maker Glass Imaging for about 300 million dollars.
+
+Glass Imaging was founded by former Apple engineers who led the development of the iPhone's Portrait Mode.
+
+Controlling their own camera pipelines means OpenAI won't have to rely on third-party hardware to feed richer multimodal inputs into their models.
+
+OpenAI hasn't officially confirmed the deal or announced how they plan to integrate the team.
+Source: https://techcrunch.com/2026/09/14/openai-buys-smartphone-camera-maker-glass-imaging-for-300-million-report-says
+
+Outro
+
+The sharpest unanswered question today is exactly how much highly sensitive corporate data has already been read and rated by OpenAI contractors.
+
+We know the default settings leave users exposed, but nobody has explained the actual blast radius of Project Lily for enterprises that didn't know to opt out.
+
+Scrub your data before you hit send. Talk to you tomorrow.

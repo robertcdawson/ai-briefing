@@ -1,0 +1,46 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — September 15, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 20,
+      "title": "Intro"
+    },
+    {
+      "startTime": 20,
+      "endTime": 106,
+      "title": "AI slowdown pact draws cartel accusations"
+    },
+    {
+      "startTime": 106,
+      "endTime": 188,
+      "title": "Apple ships rebuilt Siri on Google Gemini"
+    },
+    {
+      "startTime": 188,
+      "endTime": 255,
+      "title": "Contractors reading ChatGPT conversations"
+    },
+    {
+      "startTime": 255,
+      "endTime": 312,
+      "title": "Navier-Stokes Millennium Prize Problem"
+    },
+    {
+      "startTime": 312,
+      "endTime": 372,
+      "title": "Anthropic eyes Nasdaq IPO"
+    },
+    {
+      "startTime": 372,
+      "endTime": 420,
+      "title": "OpenAI acquires Glass Imaging"
+    },
+    {
+      "startTime": 420,
+      "endTime": 446,
+      "title": "Outro"
+    }
+  ]
+}

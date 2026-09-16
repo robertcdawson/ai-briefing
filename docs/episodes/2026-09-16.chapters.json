@@ -1,0 +1,46 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — September 16, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 24,
+      "title": "Intro"
+    },
+    {
+      "startTime": 24,
+      "endTime": 156,
+      "title": "Google DeepMind launches Gemini 3.8 Live..."
+    },
+    {
+      "startTime": 156,
+      "endTime": 262,
+      "title": "Salesforce and Nvidia release enterprise..."
+    },
+    {
+      "startTime": 262,
+      "endTime": 383,
+      "title": "NYT-Siena poll finds 61 percent of likely..."
+    },
+    {
+      "startTime": 383,
+      "endTime": 475,
+      "title": "Hugging Face bills OpenAI $100 million..."
+    },
+    {
+      "startTime": 475,
+      "endTime": 584,
+      "title": "Palantir, Nvidia, Booz Allen pull back..."
+    },
+    {
+      "startTime": 584,
+      "endTime": 706,
+      "title": "Mozilla report finds open Chinese models..."
+    },
+    {
+      "startTime": 706,
+      "endTime": 734,
+      "title": "Outro"
+    }
+  ]
+}

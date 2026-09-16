@@ -4,7 +4,7 @@
         <title>AI Briefing</title>
         <link>https://robertcdawson.github.io/ai-briefing/</link>
         <description>Daily AI news briefing — the stories that matter from the last 24 hours.</description>
-        <lastBuildDate>Tue, 15 Sep 2026 11:37:58 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 16 Sep 2026 11:33:41 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -23,6 +23,60 @@
         <podcast:guid>ea8709f4-3ba2-5b7e-bcdc-e409d84a6443</podcast:guid>
         <podcast:locked owner="manatees@gmail.com">yes</podcast:locked>
         <podcast:person role="host" group="cast">Robert Dawson</podcast:person>
+        <item>
+            <title><![CDATA[AI Briefing — September 16, 2026]]></title>
+            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-09-16.mp3</link>
+            <guid>ai-briefing-2026-09-16</guid>
+            <pubDate>Wed, 16 Sep 2026 11:33:41 GMT</pubDate>
+            <description><![CDATA[<p>Top 6 AI stories for September 16, 2026.</p>
+<p>1. Top Story: Google DeepMind launches Gemini 3.8 Live voice models undercutting OpenAI pricing</p>
+<p>Why it matters: Gemini 3.8 Live tops the Artificial Analysis speech-to-speech leaderboard and prices at $1.38/hour versus OpenAI's GPT-Live-1, giving developers a significantly cheaper real-time voice API option. The Extended Thinking variant adds reasoning to live audio, a capability combination not previously available at this price point.</p>
+<p>Caveat: OpenAI's GPT-Live-1 is reported to sound more natural due to full-duplex audio, so benchmark leadership may not translate to user preference in production.</p>
+<p><a href="https://deepmind.google/blog/introducing-gemini-3-8-live-and-3-8-live-extended-thinking/">Google DeepMind</a> · <a href="https://the-decoder.com/google-launches-gemini-3-8-live-to-take-on-openais-gpt-live-1-at-a-fraction-of-the-cost/">The Decoder</a> · <a href="https://simonwillison.net/2026/Sep/15/gemini-live/">Simon Willison</a></p>
+<p>2. Product &amp; Tool Watch: Salesforce and Nvidia release enterprise reasoning model built on open-weight Nemotron</p>
+<p>Why it matters: Salesforce Koa demonstrates that domain-specific fine-tuning of open-weight models can produce enterprise-grade reasoning for sales, marketing, and customer support without relying on frontier lab APIs, threatening the incumbents' enterprise distribution moat.</p>
+<p>Caveat: No independent benchmark comparisons against frontier models have been published; the TechCrunch framing is editorial rather than based on head-to-head evaluations.</p>
+<p><a href="https://techcrunch.com/2026/09/15/salesforce-and-nvidias-new-reasoning-model-is-everything-the-ai-labs-should-fear/">TechCrunch AI</a> · <a href="https://stratechery.com/2026/salesforce-ai-force-agents-as-ui-the-race-to-headless/">Stratechery</a></p>
+<p>3. Policy &amp; Regulation Watch: NYT-Siena poll finds 61 percent of likely voters oppose AI data center construction</p>
+<p>Why it matters: Broad bipartisan opposition to data center construction creates a concrete political constraint on AI infrastructure expansion, with implications for siting, permitting, and energy policy that will directly affect compute availability for builders and researchers.</p>
+<p>Caveat: The poll was conducted before the recent AI safety slowdown debate intensified, and opposition may reflect energy and land-use concerns rather than AI-specific sentiment.</p>
+<p><a href="https://www.theverge.com/ai-artificial-intelligence/995917/data-center-nyt-midterm-poll-september">The Verge AI</a> · <a href="https://techcrunch.com/2026/09/15/the-ai-data-center-boom-is-colliding-with-cities-scarred-by-big-industry/">TechCrunch AI</a> · <a href="https://techcrunch.com/2026/09/15/us-data-centers-could-consume-more-natural-gas-than-germany-and-japan-combined-by-2035/">TechCrunch AI</a></p>
+<p>4. AI Business Watch: Hugging Face bills OpenAI $100 million after alleged compute infrastructure hack</p>
+<p>Why it matters: If substantiated, a $100 million compute-theft claim between two major AI ecosystem players would mark an unprecedented escalation in competitive tensions and raise serious questions about infrastructure security across shared cloud environments.</p>
+<p>Caveat: The report cites CEO Clément Delangue's demand but provides no independent confirmation of the hack's scope, OpenAI's response, or whether legal action has been filed.</p>
+<p><a href="https://thenextweb.com/news/hugging-face-delangue-openai-100m-compute-traces-demand">The Next Web</a></p>
+<p>5. AI Business Watch: Palantir, Nvidia, Booz Allen pull back from Anthropic Fable over 30-day log retention</p>
+<p>Why it matters: Enterprise customers withdrawing from flagship AI models over data retention policies reveals a concrete trust gap that no policy statement has closed, directly affecting revenue and adoption for frontier labs targeting sensitive-use markets.</p>
+<p>Caveat: The Decoder does not specify the scale of the pullback or whether these organizations have fully stopped using Fable versus reducing usage for specific sensitive workloads.</p>
+<p><a href="https://the-decoder.com/ai-labs-have-a-data-trust-problem-that-their-policies-havent-solved/">The Decoder</a></p>
+<p>6. Research Breakthrough: Mozilla report finds open Chinese models close frontier gap with four-month lag</p>
+<p>Why it matters: A 4-month capability lag at one-fifth the cost quantifies the competitive pressure on closed frontier labs and gives builders a concrete framework for deciding when open models are sufficient for production use cases.</p>
+<p>Caveat: Mozilla's report methodology and which specific model pairs were compared have not been fully disclosed; 'capability gap' metrics vary significantly by task domain.</p>
+<p><a href="https://arstechnica.com/ai/2026/09/exclusive-open-chinese-models-close-gap-with-silicon-valleys-frontier-ai-models/">Ars Technica AI</a></p>
+<p>Chapters</p>
+<p>00:00:00 Intro</p>
+<p>00:00:24 Google DeepMind launches Gemini 3.8 Live...</p>
+<p>00:02:36 Salesforce and Nvidia release enterprise...</p>
+<p>00:04:22 NYT-Siena poll finds 61 percent of likely...</p>
+<p>00:06:23 Hugging Face bills OpenAI $100 million...</p>
+<p>00:07:55 Palantir, Nvidia, Booz Allen pull back...</p>
+<p>00:09:44 Mozilla report finds open Chinese models...</p>
+<p>00:11:46 Outro</p>]]></description>
+            <enclosure length="17611057" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-09-16.mp3"/>
+                    <itunes:duration>734</itunes:duration>
+            <itunes:explicit>false</itunes:explicit>
+            <itunes:season>2026</itunes:season>
+            <itunes:episode>259</itunes:episode>
+            <itunes:episodeType>full</itunes:episodeType>
+            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-09-16.chapters.json" type="application/json+chapters"/>
+            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-09-16.transcript.txt" type="text/plain" language="en"/>
+            <podcast:soundbite startTime="24" duration="120">Google DeepMind launches Gemini 3.8 Live...</podcast:soundbite>
+            <podcast:soundbite startTime="156" duration="104">Salesforce and Nvidia release enterprise...</podcast:soundbite>
+            <podcast:soundbite startTime="262" duration="119">NYT-Siena poll finds 61 percent of likely...</podcast:soundbite>
+            <podcast:soundbite startTime="383" duration="91">Hugging Face bills OpenAI $100 million...</podcast:soundbite>
+            <podcast:soundbite startTime="475" duration="108">Palantir, Nvidia, Booz Allen pull back...</podcast:soundbite>
+            <podcast:soundbite startTime="584" duration="120">Mozilla report finds open Chinese models...</podcast:soundbite>
+        </item>
         <item>
             <title><![CDATA[AI Briefing — September 15, 2026]]></title>
             <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-09-15.mp3</link>
@@ -562,60 +616,6 @@
             <podcast:soundbite startTime="244" duration="57">Gemini introduces agentic video analysis</podcast:soundbite>
             <podcast:soundbite startTime="302" duration="62">Apple alleges OpenAI destroyed evidence</podcast:soundbite>
             <podcast:soundbite startTime="366" duration="63">Anthropic opens watermark detection API</podcast:soundbite>
-        </item>
-        <item>
-            <title><![CDATA[AI Briefing — September 1, 2026]]></title>
-            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-09-01.mp3</link>
-            <guid>ai-briefing-2026-09-01</guid>
-            <pubDate>Tue, 01 Sep 2026 15:37:56 GMT</pubDate>
-            <description><![CDATA[<p>Top 6 AI stories for September 1, 2026.</p>
-<p>1. Top Story: Runway's Solaris generates software interfaces frame-by-frame in real time</p>
-<p>Why it matters: Solaris represents a new paradigm where UIs are generated dynamically rather than executed as code, which could fundamentally change how developers think about interface construction and prototyping. If the approach scales, it collapses the gap between design intent and running software.</p>
-<p>Caveat: No benchmark data, latency figures, or API access details have been released; the announcement is essentially a demo with a new category label.</p>
-<p><a href="https://the-decoder.com/runways-solaris-is-an-ai-system-that-generates-software-interfaces-in-real-time/">The Decoder</a></p>
-<p>2. Policy &amp; Regulation Watch: Pentagon deploys its own versions of ChatGPT and Grok for military use</p>
-<p>Why it matters: The U.S. Department of Defense adding ChatGPT and Grok to its central AI portal alongside Gemini signals accelerating government adoption of frontier commercial AI, with significant implications for procurement, security standards, and competitive dynamics among AI labs.</p>
-<p>Caveat: The article does not specify what data classifications these deployments can access, what security modifications were made, or how usage will be governed.</p>
-<p><a href="https://techcrunch.com/2026/08/31/the-pentagon-now-has-its-own-version-of-chatgpt-and-grok/">TechCrunch AI</a></p>
-<p>3. Policy &amp; Regulation Watch: Study finds Google's election AI Overviews opaque, source-thin, and sometimes partisan</p>
-<p>Why it matters: Independent DSA-enabled auditing of Google's AI Overviews on election queries reveals structural problems — inconsistent display, over-reliance on YouTube, and occasional political slant — that matter for anyone building on or competing with AI search products and for regulators assessing AI search governance.</p>
-<p>Caveat: The study covers only German-language election queries run by a single advocacy group; results may not generalize to other languages, regions, or query types.</p>
-<p><a href="https://the-decoder.com/googles-election-ai-overviews-are-opaque-rely-on-few-sources-and-sometimes-take-sides/">The Decoder</a></p>
-<p>4. Open Source Watch: Hugging Face releases 200-plus WebGPU kernels for local AI inference</p>
-<p>Why it matters: A library of 200+ optimized WebGPU kernels lowers the barrier for running AI models directly in browsers and on-device without server infrastructure, which matters for privacy-sensitive and offline-capable applications. This is a concrete tooling contribution for developers building local-first AI products.</p>
-<p>Caveat: Browser WebGPU support and GPU hardware requirements vary widely; real-world performance on consumer devices versus the library's benchmarks is unverified.</p>
-<p><a href="https://huggingface.co/blog/webgpu-kernels">Hugging Face</a></p>
-<p>5. Policy &amp; Regulation Watch: Sony lawsuit cites Anthropic staff chats praising piracy site Z-Library</p>
-<p>Why it matters: Internal communications showing Anthropic employees extolling a known piracy platform while training Claude on copyrighted music could significantly strengthen plaintiffs' willful-infringement arguments and set precedent for how AI labs' internal culture affects copyright liability.</p>
-<p>Caveat: The lawsuit is ongoing and the cited chats are plaintiff-selected excerpts; Anthropic's full response and context for the messages have not been reported.</p>
-<p><a href="https://arstechnica.com/tech-policy/2026/08/zlibrary-my-beloved-anthropic-staff-chats-extolling-piracy-cited-in-sony-suit/">Ars Technica AI</a></p>
-<p>6. AI Business Watch: Bank of England chief warns AI bubble valuations could trigger next financial crisis</p>
-<p>Why it matters: A G20-level central bank warning about AI valuation inflation and cross-investment leverage loops between AI companies and hyperscalers is a significant systemic risk signal that could influence institutional investor behavior and accelerate regulatory scrutiny of AI financing structures.</p>
-<p>Caveat: Andrew Bailey's remarks are a qualitative warning to finance ministers, not a formal regulatory action; no specific firms or valuation thresholds were named.</p>
-<p><a href="https://the-decoder.com/bank-of-england-chief-warns-that-inflated-ai-valuations-and-rising-leverage-could-trigger-the-next-financial-crisis/">The Decoder</a></p>
-<p>Chapters</p>
-<p>00:00:00 Intro</p>
-<p>00:00:42 Runway's Solaris generates software...</p>
-<p>00:02:44 Pentagon deploys its own versions of...</p>
-<p>00:04:27 Study finds Google's election AI...</p>
-<p>00:06:23 Hugging Face releases 200-plus WebGPU...</p>
-<p>00:08:12 Sony lawsuit cites Anthropic staff chats...</p>
-<p>00:09:47 Bank of England chief warns AI bubble...</p>
-<p>00:11:42 Outro</p>]]></description>
-            <enclosure length="17661723" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-09-01.mp3"/>
-                    <itunes:duration>736</itunes:duration>
-            <itunes:explicit>false</itunes:explicit>
-            <itunes:season>2026</itunes:season>
-            <itunes:episode>244</itunes:episode>
-            <itunes:episodeType>full</itunes:episodeType>
-            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-09-01.chapters.json" type="application/json+chapters"/>
-            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-09-01.transcript.txt" type="text/plain" language="en"/>
-            <podcast:soundbite startTime="42" duration="120">Runway&apos;s Solaris generates software...</podcast:soundbite>
-            <podcast:soundbite startTime="164" duration="101">Pentagon deploys its own versions of...</podcast:soundbite>
-            <podcast:soundbite startTime="267" duration="115">Study finds Google&apos;s election AI...</podcast:soundbite>
-            <podcast:soundbite startTime="383" duration="107">Hugging Face releases 200-plus WebGPU...</podcast:soundbite>
-            <podcast:soundbite startTime="492" duration="93">Sony lawsuit cites Anthropic staff chats...</podcast:soundbite>
-            <podcast:soundbite startTime="587" duration="114">Bank of England chief warns AI bubble...</podcast:soundbite>
         </item>
     </channel>
 </rss>

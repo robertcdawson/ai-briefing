@@ -1,0 +1,46 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — September 17, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 38,
+      "title": "Intro"
+    },
+    {
+      "startTime": 38,
+      "endTime": 158,
+      "title": "OpenAI publishes model misalignment..."
+    },
+    {
+      "startTime": 158,
+      "endTime": 278,
+      "title": "OpenAI launches Sponsored Agents and ad..."
+    },
+    {
+      "startTime": 278,
+      "endTime": 400,
+      "title": "OpenAI Codex developer warns agent swarms..."
+    },
+    {
+      "startTime": 400,
+      "endTime": 509,
+      "title": "Google opens Home platform to third-party..."
+    },
+    {
+      "startTime": 509,
+      "endTime": 622,
+      "title": "Bipartisan Washington coalition from..."
+    },
+    {
+      "startTime": 622,
+      "endTime": 716,
+      "title": "Anthropic merges Claude Chat and Cowork,..."
+    },
+    {
+      "startTime": 716,
+      "endTime": 761,
+      "title": "Outro"
+    }
+  ]
+}

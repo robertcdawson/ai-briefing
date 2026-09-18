@@ -8,9 +8,12 @@ import {
 } from "../src/speakerProfiles.js";
 
 test("NARRATOR_PROFILE defines a single host with a natural default voice", () => {
-  assert.equal(NARRATOR_PROFILE.defaultVoice, "marin");
-  assert.match(NARRATOR_PROFILE.persona, /witty/i);
+  assert.equal(NARRATOR_PROFILE.defaultVoice, "cedar");
+  assert.match(NARRATOR_PROFILE.persona, /plainspoken/i);
+  assert.match(NARRATOR_PROFILE.persona, /Southern/);
   assert.match(NARRATOR_PROFILE.delivery, /conversational/i);
+  assert.match(NARRATOR_PROFILE.delivery, /Southern American accent/);
+  assert.match(NARRATOR_PROFILE.delivery, /never a caricature/);
 });
 
 test("resolveTTSDirection reads global, narrator, and section style env vars", () => {
@@ -41,7 +44,7 @@ test("buildChunkSpeechInstructions composes global, host persona, delivery, sect
   });
 
   assert.match(instructions, /^global\n/);
-  assert.match(instructions, /Host: The Host is a sharp, witty/);
+  assert.match(instructions, /Host: The Host is a warm, plainspoken/);
   assert.match(instructions, /Delivery: narrator delivery/);
   assert.match(instructions, /Section: intro section/);
   assert.match(instructions, /solo podcast monologue/);

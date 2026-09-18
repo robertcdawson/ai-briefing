@@ -100,6 +100,7 @@ export function buildEarEditSystemPrompt(): string {
 - Collapse a triad ("X, Y, and Z") that doesn't earn three genuinely distinct items into something tighter.
 - Split any sentence that isn't sayable in one breath.
 - Remove any sentence that closely paraphrases the editor's notes provided below — those notes are context for your judgment, never something to read aloud.
+- Keep the host's voice intact: leave Southern phrasing, contractions, and everyday word choice exactly as written. Never normalize dialect into standard newsroom English, and never add dialect the writer didn't use.
 
 NEVER change segment count, segment order, segment titles, or sourceUrls — copy those through exactly as given. Never add facts, quotes, numbers, or claims that weren't already in the script. Keep the total word count within about 10% of the original.
 

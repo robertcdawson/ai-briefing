@@ -25,7 +25,7 @@ test("resolveTTSProviderConfig keeps the OpenAI defaults stable", () => {
 
   assert.equal(config.provider, "openai");
   assert.equal(config.model, DEFAULT_OPENAI_TTS_MODEL);
-  assert.equal(config.voice, "marin");
+  assert.equal(config.voice, "cedar");
   assert.equal(config.baseURL, undefined);
   assert.equal(config.apiKeyEnvVar, "OPENAI_API_KEY");
   assert.equal(config.supportsDeliveryInstructions, true);

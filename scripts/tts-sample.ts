@@ -32,9 +32,9 @@ const OUTPUT_DIR = path.join("tmp", "tts-samples");
 const TIMEOUT_MS = 120_000;
 
 const SAMPLE_CHUNKS = [
-  "Anthropic shipped a new flagship model this morning, and the benchmark chart looks great, as benchmark charts always do.",
-  "Here's the part worth your attention: the safety filters now block about nine percent of requests, and the price doubled.",
-  "[skeptical] So before anyone rewires their stack, it's worth asking who actually benefits from this release.",
+  "Anthropic shipped a new flagship model this morning, and the benchmark chart looks great, the way benchmark charts always do.",
+  "Here's the part y'all actually need: the safety filters now block about nine percent of requests, and the price doubled.",
+  "[skeptical] So before anybody rewires their stack, it's fair to ask who this release was built for.",
 ];
 
 interface SampleCandidate {
@@ -44,10 +44,14 @@ interface SampleCandidate {
 }
 
 const DEFAULT_CANDIDATES: SampleCandidate[] = [
-  { provider: "openai", model: DEFAULT_OPENAI_TTS_MODEL, voice: "marin" },
+  // OpenAI candidates read with the default Southern delivery instructions
+  // (override with TTS_NARRATOR_STYLE); cedar is the production default.
   { provider: "openai", model: DEFAULT_OPENAI_TTS_MODEL, voice: "cedar" },
+  { provider: "openai", model: DEFAULT_OPENAI_TTS_MODEL, voice: "fable" },
+  { provider: "openai", model: DEFAULT_OPENAI_TTS_MODEL, voice: "verse" },
+  { provider: "openai", model: DEFAULT_OPENAI_TTS_MODEL, voice: "ash" },
   { provider: "openrouter", model: DEFAULT_OPENROUTER_TTS_MODEL, voice: "Charon" },
-  { provider: "openrouter", model: DEFAULT_OPENROUTER_TTS_MODEL, voice: "Enceladus" },
+  { provider: "openrouter", model: DEFAULT_OPENROUTER_TTS_MODEL, voice: "Sulafat" },
 ];
 
 function parseCandidateArg(arg: string): SampleCandidate {

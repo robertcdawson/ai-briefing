@@ -41,10 +41,10 @@ test("resolveTTSTimeoutMs uses a realistic default and accepts valid overrides",
   assert.equal(resolveTTSTimeoutMs("not-a-number"), 180_000);
 });
 
-test("resolveNarratorVoice defaults to marin and accepts valid overrides", () => {
-  assert.equal(resolveNarratorVoice({}), "marin");
-  assert.equal(resolveNarratorVoice({ TTS_VOICE: "cedar" }), "cedar");
-  assert.equal(resolveNarratorVoice({ TTS_VOICE: "not-a-voice" }), "marin");
+test("resolveNarratorVoice defaults to cedar and accepts valid overrides", () => {
+  assert.equal(resolveNarratorVoice({}), "cedar");
+  assert.equal(resolveNarratorVoice({ TTS_VOICE: "marin" }), "marin");
+  assert.equal(resolveNarratorVoice({ TTS_VOICE: "not-a-voice" }), "cedar");
 });
 
 test("resolveTTSDirection reads global, narrator, and section style env vars", () => {
@@ -75,7 +75,7 @@ test("buildChunkSpeechInstructions composes global, host persona, delivery, sect
   });
 
   assert.match(instructions, /^global\n/);
-  assert.match(instructions, /Host: The Host is a sharp, witty/);
+  assert.match(instructions, /Host: The Host is a warm, plainspoken/);
   assert.match(instructions, /Delivery: narrator delivery/);
   assert.match(instructions, /Section: intro section/);
   assert.match(instructions, /solo podcast monologue/);

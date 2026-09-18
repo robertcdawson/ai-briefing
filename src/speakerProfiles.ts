@@ -7,7 +7,11 @@ export interface NarratorProfile {
   name: string;
   /** Writing persona for the script LLM. */
   persona: string;
-  /** Default spoken delivery style for OpenAI TTS instructions. */
+  /**
+   * Default spoken delivery style for OpenAI TTS instructions. The host's
+   * Southern accent lives here (override with TTS_NARRATOR_STYLE); the words
+   * of the dialect live in src/voice.ts.
+   */
   delivery: string;
   defaultVoice: TTSVoice;
 }
@@ -18,15 +22,15 @@ export const NARRATOR_PROFILE: NarratorProfile = {
   // writer's prompt (src/voice.ts HOST_IDENTITY feeds src/script.ts too).
   persona: HOST_IDENTITY.ttsPersonaLine,
   delivery:
-    "Natural, conversational solo host; relaxed pace; dry wit; sounds like a smart person thinking out loud, not reading a bulletin.",
-  defaultVoice: "marin",
+    "Natural, conversational solo host with an unhurried Southern American accent: a soft, understated drawl, relaxed vowels, easy pace, dry humor; sounds like a smart neighbor thinking out loud, not reading a bulletin. Keep the accent consistent and understated across the whole read, never a caricature.",
+  defaultVoice: "cedar",
 };
 
 export const DEFAULT_GLOBAL_TTS_STYLE =
   "Solo host of a daily AI news show; natural and conversational with dry wit; sounds like a smart person talking, not reading; relaxed pace, real intonation, uses contractions; never announcer-y or fake-enthusiastic.";
 
 export const DEFAULT_SECTION_TTS_STYLES: Record<EpisodeSectionKind, string> = {
-  intro: "Open with an easy, confident hook; warm but not hyped.",
+  intro: "Open easy and confident, like catching a friend up; warm but not hyped.",
   story: "Measured, curious, and clear; let the stakes land.",
   outro: "Warm, reflective, low-key sign-off.",
 };

@@ -47,7 +47,7 @@ For `npm start` (full pipeline), create a `.env` in the repo root (no checked-in
 - `FEED_BASE_URL` — public URL where `docs/` is served
 - `TTS_PROVIDER` (optional, `openai` (default) or `openrouter`)
 - `TTS_MODEL` (optional; per provider — openai default: `gpt-4o-mini-tts`, openrouter default: `google/gemini-3.1-flash-tts-preview`)
-- `TTS_VOICE` (optional; single-host voice — openai default `marin` via `src/speakerProfiles.ts`, Gemini TTS default `Charon`)
+- `TTS_VOICE` (optional; single-host voice — openai default `cedar` via `src/speakerProfiles.ts`, Gemini TTS default `Charon`; a set Actions variable overrides the default)
 - `TTS_GLOBAL_STYLE`, `TTS_NARRATOR_STYLE`, `TTS_INTRO_STYLE`, `TTS_STORY_STYLE`, `TTS_OUTRO_STYLE` (optional delivery-instruction overrides; OpenAI `gpt-4o-mini-tts` only)
 - `AUDIO_CUES_ENABLED` (optional; default on. Set `false`/`0`/`off`/`no` to disable section stingers in `src/audio.ts`)
 - `AUDIO_CUE_STYLE` (optional; `tone` (default), `chime`, `tick`, or `asset` for committed music stingers in `assets/audio/`, generated once via `npm run stingers:generate`. Missing asset files fall back to `tone`. See `docs/solutions/best-practices/audio-section-cues-and-stingers.md`)

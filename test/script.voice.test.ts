@@ -110,6 +110,27 @@ test("buildSystemPrompt describes a persistent host bounded by factual constrain
   assert.match(prompt, /Do not include speaker labels/);
 });
 
+test("buildSystemPrompt renders how the host talks and keeps the accent out of the spelling", () => {
+  const prompt = buildSystemPrompt();
+
+  assert.match(prompt, /How they talk:/);
+  assert.ok(prompt.includes(HOST_IDENTITY.speech), "the host's speech description must appear verbatim");
+  assert.match(prompt, /Standard spelling throughout/);
+  assert.match(prompt, /voice engine supplies the accent/);
+  assert.match(prompt, /drop the phrase, not the voice/);
+});
+
+test("VOICE_EXEMPLARS model the Southern register without banned filler or phonetic dialect", () => {
+  assert.ok(VOICE_EXEMPLARS.some((exemplar) => /\by'all\b/.test(exemplar)), "at least one exemplar should talk to the listener as y'all");
+  for (const exemplar of VOICE_EXEMPLARS) {
+    for (const phrase of BANNED_SCRIPT_PHRASES) {
+      assert.ok(!exemplar.toLowerCase().includes(phrase), `exemplar contains banned phrase "${phrase}"`);
+    }
+    assert.doesNotMatch(exemplar, /\b(?:gonna|wanna|gotta|fixin'|ya'?ll)\b/i, "exemplars must use standard spelling");
+    assert.doesNotMatch(exemplar, /\b(?:that|this|it)(?:'s| is) not (?:a|an|the|just|about)\b[^.!?]*[.!?]\s+(?:it|that|this)(?:'s| is)/i, "exemplars must not model the split-contrast mold");
+  }
+});
+
 test("buildUserPrompt preserves source publisher, URL, and importance context", () => {
   const clusters: StoryCluster[] = [
     {

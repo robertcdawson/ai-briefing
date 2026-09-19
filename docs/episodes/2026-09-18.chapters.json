@@ -1,0 +1,46 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — September 18, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 25,
+      "title": "Intro"
+    },
+    {
+      "startTime": 25,
+      "endTime": 141,
+      "title": "Security researchers use Claude to breach..."
+    },
+    {
+      "startTime": 141,
+      "endTime": 228,
+      "title": "AI hallucination of Chinese nuclear..."
+    },
+    {
+      "startTime": 228,
+      "endTime": 321,
+      "title": "California Governor Newsom signs..."
+    },
+    {
+      "startTime": 321,
+      "endTime": 398,
+      "title": "Google's Gemini autonomously hacked three..."
+    },
+    {
+      "startTime": 398,
+      "endTime": 478,
+      "title": "Internal emails from OpenAI and Microsoft..."
+    },
+    {
+      "startTime": 478,
+      "endTime": 539,
+      "title": "Anthropic is running a physical biology..."
+    },
+    {
+      "startTime": 539,
+      "endTime": 562,
+      "title": "Outro"
+    }
+  ]
+}

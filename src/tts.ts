@@ -1,6 +1,6 @@
 import OpenAI from "openai";
 import { execa } from "execa";
-import { copyFile, mkdir, writeFile } from "node:fs/promises";
+import { copyFile, mkdir, mkdtemp, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import type { Episode, NarrationChunk } from "./types.js";
@@ -73,51 +73,58 @@ export async function synthesize(episode: Episode): Promise<TTSResult> {
     maxRetries: 0,
   });
 
-  const segmentDir = path.join(tmpdir(), `ai-briefing-${episode.date}-${process.pid}`);
-  await mkdir(segmentDir, { recursive: true });
+  // Atomic allocation with mode 0700 establishes ownership for every writer
+  // (speech, chunk copies, ffmpeg and downstream audio assembly).
+  const segmentDir = await mkdtemp(path.join(tmpdir(), "ai-briefing-"));
 
-  const parts: TTSPart[] = [
-    { label: "00-intro", section: "intro", chunks: episode.intro },
-    ...episode.segments.map((s, i) => ({
-      label: `${pad2(i + 1)}-${slug(s.title)}`,
-      section: "story" as const,
-      chunks: s.chunks,
-      hint: s.delivery,
-    })),
-    { label: `${pad2(episode.segments.length + 1)}-outro`, section: "outro", chunks: episode.outro },
-  ];
+  try {
+    const parts: TTSPart[] = [
+      { label: "00-intro", section: "intro", chunks: episode.intro },
+      ...episode.segments.map((s, i) => ({
+        label: `${pad2(i + 1)}-${slug(s.title)}`,
+        section: "story" as const,
+        chunks: s.chunks,
+        hint: s.delivery,
+      })),
+      { label: `${pad2(episode.segments.length + 1)}-outro`, section: "outro", chunks: episode.outro },
+    ];
 
-  const segmentPaths: string[] = [];
-  for (const part of parts) {
-    const partStart = Date.now();
-    const filePath = await synthesizePart(client, part, config, direction, segmentDir, timeoutMs);
-    segmentPaths.push(filePath);
+    const segmentPaths: string[] = [];
+    for (const part of parts) {
+      const partStart = Date.now();
+      const filePath = await synthesizePart(client, part, config, direction, segmentDir, timeoutMs);
+      segmentPaths.push(filePath);
+      logJson({
+        phase: "tts",
+        label: part.label,
+        status: "ok",
+        durationMs: Date.now() - partStart,
+        section: part.section,
+        chunks: part.chunks.length,
+        chars: part.chunks.reduce((sum, chunk) => sum + chunk.length, 0),
+      });
+    }
+
     logJson({
       phase: "tts",
-      label: part.label,
       status: "ok",
-      durationMs: Date.now() - partStart,
-      section: part.section,
-      chunks: part.chunks.length,
-      chars: part.chunks.reduce((sum, chunk) => sum + chunk.length, 0),
+      durationMs: Date.now() - started,
+      segments: segmentPaths.length,
+      provider: config.provider,
+      voice: config.voice,
+      direction,
+      model: config.model,
+      timeoutMs,
+      deliveryInstructions: config.supportsDeliveryInstructions ? "enabled" : "unsupported",
+      inlineAudioTags: config.supportsInlineAudioTags ? "enabled" : "stripped",
     });
+
+    return { segmentDir, segmentPaths };
+  } catch (error) {
+    // The caller only learns segmentDir on success, so failures clean up here.
+    await rm(segmentDir, { recursive: true, force: true }).catch(() => undefined);
+    throw error;
   }
-
-  logJson({
-    phase: "tts",
-    status: "ok",
-    durationMs: Date.now() - started,
-    segments: segmentPaths.length,
-    provider: config.provider,
-    voice: config.voice,
-    direction,
-    model: config.model,
-    timeoutMs,
-    deliveryInstructions: config.supportsDeliveryInstructions ? "enabled" : "unsupported",
-    inlineAudioTags: config.supportsInlineAudioTags ? "enabled" : "stripped",
-  });
-
-  return { segmentDir, segmentPaths };
 }
 
 async function synthesizePart(

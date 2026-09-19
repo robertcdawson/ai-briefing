@@ -1,7 +1,7 @@
 import "dotenv/config";
 import { rm } from "node:fs/promises";
 import { fetchAll } from "./fetch.js";
-import { curate } from "./curate.js";
+import { curate, resolveClusterSources } from "./curate.js";
 import { writeScript } from "./script.js";
 import { earEdit, resolveEarEditEnabled } from "./earEdit.js";
 import { buildRecentPhraseProfile, loadRecentStyleSnippets } from "./ledger.js";
@@ -52,11 +52,12 @@ async function main(): Promise<void> {
     });
 
     const curateStart = Date.now();
-    const { selected: clusters, report: curationReport } = await withStageCache(
+    const { selected, report: curationReport } = await withStageCache(
       "curate",
       { date, articles },
       () => curate(articles, date),
     );
+    const clusters = selected.map((cluster) => resolveClusterSources(cluster, articles));
     if (clusters.length === 0) throw new Error("curate returned 0 clusters");
     logJson({
       phase: "pipeline.step",

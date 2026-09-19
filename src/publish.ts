@@ -6,6 +6,7 @@ import { Feed } from "feed";
 import { stripInlineAudioTags } from "./audioTags.js";
 import type { CurationRecord, CurationReport, Episode, EpisodePartTiming, NarrationChunk, StoryCluster } from "./types.js";
 import { logJson } from "./util.js";
+import { isSafeSourceUrl } from "./sourceUrls.js";
 
 const DOCS_DIR = "docs";
 const EPISODES_DIR = path.join(DOCS_DIR, "episodes");
@@ -130,13 +131,14 @@ export async function publish(
   const trimmedBase = stripTrailingSlash(baseUrl);
   const metadata = getPodcastMetadata(trimmedBase);
 
+  // Validate source links before any publication files are written, including cached scripts.
+  const description = buildEpisodeDescription(episode, durationSeconds, partTimings, airedClusters);
   await mkdir(EPISODES_DIR, { recursive: true });
 
   const targetFilename = `${episode.date}.mp3`;
   const episodePath = path.join(EPISODES_DIR, targetFilename);
   await copyFile(audioPath, episodePath);
 
-  const description = buildEpisodeDescription(episode, durationSeconds, partTimings, airedClusters);
   const chapters = buildChapters(partTimings, durationSeconds);
   const soundbites = buildSoundbites(partTimings);
   const transcriptFilename = `${episode.date}.transcript.txt`;
@@ -459,9 +461,11 @@ function formatDisplayDate(isoDate: string): string {
 function buildSourceLinkParagraph(urls: string[], cluster?: StoryCluster): string | undefined {
   if (urls.length === 0) return undefined;
   const publisherByUrl = new Map(
-    (cluster?.sources ?? []).map((source) => [source.url, source.publisher.trim()]),
+    (cluster?.sources ?? []).map((source) => [source.url.trim(), source.publisher.trim()]),
   );
-  const links = urls.map((url) => {
+  const links = urls.map((rawUrl) => {
+    if (!isSafeSourceUrl(rawUrl)) throw new Error("publish source URL must be an absolute HTTP(S) URL without controls");
+    const url = rawUrl.trim();
     const label = publisherByUrl.get(url) || hostnameFromUrl(url) || url;
     return `<a href="${htmlAttrEscape(url)}">${htmlEscape(label)}</a>`;
   });

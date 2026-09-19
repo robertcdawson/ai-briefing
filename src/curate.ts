@@ -4,6 +4,7 @@ import type { Article, StoryCluster, ScoredCluster, CurationReport } from "./typ
 import { loadRecentCoverage } from "./ledger.js";
 import type { PriorCoverageEntry } from "./ledger.js";
 import { getInterestProfile } from "./interests.js";
+import { isSafeSourceUrl } from "./sourceUrls.js";
 import { getChatCompletionAssistantText, logJson, withHardTimeout, withRetry } from "./util.js";
 
 const MODEL = "anthropic/claude-sonnet-4.6";
@@ -389,6 +390,22 @@ export function normaliseCluster(
   return result;
 }
 
+/** Resolve model-authored sources to the exact fetched articles, including on cache hits. */
+export function resolveClusterSources(cluster: StoryCluster, articles: readonly Article[]): StoryCluster {
+  const byUrl = new Map(articles.filter((article) => isSafeSourceUrl(article.url)).map((article) => [article.url.trim(), article]));
+  if (!Array.isArray(cluster.sources) || cluster.sources.length === 0) {
+    throw new Error("curate source URLs must include at least one fetched article");
+  }
+  return {
+    ...cluster,
+    sources: cluster.sources.map((source) => {
+      const article = isSafeSourceUrl(source?.url) ? byUrl.get(source.url.trim()) : undefined;
+      if (!article) throw new Error("curate source URL does not match a safe fetched article");
+      return { url: article.url, publisher: article.source };
+    }),
+  };
+}
+
 const EMPTY_REPORT: CurationReport = {
   threshold: IMPORTANCE_THRESHOLD,
   maxStories: MAX_STORIES,
@@ -467,7 +484,8 @@ export async function curate(
   };
 
   // F5: guard against malformed/non-array clusters before mapping
-  const normalisedClusters = (Array.isArray(parsed?.clusters) ? parsed.clusters : []).map(normaliseCluster);
+  const normalisedClusters = (Array.isArray(parsed?.clusters) ? parsed.clusters : [])
+    .map((raw) => resolveClusterSources(normaliseCluster(raw), articles));
   const { selected: clusters, report } = scoreAndSelect(normalisedClusters);
 
   // M3: run health report — full scored list (incl. dropped) + summary counts.

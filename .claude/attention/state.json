@@ -1,0 +1,845 @@
+{
+  "sessionId": "f48418bc-7964-4b4f-9032-4247b6947792",
+  "cwd": "/Users/robertdawson/Developer/ai-podcast",
+  "branch": "main",
+  "status": "finished",
+  "startedAt": "2026-09-03T18:45:25.936Z",
+  "updatedAt": "2026-09-03T18:46:49.241Z",
+  "now": {
+    "goal": "Untitled task",
+    "stepIndex": null,
+    "stepCount": null,
+    "currentStepText": null,
+    "doing": null,
+    "progressPct": 0
+  },
+  "plan": {
+    "tasks": [],
+    "doneCount": 0,
+    "totalCount": 0
+  },
+  "health": {
+    "offPlanWork": {
+      "pct": 100,
+      "level": "attention",
+      "totalLoc": 20410,
+      "offPlanLoc": 20410,
+      "files": [
+        {
+          "name": "package-lock",
+          "path": "package-lock.json",
+          "loc": 971,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "script",
+          "path": "src/script.ts",
+          "loc": 918,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "script.voice.test",
+          "path": "test/script.voice.test.ts",
+          "loc": 897,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "publish",
+          "path": "src/publish.ts",
+          "loc": 758,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "feed",
+          "path": "docs/feed.xml",
+          "loc": 621,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "ledger.test",
+          "path": "test/ledger.test.ts",
+          "loc": 596,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "curate",
+          "path": "src/curate.ts",
+          "loc": 511,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "README",
+          "path": "README.md",
+          "loc": 501,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "audio",
+          "path": "src/audio.ts",
+          "loc": 472,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "tts",
+          "path": "src/tts.ts",
+          "loc": 367,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "earEdit.test",
+          "path": "test/earEdit.test.ts",
+          "loc": 356,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "diagnose-openrouter-script",
+          "path": "scripts/diagnose-openrouter-script.ts",
+          "loc": 352,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "publish.curation-record.test",
+          "path": "test/publish.curation-record.test.ts",
+          "loc": 339,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "earEdit",
+          "path": "src/earEdit.ts",
+          "loc": 318,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "2026-06-17-open-ideation",
+          "path": "docs/ideation/2026-06-17-open-ideation.html",
+          "loc": 312,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "curate.selection.test",
+          "path": "test/curate.selection.test.ts",
+          "loc": 310,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "ledger",
+          "path": "src/ledger.ts",
+          "loc": 294,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "script.style.test",
+          "path": "test/script.style.test.ts",
+          "loc": 292,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "tts.request.test",
+          "path": "test/tts.request.test.ts",
+          "loc": 287,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "audio.stingers.test",
+          "path": "test/audio.stingers.test.ts",
+          "loc": 276,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "2026-08-26",
+          "path": "docs/episodes/2026-08-26.json",
+          "loc": 251,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "2026-08-27",
+          "path": "docs/episodes/2026-08-27.json",
+          "loc": 251,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "2026-09-03",
+          "path": "docs/episodes/2026-09-03.json",
+          "loc": 251,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "2026-09-02",
+          "path": "docs/episodes/2026-09-02.json",
+          "loc": 247,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "2026-08-21",
+          "path": "docs/episodes/2026-08-21.json",
+          "loc": 243,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "2026-08-20",
+          "path": "docs/episodes/2026-08-20.json",
+          "loc": 242,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "2026-08-25",
+          "path": "docs/episodes/2026-08-25.json",
+          "loc": 242,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "2026-08-28",
+          "path": "docs/episodes/2026-08-28.json",
+          "loc": 242,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "2026-09-01",
+          "path": "docs/episodes/2026-09-01.json",
+          "loc": 242,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "2026-08-24",
+          "path": "docs/episodes/2026-08-24.json",
+          "loc": 240,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "2026-08-31",
+          "path": "docs/episodes/2026-08-31.json",
+          "loc": 239,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "publish.apple-rss.test",
+          "path": "test/publish.apple-rss.test.ts",
+          "loc": 199,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "index",
+          "path": "src/index.ts",
+          "loc": 188,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "curate.prompt.test",
+          "path": "test/curate.prompt.test.ts",
+          "loc": 188,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "styleMetrics",
+          "path": "src/styleMetrics.ts",
+          "loc": 177,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "tts-sample",
+          "path": "scripts/tts-sample.ts",
+          "loc": 162,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "daily",
+          "path": ".github/workflows/daily.yml",
+          "loc": 160,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "2026-06-17-001-feat-cross-episode-memory-ledger-plan",
+          "path": "docs/plans/2026-06-17-001-feat-cross-episode-memory-ledger-plan.md",
+          "loc": 158,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "fetch",
+          "path": "src/fetch.ts",
+          "loc": 155,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "preflight",
+          "path": "src/preflight.ts",
+          "loc": 155,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "publish.retention.test",
+          "path": "test/publish.retention.test.ts",
+          "loc": 145,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "2026-06-17-002-feat-story-velocity-ranking-plan",
+          "path": "docs/plans/2026-06-17-002-feat-story-velocity-ranking-plan.md",
+          "loc": 144,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "types",
+          "path": "src/types.ts",
+          "loc": 143,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "util",
+          "path": "src/util.ts",
+          "loc": 141,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "verifyDeploy",
+          "path": "src/verifyDeploy.ts",
+          "loc": 141,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "2026-09-02.transcript",
+          "path": "docs/episodes/2026-09-02.transcript.txt",
+          "loc": 138,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "generate-stinger-assets",
+          "path": "scripts/generate-stinger-assets.ts",
+          "loc": 138,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "2026-08-31.transcript",
+          "path": "docs/episodes/2026-08-31.transcript.txt",
+          "loc": 128,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "2026-06-17-003-feat-friday-week-in-review-plan",
+          "path": "docs/plans/2026-06-17-003-feat-friday-week-in-review-plan.md",
+          "loc": 125,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "verifyDeploy.test",
+          "path": "test/verifyDeploy.test.ts",
+          "loc": 120,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "2026-08-28.transcript",
+          "path": "docs/episodes/2026-08-28.transcript.txt",
+          "loc": 117,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "2026-08-20.transcript",
+          "path": "docs/episodes/2026-08-20.transcript.txt",
+          "loc": 116,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "fetch.deduplication.test",
+          "path": "test/fetch.deduplication.test.ts",
+          "loc": 116,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "script.threading.test",
+          "path": "test/script.threading.test.ts",
+          "loc": 114,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "2026-08-24.transcript",
+          "path": "docs/episodes/2026-08-24.transcript.txt",
+          "loc": 111,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "2026-09-03.transcript",
+          "path": "docs/episodes/2026-09-03.transcript.txt",
+          "loc": 111,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "2026-06-17-cross-episode-memory-ledger-requirements",
+          "path": "docs/brainstorms/2026-06-17-cross-episode-memory-ledger-requirements.md",
+          "loc": 110,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "2026-08-26.transcript",
+          "path": "docs/episodes/2026-08-26.transcript.txt",
+          "loc": 108,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "2026-08-27.transcript",
+          "path": "docs/episodes/2026-08-27.transcript.txt",
+          "loc": 107,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "styleMetrics.test",
+          "path": "test/styleMetrics.test.ts",
+          "loc": 104,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "2026-09-01.transcript",
+          "path": "docs/episodes/2026-09-01.transcript.txt",
+          "loc": 102,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "speakerProfiles.test",
+          "path": "test/speakerProfiles.test.ts",
+          "loc": 102,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "2026-08-21.transcript",
+          "path": "docs/episodes/2026-08-21.transcript.txt",
+          "loc": 101,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "2026-08-25.transcript",
+          "path": "docs/episodes/2026-08-25.transcript.txt",
+          "loc": 100,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "llm-structured-output-strict-schema-and-provider-routing",
+          "path": "docs/solutions/best-practices/llm-structured-output-strict-schema-and-provider-routing.md",
+          "loc": 100,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "2026-06-17-feedback-loop-requirements",
+          "path": "docs/brainstorms/2026-06-17-feedback-loop-requirements.md",
+          "loc": 99,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "style-report",
+          "path": "scripts/style-report.ts",
+          "loc": 98,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "tts.provider.test",
+          "path": "test/tts.provider.test.ts",
+          "loc": 96,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "CONCEPTS",
+          "path": "CONCEPTS.md",
+          "loc": 95,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "ngrams",
+          "path": "src/ngrams.ts",
+          "loc": 95,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "speakerProfiles",
+          "path": "src/speakerProfiles.ts",
+          "loc": 95,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "chat-completion.test",
+          "path": "test/chat-completion.test.ts",
+          "loc": 91,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "curate.threading.test",
+          "path": "test/curate.threading.test.ts",
+          "loc": 91,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "preflight.test",
+          "path": "test/preflight.test.ts",
+          "loc": 90,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "publish.soundbite-dollar.test",
+          "path": "test/publish.soundbite-dollar.test.ts",
+          "loc": 89,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "stageCache",
+          "path": "src/stageCache.ts",
+          "loc": 86,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "ttsProvider",
+          "path": "src/ttsProvider.ts",
+          "loc": 86,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "script-anti-repetition-style-memory",
+          "path": "docs/solutions/best-practices/script-anti-repetition-style-memory.md",
+          "loc": 84,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "voice",
+          "path": "src/voice.ts",
+          "loc": 79,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "ngrams.test",
+          "path": "test/ngrams.test.ts",
+          "loc": 77,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "healthcheck",
+          "path": "src/healthcheck.ts",
+          "loc": 76,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "curate.report.test",
+          "path": "test/curate.report.test.ts",
+          "loc": 74,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "fetch-url-deduplication-before-curation",
+          "path": "docs/solutions/best-practices/fetch-url-deduplication-before-curation.md",
+          "loc": 73,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "healthcheck.test",
+          "path": "test/healthcheck.test.ts",
+          "loc": 73,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "pronunciations",
+          "path": "src/pronunciations.ts",
+          "loc": 72,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "AGENTS",
+          "path": "AGENTS.md",
+          "loc": 68,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "curate.interests.test",
+          "path": "test/curate.interests.test.ts",
+          "loc": 68,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "preflight-fail-fast-before-paid-stages",
+          "path": "docs/solutions/best-practices/preflight-fail-fast-before-paid-stages.md",
+          "loc": 66,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "stageCache.test",
+          "path": "test/stageCache.test.ts",
+          "loc": 66,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "github-actions-cron-jitter-and-backup-schedule",
+          "path": "docs/solutions/workflow-issues/github-actions-cron-jitter-and-backup-schedule.md",
+          "loc": 62,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "pronunciations.test",
+          "path": "test/pronunciations.test.ts",
+          "loc": 59,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "updating-feature-branches-merge-not-rebase",
+          "path": "docs/solutions/workflow-issues/updating-feature-branches-merge-not-rebase.md",
+          "loc": 58,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "publish.already-published.test",
+          "path": "test/publish.already-published.test.ts",
+          "loc": 57,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "episode-date.test",
+          "path": "test/episode-date.test.ts",
+          "loc": 55,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "github-pages-publish-verification",
+          "path": "docs/solutions/workflow-issues/github-pages-publish-verification.md",
+          "loc": 53,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "audioTags",
+          "path": "src/audioTags.ts",
+          "loc": 53,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "config.local.example",
+          "path": ".compound-engineering/config.local.example.yaml",
+          "loc": 49,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "verify-deploy",
+          "path": "scripts/verify-deploy.ts",
+          "loc": 49,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "STRATEGY",
+          "path": "STRATEGY.md",
+          "loc": 48,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "episode-date",
+          "path": "src/episode-date.ts",
+          "loc": 48,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "script.confidence.test",
+          "path": "test/script.confidence.test.ts",
+          "loc": 48,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "2026-08-20.chapters",
+          "path": "docs/episodes/2026-08-20.chapters.json",
+          "loc": 46,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "2026-08-21.chapters",
+          "path": "docs/episodes/2026-08-21.chapters.json",
+          "loc": 46,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "2026-08-24.chapters",
+          "path": "docs/episodes/2026-08-24.chapters.json",
+          "loc": 46,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "2026-08-25.chapters",
+          "path": "docs/episodes/2026-08-25.chapters.json",
+          "loc": 46,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "2026-08-26.chapters",
+          "path": "docs/episodes/2026-08-26.chapters.json",
+          "loc": 46,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "2026-08-27.chapters",
+          "path": "docs/episodes/2026-08-27.chapters.json",
+          "loc": 46,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "2026-08-28.chapters",
+          "path": "docs/episodes/2026-08-28.chapters.json",
+          "loc": 46,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "2026-08-31.chapters",
+          "path": "docs/episodes/2026-08-31.chapters.json",
+          "loc": 46,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "2026-09-01.chapters",
+          "path": "docs/episodes/2026-09-01.chapters.json",
+          "loc": 46,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "2026-09-02.chapters",
+          "path": "docs/episodes/2026-09-02.chapters.json",
+          "loc": 46,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "2026-09-03.chapters",
+          "path": "docs/episodes/2026-09-03.chapters.json",
+          "loc": 46,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "age-based-episode-retention",
+          "path": "docs/solutions/best-practices/age-based-episode-retention.md",
+          "loc": 44,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "episode-description-html-and-apple-chapters",
+          "path": "docs/solutions/best-practices/episode-description-html-and-apple-chapters.md",
+          "loc": 39,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "package",
+          "path": "package.json",
+          "loc": 33,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "interests",
+          "path": "src/interests.ts",
+          "loc": 33,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "podcast-feed-soundbite-dollar-replacement",
+          "path": "docs/solutions/best-practices/podcast-feed-soundbite-dollar-replacement.md",
+          "loc": 24,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "tsconfig",
+          "path": "tsconfig.json",
+          "loc": 24,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "feeds",
+          "path": "src/feeds.ts",
+          "loc": 23,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "dependabot-auto-merge",
+          "path": ".github/workflows/dependabot-auto-merge.yml",
+          "loc": 17,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "util.timeout.test",
+          "path": "test/util.timeout.test.ts",
+          "loc": 17,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "voices",
+          "path": "src/voices.ts",
+          "loc": 12,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": ".gitignore",
+          "path": ".gitignore",
+          "loc": 11,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "SKILL",
+          "path": ".claude/skills/eli5/SKILL.md",
+          "loc": 10,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "LICENSE",
+          "path": "LICENSE.md",
+          "loc": 10,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "fetch.smoke",
+          "path": "test/fetch.smoke.ts",
+          "loc": 10,
+          "why": "New change not referenced by any plan task."
+        },
+        {
+          "name": "preflight",
+          "path": "scripts/preflight.ts",
+          "loc": 9,
+          "why": "New change not referenced by any plan task."
+        }
+      ],
+      "history": [
+        {
+          "pct": 100,
+          "ts": 1787520418826
+        },
+        {
+          "pct": 100,
+          "ts": 1787520903339
+        },
+        {
+          "pct": 100,
+          "ts": 1788310721926
+        },
+        {
+          "pct": 100,
+          "ts": 1788311027230
+        },
+        {
+          "pct": 100,
+          "ts": 1788461014912
+        }
+      ],
+      "deltaFromLastHour": 0
+    },
+    "rework": {
+      "max": 0,
+      "topFile": null,
+      "files": [],
+      "level": "ok"
+    },
+    "addedCode": {
+      "net": 20410,
+      "newDeps": 0,
+      "level": "ok"
+    },
+    "tests": {
+      "pass": null,
+      "fail": null,
+      "total": null,
+      "ts": null,
+      "level": "unknown"
+    },
+    "memory": {
+      "pct": null,
+      "level": "unknown"
+    }
+  },
+  "decisions": [],
+  "attention": {
+    "unseenCount": 0,
+    "unseenDecisions": 0,
+    "unseenExtraTasks": 0,
+    "needsYou": false
+  }
+}

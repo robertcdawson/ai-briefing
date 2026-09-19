@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(sysctl -n *)",
+      "Bash(launchctl list)",
+      "Bash(launchctl list *)",
+      "Bash(npm run build)",
+      "Bash(npm run test:unit)",
+      "Bash(npm run lint)",
+      "mcp__Claude_Browser__read_console_messages",
+      "mcp__claude-in-chrome__tabs_context_mcp",
+      "mcp__Claude_Preview__preview_console_logs",
+      "mcp__Claude_Preview__preview_screenshot"
+    ]
+  }
+}

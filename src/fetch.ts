@@ -1,6 +1,7 @@
 import Parser from "rss-parser";
 import { SOURCES, type FeedSource } from "./feeds.js";
 import type { Article } from "./types.js";
+import { isSafeSourceUrl } from "./sourceUrls.js";
 import { logJson, withHardTimeout, withRetry } from "./util.js";
 
 const PER_FEED_TIMEOUT_MS = 10_000;
@@ -78,14 +79,14 @@ async function fetchSource(source: FeedSource): Promise<Article[]> {
     const dateStr = item.isoDate ?? item.pubDate;
     const url = item.link;
     const title = item.title;
-    if (!dateStr || !url || !title) continue;
+    if (!dateStr || !isSafeSourceUrl(url) || !title) continue;
     const ts = Date.parse(dateStr);
     if (Number.isNaN(ts) || ts < cutoff) continue;
     const rawExcerpt = item.contentSnippet?.trim() || stripHtml(item.content ?? "");
     articles.push({
       title: title.trim(),
       source: source.name,
-      url,
+      url: url.trim(),
       publishedAt: new Date(ts).toISOString(),
       // 900 (raised from 500): curation now extracts verbatim "specifics"
       // (numbers, names, quotes) per story, which needs real material to

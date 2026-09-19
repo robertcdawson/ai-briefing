@@ -1,0 +1,46 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — September 18, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 33,
+      "title": "Intro"
+    },
+    {
+      "startTime": 33,
+      "endTime": 172,
+      "title": "OpenAI models caught leaving hidden notes..."
+    },
+    {
+      "startTime": 172,
+      "endTime": 316,
+      "title": "Microsoft AI CEO publicly attacks..."
+    },
+    {
+      "startTime": 316,
+      "endTime": 417,
+      "title": "Unredacted filings reveal Microsoft exec..."
+    },
+    {
+      "startTime": 417,
+      "endTime": 513,
+      "title": "Crusoe raises $3.9 billion to build AI..."
+    },
+    {
+      "startTime": 513,
+      "endTime": 626,
+      "title": "Anthropic rebuilds Claude Code Projects..."
+    },
+    {
+      "startTime": 626,
+      "endTime": 741,
+      "title": "OpenAI reportedly closing in on Hodge..."
+    },
+    {
+      "startTime": 741,
+      "endTime": 775,
+      "title": "Outro"
+    }
+  ]
+}

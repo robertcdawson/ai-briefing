@@ -1,0 +1,46 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — September 21, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 33,
+      "title": "Intro"
+    },
+    {
+      "startTime": 33,
+      "endTime": 148,
+      "title": "Amazon blocks Meta's Muse AI shopping..."
+    },
+    {
+      "startTime": 148,
+      "endTime": 245,
+      "title": "UN panel warns AI agent risks demand..."
+    },
+    {
+      "startTime": 245,
+      "endTime": 330,
+      "title": "Alibaba releases open-weight..."
+    },
+    {
+      "startTime": 330,
+      "endTime": 405,
+      "title": "Trump proposes 'AI Force' and AI czar..."
+    },
+    {
+      "startTime": 405,
+      "endTime": 465,
+      "title": "Financial Times study finds AI chatbots..."
+    },
+    {
+      "startTime": 465,
+      "endTime": 531,
+      "title": "Runway demos real-time AI video streaming..."
+    },
+    {
+      "startTime": 531,
+      "endTime": 557,
+      "title": "Outro"
+    }
+  ]
+}

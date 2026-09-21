@@ -4,7 +4,7 @@
         <title>AI Briefing</title>
         <link>https://robertcdawson.github.io/ai-briefing/</link>
         <description>Daily AI news briefing — the stories that matter from the last 24 hours.</description>
-        <lastBuildDate>Sat, 19 Sep 2026 02:08:03 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 21 Sep 2026 11:35:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -23,6 +23,60 @@
         <podcast:guid>ea8709f4-3ba2-5b7e-bcdc-e409d84a6443</podcast:guid>
         <podcast:locked owner="manatees@gmail.com">yes</podcast:locked>
         <podcast:person role="host" group="cast">Robert Dawson</podcast:person>
+        <item>
+            <title><![CDATA[AI Briefing — September 21, 2026]]></title>
+            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-09-21.mp3</link>
+            <guid>ai-briefing-2026-09-21</guid>
+            <pubDate>Mon, 21 Sep 2026 11:35:00 GMT</pubDate>
+            <description><![CDATA[<p>Top 6 AI stories for September 21, 2026.</p>
+<p>1. Top Story: Amazon blocks Meta's Muse AI shopping agent over unauthorized access and credential capture</p>
+<p>Why it matters: This is the first high-profile platform-vs-agent conflict where a major retailer has actively blocked a frontier AI agent, setting a precedent for how platforms will police autonomous agents acting on behalf of users.</p>
+<p>Caveat: Details come from GeekWire's report; neither Amazon nor Meta has issued a full public statement clarifying the technical scope of credential capture or whether a resolution is being negotiated.</p>
+<p><a href="https://www.theverge.com/tech/998078/amazon-blocks-meta-muse-ai-agent-shopping">The Verge AI</a></p>
+<p>2. Policy &amp; Regulation Watch: UN panel warns AI agent risks demand precautionary regulation before full certainty</p>
+<p>Why it matters: The UN's first major AI assessment, timed to the General Assembly, signals that multilateral regulatory pressure on AI agents is accelerating and could shape international compliance requirements for labs and deployers.</p>
+<p>Caveat: The UN panel's report is advisory only and has no binding enforcement mechanism; actual government action will depend on member-state political will.</p>
+<p><a href="https://www.theverge.com/ai-artificial-intelligence/998090/un-ai-panel-hugging-face-hack-precautionary-principle">The Verge AI</a></p>
+<p>3. Open Source Watch: Alibaba releases open-weight Qwen-Image-2.1 claiming to beat closed image models at 7B parameters</p>
+<p>Why it matters: A 7B-parameter open-weight image generation model that claims to outperform closed competitors would dramatically lower the compute barrier for image generation and editing, enabling local deployment on consumer GPUs.</p>
+<p>Caveat: Benchmark claims come from Alibaba's own Qwen team and have not been independently verified; the research license bars commercial use without a separate Qwen license agreement.</p>
+<p><a href="https://the-decoder.com/alibabas-open-weight-qwen-image-2-1-claims-to-beat-closed-models-in-image-generation-with-just-7-billion-parameters/">The Decoder</a></p>
+<p>4. Policy &amp; Regulation Watch: Trump proposes 'AI Force' and AI czar role amid industry slowdown debate</p>
+<p>Why it matters: A formal US AI czar and dedicated 'AI Force' would centralize federal AI policy under a single executive authority, directly countering the bipartisan push for binding safety rules and shaping the regulatory environment for all US-based labs.</p>
+<p>Caveat: The announcement was a Truth Social post with no legislative text, budget, or named candidate for the czar role, making implementation timelines entirely unclear.</p>
+<p><a href="https://www.theverge.com/ai-artificial-intelligence/997867/trump-ai-force-ai-czar">The Verge AI</a></p>
+<p>5. Research Breakthrough: Financial Times study finds AI chatbots give wrong answers to financial queries most of the time</p>
+<p>Why it matters: Systematic inaccuracy on financial queries is a concrete reliability signal for builders deploying AI in fintech, wealth management, or any regulated financial context where wrong answers carry legal and fiduciary risk.</p>
+<p>Caveat: The FT article is paywalled and the full methodology, which chatbots were tested, and what counts as 'wrong' have not been independently reviewed in available excerpts.</p>
+<p><a href="https://www.ft.com/content/c0cd359d-df84-4208-a789-ffa864b43666">Hacker News (AI)</a></p>
+<p>6. Product &amp; Tool Watch: Runway demos real-time AI video streaming controlled by live user prompts</p>
+<p>Why it matters: Frame-by-frame streaming video generation controlled in real time would collapse the latency barrier that currently limits AI video to post-production use cases, opening robotics, simulation, and interactive media applications.</p>
+<p>Caveat: This is a demo announcement with no public API or release date; Runway's world model GWM-1 underpins the approach but production reliability and latency figures have not been disclosed.</p>
+<p><a href="https://the-decoder.com/runway-wants-to-turn-ai-video-generation-into-a-live-stream-you-control-in-real-time/">The Decoder</a></p>
+<p>Chapters</p>
+<p>00:00:00 Intro</p>
+<p>00:00:33 Amazon blocks Meta's Muse AI shopping...</p>
+<p>00:02:28 UN panel warns AI agent risks demand...</p>
+<p>00:04:05 Alibaba releases open-weight...</p>
+<p>00:05:30 Trump proposes 'AI Force' and AI czar...</p>
+<p>00:06:45 Financial Times study finds AI chatbots...</p>
+<p>00:07:45 Runway demos real-time AI video streaming...</p>
+<p>00:08:51 Outro</p>]]></description>
+            <enclosure length="13365918" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-09-21.mp3"/>
+                    <itunes:duration>557</itunes:duration>
+            <itunes:explicit>false</itunes:explicit>
+            <itunes:season>2026</itunes:season>
+            <itunes:episode>264</itunes:episode>
+            <itunes:episodeType>full</itunes:episodeType>
+            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-09-21.chapters.json" type="application/json+chapters"/>
+            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-09-21.transcript.txt" type="text/plain" language="en"/>
+            <podcast:soundbite startTime="33" duration="114">Amazon blocks Meta&apos;s Muse AI shopping...</podcast:soundbite>
+            <podcast:soundbite startTime="148" duration="95">UN panel warns AI agent risks demand...</podcast:soundbite>
+            <podcast:soundbite startTime="245" duration="84">Alibaba releases open-weight...</podcast:soundbite>
+            <podcast:soundbite startTime="330" duration="74">Trump proposes &apos;AI Force&apos; and AI czar...</podcast:soundbite>
+            <podcast:soundbite startTime="405" duration="58">Financial Times study finds AI chatbots...</podcast:soundbite>
+            <podcast:soundbite startTime="465" duration="64">Runway demos real-time AI video streaming...</podcast:soundbite>
+        </item>
         <item>
             <title><![CDATA[AI Briefing — September 18, 2026]]></title>
             <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-09-18.mp3</link>

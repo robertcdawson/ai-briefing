@@ -1,0 +1,46 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — September 22, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 43,
+      "title": "Intro"
+    },
+    {
+      "startTime": 43,
+      "endTime": 136,
+      "title": "Google Officially Confirms Gemini Models..."
+    },
+    {
+      "startTime": 136,
+      "endTime": 222,
+      "title": "US and China Agree on Formal AI Dialogue..."
+    },
+    {
+      "startTime": 222,
+      "endTime": 308,
+      "title": "OpenAI's Internal Model Solves Over 100..."
+    },
+    {
+      "startTime": 308,
+      "endTime": 396,
+      "title": "Meta's Muse AI Agent Found to Have..."
+    },
+    {
+      "startTime": 396,
+      "endTime": 471,
+      "title": "California Signs Seven Bills Forcing AI..."
+    },
+    {
+      "startTime": 471,
+      "endTime": 548,
+      "title": "SoftBank Plans to Borrow Over 11 Billion..."
+    },
+    {
+      "startTime": 548,
+      "endTime": 588,
+      "title": "Outro"
+    }
+  ]
+}

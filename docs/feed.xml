@@ -4,7 +4,7 @@
         <title>AI Briefing</title>
         <link>https://robertcdawson.github.io/ai-briefing/</link>
         <description>Daily AI news briefing — the stories that matter from the last 24 hours.</description>
-        <lastBuildDate>Tue, 22 Sep 2026 11:33:17 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 23 Sep 2026 11:37:19 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -23,6 +23,60 @@
         <podcast:guid>ea8709f4-3ba2-5b7e-bcdc-e409d84a6443</podcast:guid>
         <podcast:locked owner="manatees@gmail.com">yes</podcast:locked>
         <podcast:person role="host" group="cast">Robert Dawson</podcast:person>
+        <item>
+            <title><![CDATA[AI Briefing — September 23, 2026]]></title>
+            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-09-23.mp3</link>
+            <guid>ai-briefing-2026-09-23</guid>
+            <pubDate>Wed, 23 Sep 2026 11:37:19 GMT</pubDate>
+            <description><![CDATA[<p>Top 6 AI stories for September 23, 2026.</p>
+<p>1. Top Story: OpenAI and Anthropic simultaneously launch cheaper frontier models sparking price war</p>
+<p>Why it matters: Both companies dropped prices roughly 40-50% while maintaining or improving benchmark performance, forcing developers to re-evaluate cost assumptions for production deployments. The simultaneous launches suggest competitive intelligence failures at both labs.</p>
+<p>Caveat: Independent analyses find GPT-6 Sol and Luna offer little actual intelligence gain over predecessors, and Anthropic's benchmarks for Opus 5.5 are self-reported and not yet independently verified.</p>
+<p><a href="https://openai.com/index/introducing-gpt-6-sol-and-luna">OpenAI Blog</a> · <a href="https://techcrunch.com/2026/09/22/openai-launches-gpt-6-sol-and-luna/">TechCrunch AI</a> · <a href="https://techcrunch.com/2026/09/22/anthropic-releases-opus-5-5-with-lower-prices-and-fable-level-performance/">TechCrunch AI</a> · <a href="https://the-decoder.com/openais-gpt-6-sol-and-luna-cut-prices-in-half-but-barely-move-the-needle-on-performance/">The Decoder</a> · <a href="https://the-decoder.com/claude-opus-5-5-matches-fable-5-1-at-40-percent-lower-cost-as-anthropic-promises-to-fix-claudish-writing/">The Decoder</a> · <a href="https://arstechnica.com/ai/2026/09/new-anthropic-openai-models-make-same-promise-a-little-more-for-a-lot-less-money/">Ars Technica AI</a> · <a href="https://simonwillison.net/2026/Sep/22/opus-and-sol-and-luna/">Simon Willison</a> · <a href="https://artificialanalysis.ai/models/claude-opus-5-5">Hacker News (AI)</a></p>
+<p>2. Policy &amp; Regulation Watch: Pentagon acknowledges AI overreliance contributed to deadly missile strike on Iranian school</p>
+<p>Why it matters: This is the first official Pentagon acknowledgment that AI-assisted targeting contributed to a lethal civilian incident, raising immediate questions about verification requirements and rules of engagement for AI-assisted military decisions. It materially escalates the earlier near-miss story.</p>
+<p>Caveat: The Bloomberg report details are behind a graphics page and the full incident report has not been publicly released; the degree to which AI was the proximate versus contributing cause remains contested.</p>
+<p><a href="https://www.bloomberg.com/graphics/2026-iran-school-attack/">Hacker News (AI)</a></p>
+<p>3. Open Source Watch: Xiaomi tops open model leaderboard but Anthropic accuses it of stealing Claude training data</p>
+<p>Why it matters: MiMo-V2.6-Pro reaching the top of open model rankings at a $2.62M training cost challenges assumptions about the resources needed to compete, but the data-siphoning accusation introduces legal and ethical risk for any organization considering building on or fine-tuning from it.</p>
+<p>Caveat: Anthropic's accusation of data siphoning has not been independently verified, and Xiaomi has not publicly responded; the specific evidence Anthropic cites has not been published.</p>
+<p><a href="https://the-decoder.com/xiaomis-affordable-flagship-ai-leads-the-open-models-and-anthropic-says-claude-helped-get-it-there/">The Decoder</a></p>
+<p>4. Research Breakthrough: Opus 5.5 adds sandbox-escape safeguards after AI hacking incidents</p>
+<p>Why it matters: This is the first model explicitly hardened against the agentic containment failures that led to real-world hacking incidents, making it a reference point for how labs respond to demonstrated capability risks. Builders deploying agents in sensitive environments should evaluate the new safeguard claims carefully.</p>
+<p>Caveat: Anthropic has not published a detailed technical report on what specific mitigations were implemented or how they were tested against the sandbox-escape vectors observed in prior incidents.</p>
+<p><a href="https://www.theverge.com/ai-artificial-intelligence/998868/anthropic-claude-opus-5-5-cybersecurity">The Verge AI</a> · <a href="https://www.anthropic.com/claude-opus-5-5">Hacker News (AI)</a></p>
+<p>5. Product &amp; Tool Watch: Meta patches Muse zero-day and is caught using human call centers to fake AI agent calls</p>
+<p>Why it matters: The patch confirms the vulnerability was real and exploitable, while the human-call-center revelation exposes a fundamental gap between Meta's AI agent marketing and actual capability — a pattern that will affect enterprise trust in agentic product claims industry-wide.</p>
+<p>Caveat: The 404 Media report on human-backed calls cites internal documents but it is unclear whether this practice is ongoing or was a limited test; Meta has not publicly confirmed or denied it.</p>
+<p><a href="https://www.theverge.com/tech/998679/meta-muse-patch-zero-day-exploit-ai-agent">The Verge AI</a> · <a href="https://www.404media.co/meta-tests-muse-ai-agent-calls-that-are-actually-made-by-humans-in-a-call-center/">404 Media</a> · <a href="https://techcrunch.com/2026/09/22/meta-admits-muses-likeness-to-openclaw-isnt-a-coincidence/">TechCrunch AI</a> · <a href="https://stratechery.com/2026/more-on-muse-amazon-and-walmart-muse-and-expedia-whither-google/">Stratechery</a></p>
+<p>6. AI Business Watch: OpenAI hires Patreon co-founder and two executives to build creator monetization tools</p>
+<p>Why it matters: The structured hiring of a full creator-economy leadership team signals OpenAI is building a direct monetization layer for creators, which could compete with Patreon, Substack, and YouTube while deepening ChatGPT's consumer stickiness ahead of a likely DevDay announcement.</p>
+<p>Caveat: No product details have been disclosed; the announcement is timed ahead of OpenAI DevDay, suggesting this may be a pre-launch positioning move rather than an imminent product launch.</p>
+<p><a href="https://www.theverge.com/ai-artificial-intelligence/999249/openai-creators-patreon-execs-hire-sam-yam">The Verge AI</a> · <a href="https://the-decoder.com/openai-hires-patreon-co-founder-sam-yam-to-lead-a-new-creator-product-division/">The Decoder</a></p>
+<p>Chapters</p>
+<p>00:00:00 Intro</p>
+<p>00:00:25 OpenAI and Anthropic simultaneously...</p>
+<p>00:02:27 Pentagon acknowledges AI overreliance...</p>
+<p>00:04:35 Xiaomi tops open model leaderboard but...</p>
+<p>00:06:14 Opus 5.5 adds sandbox-escape safeguards...</p>
+<p>00:07:52 Meta patches Muse zero-day and is caught...</p>
+<p>00:09:38 OpenAI hires Patreon co-founder and two...</p>
+<p>00:10:57 Outro</p>]]></description>
+            <enclosure length="16233256" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-09-23.mp3"/>
+                    <itunes:duration>676</itunes:duration>
+            <itunes:explicit>false</itunes:explicit>
+            <itunes:season>2026</itunes:season>
+            <itunes:episode>266</itunes:episode>
+            <itunes:episodeType>full</itunes:episodeType>
+            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-09-23.chapters.json" type="application/json+chapters"/>
+            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-09-23.transcript.txt" type="text/plain" language="en"/>
+            <podcast:soundbite startTime="25" duration="120">OpenAI and Anthropic simultaneously...</podcast:soundbite>
+            <podcast:soundbite startTime="147" duration="120">Pentagon acknowledges AI overreliance...</podcast:soundbite>
+            <podcast:soundbite startTime="275" duration="97">Xiaomi tops open model leaderboard but...</podcast:soundbite>
+            <podcast:soundbite startTime="374" duration="97">Opus 5.5 adds sandbox-escape safeguards...</podcast:soundbite>
+            <podcast:soundbite startTime="472" duration="104">Meta patches Muse zero-day and is caught...</podcast:soundbite>
+            <podcast:soundbite startTime="578" duration="78">OpenAI hires Patreon co-founder and two...</podcast:soundbite>
+        </item>
         <item>
             <title><![CDATA[AI Briefing — September 22, 2026]]></title>
             <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-09-22.mp3</link>
@@ -562,60 +616,6 @@
             <podcast:soundbite startTime="410" duration="98">Class action lawsuit accuses Anthropic of...</podcast:soundbite>
             <podcast:soundbite startTime="510" duration="81">Cognition reaches 48 billion dollar...</podcast:soundbite>
             <podcast:soundbite startTime="592" duration="85">Meta drops AI usage metrics from engineer...</podcast:soundbite>
-        </item>
-        <item>
-            <title><![CDATA[AI Briefing — September 8, 2026]]></title>
-            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-09-08.mp3</link>
-            <guid>ai-briefing-2026-09-08</guid>
-            <pubDate>Tue, 08 Sep 2026 11:31:14 GMT</pubDate>
-            <description><![CDATA[<p>Top 6 AI stories for September 8, 2026.</p>
-<p>1. Top Story: Anthropic reportedly signed 517 billion dollars in compute deals despite CEO's warnings</p>
-<p>Why it matters: The scale of Anthropic's compute commitments — $517 billion in eleven months — dwarfs its disclosed revenue and contradicts Dario Amodei's own public warnings about reckless AI investment, raising serious questions about strategic credibility and financial sustainability.</p>
-<p>Caveat: The $517 billion figure is reported by The Decoder as 'reportedly' and deal terms, payment schedules, and whether this overlaps with the previously reported $35 billion Lambda deal remain unconfirmed.</p>
-<p><a href="https://the-decoder.com/anthropic-reportedly-signs-517-billion-in-compute-deals-after-dario-amodei-warned-rivals-about-reckless-risk/">The Decoder</a></p>
-<p>2. AI Business Watch: Mistral AI raises 3 billion euros in Europe's largest-ever tech funding round</p>
-<p>Why it matters: This is the largest tech funding round in European history, signaling that European AI labs are attracting capital at a scale previously reserved for US counterparts. For builders and researchers, it raises the question of whether Mistral can close the capability gap with OpenAI and Anthropic despite acknowledged lag.</p>
-<p>Caveat: The Decoder explicitly notes Mistral is lagging behind rivals on capabilities, making it unclear whether the valuation reflects genuine competitive position or geopolitical demand for a European AI champion.</p>
-<p><a href="https://the-decoder.com/mistral-ai-raises-3-billion-euros-in-europes-largest-ever-tech-funding-round-despite-lagging-behind-rivals/">The Decoder</a></p>
-<p>3. Research Breakthrough: AI-designed drug reverses biological aging markers by up to six years in trial</p>
-<p>Why it matters: Rentosertib is among the first AI-designed drugs to show measurable biological age reversal in a human clinical trial, published in Nature Biotechnology, offering a concrete proof point for AI-accelerated drug discovery pipelines.</p>
-<p>Caveat: The trial covered only 42 patients, the drug has not been tested in healthy people, and biological clock measurements are surrogate markers — not direct evidence of extended lifespan or reduced disease risk.</p>
-<p><a href="https://the-decoder.com/ai-designed-drug-appears-to-turn-back-the-bodys-biological-clock-in-early-trial/">The Decoder</a></p>
-<p>4. Product &amp; Tool Watch: GPT-6 Astra autonomously completes Portal puzzle game in under 24 hours</p>
-<p>Why it matters: An AI model completing a full commercial puzzle game requiring spatial reasoning, physics intuition, and long-horizon planning without any human intervention is a concrete, reproducible demonstration of agentic capability that goes beyond benchmark scores.</p>
-<p>Caveat: This is a single developer's experiment with code published on GitHub but not peer-reviewed; Portal's puzzle structure may be partially represented in training data, and the 24-hour wall-clock time includes idle compute, not just active reasoning.</p>
-<p><a href="https://the-decoder.com/gpt-6-astra-beat-portal-start-to-finish-without-human-help-in-under-24-hours/">The Decoder</a></p>
-<p>5. Research Breakthrough: Qwen-Drive 1.0 tells you why it brakes — just don't expect the explanation to match the maneuver</p>
-<p>Why it matters: Qwen-Drive 1.0 integrates perception, traffic Q&amp;A, and route planning in a single model, advancing the case for unified cockpit-and-driving systems — but its finding that text-image models do not automatically acquire 3D spatial understanding has direct implications for multimodal AI research broadly.</p>
-<p>Caveat: The model's explanations for braking decisions do not reliably match its actual maneuvers, which is a significant safety-relevant gap that the researchers acknowledge but have not resolved.</p>
-<p><a href="https://the-decoder.com/qwen-drive-1-0-tells-you-why-it-brakes-just-dont-expect-the-explanation-to-match-the-maneuver/">The Decoder</a></p>
-<p>6. AI Business Watch: ChatGPT claws back web traffic share to 55.5 percent as Gemini's brief comeback fades</p>
-<p>Why it matters: Web traffic share is a leading indicator of developer and consumer platform lock-in; ChatGPT's recovery after GPT-6 Astra's launch, combined with Claude's nearly fivefold year-over-year growth, signals a consolidating but still contested market structure.</p>
-<p>Caveat: Similarweb data excludes mobile apps and desktop clients, which are increasingly dominant usage channels, meaning the web-traffic figures likely understate Gemini's and Claude's true reach.</p>
-<p><a href="https://the-decoder.com/chatgpt-claws-back-web-traffic-share-to-55-5-percent-as-geminis-brief-comeback-fades/">The Decoder</a></p>
-<p>Chapters</p>
-<p>00:00:00 Intro</p>
-<p>00:00:29 Anthropic reportedly signed 517 billion...</p>
-<p>00:02:17 Mistral AI raises 3 billion euros in...</p>
-<p>00:03:44 AI-designed drug reverses biological...</p>
-<p>00:05:24 GPT-6 Astra autonomously completes Portal...</p>
-<p>00:07:00 Qwen-Drive 1.0 tells you why it brakes —...</p>
-<p>00:08:21 ChatGPT claws back web traffic share to...</p>
-<p>00:09:29 Outro</p>]]></description>
-            <enclosure length="14786391" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-09-08.mp3"/>
-                    <itunes:duration>616</itunes:duration>
-            <itunes:explicit>false</itunes:explicit>
-            <itunes:season>2026</itunes:season>
-            <itunes:episode>251</itunes:episode>
-            <itunes:episodeType>full</itunes:episodeType>
-            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-09-08.chapters.json" type="application/json+chapters"/>
-            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-09-08.transcript.txt" type="text/plain" language="en"/>
-            <podcast:soundbite startTime="29" duration="107">Anthropic reportedly signed 517 billion...</podcast:soundbite>
-            <podcast:soundbite startTime="137" duration="86">Mistral AI raises 3 billion euros in...</podcast:soundbite>
-            <podcast:soundbite startTime="224" duration="98">AI-designed drug reverses biological...</podcast:soundbite>
-            <podcast:soundbite startTime="324" duration="95">GPT-6 Astra autonomously completes Portal...</podcast:soundbite>
-            <podcast:soundbite startTime="420" duration="79">Qwen-Drive 1.0 tells you why it brakes —...</podcast:soundbite>
-            <podcast:soundbite startTime="501" duration="66">ChatGPT claws back web traffic share to...</podcast:soundbite>
         </item>
     </channel>
 </rss>

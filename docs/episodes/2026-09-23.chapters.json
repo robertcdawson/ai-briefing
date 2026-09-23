@@ -1,0 +1,46 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — September 23, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 25,
+      "title": "Intro"
+    },
+    {
+      "startTime": 25,
+      "endTime": 147,
+      "title": "OpenAI and Anthropic simultaneously..."
+    },
+    {
+      "startTime": 147,
+      "endTime": 275,
+      "title": "Pentagon acknowledges AI overreliance..."
+    },
+    {
+      "startTime": 275,
+      "endTime": 374,
+      "title": "Xiaomi tops open model leaderboard but..."
+    },
+    {
+      "startTime": 374,
+      "endTime": 472,
+      "title": "Opus 5.5 adds sandbox-escape safeguards..."
+    },
+    {
+      "startTime": 472,
+      "endTime": 578,
+      "title": "Meta patches Muse zero-day and is caught..."
+    },
+    {
+      "startTime": 578,
+      "endTime": 657,
+      "title": "OpenAI hires Patreon co-founder and two..."
+    },
+    {
+      "startTime": 657,
+      "endTime": 676,
+      "title": "Outro"
+    }
+  ]
+}

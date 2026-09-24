@@ -24,10 +24,10 @@ The host was rewritten from a sharp, occasionally cynical guide to a warm, plain
 
 | Layer | Owner | Lever |
 |---|---|---|
-| Words (rhythm, "y'all", "fixing to", a homespun comparison when it explains something) | `HOST_IDENTITY.speech` + `VOICE_EXEMPLARS` in `src/voice.ts` | Edit the identity text and the exemplars |
+| Words (rhythm, "y'all", "fixing to", a homespun comparison when it explains something) | `config/show.json` host speech + exemplars, falling back to `src/voice.ts` | Tune page at `docs/tune/` |
 | Spelling | `src/script.ts` SPOKEN-DELIVERY MECHANICS | Standard spelling always; never phonetic respellings |
-| Accent (soft drawl, relaxed vowels, easy pace) | `NARRATOR_PROFILE.delivery` in `src/speakerProfiles.ts` | Override with `TTS_NARRATOR_STYLE`; OpenAI path only |
-| Timbre | `NARRATOR_PROFILE.defaultVoice` (`cedar`) | Override with `TTS_VOICE` |
+| Accent (soft drawl, relaxed vowels, easy pace) | `config/show.json` `tts.narrator`, falling back to `NARRATOR_PROFILE.delivery` | Tune page; a non-empty `TTS_NARRATOR_STYLE` still wins. OpenAI path only |
+| Timbre | `config/show.json` `tts.voice` when set, else `NARRATOR_PROFILE.defaultVoice` (`cedar`) | Tune page; a non-empty `TTS_VOICE` still wins |
 | Preservation | `src/earEdit.ts` system prompt | Copy editor leaves dialect as written |
 
 The split is deliberate. Writing the accent into the script ("fixin'", "gonna") breaks the synthesizer's pronunciation and leaks into the published transcript. Keeping it in `instructions` means the words stay clean and the accent can be tuned, or removed, without touching the prompt.

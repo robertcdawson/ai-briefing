@@ -44,7 +44,8 @@ ai-briefing/
 │   ├── curate.ts                 # Cluster + score; suppress/thread vs. recent coverage
 │   ├── interests.ts              # Listener interest profile (curation salience nudge)
 │   ├── ledger.ts                 # Prior-coverage window + recent style/phrase profiles
-│   ├── voice.ts                  # Persistent host identity + register exemplars
+│   ├── voice.ts                  # Built-in host identity + register exemplars
+│   ├── showConfig.ts             # Loads config/show.json over those defaults
 │   ├── script.ts                 # Spoken script (host voice, segment shapes, anti-repetition)
 │   ├── earEdit.ts                # Non-blocking copy-edit pass between script and tts
 │   ├── ngrams.ts                 # Shared n-gram extraction (phrase tripwire + style report)
@@ -62,6 +63,8 @@ ai-briefing/
 │   ├── feeds.ts                  # Curated source list
 │   ├── types.ts                  # Article, StoryCluster, CurationRecord, Episode
 │   └── util.ts                   # logJson, withRetry, withHardTimeout
+├── config/
+│   └── show.json                 # Voice and tone the morning run actually uses
 ├── scripts/
 │   ├── preflight.ts              # `npm run preflight` CLI entry
 │   ├── verify-deploy.ts          # Manual / CI publish verification
@@ -71,6 +74,7 @@ ai-briefing/
 ├── docs/                         # GitHub Pages root
 │   ├── feed.xml                  # Regenerated each run
 │   ├── solutions/                # Documented fixes / operational patterns
+│   ├── tune/                     # Phone page that edits config/show.json
 │   └── episodes/
 │       ├── YYYY-MM-DD.mp3        # The audio
 │       ├── YYYY-MM-DD.json       # Sidecar metadata (title, duration, bytes, feed options, curation records)
@@ -307,6 +311,23 @@ Design notes and the `{ prune: false }` test gotcha live in `docs/solutions/best
 Already-deleted MP3s **remain in earlier git commits** — pruning only stops new commits from carrying them. If you want to fully shrink the repo, you'd need a separate one-time `git filter-repo` pass; not part of the daily pipeline.
 
 ## Manual operations
+
+### Tune the voice from your phone
+
+Open the tune page on the podcast site: the Pages URL plus `/tune/` (for example `https://USER.github.io/ai-briefing/tune/`).
+
+The page edits `config/show.json` and commits it straight to `main`. The next morning's run reads that file. There is no pull request and no Actions variables screen.
+
+What you can change there:
+
+- **Tone notes** — what to stop doing after you listen (the AI cadence, a catchphrase, the rhythm).
+- **How the host talks**, humor, and what they refuse to do.
+- **Passages** the writer should sound like.
+- **Spoken delivery** — accent, pace, and voice id. OpenAI speech uses these instructions. A non-empty `TTS_VOICE` or `TTS_*_STYLE` Actions variable still overrides the matching delivery field. The words in the script come from the page either way.
+
+The first time, create a fine-grained personal access token with **Contents: Read and write** on this repository only. The token stays in the browser. Takes effect on the next run. An episode that already published today is left as it is.
+
+Details: `docs/solutions/best-practices/show-tune-page.md`.
 
 ### Trigger a run on demand
 

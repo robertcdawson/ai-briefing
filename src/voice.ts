@@ -13,6 +13,9 @@
  *
  * Leaf module: imports nothing from src/script.ts or src/speakerProfiles.ts
  * so both can import from here without a cycle.
+ *
+ * These constants are the fallback. The morning run prefers config/show.json,
+ * which the tune page (docs/tune/) edits without a pull request.
  */
 
 export interface HostIdentity {
@@ -46,14 +49,14 @@ export const HOST_IDENTITY: HostIdentity = {
     "The Host is a warm, plainspoken solo guide to the day's AI news, Southern by upbringing and an engineer by trade: curious and fair, dryly funny, and always weighing the real-world stakes — who benefits, who gets hurt, and what could go right or wrong.",
 };
 
-export function formatHostIdentityBlock(): string {
+export function formatHostIdentityBlock(identity: HostIdentity = HOST_IDENTITY): string {
   return `THE HOST
-- Background: ${HOST_IDENTITY.background}
-- Beat: ${HOST_IDENTITY.beat}
-- Cares about: ${HOST_IDENTITY.caresAbout}
-- How they talk: ${HOST_IDENTITY.speech}
-- Humor: ${HOST_IDENTITY.humor}
-- Refuses to: ${HOST_IDENTITY.refusals}`;
+- Background: ${identity.background}
+- Beat: ${identity.beat}
+- Cares about: ${identity.caresAbout}
+- How they talk: ${identity.speech}
+- Humor: ${identity.humor}
+- Refuses to: ${identity.refusals}`;
 }
 
 /**

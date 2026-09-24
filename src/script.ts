@@ -9,7 +9,8 @@ import type { RecentPhraseProfile, RecentStyleSnippets } from "./ledger.js";
 import { PHRASE_PROFILE_WINDOW, PHRASE_REJECT_MIN_EPISODES } from "./ledger.js";
 import type { ChatCompletionLike } from "./util.js";
 import { getChatCompletionAssistantText, logJson, withHardTimeout, withRetry } from "./util.js";
-import { VOICE_EXEMPLARS, formatHostIdentityBlock } from "./voice.js";
+import { formatListenerToneNotes, builtinShowConfig, type ShowConfig } from "./showConfig.js";
+import { formatHostIdentityBlock } from "./voice.js";
 
 // Sonnet leads for prose quality (voice adherence, wit, varied phrasing);
 // the cheaper models remain as availability fallbacks. Sonnet was briefly the
@@ -50,6 +51,8 @@ export interface WriteScriptOptions {
   recentStyle?: RecentStyleSnippets[];
   /** Recent episodes' recurring 3/4-grams (src/ledger.ts buildRecentPhraseProfile), the statistical anti-repetition tripwire. */
   phraseProfile?: RecentPhraseProfile;
+  /** Listener-edited voice and tone. Omitted uses the built-in host. */
+  show?: ShowConfig;
 }
 
 export interface ScriptResponse {
@@ -246,7 +249,7 @@ export function selectSegmentShape(date: string, segmentIndex: number): { name: 
   return shape;
 }
 
-function buildSystemPromptBase(allowAudioTags: boolean): string {
+function buildSystemPromptBase(allowAudioTags: boolean, show: ShowConfig): string {
   const chunkPurityRule = allowAudioTags
     ? "- Do not include speaker labels, stage directions, reactions, fake laughter, or audio cues. The ONLY bracketed text allowed is the approved inline delivery tags described below."
     : "- Do not include speaker labels, stage directions, reactions, fake laughter, audio cues, or bracketed pauses.";
@@ -280,9 +283,9 @@ Recurring segment labels:
 ${SEGMENT_LABEL_RULES}
 - Keep titles compact. Do not invent new segment label names.
 
-${formatHostIdentityBlock()}
+${formatHostIdentityBlock(show.host)}
 
-${formatVoiceExemplarsBlock()}
+${formatVoiceExemplarsBlock(show.exemplars)}
 
 EMPHASIS BUDGET
 - Baseline register is flat, declarative, and specific — most sentences should simply state what happened.
@@ -301,8 +304,8 @@ FATAL
 
 SPOKEN-DELIVERY MECHANICS
 - Use contractions; sound like a smart person talking through the news, not reading a bulletin.
-- Standard spelling throughout, including dialect ("fixing to", not "fixin' to"; "y'all" is fine). Never spell out the accent with dropped letters or phonetic respellings; the voice engine supplies the accent.
-- The host's Southern phrasing varies like everything else: no recurring saying, no folksy filler. If a dialect phrase appears under RECENTLY USED, drop the phrase, not the voice.
+- Standard spelling throughout. Never spell out an accent with dropped letters or phonetic respellings; the voice engine supplies the accent.
+- The host's pet phrases vary like everything else: no recurring saying, no filler catchphrase. If a phrase appears under RECENTLY USED, drop the phrase, not the voice.
 - Read-aloud-friendly: short sentences, no parenthetical asides, no stage-direction punctuation; avoid em-dashes that force awkward pauses.
 - Ground every story in the concrete: each segment must carry at least one specific number, named person or organization, or short direct quote drawn from the provided material. Specifics beat adjectives.
 - Build your sentences from each story's Specifics — the numbers, names, and quotes — and use the Editor's note only to steer judgment; never repeat or lightly rephrase the Editor's note's wording on air.
@@ -315,11 +318,11 @@ ${noMarkupRule}
 
 Each segment's sourceUrls MUST be exactly the urls provided for that cluster. Do not invent or omit any.
 
-Return only JSON matching the provided schema.${audioTagSection}`;
+Return only JSON matching the provided schema.${audioTagSection}${formatListenerToneNotes(show.toneNotes, "writer")}`;
 }
 
-function formatVoiceExemplarsBlock(): string {
-  const quoted = VOICE_EXEMPLARS.map((exemplar) => `"${exemplar}"`).join("\n\n");
+function formatVoiceExemplarsBlock(exemplars: readonly string[]): string {
+  const quoted = exemplars.map((exemplar) => `"${exemplar}"`).join("\n\n");
   return `REGISTER EXEMPLARS
 These passages are the show at its best. Match their register — the flatness, the specificity, the way a judgment lands without being announced — never their wording:
 
@@ -333,10 +336,12 @@ export interface ScriptPromptOptions {
   recentStyle?: RecentStyleSnippets[];
   /** Recent episodes' recurring 3/4-grams, listed under RECENTLY USED as worn-out phrasing. */
   phraseProfile?: RecentPhraseProfile;
+  /** Listener-edited voice and tone. Omitted uses the built-in host. */
+  show?: ShowConfig;
 }
 
 export function buildSystemPrompt(options: ScriptPromptOptions = {}): string {
-  return buildSystemPromptBase(options.allowAudioTags === true);
+  return buildSystemPromptBase(options.allowAudioTags === true, options.show ?? builtinShowConfig());
 }
 
 function formatRecentStyleBlock(
@@ -470,6 +475,7 @@ export async function writeScript(
     allowAudioTags: resolveTTSProviderConfig().supportsInlineAudioTags,
     recentStyle: options.recentStyle,
     phraseProfile: options.phraseProfile,
+    ...(options.show ? { show: options.show } : {}),
   };
   const completionClient =
     options.completionClient ??

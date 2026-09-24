@@ -43,7 +43,10 @@ export function resolveTTSProvider(env: NodeJS.ProcessEnv = process.env): TTSPro
   return env.TTS_PROVIDER?.trim().toLowerCase() === "openrouter" ? "openrouter" : "openai";
 }
 
-export function resolveTTSProviderConfig(env: NodeJS.ProcessEnv = process.env): TTSProviderConfig {
+export function resolveTTSProviderConfig(
+  env: NodeJS.ProcessEnv = process.env,
+  fileVoice?: string,
+): TTSProviderConfig {
   const provider = resolveTTSProvider(env);
 
   if (provider === "openrouter") {
@@ -53,7 +56,8 @@ export function resolveTTSProviderConfig(env: NodeJS.ProcessEnv = process.env): 
       model,
       // OpenRouter voices are model-specific strings (e.g. Gemini's "Charon"),
       // so accept any non-empty override rather than the OpenAI voice list.
-      voice: env.TTS_VOICE?.trim() || DEFAULT_OPENROUTER_TTS_VOICE,
+      // A non-empty TTS_VOICE env var wins over the show-config voice.
+      voice: firstNonEmpty(env.TTS_VOICE, fileVoice) || DEFAULT_OPENROUTER_TTS_VOICE,
       baseURL: OPENROUTER_TTS_BASE_URL,
       apiKeyEnvVar: "OPENROUTER_API_KEY",
       supportsDeliveryInstructions: false,
@@ -66,12 +70,28 @@ export function resolveTTSProviderConfig(env: NodeJS.ProcessEnv = process.env): 
   return {
     provider,
     model,
-    voice: resolveTTSVoice(env.TTS_VOICE, NARRATOR_PROFILE.defaultVoice),
+    voice: resolveOpenAIVoice(env.TTS_VOICE, fileVoice),
     apiKeyEnvVar: "OPENAI_API_KEY",
     supportsDeliveryInstructions: supportsOpenAIDeliveryInstructions(model),
     supportsInlineAudioTags: false,
     maxRequestChars: OPENAI_MAX_REQUEST_CHARS,
   };
+}
+
+/**
+ * A non-empty TTS_VOICE env var wins, including an invalid one (that falls
+ * back to the narrator default rather than the file). A blank env var —
+ * what GitHub Actions injects when the variable is unset — falls through
+ * to the show-config voice, then the narrator default.
+ */
+function resolveOpenAIVoice(envVoice: string | undefined, fileVoice: string | undefined): string {
+  const fromEnv = envVoice?.trim();
+  if (fromEnv) return resolveTTSVoice(fromEnv, NARRATOR_PROFILE.defaultVoice);
+  return resolveTTSVoice(fileVoice?.trim(), NARRATOR_PROFILE.defaultVoice);
+}
+
+function firstNonEmpty(envVoice: string | undefined, fileVoice: string | undefined): string {
+  return envVoice?.trim() || fileVoice?.trim() || "";
 }
 
 export function resolveOpenAITTSModel(requestedModel: string | undefined): OpenAITTSModel {

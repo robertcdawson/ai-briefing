@@ -13,6 +13,7 @@ import {
 } from "../src/ttsProvider.js";
 import { supportsInlineAudioTags } from "../src/audioTags.js";
 import { resolveTTSDirection } from "../src/speakerProfiles.js";
+import { loadShowConfig } from "../src/showConfig.js";
 import { logJson } from "../src/util.js";
 
 /**
@@ -100,7 +101,8 @@ async function main(): Promise<void> {
   const extraCandidates = process.argv.slice(2).map(parseCandidateArg);
   const candidates = extraCandidates.length > 0 ? extraCandidates : DEFAULT_CANDIDATES;
   await mkdir(OUTPUT_DIR, { recursive: true });
-  const direction = resolveTTSDirection();
+  const show = await loadShowConfig();
+  const direction = resolveTTSDirection(process.env, show.tts);
 
   let written = 0;
   for (const candidate of candidates) {
@@ -124,7 +126,14 @@ async function main(): Promise<void> {
       timeout: TIMEOUT_MS,
       maxRetries: 0,
     });
-    const request = buildPartSpeechRequest(SAMPLE_CHUNKS, config, "story", direction);
+    const request = buildPartSpeechRequest(
+      SAMPLE_CHUNKS,
+      config,
+      "story",
+      direction,
+      undefined,
+      show.host.ttsPersonaLine,
+    );
     const outputPath = path.join(OUTPUT_DIR, sampleFilename(candidate));
     const started = Date.now();
 

@@ -22,6 +22,7 @@ import {
   supportsOpenAIDeliveryInstructions,
   type TTSProviderConfig,
 } from "./ttsProvider.js";
+import type { ShowConfig } from "./showConfig.js";
 import { resolveTTSVoice, type TTSVoice } from "./voices.js";
 
 const DEFAULT_TIMEOUT_MS = 180_000;
@@ -57,13 +58,14 @@ interface TTSPart {
   hint?: string;
 }
 
-export async function synthesize(episode: Episode): Promise<TTSResult> {
+export async function synthesize(episode: Episode, show?: ShowConfig): Promise<TTSResult> {
   const started = Date.now();
-  const config = resolveTTSProviderConfig();
+  const config = resolveTTSProviderConfig(process.env, show?.tts.voice);
   const apiKey = process.env[config.apiKeyEnvVar];
   if (!apiKey) throw new Error(`${config.apiKeyEnvVar} is not set`);
 
-  const direction = resolveTTSDirection();
+  const direction = resolveTTSDirection(process.env, show?.tts);
+  const persona = show?.host.ttsPersonaLine;
   const timeoutMs = resolveTTSTimeoutMs(process.env.TTS_TIMEOUT_MS);
 
   const client = new OpenAI({
@@ -92,7 +94,7 @@ export async function synthesize(episode: Episode): Promise<TTSResult> {
     const segmentPaths: string[] = [];
     for (const part of parts) {
       const partStart = Date.now();
-      const filePath = await synthesizePart(client, part, config, direction, segmentDir, timeoutMs);
+      const filePath = await synthesizePart(client, part, config, direction, segmentDir, timeoutMs, persona);
       segmentPaths.push(filePath);
       logJson({
         phase: "tts",
@@ -134,6 +136,7 @@ async function synthesizePart(
   direction: TTSDirectionConfig,
   segmentDir: string,
   timeoutMs: number,
+  persona?: string,
 ): Promise<string> {
   if (part.chunks.length === 0) throw new Error(`tts.${part.label}: no narration chunks provided`);
 
@@ -141,7 +144,7 @@ async function synthesizePart(
 
   // Prefer one request per part: continuous prosody across the whole monologue
   // beats per-chunk synthesis, which resets intonation at every boundary.
-  const partRequest = buildPartSpeechRequest(part.chunks, config, part.section, direction, part.hint);
+  const partRequest = buildPartSpeechRequest(part.chunks, config, part.section, direction, part.hint, persona);
   if (partRequest.input.length <= config.maxRequestChars) {
     await withRetry(
       () => writeSpeechFile(client, partRequest, outputPath, timeoutMs, part.label),
@@ -163,7 +166,7 @@ async function synthesizePart(
       () =>
         writeSpeechFile(
           client,
-          buildPartSpeechRequest([chunk], config, part.section, direction, part.hint),
+          buildPartSpeechRequest([chunk], config, part.section, direction, part.hint, persona),
           chunkPath,
           timeoutMs,
           chunkLabel,
@@ -273,6 +276,7 @@ export function buildPartSpeechRequest(
   section: EpisodeSectionKind = "story",
   direction: TTSDirectionConfig = resolveTTSDirection(),
   segmentHint?: string,
+  persona?: string,
 ): SpeechRequest {
   const joined = chunks
     .map((chunk) => chunk.trim())
@@ -292,7 +296,7 @@ export function buildPartSpeechRequest(
   };
 
   if (config.supportsDeliveryInstructions) {
-    request.instructions = buildChunkSpeechInstructions(section, direction, segmentHint);
+    request.instructions = buildChunkSpeechInstructions(section, direction, segmentHint, persona);
   }
 
   return request;

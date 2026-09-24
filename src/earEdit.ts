@@ -24,6 +24,7 @@ import {
   type ScriptResponse,
   type ScriptSegmentResponse,
 } from "./script.js";
+import { builtinShowConfig, formatListenerToneNotes, type ShowConfig } from "./showConfig.js";
 import { getChatCompletionAssistantText, logJson, withHardTimeout, withRetry } from "./util.js";
 
 const EAR_EDIT_ATTEMPTS_PER_MODEL = 2;
@@ -90,9 +91,11 @@ export interface EarEditResult {
 export interface EarEditOptions {
   completionClient?: ScriptCompletionClient;
   retryBaseMs?: number;
+  /** Listener-edited voice and tone. Omitted uses the built-in host. */
+  show?: ShowConfig;
 }
 
-export function buildEarEditSystemPrompt(): string {
+export function buildEarEditSystemPrompt(show: ShowConfig = builtinShowConfig()): string {
   return `You are a copy editor doing one light pass on a finished podcast script before it goes to voice. Return the SAME script as JSON, with minimal, targeted edits only:
 
 - Delete warm-up sentences and self-endorsements ("worth sitting with", "that's the part that matters", "and that's exactly the point", and kin) — cut straight to the point instead.
@@ -100,13 +103,13 @@ export function buildEarEditSystemPrompt(): string {
 - Collapse a triad ("X, Y, and Z") that doesn't earn three genuinely distinct items into something tighter.
 - Split any sentence that isn't sayable in one breath.
 - Remove any sentence that closely paraphrases the editor's notes provided below — those notes are context for your judgment, never something to read aloud.
-- Keep the host's voice intact: leave Southern phrasing, contractions, and everyday word choice exactly as written. Never normalize dialect into standard newsroom English, and never add dialect the writer didn't use.
+- Keep the host's voice intact. How they talk: ${show.host.speech} Leave that phrasing, contractions, and everyday word choice exactly as written. Never normalize it into generic newsroom English, and never add dialect the writer didn't use.
 
 NEVER change segment count, segment order, segment titles, or sourceUrls — copy those through exactly as given. Never add facts, quotes, numbers, or claims that weren't already in the script. Keep the total word count within about 10% of the original.
 
 For every change you make, add one entry to "edits": {location: a short pointer such as "segment 2, chunk 3" or "outro", reason: a short phrase}. If a chunk needed no changes, leave it untouched. If nothing in the whole script needed an edit, return the script unchanged and an empty "edits" array.
 
-Return only JSON matching the provided schema.`;
+Return only JSON matching the provided schema.${formatListenerToneNotes(show.toneNotes, "editor")}`;
 }
 
 export function buildEarEditUserPrompt(episode: Episode, clusters: StoryCluster[]): string {
@@ -148,11 +151,12 @@ export function buildEarEditCompletionParams(
   model: string,
   episode: Episode,
   clusters: StoryCluster[],
+  show?: ShowConfig,
 ): ScriptCompletionParams {
   return {
     model,
     messages: [
-      { role: "system", content: buildEarEditSystemPrompt() },
+      { role: "system", content: buildEarEditSystemPrompt(show ?? builtinShowConfig()) },
       { role: "user", content: buildEarEditUserPrompt(episode, clusters) },
     ],
     response_format: {
@@ -255,7 +259,7 @@ export async function earEdit(
         const result = await withRetry(
           async () => {
             const completion = await withHardTimeout(
-              completionClient.create(buildEarEditCompletionParams(model, episode, clusters)),
+              completionClient.create(buildEarEditCompletionParams(model, episode, clusters, options.show)),
               timeoutMs,
               `earEdit.openrouter.${model}`,
             );

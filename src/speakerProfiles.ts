@@ -9,8 +9,9 @@ export interface NarratorProfile {
   persona: string;
   /**
    * Default spoken delivery style for OpenAI TTS instructions. The host's
-   * Southern accent lives here (override with TTS_NARRATOR_STYLE); the words
-   * of the dialect live in src/voice.ts.
+   * Southern accent lives here. config/show.json overrides it, and a non-empty
+   * TTS_NARRATOR_STYLE wins over the file. The words of the dialect live in
+   * src/voice.ts (also overridable from the tune page).
    */
   delivery: string;
   defaultVoice: TTSVoice;
@@ -43,16 +44,28 @@ export interface TTSDirectionConfig {
   outro: string;
 }
 
+/** Spoken-delivery text from config/show.json. Blank fields are ignored. */
+export interface TTSStyleOverride {
+  global?: string;
+  narrator?: string;
+  intro?: string;
+  story?: string;
+  outro?: string;
+}
+
 const TTS_DIALOGUE_FOOTER =
   "Read naturally as a solo podcast monologue.";
 
-export function resolveTTSDirection(env: NodeJS.ProcessEnv = process.env): TTSDirectionConfig {
+export function resolveTTSDirection(
+  env: NodeJS.ProcessEnv = process.env,
+  file?: TTSStyleOverride,
+): TTSDirectionConfig {
   return {
-    global: readStyleEnv(env.TTS_GLOBAL_STYLE) ?? DEFAULT_GLOBAL_TTS_STYLE,
-    narrator: readStyleEnv(env.TTS_NARRATOR_STYLE) ?? NARRATOR_PROFILE.delivery,
-    intro: readStyleEnv(env.TTS_INTRO_STYLE) ?? DEFAULT_SECTION_TTS_STYLES.intro,
-    story: readStyleEnv(env.TTS_STORY_STYLE) ?? DEFAULT_SECTION_TTS_STYLES.story,
-    outro: readStyleEnv(env.TTS_OUTRO_STYLE) ?? DEFAULT_SECTION_TTS_STYLES.outro,
+    global: readStyleEnv(env.TTS_GLOBAL_STYLE) ?? readStyleEnv(file?.global) ?? DEFAULT_GLOBAL_TTS_STYLE,
+    narrator: readStyleEnv(env.TTS_NARRATOR_STYLE) ?? readStyleEnv(file?.narrator) ?? NARRATOR_PROFILE.delivery,
+    intro: readStyleEnv(env.TTS_INTRO_STYLE) ?? readStyleEnv(file?.intro) ?? DEFAULT_SECTION_TTS_STYLES.intro,
+    story: readStyleEnv(env.TTS_STORY_STYLE) ?? readStyleEnv(file?.story) ?? DEFAULT_SECTION_TTS_STYLES.story,
+    outro: readStyleEnv(env.TTS_OUTRO_STYLE) ?? readStyleEnv(file?.outro) ?? DEFAULT_SECTION_TTS_STYLES.outro,
   };
 }
 
@@ -60,11 +73,13 @@ export function buildChunkSpeechInstructions(
   section: EpisodeSectionKind,
   direction: TTSDirectionConfig = resolveTTSDirection(),
   segmentHint?: string,
+  persona: string = NARRATOR_PROFILE.persona,
 ): string {
   const sanitizedHint = sanitizeSegmentDeliveryHint(segmentHint);
+  const hostPersona = persona.trim() || NARRATOR_PROFILE.persona;
   return [
     direction.global,
-    `Host: ${NARRATOR_PROFILE.persona}`,
+    `Host: ${hostPersona}`,
     `Delivery: ${direction.narrator}`,
     `Section: ${direction[section]}`,
     ...(sanitizedHint ? [`This segment: ${sanitizedHint}`] : []),

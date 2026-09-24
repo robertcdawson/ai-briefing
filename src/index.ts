@@ -12,6 +12,7 @@ import { hasPublishedEpisode, publish } from "./publish.js";
 import { pingHealthcheck } from "./healthcheck.js";
 import { withStageCache } from "./stageCache.js";
 import { assertPreflight } from "./preflight.js";
+import { loadShowConfig } from "./showConfig.js";
 import { logJson } from "./util.js";
 
 async function main(): Promise<void> {
@@ -41,6 +42,8 @@ async function main(): Promise<void> {
 
     await assertPreflight();
 
+    const show = await loadShowConfig();
+
     const fetchStart = Date.now();
     const articles = await fetchAll();
     if (articles.length === 0) throw new Error("fetch returned 0 articles");
@@ -67,15 +70,16 @@ async function main(): Promise<void> {
     });
 
     const scriptStart = Date.now();
-    // Non-blocking: [] on any failure. Both are included in the stage-cache
-    // key so a change in the anti-repetition examples invalidates a cached
-    // script. phraseProfile stays in scope for the ear-edit stage below.
+    // Non-blocking: [] on any failure. recentStyle, phraseProfile, and the
+    // show config are part of the stage-cache key, so a tone edit or a change
+    // in the anti-repetition examples invalidates a cached script.
+    // phraseProfile stays in scope for the ear-edit stage below.
     const recentStyle = await loadRecentStyleSnippets(date);
     const phraseProfile = await buildRecentPhraseProfile(date);
     const episode = await withStageCache(
       "script",
-      { date, clusters, recentStyle, phraseProfile },
-      () => writeScript(date, clusters, { recentStyle, phraseProfile }),
+      { date, clusters, recentStyle, phraseProfile, show },
+      () => writeScript(date, clusters, { recentStyle, phraseProfile, show }),
     );
     logJson({
       phase: "pipeline.step",
@@ -104,8 +108,9 @@ async function main(): Promise<void> {
             whyItMatters: c.whyItMatters,
             caveat: c.caveat,
           })),
+          show,
         },
-        () => earEdit(episode, clusters, phraseProfile),
+        () => earEdit(episode, clusters, phraseProfile, { show }),
       );
       spokenEpisode = earEditResult.episode;
       logJson({
@@ -119,7 +124,7 @@ async function main(): Promise<void> {
     }
 
     const ttsStart = Date.now();
-    const tts = await synthesize(spokenEpisode);
+    const tts = await synthesize(spokenEpisode, show);
     workDir = tts.segmentDir;
     logJson({
       phase: "pipeline.step",

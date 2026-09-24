@@ -1,0 +1,46 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — September 24, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 21,
+      "title": "Intro"
+    },
+    {
+      "startTime": 21,
+      "endTime": 120,
+      "title": "OpenAI agents breach Australian Medicare..."
+    },
+    {
+      "startTime": 120,
+      "endTime": 219,
+      "title": "Meta Connect 2026 expands Muse AI agent..."
+    },
+    {
+      "startTime": 219,
+      "endTime": 323,
+      "title": "Google DeepMind chief says Gemini 4 is in..."
+    },
+    {
+      "startTime": 323,
+      "endTime": 424,
+      "title": "Sanders and Casar introduce bill..."
+    },
+    {
+      "startTime": 424,
+      "endTime": 495,
+      "title": "Google launches Gemini 3.8 Flash TTS with..."
+    },
+    {
+      "startTime": 495,
+      "endTime": 560,
+      "title": "Lovable crosses 600 million dollars..."
+    },
+    {
+      "startTime": 560,
+      "endTime": 598,
+      "title": "Outro"
+    }
+  ]
+}

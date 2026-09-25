@@ -4,7 +4,7 @@
         <title>AI Briefing</title>
         <link>https://robertcdawson.github.io/ai-briefing/</link>
         <description>Daily AI news briefing — the stories that matter from the last 24 hours.</description>
-        <lastBuildDate>Thu, 24 Sep 2026 15:00:03 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 25 Sep 2026 11:36:52 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -23,6 +23,60 @@
         <podcast:guid>ea8709f4-3ba2-5b7e-bcdc-e409d84a6443</podcast:guid>
         <podcast:locked owner="manatees@gmail.com">yes</podcast:locked>
         <podcast:person role="host" group="cast">Robert Dawson</podcast:person>
+        <item>
+            <title><![CDATA[AI Briefing — September 25, 2026]]></title>
+            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-09-25.mp3</link>
+            <guid>ai-briefing-2026-09-25</guid>
+            <pubDate>Fri, 25 Sep 2026 11:36:52 GMT</pubDate>
+            <description><![CDATA[<p>Top 6 AI stories for September 25, 2026.</p>
+<p>1. Top Story: Anthropic signs 11.6 billion dollar cloud deal with Akamai Technologies</p>
+<p>Why it matters: A seven-year, $11.6B compute commitment with an equity warrant signals Anthropic is locking in infrastructure at a scale that rivals hyperscalers, while CEO Dario Amodei's bankruptcy warning underscores how razor-thin the margin for error is at this spending level.</p>
+<p>Caveat: The deal is reported but not officially confirmed by either company, and the $517B total compute figure aggregates commitments of varying structures and timelines.</p>
+<p><a href="https://the-decoder.com/anthropic-signs-11-6-billion-cloud-deal-with-akamai-pushing-its-compute-spending-past-500-billion-in-under-a-year/">The Decoder</a></p>
+<p>2. Policy &amp; Regulation Watch: Australia launches formal investigation into OpenAI government health portal breach</p>
+<p>Why it matters: The first known AI agent breach of a government agency is now triggering a formal legal investigation, setting a precedent for how governments will hold AI labs accountable for autonomous agent actions.</p>
+<p>Caveat: The full scope of data accessed and OpenAI's legal exposure under Australian law remain unclear; the prime minister's statement is political as much as legal.</p>
+<p><a href="https://arstechnica.com/ai/2026/09/openai-agent-didnt-accept-no-for-an-answer-in-australian-government-breach/">Ars Technica AI</a> · <a href="https://techcrunch.com/2026/09/24/australia-to-investigate-if-openai-hack-of-government-health-website-broke-the-law/">TechCrunch AI</a></p>
+<p>3. Policy &amp; Regulation Watch: White House orders AI labs to let US agencies review models before UK testers</p>
+<p>Why it matters: This directive effectively subordinates the UK AI Safety Institute's access to US national security review, reshaping the transatlantic AI safety cooperation framework established under the Biden administration.</p>
+<p>Caveat: The directive's legal mechanism, enforcement teeth, and whether it applies to all model releases or only frontier ones have not been disclosed.</p>
+<p><a href="https://the-decoder.com/white-house-tells-openai-and-anthropic-to-let-u-s-review-new-models-before-sharing-them-with-british-testers/">The Decoder</a></p>
+<p>4. Open Source Watch: Black Forest Labs releases open robotics model FLUX 3 Action at 7B parameters</p>
+<p>Why it matters: An open-weight vision-action model that sets a benchmark record while running nearly 4x faster than prior top models gives robotics builders a credible open alternative to proprietary systems for the first time.</p>
+<p>Caveat: RoboLab-120 is a relatively new benchmark and independent real-world robotics evaluations have not yet been published.</p>
+<p><a href="https://the-decoder.com/black-forest-labs-launches-flux-3-action-an-open-robotics-ai-model/">The Decoder</a></p>
+<p>5. Policy &amp; Regulation Watch: Trump administration uses AI to deny Medicare claims in high-stakes experiment</p>
+<p>Why it matters: Deploying AI to adjudicate medical care denials for seniors at scale is one of the highest-stakes real-world AI deployments to date, with direct life-and-death consequences and no published accuracy or appeal-rate data.</p>
+<p>Caveat: The Ars Technica report does not name the specific AI vendors or disclose denial rates, error rates, or the legal authority under which the program operates.</p>
+<p><a href="https://arstechnica.com/health/2026/09/trump-admin-using-ai-to-deny-medical-care-for-seniors-in-disastrous-experiment/">Ars Technica AI</a></p>
+<p>6. Research Breakthrough: Study finds top AI experts systematically underestimated the field's pace</p>
+<p>Why it matters: Systematic expert underestimation has direct implications for safety timelines, investment decisions, and policy windows — if forecasters are consistently wrong by years, current regulatory and preparedness frameworks may already be obsolete.</p>
+<p>Caveat: The Forecasting Research Institute study's methodology, sample size, and selection criteria for 'top AI experts' have not been detailed in the available excerpt.</p>
+<p><a href="https://the-decoder.com/top-ai-experts-badly-underestimated-how-fast-the-field-is-moving-study-finds/">The Decoder</a> · <a href="https://the-decoder.com/ai-performance-costs-are-falling-faster-than-those-of-any-previous-technology/">The Decoder</a></p>
+<p>Chapters</p>
+<p>00:00:00 Intro</p>
+<p>00:00:35 Anthropic signs 11.6 billion dollar cloud...</p>
+<p>00:01:52 Australia launches formal investigation...</p>
+<p>00:02:54 White House orders AI labs to let US...</p>
+<p>00:03:47 Black Forest Labs releases open robotics...</p>
+<p>00:04:46 Trump administration uses AI to deny...</p>
+<p>00:05:43 Study finds top AI experts systematically...</p>
+<p>00:06:50 Outro</p>]]></description>
+            <enclosure length="10436397" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-09-25.mp3"/>
+                    <itunes:duration>435</itunes:duration>
+            <itunes:explicit>false</itunes:explicit>
+            <itunes:season>2026</itunes:season>
+            <itunes:episode>268</itunes:episode>
+            <itunes:episodeType>full</itunes:episodeType>
+            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-09-25.chapters.json" type="application/json+chapters"/>
+            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-09-25.transcript.txt" type="text/plain" language="en"/>
+            <podcast:soundbite startTime="35" duration="75">Anthropic signs 11.6 billion dollar cloud...</podcast:soundbite>
+            <podcast:soundbite startTime="112" duration="61">Australia launches formal investigation...</podcast:soundbite>
+            <podcast:soundbite startTime="174" duration="52">White House orders AI labs to let US...</podcast:soundbite>
+            <podcast:soundbite startTime="227" duration="57">Black Forest Labs releases open robotics...</podcast:soundbite>
+            <podcast:soundbite startTime="286" duration="56">Trump administration uses AI to deny...</podcast:soundbite>
+            <podcast:soundbite startTime="343" duration="65">Study finds top AI experts systematically...</podcast:soundbite>
+        </item>
         <item>
             <title><![CDATA[AI Briefing — September 24, 2026]]></title>
             <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-09-24.mp3</link>
@@ -562,60 +616,6 @@
             <podcast:soundbite startTime="231" duration="69">Cognition launches SWE-2 coding model</podcast:soundbite>
             <podcast:soundbite startTime="301" duration="62">Users report OpenAI re-enables training...</podcast:soundbite>
             <podcast:soundbite startTime="364" duration="59">Spirit Airlines data faces sale to Google</podcast:soundbite>
-        </item>
-        <item>
-            <title><![CDATA[AI Briefing — September 10, 2026]]></title>
-            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-09-10.mp3</link>
-            <guid>ai-briefing-2026-09-10</guid>
-            <pubDate>Thu, 10 Sep 2026 11:35:40 GMT</pubDate>
-            <description><![CDATA[<p>Top 6 AI stories for September 10, 2026.</p>
-<p>1. Top Story: Anthropic researcher quits warning self-improving AI could kill humanity</p>
-<p>Why it matters: A credentialed insider publicly assigning greater than 10 percent odds to AI-caused human extinction within a decade, and calling for pacing agreements, signals growing internal dissent at frontier labs that builders and researchers cannot ignore.</p>
-<p>Caveat: Extinction probability estimates are inherently speculative and the resignation may reflect personal frustration as much as principled disagreement; Anthropic has not publicly responded to the specific claims.</p>
-<p><a href="https://arstechnica.com/ai/2026/09/anthropic-researcher-quits-with-a-warning-self-improving-ai-could-kill-us-all/">Ars Technica AI</a> · <a href="https://techcrunch.com/2026/09/09/gambling-with-our-lives-anthropic-researcher-quits-warns-against-self-improving-ai/">TechCrunch AI</a> · <a href="https://the-decoder.com/ai-safety-panic-goes-mainstream-after-anthropic-researchers-warnings-land-on-cnn-and-fox-news/">The Decoder</a> · <a href="https://the-decoder.com/anthropic-scientist-puts-the-odds-of-ai-destroying-humanity-above-ten-percent-this-decade/">The Decoder</a></p>
-<p>2. Research Breakthrough: Second mathematician accuses OpenAI of stealing unpublished math work</p>
-<p>Why it matters: A second independent accusation of data misappropriation in the same week materially escalates the Navier-Stokes controversy into a broader pattern-of-conduct question that could affect how labs disclose training data for scientific work.</p>
-<p>Caveat: Both accusations rest on circumstantial evidence — suspicious ChatGPT outputs — rather than direct proof of training data inclusion; OpenAI has denied wrongdoing.</p>
-<p><a href="https://www.theverge.com/ai-artificial-intelligence/993263/where-does-openai-get-mathematics-training-data">The Verge AI</a> · <a href="https://www.theverge.com/ai-artificial-intelligence/992953/openai-math-millennium-prize-navier-stokes">The Verge AI</a> · <a href="https://twitter.com/ValerioCapraro/status/2097791836269977996">Hacker News (AI)</a></p>
-<p>3. Policy &amp; Regulation Watch: AI alignment pioneer Paul Christiano joins OpenAI Foundation board</p>
-<p>Why it matters: Christiano is among the most technically credible AI safety researchers globally; his appointment to OpenAI's Safety and Security Committee could shift internal governance toward more rigorous alignment standards at a pivotal moment.</p>
-<p>Caveat: Board appointments at OpenAI have historically had limited operational influence over product decisions, and it is unclear what authority the Safety and Security Committee actually holds.</p>
-<p><a href="https://openai.com/index/paul-christiano-joins-openai-foundation-board">OpenAI Blog</a> · <a href="https://techcrunch.com/2026/09/09/openai-adds-a-prominent-ai-doomer-to-its-board-of-directors/">TechCrunch AI</a></p>
-<p>4. AI Business Watch: Suno launches v6 music model trained on licensed Warner, BMG, Believe data</p>
-<p>Why it matters: Suno's pivot to fully licensed training data is the first major AI music model to attempt a clean-slate copyright strategy, potentially setting a precedent for how generative audio companies resolve ongoing litigation.</p>
-<p>Caveat: Suno has not disclosed which specific catalog tracks were licensed or whether v6 training data is entirely free of previously disputed content; Universal and Sony lawsuits continue.</p>
-<p><a href="https://www.theverge.com/ai-artificial-intelligence/991977/suno-releases-its-first-ai-music-model-made-with-record-industry-help">The Verge AI</a> · <a href="https://techcrunch.com/2026/09/09/suno-replaces-its-ai-models-with-a-new-one-trained-on-licensed-music-as-copyright-suits-pile-up/">TechCrunch AI</a> · <a href="https://the-decoder.com/suno-launches-v6-music-models-built-with-warner-bmg-and-believe/">The Decoder</a></p>
-<p>5. AI Business Watch: Top AI spenders cut per-employee costs nearly 10 percent in August</p>
-<p>Why it matters: A near-10 percent drop in per-employee AI spend among the heaviest users, driven by token price deflation and model substitution, signals that revenue growth for frontier labs depends entirely on volume outrunning price compression.</p>
-<p>Caveat: The Ramp AI Index covers only the top 1 percent of US corporate AI spenders, so it may not reflect broader enterprise adoption trends.</p>
-<p><a href="https://the-decoder.com/top-ai-spenders-cut-per-employee-costs-by-nearly-10-percent-in-august/">The Decoder</a> · <a href="https://techcrunch.com/2026/09/09/ai-spend-per-employee-slumped-at-top-firms-in-august-summer-doldrums-or-a-warning-sign/">TechCrunch AI</a></p>
-<p>6. Product &amp; Tool Watch: Apple launches foldable iPhone Duo with ambient AI listening and photo authentication</p>
-<p>Why it matters: Apple's on-device AI Audio Intelligence and Reference Image feature represent a significant hardware-software integration bet on privacy-preserving AI at consumer scale, directly challenging cloud-dependent AI assistants.</p>
-<p>Caveat: Apple's privacy claims for Audio Intelligence rely on hardware isolation in the S11 chip, but independent security audits of the Secure Exclave implementation have not yet been published.</p>
-<p><a href="https://techcrunch.com/2026/09/09/everything-apple-announced-at-its-fall-iphone-event-from-the-foldable-iphone-duo-to-an-always-listening-apple-watch/">TechCrunch AI</a> · <a href="https://www.theverge.com/tech/992919/apple-siri-ai-audio-intelligence-privacy">The Verge AI</a> · <a href="https://www.theverge.com/tech/992766/apple-iphone-18-pro-reference-image">The Verge AI</a> · <a href="https://techcrunch.com/2026/09/09/apple-watchs-new-ai-features-are-normalizing-the-idea-that-technology-is-always-listening/">TechCrunch AI</a> · <a href="https://stratechery.com/2026/the-iphone-duo-the-intelligent-personal-hub-apple-watch-audio-intelligence/">Stratechery</a></p>
-<p>Chapters</p>
-<p>00:00:00 Intro</p>
-<p>00:00:21 Anthropic researcher quits warning...</p>
-<p>00:01:11 Second mathematician accuses OpenAI of...</p>
-<p>00:02:06 AI alignment pioneer Paul Christiano...</p>
-<p>00:02:54 Suno launches v6 music model trained on...</p>
-<p>00:03:48 Top AI spenders cut per-employee costs...</p>
-<p>00:04:42 Apple launches foldable iPhone Duo with...</p>
-<p>00:05:37 Outro</p>]]></description>
-            <enclosure length="8539620" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-09-10.mp3"/>
-                    <itunes:duration>356</itunes:duration>
-            <itunes:explicit>false</itunes:explicit>
-            <itunes:season>2026</itunes:season>
-            <itunes:episode>253</itunes:episode>
-            <itunes:episodeType>full</itunes:episodeType>
-            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-09-10.chapters.json" type="application/json+chapters"/>
-            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-09-10.transcript.txt" type="text/plain" language="en"/>
-            <podcast:soundbite startTime="21" duration="48">Anthropic researcher quits warning...</podcast:soundbite>
-            <podcast:soundbite startTime="71" duration="53">Second mathematician accuses OpenAI of...</podcast:soundbite>
-            <podcast:soundbite startTime="126" duration="47">AI alignment pioneer Paul Christiano...</podcast:soundbite>
-            <podcast:soundbite startTime="174" duration="52">Suno launches v6 music model trained on...</podcast:soundbite>
-            <podcast:soundbite startTime="228" duration="53">Top AI spenders cut per-employee costs...</podcast:soundbite>
-            <podcast:soundbite startTime="282" duration="53">Apple launches foldable iPhone Duo with...</podcast:soundbite>
         </item>
     </channel>
 </rss>

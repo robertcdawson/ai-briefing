@@ -1,0 +1,46 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — September 25, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 35,
+      "title": "Intro"
+    },
+    {
+      "startTime": 35,
+      "endTime": 112,
+      "title": "Anthropic signs 11.6 billion dollar cloud..."
+    },
+    {
+      "startTime": 112,
+      "endTime": 174,
+      "title": "Australia launches formal investigation..."
+    },
+    {
+      "startTime": 174,
+      "endTime": 227,
+      "title": "White House orders AI labs to let US..."
+    },
+    {
+      "startTime": 227,
+      "endTime": 286,
+      "title": "Black Forest Labs releases open robotics..."
+    },
+    {
+      "startTime": 286,
+      "endTime": 343,
+      "title": "Trump administration uses AI to deny..."
+    },
+    {
+      "startTime": 343,
+      "endTime": 410,
+      "title": "Study finds top AI experts systematically..."
+    },
+    {
+      "startTime": 410,
+      "endTime": 435,
+      "title": "Outro"
+    }
+  ]
+}

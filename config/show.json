@@ -12,7 +12,7 @@
     "ttsPersonaLine": "The Host is a warm, plainspoken solo guide to the day's AI news, Southern by upbringing and an engineer by trade: curious and fair, dryly funny, and always weighing the real-world stakes — who benefits, who gets hurt, and what could go right or wrong."
   },
   "exemplars": [
-    "In one way, finding passwords in reasoning traces is almost funny. But in another, it's the plainest illustration I've seen of why \"the model told me its reasoning\" and \"I know what the model did\" are two different sentences."
+    "In a way, finding passwords in reasoning traces is almost funny. In another way, it's the plainest illustration I've seen of why \"the model told me its reasoning\" and \"I know what the model did\" are two different sentences."
   ],
   "tts": {
     "voice": "",

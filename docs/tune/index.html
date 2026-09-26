@@ -178,7 +178,7 @@
       <summary>Spoken delivery</summary>
       <p class="hint">How the voice performs the script. OpenAI speech uses these. A non-empty GitHub Actions variable (<code>TTS_VOICE</code>, <code>TTS_NARRATOR_STYLE</code>, and the other <code>TTS_*</code> style variables) still overrides the matching field.</p>
       <label for="voice">Voice id
-        <span class="field-hint">Leave blank for the provider default. OpenAI examples: cedar, marin, ash, verse. Gemini example: Charon.</span>
+        <span class="field-hint">Leave blank for the provider default. OpenAI examples: cedar, marin, ash, verse. A Gemini designed voice id (voice_…) uses the Gemini API. A non-empty TTS_VOICE Actions variable still overrides this field.</span>
       </label>
       <input id="voice" type="text" maxlength="80" spellcheck="false">
       <label for="ttsNarrator">Accent and delivery</label>

@@ -28,7 +28,8 @@ An unattended weekday run that discovers a missing `OPENAI_API_KEY`, bad `FEED_B
 | Check | Rule |
 |---|---|
 | `OPENROUTER_API_KEY` | Required (curation always routes through OpenRouter). |
-| TTS API key | `OPENAI_API_KEY` when `TTS_PROVIDER=openai` (default); `OPENROUTER_API_KEY` covers OpenRouter TTS (already required). |
+| TTS API key | `OPENAI_API_KEY` when `TTS_PROVIDER=openai` (default); `OPENROUTER_API_KEY` covers OpenRouter TTS (already required); `GEMINI_API_KEY` when `TTS_PROVIDER=gemini` or the show voice is a `voice_…` id. |
+| Designed voice | If `config/show.json` names a `voice_…` id, a non-empty `TTS_VOICE` that differs, or `TTS_PROVIDER` of `openai` / `openrouter`, fails preflight instead of airing another voice. |
 | `FEED_BASE_URL` | Non-empty absolute `http://` or `https://` URL. |
 | `ffmpeg` / `ffprobe` | Both must exist on `PATH` (`-version` succeeds). |
 

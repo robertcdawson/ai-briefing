@@ -36,6 +36,37 @@ test("environment preflight does not require OpenAI when OpenRouter handles TTS"
   assert.equal(checks.every((check) => check.status === "ok"), true);
 });
 
+test("environment preflight requires the Gemini key when the show voice is a designed id", () => {
+  const checks = buildEnvironmentPreflightChecks(
+    {
+      OPENROUTER_API_KEY: "openrouter-key",
+      FEED_BASE_URL: "https://example.com/ai-briefing",
+    },
+    "voice_1hd8ebzfhu1g",
+  );
+
+  assert.deepEqual(
+    checks.filter((check) => check.status === "error").map((check) => check.name),
+    ["GEMINI_API_KEY"],
+  );
+});
+
+test("environment preflight rejects an Actions override of a designed voice", () => {
+  const checks = buildEnvironmentPreflightChecks(
+    {
+      OPENROUTER_API_KEY: "openrouter-key",
+      OPENAI_API_KEY: "openai-key",
+      TTS_VOICE: "ash",
+      FEED_BASE_URL: "https://example.com/ai-briefing",
+    },
+    "voice_1hd8ebzfhu1g",
+  );
+
+  const voice = checks.find((check) => check.name === "TTS_VOICE");
+  assert.equal(voice?.status, "error");
+  assert.match(voice?.message ?? "", /overrides the Gemini voice voice_1hd8ebzfhu1g/);
+});
+
 test("environment preflight rejects non-http feed base URLs", () => {
   const checks = buildEnvironmentPreflightChecks({
     OPENROUTER_API_KEY: "openrouter-key",

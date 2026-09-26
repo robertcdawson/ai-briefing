@@ -44,10 +44,11 @@ For `npm start` (full pipeline), create a `.env` in the repo root (no checked-in
 - `EAR_EDIT_ENABLED` (optional, default: `true`; set `false`/`0`/`off`/`no` to skip the post-script copy-edit pass in `src/earEdit.ts` and synthesize the script stage's output unedited)
 - `OPENROUTER_EAR_EDIT_MODEL` (optional; same comma-separated fallback format as `OPENROUTER_SCRIPT_MODEL`; defaults to `OPENROUTER_SCRIPT_MODEL`'s value when unset)
 - `OPENAI_API_KEY` — for `openai/...` script fallbacks and TTS when `TTS_PROVIDER=openai`
+- `GEMINI_API_KEY` — for TTS when `TTS_PROVIDER=gemini` or the show voice is a designed `voice_…` id. The key must belong to the Google project that created the voice
 - `FEED_BASE_URL` — public URL where `docs/` is served
-- `TTS_PROVIDER` (optional, `openai` (default) or `openrouter`)
-- `TTS_MODEL` (optional; per provider — openai default: `gpt-4o-mini-tts`, openrouter default: `google/gemini-3.1-flash-tts-preview`)
-- `TTS_VOICE` (optional; single-host voice — openai default `cedar` via `src/speakerProfiles.ts`, Gemini TTS default `Charon`; a set Actions variable overrides the default)
+- `TTS_PROVIDER` (optional, `openai` (default), `openrouter`, or `gemini`. A `voice_…` id in `config/show.json` selects `gemini` when this is unset)
+- `TTS_MODEL` (optional; per provider — openai default: `gpt-4o-mini-tts`, openrouter default: `google/gemini-3.1-flash-tts-preview`, gemini default: `gemini-3.8-flash-tts`. An OpenAI model id is not sent to Gemini)
+- `TTS_VOICE` (optional; single-host voice — openai default `cedar` via `src/speakerProfiles.ts`, Gemini prebuilt default `Charon`, or a designed `voice_…` id. A set Actions variable overrides the show file; preflight fails if that override would drop a designed voice)
 - `TTS_GLOBAL_STYLE`, `TTS_NARRATOR_STYLE`, `TTS_INTRO_STYLE`, `TTS_STORY_STYLE`, `TTS_OUTRO_STYLE` (optional delivery-instruction overrides; OpenAI `gpt-4o-mini-tts` only)
 - `AUDIO_CUES_ENABLED` (optional; default on. Set `false`/`0`/`off`/`no` to disable section stingers in `src/audio.ts`)
 - `AUDIO_CUE_STYLE` (optional; `tone` (default), `chime`, `tick`, or `asset` for committed music stingers in `assets/audio/`, generated once via `npm run stingers:generate`. Missing asset files fall back to `tone`. See `docs/solutions/best-practices/audio-section-cues-and-stingers.md`)

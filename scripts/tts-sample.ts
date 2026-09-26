@@ -2,8 +2,10 @@ import "dotenv/config";
 import OpenAI from "openai";
 import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
+import { buildGeminiSpeechStyle, writeGeminiSpeechMp3 } from "../src/geminiTts.js";
 import { buildPartSpeechRequest } from "../src/tts.js";
 import {
+  DEFAULT_GEMINI_TTS_MODEL,
   DEFAULT_OPENAI_TTS_MODEL,
   DEFAULT_OPENROUTER_TTS_MODEL,
   OPENROUTER_TTS_BASE_URL,
@@ -24,6 +26,7 @@ import { logJson } from "../src/util.js";
  * Usage:
  *   npm run tts:sample                                  # built-in candidates
  *   npm run tts:sample -- openrouter:google/gemini-3.1-flash-tts-preview:Puck
+ *   npm run tts:sample -- gemini:gemini-3.8-flash-tts:voice_1hd8ebzfhu1g
  *
  * Candidates whose API key is missing are skipped with a log line.
  * Output: tmp/tts-samples/<provider>-<model>-<voice>.mp3
@@ -59,13 +62,24 @@ function parseCandidateArg(arg: string): SampleCandidate {
   const [provider, ...rest] = arg.split(":");
   const voice = rest.pop();
   const model = rest.join(":");
-  if ((provider !== "openai" && provider !== "openrouter") || !model || !voice) {
+  if ((provider !== "openai" && provider !== "openrouter" && provider !== "gemini") || !model || !voice) {
     throw new Error(`Invalid candidate "${arg}"; expected provider:model:voice`);
   }
   return { provider, model, voice };
 }
 
 function toProviderConfig(candidate: SampleCandidate): TTSProviderConfig {
+  if (candidate.provider === "gemini") {
+    return {
+      provider: "gemini",
+      model: candidate.model || DEFAULT_GEMINI_TTS_MODEL,
+      voice: candidate.voice,
+      apiKeyEnvVar: "GEMINI_API_KEY",
+      supportsDeliveryInstructions: false,
+      supportsInlineAudioTags: false,
+      maxRequestChars: 8000,
+    };
+  }
   if (candidate.provider === "openrouter") {
     return {
       provider: "openrouter",
@@ -120,12 +134,6 @@ async function main(): Promise<void> {
       continue;
     }
 
-    const client = new OpenAI({
-      apiKey,
-      baseURL: config.baseURL,
-      timeout: TIMEOUT_MS,
-      maxRetries: 0,
-    });
     const request = buildPartSpeechRequest(
       SAMPLE_CHUNKS,
       config,
@@ -138,8 +146,29 @@ async function main(): Promise<void> {
     const started = Date.now();
 
     try {
-      const response = await client.audio.speech.create(request, { timeout: TIMEOUT_MS });
-      await writeFile(outputPath, Buffer.from(await response.arrayBuffer()));
+      if (config.provider === "gemini") {
+        await writeGeminiSpeechMp3({
+          apiKey,
+          timeoutMs: TIMEOUT_MS,
+          label: "sample",
+          outputPath,
+          speech: {
+            model: request.model,
+            voice: request.voice,
+            text: request.input,
+            style: buildGeminiSpeechStyle("story", direction),
+          },
+        });
+      } else {
+        const client = new OpenAI({
+          apiKey,
+          baseURL: config.baseURL,
+          timeout: TIMEOUT_MS,
+          maxRetries: 0,
+        });
+        const response = await client.audio.speech.create(request, { timeout: TIMEOUT_MS });
+        await writeFile(outputPath, Buffer.from(await response.arrayBuffer()));
+      }
       written += 1;
       logJson({
         phase: "tts.sample",

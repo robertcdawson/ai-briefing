@@ -7,6 +7,7 @@ import type { Episode, NarrationChunk } from "./types.js";
 import { logJson, withRetry } from "./util.js";
 import { stripInlineAudioTags } from "./audioTags.js";
 import { applyPronunciations } from "./pronunciations.js";
+import { buildGeminiSpeechStyle, isDesignedVoiceId, writeGeminiSpeechMp3 } from "./geminiTts.js";
 import {
   buildChunkSpeechInstructions,
   DEFAULT_GLOBAL_TTS_STYLE,
@@ -68,12 +69,27 @@ export async function synthesize(episode: Episode, show?: ShowConfig): Promise<T
   const persona = show?.host.ttsPersonaLine;
   const timeoutMs = resolveTTSTimeoutMs(process.env.TTS_TIMEOUT_MS);
 
-  const client = new OpenAI({
-    apiKey,
-    baseURL: config.baseURL,
-    timeout: timeoutMs,
-    maxRetries: 0,
-  });
+  const designedVoice = show?.tts.voice?.trim();
+  if (isDesignedVoiceId(designedVoice) && config.voice !== designedVoice) {
+    logJson({
+      phase: "tts",
+      status: "warn",
+      reason: "designed_voice_overridden",
+      provider: config.provider,
+      message:
+        "config/show.json names a Gemini designed voice, but TTS_VOICE or TTS_PROVIDER overrides it. Clear those Actions variables to use the designed voice.",
+    });
+  }
+
+  const client =
+    config.provider === "gemini"
+      ? undefined
+      : new OpenAI({
+          apiKey,
+          baseURL: config.baseURL,
+          timeout: timeoutMs,
+          maxRetries: 0,
+        });
 
   // Atomic allocation with mode 0700 establishes ownership for every writer
   // (speech, chunk copies, ffmpeg and downstream audio assembly).
@@ -94,7 +110,15 @@ export async function synthesize(episode: Episode, show?: ShowConfig): Promise<T
     const segmentPaths: string[] = [];
     for (const part of parts) {
       const partStart = Date.now();
-      const filePath = await synthesizePart(client, part, config, direction, segmentDir, timeoutMs, persona);
+      const filePath = await synthesizePart(
+        part,
+        config,
+        direction,
+        segmentDir,
+        timeoutMs,
+        persona,
+        speechWriter(config, apiKey, client, direction, part, timeoutMs),
+      );
       segmentPaths.push(filePath);
       logJson({
         phase: "tts",
@@ -129,14 +153,47 @@ export async function synthesize(episode: Episode, show?: ShowConfig): Promise<T
   }
 }
 
+type SpeechFileWriter = (request: SpeechRequest, outputPath: string, label: string) => Promise<void>;
+
+function speechWriter(
+  config: TTSProviderConfig,
+  apiKey: string,
+  client: OpenAI | undefined,
+  direction: TTSDirectionConfig,
+  part: TTSPart,
+  timeoutMs: number,
+): SpeechFileWriter {
+  if (config.provider === "gemini") {
+    const style = buildGeminiSpeechStyle(part.section, direction, part.hint);
+    return (request, outputPath, label) =>
+      writeGeminiSpeechMp3({
+        apiKey,
+        timeoutMs,
+        label,
+        outputPath,
+        speech: {
+          model: request.model,
+          voice: request.voice,
+          text: request.input,
+          style,
+        },
+      });
+  }
+
+  return (request, outputPath, label) => {
+    if (!client) throw new Error(`tts.${label}: speech client is not configured`);
+    return writeSpeechFile(client, request, outputPath, timeoutMs, label);
+  };
+}
+
 async function synthesizePart(
-  client: OpenAI,
   part: TTSPart,
   config: TTSProviderConfig,
   direction: TTSDirectionConfig,
   segmentDir: string,
   timeoutMs: number,
-  persona?: string,
+  persona: string | undefined,
+  write: SpeechFileWriter,
 ): Promise<string> {
   if (part.chunks.length === 0) throw new Error(`tts.${part.label}: no narration chunks provided`);
 
@@ -147,7 +204,7 @@ async function synthesizePart(
   const partRequest = buildPartSpeechRequest(part.chunks, config, part.section, direction, part.hint, persona);
   if (partRequest.input.length <= config.maxRequestChars) {
     await withRetry(
-      () => writeSpeechFile(client, partRequest, outputPath, timeoutMs, part.label),
+      () => write(partRequest, outputPath, part.label),
       { attempts: MAX_ATTEMPTS, label: `tts:${part.label}` },
     );
     return outputPath;
@@ -164,11 +221,9 @@ async function synthesizePart(
     const chunkPath = path.join(chunkDir, `${pad2(index + 1)}.mp3`);
     await withRetry(
       () =>
-        writeSpeechFile(
-          client,
+        write(
           buildPartSpeechRequest([chunk], config, part.section, direction, part.hint, persona),
           chunkPath,
-          timeoutMs,
           chunkLabel,
         ),
       { attempts: MAX_ATTEMPTS, label: `tts:${chunkLabel}` },

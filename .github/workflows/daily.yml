@@ -58,6 +58,7 @@ jobs:
           EAR_EDIT_ENABLED: ${{ vars.EAR_EDIT_ENABLED }}
           OPENROUTER_EAR_EDIT_MODEL: ${{ vars.OPENROUTER_EAR_EDIT_MODEL }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           FEED_BASE_URL: ${{ vars.FEED_BASE_URL }}
           EPISODE_TIME_ZONE: ${{ vars.EPISODE_TIME_ZONE }}
           TTS_PROVIDER: ${{ vars.TTS_PROVIDER }}

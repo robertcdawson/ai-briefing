@@ -40,7 +40,7 @@ The split is deliberate. Writing the accent into the script ("fixin'", "gonna") 
 
 - **Actions variables override code defaults.** Production had `TTS_VOICE=ash` set as a repository variable when this landed. The code default moved to `cedar`, but the variable wins; set it to `cedar` or clear it.
 - **The accent is a per-request instruction.** Each intro, story, and outro is a separate TTS request, and the model can render the accent a little differently each time. Listen to a full episode's parts, not one sample, before judging.
-- **Only the OpenAI path honors `instructions`.** Through OpenRouter (Gemini TTS), `supportsDeliveryInstructions` is hard-coded false; that path has no accent channel yet.
+- **Only the OpenAI path honors `instructions`.** Through OpenRouter (Gemini TTS), `supportsDeliveryInstructions` is hard-coded false; that path has no accent channel. A designed Gemini voice (`voice_…` in `config/show.json`, `TTS_PROVIDER=gemini`, `GEMINI_API_KEY` from the same Google project) carries the accent in the voice itself. The direct Gemini path sends narrator delivery, section pace, and the segment hint as `speech_metadata.style`, which Gemini 3.8 does not read aloud.
 - **Tests pin the persona.** `test/speakerProfiles.test.ts`, `test/tts.request.test.ts`, and `test/script.voice.test.ts` assert the persona line, default voice, speech block, and exemplar hygiene. Update them with the identity, not around it.
 
 ## Audition
@@ -58,7 +58,7 @@ TTS_NARRATOR_STYLE="Natural solo host with an unhurried north-Georgia accent; un
 
 Two documented next steps, in order of effort:
 
-1. **Gemini director's-note prefix.** Gemini 3.1 Flash TTS steers accent from natural-language notes in the text. Prepend a short note to `input` in `buildPartSpeechRequest` for the OpenRouter path and verify by ear that OpenRouter passes it through unspoken.
+1. **Gemini designed voice.** `TTS_PROVIDER=gemini` calls `gemini-3.8-flash-tts` with `GEMINI_API_KEY`. A `voice_…` id from Voice Design, stored in that same Google project and set as `config/show.json` `tts.voice`, is the accent. Style stays in `speech_metadata`, not in the spoken text. See `docs/solutions/best-practices/gemini-designed-voice.md`.
 2. **ElevenLabs.** Eleven v3 has explicit accent tags, a voice library with natively Southern voices, Voice Design (describe the host in a sentence), and voice cloning. Needs a new provider module and roughly six times the per-episode TTS cost.
 
 ## Related

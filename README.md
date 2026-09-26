@@ -10,7 +10,7 @@ A weekday, fully-automated AI news podcast. Every Monday–Friday morning at ~06
 1. Pulls the last 24h of articles from a curated set of AI news RSS feeds, then drops duplicate/tracking-variant URLs before curation.
 2. Asks Claude (via OpenRouter) to cluster duplicates and score each story against a rolling ~14-day memory of what already aired — suppressing stories already covered, threading genuine developments as follow-ups — then keeps the ones that matter (a variable number that follows the day's news).
 3. Writes a natural, single-host script up to ~10 minutes (engaging hook → one segment per story, with depth scaled to importance → shaped outro), defaulting to Claude Sonnet via OpenRouter with Gemini then `openai/gpt-4o-mini` fallbacks (`openai/...` entries go direct to OpenAI when `OPENAI_API_KEY` is set). A persistent host voice, per-segment structural shapes, and a statistical phrase tripwire keep the prose specific and unrepetitive; a light, non-blocking ear-edit pass then tightens the result before it goes to voice.
-4. Synthesizes each intro/story/outro part in a single TTS request for continuous prosody (falling back to chunked synthesis with breathing gaps for oversized parts), via OpenAI `gpt-4o-mini-tts` or an OpenRouter TTS model such as Gemini 3.1 Flash TTS (`TTS_PROVIDER=openrouter`).
+4. Synthesizes each intro/story/outro part in a single TTS request for continuous prosody (falling back to chunked synthesis with breathing gaps for oversized parts), via OpenAI `gpt-4o-mini-tts`, OpenRouter, or the Gemini API (`TTS_PROVIDER=gemini`) for a designed `voice_…` id.
 5. Builds a full program master with ffmpeg (section stingers + concat), normalizes loudness to EBU R128 (-16 LUFS), encodes 192 kbps MP3 with ID3 tags and embedded chapters.
 6. Drops the file at `docs/episodes/YYYY-MM-DD.mp3`, regenerates `docs/feed.xml` (with curated per-story show notes), commits, and pushes.
 7. GitHub Pages serves the feed; Apple Podcasts polls and downloads.
@@ -116,7 +116,8 @@ Create a `.env` in the repo root (there is no checked-in `.env.example`). Minimu
 
 ```bash
 OPENROUTER_API_KEY=...
-OPENAI_API_KEY=...          # required when TTS_PROVIDER=openai (default)
+OPENAI_API_KEY=...          # required when TTS_PROVIDER=openai (default, unless the show voice is a voice_ id)
+GEMINI_API_KEY=...          # required for a Gemini designed voice (voice_…)
 FEED_BASE_URL=https://USER.github.io/ai-briefing
 ```
 
@@ -194,6 +195,7 @@ In the repo's **Settings → Secrets and variables → Actions**:
 **Secrets:**
 - `OPENROUTER_API_KEY`
 - `OPENAI_API_KEY`
+- `GEMINI_API_KEY` — required when the show voice is a Gemini designed voice id (`voice_…`) or `TTS_PROVIDER=gemini`
 - `DAILY_PUSH_DEPLOY_KEY` — private key for a write-enabled deploy key used only by the final commit step to push generated episodes
 - `HEALTHCHECK_URL` — optional dead-man's-switch monitoring. Base ping URL of a Healthchecks.io-style check; the pipeline pings `<url>/start`, `<url>` (success), and `<url>/fail`. Unset disables it. Set the check's expected period to ~25h to absorb cron jitter and alert when a weekday run is missed.
 
@@ -202,9 +204,9 @@ In the repo's **Settings → Secrets and variables → Actions**:
 - `OPENROUTER_SCRIPT_MODEL` — optional script model override; accepts a comma-separated fallback list and defaults to `anthropic/claude-sonnet-4.6, google/gemini-3.1-pro-preview, openai/gpt-4o-mini` (`gpt-4o-mini` last — it ignores much of the voice-rule block); `openai/...` entries use `OPENAI_API_KEY` directly when available
 - `EAR_EDIT_ENABLED` — optional, default `true`; set to `false`/`0`/`off`/`no` to skip the post-script copy-edit pass (`src/earEdit.ts`) and synthesize the script stage's output unedited
 - `OPENROUTER_EAR_EDIT_MODEL` — optional model override for the ear-edit pass; same comma-separated fallback format as `OPENROUTER_SCRIPT_MODEL`; defaults to `OPENROUTER_SCRIPT_MODEL`'s value when unset
-- `TTS_PROVIDER` — `openai` (default) or `openrouter`
-- `TTS_MODEL` — per provider; openai default `gpt-4o-mini-tts` (supports delivery instructions), openrouter default `google/gemini-3.1-flash-tts-preview` (supports inline delivery tags)
-- `TTS_VOICE` — the single host's voice; defaults to `cedar` (OpenAI) or `Charon` (Gemini TTS) when unset. A set variable overrides the default, so change or clear it when the default changes
+- `TTS_PROVIDER` — `openai` (default), `openrouter`, or `gemini`. A show-config voice id starting with `voice_` selects `gemini` when this is unset
+- `TTS_MODEL` — per provider; openai default `gpt-4o-mini-tts` (supports delivery instructions), openrouter default `google/gemini-3.1-flash-tts-preview` (supports inline delivery tags), gemini default `gemini-3.8-flash-tts`. An OpenAI model id is ignored on the Gemini route
+- `TTS_VOICE` — the single host's voice; defaults to `cedar` (OpenAI) or `Charon` (Gemini prebuilt) when unset. A Gemini designed voice looks like `voice_…`. A set variable overrides the show file, so clear it when the file should win
 - `TTS_GLOBAL_STYLE`, `TTS_NARRATOR_STYLE` — composed TTS delivery instructions (OpenAI `gpt-4o-mini-tts` only; see `src/speakerProfiles.ts`)
 - `TTS_INTRO_STYLE`, `TTS_STORY_STYLE`, `TTS_OUTRO_STYLE` — per-section delivery overrides for intro, story segments, and outro
 - `TTS_TIMEOUT_MS` — `180000` by default; raise only if speech generation is still timing out
@@ -351,13 +353,14 @@ The workflow page has a **Re-run all jobs** button. Use it after fixing the root
 Set `TTS_PROVIDER`, `TTS_MODEL`, and `TTS_VOICE` in Actions variables (or `.env` locally).
 
 - **`TTS_PROVIDER=openai` (default):** model defaults to `gpt-4o-mini-tts`, which supports delivery instructions. Legacy `tts-1` and `tts-1-hd` still work, but they ignore delivery instructions. Voice defaults to `cedar`.
-- **`TTS_PROVIDER=openrouter`:** routes speech through OpenRouter's OpenAI-compatible `/audio/speech` endpoint, opening up third-party voice models. The default is `google/gemini-3.1-flash-tts-preview` (voice `Charon`), which interprets sparse inline delivery tags such as `[chuckles]` that the script writer adds automatically when this provider is active. Uses `OPENROUTER_API_KEY`.
+- **`TTS_PROVIDER=openrouter`:** routes speech through OpenRouter's OpenAI-compatible `/audio/speech` endpoint, opening up third-party voice models. The default is `google/gemini-3.1-flash-tts-preview` (voice `Charon`), which interprets sparse inline delivery tags such as `[chuckles]` that the script writer adds automatically when this provider is active. Uses `OPENROUTER_API_KEY`. A `voice_…` id created in your own Google project does not resolve here.
+- **`TTS_PROVIDER=gemini`:** calls the Gemini API with `GEMINI_API_KEY` and `gemini-3.8-flash-tts`. This is the route for a Voice Design id (`voice_…`) stored in your Google project. Setting that id in `config/show.json` selects this provider when `TTS_PROVIDER` is unset. Section pace and the narrator delivery line are sent as `speech_metadata.style`, not spoken. Square-bracket audio tags are stripped, because Gemini 3.8 reads the transcript verbatim.
 
 Hard-to-pronounce names are respelled for the synthesizer only via `PRONUNCIATIONS` in `src/pronunciations.ts` (whole-word, case-insensitive). Canonical scripts and transcripts keep the correct spelling. Inline tags are allow-listed in `src/audioTags.ts`, stripped for non-Gemini-TTS models and from published transcripts. Details: `docs/solutions/best-practices/tts-pronunciations-and-inline-audio-tags.md`.
 
 The **voice ID controls timbre** — it's the only lever for *how the voice sounds*; delivery instructions can't change it. For OpenAI models, tune performance separately with `TTS_GLOBAL_STYLE`, `TTS_NARRATOR_STYLE`, and optional `TTS_INTRO_STYLE` / `TTS_STORY_STYLE` / `TTS_OUTRO_STYLE` — see `src/speakerProfiles.ts` for built-in defaults. Takes effect on the next run only — past episodes remain in their original voice.
 
-On top of those fixed per-section styles, the script writer can also attach a short per-segment **delivery hint** (3–6 words, e.g. "flat — let the number speak") to an individual story; `src/tts.ts` folds it into that segment's instructions on the OpenAI path only — the OpenRouter/Gemini path has no delivery-instructions channel and relies on inline audio tags instead. It's transient: carried from script to tts, not persisted to the sidecar.
+On top of those fixed per-section styles, the script writer can also attach a short per-segment **delivery hint** (3–6 words, e.g. "flat — let the number speak") to an individual story. `src/tts.ts` folds it into that segment's instructions on the OpenAI path, and into `speech_metadata.style` on the direct Gemini path. The OpenRouter path has no delivery-instructions channel and relies on inline audio tags instead. The hint is transient: carried from script to tts, not persisted to the sidecar.
 
 To choose by ear, run `npm run tts:sample` — it synthesizes one fixed paragraph across candidate provider/model/voice combinations into `tmp/tts-samples/` (skipping candidates whose API key isn't set). Pass extra candidates as `npm run tts:sample -- openrouter:google/gemini-3.1-flash-tts-preview:Puck`.
 
@@ -365,7 +368,7 @@ OpenAI does not label built-in voices by gender in the API docs, but the current
 
 The show is a single-host monologue with one persistent host — a warm, plainspoken guide, Southern by upbringing and an engineer by trade, who weighs each story's real-world stakes: who benefits, who gets hurt, and what could go right or wrong. The host's identity (background, beat, what they care about, what they refuse to do) and a handful of curated exemplar passages from the show's own past episodes live in `src/voice.ts` and are rendered into every script prompt, so the model is shown the register it's aiming for rather than only told what to avoid. There is no daily persona rotation — the five rotating `DAILY_PERSONAS` were retired in favor of this one consistent voice.
 
-The Southern voice is split across two layers on purpose. The **words** come from the host identity's "How they talk" line and the exemplars in `src/voice.ts`: everyday Southern phrasing and rhythm, standard spelling always, and no recurring sayings — the phrase tripwire treats a daily "bless your heart" like any other tic, which is the point. The **accent** comes from the TTS delivery instructions in `src/speakerProfiles.ts` (`NARRATOR_PROFILE.delivery`, overridable with `TTS_NARRATOR_STYLE`), which only the OpenAI path honors. Because the accent is an instruction rather than a native voice, it can vary a little between the per-chapter requests; if that bothers you, the next steps are a Gemini director's-note prefix or an ElevenLabs voice — see `docs/solutions/best-practices/southern-host-voice-and-accent.md`. Audition candidates with `npm run tts:sample` before changing production. Note that a `TTS_VOICE` Actions variable overrides the `cedar` default (production has been running `ash`); set it to `cedar` or clear it to pick up the new voice.
+The Southern voice is split across two layers on purpose. The **words** come from the host identity's "How they talk" line and the exemplars in `src/voice.ts`: everyday Southern phrasing and rhythm, standard spelling always, and no recurring sayings — the phrase tripwire treats a daily "bless your heart" like any other tic, which is the point. The **accent** comes from the TTS delivery instructions in `src/speakerProfiles.ts` (`NARRATOR_PROFILE.delivery`, overridable with `TTS_NARRATOR_STYLE`) on the OpenAI path, or from a Gemini designed voice (`voice_…`) on the direct Gemini path. An instruction-only accent can vary a little between per-chapter requests; a designed voice keeps one timbre — see `docs/solutions/best-practices/southern-host-voice-and-accent.md` and `docs/solutions/best-practices/gemini-designed-voice.md`. Audition candidates with `npm run tts:sample` before changing production. Note that a `TTS_VOICE` Actions variable overrides the `cedar` default (production has been running `ash`); set it to `cedar` or clear it to pick up the new voice.
 
 Cross-episode **prose** variety is enforced separately from story memory (the Curation Ledger):
 
@@ -468,7 +471,8 @@ If they restore feeds, add them back.
 | Check | Fix |
 |---|---|
 | `OPENROUTER_API_KEY` | Set in `.env` / Actions secrets — required for curation (and OpenRouter TTS). |
-| `OPENAI_API_KEY` | Required when `TTS_PROVIDER=openai` (default). Not required when TTS is OpenRouter-only. |
+| `OPENAI_API_KEY` | Required when `TTS_PROVIDER=openai` (default). Not required when TTS is OpenRouter-only or Gemini-direct. |
+| `GEMINI_API_KEY` | Required when `TTS_PROVIDER=gemini` or `config/show.json` names a `voice_…` id. Create the key in the same Google AI Studio project that designed the voice. |
 | `FEED_BASE_URL` | Must be an absolute `http://` or `https://` URL (enclosure base). |
 | `ffmpeg` / `ffprobe` | Install and ensure both are on `PATH` (`brew install ffmpeg` / `apt install ffmpeg`). |
 

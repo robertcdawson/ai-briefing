@@ -472,7 +472,7 @@ export async function writeScript(
   // Inline delivery tags are only written when the configured TTS model will
   // interpret them; otherwise the script stays plain text.
   const promptOptions: ScriptPromptOptions = {
-    allowAudioTags: resolveTTSProviderConfig().supportsInlineAudioTags,
+    allowAudioTags: resolveTTSProviderConfig(process.env, options.show?.tts.voice).supportsInlineAudioTags,
     recentStyle: options.recentStyle,
     phraseProfile: options.phraseProfile,
     ...(options.show ? { show: options.show } : {}),

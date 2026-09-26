@@ -26,7 +26,7 @@ import { logJson } from "../src/util.js";
  * Usage:
  *   npm run tts:sample                                  # built-in candidates
  *   npm run tts:sample -- openrouter:google/gemini-3.1-flash-tts-preview:Puck
- *   npm run tts:sample -- gemini:gemini-3.8-flash-tts:voice_1hd8ebzfhu1g
+ *   npm run tts:sample -- gemini:gemini-3.8-flash-tts:voice_your_id
  *
  * Candidates whose API key is missing are skipped with a log line.
  * Output: tmp/tts-samples/<provider>-<model>-<voice>.mp3

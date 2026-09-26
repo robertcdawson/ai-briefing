@@ -29,7 +29,7 @@ test("buildGeminiSpeechStyle keeps delivery out of the transcript", () => {
 test("buildGeminiInteractionBody sends the voice id and style beside the verbatim transcript", () => {
   const body = buildGeminiInteractionBody({
     model: "gemini-3.8-flash-tts",
-    voice: "voice_1hd8ebzfhu1g",
+    voice: "voice_example",
     text: "The price doubled.",
     style: "soft Southern drawl",
   });
@@ -40,7 +40,7 @@ test("buildGeminiInteractionBody sends the voice id and style beside the verbati
   assert.equal(textPart?.text, "The price doubled.");
   assert.deepEqual(textPart?.annotations, [{ type: "speech_metadata", style: "soft Southern drawl" }]);
   const generation = body.generation_config as { speech_config: Array<{ voice: string }> };
-  assert.equal(generation.speech_config[0]?.voice, "voice_1hd8ebzfhu1g");
+  assert.equal(generation.speech_config[0]?.voice, "voice_example");
 });
 
 test("extractGeminiAudioBase64 reads the last model audio step", () => {
@@ -69,7 +69,7 @@ test("writeGeminiSpeechMp3 posts the designed voice and writes an mp3 without le
       outputPath,
       speech: {
         model: "gemini-3.8-flash-tts",
-        voice: "voice_1hd8ebzfhu1g",
+        voice: "voice_example",
         text: "The price doubled.",
         style: "soft Southern drawl",
       },
@@ -80,7 +80,7 @@ test("writeGeminiSpeechMp3 posts the designed voice and writes an mp3 without le
           generation_config: { speech_config: Array<{ voice: string }> };
           input: Array<{ content: Array<{ text: string }> }>;
         };
-        assert.equal(body.generation_config.speech_config[0]?.voice, "voice_1hd8ebzfhu1g");
+        assert.equal(body.generation_config.speech_config[0]?.voice, "voice_example");
         assert.equal(body.input[0]?.content[0]?.text, "The price doubled.");
         return new Response(
           JSON.stringify({
@@ -109,7 +109,7 @@ test("writeGeminiSpeechMp3 posts the designed voice and writes an mp3 without le
         timeoutMs: 5_000,
         label: "00-intro",
         outputPath,
-        speech: { model: "gemini-3.8-flash-tts", voice: "voice_1hd8ebzfhu1g", text: "Hello." },
+        speech: { model: "gemini-3.8-flash-tts", voice: "voice_example", text: "Hello." },
         fetchImpl: async () =>
           new Response(JSON.stringify({ error: { message: `denied for ${apiKey}` } }), { status: 400 }),
       }),

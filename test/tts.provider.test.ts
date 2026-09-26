@@ -61,11 +61,11 @@ test("resolveTTSProviderConfig routes openrouter to its base URL, key, and Gemin
 });
 
 test("resolveTTSProviderConfig routes a designed voice id to the Gemini API", () => {
-  const config = resolveTTSProviderConfig({ TTS_VOICE: "" }, "voice_1hd8ebzfhu1g");
+  const config = resolveTTSProviderConfig({ TTS_VOICE: "" }, "voice_example");
 
   assert.equal(config.provider, "gemini");
   assert.equal(config.model, DEFAULT_GEMINI_TTS_MODEL);
-  assert.equal(config.voice, "voice_1hd8ebzfhu1g");
+  assert.equal(config.voice, "voice_example");
   assert.equal(config.apiKeyEnvVar, "GEMINI_API_KEY");
   assert.equal(config.supportsDeliveryInstructions, false);
   assert.equal(config.supportsInlineAudioTags, false);
@@ -74,12 +74,12 @@ test("resolveTTSProviderConfig routes a designed voice id to the Gemini API", ()
 
 test("resolveTTSProviderConfig lets an explicit provider win over a designed voice id", () => {
   assert.equal(
-    resolveTTSProvider({ TTS_PROVIDER: "openai" }, "voice_1hd8ebzfhu1g"),
+    resolveTTSProvider({ TTS_PROVIDER: "openai" }, "voice_example"),
     "openai",
   );
   const config = resolveTTSProviderConfig(
     { TTS_PROVIDER: "gemini", TTS_MODEL: "gpt-4o-mini-tts", TTS_VOICE: "Kore" },
-    "voice_1hd8ebzfhu1g",
+    "voice_example",
   );
   assert.equal(config.provider, "gemini");
   assert.equal(config.model, DEFAULT_GEMINI_TTS_MODEL);

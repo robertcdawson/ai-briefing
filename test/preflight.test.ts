@@ -42,7 +42,7 @@ test("environment preflight requires the Gemini key when the show voice is a des
       OPENROUTER_API_KEY: "openrouter-key",
       FEED_BASE_URL: "https://example.com/ai-briefing",
     },
-    "voice_1hd8ebzfhu1g",
+    "voice_example",
   );
 
   assert.deepEqual(
@@ -59,12 +59,12 @@ test("environment preflight rejects an Actions override of a designed voice", ()
       TTS_VOICE: "ash",
       FEED_BASE_URL: "https://example.com/ai-briefing",
     },
-    "voice_1hd8ebzfhu1g",
+    "voice_example",
   );
 
   const voice = checks.find((check) => check.name === "TTS_VOICE");
   assert.equal(voice?.status, "error");
-  assert.match(voice?.message ?? "", /overrides the Gemini voice voice_1hd8ebzfhu1g/);
+  assert.match(voice?.message ?? "", /overrides the Gemini voice voice_example/);
 });
 
 test("environment preflight rejects non-http feed base URLs", () => {

@@ -4,6 +4,7 @@ import {
   stripInlineAudioTags,
   supportsInlineAudioTags,
 } from "../src/audioTags.js";
+import { DEFAULT_GEMINI_TTS_MODEL } from "../src/geminiTts.js";
 import {
   DEFAULT_OPENAI_TTS_MODEL,
   DEFAULT_OPENROUTER_TTS_MODEL,
@@ -57,6 +58,42 @@ test("resolveTTSProviderConfig routes openrouter to its base URL, key, and Gemin
   assert.equal(config.supportsDeliveryInstructions, false);
   assert.equal(config.supportsInlineAudioTags, true);
   assert.equal(config.maxRequestChars, 8000);
+});
+
+test("resolveTTSProviderConfig routes a designed voice id to the Gemini API", () => {
+  const config = resolveTTSProviderConfig({ TTS_VOICE: "" }, "voice_example");
+
+  assert.equal(config.provider, "gemini");
+  assert.equal(config.model, DEFAULT_GEMINI_TTS_MODEL);
+  assert.equal(config.voice, "voice_example");
+  assert.equal(config.apiKeyEnvVar, "GEMINI_API_KEY");
+  assert.equal(config.supportsDeliveryInstructions, false);
+  assert.equal(config.supportsInlineAudioTags, false);
+  assert.equal(config.maxRequestChars, 8000);
+});
+
+test("resolveTTSProviderConfig lets an explicit provider win over a designed voice id", () => {
+  assert.equal(
+    resolveTTSProvider({ TTS_PROVIDER: "openai" }, "voice_example"),
+    "openai",
+  );
+  const config = resolveTTSProviderConfig(
+    { TTS_PROVIDER: "gemini", TTS_MODEL: "gpt-4o-mini-tts", TTS_VOICE: "Kore" },
+    "voice_example",
+  );
+  assert.equal(config.provider, "gemini");
+  assert.equal(config.model, DEFAULT_GEMINI_TTS_MODEL);
+  assert.equal(config.voice, "Kore");
+});
+
+test("resolveTTSProviderConfig honors a non-OpenAI Gemini model override", () => {
+  const config = resolveTTSProviderConfig({
+    TTS_PROVIDER: "gemini",
+    TTS_MODEL: "gemini-3.8-flash-lite-tts",
+  });
+
+  assert.equal(config.model, "gemini-3.8-flash-lite-tts");
+  assert.equal(config.voice, DEFAULT_OPENROUTER_TTS_VOICE);
 });
 
 test("resolveTTSProviderConfig honors openrouter model and voice overrides", () => {

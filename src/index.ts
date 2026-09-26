@@ -40,9 +40,8 @@ async function main(): Promise<void> {
       return;
     }
 
-    await assertPreflight();
-
     const show = await loadShowConfig();
+    await assertPreflight({ fileVoice: show.tts.voice });
 
     const fetchStart = Date.now();
     const articles = await fetchAll();

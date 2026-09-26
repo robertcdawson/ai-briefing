@@ -10,7 +10,9 @@
  * falls back entirely. Environment variables for TTS delivery
  * (`TTS_NARRATOR_STYLE` and the other `TTS_*` style vars, plus `TTS_VOICE`)
  * still win when they are non-empty, so an old Actions variable is not
- * silently ignored.
+ * silently ignored. A `voice_…` id in this file selects the Gemini TTS
+ * provider when `TTS_PROVIDER` is unset; preflight fails if an Actions
+ * variable would drop that id.
  */
 
 import { readFile } from "node:fs/promises";

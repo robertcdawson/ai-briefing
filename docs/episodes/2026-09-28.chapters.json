@@ -1,0 +1,46 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — September 28, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 38,
+      "title": "Intro"
+    },
+    {
+      "startTime": 38,
+      "endTime": 135,
+      "title": "OpenAI Agents Scanned UN Trade Statistics..."
+    },
+    {
+      "startTime": 135,
+      "endTime": 230,
+      "title": "Chinese Court First to Factor AI Token..."
+    },
+    {
+      "startTime": 230,
+      "endTime": 312,
+      "title": "Study Finds AI Agents Supply 55 Percent..."
+    },
+    {
+      "startTime": 312,
+      "endTime": 398,
+      "title": "Anthropic CEO Dario Amodei Set for First..."
+    },
+    {
+      "startTime": 398,
+      "endTime": 481,
+      "title": "Anthropic Veterans Reportedly Buying..."
+    },
+    {
+      "startTime": 481,
+      "endTime": 533,
+      "title": "H Company Releases Holo4 Generalist..."
+    },
+    {
+      "startTime": 533,
+      "endTime": 570,
+      "title": "Outro"
+    }
+  ]
+}

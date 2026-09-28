@@ -71,3 +71,4 @@ URL canonicalization is cheap, local, and deterministic. Removing known-duplicat
 - Tests: `test/fetch.deduplication.test.ts`.
 - Glossary: `CONCEPTS.md` → URL canonicalization, Fetch deduplication, Specifics.
 - Note: per-article excerpts are capped at **900** characters (raised from 500) so curation can extract verbatim Specifics for the script writer — see `src/fetch.ts` and `src/curate.ts`.
+- Sibling: `docs/solutions/best-practices/source-url-safety-and-audio-workspaces.md` (HTTP(S) scheme allow-list and cluster source binding — orthogonal to tracking-param dedup).

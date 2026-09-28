@@ -41,6 +41,7 @@ ai-briefing/
 │   ├── index.ts                  # Orchestrator (skip-if-published → preflight → stages)
 │   ├── preflight.ts              # Fail-fast env + ffmpeg/ffprobe checks
 │   ├── fetch.ts                  # RSS aggregation + URL canonicalization/dedup
+│   ├── sourceUrls.ts             # Safe HTTP(S) checks for show-note / cluster source links
 │   ├── curate.ts                 # Cluster + score; suppress/thread vs. recent coverage
 │   ├── interests.ts              # Listener interest profile (curation salience nudge)
 │   ├── ledger.ts                 # Prior-coverage window + recent style/phrase profiles
@@ -52,8 +53,9 @@ ai-briefing/
 │   ├── styleMetrics.ts           # Per-episode prose metrics for `npm run style:report`
 │   ├── pronunciations.ts         # Phonetic respellings applied only at the TTS boundary
 │   ├── audioTags.ts              # Inline delivery-tag allow-list (Gemini TTS)
-│   ├── tts.ts                    # Text → MP3 chunks
+│   ├── tts.ts                    # Text → MP3 chunks (private mkdtemp workspace)
 │   ├── ttsProvider.ts            # TTS provider/model/voice resolution
+│   ├── geminiTts.ts              # Direct Gemini API path for designed voice_… ids
 │   ├── audio.ts                  # ffmpeg stingers + concat + loudnorm + ID3
 │   ├── publish.ts                # Move MP3, regenerate feed.xml, retention prune
 │   ├── verifyDeploy.ts           # Poll live Pages feed for today's episode GUID
@@ -409,9 +411,11 @@ Chapters are published two ways: a Podcasting 2.0 JSON sidecar linked from `<pod
 
 Episode descriptions are HTML show notes (`<p>` and `<a href>` only): numbered story cards with why-it-matters, caveat, and publisher-named source links, then a trailing `HH:MM:SS Title` chapter list starting at `00:00:00`. Apple Podcasts turns that timestamp block into jumpable chapters in the app; it does not accept `podcasts.apple.com?t=` deep links at publish time because the catalog episode ID does not exist yet. `buildEpisodeDescription` in `src/publish.ts` assembles this from the selected clusters; unit tests in `test/publish.apple-rss.test.ts` assert layout, escaped markup, and source links.
 
+Source links are untrusted RSS/model data. `isSafeSourceUrl` (`src/sourceUrls.ts`) keeps only absolute HTTP(S) URLs; curation binds each source to a fetched article (`resolveClusterSources`, including after a stage-cache hit); publish rejects unsafe URLs before writing any episode asset. TTS segment files go in a private `mkdtemp` workspace, not a date/pid-guessable path. Details: `docs/solutions/best-practices/source-url-safety-and-audio-workspaces.md`.
+
 ### Local stage cache (dev re-runs)
 
-When iterating locally after a late-stage failure (TTS/audio/publish), set `STAGE_CACHE_DIR` (for example `tmp/stage-cache`) so curate, script, and earEdit reuse prior LLM output keyed by a content hash of their inputs. The script key includes style snippets and the phrase profile; the earEdit key includes the script text plus per-cluster notes. Unset disables caching. Single-machine only — the daily Actions runner is ephemeral, so this never applies in CI.
+When iterating locally after a late-stage failure (TTS/audio/publish), set `STAGE_CACHE_DIR` (for example `tmp/stage-cache`) so curate, script, and earEdit reuse prior LLM output keyed by a content hash of their inputs. The script key includes style snippets and the phrase profile; the earEdit key includes the script text plus per-cluster notes. A curate cache hit still runs `resolveClusterSources` against today's fetched articles so invented source URLs cannot replay into show notes. Unset disables caching. Single-machine only — the daily Actions runner is ephemeral, so this never applies in CI.
 
 Details (key composition, non-fatal I/O, when to wipe the cache): `docs/solutions/best-practices/stage-cache-for-local-reruns.md`.
 

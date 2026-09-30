@@ -1,0 +1,46 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — September 30, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 24,
+      "title": "Intro"
+    },
+    {
+      "startTime": 24,
+      "endTime": 140,
+      "title": "OpenAI DevDay 2026 launches Dots agents..."
+    },
+    {
+      "startTime": 140,
+      "endTime": 230,
+      "title": "UK AI Security Institute finds GPT-6..."
+    },
+    {
+      "startTime": 230,
+      "endTime": 319,
+      "title": "OpenAI delays IPO citing safety concerns..."
+    },
+    {
+      "startTime": 319,
+      "endTime": 395,
+      "title": "Open-weight GLM-5.3 nearly matches Claude..."
+    },
+    {
+      "startTime": 395,
+      "endTime": 477,
+      "title": "Trump and tech CEOs sign morally binding..."
+    },
+    {
+      "startTime": 477,
+      "endTime": 565,
+      "title": "Deepseek and Huawei release open-source..."
+    },
+    {
+      "startTime": 565,
+      "endTime": 596,
+      "title": "Outro"
+    }
+  ]
+}

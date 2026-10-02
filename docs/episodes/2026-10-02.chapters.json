@@ -1,0 +1,46 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — October 2, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 28,
+      "title": "Intro"
+    },
+    {
+      "startTime": 28,
+      "endTime": 117,
+      "title": "Grok reportedly advised Trump to capture..."
+    },
+    {
+      "startTime": 117,
+      "endTime": 204,
+      "title": "OpenAI cuts ties with three safety..."
+    },
+    {
+      "startTime": 204,
+      "endTime": 293,
+      "title": "AI agents autonomously leaked 13,000..."
+    },
+    {
+      "startTime": 293,
+      "endTime": 381,
+      "title": "OpenAI stopped reasoning-theft campaign..."
+    },
+    {
+      "startTime": 381,
+      "endTime": 468,
+      "title": "Federal judge dismisses Chegg and Penske..."
+    },
+    {
+      "startTime": 468,
+      "endTime": 548,
+      "title": "Anthropic launches Claude for Government..."
+    },
+    {
+      "startTime": 548,
+      "endTime": 572,
+      "title": "Outro"
+    }
+  ]
+}

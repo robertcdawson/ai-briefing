@@ -149,10 +149,10 @@ test("buildUserPrompt preserves source publisher, URL, and importance context", 
   const prompt = buildUserPrompt("2026-05-11", clusters);
 
   assert.match(prompt, /Today is 2026-05-11/);
-  assert.match(prompt, /STORY 1: A model ships a useful feature/);
+  assert.match(prompt, /STORY 1: "A model ships a useful feature"/);
   assert.match(prompt, /Category: Product & Tool Watch \(product-tools\)/);
   assert.match(prompt, /Importance: 72\/100/);
-  assert.match(prompt, /Example News: https:\/\/example\.com\/model-feature/);
+  assert.ok(prompt.includes(JSON.stringify({publisher: "Example News", url: "https://example.com/model-feature"})));
 });
 
 test("buildUserPrompt renders Specifics as a sub-list and reframes whyItMatters/caveat as an Editor's note", () => {
@@ -172,11 +172,11 @@ test("buildUserPrompt renders Specifics as a sub-list and reframes whyItMatters/
   const prompt = buildUserPrompt("2026-05-11", clusters);
 
   assert.match(prompt, /Specifics:/);
-  assert.ok(prompt.includes("- Revenue grew 40% year over year."));
-  assert.ok(prompt.includes('- CEO said: "we shipped early."'));
+  assert.ok(prompt.includes("- " + JSON.stringify("Revenue grew 40% year over year.")));
+  assert.ok(prompt.includes("- " + JSON.stringify('CEO said: "we shipped early."')));
   assert.ok(
     prompt.includes(
-      "Editor's note (context only — never echo its wording): Builders get a simpler path to production. Benchmarks are still early.",
+      'Editor\'s note (context only — never echo its wording): "Builders get a simpler path to production." "Benchmarks are still early."',
     ),
   );
   // The old "Why it matters:" / "Caveat:" labels must be gone entirely.
@@ -458,7 +458,7 @@ test("validateScriptResponse tolerates absent, null, or string delivery but reje
 test("buildSystemPrompt describes the optional per-segment delivery hint", () => {
   const prompt = buildSystemPrompt();
   assert.match(prompt, /"delivery" field/);
-  assert.match(prompt, /3-6 word spoken-delivery hint/);
+  assert.match(prompt, /one of measured, warm, dry, serious, curious, brisk, flat/);
 });
 
 test("buildUserPrompt tells the model not to pad fewer-than-three clusters", () => {

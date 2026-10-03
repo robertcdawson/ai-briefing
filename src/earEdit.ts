@@ -1,3 +1,4 @@
+import { promptData, UNTRUSTED_DATA_RULE } from "./promptData.js";
 /**
  * The ear edit: a low-temperature copy-editing pass between script and tts
  * that mechanically enforces the emphasis budget — deleting warm-up
@@ -132,11 +133,11 @@ export function buildEarEditUserPrompt(episode: Episode, clusters: StoryCluster[
   const notes = clusters
     .map(
       (c, i) =>
-        `STORY ${i + 1}: ${c.headline}\n  Why it matters: ${c.whyItMatters}\n  Caveat: ${c.caveat}`,
+        `STORY ${i + 1}: ${promptData(c.headline)}\n  Why it matters: ${promptData(c.whyItMatters)}\n  Caveat: ${promptData(c.caveat)}`,
     )
     .join("\n\n");
 
-  return `Here is today's generated script as JSON:
+  return `${UNTRUSTED_DATA_RULE}\n\nHere is today's generated script as JSON:
 
 ${scriptJson}
 

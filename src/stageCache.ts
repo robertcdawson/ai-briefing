@@ -32,7 +32,7 @@ export function cacheKey(stage: string, input: unknown): string {
   // Update incrementally to avoid allocating a combined copy of the JSON payload.
   hash.update(stage);
   hash.update(":");
-  hash.update(JSON.stringify(input));
+  hash.update(JSON.stringify(input) ?? "undefined");
   return hash.digest("hex").slice(0, 32);
 }
 
@@ -55,7 +55,12 @@ export async function withStageCache<T>(
   const dir = opts.dir ?? stageCacheDir();
   if (!dir) return compute(); // caching disabled — identical to no cache
 
-  const key = cacheKey(stage, input);
+  let key: string;
+  try {
+    key = cacheKey(stage, input);
+  } catch {
+    return compute(); // Unserializable inputs must not make an optional cache fatal.
+  }
   const file = path.join(dir, `${stage}-${key}.json`);
 
   try {

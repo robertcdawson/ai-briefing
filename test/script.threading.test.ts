@@ -25,7 +25,7 @@ test("buildUserPrompt: cluster WITH followUp includes prior framing and follow-u
   const prompt = buildUserPrompt("2026-06-17", [cluster]);
 
   // Must contain the prior date
-  assert.match(prompt, /Previously \(2026-06-10\)/);
+  assert.match(prompt, /Previously \("2026-06-10"\)/);
   // Must contain the prior framing text
   assert.match(prompt, /A major lab hinted at an imminent model upgrade affecting pricing\./);
   // Must include the follow-up marker phrase
@@ -46,7 +46,7 @@ test("buildUserPrompt: cluster WITH followUp AND priorStance includes the prior 
 
   const prompt = buildUserPrompt("2026-06-17", [cluster]);
 
-  assert.match(prompt, /Previously \(2026-06-10\)/);
+  assert.match(prompt, /Previously \("2026-06-10"\)/);
   assert.ok(
     prompt.includes('Your prior take: "I said this would slip past the announced date."'),
   );
@@ -62,8 +62,8 @@ test("buildUserPrompt: cluster WITHOUT followUp renders no Previously line or fo
   // Must NOT contain a follow-up marker
   assert.equal(prompt.includes("FOLLOW-UP"), false);
   // Must still contain the standard fields
-  assert.match(prompt, /STORY 1: A major lab ships a long-awaited model update/);
-  assert.match(prompt, /Editor's note \(context only — never echo its wording\): Builders get significantly better reasoning/);
+  assert.match(prompt, /STORY 1: "A major lab ships a long-awaited model update"/);
+  assert.match(prompt, /Editor's note \(context only — never echo its wording\): "Builders get significantly better reasoning/);
 });
 
 test("buildUserPrompt: mixed clusters — only the follow-up cluster gets the Previously line", () => {
@@ -93,7 +93,7 @@ test("buildUserPrompt: mixed clusters — only the follow-up cluster gets the Pr
 
   // The follow-up story (STORY 2) must have the Previously line
   const story2Block = prompt.split("STORY 2:")[1] ?? "";
-  assert.match(story2Block, /Previously \(2026-06-10\)/);
+  assert.match(story2Block, /Previously \("2026-06-10"\)/);
   assert.match(story2Block, /FOLLOW-UP\/update, not a new story/);
 });
 

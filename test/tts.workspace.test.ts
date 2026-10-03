@@ -11,7 +11,7 @@ test("synthesis owns a unique private workspace and leaves preplanted symlinks u
   const root = await mkdtemp(path.join(tmpdir(), "tts-security-test-"));
   const env = { ...process.env };
   t.after(async () => {
-    for (const key of ["TMPDIR", "TMP", "TEMP", "TTS_PROVIDER", "OPENAI_API_KEY"]) {
+    for (const key of ["TMPDIR", "TMP", "TEMP", "TTS_PROVIDER", "OPENAI_API_KEY", "TTS_GLOBAL_STYLE"]) {
       if (env[key] === undefined) delete process.env[key];
       else process.env[key] = env[key];
     }
@@ -20,6 +20,9 @@ test("synthesis owns a unique private workspace and leaves preplanted symlinks u
   process.env.TMPDIR = process.env.TMP = process.env.TEMP = root;
   process.env.TTS_PROVIDER = "openai";
   process.env.OPENAI_API_KEY = "test-key";
+  process.env.TTS_GLOBAL_STYLE = "private-style-regression-marker";
+  const logs: string[] = [];
+  t.mock.method(console, "log", (value: unknown) => { logs.push(String(value)); });
   t.mock.method(OpenAI.Audio.Speech.prototype, "create", async () => new Response("mock audio"));
   const ep: Episode = {
     date: "2026-09-19", title: "Test", intro: ["Intro"], outro: ["Outro"],
@@ -35,6 +38,8 @@ test("synthesis owns a unique private workspace and leaves preplanted symlinks u
   const first = await synthesize(ep);
   assert.equal(await readFile(victim, "utf8"), "untouched");
   const second = await synthesize(ep);
+  assert.ok(logs.some(line => line.includes("directionLengths")));
+  assert.ok(logs.every(line => !line.includes("private-style-regression-marker")));
   assert.notEqual(first.segmentDir, second.segmentDir);
   for (const result of [first, second]) {
     assert.notEqual(result.segmentDir, oldDir);

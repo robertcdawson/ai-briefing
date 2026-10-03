@@ -257,10 +257,10 @@ test("buildPartSpeechRequest includes a per-segment delivery hint on the OpenAI 
     config,
     "story",
     resolveTTSDirection({ TTS_STORY_STYLE: "measured story" }),
-    "flat — let the number speak",
+    "flat",
   );
 
-  assert.match(request.instructions ?? "", /This segment: flat — let the number speak/);
+  assert.match(request.instructions ?? "", /This segment: Flat, restrained delivery\./);
 });
 
 test("buildPartSpeechRequest ignores a delivery hint on the OpenRouter path (instructions stays undefined)", () => {
@@ -280,7 +280,7 @@ test("buildPartSpeechRequest ignores a delivery hint on the OpenRouter path (ins
     config,
     "story",
     resolveTTSDirection(),
-    "flat — let the number speak",
+    "flat",
   );
 
   assert.equal(request.instructions, undefined);

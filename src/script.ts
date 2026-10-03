@@ -1,3 +1,6 @@
+import { assertNarrationBudget } from "./inputLimits.js";
+import { promptData, boundedSpecifics, UNTRUSTED_DATA_RULE } from "./promptData.js";
+import { SEGMENT_DELIVERY_HINTS } from "./speakerProfiles.js";
 import OpenAI from "openai";
 import type { ChatCompletionCreateParamsNonStreaming } from "openai/resources/chat/completions";
 import { buildInlineAudioTagRules } from "./audioTags.js";
@@ -107,8 +110,9 @@ export const SCRIPT_RESPONSE_SCHEMA = {
           },
           delivery: {
             type: ["string", "null"],
+            enum: [...SEGMENT_DELIVERY_HINTS, null],
             description:
-              "Spoken-delivery hint for this segment, 3-6 words (e.g. 'flat — let the number speak'). Null when standard delivery fits.",
+              "Select one approved delivery style. Null when standard delivery fits.",
           },
         },
         required: ["title", "chunks", "sourceUrls", "stance", "delivery"],
@@ -263,7 +267,8 @@ function buildSystemPromptBase(allowAudioTags: boolean, show: ShowConfig): strin
 - INTRO (2-3 narration chunks): Begin with an engaging hook built on the single most surprising or consequential fact of the day, shaped by today's opening instruction in the user message. Mention the date once, wherever it lands naturally — do not open every episode with "It's {date}" followed by a list of coming stories. Not a vague teaser question, and not a dry table of contents.
 - STORY SEGMENTS: Write exactly one segment per provided story cluster, in the order provided (most important first). For each story, cover (in whatever order feels natural) what concretely happened, why it matters for AI builders and researchers with a listener-oriented takeaway, a plain-English gloss of any jargon on first use, the potential impact both good and bad, and an honest caveat about what's uncertain, missing, or overhyped. End each segment with a smooth, short, specific transition into the next story (or, for the last segment, into the outro).
   - FOLLOW-UP STORIES: When a story cluster is marked as a follow-up (it includes a "Previously" line with prior framing), open that segment as a continuation, not a fresh introduction. Reference how the situation has developed since the prior coverage — e.g. "the rumor we flagged Monday is now confirmed", "what started as a proposal has become policy". Do NOT re-introduce the topic as if the listener has never heard of it. New stories (no "Previously" line) are introduced normally. When the "Previously" line includes your prior take, revisit that call explicitly — say in fresh wording whether it held up, was wrong, or is still open.
-  - CONFIDENCE AND SOURCING: Calibrate how firmly you state each story to its corroboration (each cluster includes a "Corroboration: N independent source(s)" line). A single-source story must be voiced as tentative and attributed — "one outlet reports", "this isn't confirmed yet" — never as established fact. When several independent sources corroborate a story, you can state its core facts plainly. When a story reads as vendor hype or an unverified claim, name that skepticism briefly rather than relaying it credulously. Do NOT over-hedge well-corroborated facts — calibration cuts both ways.
+  - CONFIDENCE AND SOURCING: Article and outlet counts do not establish independent corroboration: duplicate coverage, syndication, and vendor claims may share one source. Attribute single-source and unverified claims ("one outlet reports"). State supported facts plainly; do not over-hedge, but never increase confidence merely because more URLs repeat a claim.
+${UNTRUSTED_DATA_RULE}
   - Do NOT use the same beat order in every segment. Vary how each story unfolds so the episode doesn't read as a template.
   - Each story in the user message carries an assigned shape; reach the essentials — what happened, why it matters, what's uncertain — through that shape, and never announce a shape or beat by name.
 - CLOSING (2-4 narration chunks): Shape the ending with today's closing instruction in the user message. Never open the closing by "pulling back" or "stepping back" to find a pattern, never announce that a pattern, theme, or thread "emerges" or "runs through" the stories, never lean on "the gap between X and Y" framing, and never re-list the day's stories as a parallel run of one-clause sentences. End with a short sign-off in the host's voice.
@@ -314,7 +319,7 @@ SPOKEN-DELIVERY MECHANICS
 ${noMarkupRule}
 - Numbers in spoken form when natural ("about three billion" not "3,000,000,000").
 - Don't read URLs aloud.
-- Optionally set a segment's "delivery" field to a 3-6 word spoken-delivery hint (e.g. "flat — let the number speak") when this segment calls for something other than the default delivery; leave it null otherwise.
+- Optionally set a segment's "delivery" field to one of ${SEGMENT_DELIVERY_HINTS.join(", ")} when this segment calls for something other than the default delivery; leave it null otherwise.
 
 Each segment's sourceUrls MUST be exactly the urls provided for that cluster. Do not invent or omit any.
 
@@ -397,30 +402,30 @@ export function buildUserPrompt(
   phraseProfile?: RecentPhraseProfile,
 ): string {
   const lines = clusters.map((c, i) => {
-    const sources = c.sources.map((s) => `${s.publisher}: ${s.url}`).join("\n      ");
+    const sources = c.sources.map((s) => promptData({ publisher: s.publisher, url: s.url })).join("\n      ");
     const categoryLabel = getStoryCategoryLabel(c.category);
     const importance = typeof c.importance === "number" ? `${Math.round(c.importance)}/100` : "unscored";
-    const sourceCount = c.sources.length;
+    const sourceCount = new Set(c.sources.map(s => s.url)).size;
     const corroboration =
       sourceCount === 0
         ? "none listed (treat as unverified)"
-        : `${sourceCount} independent source${sourceCount === 1 ? "" : "s"}`;
+        : `${sourceCount} distinct article${sourceCount === 1 ? "" : "s"}; independence unverified`;
     const priorStanceSuffix = c.followUp?.priorStance
-      ? ` Your prior take: "${c.followUp.priorStance.replace(/\s+/g, " ").trim()}"`
+      ? ` Your prior take: ${promptData(c.followUp.priorStance)}`
       : "";
     const followUpLine = c.followUp
-      ? `\n  Previously (${c.followUp.priorDate.replace(/\s+/g, " ").trim()}): ${c.followUp.priorFraming.replace(/\s+/g, " ").trim()} — this is a FOLLOW-UP/update, not a new story.${priorStanceSuffix}`
+      ? `\n  Previously (${promptData(c.followUp.priorDate)}): ${promptData(c.followUp.priorFraming)} — this is a FOLLOW-UP/update, not a new story.${priorStanceSuffix}`
       : "";
     const specificsBlock = c.specifics && c.specifics.length > 0
-      ? `\n  Specifics:\n${c.specifics.map((item) => `      - ${item}`).join("\n")}`
+      ? `\n  Specifics:\n${boundedSpecifics(c.specifics).map((item) => `      - ${promptData(item)}`).join("\n")}`
       : "";
     const shape = selectSegmentShape(date, i);
-    return `STORY ${i + 1}: ${c.headline}
+    return `STORY ${i + 1}: ${promptData(c.headline)}
   Category: ${categoryLabel} (${c.category})
   Importance: ${importance}
   Corroboration: ${corroboration}
   Shape this segment as: ${shape.name} — ${shape.instruction}${specificsBlock}
-  Editor's note (context only — never echo its wording): ${c.whyItMatters} ${c.caveat}${followUpLine}
+  Editor's note (context only — never echo its wording): ${promptData(c.whyItMatters)} ${promptData(c.caveat)}${followUpLine}
   Sources:
       ${sources}`;
   });
@@ -775,6 +780,7 @@ export function validateScriptResponse(
       );
     }
   }
+  assertNarrationBudget(response);
 }
 
 function validateNarrationChunks(label: string, chunks: unknown): asserts chunks is NarrationChunk[] {

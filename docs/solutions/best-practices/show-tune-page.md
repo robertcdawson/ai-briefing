@@ -43,7 +43,7 @@ A missing, unreadable, or invalid file logs `phase: show-config, status: fallbac
 **Do**
 
 - Edit from `https://<pages-host>/<repo>/tune/` after the page is on `main`.
-- Use a fine-grained token with Contents read and write on this repository only. Leave it in the browser; do not commit it.
+- Use a fine-grained token with Contents read and write on this repository only. Paste it for each editing session; it is kept only in the open page, never localStorage or sessionStorage. Old stored tokens are purged on page load. Do not commit it.
 - Put "stop sounding like this" in tone notes. Put the voice you want in "How they talk" and in one or two passages.
 - Clear a non-empty `TTS_NARRATOR_STYLE` or `TTS_VOICE` Actions variable if the page's delivery or voice id should win. The workflow forwards those variables, and a non-empty value beats the file.
 

@@ -17,7 +17,7 @@ function cluster(sources: { url: string; publisher: string }[]): StoryCluster {
 
 test("buildUserPrompt reports singular corroboration for a single-source story", () => {
   const prompt = buildUserPrompt("2026-06-17", [cluster([{ url: "https://a.com", publisher: "A" }])]);
-  assert.match(prompt, /Corroboration: 1 independent source\b/);
+  assert.match(prompt, /Corroboration: 1 distinct article; independence unverified/);
   assert.doesNotMatch(prompt, /1 independent sources/);
 });
 
@@ -29,7 +29,7 @@ test("buildUserPrompt reports plural corroboration for a multi-source story", ()
       { url: "https://c.com", publisher: "C" },
     ]),
   ]);
-  assert.match(prompt, /Corroboration: 3 independent sources/);
+  assert.match(prompt, /Corroboration: 3 distinct articles; independence unverified/);
 });
 
 test("buildUserPrompt treats a story with no sources as unverified, not '0 independent sources'", () => {

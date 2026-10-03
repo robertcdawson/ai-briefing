@@ -20,10 +20,10 @@ test("buildGeminiSpeechStyle keeps delivery out of the transcript", () => {
       TTS_NARRATOR_STYLE: "soft Southern drawl",
       TTS_STORY_STYLE: "measured and clear",
     }),
-    "flat — let the number speak",
+    "flat",
   );
 
-  assert.equal(style, "soft Southern drawl measured and clear flat — let the number speak");
+  assert.equal(style, "soft Southern drawl measured and clear Flat, restrained delivery.");
 });
 
 test("buildGeminiInteractionBody sends the voice id and style beside the verbatim transcript", () => {

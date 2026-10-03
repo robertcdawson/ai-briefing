@@ -64,3 +64,15 @@ test("withStageCache falls back to compute on a corrupt cache file (no throw)", 
     await rm(dir, { recursive: true, force: true });
   }
 });
+
+test("cacheKey handles roots with no JSON representation; unserializable inputs compute normally", async () => {
+  assert.equal(cacheKey("test", undefined), cacheKey("test", () => undefined));
+  assert.equal(cacheKey("test", undefined), cacheKey("test", Symbol("value")));
+  const dir = await tmp();
+  const cycle: { self?: unknown } = {};
+  cycle.self = cycle;
+  try {
+    assert.equal(await withStageCache("test", cycle, async () => "computed", { dir }), "computed");
+    assert.equal(await withStageCache("test", undefined, async () => "cached", { dir }), "cached");
+  } finally { await rm(dir, { recursive: true, force: true }); }
+});

@@ -28,6 +28,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6.0.2
         with:
+          # Resolve the branch when this serialized job starts, not the queued SHA.
+          ref: ${{ github.ref_name }}
           fetch-depth: 1
           persist-credentials: false
 
@@ -72,7 +74,8 @@ jobs:
           TTS_TIMEOUT_MS: ${{ vars.TTS_TIMEOUT_MS }}
           AUDIO_CUES_ENABLED: ${{ vars.AUDIO_CUES_ENABLED }}
           AUDIO_CUE_STYLE: ${{ vars.AUDIO_CUE_STYLE }}
-          INTEREST_PROFILE: ${{ vars.INTEREST_PROFILE }}
+          # Empty/missing Actions vars use the default; whitespace still disables.
+          INTEREST_PROFILE: ${{ vars.INTEREST_PROFILE || '__DEFAULT_INTEREST_PROFILE__' }}
           PODCAST_AUTHOR: ${{ vars.PODCAST_AUTHOR }}
           PODCAST_SUMMARY: ${{ vars.PODCAST_SUMMARY }}
           PODCAST_OWNER_NAME: ${{ vars.PODCAST_OWNER_NAME }}
@@ -84,7 +87,11 @@ jobs:
           PODCAST_EXPLICIT: ${{ vars.PODCAST_EXPLICIT }}
           PODCAST_TYPE: ${{ vars.PODCAST_TYPE }}
           HEALTHCHECK_URL: ${{ secrets.HEALTHCHECK_URL }}
-        run: npx tsx src/index.ts
+        run: |
+          if [ "$INTEREST_PROFILE" = '__DEFAULT_INTEREST_PROFILE__' ]; then
+            unset INTEREST_PROFILE
+          fi
+          npx tsx src/index.ts
 
       - name: Commit episode
         env:
@@ -127,22 +134,28 @@ jobs:
       # makes the backup cron a recovery path: a run that skips generation still
       # republishes an episode that is on disk but missing from the live feed.
       - name: Verify published feed
+        id: verify_feed
         env:
           FEED_BASE_URL: ${{ vars.FEED_BASE_URL }}
           EPISODE_TIME_ZONE: ${{ vars.EPISODE_TIME_ZONE }}
           HEALTHCHECK_URL: ${{ secrets.HEALTHCHECK_URL }}
-          DAILY_PUSH_DEPLOY_KEY: ${{ secrets.DAILY_PUSH_DEPLOY_KEY }}
         run: |
           if VERIFY_TIMEOUT_MS=480000 npx tsx scripts/verify-deploy.ts --quiet; then
-            echo "Episode is live in the published feed."
-            exit 0
+            echo "live=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "live=false" >> "$GITHUB_OUTPUT"
           fi
 
-          echo "Episode is not in the published feed — retriggering the Pages deployment."
-
+      - name: Retrigger Pages deployment
+        if: steps.verify_feed.outputs.live == 'false'
+        env:
+          EPISODE_TIME_ZONE: ${{ vars.EPISODE_TIME_ZONE }}
+          DAILY_PUSH_DEPLOY_KEY: ${{ secrets.DAILY_PUSH_DEPLOY_KEY }}
+        run: |
           deploy_key="$(mktemp)"
           trap 'rm -f "$deploy_key"' EXIT
           printf '%s\n' "$DAILY_PUSH_DEPLOY_KEY" > "$deploy_key"
+          unset DAILY_PUSH_DEPLOY_KEY
           chmod 600 "$deploy_key"
           export GIT_SSH_COMMAND="ssh -i $deploy_key -o IdentitiesOnly=yes -o StrictHostKeyChecking=accept-new"
 
@@ -159,4 +172,11 @@ jobs:
           git commit --allow-empty -m "Redeploy Pages for $(TZ="${EPISODE_TIME_ZONE:-America/Los_Angeles}" date +%Y-%m-%d)"
           git push origin "HEAD:$branch"
 
-          npx tsx scripts/verify-deploy.ts
+
+      - name: Verify retriggered feed
+        if: steps.verify_feed.outputs.live == 'false'
+        env:
+          FEED_BASE_URL: ${{ vars.FEED_BASE_URL }}
+          EPISODE_TIME_ZONE: ${{ vars.EPISODE_TIME_ZONE }}
+          HEALTHCHECK_URL: ${{ secrets.HEALTHCHECK_URL }}
+        run: npx tsx scripts/verify-deploy.ts

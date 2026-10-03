@@ -1,31 +1,52 @@
 # AGENTS.md
 
-## Cursor Cloud specific instructions
+Shared agent instructions for this repo. `CLAUDE.md` only imports this file so Claude Code and Cursor read one body.
 
-### Overview
+## Overview
 
-**ai-briefing** is a daily AI news podcast pipeline (no web server). It fetches RSS feeds, curates stories via LLM, generates a spoken script, synthesizes audio via TTS, and publishes an RSS podcast feed. There is no database — state lives in `docs/episodes/*.json` sidecars + git.
+**ai-briefing** ("AI Briefing") is a fully automated weekday AI news podcast pipeline. GitHub Actions cron runs it each weekday morning. It fetches RSS feeds, curates stories via LLM, generates a spoken script, synthesizes audio via TTS, and publishes an RSS podcast feed. There is no web server and no database — state lives in `docs/episodes/*.json` sidecars plus git. GitHub Pages serves `docs/` as the podcast feed.
 
-### Documented knowledge
+## Architecture
+
+The pipeline is a linear sequence of stages orchestrated by `src/index.ts`:
+
+```
+already-published skip → preflight → fetch → curate → script → earEdit → tts → audio → publish → verifyDeploy
+```
+
+- **fetch** (`src/fetch.ts`): aggregates curated RSS feeds (`src/feeds.ts`), drops unsafe links via `isSafeSourceUrl` (`src/sourceUrls.ts`), canonicalizes URLs (strips tracking params) and drops duplicate URLs *before* curation, so the LLM never scores the same link twice.
+- **curate** (`src/curate.ts`): LLM (Claude via OpenRouter) clusters articles into Story Clusters, scores Importance (0–100), and selects what airs. Resolves every cluster source to a fetched safe URL (`resolveClusterSources`), including after a stage-cache hit in `src/index.ts`. Reads the **Curation Ledger** (`src/ledger.ts`) — a rolling ~14-day window of prior coverage built from episode sidecars — to *suppress* already-covered stories or thread them as *Follow-ups*, including carrying forward the host's prior `stance` on a story. `canonicalKey` (kebab-case story slug) is the join key across days.
+- **script** (`src/script.ts`): writes a single-host spoken script. A large anti-repetition system keeps prose fresh: style snippets from recent transcripts injected as do-not-reuse blocks, date-hashed daily intro/outro/segment-shape "moves", a statistical phrase tripwire (`src/ngrams.ts`), and hard outro-mold regex validators that reject an attempt so the model re-rolls (3 attempts per model, with model fallbacks). The persistent host identity lives in `src/voice.ts`, overridden in production by `config/show.json` (edited from the tune page at `docs/tune/`).
+- **earEdit** (`src/earEdit.ts`): non-blocking LLM copy-edit pass; any failure falls through to the unedited script.
+- **tts** (`src/tts.ts`, `src/ttsProvider.ts`, `src/geminiTts.ts`): one TTS request per intro/story/outro part for continuous prosody, chunked fallback for oversized parts, in a private `mkdtemp` workspace cleaned up on failure. Provider is OpenAI (default), OpenRouter, or Gemini (`gemini-3.8-flash-tts`) when the show voice is a designed `voice_…` id.
+- **audio** (`src/audio.ts`): ffmpeg via `execa` — section stingers, concat, EBU R128 loudness normalization, MP3 + ID3 + embedded chapters.
+- **publish** (`src/publish.ts`): validates show-note source URLs before writing, then writes `docs/episodes/YYYY-MM-DD.{mp3,json,chapters.json,transcript.txt}`, regenerates `docs/feed.xml`, prunes episodes past the 14-day retention window.
+- **verifyDeploy** (`src/verifyDeploy.ts`): polls the live Pages feed for today's GUID — a successful commit/push does not mean listeners can fetch the episode.
+
+**Stage caching** (`src/stageCache.ts`): with `STAGE_CACHE_DIR` set (local dev only), curate/script/earEdit outputs are cached by a content hash of their inputs, so re-running after a later-stage failure doesn't re-pay for LLM calls.
+
+**Cross-episode memory is file-based**: everything the pipeline "remembers" (prior coverage, stances, recent prose style) is derived from the sidecar JSONs and transcripts in `docs/episodes/` — there is no other state.
+
+## Documented knowledge
 
 - `docs/solutions/` — documented solutions to past problems (bugs, best practices, workflow patterns), organized by category with YAML frontmatter (`module`, `tags`, `problem_type`). Relevant when implementing or debugging in documented areas.
 - `CONCEPTS.md` — shared domain vocabulary (entities, named processes, status concepts). Relevant when orienting to the codebase or discussing domain terms.
 
-### Runtime requirements
+## Runtime requirements
 
 - **Node.js 20** (nvm default; the update script ensures Node 20 is installed and active)
 - **ffmpeg + ffprobe** on PATH (pre-installed on Cloud Agent VMs)
 - API keys for full pipeline only (see below)
 
-### Key commands
+## Key commands
 
 All commands are defined in `package.json`:
 
 | Command | What it does | Needs API keys? |
 |---|---|---|
-| `npm run build` | Type-check via `tsc --noEmit` | No |
+| `npm run build` | Type-check via `tsc --noEmit` — the only static check (no ESLint/Prettier configured) | No |
 | `npm run preflight` | Fail-fast env + binary checks (keys, `FEED_BASE_URL`, ffmpeg/ffprobe) — no network LLM/RSS calls | No (reads env; does not call providers) |
-| `npm test` | Smoke test — fetches live RSS feeds, asserts articles come back | No |
+| `npm test` | Smoke test — fetches live RSS feeds, asserts articles come back (~10-35s) | No |
 | `npm run test:unit` | Unit tests (publish/feed XML generation, preflight, fetch dedup, script style, verifyDeploy, etc.) | No |
 | `npm start` | Full end-to-end pipeline (preflight → fetch → curate → script → TTS → audio → publish); skips when today's episode is already on disk | Yes |
 | `npm run diagnose:script-model` | Probe OpenRouter script structured-output without TTS/publish; set `EPISODE_DATE` to replay a published day's curation + style snippets | Yes (`OPENROUTER_API_KEY`) |
@@ -33,9 +54,11 @@ All commands are defined in `package.json`:
 | `npm run tts:sample` | A/B synthesis of one fixed paragraph across candidate TTS models/voices into `tmp/tts-samples/` | Yes (skips candidates without a key) |
 | `npm run stingers:generate` | One-time music stinger asset generation (Lyria 3 via OpenRouter) into `assets/audio/` | Yes (`OPENROUTER_API_KEY`) |
 
+Run a single test: `npx tsx --test test/<name>.test.ts` (tests use `node:test`; the exception is `test/publish.apple-rss.test.ts`, which is run directly as `npx tsx test/publish.apple-rss.test.ts`).
+
 Manual publish check (not an npm script): `FEED_BASE_URL=… npx tsx scripts/verify-deploy.ts` — polls the live Pages feed for today's episode GUID.
 
-### Environment variables
+## Environment variables
 
 For `npm start` (full pipeline), create a `.env` in the repo root (no checked-in `.env.example`) with:
 - `OPENROUTER_API_KEY` — for curation, default script generation, and TTS when `TTS_PROVIDER=openrouter`
@@ -58,7 +81,7 @@ For `npm start` (full pipeline), create a `.env` in the repo root (no checked-in
 
 `npm test` and `npm run build` work without any API keys. Full env / Actions variable lists live in `README.md`.
 
-### Gotchas
+## Gotchas
 
 - **No lint command.** There is no ESLint or Prettier configured. `npm run build` (`tsc --noEmit`) is the only static analysis check.
 - **nvm is sourced automatically** via `~/.bashrc`. The update script sets Node 20 as the nvm default, so `node` and `npm` resolve correctly in new sessions without manual sourcing.
@@ -76,4 +99,5 @@ For `npm start` (full pipeline), create a `.env` in the repo root (no checked-in
 - **Retention is age-based:** `RETENTION_DAYS` (14) governs both feed membership and disk pruning via `selectFeedRecords` / `pruneOldEpisodes`. `FEED_LIMIT` is a defensive count cap only. Publish/feed unit tests that touch the real `docs/` tree must pass `{ prune: false }` or they will delete committed episode files. See `docs/solutions/best-practices/age-based-episode-retention.md`.
 - **Local stage cache:** `STAGE_CACHE_DIR` caches curate/script/earEdit by input hash for local re-runs after late-stage failures; cache I/O is non-fatal and CI never sets the var. See `docs/solutions/best-practices/stage-cache-for-local-reruns.md`.
 - **Section cues:** stingers are ffmpeg program structure (`AUDIO_CUES_ENABLED` / `AUDIO_CUE_STYLE`), padded ~0.7s at boundaries, with `asset` falling back to `tone` when files are missing — not the same as TTS inline tags. See `docs/solutions/best-practices/audio-section-cues-and-stingers.md`.
-- **Dependabot auto-merge:** `.github/workflows/dependabot-auto-merge.yml` only *enables* squash auto-merge for `dependabot[bot]` PRs — it does not approve or skip required checks. See `docs/solutions/workflow-issues/dependabot-auto-merge.md`.
+- **Dependabot:** PRs require manual review and merge; automatic merging is disabled because the repository did not require checks or approving reviews. See `docs/solutions/workflow-issues/dependabot-auto-merge.md`.
+- **Feature branches:** update them by merging `main`, not rebasing (`docs/solutions/workflow-issues/updating-feature-branches-merge-not-rebase.md`).

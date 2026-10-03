@@ -1,3 +1,4 @@
+import { readFeedText, boundedArticles, MAX_ARTICLES_PER_FEED } from "./inputLimits.js";
 import Parser from "rss-parser";
 import { SOURCES, type FeedSource } from "./feeds.js";
 import type { Article } from "./types.js";
@@ -65,7 +66,7 @@ async function fetchSource(source: FeedSource): Promise<Article[]> {
     headers: { "user-agent": "ai-briefing/0.1 (+rss aggregator)" },
   });
   if (!res.ok) throw new Error(`HTTP ${res.status} ${res.statusText}`);
-  const xml = await res.text();
+  const xml = await readFeedText(res);
 
   const feed = await withHardTimeout(
     parser.parseString(xml),
@@ -79,7 +80,8 @@ async function fetchSource(source: FeedSource): Promise<Article[]> {
     const dateStr = item.isoDate ?? item.pubDate;
     const url = item.link;
     const title = item.title;
-    if (!dateStr || !isSafeSourceUrl(url) || !title) continue;
+    if (articles.length >= MAX_ARTICLES_PER_FEED) break;
+    if (!dateStr || !isSafeSourceUrl(url) || url.length > 2048 || !title || title.length > 300) continue;
     const ts = Date.parse(dateStr);
     if (Number.isNaN(ts) || ts < cutoff) continue;
     const rawExcerpt = item.contentSnippet?.trim() || stripHtml(item.content ?? "");
@@ -133,7 +135,7 @@ export async function fetchAll(): Promise<Article[]> {
     }
   }
 
-  const dedupedArticles = deduplicateFetchedArticles(articles);
+  const dedupedArticles = boundedArticles(deduplicateFetchedArticles(articles));
 
   logJson({
     phase: "fetch",

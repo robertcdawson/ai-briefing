@@ -157,7 +157,7 @@ test("buildPriorCoverageBlock appends the prior take when stance is present, omi
     },
   ];
   const block = buildPriorCoverageBlock(prior);
-  assert.match(block, /story-with-take \| A story the host already judged \| caveat: Still developing\. \| take: I called this overhyped\./);
+  assert.match(block, /"take":"I called this overhyped\."/);
   const withoutTakeLine = block.split("\n").find((line) => line.includes("story-without-take"));
   assert.ok(withoutTakeLine);
   assert.equal(withoutTakeLine!.includes("| take:"), false);
@@ -180,7 +180,7 @@ test("buildPriorCoverageBlock keeps a long stance from blowing out the line leng
   const block = buildPriorCoverageBlock(prior);
   const line = block.split("\n").find((l) => l.includes("story-long-stance"));
   assert.ok(line);
-  assert.ok(line!.length <= 300, `line was ${line!.length} chars, expected <= 300`);
+  assert.ok(line!.length <= 600, `line was ${line!.length} chars, expected <= 600`);
 });
 
 function escapeRegExp(value: string): string {

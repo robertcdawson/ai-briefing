@@ -1,0 +1,46 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — September 29, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 20,
+      "title": "Intro"
+    },
+    {
+      "startTime": 20,
+      "endTime": 87,
+      "title": "OpenAI halts frontier training and..."
+    },
+    {
+      "startTime": 87,
+      "endTime": 144,
+      "title": "Anthropic IPO prospectus reveals 8..."
+    },
+    {
+      "startTime": 144,
+      "endTime": 201,
+      "title": "AMD acquires Fei-Fei Li's World Labs for..."
+    },
+    {
+      "startTime": 201,
+      "endTime": 256,
+      "title": "Nvidia launches hardware-software..."
+    },
+    {
+      "startTime": 256,
+      "endTime": 313,
+      "title": "Twenty-plus leading AI researchers warn..."
+    },
+    {
+      "startTime": 313,
+      "endTime": 372,
+      "title": "Florida invokes extinction fears in court..."
+    },
+    {
+      "startTime": 372,
+      "endTime": 391,
+      "title": "Outro"
+    }
+  ]
+}

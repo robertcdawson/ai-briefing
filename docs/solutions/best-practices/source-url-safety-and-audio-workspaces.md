@@ -69,7 +69,9 @@ Cache-hit re-resolution (orchestrator):
 const { selected, report } = await withStageCache("curate", { date, articles }, () =>
   curate(articles, date),
 );
-const clusters = selected.map((cluster) => resolveClusterSources(cluster, articles));
+const clusters = selected.map((cluster) =>
+  resolveClusterSources(normaliseCluster(cluster), articles),
+);
 ```
 
 ## Why this works

@@ -1,3 +1,4 @@
+import { assertNarrationBudget, MAX_TTS_REQUESTS } from "./inputLimits.js";
 import OpenAI from "openai";
 import { execa } from "execa";
 import { copyFile, mkdir, mkdtemp, rm, writeFile } from "node:fs/promises";
@@ -68,6 +69,7 @@ export async function synthesize(episode: Episode, show?: ShowConfig): Promise<T
   const direction = resolveTTSDirection(process.env, show?.tts);
   const persona = show?.host.ttsPersonaLine;
   const timeoutMs = resolveTTSTimeoutMs(process.env.TTS_TIMEOUT_MS);
+  assertSpeechBudget(episode, config, direction, persona);
 
   const designedVoice = show?.tts.voice?.trim();
   if (isDesignedVoiceId(designedVoice) && config.voice !== designedVoice) {
@@ -138,7 +140,7 @@ export async function synthesize(episode: Episode, show?: ShowConfig): Promise<T
       segments: segmentPaths.length,
       provider: config.provider,
       voice: config.voice,
-      direction,
+      directionLengths: Object.fromEntries(Object.entries(direction).map(([key, value]) => [key, value.length])),
       model: config.model,
       timeoutMs,
       deliveryInstructions: config.supportsDeliveryInstructions ? "enabled" : "unsupported",
@@ -184,6 +186,34 @@ function speechWriter(
     if (!client) throw new Error(`tts.${label}: speech client is not configured`);
     return writeSpeechFile(client, request, outputPath, timeoutMs, label);
   };
+}
+
+/** Validate the entire transformed request plan before spending on the first part. */
+export function assertSpeechBudget(
+  episode: Episode,
+  config: TTSProviderConfig,
+  direction: TTSDirectionConfig = resolveTTSDirection(),
+  persona?: string,
+): void {
+  assertNarrationBudget(episode);
+  const parts = [
+    { chunks: episode.intro, section: "intro" as const, hint: undefined },
+    ...episode.segments.map(s => ({ chunks: s.chunks, section: "story" as const, hint: s.delivery })),
+    { chunks: episode.outro, section: "outro" as const, hint: undefined },
+  ];
+  let count = 0;
+  let chars = 0;
+  for (const part of parts) {
+    const request = buildPartSpeechRequest(part.chunks, config, part.section, direction, part.hint, persona);
+    const requests = request.input.length <= config.maxRequestChars ? [request] : part.chunks.map(chunk =>
+      buildPartSpeechRequest([chunk], config, part.section, direction, part.hint, persona));
+    for (const item of requests) {
+      if (!item.input.trim() || item.input.length > config.maxRequestChars) throw new Error("TTS request exceeds provider input budget");
+      count++;
+      chars += item.input.length;
+    }
+  }
+  if (count > MAX_TTS_REQUESTS || chars > 20000) throw new Error("TTS exceeds episode request budget");
 }
 
 async function synthesizePart(

@@ -1,0 +1,46 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — October 1, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 20,
+      "title": "Intro"
+    },
+    {
+      "startTime": 20,
+      "endTime": 126,
+      "title": "Google launches Gemini 4 Argon but..."
+    },
+    {
+      "startTime": 126,
+      "endTime": 218,
+      "title": "FTC launches sweeping legally binding..."
+    },
+    {
+      "startTime": 218,
+      "endTime": 297,
+      "title": "Nonprofit sues OpenAI over Hugging Face..."
+    },
+    {
+      "startTime": 297,
+      "endTime": 373,
+      "title": "Google DeepMind releases SynthID Bio to..."
+    },
+    {
+      "startTime": 373,
+      "endTime": 439,
+      "title": "ElevenLabs doubles valuation to 22..."
+    },
+    {
+      "startTime": 439,
+      "endTime": 518,
+      "title": "OpenAI and Synopsys partner to build..."
+    },
+    {
+      "startTime": 518,
+      "endTime": 541,
+      "title": "Outro"
+    }
+  ]
+}

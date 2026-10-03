@@ -27,6 +27,12 @@ Normalizing an article link before fetch-level dedup: strip the fragment, drop t
 ### Fetch deduplication
 Collapsing identical (or tracking-variant) article URLs across feeds **before** curation, keeping the first occurrence. Distinct from Story Cluster dedup: this is a cheap URL-key pass so the LLM does not score the same link twice; clustering still merges different URLs about the same story.
 
+### Safe source URL
+An absolute `http:` / `https:` article link that passes `isSafeSourceUrl` in `src/sourceUrls.ts`: no control characters or backslashes before trim, no internal spaces, non-empty hostname. Fetch drops failing RSS links; curation resolves every cluster source to a matching fetched article (publisher from the article, not the model) and the orchestrator re-runs that resolve after a stage-cache hit; publish throws before writing episode assets if a show-note URL fails. Distinct from URL canonicalization (tracking-param normalization) and from Fetch deduplication (syndication collapse).
+
+### Audio workspace
+The private temp directory owned by one TTS run (`mkdtemp` under the process temp root, mode `0700`). Segment MP3s and downstream ffmpeg intermediates for that run live here. Synthesis cleans the directory on failure before the caller sees the path; the orchestrator removes it in `finally` after success. Distinct from Stage cache (LLM JSON reuse) and from committed `docs/episodes/` assets.
+
 ### Preflight
 A fail-fast config/runtime check run before paid pipeline stages. Validates required API keys for the active TTS route, that `FEED_BASE_URL` is an absolute `http(s)` URL, and that `ffmpeg`/`ffprobe` are on PATH. Invoked automatically by `npm start` and manually via `npm run preflight`. Does not call OpenRouter, OpenAI, or RSS.
 

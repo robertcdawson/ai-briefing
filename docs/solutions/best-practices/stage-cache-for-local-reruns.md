@@ -80,3 +80,4 @@ npm start
 - Ops: README → Manual operations → Local stage cache
 - Glossary: Stage cache in `CONCEPTS.md`
 - Sibling: `docs/solutions/best-practices/script-anti-repetition-style-memory.md` (why style snippets belong in the script key)
+- Sibling: `docs/solutions/best-practices/source-url-safety-and-audio-workspaces.md` (curate cache hits still run `resolveClusterSources`)

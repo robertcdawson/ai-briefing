@@ -1,3 +1,5 @@
+import { boundedArticles } from "./inputLimits.js";
+import { boundedText, boundedSpecifics, validCanonicalKey, promptData, UNTRUSTED_DATA_RULE } from "./promptData.js";
 import OpenAI from "openai";
 import { STORY_CATEGORY_DEFINITIONS } from "./types.js";
 import type { Article, StoryCluster, ScoredCluster, CurationReport } from "./types.js";
@@ -143,13 +145,15 @@ export function buildSystemPrompt(interestProfile = ""): string {
 
   return `You are the editor for a daily AI news podcast. Given a list of recent articles from various publishers, your job is to:
 
+${UNTRUSTED_DATA_RULE}
+
 1. CLUSTER articles about the same underlying story (e.g., multiple outlets covering one product launch). Group them by canonical story.
 2. SCAN every editorial lane before selecting stories, so the show does not miss strong category-specific news:
 ${categoryLines}
 3. SCORE each cluster's audience impact for researchers, builders, and technical leaders on a 0-100 scale. Weight practical usefulness, strategic consequence, evidence quality, and timeliness above novelty; novelty is only a tiebreaker. Down-weight SEO clickbait, thin rewrites, listicles, and pure opinion.
 4. RETURN the strongest distinct, credible stories as separate clusters — at most ${MODEL_CLUSTER_LIMIT}, fewer when the day is quiet — each with an honest importance score. Prefer a diverse mix of categories. Never pad with weak material: if it isn't worth a listener's time, leave it out. A slow day may yield only one or two strong stories.
 5. SUPPRESS already-covered stories: if today's articles revisit a story from the recently-covered list below, omit that cluster UNLESS it has materially developed (new facts, confirmed outcomes, significant escalation). When UNCERTAIN whether it developed enough, PREFER including it as a short follow-up rather than dropping it — bias toward surfacing. ALWAYS surface a major escalation even if you covered it recently.
-6. Every cluster MUST include a "followUp" field. When threading a follow-up (a story that recurred with material development), set followUp to an object containing priorDate (the episode date from the recently-covered list), priorFraming (a 1-sentence recall of what was said before), and priorStance (copy the "| take: ..." text from that story's line in the recently-covered list, verbatim, or null if it has no take). For a brand-new story, set followUp to null.
+6. Every cluster MUST include a "followUp" field. When threading a follow-up (a story that recurred with material development), set followUp to an object containing priorDate (the episode date from the recently-covered list), priorFraming (a 1-sentence recall of what was said before), and priorStance (copy the "take" value from that story's JSON record in the recently-covered list, verbatim, or null if it has no take). For a brand-new story, set followUp to null.
 7. EXTRACT 3-5 specifics per cluster from the articles, each under 15 words: exact figures with a comparison (not bare numbers), named people or organizations with their role, and one short verbatim quote with its speaker. Only what the articles actually state — never invent or estimate one.
 ${interestBlock}
 For each cluster:
@@ -167,11 +171,7 @@ Return only JSON matching the provided schema. No prose outside the JSON.`;
 
 // Maximum lines to include in the prior-coverage block (F9 cap).
 const MAX_PRIOR_COVERAGE_LINES = 40;
-// Maximum character length for a single prior-coverage line (F9 compactness).
-// Raised from 200 to make room for the optional "| take: ..." stance suffix.
-const MAX_PRIOR_LINE_LENGTH = 300;
-// Cap on the stance excerpt within a prior-coverage line, separate from the
-// overall line cap so a long stance doesn't crowd out the headline/caveat.
+// Bound each JSON field separately; never truncate a serialized record.
 const MAX_PRIOR_STANCE_LENGTH = 100;
 
 /**
@@ -186,29 +186,27 @@ export function buildPriorCoverageBlock(priorCoverage: PriorCoverageEntry[], win
   if (priorCoverage.length === 0) return "";
 
   // F9: sort by episodeDate descending and cap at MAX_PRIOR_COVERAGE_LINES
-  const sorted = [...priorCoverage].sort((a, b) => b.episodeDate.localeCompare(a.episodeDate));
+  const sorted = priorCoverage
+    .filter(e => validCanonicalKey(e.canonicalKey) && /^\d{4}-\d{2}-\d{2}$/.test(e.episodeDate)
+      && typeof e.headline === "string" && typeof e.caveat === "string")
+    .sort((a, b) => b.episodeDate.localeCompare(a.episodeDate));
   const capped = sorted.slice(0, MAX_PRIOR_COVERAGE_LINES);
 
   const lines = capped.map((e) => {
-    const headline = e.headline.replace(/\s+/g, " ").trim().slice(0, 80);
-    const caveat = e.caveat.replace(/\s+/g, " ").trim().slice(0, 80);
-    const stance = e.stance?.trim();
-    const stanceSuffix = stance
-      ? ` | take: ${stance.replace(/\s+/g, " ").slice(0, MAX_PRIOR_STANCE_LENGTH)}`
-      : "";
-    const line = `  ${e.episodeDate} | ${e.canonicalKey} | ${headline} | caveat: ${caveat}${stanceSuffix}`;
-    // Ensure the whole line stays compact
-    return line.length > MAX_PRIOR_LINE_LENGTH ? line.slice(0, MAX_PRIOR_LINE_LENGTH) : line;
+    return promptData({
+      date: e.episodeDate, key: e.canonicalKey,
+      headline: boundedText(e.headline.slice(0, 80), 80, "headline"),
+      caveat: boundedText(e.caveat.slice(0, 80), 80, "caveat"),
+      ...(typeof e.stance === "string" && e.stance.trim() ? { take: boundedText(e.stance.slice(0, MAX_PRIOR_STANCE_LENGTH), MAX_PRIOR_STANCE_LENGTH, "stance") } : {}),
+    });
   });
   // F6: interpolate actual windowDays into the header string
   return `\nRecently covered (last ${windowDays} days — suppress unless materially developed):\n${lines.join("\n")}\n`;
 }
 
 export function buildUserPrompt(articles: Article[], priorCoverage: PriorCoverageEntry[] = [], windowDays = 14): string {
-  const lines = articles.map((a, i) => {
-    const excerpt = a.excerpt.replace(/\s+/g, " ").trim();
-    return `[${i + 1}] (${a.source}) ${a.title}\n    URL: ${a.url}\n    Excerpt: ${excerpt}`;
-  });
+  articles = boundedArticles(articles);
+  const lines = articles.map((a, i) => promptData({ index: i + 1, ...a }));
   const articleBlock = `Articles from the last 24 hours (${articles.length} total):\n\n${lines.join("\n\n")}`;
   // F6: thread windowDays through so the prompt text matches the real window
   const priorBlock = buildPriorCoverageBlock(priorCoverage, windowDays);
@@ -339,12 +337,13 @@ export function normaliseCluster(
     followUp?: { priorDate: string; priorFraming: string; priorStance?: string | null } | null;
   },
 ): StoryCluster & { importance?: number } {
+  if (!validCanonicalKey(raw.canonicalKey)) throw new Error("Invalid canonical story key");
   const result: StoryCluster & { importance?: number } = {
     canonicalKey: raw.canonicalKey,
     category: raw.category,
-    headline: raw.headline,
-    whyItMatters: raw.whyItMatters,
-    caveat: raw.caveat,
+    headline: boundedText(raw.headline, 300, "headline"),
+    whyItMatters: boundedText(raw.whyItMatters, 1000, "editor note"),
+    caveat: boundedText(raw.caveat, 1000, "caveat"),
     importance: raw.importance,
     sources: raw.sources,
   };
@@ -365,11 +364,11 @@ export function normaliseCluster(
     // posture as priorDate/priorFraming above.
     const priorStance =
       typeof raw.followUp.priorStance === "string" && raw.followUp.priorStance.trim().length > 0
-        ? raw.followUp.priorStance.trim()
+        ? boundedText(raw.followUp.priorStance, 500, "prior stance")
         : undefined;
     result.followUp = {
-      priorDate: raw.followUp.priorDate,
-      priorFraming: raw.followUp.priorFraming,
+      priorDate: boundedText(raw.followUp.priorDate, 10, "prior date"),
+      priorFraming: boundedText(raw.followUp.priorFraming, 1000, "prior framing"),
       ...(priorStance !== undefined ? { priorStance } : {}),
     };
   }
@@ -377,12 +376,7 @@ export function normaliseCluster(
   // Guard against a malformed/non-array specifics field the same way F5
   // guards clusters; keep only non-empty trimmed strings, cap at 6, and
   // omit the field entirely rather than carry an empty array.
-  const specifics = Array.isArray(raw.specifics)
-    ? raw.specifics
-        .filter((s): s is string => typeof s === "string" && s.trim().length > 0)
-        .map((s) => s.trim())
-        .slice(0, 6)
-    : [];
+  const specifics = boundedSpecifics(raw.specifics);
   if (specifics.length > 0) {
     result.specifics = specifics;
   }
@@ -393,7 +387,7 @@ export function normaliseCluster(
 /** Resolve model-authored sources to the exact fetched articles, including on cache hits. */
 export function resolveClusterSources(cluster: StoryCluster, articles: readonly Article[]): StoryCluster {
   const byUrl = new Map(articles.filter((article) => isSafeSourceUrl(article.url)).map((article) => [article.url.trim(), article]));
-  if (!Array.isArray(cluster.sources) || cluster.sources.length === 0) {
+  if (!Array.isArray(cluster.sources) || cluster.sources.length === 0 || cluster.sources.length > 40) {
     throw new Error("curate source URLs must include at least one fetched article");
   }
   return {
@@ -419,6 +413,7 @@ export async function curate(
   articles: Article[],
   date?: string,
 ): Promise<{ selected: StoryCluster[]; report: CurationReport }> {
+  articles = boundedArticles(articles);
   const started = Date.now();
   const apiKey = process.env.OPENROUTER_API_KEY;
   if (!apiKey) throw new Error("OPENROUTER_API_KEY is not set");
@@ -466,6 +461,7 @@ export async function curate(
               schema: RESPONSE_SCHEMA,
             },
           },
+          max_tokens: 8000,
           temperature: 0.3,
         }),
         TIMEOUT_MS,
@@ -484,6 +480,7 @@ export async function curate(
   };
 
   // F5: guard against malformed/non-array clusters before mapping
+  if (Array.isArray(parsed?.clusters) && parsed.clusters.length > MODEL_CLUSTER_LIMIT) throw new Error("curate exceeds cluster budget");
   const normalisedClusters = (Array.isArray(parsed?.clusters) ? parsed.clusters : [])
     .map((raw) => resolveClusterSources(normaliseCluster(raw), articles));
   const { selected: clusters, report } = scoreAndSelect(normalisedClusters);

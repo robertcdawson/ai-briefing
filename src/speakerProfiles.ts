@@ -87,25 +87,20 @@ export function buildChunkSpeechInstructions(
   ].join("\n");
 }
 
-const MAX_SEGMENT_DELIVERY_HINT_LENGTH = 60;
+// Model output may select a style, but may never author TTS instructions.
+export const SEGMENT_DELIVERY_HINTS = ["measured", "warm", "dry", "serious", "curious", "brisk", "flat"] as const;
+const SEGMENT_DELIVERY_TEXT: Record<string, string> = {
+  measured: "Measured, even pace.", warm: "Warm, gentle tone.",
+  dry: "Understated, dry delivery.", serious: "Sober, calm delivery.",
+  curious: "Curious, lightly questioning tone.", brisk: "Brisk, clear pace.",
+  flat: "Flat, restrained delivery.",
+};
 
-/**
- * Sanitizes a writer-supplied per-segment delivery hint before it reaches a
- * TTS `instructions` field: strips brackets and newlines (this must never
- * become a stage direction or a stray inline audio tag), collapses
- * whitespace, and caps length. Returns undefined for anything that reduces
- * to nothing.
- */
+/** Unknown and legacy free-text hints fall back to the trusted section style. */
 export function sanitizeSegmentDeliveryHint(hint: string | undefined): string | undefined {
-  if (!hint) return undefined;
-  const cleaned = hint
-    .replace(/[[\]{}<>]/g, "")
-    .replace(/\s+/g, " ")
-    .trim();
-  if (!cleaned) return undefined;
-  return cleaned.length > MAX_SEGMENT_DELIVERY_HINT_LENGTH
-    ? cleaned.slice(0, MAX_SEGMENT_DELIVERY_HINT_LENGTH).trim()
-    : cleaned;
+  if (typeof hint !== "string") return undefined;
+  const key = hint.trim();
+  return Object.hasOwn(SEGMENT_DELIVERY_TEXT, key) ? SEGMENT_DELIVERY_TEXT[key] : undefined;
 }
 
 function readStyleEnv(value: string | undefined): string | undefined {

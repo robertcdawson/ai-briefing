@@ -1,7 +1,8 @@
+import { assertNarrationBudget, MAX_STORIES } from "./inputLimits.js";
 import "dotenv/config";
 import { rm } from "node:fs/promises";
 import { fetchAll } from "./fetch.js";
-import { curate, resolveClusterSources } from "./curate.js";
+import { curate, normaliseCluster, resolveClusterSources } from "./curate.js";
 import { writeScript } from "./script.js";
 import { earEdit, resolveEarEditEnabled } from "./earEdit.js";
 import { buildRecentPhraseProfile, loadRecentStyleSnippets } from "./ledger.js";
@@ -17,10 +18,10 @@ import { logJson } from "./util.js";
 
 async function main(): Promise<void> {
   const overallStart = Date.now();
-  const date = resolveEpisodeDate();
   let workDir: string | null = null;
 
   try {
+    const date = resolveEpisodeDate();
     logJson({ phase: "pipeline", status: "start", date });
     // Fire-and-forget: a slow/down monitor must not delay the pipeline. The
     // ping self-swallows errors; the event loop still flushes it before exit.
@@ -59,7 +60,8 @@ async function main(): Promise<void> {
       { date, articles },
       () => curate(articles, date),
     );
-    const clusters = selected.map((cluster) => resolveClusterSources(cluster, articles));
+    if (!Array.isArray(selected) || selected.length > MAX_STORIES) throw new Error("curate exceeds selected story budget");
+    const clusters = selected.map((cluster) => resolveClusterSources(normaliseCluster(cluster), articles));
     if (clusters.length === 0) throw new Error("curate returned 0 clusters");
     logJson({
       phase: "pipeline.step",
@@ -80,6 +82,7 @@ async function main(): Promise<void> {
       { date, clusters, recentStyle, phraseProfile, show },
       () => writeScript(date, clusters, { recentStyle, phraseProfile, show }),
     );
+    assertNarrationBudget(episode);
     logJson({
       phase: "pipeline.step",
       step: "script",

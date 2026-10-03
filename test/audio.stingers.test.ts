@@ -1,5 +1,4 @@
 import assert from "node:assert/strict";
-import { existsSync } from "node:fs";
 import { mkdir, mkdtemp, rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import path from "node:path";
@@ -190,14 +189,8 @@ test("buildEpisodeAudio inserts padded cues that lengthen the program for breath
 });
 
 test("buildEpisodeAudio uses committed cue assets when AUDIO_CUE_STYLE=asset", async (t) => {
-  const assetDir = path.join("assets", "audio");
-  if (existsSync(assetDir)) {
-    // Real committed assets exist; this fixture-based test would clobber them.
-    t.skip("assets/audio already exists");
-    return;
-  }
-
   const workDir = await mkdtemp(path.join(tmpdir(), "ai-briefing-audio-asset-test-"));
+  const assetDir = path.join(workDir, "assets", "audio");
   const originalCuesEnabled = process.env.AUDIO_CUES_ENABLED;
   const originalCueStyle = process.env.AUDIO_CUE_STYLE;
   process.env.AUDIO_CUES_ENABLED = "true";
@@ -237,6 +230,7 @@ test("buildEpisodeAudio uses committed cue assets when AUDIO_CUE_STYLE=asset", a
       },
       inputPaths,
       workDir,
+      { cueAssetDir: assetDir },
     );
 
     // Narration (~0.7s) + asset cues (~0.6s) + pads (~2.8s).
@@ -248,7 +242,6 @@ test("buildEpisodeAudio uses committed cue assets when AUDIO_CUE_STYLE=asset", a
     restoreEnv("AUDIO_CUES_ENABLED", originalCuesEnabled);
     restoreEnv("AUDIO_CUE_STYLE", originalCueStyle);
     await rm(workDir, { recursive: true, force: true });
-    await rm("assets", { recursive: true, force: true });
   }
 });
 

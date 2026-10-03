@@ -118,7 +118,7 @@
 <main>
   <section class="card" id="connect">
     <h2>Connect</h2>
-    <p class="hint">One-time setup. Create a <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">fine-grained personal access token</a> with access to only this repository and <strong>Contents: Read and write</strong>. Nothing else. The token stays in this browser.</p>
+    <p class="hint">One-time setup. Create a <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">fine-grained personal access token</a> with access to only this repository and <strong>Contents: Read and write</strong>. Nothing else. The token is held only in this open page. Paste it again after a reload.</p>
     <p class="warn">Open this page from the podcast site. A downloaded copy cannot save.</p>
     <label>Token
       <span class="field-hint">Fine-grained, this repo only, contents read and write.</span>
@@ -425,7 +425,6 @@ async function loadShow() {
   fill(JSON.parse(base64ToUtf8(payload.content)));
   editor.hidden = false;
   savebar.hidden = false;
-  localStorage.setItem(TOKEN_KEY, tokenInput.value.trim());
   localStorage.setItem(OWNER_KEY, ownerInput.value.trim());
   localStorage.setItem(REPO_KEY, repoInput.value.trim());
   setStatus(connectStatus, "Loaded from main.", "ok");
@@ -479,7 +478,7 @@ document.getElementById("load").addEventListener("click", () => {
 });
 
 document.getElementById("forget").addEventListener("click", () => {
-  localStorage.removeItem(TOKEN_KEY);
+  forgetStoredToken();
   tokenInput.value = "";
   setStatus(connectStatus, "Token removed from this browser.", "ok");
 });
@@ -509,11 +508,12 @@ window.addEventListener("beforeunload", (event) => {
 const detected = detectRepo();
 ownerInput.value = detected.owner || localStorage.getItem(OWNER_KEY) || "robertcdawson";
 repoInput.value = detected.repo || localStorage.getItem(REPO_KEY) || "ai-briefing";
-const storedToken = localStorage.getItem(TOKEN_KEY);
-if (storedToken) {
-  tokenInput.value = storedToken;
-  loadShow().catch((err) => setStatus(connectStatus, err instanceof Error ? err.message : String(err), "error"));
+// Remove credentials left by older versions; never restore them.
+function forgetStoredToken() {
+  try { localStorage.removeItem(TOKEN_KEY); } catch { /* storage can be disabled */ }
 }
+forgetStoredToken();
+window.addEventListener("pagehide", () => { tokenInput.value = ""; });
 updateToneCount();
 </script>
 </body>

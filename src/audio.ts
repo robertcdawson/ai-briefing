@@ -51,6 +51,7 @@ export async function buildEpisodeAudio(
   episode: Episode,
   segmentPaths: string[],
   workDir: string,
+  options: { cueAssetDir?: string } = {},
 ): Promise<AudioResult> {
   const started = Date.now();
   await mkdir(workDir, { recursive: true });
@@ -68,7 +69,7 @@ export async function buildEpisodeAudio(
   const segmentDurations = await Promise.all(normalizedSegments.map((filePath) => probeDuration(filePath)));
   const cuesEnabled = resolveAudioCuesEnabled();
   const cueStyle = resolveAudioCueStyle();
-  const cueTracks = cuesEnabled ? await synthesizeCueTracks(workDir, cueStyle) : null;
+  const cueTracks = cuesEnabled ? await synthesizeCueTracks(workDir, cueStyle, options.cueAssetDir ?? CUE_ASSET_DIR) : null;
   const cueDurations = cueTracks
     ? {
         intro: await probeDuration(cueTracks.intro),
@@ -210,14 +211,14 @@ async function concatAudioFiles(inputs: string[], workDir: string, outputStem: s
   return outputPath;
 }
 
-async function synthesizeCueTracks(workDir: string, style: AudioCueStyle): Promise<CueTrackPaths> {
+async function synthesizeCueTracks(workDir: string, style: AudioCueStyle, assetDir: string): Promise<CueTrackPaths> {
   if (style === "asset") {
-    const assetTracks = await prepareCueAssetTracks(workDir);
+    const assetTracks = await prepareCueAssetTracks(workDir, assetDir);
     if (assetTracks) return assetTracks;
     logJson({
       phase: "audio.cue_assets",
       status: "missing",
-      assetDir: CUE_ASSET_DIR,
+      assetDir,
       fallback: "tone",
     });
   }
@@ -241,12 +242,12 @@ async function synthesizeCueTracks(workDir: string, style: AudioCueStyle): Promi
  * and normalize them into padded WAV cue tracks. Returns null when any asset
  * is missing so the caller can fall back to synthesized tones.
  */
-async function prepareCueAssetTracks(workDir: string): Promise<CueTrackPaths | null> {
+async function prepareCueAssetTracks(workDir: string, assetDir: string): Promise<CueTrackPaths | null> {
   const names: (keyof CueTrackPaths)[] = ["intro", "transition", "outro"];
   const sources: Partial<Record<keyof CueTrackPaths, string>> = {};
 
   for (const name of names) {
-    const source = await findCueAsset(name);
+    const source = await findCueAsset(name, assetDir);
     if (!source) return null;
     sources[name] = source;
   }
@@ -272,9 +273,9 @@ async function prepareCueAssetTracks(workDir: string): Promise<CueTrackPaths | n
   return tracks;
 }
 
-async function findCueAsset(name: keyof CueTrackPaths): Promise<string | null> {
+async function findCueAsset(name: keyof CueTrackPaths, assetDir: string): Promise<string | null> {
   for (const extension of CUE_ASSET_EXTENSIONS) {
-    const candidate = path.join(CUE_ASSET_DIR, `cue-${name}.${extension}`);
+    const candidate = path.join(assetDir, `cue-${name}.${extension}`);
     try {
       await access(candidate);
       return candidate;

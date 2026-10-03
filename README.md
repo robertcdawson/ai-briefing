@@ -327,7 +327,7 @@ What you can change there:
 - **Passages** the writer should sound like.
 - **Spoken delivery** — accent, pace, and voice id. OpenAI speech uses these instructions. A non-empty `TTS_VOICE` or `TTS_*_STYLE` Actions variable still overrides the matching delivery field. The words in the script come from the page either way.
 
-The first time, create a fine-grained personal access token with **Contents: Read and write** on this repository only. The token stays in the browser. Takes effect on the next run. An episode that already published today is left as it is.
+The first time, create a fine-grained personal access token with **Contents: Read and write** on this repository only. The token is held only in the open page and must be pasted again after a reload. Old locally stored tokens are removed when the updated page loads. Takes effect on the next run. An episode that already published today is left as it is.
 
 Details: `docs/solutions/best-practices/show-tune-page.md`.
 
@@ -439,9 +439,9 @@ Actions tab → daily workflow → **•••** → **Disable workflow**. Re-en
 
 ### Dependency updates (Dependabot)
 
-Dependabot opens version-bump PRs as usual. `.github/workflows/dependabot-auto-merge.yml` then enables **auto-merge (squash)** for PRs authored by `dependabot[bot]` via `pull_request_target` + `gh pr merge --auto --squash`. It does not approve the PR or bypass required checks — merge still waits on your normal branch-protection gates.
+Dependabot opens version-bump PRs for manual review and merge. Automatic merging is disabled: the repository ruleset did not require successful checks or an approving review, so `--auto` could merge dependency code immediately. Before merging, review the dependency diff and run `npm run build` and `npm run test:unit`.
 
-Repo prerequisites: **Settings → General → Allow auto-merge** on, and squash merges allowed. If reviews are required and nothing approves Dependabot, the PR stays queued until a human approves. Details and debug commands: `docs/solutions/workflow-issues/dependabot-auto-merge.md`.
+Details: `docs/solutions/workflow-issues/dependabot-auto-merge.md`.
 
 ## Maintaining the source list
 
@@ -553,3 +553,13 @@ Expected: modest OpenRouter usage for curation and default (Sonnet) script gener
 ## License
 
 Personal project, all rights reserved. See [LICENSE.md](./LICENSE.md).
+
+### Input and output safety limits
+
+RSS downloads are limited to 2 MiB decoded bytes per feed, 40 articles per feed, and 200 articles total. Oversized title/URL fields are skipped. Script output is limited to six stories, 24 chunks per part, 4,000 characters per chunk, 18,000 characters / 2,400 words per episode. Before any TTS request, transformed text is checked against provider limits, a 24-request cap (up to three attempts each), and 20,000 total characters. Oversized scripts fail before synthesis; speech is never silently truncated.
+
+Curation notes and prior coverage are bounded and encoded as untrusted data. Specifics exceeding 15 words or 200 characters are dropped rather than shortening a quotation. Model-generated delivery hints select approved styles; unknown legacy hints use the normal section style. These controls reduce structural prompt injection and cost amplification; generated factual claims still depend on source quality and model behavior.
+
+`PODCAST_OWNER_NAME` and `PODCAST_OWNER_EMAIL` are public RSS contact metadata. The email also appears in `podcast:locked`; use a public contact alias if desired. Removing current metadata would not erase older Git history or cached feeds.
+
+In Actions, a missing or empty `INTEREST_PROFILE` uses the default. Set the variable to whitespace to explicitly disable personalization; locally an explicitly empty environment value still disables it. Scheduled jobs check out the branch's latest revision after acquiring the concurrency slot, so backup runs see episodes committed by the preceding run.

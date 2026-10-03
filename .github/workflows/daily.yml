@@ -129,7 +129,9 @@ jobs:
           HEALTHCHECK_URL: ${{ secrets.HEALTHCHECK_URL }}
           DAILY_PUSH_DEPLOY_KEY: ${{ secrets.DAILY_PUSH_DEPLOY_KEY }}
         run: |
-          if VERIFY_TIMEOUT_MS=480000 npx tsx scripts/verify-deploy.ts --quiet; then
+          # npm and its transitive dependencies must never inherit the repository
+          # write credential. The key is only needed below to create the SSH file.
+          if env -u DAILY_PUSH_DEPLOY_KEY VERIFY_TIMEOUT_MS=480000 npx tsx scripts/verify-deploy.ts --quiet; then
             echo "Episode is live in the published feed."
             exit 0
           fi
@@ -139,6 +141,7 @@ jobs:
           deploy_key="$(mktemp)"
           trap 'rm -f "$deploy_key"' EXIT
           printf '%s\n' "$DAILY_PUSH_DEPLOY_KEY" > "$deploy_key"
+          unset DAILY_PUSH_DEPLOY_KEY
           chmod 600 "$deploy_key"
           export GIT_SSH_COMMAND="ssh -i $deploy_key -o IdentitiesOnly=yes -o StrictHostKeyChecking=accept-new"
 

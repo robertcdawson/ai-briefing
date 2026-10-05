@@ -36,6 +36,8 @@ getInterestProfile()
 | `INTEREST_PROFILE` set to non-empty text | Override the default for that process only. |
 | `INTEREST_PROFILE` set to `""` / whitespace | Disable personalization: `buildInterestProfileBlock` returns `""` and the prompt is byte-identical to the pre-M14 shape. |
 
+**Actions vs local:** GitHub Actions cannot distinguish “variable unset” from “variable empty string” when expanding `${{ vars.INTEREST_PROFILE }}`. `daily.yml` therefore uses a sentinel (`vars.INTEREST_PROFILE || '__DEFAULT_INTEREST_PROFILE__'`) and `unset`s the env var when the sentinel is present, so a missing/empty Actions variable keeps the committed default. To disable personalization in CI, set the Actions variable to whitespace (e.g. a single space). Locally, `INTEREST_PROFILE=` still disables as in the table above. `test/workflow.security.test.ts` pins the sentinel.
+
 The injected block tells the model to nudge scores **up** for profile fit, treat fit as one factor among others, and **never bury** a genuinely major AI development for being off-theme (`REGARDLESS` / "never as a filter" wording in `buildInterestProfileBlock`).
 
 ## Guidance
@@ -61,10 +63,12 @@ INTEREST_PROFILE='Lean hard toward developer tooling and eval harnesses.' npm st
 INTEREST_PROFILE= npm start
 ```
 
+In Actions: leave the variable unset (or delete it) for the default; set it to a single space to disable for that workflow env.
+
 Standing retune: edit the template string in `src/interests.ts`, run `npm run test:unit -- --test-name-pattern=Interest|interest`, and commit.
 
 ## Related
 
 - Glossary: Interest profile in `CONCEPTS.md`
-- Tests: `test/curate.interests.test.ts`
+- Tests: `test/curate.interests.test.ts`, `test/workflow.security.test.ts` (Actions sentinel)
 - Sibling memory features: `docs/solutions/best-practices/stance-memory-and-curator-specifics.md`

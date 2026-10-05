@@ -34,6 +34,8 @@ The `Verify published feed` step in `.github/workflows/daily.yml` asks the only 
 
 The step runs **even when generation was skipped**, so the backup cron becomes a recovery path for stuck deploys.
 
+**Deploy key isolation:** `DAILY_PUSH_DEPLOY_KEY` is a repository write credential. Verification runs `npx tsx scripts/verify-deploy.ts` and must not inherit that secret — the verify steps omit it from `env:`. The retrigger push step writes the key to a temp file, then `unset DAILY_PUSH_DEPLOY_KEY` before `git`/`ssh`. `test/workflow.security.test.ts` pins both paths.
+
 Local / manual:
 
 ```bash
@@ -47,7 +49,7 @@ When changing retention, edit `RETENTION_DAYS` in `src/publish.ts` — it now go
 ## Related
 
 - Code: `src/verifyDeploy.ts`, `scripts/verify-deploy.ts`, `.github/workflows/daily.yml`
-- Tests: `test/verifyDeploy.test.ts`, `test/publish.retention.test.ts`
+- Tests: `test/verifyDeploy.test.ts`, `test/workflow.security.test.ts`, `test/publish.retention.test.ts`
 - Operator docs: README sections **Publish verification** and **Retention**
 - Retention design: `docs/solutions/best-practices/age-based-episode-retention.md`
 - Concepts: Publish verification, Already-published skip, Retention in `CONCEPTS.md`

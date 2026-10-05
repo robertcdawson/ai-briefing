@@ -46,7 +46,7 @@ fetch (longer excerpts)
 | Publish | Positional join: aired cluster `i` ↔ segment `i` (enforced by script validation). Sidecar `curation[i].stance` ← `episode.segments[i].stance`; `curation[i].specifics` ← `cluster.specifics`. |
 | Ledger | `loadRecentCoverage` rehydrates those records for the next curate window (`[today − windowDays, today)`). |
 
-**Delivery hints are not stance.** `delivery` is a 3–6 word TTS performance note, script→tts only, never written to the sidecar.
+**Delivery hints are not stance.** `delivery` is an allow-listed TTS style key (`SEGMENT_DELIVERY_HINTS`), script→tts only, never written to the sidecar.
 
 ## Guidance
 

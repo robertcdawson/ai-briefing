@@ -85,3 +85,4 @@ Each layer assumes the previous one can be bypassed (stale cache, hand-edited fi
 - Glossary: `CONCEPTS.md` → Safe source URL, Audio workspace.
 - Adjacent: fetch URL dedup (`docs/solutions/best-practices/fetch-url-deduplication-before-curation.md`) is about syndication overlap, not scheme safety.
 - Adjacent: stage cache (`docs/solutions/best-practices/stage-cache-for-local-reruns.md`) — cache hits must still pass `resolveClusterSources`.
+- Adjacent: RSS/prompt/TTS size and untrusted-data encoding (`docs/solutions/best-practices/input-output-safety-limits.md`).

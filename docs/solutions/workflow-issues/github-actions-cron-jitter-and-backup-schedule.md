@@ -52,11 +52,12 @@ GitHub's scheduler queues `schedule` events globally and can delay or drop them 
 ## Consequences / trade-offs
 
 - PST months still arrive one local hour earlier than PDT for the same UTC crons (unchanged seasonal trade-off).
-- A backup that starts while the primary is still running waits on the `daily` concurrency group, then no-ops after checkout sees the published assets.
+- A backup that starts while the primary is still running waits on the `daily` concurrency group (`cancel-in-progress: false`), then checks out `ref: ${{ github.ref_name }}` so it sees episodes the primary already pushed, and no-ops after `hasPublishedEpisode`.
 - Hard local-time guarantees still require an external scheduler calling `workflow_dispatch`.
 
 ## Related
 
 - Feature: skip-if-published (`src/publish.ts` `hasPublishedEpisode`, `src/index.ts`).
 - Monitoring: `src/healthcheck.ts`, `HEALTHCHECK_URL` in `.github/workflows/daily.yml`.
+- Publish recovery: `docs/solutions/workflow-issues/github-pages-publish-verification.md`.
 - Docs: README "Schedule drift".

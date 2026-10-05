@@ -52,7 +52,7 @@ Detection is `/gemini[^/]*-tts/i` on the model id — non-TTS Gemini models do n
 
 1. Fix mangled names by adding a lexicon entry, not by rewriting the published transcript.
 2. Keep the allow-list small and news-safe; update script voice tests when adding a tag.
-3. Remember delivery **hints** (3–6 word OpenAI instruction notes) are a different channel from inline tags — see Delivery hint in `CONCEPTS.md`.
+3. Remember delivery **hints** (allow-listed style keys mapped to fixed instruction strings) are a different channel from inline tags — see Delivery hint in `CONCEPTS.md` and `docs/solutions/best-practices/input-output-safety-limits.md`.
 
 **Do not**
 

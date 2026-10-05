@@ -214,7 +214,7 @@ In the repo's **Settings → Secrets and variables → Actions**:
 - `TTS_TIMEOUT_MS` — `180000` by default; raise only if speech generation is still timing out
 - `AUDIO_CUES_ENABLED` — `true` (set `false` to disable section stingers)
 - `AUDIO_CUE_STYLE` — `tone`, `chime`, `tick`, or `asset` (committed music stingers from `assets/audio/`)
-- `INTEREST_PROFILE` — optional free-text override of the listener interest profile used to nudge curation importance scores; unset uses `DEFAULT_INTEREST_PROFILE` in `src/interests.ts`; set to empty to disable personalization for that run
+- `INTEREST_PROFILE` — optional free-text override of the listener interest profile used to nudge curation importance scores. Locally: unset uses `DEFAULT_INTEREST_PROFILE` in `src/interests.ts`; set to empty/whitespace to disable. In Actions: missing or empty keeps the default (workflow sentinel); set the variable to whitespace to disable personalization for that run
 - `PODCAST_AUTHOR`
 - `PODCAST_SUMMARY`
 - `PODCAST_OWNER_NAME`
@@ -226,7 +226,7 @@ In the repo's **Settings → Secrets and variables → Actions**:
 - `PODCAST_EXPLICIT`
 - `PODCAST_TYPE`
 
-The workflow checks out code without persisting credentials, then exposes `DAILY_PUSH_DEPLOY_KEY` only to the final commit step after dependencies are installed and the episode pipeline has finished. Keep this deploy key scoped to this repository and do not add deploy keys as protected-branch bypass actors; if branch protection blocks direct pushes, prefer publishing from an unprotected release branch or changing the workflow to open a pull request for generated episodes.
+The workflow checks out code without persisting credentials, then exposes `DAILY_PUSH_DEPLOY_KEY` only to git push steps after dependencies are installed and the episode pipeline has finished. Publish-verification `npx` steps must never inherit that secret (no key in their `env:`; on the retrigger path the key is written to a temp SSH file and then `unset`). Keep this deploy key scoped to this repository and do not add deploy keys as protected-branch bypass actors; if branch protection blocks direct pushes, prefer publishing from an unprotected release branch or changing the workflow to open a pull request for generated episodes.
 
 ### 11. Trigger the first scheduled run manually
 
@@ -362,7 +362,7 @@ Hard-to-pronounce names are respelled for the synthesizer only via `PRONUNCIATIO
 
 The **voice ID controls timbre** — it's the only lever for *how the voice sounds*; delivery instructions can't change it. For OpenAI models, tune performance separately with `TTS_GLOBAL_STYLE`, `TTS_NARRATOR_STYLE`, and optional `TTS_INTRO_STYLE` / `TTS_STORY_STYLE` / `TTS_OUTRO_STYLE` — see `src/speakerProfiles.ts` for built-in defaults. Takes effect on the next run only — past episodes remain in their original voice.
 
-On top of those fixed per-section styles, the script writer can also attach a short per-segment **delivery hint** (3–6 words, e.g. "flat — let the number speak") to an individual story. `src/tts.ts` folds it into that segment's instructions on the OpenAI path, and into `speech_metadata.style` on the direct Gemini path. The OpenRouter path has no delivery-instructions channel and relies on inline audio tags instead. The hint is transient: carried from script to tts, not persisted to the sidecar.
+On top of those fixed per-section styles, the script writer can optionally set a per-segment **delivery hint** to one allow-listed style key (`measured`, `warm`, `dry`, `serious`, `curious`, `brisk`, `flat` — see `SEGMENT_DELIVERY_HINTS` in `src/speakerProfiles.ts`). Unknown or legacy free-text hints are ignored so the model cannot author TTS instructions. OpenAI folds the mapped string into that segment's instructions; direct Gemini uses it in `speech_metadata.style`; OpenRouter has no delivery-instructions channel and relies on inline audio tags instead. The hint is transient: carried from script to tts, not persisted to the sidecar.
 
 To choose by ear, run `npm run tts:sample` — it synthesizes one fixed paragraph across candidate provider/model/voice combinations into `tmp/tts-samples/` (skipping candidates whose API key isn't set). Pass extra candidates as `npm run tts:sample -- openrouter:google/gemini-3.1-flash-tts-preview:Puck`.
 
@@ -413,6 +413,16 @@ Episode descriptions are HTML show notes (`<p>` and `<a href>` only): numbered s
 
 Source links are untrusted RSS/model data. `isSafeSourceUrl` (`src/sourceUrls.ts`) keeps only absolute HTTP(S) URLs; curation binds each source to a fetched article (`resolveClusterSources`, including after a stage-cache hit); publish rejects unsafe URLs before writing any episode asset. TTS segment files go in a private `mkdtemp` workspace, not a date/pid-guessable path. Details: `docs/solutions/best-practices/source-url-safety-and-audio-workspaces.md`.
 
+### Input and output safety limits
+
+RSS downloads are limited to 2 MiB decoded bytes per feed, 40 articles per feed, and 200 articles total. Oversized title/URL fields are skipped. Script output is limited to six stories, 24 chunks per part, 4,000 characters per chunk, 18,000 characters / 2,400 words per episode. Before any TTS request, transformed text is checked against provider limits, a 24-request cap, and 20,000 total characters. Oversized scripts fail before synthesis; speech is never silently truncated.
+
+Curation notes and prior coverage are bounded and encoded as untrusted data (`promptData` / `UNTRUSTED_DATA_RULE`). Specifics exceeding 15 words or 200 characters are dropped rather than shortening a quotation. Model-generated delivery hints select approved styles only. These controls reduce structural prompt injection and cost amplification; generated factual claims still depend on source quality and model behavior.
+
+`PODCAST_OWNER_NAME` and `PODCAST_OWNER_EMAIL` are public RSS contact metadata. The email also appears in `podcast:locked`; use a public contact alias if desired. Removing current metadata would not erase older Git history or cached feeds.
+
+Details (budgets, encoding, delivery allow-list): `docs/solutions/best-practices/input-output-safety-limits.md`.
+
 ### Local stage cache (dev re-runs)
 
 When iterating locally after a late-stage failure (TTS/audio/publish), set `STAGE_CACHE_DIR` (for example `tmp/stage-cache`) so curate, script, and earEdit reuse prior LLM output keyed by a content hash of their inputs. The script key includes style snippets and the phrase profile; the earEdit key includes the script text plus per-cluster notes. A curate cache hit still runs `resolveClusterSources` against today's fetched articles so invented source URLs cannot replay into show notes. Unset disables caching. Single-machine only — the daily Actions runner is ephemeral, so this never applies in CI.
@@ -433,7 +443,7 @@ Curation importance scoring is nudged by a listener interest profile — a weigh
 
 - **Standing lean for every run (including CI):** edit `DEFAULT_INTEREST_PROFILE` in `src/interests.ts` and commit.
 - **One-off override:** set `INTEREST_PROFILE` in `.env` or as an Actions variable (forwarded by `daily.yml`).
-- **Disable personalization for a run:** set `INTEREST_PROFILE` to an empty string.
+- **Disable personalization for a run:** locally, set `INTEREST_PROFILE` to empty/whitespace. In Actions, a missing or empty variable keeps the default — set the variable to whitespace (e.g. a single space) to disable.
 
 Details and the major-news floor: `docs/solutions/best-practices/interest-profile-curation-salience.md`.
 
@@ -557,13 +567,3 @@ Expected: modest OpenRouter usage for curation and default (Sonnet) script gener
 ## License
 
 Personal project, all rights reserved. See [LICENSE.md](./LICENSE.md).
-
-### Input and output safety limits
-
-RSS downloads are limited to 2 MiB decoded bytes per feed, 40 articles per feed, and 200 articles total. Oversized title/URL fields are skipped. Script output is limited to six stories, 24 chunks per part, 4,000 characters per chunk, 18,000 characters / 2,400 words per episode. Before any TTS request, transformed text is checked against provider limits, a 24-request cap (up to three attempts each), and 20,000 total characters. Oversized scripts fail before synthesis; speech is never silently truncated.
-
-Curation notes and prior coverage are bounded and encoded as untrusted data. Specifics exceeding 15 words or 200 characters are dropped rather than shortening a quotation. Model-generated delivery hints select approved styles; unknown legacy hints use the normal section style. These controls reduce structural prompt injection and cost amplification; generated factual claims still depend on source quality and model behavior.
-
-`PODCAST_OWNER_NAME` and `PODCAST_OWNER_EMAIL` are public RSS contact metadata. The email also appears in `podcast:locked`; use a public contact alias if desired. Removing current metadata would not erase older Git history or cached feeds.
-
-In Actions, a missing or empty `INTEREST_PROFILE` uses the default. Set the variable to whitespace to explicitly disable personalization; locally an explicitly empty environment value still disables it. Scheduled jobs check out the branch's latest revision after acquiring the concurrency slot, so backup runs see episodes committed by the preceding run.

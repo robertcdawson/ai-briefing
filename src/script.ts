@@ -108,9 +108,14 @@ export const SCRIPT_RESPONSE_SCHEMA = {
             description:
               "One sentence, 25 words max, first person: the judgment or prediction you committed to on air for this story. Null if the segment is purely factual with no committed take.",
           },
+          // anyOf, not `type: ["string", "null"]` + enum: Anthropic's
+          // structured-output validator rejects an enum on a type union
+          // ("Enum value 'measured' does not match declared type").
           delivery: {
-            type: ["string", "null"],
-            enum: [...SEGMENT_DELIVERY_HINTS, null],
+            anyOf: [
+              { type: "string", enum: [...SEGMENT_DELIVERY_HINTS] },
+              { type: "null" },
+            ],
             description:
               "Select one approved delivery style. Null when standard delivery fits.",
           },

@@ -6,6 +6,7 @@ import test from "node:test";
 import { execa } from "execa";
 import {
   GEMINI_TTS_URL,
+  assertGeminiVoiceReachable,
   buildGeminiInteractionBody,
   buildGeminiSpeechStyle,
   extractGeminiAudioBase64,
@@ -143,3 +144,47 @@ function tinyWavBase64(): string {
   buffer.writeUInt32LE(dataSize, 40);
   return buffer.toString("base64");
 }
+
+test("assertGeminiVoiceReachable fails fast with a fix when the designed voice is not visible to the key", async () => {
+  await assert.rejects(
+    assertGeminiVoiceReachable({
+      apiKey: "secret-key",
+      model: "gemini-3.8-flash-tts",
+      voice: "voice_abc123",
+      timeoutMs: 1000,
+      fetchImpl: async () =>
+        new Response(
+          JSON.stringify({ error: { message: "The voice was not found or the caller does not have permission to access it." } }),
+          { status: 404 },
+        ),
+    }),
+    (err: Error) =>
+      /HTTP 404/.test(err.message) &&
+      /Google project that created voice_abc123/.test(err.message) &&
+      !err.message.includes("secret-key"),
+  );
+});
+
+test("assertGeminiVoiceReachable passes on audio and leaves transient errors to the TTS stage", async () => {
+  const wav = Buffer.alloc(64).toString("base64");
+  let sent: Record<string, unknown> | undefined;
+  await assertGeminiVoiceReachable({
+    apiKey: "k",
+    model: "gemini-3.8-flash-tts",
+    voice: "voice_abc123",
+    timeoutMs: 1000,
+    fetchImpl: async (_url, init) => {
+      sent = JSON.parse(String(init?.body)) as Record<string, unknown>;
+      return new Response(JSON.stringify({ output_audio: { data: wav } }), { status: 200 });
+    },
+  });
+  assert.deepEqual(sent?.generation_config, { speech_config: [{ voice: "voice_abc123" }] });
+
+  await assertGeminiVoiceReachable({
+    apiKey: "k",
+    model: "gemini-3.8-flash-tts",
+    voice: "voice_abc123",
+    timeoutMs: 1000,
+    fetchImpl: async () => new Response("upstream down", { status: 503 }),
+  });
+});

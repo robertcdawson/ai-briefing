@@ -5,6 +5,7 @@ import {
   type EpisodeSectionKind,
   type TTSDirectionConfig,
 } from "./speakerProfiles.js";
+import { logJson } from "./util.js";
 
 /** Interactions API: unary Gemini 3.8 TTS returns WAV audio. */
 export const GEMINI_TTS_URL = "https://generativelanguage.googleapis.com/v1beta/interactions";
@@ -119,14 +120,16 @@ export function buildWavToMp3Args(wavPath: string, mp3Path: string): string[] {
   return ["-y", "-loglevel", "error", "-i", wavPath, "-c:a", "libmp3lame", "-b:a", "192k", mp3Path];
 }
 
-export async function writeGeminiSpeechMp3(options: {
+interface GeminiSpeechRequest {
   apiKey: string;
   speech: GeminiSpeechInput;
-  outputPath: string;
   timeoutMs: number;
   label: string;
   fetchImpl?: typeof fetch;
-}): Promise<void> {
+}
+
+/** One Interactions API call; returns the WAV bytes. */
+export async function requestGeminiSpeechWav(options: GeminiSpeechRequest): Promise<Buffer> {
   const fetchImpl = options.fetchImpl ?? fetch;
   const controller = new AbortController();
   let timedOut = false;
@@ -135,7 +138,6 @@ export async function writeGeminiSpeechMp3(options: {
     controller.abort();
   }, options.timeoutMs);
 
-  const wavPath = `${options.outputPath}.wav`;
   try {
     const response = await fetchImpl(GEMINI_TTS_URL, {
       method: "POST",
@@ -149,7 +151,10 @@ export async function writeGeminiSpeechMp3(options: {
 
     if (!response.ok) {
       const body = await response.text();
-      throw new Error(formatGeminiTtsError(response.status, body, options.apiKey, options.label));
+      throw new GeminiTtsHttpError(
+        response.status,
+        formatGeminiTtsError(response.status, body, options.apiKey, options.label),
+      );
     }
 
     const payload: unknown = await response.json();
@@ -157,9 +162,7 @@ export async function writeGeminiSpeechMp3(options: {
     if (wav.length < 44) {
       throw new Error(`Gemini TTS ${options.label}: audio payload was empty`);
     }
-
-    await writeFile(wavPath, wav);
-    await execa("ffmpeg", buildWavToMp3Args(wavPath, options.outputPath));
+    return wav;
   } catch (err) {
     if (timedOut || (err instanceof Error && err.name === "AbortError")) {
       throw new Error(`Timeout after ${options.timeoutMs}ms: tts.${options.label}`);
@@ -167,8 +170,67 @@ export async function writeGeminiSpeechMp3(options: {
     throw err;
   } finally {
     clearTimeout(timeout);
+  }
+}
+
+export class GeminiTtsHttpError extends Error {
+  constructor(readonly status: number, message: string) {
+    super(message);
+    this.name = "GeminiTtsHttpError";
+  }
+}
+
+export async function writeGeminiSpeechMp3(
+  options: GeminiSpeechRequest & { outputPath: string },
+): Promise<void> {
+  const wavPath = `${options.outputPath}.wav`;
+  try {
+    const wav = await requestGeminiSpeechWav(options);
+    await writeFile(wavPath, wav);
+    await execa("ffmpeg", buildWavToMp3Args(wavPath, options.outputPath));
+  } finally {
     await rm(wavPath, { force: true }).catch(() => undefined);
   }
+}
+
+/**
+ * Speak one word with the configured voice before any paid LLM stage. A
+ * designed voice that the key's Google project cannot see returns 404 on
+ * every request, so finding out after curation and scripting wastes ~4
+ * minutes of model calls per run. Throws an actionable error on 403/404;
+ * other failures (timeouts, 5xx) are left for the real TTS stage to retry.
+ */
+export async function assertGeminiVoiceReachable(options: {
+  apiKey: string;
+  model: string;
+  voice: string;
+  timeoutMs: number;
+  fetchImpl?: typeof fetch;
+}): Promise<void> {
+  try {
+    await requestGeminiSpeechWav({
+      apiKey: options.apiKey,
+      timeoutMs: options.timeoutMs,
+      label: "voice-check",
+      fetchImpl: options.fetchImpl,
+      speech: { model: options.model, voice: options.voice, text: "Check." },
+    });
+  } catch (err) {
+    if (err instanceof GeminiTtsHttpError && (err.status === 403 || err.status === 404)) {
+      const fix = isDesignedVoiceId(options.voice)
+        ? `GEMINI_API_KEY must belong to the Google project that created ${options.voice}, ` +
+          "or pick a different voice on the tune page (config/show.json tts.voice)."
+        : `Check that ${options.voice} is a valid Gemini voice for ${options.model}.`;
+      throw new Error(`${err.message} ${fix}`);
+    }
+    logJson({
+      phase: "tts.voice_check",
+      status: "warn",
+      error: err instanceof Error ? err.message : String(err),
+    });
+    return;
+  }
+  logJson({ phase: "tts.voice_check", status: "ok", model: options.model });
 }
 
 function nestedAudioData(value: unknown): string {

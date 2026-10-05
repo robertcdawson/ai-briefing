@@ -6,7 +6,9 @@ import { curate, normaliseCluster, resolveClusterSources } from "./curate.js";
 import { writeScript } from "./script.js";
 import { earEdit, resolveEarEditEnabled } from "./earEdit.js";
 import { buildRecentPhraseProfile, loadRecentStyleSnippets } from "./ledger.js";
-import { synthesize } from "./tts.js";
+import { resolveTTSTimeoutMs, synthesize } from "./tts.js";
+import { resolveTTSProviderConfig } from "./ttsProvider.js";
+import { assertGeminiVoiceReachable } from "./geminiTts.js";
 import { buildEpisodeAudio } from "./audio.js";
 import { resolveEpisodeDate } from "./episode-date.js";
 import { hasPublishedEpisode, publish } from "./publish.js";
@@ -43,6 +45,15 @@ async function main(): Promise<void> {
 
     const show = await loadShowConfig();
     await assertPreflight({ fileVoice: show.tts.voice });
+    const ttsConfig = resolveTTSProviderConfig(process.env, show.tts.voice);
+    if (ttsConfig.provider === "gemini") {
+      await assertGeminiVoiceReachable({
+        apiKey: process.env.GEMINI_API_KEY ?? "",
+        model: ttsConfig.model,
+        voice: ttsConfig.voice,
+        timeoutMs: resolveTTSTimeoutMs(process.env.TTS_TIMEOUT_MS),
+      });
+    }
 
     const fetchStart = Date.now();
     const articles = await fetchAll();
@@ -61,7 +72,9 @@ async function main(): Promise<void> {
       () => curate(articles, date),
     );
     if (!Array.isArray(selected) || selected.length > MAX_STORIES) throw new Error("curate exceeds selected story budget");
-    const clusters = selected.map((cluster) => resolveClusterSources(normaliseCluster(cluster), articles));
+    const clusters = selected
+      .map((cluster) => resolveClusterSources(normaliseCluster(cluster), articles))
+      .filter((cluster): cluster is NonNullable<typeof cluster> => cluster !== null);
     if (clusters.length === 0) throw new Error("curate returned 0 clusters");
     logJson({
       phase: "pipeline.step",

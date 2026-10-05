@@ -31,7 +31,7 @@ Two guards close those paths:
 | Stage | Behavior |
 |---|---|
 | Fetch | Drop items whose `link` fails `isSafeSourceUrl` (silent skip). Trim kept URLs. |
-| Curate | `resolveClusterSources` requires every cluster source to match a **safe fetched article URL** (exact trim match). Publisher comes from the article, not the model. |
+| Curate | `resolveClusterSources` keeps only cluster sources that match a **safe fetched article URL** (exact trim match, then `canonicalArticleUrl` match). The kept URL is always the fetched one. Unmatched sources are dropped and logged as `curate.sources`; a cluster left with no source is dropped. One invented link costs one story, not the episode. Publisher comes from the article, not the model. |
 | Pipeline after cache | `src/index.ts` runs `resolveClusterSources` again on the selected clusters so a stage-cache hit cannot replay invented URLs. |
 | Script | `validateScriptResponse` / `reconcileScriptSourceUrls` keep segment `sourceUrls` aligned with the (already resolved) cluster list. |
 | Publish | `buildSourceLinkParagraph` throws before any episode file is written if a URL is unsafe. |

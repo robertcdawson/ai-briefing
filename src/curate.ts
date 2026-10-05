@@ -7,6 +7,7 @@ import { loadRecentCoverage } from "./ledger.js";
 import type { PriorCoverageEntry } from "./ledger.js";
 import { getInterestProfile } from "./interests.js";
 import { isSafeSourceUrl } from "./sourceUrls.js";
+import { canonicalArticleUrl } from "./fetch.js";
 import { getChatCompletionAssistantText, logJson, withHardTimeout, withRetry } from "./util.js";
 
 const MODEL = "anthropic/claude-sonnet-4.6";
@@ -384,20 +385,52 @@ export function normaliseCluster(
   return result;
 }
 
-/** Resolve model-authored sources to the exact fetched articles, including on cache hits. */
-export function resolveClusterSources(cluster: StoryCluster, articles: readonly Article[]): StoryCluster {
-  const byUrl = new Map(articles.filter((article) => isSafeSourceUrl(article.url)).map((article) => [article.url.trim(), article]));
-  if (!Array.isArray(cluster.sources) || cluster.sources.length === 0 || cluster.sources.length > 40) {
-    throw new Error("curate source URLs must include at least one fetched article");
+// Per-story source cap; extra model-listed sources are ignored.
+const MAX_CLUSTER_SOURCES = 40;
+
+/**
+ * Resolve model-authored sources to the exact fetched articles, including on
+ * cache hits. Only fetched, safe URLs survive, so a model-invented link can
+ * never reach show notes. A source the model mangled is matched on its
+ * canonical form (tracking params and fragment stripped); one that still
+ * matches nothing is dropped with a log line. Returns null when no source
+ * survives, so the caller drops that one story instead of the whole episode.
+ */
+export function resolveClusterSources(cluster: StoryCluster, articles: readonly Article[]): StoryCluster | null {
+  const safeArticles = articles.filter((article) => isSafeSourceUrl(article.url));
+  const byUrl = new Map(safeArticles.map((article) => [article.url.trim(), article]));
+  const byCanonicalUrl = new Map(safeArticles.map((article) => [canonicalArticleUrl(article.url), article]));
+  const rawSources = Array.isArray(cluster.sources) ? cluster.sources.slice(0, MAX_CLUSTER_SOURCES) : [];
+
+  const sources: StoryCluster["sources"] = [];
+  const seen = new Set<string>();
+  let unmatched = 0;
+  for (const source of rawSources) {
+    const url = source?.url;
+    const article = isSafeSourceUrl(url)
+      ? byUrl.get(url.trim()) ?? byCanonicalUrl.get(canonicalArticleUrl(url))
+      : undefined;
+    if (!article) {
+      unmatched += 1;
+      continue;
+    }
+    if (seen.has(article.url)) continue;
+    seen.add(article.url);
+    sources.push({ url: article.url, publisher: article.source });
   }
-  return {
-    ...cluster,
-    sources: cluster.sources.map((source) => {
-      const article = isSafeSourceUrl(source?.url) ? byUrl.get(source.url.trim()) : undefined;
-      if (!article) throw new Error("curate source URL does not match a safe fetched article");
-      return { url: article.url, publisher: article.source };
-    }),
-  };
+
+  if (unmatched > 0 || sources.length === 0) {
+    // Log counts and the story key only: the raw URL is model output.
+    logJson({
+      phase: "curate.sources",
+      status: sources.length === 0 ? "cluster_dropped" : "sources_dropped",
+      canonicalKey: cluster.canonicalKey,
+      unmatched,
+      kept: sources.length,
+    });
+  }
+  if (sources.length === 0) return null;
+  return { ...cluster, sources };
 }
 
 const EMPTY_REPORT: CurationReport = {
@@ -482,7 +515,8 @@ export async function curate(
   // F5: guard against malformed/non-array clusters before mapping
   if (Array.isArray(parsed?.clusters) && parsed.clusters.length > MODEL_CLUSTER_LIMIT) throw new Error("curate exceeds cluster budget");
   const normalisedClusters = (Array.isArray(parsed?.clusters) ? parsed.clusters : [])
-    .map((raw) => resolveClusterSources(normaliseCluster(raw), articles));
+    .map((raw) => resolveClusterSources(normaliseCluster(raw), articles))
+    .filter((cluster): cluster is NonNullable<typeof cluster> => cluster !== null);
   const { selected: clusters, report } = scoreAndSelect(normalisedClusters);
 
   // M3: run health report — full scored list (incl. dropped) + summary counts.

@@ -36,7 +36,7 @@ An unattended weekday run that discovers a missing `OPENAI_API_KEY`, bad `FEED_B
 **What it deliberately does not do**
 
 - No OpenRouter / OpenAI / RSS network calls.
-- No “is my key valid?” probe — that still surfaces at the first real API call.
+- No “is my key valid?” probe — that still surfaces at the first real API call. The one exception runs right after preflight in `src/index.ts`: on the Gemini TTS path, `assertGeminiVoiceReachable` (`src/geminiTts.ts`) speaks one word with the configured voice. A 403/404 (key from a different Google project than the designed voice) fails the run in seconds instead of after curation and scripting. Other errors only log a warning.
 - No skip of the already-published guard — that runs **before** preflight so backup crons stay free even when local env is incomplete.
 
 When adding a new hard dependency (another binary, another required env for a default path), extend `src/preflight.ts` and cover it in `test/preflight.test.ts` so CI catches the gap without spending model budget.

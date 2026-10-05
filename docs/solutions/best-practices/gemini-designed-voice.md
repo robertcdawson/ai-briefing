@@ -26,7 +26,8 @@ Gemini 3.8 reads the transcript verbatim. Delivery (narrator line, section pace,
 1. Create the voice in Google AI Studio with the key's project. Copy the `voice_…` id into the tune page Voice id field (or `config/show.json` `tts.voice`).
 2. Add the `GEMINI_API_KEY` Actions secret from that same project. The daily workflow forwards it.
 3. Clear `TTS_VOICE` and `TTS_PROVIDER` if they are set to an OpenAI voice or `openai` / `openrouter`. Preflight fails with the variable name when either would drop the designed voice.
-4. Audition with `npm run tts:sample -- gemini:gemini-3.8-flash-tts:voice_…`.
+4. If the run fails with `HTTP 404: The voice was not found or the caller does not have permission to access it`, the key and the voice live in different Google projects, or the voice was deleted. Replace the `GEMINI_API_KEY` secret with a key from the voice's project, or set a different voice on the tune page. The pipeline checks this right after preflight, before any paid LLM call.
+5. Audition with `npm run tts:sample -- gemini:gemini-3.8-flash-tts:voice_…`.
 
 A prebuilt name such as `Charon` still works on this provider. An OpenAI model id left in `TTS_MODEL` is ignored so it is not sent to Gemini.
 

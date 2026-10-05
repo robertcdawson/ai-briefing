@@ -38,7 +38,7 @@ test("RSS ingestion drops unsafe source URLs and preserves valid links", async (
   assert.deepEqual((await fetchAll()).map((a) => a.url), safeUrls);
 });
 
-test("curation rejects invented or unsafe URLs and resolves valid publishers from fetched articles", async (t) => {
+test("curation drops invented or unsafe URLs and resolves valid publishers from fetched articles", async (t) => {
   const previousKey = process.env.OPENROUTER_API_KEY;
   process.env.OPENROUTER_API_KEY = "test-key";
   t.after(() => {
@@ -55,12 +55,19 @@ test("curation rejects invented or unsafe URLs and resolves valid publishers fro
   const articles: Article[] = safeUrls.map((url) => ({
     url, source: "Trusted & <Publisher>", title: "Story", excerpt: "Details", publishedAt: new Date().toISOString(),
   }));
-  for (const url of ["https://invented.example/story", ...unsafeUrls, `${safeUrls[0]}-invented`]) {
+  // A story whose only sources are invented or unsafe is dropped; the run goes on.
+  for (const url of ["https://invented.example/story", ...unsafeUrls, safeUrls[0]!.replace("/story", "/story-invented")]) {
     urls = [url];
-    await assert.rejects(curate(articles), /source URL/i, url);
+    assert.deepEqual((await curate(articles)).selected, [], url);
   }
   urls = ["javascript:alert(1)"];
-  await assert.rejects(curate([{ ...articles[0]!, url: urls[0]! }]), /source URL/i);
+  assert.deepEqual((await curate([{ ...articles[0]!, url: urls[0]! }])).selected, []);
+  // Invented sources are dropped from a story that also cites a fetched article.
+  urls = ["https://invented.example/story", safeUrls[1]!];
+  assert.deepEqual((await curate(articles)).selected[0]!.sources, [{ url: articles[1]!.url, publisher: articles[1]!.source }]);
+  // A tracking-param or fragment variant resolves to the exact fetched URL.
+  urls = ["https://example.com/story?b=%22quote%22&utm_source=x&a=1"];
+  assert.deepEqual((await curate(articles)).selected[0]!.sources, [{ url: articles[0]!.url, publisher: articles[0]!.source }]);
   urls = safeUrls.map((url) => ` ${url} `);
   const result = await curate(articles);
   assert.deepEqual(result.selected[0]!.sources, articles.map((a) => ({ url: a.url, publisher: a.source })));

@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { ALLOWED_INLINE_AUDIO_TAGS } from "../src/audioTags.js";
+import { SEGMENT_DELIVERY_HINTS } from "../src/speakerProfiles.js";
 import {
   BANNED_SCRIPT_PHRASES,
   SCRIPT_RESPONSE_SCHEMA,
@@ -300,7 +301,13 @@ test("SCRIPT_RESPONSE_SCHEMA requires a nullable stance field with no length con
 
 test("SCRIPT_RESPONSE_SCHEMA requires a nullable delivery field with no length constraints", () => {
   const deliverySchema = SCRIPT_RESPONSE_SCHEMA.properties.segments.items.properties.delivery;
-  assert.deepEqual(deliverySchema.type, ["string", "null"]);
+  // Anthropic rejects an enum on a type union, so null is its own anyOf branch.
+  assert.equal("type" in deliverySchema, false);
+  assert.equal("enum" in deliverySchema, false);
+  assert.deepEqual(deliverySchema.anyOf, [
+    { type: "string", enum: [...SEGMENT_DELIVERY_HINTS] },
+    { type: "null" },
+  ]);
   assert.ok(
     SCRIPT_RESPONSE_SCHEMA.properties.segments.items.required.includes("delivery"),
     "delivery must be required (strict-mode: optionality is expressed via nullable type, not omission)",

@@ -6,6 +6,7 @@ import test from "node:test";
 import { execa } from "execa";
 import {
   GEMINI_TTS_URL,
+  GEMINI_VOICES_URL,
   assertGeminiVoiceReachable,
   buildGeminiInteractionBody,
   buildGeminiSpeechStyle,
@@ -187,4 +188,42 @@ test("assertGeminiVoiceReachable passes on audio and leaves transient errors to 
     timeoutMs: 1000,
     fetchImpl: async () => new Response("upstream down", { status: 503 }),
   });
+});
+
+test("assertGeminiVoiceReachable names the custom voices the key can see on a 404", async () => {
+  await assert.rejects(
+    assertGeminiVoiceReachable({
+      apiKey: "secret-key",
+      model: "gemini-3.8-flash-tts",
+      voice: "voice_new",
+      timeoutMs: 1000,
+      fetchImpl: async (url) => {
+        if (String(url) === GEMINI_VOICES_URL) {
+          return new Response(JSON.stringify({ voices: [
+            { id: "voice_old", displayName: "Porch Host", expireTime: "2026-10-09T00:00:00Z" },
+            { id: "Charon", displayName: "Charon" },
+          ] }));
+        }
+        return new Response(JSON.stringify({ error: { message: "The voice was not found." } }), { status: 404 });
+      },
+    }),
+    (err: Error) =>
+      /voice_old \("Porch Host", expires 2026-10-09T00:00:00Z\)/.test(err.message) &&
+      !err.message.includes("Charon") &&
+      /expire 7 days/.test(err.message),
+  );
+
+  await assert.rejects(
+    assertGeminiVoiceReachable({
+      apiKey: "k",
+      model: "gemini-3.8-flash-tts",
+      voice: "voice_new",
+      timeoutMs: 1000,
+      fetchImpl: async (url) =>
+        String(url) === GEMINI_VOICES_URL
+          ? new Response(JSON.stringify({ voices: [{ id: "Charon" }] }))
+          : new Response("{}", { status: 404 }),
+    }),
+    /This key's project has no stored custom voices/,
+  );
 });

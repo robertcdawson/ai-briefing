@@ -10,6 +10,9 @@ import { logJson } from "./util.js";
 /** Interactions API: unary Gemini 3.8 TTS returns WAV audio. */
 export const GEMINI_TTS_URL = "https://generativelanguage.googleapis.com/v1beta/interactions";
 
+/** Lists the custom voices stored in the API key's Google project. */
+export const GEMINI_VOICES_URL = "https://generativelanguage.googleapis.com/v1beta/voices";
+
 export const DEFAULT_GEMINI_TTS_MODEL = "gemini-3.8-flash-tts";
 
 /**
@@ -217,11 +220,17 @@ export async function assertGeminiVoiceReachable(options: {
     });
   } catch (err) {
     if (err instanceof GeminiTtsHttpError && (err.status === 403 || err.status === 404)) {
-      const fix = isDesignedVoiceId(options.voice)
-        ? `GEMINI_API_KEY must belong to the Google project that created ${options.voice}, ` +
-          "or pick a different voice on the tune page (config/show.json tts.voice)."
-        : `Check that ${options.voice} is a valid Gemini voice for ${options.model}.`;
-      throw new Error(`${err.message} ${fix}`);
+      if (!isDesignedVoiceId(options.voice)) {
+        throw new Error(`${err.message} Check that ${options.voice} is a valid Gemini voice for ${options.model}.`);
+      }
+      // Name what the key can see, so the fix is readable from the run log.
+      const visible = await listGeminiCustomVoices(options);
+      throw new Error(
+        `${err.message} GEMINI_API_KEY must belong to the Google project that created ${options.voice}, ` +
+          "or pick a different voice on the tune page (config/show.json tts.voice). " +
+          "Stored custom voices expire 7 days after creation. " +
+          describeVisibleVoices(visible),
+      );
     }
     logJson({
       phase: "tts.voice_check",
@@ -230,7 +239,78 @@ export async function assertGeminiVoiceReachable(options: {
     });
     return;
   }
-  logJson({ phase: "tts.voice_check", status: "ok", model: options.model });
+  const expireTime = isDesignedVoiceId(options.voice)
+    ? (await listGeminiCustomVoices(options))?.find((v) => v.id === options.voice)?.expireTime
+    : undefined;
+  logJson({
+    phase: "tts.voice_check",
+    status: "ok",
+    model: options.model,
+    ...(expireTime ? { voiceExpiresAt: expireTime } : {}),
+  });
+}
+
+export interface GeminiCustomVoice {
+  id: string;
+  displayName?: string;
+  expireTime?: string;
+}
+
+/**
+ * Custom (`voice_…`) voices visible to this key, or null when the list call
+ * fails. Diagnostic only: never throws, and drops Google's prebuilt voices.
+ */
+export async function listGeminiCustomVoices(options: {
+  apiKey: string;
+  timeoutMs: number;
+  fetchImpl?: typeof fetch;
+}): Promise<GeminiCustomVoice[] | null> {
+  const fetchImpl = options.fetchImpl ?? fetch;
+  try {
+    const response = await fetchImpl(GEMINI_VOICES_URL, {
+      headers: { "x-goog-api-key": options.apiKey },
+      signal: AbortSignal.timeout(options.timeoutMs),
+    });
+    if (!response.ok) return null;
+    const payload = (await response.json()) as { voices?: unknown };
+    if (!Array.isArray(payload.voices)) return [];
+    const voices: GeminiCustomVoice[] = [];
+    for (const raw of payload.voices) {
+      if (!raw || typeof raw !== "object") continue;
+      const record = raw as Record<string, unknown>;
+      const id = typeof record.id === "string" ? record.id.replace(/^voices\//, "") : "";
+      if (!isDesignedVoiceId(id)) continue;
+      const displayName = stringField(record, "displayName", "display_name");
+      const expireTime = stringField(record, "expireTime", "expire_time");
+      voices.push({ id, ...(displayName ? { displayName } : {}), ...(expireTime ? { expireTime } : {}) });
+    }
+    return voices;
+  } catch {
+    return null;
+  }
+}
+
+export function describeVisibleVoices(voices: readonly GeminiCustomVoice[] | null): string {
+  if (voices === null) return "Could not list this key's custom voices.";
+  if (voices.length === 0) return "This key's project has no stored custom voices.";
+  const list = voices
+    .slice(0, 10)
+    .map((v) => {
+      const details = [v.displayName ? `"${v.displayName.slice(0, 60)}"` : "", v.expireTime ? `expires ${v.expireTime}` : ""]
+        .filter(Boolean)
+        .join(", ");
+      return details ? `${v.id} (${details})` : v.id;
+    })
+    .join("; ");
+  return `This key's project can see: ${list}.`;
+}
+
+function stringField(record: Record<string, unknown>, ...keys: string[]): string {
+  for (const key of keys) {
+    const value = record[key];
+    if (typeof value === "string" && value.trim()) return value.trim();
+  }
+  return "";
 }
 
 function nestedAudioData(value: unknown): string {

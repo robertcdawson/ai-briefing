@@ -1,0 +1,117 @@
+AI Briefing — October 7, 2026
+Date: 2026-10-07
+
+Intro
+
+Three hours of compute time is what it took an unreleased OpenAI model, on average, to crank out a machine-verified proof for an open mathematical problem.
+
+It is October 7th, 2026, and the sheer volume of these new proofs is forcing the academic world to figure out what mathematics even looks like when you can mass-produce the truth.
+
+Top Story: OpenAI releases 372 AI-generated math proofs covering hundreds of open problems
+
+Yesterday, we talked about OpenAI publishing a handful of frontier model results on open math problems, complete with Lean proof formalizations.
+
+My take then was that publishing verifiable proofs was a meaningful transparency step, and that I would trust the math community's judgment on their actual value.
+
+That judgment is arriving quickly, because OpenAI just followed up by dumping 372 result families covering 722 manuscripts onto GitHub.
+
+They used an undisclosed internal frontier model for this, burning about three hours of ChatGPT Pro compute per result.
+
+An independent advisory group of elite mathematicians called AGMAI helped them communicate the findings responsibly.
+
+But the sheer scale of the release has twenty-five Fields Medal winners warning that mass-producing mathematical truths could crowd out genuinely novel mathematical thinking.
+
+Without public benchmark data for this internal model, we simply do not know if it is discovering genuinely novel pathways or just brute-forcing its way through existing topological maps.
+
+While academics debate human reasoning, Utah lawmakers are deregulating clinical decisions.
+Source: https://openai.com/index/sharing-ai-progress-in-mathematics
+Source: https://www.theverge.com/ai-artificial-intelligence/1005004/openai-math-release-github
+Source: https://the-decoder.com/openai-dumps-372-ai-generated-math-proofs-on-github-telling-the-academic-world-to-keep-up/
+Source: https://openai.com/index/sharing-ai-progress-in-mathematics/
+
+Policy & Regulation Watch: Utah becomes first US state to allow AI to examine patients and prescribe medication autonomously
+
+Look at the billing codes and the liability premiums, and you will understand exactly why Utah just became the first US state to let AI examine patients and prescribe medication autonomously.
+
+The state is removing the human-in-the-loop requirement that has governed clinical AI deployments up to this point.
+
+By doing that, they are fundamentally changing the economics of primary care, allowing clinics to theoretically scale their patient load without scaling their physician payroll.
+
+The catch is that the policy does not publicly designate any specific AI system or vendor approved for this work, and the clinical scope and liability framework are entirely undefined.
+
+It sets a massive precedent for other states looking to deregulate healthcare, but those details will matter enormously when something goes wrong.
+
+If autonomous prescribing makes you nervous, you might prefer running local hardware.
+Source: https://www.techspot.com/news/114111-utah-become-first-state-ai-examine-patients-prescribe.html
+
+Open Source Watch: Google releases EmbeddingGemma 2, a 740M open multimodal embedding model
+
+For anybody building retrieval-augmented generation apps, your local environment just got a lot more capable Monday morning.
+
+Google released EmbeddingGemma 2, an open multimodal embedding model that handles text, images, video, audio, and code.
+
+It is only 740 million parameters and requires a remarkably small 191 megabytes of RAM.
+
+If you pair this with Gemma 4, you can run fully offline RAG pipelines without a single call to an external server.
+
+Google claims it outperforms competing embedding models twice its size, though you always want to test vendor claims on your own data.
+
+Even without independent verification yet, the footprint alone makes it a highly practical tool for privacy-sensitive deployments.
+
+Local hardware requirements keep shrinking, but macroeconomic expectations might need a downgrade.
+Source: https://deepmind.google/blog/embeddinggemma-2-an-open-lightweight-multimodal-embedding-model/
+Source: https://the-decoder.com/google-claims-embeddinggemma-2-outperforms-rival-embedding-models-twice-its-size/
+Source: https://simonwillison.net/2026/Oct/6/hn-49983751/
+
+Research Breakthrough: Nobel economist Acemoglu predicts only 1.5 percent GDP growth from AI over a decade
+
+The most important economic forecast of the week is also the most pessimistic, and its credibility comes entirely from who paid to publish it.
+
+Nobel economist Daron Acemoglu predicts AI will generate only about 1.5 percent GDP growth over the next ten years, estimating that at most five percent of jobs will be replaced.
+
+He argues that scaling up bigger models will not move the needle until we see practical applications that actually change how daily work gets done.
+
+What makes this striking is that Microsoft, the largest single investor in OpenAI, is the company that published his forecast.
+
+It is a macroeconomic projection with wide uncertainty bands, but seeing Microsoft broadcast a bear case gives enterprise buyers a lot of leverage when questioning their own AI spending.
+
+The gap between raw capability and practical deployment just tripped up OpenAI.
+Source: https://the-decoder.com/microsoft-publishes-nobel-economists-bearish-ai-forecast-of-just-1-5-gdp-growth-over-a-decade/
+
+AI Culture Signal: Common Sense Media rates ChatGPT for Teens an unacceptable risk for youth safety
+
+OpenAI launched ChatGPT for Teens in August with specific guardrails designed for student use, so it is strange to see a major safety review conclude that the product actively fails in crisis situations.
+
+Common Sense Media, a nonprofit focused on youth app safety, published a report today rating the teen chatbot as an unacceptable risk.
+
+According to their assessment, the system still does kids' homework for them and fails to send alerts to parents when it should.
+
+The methodology behind this rating has not been independently audited, and OpenAI has not issued a public response to the specific findings yet.
+
+A failing grade from a high-profile safety group will absolutely complicate OpenAI's push into school districts.
+
+While OpenAI navigates domestic pushback, international governments are funding their own alternatives.
+Source: https://www.theverge.com/ai-artificial-intelligence/1006355/openai-chatgpt-for-teens-common-sense-media
+
+Policy & Regulation Watch: South Korea commits 3.49 billion dollars to build homegrown frontier AI model
+
+You would be entirely justified in asking why a mid-sized country thinks it can buy its way into the frontier model race this late in the game.
+
+South Korea just committed 4.7 trillion won, or about 3.49 billion dollars, to build a homegrown AI model designed to rival China's best systems.
+
+Instead of handing out research grants, the government is structuring this as a direct equity investment.
+
+The announcement does not name a lead organization, a timeline, or any technical specifications for the target model.
+
+History shows that state-backed technology projects at this scale usually suffer from severe execution delays.
+Source: https://the-decoder.com/south-korea-bets-3-49-billion-on-building-a-homegrown-frontier-ai-model-to-rival-chinas-best/
+
+Outro
+
+But the lack of technical details might be secondary to the financial signal South Korea is sending.
+
+By putting three and a half billion dollars on the table as equity, they are declaring that sovereign AI infrastructure is no longer just a luxury for the US and China.
+
+It is becoming a mandatory utility for any nation that wants to control its own digital economy.
+
+Test your own RAG pipelines before you trust the benchmarks, and I'll see you tomorrow.

@@ -1,0 +1,46 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — October 7, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 25,
+      "title": "Intro"
+    },
+    {
+      "startTime": 25,
+      "endTime": 102,
+      "title": "OpenAI releases 372 AI-generated math..."
+    },
+    {
+      "startTime": 102,
+      "endTime": 164,
+      "title": "Utah becomes first US state to allow AI..."
+    },
+    {
+      "startTime": 164,
+      "endTime": 222,
+      "title": "Google releases EmbeddingGemma 2, a 740M..."
+    },
+    {
+      "startTime": 222,
+      "endTime": 282,
+      "title": "Nobel economist Acemoglu predicts only..."
+    },
+    {
+      "startTime": 282,
+      "endTime": 337,
+      "title": "Common Sense Media rates ChatGPT for..."
+    },
+    {
+      "startTime": 337,
+      "endTime": 382,
+      "title": "South Korea commits 3.49 billion dollars..."
+    },
+    {
+      "startTime": 382,
+      "endTime": 412,
+      "title": "Outro"
+    }
+  ]
+}

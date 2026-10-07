@@ -4,7 +4,7 @@
         <title>AI Briefing</title>
         <link>https://robertcdawson.github.io/ai-briefing/</link>
         <description>Daily AI news briefing — the stories that matter from the last 24 hours.</description>
-        <lastBuildDate>Wed, 07 Oct 2026 01:29:50 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 07 Oct 2026 11:40:52 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -23,6 +23,60 @@
         <podcast:guid>ea8709f4-3ba2-5b7e-bcdc-e409d84a6443</podcast:guid>
         <podcast:locked owner="manatees@gmail.com">yes</podcast:locked>
         <podcast:person role="host" group="cast">Robert Dawson</podcast:person>
+        <item>
+            <title><![CDATA[AI Briefing — October 7, 2026]]></title>
+            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-10-07.mp3</link>
+            <guid>ai-briefing-2026-10-07</guid>
+            <pubDate>Wed, 07 Oct 2026 11:40:52 GMT</pubDate>
+            <description><![CDATA[<p>Top 6 AI stories for October 7, 2026.</p>
+<p>1. Top Story: OpenAI releases 372 AI-generated math proofs covering hundreds of open problems</p>
+<p>Why it matters: The batch release of 722 manuscripts with machine-verifiable Lean formalizations represents a step-change in AI-assisted mathematics, and the scale of output is forcing the academic community to rethink how mathematical progress is evaluated and credited.</p>
+<p>Caveat: The model used remains an undisclosed internal frontier model, and 25 Fields Medal winners have warned that mass-producing results could crowd out genuinely novel mathematical thinking.</p>
+<p><a href="https://openai.com/index/sharing-ai-progress-in-mathematics">OpenAI Blog</a> · <a href="https://www.theverge.com/ai-artificial-intelligence/1005004/openai-math-release-github">The Verge AI</a> · <a href="https://the-decoder.com/openai-dumps-372-ai-generated-math-proofs-on-github-telling-the-academic-world-to-keep-up/">The Decoder</a> · <a href="https://openai.com/index/sharing-ai-progress-in-mathematics/">Hacker News (AI)</a></p>
+<p>2. Policy &amp; Regulation Watch: Utah becomes first US state to allow AI to examine patients and prescribe medication autonomously</p>
+<p>Why it matters: This is the first US state-level policy to remove the human-in-the-loop requirement for clinical AI decisions, setting a precedent that other states and federal regulators will have to respond to.</p>
+<p>Caveat: The TechSpot report does not specify which AI systems are authorized, what liability framework applies, or what clinical scope is covered by the new rules.</p>
+<p><a href="https://www.techspot.com/news/114111-utah-become-first-state-ai-examine-patients-prescribe.html">Hacker News (AI)</a></p>
+<p>3. Open Source Watch: Google releases EmbeddingGemma 2, a 740M open multimodal embedding model</p>
+<p>Why it matters: A 740M-parameter model that handles text, images, video, audio, and code in 191 MB of RAM enables on-device RAG pipelines without cloud dependencies, which is a practical unlock for privacy-sensitive and offline applications.</p>
+<p>Caveat: Performance claims come from Google itself and have not yet been independently verified against all competing embedding models.</p>
+<p><a href="https://deepmind.google/blog/embeddinggemma-2-an-open-lightweight-multimodal-embedding-model/">Google DeepMind</a> · <a href="https://the-decoder.com/google-claims-embeddinggemma-2-outperforms-rival-embedding-models-twice-its-size/">The Decoder</a> · <a href="https://simonwillison.net/2026/Oct/6/hn-49983751/">Simon Willison</a></p>
+<p>4. Research Breakthrough: Nobel economist Acemoglu predicts only 1.5 percent GDP growth from AI over a decade</p>
+<p>Why it matters: A bearish forecast published by Microsoft — the largest single investor in OpenAI — carries unusual weight and will be cited in investor due diligence, policy debates, and enterprise AI ROI discussions.</p>
+<p>Caveat: Acemoglu's forecast is a macroeconomic projection with wide uncertainty bands and does not account for potential step-changes in AI capability that could alter adoption curves.</p>
+<p><a href="https://the-decoder.com/microsoft-publishes-nobel-economists-bearish-ai-forecast-of-just-1-5-gdp-growth-over-a-decade/">The Decoder</a></p>
+<p>5. AI Culture Signal: Common Sense Media rates ChatGPT for Teens an unacceptable risk for youth safety</p>
+<p>Why it matters: A high-profile nonprofit safety rating of 'unacceptable risk' will accelerate regulatory and parental pressure on OpenAI and could influence school district policies and app store decisions.</p>
+<p>Caveat: Common Sense Media's methodology and rating criteria are not independently audited, and OpenAI has not yet publicly responded to the specific findings.</p>
+<p><a href="https://www.theverge.com/ai-artificial-intelligence/1006355/openai-chatgpt-for-teens-common-sense-media">The Verge AI</a></p>
+<p>6. Policy &amp; Regulation Watch: South Korea commits 3.49 billion dollars to build homegrown frontier AI model</p>
+<p>Why it matters: National government equity investment at this scale in a frontier model program signals that the race to build sovereign AI infrastructure is expanding beyond the US and China, with direct implications for the global competitive landscape.</p>
+<p>Caveat: Government-backed AI programs at this scale have historically faced execution delays and cost overruns, and no technical details or target model specifications have been disclosed.</p>
+<p><a href="https://the-decoder.com/south-korea-bets-3-49-billion-on-building-a-homegrown-frontier-ai-model-to-rival-chinas-best/">The Decoder</a></p>
+<p>Chapters</p>
+<p>00:00:00 Intro</p>
+<p>00:00:25 OpenAI releases 372 AI-generated math...</p>
+<p>00:01:42 Utah becomes first US state to allow AI...</p>
+<p>00:02:44 Google releases EmbeddingGemma 2, a 740M...</p>
+<p>00:03:42 Nobel economist Acemoglu predicts only...</p>
+<p>00:04:42 Common Sense Media rates ChatGPT for...</p>
+<p>00:05:37 South Korea commits 3.49 billion dollars...</p>
+<p>00:06:22 Outro</p>]]></description>
+            <enclosure length="9889764" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-10-07.mp3"/>
+                    <itunes:duration>412</itunes:duration>
+            <itunes:explicit>false</itunes:explicit>
+            <itunes:season>2026</itunes:season>
+            <itunes:episode>280</itunes:episode>
+            <itunes:episodeType>full</itunes:episodeType>
+            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-10-07.chapters.json" type="application/json+chapters"/>
+            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-10-07.transcript.txt" type="text/plain" language="en"/>
+            <podcast:soundbite startTime="25" duration="75">OpenAI releases 372 AI-generated math...</podcast:soundbite>
+            <podcast:soundbite startTime="102" duration="60">Utah becomes first US state to allow AI...</podcast:soundbite>
+            <podcast:soundbite startTime="164" duration="57">Google releases EmbeddingGemma 2, a 740M...</podcast:soundbite>
+            <podcast:soundbite startTime="222" duration="58">Nobel economist Acemoglu predicts only...</podcast:soundbite>
+            <podcast:soundbite startTime="282" duration="54">Common Sense Media rates ChatGPT for...</podcast:soundbite>
+            <podcast:soundbite startTime="337" duration="44">South Korea commits 3.49 billion dollars...</podcast:soundbite>
+        </item>
         <item>
             <title><![CDATA[AI Briefing — October 6, 2026]]></title>
             <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-10-06.mp3</link>

@@ -1,0 +1,46 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — October 6, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 40,
+      "title": "Intro"
+    },
+    {
+      "startTime": 40,
+      "endTime": 152,
+      "title": "Wikimedia confirms OpenAI rogue agents..."
+    },
+    {
+      "startTime": 152,
+      "endTime": 246,
+      "title": "Mistral releases one-trillion-parameter..."
+    },
+    {
+      "startTime": 246,
+      "endTime": 343,
+      "title": "OpenAI publishes frontier model results..."
+    },
+    {
+      "startTime": 343,
+      "endTime": 435,
+      "title": "Reflection releases Beam, most capable..."
+    },
+    {
+      "startTime": 435,
+      "endTime": 521,
+      "title": "Google restricts Gemini free tier to..."
+    },
+    {
+      "startTime": 521,
+      "endTime": 596,
+      "title": "Deepseek nears 12 billion dollar raise..."
+    },
+    {
+      "startTime": 596,
+      "endTime": 642,
+      "title": "Outro"
+    }
+  ]
+}

@@ -228,7 +228,7 @@ export async function assertGeminiVoiceReachable(options: {
       throw new Error(
         `${err.message} GEMINI_API_KEY must belong to the Google project that created ${options.voice}, ` +
           "or pick a different voice on the tune page (config/show.json tts.voice). " +
-          "Stored custom voices expire 7 days after creation. " +
+          "Stored custom voices expire 1 year after their last use. " +
           describeVisibleVoices(visible),
       );
     }

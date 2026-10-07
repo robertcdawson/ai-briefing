@@ -210,7 +210,7 @@ test("assertGeminiVoiceReachable names the custom voices the key can see on a 40
     (err: Error) =>
       /voice_old \("Porch Host", expires 2026-10-09T00:00:00Z\)/.test(err.message) &&
       !err.message.includes("Charon") &&
-      /expire 7 days/.test(err.message),
+      /expire 1 year after their last use/.test(err.message),
   );
 
   await assert.rejects(

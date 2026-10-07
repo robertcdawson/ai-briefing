@@ -1,0 +1,65 @@
+name: gemini-key-check
+
+# One-off diagnostic, started by hand from the Actions tab. Answers: which
+# Google project does the GEMINI_API_KEY secret belong to, and which custom
+# voices does that project hold? Prints the key's last 4 characters (AI Studio
+# shows the same suffix), the project number, and voice ids. Never the key.
+# Delete this file once the question is answered.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Identify the key's project and voices
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          set -u
+          if [ -z "${GEMINI_API_KEY:-}" ]; then
+            echo "GEMINI_API_KEY secret is not set."
+            exit 1
+          fi
+          echo "Key ends in: ...${GEMINI_API_KEY: -4}"
+          echo
+
+          # A Google API that is off (or blocked for this key) answers with an
+          # error naming the consumer project. Try a few until one does.
+          project=""
+          for url in \
+            "https://translation.googleapis.com/language/translate/v2?q=hi&target=es" \
+            "https://language.googleapis.com/v1/documents:analyzeSentiment" \
+            "https://vision.googleapis.com/v1/images:annotate"; do
+            body=$(curl -s -m 20 -X POST "$url" \
+              -H "x-goog-api-key: $GEMINI_API_KEY" \
+              -H "content-type: application/json" -d '{}' || true)
+            project=$(printf '%s' "$body" | grep -oE 'projects/[0-9]+|project [0-9]+' | grep -oE '[0-9]+' | head -n1 || true)
+            [ -n "$project" ] && break
+          done
+          if [ -n "$project" ]; then
+            echo "Project number: $project"
+            echo "Compare it with the project number in AI Studio (API keys page) or Google Cloud console."
+          else
+            echo "Project number: could not be determined from error responses."
+          fi
+          echo
+
+          echo "Custom voices this key's project holds:"
+          voices=$(curl -s -m 20 "https://generativelanguage.googleapis.com/v1beta/voices" \
+            -H "x-goog-api-key: $GEMINI_API_KEY" || true)
+          printf '%s' "$voices" | jq -r '
+            if (.voices | type) != "array" then
+              "  (could not list voices: \(.error.message // "unexpected response"))"
+            else
+              [ .voices[]
+                | (.id // .name // "" | sub("^voices/"; "")) as $id
+                | select($id | startswith("voice_"))
+                | "  \($id)  \"\(.displayName // .display_name // "")\"  expires \(.expireTime // .expire_time // "unknown")" ]
+              | if length == 0 then "  (none)" else .[] end
+            end' || echo "  (could not parse the voices response)"

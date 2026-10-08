@@ -1,0 +1,31 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — October 8, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 28,
+      "title": "Intro"
+    },
+    {
+      "startTime": 28,
+      "endTime": 132,
+      "title": "OpenAI launches GPT-6 with interactive..."
+    },
+    {
+      "startTime": 132,
+      "endTime": 238,
+      "title": "Microsoft launches Surface Laptop Ultra..."
+    },
+    {
+      "startTime": 238,
+      "endTime": 356,
+      "title": "Google DeepMind, Meta, and Isomorphic..."
+    },
+    {
+      "startTime": 356,
+      "endTime": 387,
+      "title": "Outro"
+    }
+  ]
+}

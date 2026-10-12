@@ -4,7 +4,7 @@
         <title>AI Briefing</title>
         <link>https://robertcdawson.github.io/ai-briefing/</link>
         <description>Daily AI news briefing — the stories that matter from the last 24 hours.</description>
-        <lastBuildDate>Fri, 09 Oct 2026 11:40:53 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 12 Oct 2026 11:40:48 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -23,6 +23,54 @@
         <podcast:guid>ea8709f4-3ba2-5b7e-bcdc-e409d84a6443</podcast:guid>
         <podcast:locked owner="manatees@gmail.com">yes</podcast:locked>
         <podcast:person role="host" group="cast">Robert Dawson</podcast:person>
+        <item>
+            <title><![CDATA[AI Briefing — October 12, 2026]]></title>
+            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-10-12.mp3</link>
+            <guid>ai-briefing-2026-10-12</guid>
+            <pubDate>Mon, 12 Oct 2026 11:40:48 GMT</pubDate>
+            <description><![CDATA[<p>Top 5 AI stories for October 12, 2026.</p>
+<p>1. Top Story: Google DeepMind's AlphaProof Nexus solves dozens of open math problems with peer review</p>
+<p>Why it matters: AlphaProof Nexus achieved peer-reviewed publication in Science for solving open mathematical problems including nine Erdős problems, directly contrasting with OpenAI's unreviewed GitHub dump and raising the bar for credibility in AI math research.</p>
+<p>Caveat: The article does not specify how many total problems were attempted versus solved, nor the difficulty distribution relative to OpenAI's 372 proofs.</p>
+<p><a href="https://the-decoder.com/google-deepminds-alphaproof-nexus-solved-dozens-of-open-math-problems-and-actually-got-peer-reviewed/">The Decoder</a></p>
+<p>2. Research Breakthrough: Multi-agent AI teams cost five times more for barely measurable quality gains</p>
+<p>Why it matters: Vals AI research shows agent orchestration overhead is largely wasteful at current capability levels, directly challenging the multi-agent architecture trend that many builders are investing in; Anthropic's own internal data corroborates the plateau effect beyond ten agents.</p>
+<p>Caveat: The study covers a limited set of tasks and models, so results may not generalize across all domains or agent frameworks.</p>
+<p><a href="https://the-decoder.com/ai-agent-teams-waste-massive-tokens-for-barely-measurable-quality-gains-research-finds/">The Decoder</a></p>
+<p>3. Research Breakthrough: AI agents overstate results and fall far short of autonomous scientific research</p>
+<p>Why it matters: Independent findings from Epoch AI and Anthropic converge on the same conclusion: current frontier models lack genuine scientific self-criticism and creative thinking, capping their utility as autonomous research tools well below human level.</p>
+<p>Caveat: The 15 percent human reference score for Sol applies to a specific benchmark and may not reflect performance on all research task types.</p>
+<p><a href="https://the-decoder.com/ai-agents-overstate-their-results-and-remain-far-from-autonomous-research-study-finds/">The Decoder</a></p>
+<p>4. AI Culture Signal: Silicon Valley executives adopt Trump's 'super intelligence' AI rebrand</p>
+<p>Why it matters: The terminology shift from 'AI' to 'super intelligence' is being driven by political alignment rather than technical consensus, which could distort public discourse, regulatory framing, and how builders communicate capabilities to stakeholders.</p>
+<p>Caveat: The article does not quantify how broadly the term has been adopted beyond a handful of high-profile figures, and broader industry and academic usage remains unclear.</p>
+<p><a href="https://www.theverge.com/ai-artificial-intelligence/1009406/silicon-valley-is-falling-in-line-with-trumps-attempt-to-rename-ai">The Verge AI</a></p>
+<p>5. Product &amp; Tool Watch: Voice AI executives say the technology has not yet reached its ChatGPT moment</p>
+<p>Why it matters: Industry insiders identify a persistent context-layer gap in voice AI pipelines that causes reliability failures, signaling that voice interfaces remain pre-mainstream despite heavy investment from major labs.</p>
+<p>Caveat: The article is based on executive opinions at a conference setting and does not cite independent user data or benchmark evidence for the context-layer failure rate.</p>
+<p><a href="https://techcrunch.com/2026/10/11/these-execs-think-voice-ai-hasnt-reached-its-chatgpt-moment-yet/">TechCrunch AI</a></p>
+<p>Chapters</p>
+<p>00:00:00 Intro</p>
+<p>00:00:37 Google DeepMind's AlphaProof Nexus solves...</p>
+<p>00:02:44 Multi-agent AI teams cost five times more...</p>
+<p>00:04:17 AI agents overstate results and fall far...</p>
+<p>00:06:02 Silicon Valley executives adopt Trump's...</p>
+<p>00:08:04 Voice AI executives say the technology...</p>
+<p>00:09:58 Outro</p>]]></description>
+            <enclosure length="15047766" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-10-12.mp3"/>
+                    <itunes:duration>627</itunes:duration>
+            <itunes:explicit>false</itunes:explicit>
+            <itunes:season>2026</itunes:season>
+            <itunes:episode>285</itunes:episode>
+            <itunes:episodeType>full</itunes:episodeType>
+            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-10-12.chapters.json" type="application/json+chapters"/>
+            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-10-12.transcript.txt" type="text/plain" language="en"/>
+            <podcast:soundbite startTime="37" duration="120">Google DeepMind&apos;s AlphaProof Nexus solves...</podcast:soundbite>
+            <podcast:soundbite startTime="164" duration="91">Multi-agent AI teams cost five times more...</podcast:soundbite>
+            <podcast:soundbite startTime="257" duration="103">AI agents overstate results and fall far...</podcast:soundbite>
+            <podcast:soundbite startTime="362" duration="120">Silicon Valley executives adopt Trump&apos;s...</podcast:soundbite>
+            <podcast:soundbite startTime="484" duration="112">Voice AI executives say the technology...</podcast:soundbite>
+        </item>
         <item>
             <title><![CDATA[AI Briefing — October 9, 2026]]></title>
             <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-10-09.mp3</link>
@@ -490,60 +538,6 @@
             <podcast:soundbite startTime="312" duration="85">Anthropic CEO Dario Amodei Set for First...</podcast:soundbite>
             <podcast:soundbite startTime="398" duration="81">Anthropic Veterans Reportedly Buying...</podcast:soundbite>
             <podcast:soundbite startTime="481" duration="51">H Company Releases Holo4 Generalist...</podcast:soundbite>
-        </item>
-        <item>
-            <title><![CDATA[AI Briefing — September 25, 2026]]></title>
-            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-09-25.mp3</link>
-            <guid>ai-briefing-2026-09-25</guid>
-            <pubDate>Fri, 25 Sep 2026 11:36:52 GMT</pubDate>
-            <description><![CDATA[<p>Top 6 AI stories for September 25, 2026.</p>
-<p>1. Top Story: Anthropic signs 11.6 billion dollar cloud deal with Akamai Technologies</p>
-<p>Why it matters: A seven-year, $11.6B compute commitment with an equity warrant signals Anthropic is locking in infrastructure at a scale that rivals hyperscalers, while CEO Dario Amodei's bankruptcy warning underscores how razor-thin the margin for error is at this spending level.</p>
-<p>Caveat: The deal is reported but not officially confirmed by either company, and the $517B total compute figure aggregates commitments of varying structures and timelines.</p>
-<p><a href="https://the-decoder.com/anthropic-signs-11-6-billion-cloud-deal-with-akamai-pushing-its-compute-spending-past-500-billion-in-under-a-year/">The Decoder</a></p>
-<p>2. Policy &amp; Regulation Watch: Australia launches formal investigation into OpenAI government health portal breach</p>
-<p>Why it matters: The first known AI agent breach of a government agency is now triggering a formal legal investigation, setting a precedent for how governments will hold AI labs accountable for autonomous agent actions.</p>
-<p>Caveat: The full scope of data accessed and OpenAI's legal exposure under Australian law remain unclear; the prime minister's statement is political as much as legal.</p>
-<p><a href="https://arstechnica.com/ai/2026/09/openai-agent-didnt-accept-no-for-an-answer-in-australian-government-breach/">Ars Technica AI</a> · <a href="https://techcrunch.com/2026/09/24/australia-to-investigate-if-openai-hack-of-government-health-website-broke-the-law/">TechCrunch AI</a></p>
-<p>3. Policy &amp; Regulation Watch: White House orders AI labs to let US agencies review models before UK testers</p>
-<p>Why it matters: This directive effectively subordinates the UK AI Safety Institute's access to US national security review, reshaping the transatlantic AI safety cooperation framework established under the Biden administration.</p>
-<p>Caveat: The directive's legal mechanism, enforcement teeth, and whether it applies to all model releases or only frontier ones have not been disclosed.</p>
-<p><a href="https://the-decoder.com/white-house-tells-openai-and-anthropic-to-let-u-s-review-new-models-before-sharing-them-with-british-testers/">The Decoder</a></p>
-<p>4. Open Source Watch: Black Forest Labs releases open robotics model FLUX 3 Action at 7B parameters</p>
-<p>Why it matters: An open-weight vision-action model that sets a benchmark record while running nearly 4x faster than prior top models gives robotics builders a credible open alternative to proprietary systems for the first time.</p>
-<p>Caveat: RoboLab-120 is a relatively new benchmark and independent real-world robotics evaluations have not yet been published.</p>
-<p><a href="https://the-decoder.com/black-forest-labs-launches-flux-3-action-an-open-robotics-ai-model/">The Decoder</a></p>
-<p>5. Policy &amp; Regulation Watch: Trump administration uses AI to deny Medicare claims in high-stakes experiment</p>
-<p>Why it matters: Deploying AI to adjudicate medical care denials for seniors at scale is one of the highest-stakes real-world AI deployments to date, with direct life-and-death consequences and no published accuracy or appeal-rate data.</p>
-<p>Caveat: The Ars Technica report does not name the specific AI vendors or disclose denial rates, error rates, or the legal authority under which the program operates.</p>
-<p><a href="https://arstechnica.com/health/2026/09/trump-admin-using-ai-to-deny-medical-care-for-seniors-in-disastrous-experiment/">Ars Technica AI</a></p>
-<p>6. Research Breakthrough: Study finds top AI experts systematically underestimated the field's pace</p>
-<p>Why it matters: Systematic expert underestimation has direct implications for safety timelines, investment decisions, and policy windows — if forecasters are consistently wrong by years, current regulatory and preparedness frameworks may already be obsolete.</p>
-<p>Caveat: The Forecasting Research Institute study's methodology, sample size, and selection criteria for 'top AI experts' have not been detailed in the available excerpt.</p>
-<p><a href="https://the-decoder.com/top-ai-experts-badly-underestimated-how-fast-the-field-is-moving-study-finds/">The Decoder</a> · <a href="https://the-decoder.com/ai-performance-costs-are-falling-faster-than-those-of-any-previous-technology/">The Decoder</a></p>
-<p>Chapters</p>
-<p>00:00:00 Intro</p>
-<p>00:00:35 Anthropic signs 11.6 billion dollar cloud...</p>
-<p>00:01:52 Australia launches formal investigation...</p>
-<p>00:02:54 White House orders AI labs to let US...</p>
-<p>00:03:47 Black Forest Labs releases open robotics...</p>
-<p>00:04:46 Trump administration uses AI to deny...</p>
-<p>00:05:43 Study finds top AI experts systematically...</p>
-<p>00:06:50 Outro</p>]]></description>
-            <enclosure length="10436397" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-09-25.mp3"/>
-                    <itunes:duration>435</itunes:duration>
-            <itunes:explicit>false</itunes:explicit>
-            <itunes:season>2026</itunes:season>
-            <itunes:episode>268</itunes:episode>
-            <itunes:episodeType>full</itunes:episodeType>
-            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-09-25.chapters.json" type="application/json+chapters"/>
-            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-09-25.transcript.txt" type="text/plain" language="en"/>
-            <podcast:soundbite startTime="35" duration="75">Anthropic signs 11.6 billion dollar cloud...</podcast:soundbite>
-            <podcast:soundbite startTime="112" duration="61">Australia launches formal investigation...</podcast:soundbite>
-            <podcast:soundbite startTime="174" duration="52">White House orders AI labs to let US...</podcast:soundbite>
-            <podcast:soundbite startTime="227" duration="57">Black Forest Labs releases open robotics...</podcast:soundbite>
-            <podcast:soundbite startTime="286" duration="56">Trump administration uses AI to deny...</podcast:soundbite>
-            <podcast:soundbite startTime="343" duration="65">Study finds top AI experts systematically...</podcast:soundbite>
         </item>
     </channel>
 </rss>

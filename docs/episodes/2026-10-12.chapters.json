@@ -1,0 +1,41 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — October 12, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 37,
+      "title": "Intro"
+    },
+    {
+      "startTime": 37,
+      "endTime": 164,
+      "title": "Google DeepMind's AlphaProof Nexus solves..."
+    },
+    {
+      "startTime": 164,
+      "endTime": 257,
+      "title": "Multi-agent AI teams cost five times more..."
+    },
+    {
+      "startTime": 257,
+      "endTime": 362,
+      "title": "AI agents overstate results and fall far..."
+    },
+    {
+      "startTime": 362,
+      "endTime": 484,
+      "title": "Silicon Valley executives adopt Trump's..."
+    },
+    {
+      "startTime": 484,
+      "endTime": 598,
+      "title": "Voice AI executives say the technology..."
+    },
+    {
+      "startTime": 598,
+      "endTime": 627,
+      "title": "Outro"
+    }
+  ]
+}

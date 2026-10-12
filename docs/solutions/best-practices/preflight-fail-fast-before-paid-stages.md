@@ -62,6 +62,7 @@ Config and local-tool failures are nearly free to detect and nearly certain to a
 ## Related
 
 - Code: `src/preflight.ts`, `scripts/preflight.ts`, call site in `src/index.ts`.
+- Gemini voice probe (post-preflight): `assertGeminiVoiceReachable` in `src/geminiTts.ts`; details in `docs/solutions/best-practices/gemini-designed-voice.md`.
 - TTS routing: `src/ttsProvider.ts` (`resolveTTSProviderConfig`).
 - Already-published skip: `hasPublishedEpisode` in `src/publish.ts`.
-- Docs: README setup §4 and Troubleshooting → Preflight; `CONCEPTS.md` → Preflight.
+- Docs: README setup §4 and Troubleshooting → Preflight / Gemini voice check; `CONCEPTS.md` → Preflight.

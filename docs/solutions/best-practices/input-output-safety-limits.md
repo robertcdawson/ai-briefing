@@ -46,7 +46,7 @@ TTS
 | Prompt encoding | `promptData` JSON-stringifies values and escapes `<>` / line/paragraph separators so untrusted text cannot open new prompt sections | `src/promptData.ts` |
 | Untrusted rule | `UNTRUSTED_DATA_RULE` is prepended in curate, script, and ear-edit prompts | same |
 | Specifics | Drop items >200 chars or >15 words (do not shorten quotes); keep ≤6 | `boundedSpecifics` |
-| Delivery | Script schema enum = `SEGMENT_DELIVERY_HINTS`; TTS maps only those keys to fixed instruction strings; unknown/legacy free text → section default | `sanitizeSegmentDeliveryHint` |
+| Delivery | Script schema allow-list = `SEGMENT_DELIVERY_HINTS` via `anyOf` `[string+enum \| null]` (not `type: ["string","null"]` + enum — Anthropic rejects that); TTS maps only those keys to fixed instruction strings; unknown/legacy free text → section default | `sanitizeSegmentDeliveryHint` |
 
 `assertNarrationBudget` runs on live model output **and** stage-cache hits at the speech boundary, so a cached oversized script cannot bypass the gate.
 
@@ -79,5 +79,6 @@ A local oversized script fails at synthesize with a budget error and never opens
 - Code: `src/inputLimits.ts`, `src/promptData.ts`, `assertSpeechBudget` in `src/tts.ts`, `SEGMENT_DELIVERY_HINTS` in `src/speakerProfiles.ts`
 - Tests: `test/inputLimits.security.test.ts`, `test/speakerProfiles.test.ts`, `test/tts.request.test.ts`
 - Adjacent URL/workspace guards: `docs/solutions/best-practices/source-url-safety-and-audio-workspaces.md`
+- Delivery schema shape (`anyOf` for nullable enums): `docs/solutions/best-practices/llm-structured-output-strict-schema-and-provider-routing.md`
 - Glossary: Narration budget, Untrusted prompt data, Delivery hint in `CONCEPTS.md`
 - Operator summary: README **Input and output safety limits**

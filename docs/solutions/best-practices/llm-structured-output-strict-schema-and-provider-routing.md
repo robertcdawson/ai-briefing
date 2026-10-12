@@ -1,52 +1,81 @@
 ---
-title: Strict LLM structured-output schemas must make optional fields nullable+required, and provider routing differs per stage
-date: 2026-06-17
+title: Strict LLM structured-output schemas — nullable+required, and anyOf for nullable enums
+date: 2026-10-12
 category: docs/solutions/best-practices
-module: curate / LLM structured output
+module: curate / script / LLM structured output
 problem_type: best_practice
-component: service_object
+component: src/curate.ts, src/script.ts, src/earEdit.ts
 severity: medium
 applies_when:
   - Adding or changing a JSON schema sent with strict structured output to an LLM
-  - Adding an optional field to an LLM response schema
+  - Adding an optional or nullable field to an LLM response schema
+  - Combining `enum` with nullability on a field (especially Anthropic / Claude routes)
   - Pointing a pipeline stage at a different model or provider
-tags: [llm, structured-outputs, json-schema, openai, openrouter, strict-mode, curate]
+tags: [llm, structured-outputs, json-schema, openai, openrouter, anthropic, strict-mode, curate, script]
 ---
 
-# Strict LLM structured-output schemas must make optional fields nullable+required, and provider routing differs per stage
+# Strict LLM structured-output schemas — nullable+required, and anyOf for nullable enums
 
 ## Context
 
-While reviewing the cross-episode memory ledger feature, a new optional `followUp` object was added to the curate response schema (`RESPONSE_SCHEMA` in `src/curate.ts`) as a property that was *not* listed in the object's `required` array, under `strict: true` with `additionalProperties: false`. It worked in testing and looked correct. Multiple reviewers flagged it as a latent break: it is fine on the path the code uses today, but would be rejected the moment the schema reached a native OpenAI endpoint.
+Two separate schema traps have broken or nearly broken this unattended pipeline:
 
-Two facts about this repo made the risk non-obvious:
+1. **OpenAI strict completeness** (ledger / curate). An optional `followUp` object was added to the curate response schema as a property *not* listed in `required`, under `strict: true` with `additionalProperties: false`. That shape is fine on OpenRouter→Claude today but is rejected the moment the schema hits a native OpenAI endpoint.
+2. **Anthropic nullable + enum** (script / ear edit, 2026-10-05). Segment `delivery` used `type: ["string", "null"]` plus `enum: [...hints, null]`. Every Anthropic structured-output route rejected it with `Enum value 'measured' does not match declared type`, so Sonnet never wrote a script or ear edit. Null must be its own `anyOf` branch; the enum stays on the string branch only.
 
-- **Provider routing differs per pipeline stage.** `curate` is hardcoded to OpenRouter (its OpenAI client is constructed with `baseURL` pointing at `openrouter.ai` and it throws without `OPENROUTER_API_KEY`), and routes to an Anthropic model. But `script`/TTS can route an `openai/...` model **directly to the native OpenAI API** when `OPENAI_API_KEY` is set (see `AGENTS.md` → `OPENROUTER_SCRIPT_MODEL`). So a schema that is safe in `curate` today is not automatically safe if copied into a stage that can hit OpenAI directly, or if `curate` is ever repointed.
-- **OpenRouter→Claude does not enforce OpenAI's strict-completeness rule**, so the non-conformant schema passed silently in tests.
+Provider routing makes both traps easy to miss:
+
+- **`curate`** is hardcoded to OpenRouter and routes to Anthropic. It does **not** enforce OpenAI's strict-completeness rule, so a non-conformant schema can pass every curate test.
+- **`script` / `earEdit`** default to Anthropic via OpenRouter (`OPENROUTER_SCRIPT_MODEL`) and can also send `openai/...` **directly** to the native OpenAI API when `OPENAI_API_KEY` is set. A schema must therefore satisfy **both** Anthropic's validator and OpenAI strict mode when it is shared (`SCRIPT_RESPONSE_SCHEMA` is reused by ear edit).
 
 ## Guidance
 
-When sending a JSON schema to an LLM with strict structured output, **every property declared under an object with `additionalProperties: false` must appear in that object's `required` array.** Express an "optional" field by making it nullable, not by omitting it from `required`:
+### 1. Optional fields: nullable + required (OpenAI strict)
+
+When sending a JSON schema with `strict: true` and `additionalProperties: false`, **every property under that object must appear in `required`**. Express "optional" by making the field nullable, not by omitting it from `required`:
 
 - Add the field to `required`.
-- Give it a nullable type: `type: ["object", "null"]` (or `["string", "null"]`, etc.).
-- Handle the `null` case at the parse boundary — treat `null` as "absent" when normalizing the model's response into your domain object.
+- For object/string fields **without** an `enum`, `type: ["object", "null"]` / `["string", "null"]` is fine.
+- Handle `null` at the parse boundary — treat it as "absent" when normalizing into the domain object.
 
-Also: **do not assume a structured-output schema that works in one pipeline stage is portable to another.** Confirm which provider/endpoint each stage actually targets before reusing a schema, because strict-mode enforcement is provider-specific.
+### 2. Nullable enums: use `anyOf` (Anthropic)
 
-## Why This Matters
+**Do not** put an `enum` on a `type: ["string", "null"]` union (and do not list `null` inside the enum alongside string values). Anthropic's structured-output validator rejects that shape.
 
-A schema that only the strictest provider rejects is the worst kind of latent defect for an unattended pipeline: it passes every local test (which use the lenient path), then fails 100% of runs the instant the strict path is taken — a model swap, a new `OPENAI_API_KEY`, or copying the schema into a stage that routes to OpenAI. The failure is a request-time 400 that aborts the whole stage, not a degraded result. Making optionals nullable+required is behavior-neutral on the lenient path and forward-safe on the strict one, so there is no reason not to do it by default.
+Use `anyOf` so null is a separate branch:
 
-## When to Apply
+```jsonc
+"delivery": {
+  "anyOf": [
+    { "type": "string", "enum": ["measured", "warm", "dry", "serious", "curious", "brisk", "flat"] },
+    { "type": "null" }
+  ]
+}
+```
+
+Pinned in `SCRIPT_RESPONSE_SCHEMA` (`src/script.ts`); ear edit reuses the same segment schema. Covered by `test/script.voice.test.ts`.
+
+Plain nullable strings without an enum (for example segment `stance`) may keep `type: ["string", "null"]`.
+
+### 3. Schemas are not portable across stages by default
+
+Confirm which provider/endpoint each stage actually targets before reusing a schema. Strict-mode and enum-union rules are provider-specific.
+
+## Why this matters
+
+A schema that only one provider rejects is the worst kind of latent defect for an unattended pipeline: it passes local tests on the lenient path, then fails 100% of weekday runs the instant the strict path is taken — a model swap, a new `OPENAI_API_KEY`, or copying the schema into script/ear edit. The failure is a request-time 400 that aborts the whole stage (and, for Anthropic enum+union, every fallback that still hits Claude).
+
+## When to apply
 
 - Any time you add or edit a property in an LLM structured-output schema.
-- Whenever you introduce an "optional" field to a model response.
+- Whenever you introduce an "optional" or nullable field — especially with `enum`.
 - Before reusing a schema across pipeline stages, or repointing a stage at a new model/provider.
 
 ## Examples
 
-Before — optional field omitted from `required` (rejected by native OpenAI strict mode):
+### Optional object omitted from `required` (OpenAI strict)
+
+Before — rejected by native OpenAI strict mode:
 
 ```jsonc
 {
@@ -65,7 +94,7 @@ Before — optional field omitted from `required` (rejected by native OpenAI str
 }
 ```
 
-After — nullable + required (portable across providers):
+After — nullable + required:
 
 ```jsonc
 {
@@ -94,7 +123,22 @@ if (raw.followUp && typeof raw.followUp.priorDate === "string" && raw.followUp.p
 }
 ```
 
+### Nullable enum (Anthropic)
+
+Before — aborts every Anthropic script/ear-edit call:
+
+```jsonc
+"delivery": {
+  "type": ["string", "null"],
+  "enum": ["measured", "warm", "dry", "serious", "curious", "brisk", "flat", null]
+}
+```
+
+After — null is its own `anyOf` branch (see Guidance §2).
+
 ## Related
 
-- Feature: cross-episode memory ledger (`src/curate.ts`, `src/ledger.ts`).
-- Provider routing reference: `AGENTS.md` → Environment variables (`OPENROUTER_SCRIPT_MODEL`, `OPENAI_API_KEY`).
+- Code: `RESPONSE_SCHEMA` in `src/curate.ts`; `SCRIPT_RESPONSE_SCHEMA` / ear-edit reuse in `src/script.ts`, `src/earEdit.ts`.
+- Tests: `test/script.voice.test.ts` (delivery `anyOf` shape).
+- Delivery allow-list: `SEGMENT_DELIVERY_HINTS` / `docs/solutions/best-practices/input-output-safety-limits.md`.
+- Provider routing: `AGENTS.md` → Environment variables (`OPENROUTER_SCRIPT_MODEL`, `OPENAI_API_KEY`).

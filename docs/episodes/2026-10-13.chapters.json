@@ -1,0 +1,46 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — October 13, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 24,
+      "title": "Intro"
+    },
+    {
+      "startTime": 24,
+      "endTime": 84,
+      "title": "Character.AI files Chapter 11 bankruptcy..."
+    },
+    {
+      "startTime": 84,
+      "endTime": 140,
+      "title": "Meta launches Muse Wonder Full, claiming..."
+    },
+    {
+      "startTime": 140,
+      "endTime": 199,
+      "title": "Microsoft's Maia 300 chip targets 40..."
+    },
+    {
+      "startTime": 199,
+      "endTime": 273,
+      "title": "New paper proves AI models can provably..."
+    },
+    {
+      "startTime": 273,
+      "endTime": 344,
+      "title": "Anthropic cuts Claude reasoning token..."
+    },
+    {
+      "startTime": 344,
+      "endTime": 414,
+      "title": "Anthropic study warns small AI models..."
+    },
+    {
+      "startTime": 414,
+      "endTime": 453,
+      "title": "Outro"
+    }
+  ]
+}

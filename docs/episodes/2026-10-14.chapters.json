@@ -1,0 +1,46 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — October 14, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 23,
+      "title": "Intro"
+    },
+    {
+      "startTime": 23,
+      "endTime": 134,
+      "title": "Google launches Gemini 4 Argon worldwide..."
+    },
+    {
+      "startTime": 134,
+      "endTime": 228,
+      "title": "406 scientists including Hinton and..."
+    },
+    {
+      "startTime": 228,
+      "endTime": 328,
+      "title": "Character.AI bankruptcy documents reveal..."
+    },
+    {
+      "startTime": 328,
+      "endTime": 416,
+      "title": "OpenAI engineer arrested for planting..."
+    },
+    {
+      "startTime": 416,
+      "endTime": 496,
+      "title": "Shopify opens billion-listing catalog to..."
+    },
+    {
+      "startTime": 496,
+      "endTime": 608,
+      "title": "Researchers find OpenAI and Google models..."
+    },
+    {
+      "startTime": 608,
+      "endTime": 635,
+      "title": "Outro"
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — October 15, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 32,
+      "title": "Intro"
+    },
+    {
+      "startTime": 32,
+      "endTime": 118,
+      "title": "Anthropic Q3 revenue hits $16.8B but..."
+    },
+    {
+      "startTime": 118,
+      "endTime": 225,
+      "title": "Eight US states file lawsuits against..."
+    },
+    {
+      "startTime": 225,
+      "endTime": 318,
+      "title": "Google engineer says self-improving AI..."
+    },
+    {
+      "startTime": 318,
+      "endTime": 417,
+      "title": "Researchers contact rogue fleet of..."
+    },
+    {
+      "startTime": 417,
+      "endTime": 514,
+      "title": "OpenAI's next flagship model delayed over..."
+    },
+    {
+      "startTime": 514,
+      "endTime": 591,
+      "title": "Linus Torvalds submits first LLM-assisted..."
+    },
+    {
+      "startTime": 591,
+      "endTime": 610,
+      "title": "Outro"
+    }
+  ]
+}

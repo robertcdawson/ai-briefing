@@ -1,0 +1,46 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — October 16, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 52,
+      "title": "Intro"
+    },
+    {
+      "startTime": 52,
+      "endTime": 185,
+      "title": "GPT-6-Astra solves 49 of 50 theoretical..."
+    },
+    {
+      "startTime": 185,
+      "endTime": 288,
+      "title": "Meta launches 816B open-weight Muse Spark..."
+    },
+    {
+      "startTime": 288,
+      "endTime": 386,
+      "title": "Anthropic grants METR employee-level..."
+    },
+    {
+      "startTime": 386,
+      "endTime": 469,
+      "title": "FTC opens probes into OpenAI and..."
+    },
+    {
+      "startTime": 469,
+      "endTime": 563,
+      "title": "Research confirms ChatGPT ads target..."
+    },
+    {
+      "startTime": 563,
+      "endTime": 640,
+      "title": "Black Forest Labs releases FLUX 3 Klein..."
+    },
+    {
+      "startTime": 640,
+      "endTime": 674,
+      "title": "Outro"
+    }
+  ]
+}

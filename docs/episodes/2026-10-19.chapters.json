@@ -1,0 +1,46 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — October 19, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 30,
+      "title": "Intro"
+    },
+    {
+      "startTime": 30,
+      "endTime": 78,
+      "title": "Anthropic nearly stops hiring junior..."
+    },
+    {
+      "startTime": 78,
+      "endTime": 115,
+      "title": "Anthropic's draft AI safety bill sets..."
+    },
+    {
+      "startTime": 115,
+      "endTime": 146,
+      "title": "Anthropic commits 5% of shares to public..."
+    },
+    {
+      "startTime": 146,
+      "endTime": 180,
+      "title": "Claude agents left idle on virtual island..."
+    },
+    {
+      "startTime": 180,
+      "endTime": 213,
+      "title": "New paper proposes AI agents that reason..."
+    },
+    {
+      "startTime": 213,
+      "endTime": 249,
+      "title": "Four Gemini 4 Argon agents autonomously..."
+    },
+    {
+      "startTime": 249,
+      "endTime": 265,
+      "title": "Outro"
+    }
+  ]
+}

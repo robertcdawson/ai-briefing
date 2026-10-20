@@ -1,0 +1,46 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — October 20, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 32,
+      "title": "Intro"
+    },
+    {
+      "startTime": 32,
+      "endTime": 155,
+      "title": "Goodfire researcher's 26,000-word post..."
+    },
+    {
+      "startTime": 155,
+      "endTime": 255,
+      "title": "Single hacker used autonomous AI agents..."
+    },
+    {
+      "startTime": 255,
+      "endTime": 364,
+      "title": "CoreWeave debt distress triggers neocloud..."
+    },
+    {
+      "startTime": 364,
+      "endTime": 447,
+      "title": "FBI says accused OpenAI spy had folder..."
+    },
+    {
+      "startTime": 447,
+      "endTime": 550,
+      "title": "Two German courts hold Google legally..."
+    },
+    {
+      "startTime": 550,
+      "endTime": 635,
+      "title": "MiniMax M3.1 Flash matches top Chinese..."
+    },
+    {
+      "startTime": 635,
+      "endTime": 674,
+      "title": "Outro"
+    }
+  ]
+}

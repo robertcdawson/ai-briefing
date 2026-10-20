@@ -4,7 +4,7 @@
         <title>AI Briefing</title>
         <link>https://robertcdawson.github.io/ai-briefing/</link>
         <description>Daily AI news briefing — the stories that matter from the last 24 hours.</description>
-        <lastBuildDate>Mon, 19 Oct 2026 11:40:41 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 20 Oct 2026 11:37:20 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -23,6 +23,60 @@
         <podcast:guid>ea8709f4-3ba2-5b7e-bcdc-e409d84a6443</podcast:guid>
         <podcast:locked owner="manatees@gmail.com">yes</podcast:locked>
         <podcast:person role="host" group="cast">Robert Dawson</podcast:person>
+        <item>
+            <title><![CDATA[AI Briefing — October 20, 2026]]></title>
+            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-10-20.mp3</link>
+            <guid>ai-briefing-2026-10-20</guid>
+            <pubDate>Tue, 20 Oct 2026 11:37:20 GMT</pubDate>
+            <description><![CDATA[<p>Top 6 AI stories for October 20, 2026.</p>
+<p>1. Top Story: Goodfire researcher's 26,000-word post claims to upend neural network understanding</p>
+<p>Why it matters: If the claim holds, it would fundamentally change how researchers understand and interpret what's happening inside large neural networks, with direct implications for alignment, debugging, and capability prediction.</p>
+<p>Caveat: The post is a blog entry from a startup researcher, not a peer-reviewed paper, and the AI world's enthusiastic reaction may be outpacing the actual evidence.</p>
+<p><a href="https://www.technologyreview.com/2026/10/19/1147149/we-were-looking-at-it-wrong-the-explosive-claim-thats-upended-the-ai-world/">MIT Tech Review AI</a></p>
+<p>2. Research Breakthrough: Single hacker used autonomous AI agents to breach over 100 major company websites</p>
+<p>Why it matters: This is the first publicly documented large-scale attack where AI agents operated semi-autonomously to breach enterprise targets, signaling a qualitative shift in the threat landscape for security teams.</p>
+<p>Caveat: The Norforge report does not name all victims or fully disclose the attack methodology, and it's unclear how much human direction was involved versus true autonomy.</p>
+<p><a href="https://www.theverge.com/ai-artificial-intelligence/1013643/ai-agents-hack-john-deere-shark-ninja-cummins">The Verge AI</a></p>
+<p>3. AI Business Watch: CoreWeave debt distress triggers neocloud shakeout with Nvidia most exposed</p>
+<p>Why it matters: If only 7-10 of hundreds of AI cloud providers survive, the infrastructure layer underpinning most AI development will consolidate rapidly, affecting pricing, availability, and vendor lock-in for builders.</p>
+<p>Caveat: Survival predictions come from unnamed industry executives, and CoreWeave's distress may not be representative of the broader neocloud sector's fundamentals.</p>
+<p><a href="https://www.theverge.com/ai-artificial-intelligence/1014045/coreweave-stock-debt-sector-ai">The Verge AI</a> · <a href="https://the-decoder.com/the-neocloud-shakeout-is-coming-and-nvidia-has-the-most-to-lose/">The Decoder</a></p>
+<p>4. AI Business Watch: FBI says accused OpenAI spy had folder labeled 'Saudi Gov Docs' on device</p>
+<p>Why it matters: The Saudi government connection materially escalates the espionage case beyond a disgruntled employee narrative, raising questions about state-sponsored intelligence operations targeting frontier AI labs.</p>
+<p>Caveat: The motive and full scope of the alleged operation remain unconfirmed; the FBI's characterization comes from charging documents, not a conviction.</p>
+<p><a href="https://arstechnica.com/tech-policy/2026/10/accused-openai-spy-had-folder-called-saudi-gov-docs-fbi-says/">Ars Technica AI</a></p>
+<p>5. Policy &amp; Regulation Watch: Two German courts hold Google legally liable for false AI Overview statements</p>
+<p>Why it matters: A consistent cross-court ruling treating AI-generated search answers as the publisher's own content sets a precedent that could reshape how AI search products are deployed across the EU and beyond.</p>
+<p>Caveat: These are German regional court rulings and have not yet been tested at the EU level or in other major jurisdictions; Google may still appeal.</p>
+<p><a href="https://the-decoder.com/two-german-courts-now-hold-google-liable-for-what-its-ai-overviews-say/">The Decoder</a></p>
+<p>6. Open Source Watch: MiniMax M3.1 Flash matches top Chinese models at half the cost</p>
+<p>Why it matters: The continued compression of price-performance in Chinese open models is forcing Western API providers to compete on cost, directly affecting the economics of AI-powered products for developers.</p>
+<p>Caveat: Benchmark comparisons are from MiniMax's own reporting and the Artificial Analysis Intelligence Index, which may not reflect real-world task performance.</p>
+<p><a href="https://the-decoder.com/minimax-m3-1-flash-shows-chinas-ai-price-race-has-no-floor-in-sight/">The Decoder</a></p>
+<p>Chapters</p>
+<p>00:00:00 Intro</p>
+<p>00:00:32 Goodfire researcher's 26,000-word post...</p>
+<p>00:02:35 Single hacker used autonomous AI agents...</p>
+<p>00:04:15 CoreWeave debt distress triggers neocloud...</p>
+<p>00:06:04 FBI says accused OpenAI spy had folder...</p>
+<p>00:07:27 Two German courts hold Google legally...</p>
+<p>00:09:10 MiniMax M3.1 Flash matches top Chinese...</p>
+<p>00:10:35 Outro</p>]]></description>
+            <enclosure length="16183719" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-10-20.mp3"/>
+                    <itunes:duration>674</itunes:duration>
+            <itunes:explicit>false</itunes:explicit>
+            <itunes:season>2026</itunes:season>
+            <itunes:episode>293</itunes:episode>
+            <itunes:episodeType>full</itunes:episodeType>
+            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-10-20.chapters.json" type="application/json+chapters"/>
+            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-10-20.transcript.txt" type="text/plain" language="en"/>
+            <podcast:soundbite startTime="32" duration="120">Goodfire researcher&apos;s 26,000-word post...</podcast:soundbite>
+            <podcast:soundbite startTime="155" duration="99">Single hacker used autonomous AI agents...</podcast:soundbite>
+            <podcast:soundbite startTime="255" duration="107">CoreWeave debt distress triggers neocloud...</podcast:soundbite>
+            <podcast:soundbite startTime="364" duration="81">FBI says accused OpenAI spy had folder...</podcast:soundbite>
+            <podcast:soundbite startTime="447" duration="102">Two German courts hold Google legally...</podcast:soundbite>
+            <podcast:soundbite startTime="550" duration="83">MiniMax M3.1 Flash matches top Chinese...</podcast:soundbite>
+        </item>
         <item>
             <title><![CDATA[AI Briefing — October 19, 2026]]></title>
             <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-10-19.mp3</link>

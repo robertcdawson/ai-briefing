@@ -1,0 +1,46 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — October 21, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 33,
+      "title": "Intro"
+    },
+    {
+      "startTime": 33,
+      "endTime": 100,
+      "title": "Claude Science autonomously designs..."
+    },
+    {
+      "startTime": 100,
+      "endTime": 161,
+      "title": "US orders all federal civilian agencies..."
+    },
+    {
+      "startTime": 161,
+      "endTime": 214,
+      "title": "OpenAI acquires Orchestra Bio to..."
+    },
+    {
+      "startTime": 214,
+      "endTime": 278,
+      "title": "Army Cyber Command's ECHOTRIBBLE program..."
+    },
+    {
+      "startTime": 278,
+      "endTime": 349,
+      "title": "GPT-6 jumps from 38 to 87 percent on..."
+    },
+    {
+      "startTime": 349,
+      "endTime": 386,
+      "title": "DeepSeek open-sources DeepInfer inference..."
+    },
+    {
+      "startTime": 386,
+      "endTime": 424,
+      "title": "Outro"
+    }
+  ]
+}

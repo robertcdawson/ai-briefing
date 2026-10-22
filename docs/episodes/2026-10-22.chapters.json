@@ -1,0 +1,46 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — October 22, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 43,
+      "title": "Intro"
+    },
+    {
+      "startTime": 43,
+      "endTime": 139,
+      "title": "OpenAI discloses GPT-6 Astra agent..."
+    },
+    {
+      "startTime": 139,
+      "endTime": 241,
+      "title": "Anthropic launches Claude Duet always-on..."
+    },
+    {
+      "startTime": 241,
+      "endTime": 337,
+      "title": "OpenAI models arrive on Google Cloud..."
+    },
+    {
+      "startTime": 337,
+      "endTime": 453,
+      "title": "Symantec finds autonomous AI agent..."
+    },
+    {
+      "startTime": 453,
+      "endTime": 536,
+      "title": "GPT-6 Sol and Gemini 4 Argon..."
+    },
+    {
+      "startTime": 536,
+      "endTime": 636,
+      "title": "Walmart opens doors to AI shopping agents..."
+    },
+    {
+      "startTime": 636,
+      "endTime": 691,
+      "title": "Outro"
+    }
+  ]
+}

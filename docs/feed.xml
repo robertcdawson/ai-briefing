@@ -4,7 +4,7 @@
         <title>AI Briefing</title>
         <link>https://robertcdawson.github.io/ai-briefing/</link>
         <description>Daily AI news briefing — the stories that matter from the last 24 hours.</description>
-        <lastBuildDate>Thu, 22 Oct 2026 11:55:45 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 23 Oct 2026 12:17:06 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -23,6 +23,60 @@
         <podcast:guid>ea8709f4-3ba2-5b7e-bcdc-e409d84a6443</podcast:guid>
         <podcast:locked owner="manatees@gmail.com">yes</podcast:locked>
         <podcast:person role="host" group="cast">Robert Dawson</podcast:person>
+        <item>
+            <title><![CDATA[AI Briefing — October 23, 2026]]></title>
+            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-10-23.mp3</link>
+            <guid>ai-briefing-2026-10-23</guid>
+            <pubDate>Fri, 23 Oct 2026 12:17:06 GMT</pubDate>
+            <description><![CDATA[<p>Top 6 AI stories for October 23, 2026.</p>
+<p>1. Top Story: Microsoft AI diagnostic tool outperforms doctors fourfold on hard medical cases</p>
+<p>Why it matters: A peer-reviewed Science paper claiming 4x diagnostic accuracy over generalist physicians is a landmark benchmark for clinical AI; if the results hold up, it shifts the timeline for AI-assisted triage and diagnosis from aspirational to near-term deployable.</p>
+<p>Caveat: Microsoft built its own benchmark from medical case reports, and TechCrunch notes most gains appear to come from the underlying models rather than Microsoft's orchestration layer itself.</p>
+<p><a href="https://www.theverge.com/ai-artificial-intelligence/1016690/suleyman-microsoft-diagnostic-orchestrator-science-medical-superintelligence">The Verge AI</a> · <a href="https://techcrunch.com/2026/10/22/microsofts-mustafa-suleyman-says-its-ai-outperforms-doctors-on-hard-cases-as-he-chases-medical-superintelligence/">TechCrunch AI</a></p>
+<p>2. Research Breakthrough: Anthropic's Claude auto-generates formal proofs verifying safety of existing code</p>
+<p>Why it matters: Generating 180 million lines of formal proof code for 123 open-source libraries at scale demonstrates that AI-assisted formal verification could become routine practice, potentially transforming software quality assurance for builders shipping production systems.</p>
+<p>Caveat: The article does not specify what fraction of the 123 libraries were fully verified versus partially covered, nor whether the approach generalizes beyond the tested library types.</p>
+<p><a href="https://the-decoder.com/anthropics-claude-now-writes-code-and-proves-it-safe-automatically/">The Decoder</a></p>
+<p>3. Policy &amp; Regulation Watch: AI-accelerated PHP2Shell exploits trigger 'Black October' cybersecurity crisis</p>
+<p>Why it matters: The combination of AI-assisted vulnerability discovery, a four-day attacker head start before defenders were notified, and Chinese state actors using AI agents to breach thousands of ConnectWise customers marks a qualitative escalation in AI-enabled offensive cyber operations.</p>
+<p>Caveat: The full scope of affected organizations from the ConnectWise breach has not been disclosed, and attribution to specific Chinese state actors remains based on Microsoft's reporting alone.</p>
+<p><a href="https://arstechnica.com/security/2026/10/hackers-got-a-four-day-head-start-on-epic-php2shell-vulnerability/">Ars Technica AI</a> · <a href="https://techcrunch.com/2026/10/22/chinese-hackers-spied-on-thousands-of-companies-after-breaching-it-giant-connectwise/">TechCrunch AI</a> · <a href="https://www.404media.co/php2shell-black-october-ai-is-changing-everything-about-hacking-no-one-knows-what-happens-next/">404 Media</a></p>
+<p>4. Product &amp; Tool Watch: OpenAI launches Decisions API for fast low-cost in-app decision making</p>
+<p>Why it matters: A dedicated low-latency, low-cost decision model API gives developers a purpose-built inference endpoint for high-frequency branching logic in agents and apps, directly competing with Jev and shifting the decision-model market.</p>
+<p>Caveat: Pricing, latency benchmarks, and independent comparisons against Jev have not yet been published by third parties.</p>
+<p><a href="https://openai.com/index/decisions-api">OpenAI Blog</a> · <a href="https://techcrunch.com/2026/10/22/openai-makes-its-jev-competitor-widely-available-as-decision-model-competition-heats-up/">TechCrunch AI</a></p>
+<p>5. AI Business Watch: OpenAI seeks $30B raise at $1.25T valuation, cutting prior target</p>
+<p>Why it matters: A $30B round at $1.25T would set a record for private company valuation, but the downward revision from earlier targets signals investor pushback that could affect IPO pricing and competitive capital allocation across the AI sector.</p>
+<p>Caveat: The Decoder reports the valuation target was lowered to close the round, suggesting demand at higher valuations was insufficient; final terms are not confirmed.</p>
+<p><a href="https://techcrunch.com/2026/10/22/openai-working-on-new-30b-raise-at-1-25t-valuation-ahead-of-ipo/">TechCrunch AI</a> · <a href="https://the-decoder.com/openai-lowers-valuation-target-raises-up-to-30-billion/">The Decoder</a></p>
+<p>6. Product &amp; Tool Watch: Major US banks block AI agents using customer credentials for account access</p>
+<p>Why it matters: Morgan Stanley and JPMorgan actively restricting AI agent logins signals a coming authentication infrastructure gap; 1Password's new agent credential vault and the banks' read-only posture together define the emerging security perimeter for agentic finance.</p>
+<p>Caveat: The Decoder does not name all banks involved or specify what fraction of agent login attempts are being blocked versus allowed through read-only access.</p>
+<p><a href="https://the-decoder.com/major-us-banks-are-locking-out-ai-agents-that-log-in-with-customer-credentials/">The Decoder</a> · <a href="https://techcrunch.com/2026/10/22/1password-launches-a-way-for-ai-agents-to-log-in-on-your-behalf-without-seeing-your-password/">TechCrunch AI</a></p>
+<p>Chapters</p>
+<p>00:00:00 Intro</p>
+<p>00:00:37 Microsoft AI diagnostic tool outperforms...</p>
+<p>00:02:20 Anthropic's Claude auto-generates formal...</p>
+<p>00:04:04 AI-accelerated PHP2Shell exploits trigger...</p>
+<p>00:06:04 OpenAI launches Decisions API for fast...</p>
+<p>00:07:26 OpenAI seeks $30B raise at $1.25T...</p>
+<p>00:08:31 Major US banks block AI agents using...</p>
+<p>00:09:57 Outro</p>]]></description>
+            <enclosure length="14886564" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-10-23.mp3"/>
+                    <itunes:duration>620</itunes:duration>
+            <itunes:explicit>false</itunes:explicit>
+            <itunes:season>2026</itunes:season>
+            <itunes:episode>296</itunes:episode>
+            <itunes:episodeType>full</itunes:episodeType>
+            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-10-23.chapters.json" type="application/json+chapters"/>
+            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-10-23.transcript.txt" type="text/plain" language="en"/>
+            <podcast:soundbite startTime="37" duration="102">Microsoft AI diagnostic tool outperforms...</podcast:soundbite>
+            <podcast:soundbite startTime="140" duration="102">Anthropic&apos;s Claude auto-generates formal...</podcast:soundbite>
+            <podcast:soundbite startTime="244" duration="118">AI-accelerated PHP2Shell exploits trigger...</podcast:soundbite>
+            <podcast:soundbite startTime="364" duration="80">OpenAI launches Decisions API for fast...</podcast:soundbite>
+            <podcast:soundbite startTime="446" duration="64">OpenAI seeks $30B raise at $1.25T...</podcast:soundbite>
+            <podcast:soundbite startTime="511" duration="85">Major US banks block AI agents using...</podcast:soundbite>
+        </item>
         <item>
             <title><![CDATA[AI Briefing — October 22, 2026]]></title>
             <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-10-22.mp3</link>
@@ -556,42 +610,6 @@
             <podcast:soundbite startTime="224" duration="61">Fired OpenAI safety researchers dispute...</podcast:soundbite>
             <podcast:soundbite startTime="287" duration="64">Google launches universal Gemini...</podcast:soundbite>
             <podcast:soundbite startTime="353" duration="54">OpenAI exposes Russian and Iranian...</podcast:soundbite>
-        </item>
-        <item>
-            <title><![CDATA[AI Briefing — October 8, 2026]]></title>
-            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-10-08.mp3</link>
-            <guid>ai-briefing-2026-10-08</guid>
-            <pubDate>Thu, 08 Oct 2026 11:36:39 GMT</pubDate>
-            <description><![CDATA[<p>Top 3 AI stories for October 8, 2026.</p>
-<p>1. Top Story: OpenAI launches GPT-6 with interactive Intelligent UI replacing text-only responses</p>
-<p>Why it matters: ChatGPT's shift from text output to interactive charts, buttons, forms, and mini-apps represents a fundamental UX paradigm change for AI assistants, with GPT-6 now serving both paying and free users at differentiated tiers.</p>
-<p>Caveat: The interactive UI is rolling out gradually and the performance gap between paid GPT-6 Sol and free GPT-6 Luna tiers has not been independently benchmarked.</p>
-<p><a href="https://www.theverge.com/ai-artificial-intelligence/1007276/openai-chatgpt-intelligent-ui-gpt-6">The Verge AI</a></p>
-<p>2. Product &amp; Tool Watch: Microsoft launches Surface Laptop Ultra and Copilot Hybrid Intelligence with local file access</p>
-<p>Why it matters: Copilot gaining OS-level file access and local-cloud hybrid inference marks a significant step toward ambient AI agents on Windows desktops, directly relevant to how developers and knowledge workers interact with their machines.</p>
-<p>Caveat: The Hybrid Intelligence demos were pre-recorded videos, not live, and no independent performance data for the RTX Spark platform has been published yet.</p>
-<p><a href="https://www.theverge.com/tech/1007147/microsoft-surface-laptop-ultra-windows-event-everything-announced">The Verge AI</a> · <a href="https://www.theverge.com/tech/1007113/microsoft-windows-copilot-ai-control-search-hybrid-intelligence">The Verge AI</a> · <a href="https://www.theverge.com/tech/1006915/microsoft-surface-rtx-spark-dev-box-preorder">The Verge AI</a></p>
-<p>3. Research Breakthrough: Google DeepMind, Meta, and Isomorphic Labs fund 1.8 billion dollar virtual cell initiative</p>
-<p>Why it matters: A $1.8 billion coordinated push to build AI models that predict cell behavior could accelerate drug discovery and disease research in ways that dwarf individual lab efforts, with the US Department of Energy also contributing compute.</p>
-<p>Caveat: The first dataset is not expected for roughly a year, and translating cell-behavior predictions into clinical outcomes remains a multi-decade challenge.</p>
-<p><a href="https://www.theverge.com/tech/1006766/google-meta-biohub-investment-virtual-cell">The Verge AI</a></p>
-<p>Chapters</p>
-<p>00:00:00 Intro</p>
-<p>00:00:28 OpenAI launches GPT-6 with interactive...</p>
-<p>00:02:12 Microsoft launches Surface Laptop Ultra...</p>
-<p>00:03:58 Google DeepMind, Meta, and Isomorphic...</p>
-<p>00:05:56 Outro</p>]]></description>
-            <enclosure length="9287005" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-10-08.mp3"/>
-                    <itunes:duration>387</itunes:duration>
-            <itunes:explicit>false</itunes:explicit>
-            <itunes:season>2026</itunes:season>
-            <itunes:episode>281</itunes:episode>
-            <itunes:episodeType>full</itunes:episodeType>
-            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-10-08.chapters.json" type="application/json+chapters"/>
-            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-10-08.transcript.txt" type="text/plain" language="en"/>
-            <podcast:soundbite startTime="28" duration="103">OpenAI launches GPT-6 with interactive...</podcast:soundbite>
-            <podcast:soundbite startTime="132" duration="104">Microsoft launches Surface Laptop Ultra...</podcast:soundbite>
-            <podcast:soundbite startTime="238" duration="117">Google DeepMind, Meta, and Isomorphic...</podcast:soundbite>
         </item>
     </channel>
 </rss>

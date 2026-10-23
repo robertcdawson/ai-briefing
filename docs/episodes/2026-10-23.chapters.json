@@ -1,0 +1,46 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — October 23, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 37,
+      "title": "Intro"
+    },
+    {
+      "startTime": 37,
+      "endTime": 140,
+      "title": "Microsoft AI diagnostic tool outperforms..."
+    },
+    {
+      "startTime": 140,
+      "endTime": 244,
+      "title": "Anthropic's Claude auto-generates formal..."
+    },
+    {
+      "startTime": 244,
+      "endTime": 364,
+      "title": "AI-accelerated PHP2Shell exploits trigger..."
+    },
+    {
+      "startTime": 364,
+      "endTime": 446,
+      "title": "OpenAI launches Decisions API for fast..."
+    },
+    {
+      "startTime": 446,
+      "endTime": 511,
+      "title": "OpenAI seeks $30B raise at $1.25T..."
+    },
+    {
+      "startTime": 511,
+      "endTime": 597,
+      "title": "Major US banks block AI agents using..."
+    },
+    {
+      "startTime": 597,
+      "endTime": 620,
+      "title": "Outro"
+    }
+  ]
+}

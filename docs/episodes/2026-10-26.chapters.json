@@ -1,0 +1,46 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — October 26, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 17,
+      "title": "Intro"
+    },
+    {
+      "startTime": 17,
+      "endTime": 117,
+      "title": "Apollo economist says AI delivers zero..."
+    },
+    {
+      "startTime": 117,
+      "endTime": 212,
+      "title": "Toyota commits $6.4 billion annually to..."
+    },
+    {
+      "startTime": 212,
+      "endTime": 293,
+      "title": "High-frequency trading firms build data..."
+    },
+    {
+      "startTime": 293,
+      "endTime": 386,
+      "title": "r/opensource bans all AI projects,..."
+    },
+    {
+      "startTime": 386,
+      "endTime": 477,
+      "title": "Google AI Overviews have structurally..."
+    },
+    {
+      "startTime": 477,
+      "endTime": 547,
+      "title": "Grok releases first seven minutes of..."
+    },
+    {
+      "startTime": 547,
+      "endTime": 587,
+      "title": "Outro"
+    }
+  ]
+}

@@ -4,7 +4,7 @@
         <title>AI Briefing</title>
         <link>https://robertcdawson.github.io/ai-briefing/</link>
         <description>Daily AI news briefing — the stories that matter from the last 24 hours.</description>
-        <lastBuildDate>Fri, 23 Oct 2026 12:17:06 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 26 Oct 2026 11:42:46 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -23,6 +23,60 @@
         <podcast:guid>ea8709f4-3ba2-5b7e-bcdc-e409d84a6443</podcast:guid>
         <podcast:locked owner="manatees@gmail.com">yes</podcast:locked>
         <podcast:person role="host" group="cast">Robert Dawson</podcast:person>
+        <item>
+            <title><![CDATA[AI Briefing — October 26, 2026]]></title>
+            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-10-26.mp3</link>
+            <guid>ai-briefing-2026-10-26</guid>
+            <pubDate>Mon, 26 Oct 2026 11:42:46 GMT</pubDate>
+            <description><![CDATA[<p>Top 6 AI stories for October 26, 2026.</p>
+<p>1. Top Story: Apollo economist says AI delivers zero financial payoff outside tech sector</p>
+<p>Why it matters: A credible macroeconomic voice quantifying AI's ROI gap is a signal builders and investors need to weigh against hype cycles; it may shift enterprise procurement conversations and funding narratives.</p>
+<p>Caveat: The claim comes from a single Apollo economist and the excerpt provides no methodology, sample size, or time horizon for the analysis.</p>
+<p><a href="https://techcrunch.com/2026/10/25/ai-delivers-zero-financial-payoff-to-most-companies-according-to-apollo-economist/">TechCrunch AI</a></p>
+<p>2. AI Business Watch: Toyota commits $6.4 billion annually to humanoid robots and factory automation</p>
+<p>Why it matters: A $6.4B annual commitment from a major industrial manufacturer signals that humanoid robotics is crossing from R&amp;D curiosity to core capital allocation, which will accelerate the hardware and AI software ecosystem around embodied agents.</p>
+<p>Caveat: The excerpt does not specify the timeline, milestone targets, or how much of the $6.4B is new spending versus reallocation from existing automation budgets.</p>
+<p><a href="https://the-decoder.com/toyota-is-betting-6-4-billion-a-year-on-humanoid-robots-and-factory-automation/">The Decoder</a></p>
+<p>3. AI Business Watch: High-frequency trading firms build data centers and back chip startups for AI edge</p>
+<p>Why it matters: HFT firms like Jane Street and Hudson River Trading entering the AI infrastructure race signals that latency-sensitive financial players see compute ownership as a durable competitive moat, potentially tightening GPU supply further.</p>
+<p>Caveat: The article does not disclose investment amounts, specific chip startups backed, or timelines for data center buildouts.</p>
+<p><a href="https://the-decoder.com/wall-streets-fastest-traders-are-building-data-centers-and-backing-chip-startups-to-stay-ahead-in-ai/">The Decoder</a></p>
+<p>4. AI Culture Signal: r/opensource bans all AI projects, sparking community revolt and rival subreddit</p>
+<p>Why it matters: The ban crystallizes a growing ideological split in open-source communities over whether AI-assisted or AI-targeted software belongs under the open-source umbrella, with real implications for where developers share and discover tools.</p>
+<p>Caveat: Subreddit moderation decisions are reversible and the rival r/trueopensource is brand new, so the long-term community fragmentation is uncertain.</p>
+<p><a href="https://www.theverge.com/ai-artificial-intelligence/1018217/reddit-opensource-ai-ban">The Verge AI</a></p>
+<p>5. Policy &amp; Regulation Watch: Google AI Overviews have structurally upended the online publishing business model</p>
+<p>Why it matters: The shift from click-through traffic to zero-click AI answers is eroding the ad-revenue foundation of independent publishing, with downstream effects on the information ecosystem that AI models are trained on.</p>
+<p>Caveat: The Verge newsletter piece is analytical commentary rather than new data; specific traffic or revenue figures are not cited in the excerpt.</p>
+<p><a href="https://www.theverge.com/column/1017983/google-ai-search-online-publishing">The Verge AI</a></p>
+<p>6. AI Culture Signal: Grok releases first seven minutes of AI-generated Odyssey film footage</p>
+<p>Why it matters: A major AI lab releasing a feature-length AI-generated film preview is a concrete milestone for evaluating where generative video sits on the quality-versus-artistry curve today.</p>
+<p>Caveat: TechCrunch's own reviewer notes the footage 'looks okay, as long as you're not seeking artistry, inspiration, or human interest,' suggesting quality remains a significant limitation.</p>
+<p><a href="https://techcrunch.com/2026/10/25/grok-releases-the-first-seven-minutes-of-its-ai-generated-odyssey/">TechCrunch AI</a></p>
+<p>Chapters</p>
+<p>00:00:00 Intro</p>
+<p>00:00:17 Apollo economist says AI delivers zero...</p>
+<p>00:01:57 Toyota commits $6.4 billion annually to...</p>
+<p>00:03:32 High-frequency trading firms build data...</p>
+<p>00:04:53 r/opensource bans all AI projects,...</p>
+<p>00:06:26 Google AI Overviews have structurally...</p>
+<p>00:07:57 Grok releases first seven minutes of...</p>
+<p>00:09:07 Outro</p>]]></description>
+            <enclosure length="14091679" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-10-26.mp3"/>
+                    <itunes:duration>587</itunes:duration>
+            <itunes:explicit>false</itunes:explicit>
+            <itunes:season>2026</itunes:season>
+            <itunes:episode>299</itunes:episode>
+            <itunes:episodeType>full</itunes:episodeType>
+            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-10-26.chapters.json" type="application/json+chapters"/>
+            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-10-26.transcript.txt" type="text/plain" language="en"/>
+            <podcast:soundbite startTime="17" duration="99">Apollo economist says AI delivers zero...</podcast:soundbite>
+            <podcast:soundbite startTime="117" duration="93">Toyota commits $6.4 billion annually to...</podcast:soundbite>
+            <podcast:soundbite startTime="212" duration="80">High-frequency trading firms build data...</podcast:soundbite>
+            <podcast:soundbite startTime="293" duration="91">r/opensource bans all AI projects,...</podcast:soundbite>
+            <podcast:soundbite startTime="386" duration="90">Google AI Overviews have structurally...</podcast:soundbite>
+            <podcast:soundbite startTime="477" duration="68">Grok releases first seven minutes of...</podcast:soundbite>
+        </item>
         <item>
             <title><![CDATA[AI Briefing — October 23, 2026]]></title>
             <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-10-23.mp3</link>
@@ -556,60 +610,6 @@
             <podcast:soundbite startTime="257" duration="103">AI agents overstate results and fall far...</podcast:soundbite>
             <podcast:soundbite startTime="362" duration="120">Silicon Valley executives adopt Trump&apos;s...</podcast:soundbite>
             <podcast:soundbite startTime="484" duration="112">Voice AI executives say the technology...</podcast:soundbite>
-        </item>
-        <item>
-            <title><![CDATA[AI Briefing — October 9, 2026]]></title>
-            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-10-09.mp3</link>
-            <guid>ai-briefing-2026-10-09</guid>
-            <pubDate>Fri, 09 Oct 2026 11:40:53 GMT</pubDate>
-            <description><![CDATA[<p>Top 6 AI stories for October 9, 2026.</p>
-<p>1. Top Story: Single prompt could hijack every AI agent in an AWS Bedrock account</p>
-<p>Why it matters: The vulnerability demonstrates that multi-agent architectures on managed cloud platforms inherit blast-radius risks that single-model deployments do not, a critical consideration for builders deploying agent fleets on AWS.</p>
-<p>Caveat: AWS has patched the issue and tightened default permissions, so the specific attack vector is closed, but the underlying architectural pattern may recur in other platforms.</p>
-<p><a href="https://the-decoder.com/a-single-prompt-was-enough-to-hijack-every-ai-agent-in-an-aws-account-zenity-researchers-found/">The Decoder</a></p>
-<p>2. AI Business Watch: OpenAI revenue reportedly 20 billion dollars below prior projections</p>
-<p>Why it matters: A $20 billion gap between projected and actual annualized revenue would materially affect OpenAI's $1.4 trillion valuation narrative and its ability to sustain the $30 billion raise it is currently pursuing.</p>
-<p>Caveat: Neither the new figure nor the original $70 billion projection has been independently verified, and annualized revenue estimates for private companies are notoriously volatile.</p>
-<p><a href="https://techcrunch.com/2026/10/08/openais-revenue-is-reportedly-20-billion-less-than-previously-projected/">TechCrunch AI</a></p>
-<p>3. Research Breakthrough: Claude Science AI agents produce first complete ultraviolet map of the entire sky</p>
-<p>Why it matters: This is a concrete example of AI agents completing a scientific project that a human researcher judged would not have been done otherwise, providing a real benchmark for agentic science workflows.</p>
-<p>Caveat: The 10 percent average deviation between AI predictions and actual measurements has not been peer-reviewed, and the result has not been replicated by independent teams.</p>
-<p><a href="https://the-decoder.com/anthropics-claude-science-creates-the-first-complete-ultraviolet-map-of-the-sky/">The Decoder</a></p>
-<p>4. AI Culture Signal: Fired OpenAI safety researchers dispute misconduct claims and warn of chilling effect</p>
-<p>Why it matters: If the researchers' account is accurate, the firings may suppress internal safety dissent at a critical period for frontier model development, affecting how safety culture functions at the most influential AI lab.</p>
-<p>Caveat: The researchers' open letter is self-interested and OpenAI has not publicly responded with specifics, so the full picture remains contested.</p>
-<p><a href="https://techcrunch.com/2026/10/08/fired-openai-safety-researchers-dispute-misconduct-claims-warn-of-chilling-effect/">TechCrunch AI</a></p>
-<p>5. Product &amp; Tool Watch: Google launches universal Gemini enterprise agent and offline meeting note-taker</p>
-<p>Why it matters: The universal Gemini agent with cross-app delegation and a dedicated workplace identity represents a meaningful step toward persistent AI coworkers in enterprise environments; the offline Foresight app addresses a real privacy gap in meeting transcription.</p>
-<p>Caveat: Enterprise agent availability and pricing tiers have not been fully disclosed, and cross-app reliability in production environments is unproven.</p>
-<p><a href="https://www.theverge.com/tech/1007904/google-gemini-ai-agent-enterprise">The Verge AI</a> · <a href="https://techcrunch.com/2026/10/08/google-brings-agentic-ai-to-gemini-starting-with-businesses/">TechCrunch AI</a> · <a href="https://www.theverge.com/tech/1007985/google-ai-notetaking-app-transcribe-offline">The Verge AI</a> · <a href="https://techcrunch.com/2026/10/08/google-releases-a-new-local-first-granola-competitor/">TechCrunch AI</a></p>
-<p>6. Policy &amp; Regulation Watch: OpenAI exposes Russian and Iranian influence operations planting fake news stories</p>
-<p>Why it matters: The first-ever Category 5 rating in OpenAI's threat reporting history signals that AI-assisted disinformation has crossed a threshold of real-world political impact, relevant for anyone building or deploying content systems.</p>
-<p>Caveat: OpenAI's threat reporting methodology and category definitions are self-published and have not been independently audited for consistency or completeness.</p>
-<p><a href="https://the-decoder.com/openai-uncovers-russian-and-iranian-influence-ops-that-planted-fake-stories-in-real-news-outlets/">The Decoder</a></p>
-<p>Chapters</p>
-<p>00:00:00 Intro</p>
-<p>00:00:27 Single prompt could hijack every AI agent...</p>
-<p>00:01:29 OpenAI revenue reportedly 20 billion...</p>
-<p>00:02:40 Claude Science AI agents produce first...</p>
-<p>00:03:44 Fired OpenAI safety researchers dispute...</p>
-<p>00:04:47 Google launches universal Gemini...</p>
-<p>00:05:53 OpenAI exposes Russian and Iranian...</p>
-<p>00:06:49 Outro</p>]]></description>
-            <enclosure length="10271066" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-10-09.mp3"/>
-                    <itunes:duration>428</itunes:duration>
-            <itunes:explicit>false</itunes:explicit>
-            <itunes:season>2026</itunes:season>
-            <itunes:episode>282</itunes:episode>
-            <itunes:episodeType>full</itunes:episodeType>
-            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-10-09.chapters.json" type="application/json+chapters"/>
-            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-10-09.transcript.txt" type="text/plain" language="en"/>
-            <podcast:soundbite startTime="27" duration="60">Single prompt could hijack every AI agent...</podcast:soundbite>
-            <podcast:soundbite startTime="89" duration="69">OpenAI revenue reportedly 20 billion...</podcast:soundbite>
-            <podcast:soundbite startTime="160" duration="63">Claude Science AI agents produce first...</podcast:soundbite>
-            <podcast:soundbite startTime="224" duration="61">Fired OpenAI safety researchers dispute...</podcast:soundbite>
-            <podcast:soundbite startTime="287" duration="64">Google launches universal Gemini...</podcast:soundbite>
-            <podcast:soundbite startTime="353" duration="54">OpenAI exposes Russian and Iranian...</podcast:soundbite>
         </item>
     </channel>
 </rss>

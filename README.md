@@ -411,7 +411,7 @@ Chapters are published two ways: a Podcasting 2.0 JSON sidecar linked from `<pod
 
 Episode descriptions are HTML show notes (`<p>` and `<a href>` only): numbered story cards with why-it-matters, caveat, and publisher-named source links, then a trailing `HH:MM:SS Title` chapter list starting at `00:00:00`. Apple Podcasts turns that timestamp block into jumpable chapters in the app; it does not accept `podcasts.apple.com?t=` deep links at publish time because the catalog episode ID does not exist yet. `buildEpisodeDescription` in `src/publish.ts` assembles this from the selected clusters; unit tests in `test/publish.apple-rss.test.ts` assert layout, escaped markup, and source links.
 
-Source links are untrusted RSS/model data. `isSafeSourceUrl` (`src/sourceUrls.ts`) keeps only absolute HTTP(S) URLs; curation binds each source to a fetched article (`resolveClusterSources`, including after a stage-cache hit); publish rejects unsafe URLs before writing any episode asset. TTS segment files go in a private `mkdtemp` workspace, not a date/pid-guessable path. Details: `docs/solutions/best-practices/source-url-safety-and-audio-workspaces.md`.
+Source links are untrusted RSS/model data. `isSafeSourceUrl` (`src/sourceUrls.ts`) keeps only absolute HTTP(S) URLs; curation binds each source to a fetched article (`resolveClusterSources`, including after a stage-cache hit) via exact then canonical URL match; unmatched sources are dropped, and a cluster left with no fetched source is dropped (one bad link costs one story, not the episode). Publish rejects unsafe URLs before writing any episode asset. TTS segment files go in a private `mkdtemp` workspace, not a date/pid-guessable path. Details: `docs/solutions/best-practices/source-url-safety-and-audio-workspaces.md`.
 
 ### Input and output safety limits
 
@@ -425,7 +425,7 @@ Details (budgets, encoding, delivery allow-list): `docs/solutions/best-practices
 
 ### Local stage cache (dev re-runs)
 
-When iterating locally after a late-stage failure (TTS/audio/publish), set `STAGE_CACHE_DIR` (for example `tmp/stage-cache`) so curate, script, and earEdit reuse prior LLM output keyed by a content hash of their inputs. The script key includes style snippets and the phrase profile; the earEdit key includes the script text plus per-cluster notes. A curate cache hit still runs `resolveClusterSources` against today's fetched articles so invented source URLs cannot replay into show notes. Unset disables caching. Single-machine only — the daily Actions runner is ephemeral, so this never applies in CI.
+When iterating locally after a late-stage failure (TTS/audio/publish), set `STAGE_CACHE_DIR` (for example `tmp/stage-cache`) so curate, script, and earEdit reuse prior LLM output keyed by a content hash of their inputs. The script key includes style snippets and the phrase profile; the earEdit key includes the script text plus per-cluster notes. A curate cache hit still runs `resolveClusterSources` against today's fetched articles (filtering nulls when a cluster loses all sources) so invented source URLs cannot replay into show notes. Unset disables caching. Single-machine only — the daily Actions runner is ephemeral, so this never applies in CI.
 
 Details (key composition, non-fatal I/O, when to wipe the cache): `docs/solutions/best-practices/stage-cache-for-local-reruns.md`.
 
@@ -490,7 +490,11 @@ If they restore feeds, add them back.
 | `FEED_BASE_URL` | Must be an absolute `http://` or `https://` URL (enclosure base). |
 | `ffmpeg` / `ffprobe` | Install and ensure both are on `PATH` (`brew install ffmpeg` / `apt install ffmpeg`). |
 
-Preflight does **not** call providers or RSS — a green preflight only means local config looks runnable.
+`npm run preflight` does **not** call providers or RSS — a green preflight only means local config looks runnable. On `npm start` with Gemini TTS (including a designed `voice_…` id), the pipeline then speaks one word via `assertGeminiVoiceReachable` before fetch/curate so a project-mismatched voice fails in seconds. See `docs/solutions/best-practices/gemini-designed-voice.md`.
+
+### Gemini voice check fails with HTTP 403/404
+
+The designed voice id and `GEMINI_API_KEY` must belong to the same Google AI Studio project, or the voice was deleted / expired (stored custom voices last 1 year from last use). The error message lists `voice_…` ids this key can see. Fix: replace the Actions secret with a key from the voice's project, or pick another voice on the tune page (`config/show.json` `tts.voice`).
 
 ### Pipeline logs `episode_already_published` and exits
 

@@ -32,7 +32,7 @@ Two guards close those paths:
 |---|---|
 | Fetch | Drop items whose `link` fails `isSafeSourceUrl` (silent skip). Trim kept URLs. |
 | Curate | `resolveClusterSources` keeps only cluster sources that match a **safe fetched article URL** (exact trim match, then `canonicalArticleUrl` match). The kept URL is always the fetched one. Unmatched sources are dropped and logged as `curate.sources`; a cluster left with no source is dropped. One invented link costs one story, not the episode. Publisher comes from the article, not the model. |
-| Pipeline after cache | `src/index.ts` runs `resolveClusterSources` again on the selected clusters so a stage-cache hit cannot replay invented URLs. |
+| Pipeline after cache | `src/index.ts` runs `resolveClusterSources` again on the selected clusters and **filters out nulls** (clusters left with no fetched source), so a stage-cache hit cannot replay invented URLs or abort the episode. |
 | Script | `validateScriptResponse` / `reconcileScriptSourceUrls` keep segment `sourceUrls` aligned with the (already resolved) cluster list. |
 | Publish | `buildSourceLinkParagraph` throws before any episode file is written if a URL is unsafe. |
 
@@ -63,15 +63,15 @@ isSafeSourceUrl(" https://example.com/story ") // true (trim OK)
 isSafeSourceUrl("https://exa\nmple.com/story") // false (control before trim)
 ```
 
-Cache-hit re-resolution (orchestrator):
+Cache-hit re-resolution (orchestrator) — drop clusters that resolve to nothing:
 
 ```ts
 const { selected, report } = await withStageCache("curate", { date, articles }, () =>
   curate(articles, date),
 );
-const clusters = selected.map((cluster) =>
-  resolveClusterSources(normaliseCluster(cluster), articles),
-);
+const clusters = selected
+  .map((cluster) => resolveClusterSources(normaliseCluster(cluster), articles))
+  .filter((cluster): cluster is NonNullable<typeof cluster> => cluster !== null);
 ```
 
 ## Why this works

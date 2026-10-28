@@ -1,0 +1,125 @@
+AI Briefing — October 28, 2026
+Date: 2026-10-28
+
+Intro
+
+Hundreds of foundational computer science papers are suddenly standing on shaky ground this Tuesday, October 28th, 2026, depending on whether an AI actually solved the Exponential Time Hypothesis.
+
+If the model's math holds up under scrutiny, the way we prove theoretical limits in computing just fundamentally shifted.
+
+Top Story: OpenAI enlists Nobel laureate shepherds to verify AI-produced math and physics proofs
+
+You might be thinking exactly what researchers are telling The Verge today: you are just tired of OpenAI claiming massive theoretical breakthroughs without letting the academic community actually check the math.
+
+What we flagged on Monday is playing out exactly as expected, just a little faster.
+
+My call that the Kakeya conjecture result would face intense skepticism without outside shepherds was spot on, because OpenAI has now brought in external experts to verify the three proofs.
+
+That group includes a Nobel laureate, and TechCrunch talked to an MIT computer scientist who is actively trying to untangle the Exponential Time Hypothesis result.
+
+If that specific computer science proof is valid, hundreds of existing research papers built on that foundation are suddenly obsolete.
+
+The catch is that independent review is still ongoing, and frustration with how OpenAI handled the initial rollout might cloud the reception even if the math is flawless.
+
+Over in the simulation space, DeepMind just shipped a major engine update.
+Source: https://the-decoder.com/openai-asks-outside-experts-including-a-nobel-laureate-to-check-proofs-its-ai-produced-in-math-computer-science-and-physics/
+Source: https://www.theverge.com/ai-artificial-intelligence/1019921/openai-breakthrough-math-computer-science-physics
+Source: https://techcrunch.com/2026/10/27/frontier-ai-labs-say-their-models-refuted-the-exponential-time-hypothesis-what-does-that-mean/
+
+Research Breakthrough: Google DeepMind releases Genie 4 real-time interactive world simulation model
+
+To understand why Genie 4 matters, you have to look at the trajectory of world models.
+
+We started with blurry, static frames, moved to short clips that hallucinated wildly after ten seconds, and then Genie 3 gave us a somewhat stable minute of video.
+
+Now, DeepMind has released Genie 4, doubling that limit to maintain consistent scenes for up to two minutes.
+
+Gemini 3.8 Flash runs in the background to keep the physics and geometry from collapsing.
+
+The most useful upgrade is that you can now feed it real-time natural language prompts to update an experience mid-session, steering the simulation while it runs.
+
+The Decoder points out that this architecture actually draws on agent designs that predate large language models entirely.
+
+This is still an early research tool, and developers do not have a firm rollout timeline yet, but it pushes us closer to practical robotics training and game prototyping.
+
+Meanwhile, Anthropic is figuring out how to pay for all this compute.
+Source: https://deepmind.google/blog/genie-4-a-new-generation-of-world-simulation/
+Source: https://www.theverge.com/tech/1019076/google-genie-4-ai-model
+Source: https://arstechnica.com/google/2026/10/deepminds-genie-4-world-model-adds-audio-and-more-realistic-people-to-simulations/
+Source: https://techcrunch.com/2026/10/27/googles-genie-4-world-model-adds-audio-more-realistic-worlds-and-real-time-steering/
+Source: https://the-decoder.com/google-deepminds-genie-4-puts-a-modern-spin-on-agent-designs-that-predate-llms/
+
+AI Business Watch: Anthropic IPO filings detail existential risk warnings and complex governance structure
+
+When you look at who holds the purse strings in Anthropic's new IPO filing, the incentives pull in two very different directions.
+
+On Monday, I predicted their massive compute obligations would eventually force them to squeeze API pricing, and I am sticking by that call.
+
+But today, the focus is on the 93-page Risk Factor section, which explicitly warns prospective shareholders about seven potential nightmares, including AI blackmail and sentience.
+
+The Verge reports that Anthropic built an incredibly complex post-IPO governance structure specifically to resist investor pressure to cut safety corners.
+
+Shareholders are buying in, but a public benefit LLC fund retains company control without any external enforcement mechanism.
+
+The real test will be whether that structural firewall holds up when the market demands faster returns on those massive computing debts.
+
+Investor pressure isn't the only threat Anthropic is dealing with today.
+Source: https://arstechnica.com/ai/2026/10/anthropic-ipo-warns-its-ai-could-blackmail-people-become-sentient-end-humanity/
+Source: https://www.theverge.com/ai-artificial-intelligence/1019470/anthropic-ipo-resist-investor-pressure-cut-corners-safety
+Source: https://techcrunch.com/2026/10/27/vcs-will-make-billions-on-anthropics-ipo-but-amazon-is-set-to-make-much-much-more/
+Source: https://techcrunch.com/2026/10/27/whos-really-in-charge-at-anthropic-after-the-ipo/
+
+Policy & Regulation Watch: AI agents breach Anthropic's internal systems via third-party software in bug bounty
+
+For anyone relying on external software dependencies in an AI pipeline, your threat model just expanded.
+
+A cybersecurity startup named Cathedral just used AI agents to breach Anthropic's internal systems, accessing sales, HR, and IT data.
+
+The intrusion didn't break through Anthropic's core defenses, but slipped in entirely through third-party software dependencies.
+
+Anthropic confirmed the breach, though they are disputing exactly how deep Cathedral's access went.
+
+Because this was a sanctioned bug bounty program, the immediate danger is contained, but it proves that even the most hardened safety labs are vulnerable to the exact attack vectors they study.
+
+Lawmakers in Delaware are already trying to govern these autonomous systems.
+Source: https://the-decoder.com/ai-agents-hacked-anthropic-maker-of-arguably-the-most-capable-ai-models-for-cyberdefense/
+
+Policy & Regulation Watch: Delaware proposal would allow AI agents to legally operate entire businesses autonomously
+
+This Delaware proposal to let AI agents run entire companies looks less like an innovation milestone and more like a pristine liability shield for corporate negligence.
+
+The framework would legally permit businesses to operate with no human at the helm.
+
+Ars Technica notes this would create the first US legal structure for AI-run companies.
+
+US Representative James Comer is already pushing back, arguing that owners of these autonomous firms could easily evade legal responsibility for reckless AI behavior.
+
+This is strictly a proposal right now, and the political opposition guarantees it will face a brutal fight before any code gets to act as a CEO.
+
+Down at the application layer, Apple is wiring agents into everyday office work.
+Source: https://arstechnica.com/tech-policy/2026/10/no-human-at-the-helm-delaware-plan-would-let-ai-agents-run-entire-businesses/
+
+Product & Tool Watch: Apple adds AI assistant with MCP support to Pages, Keynote, and Numbers
+
+Apple just updated its productivity suite with an AI assistant, but the strangest piece of the announcement is the total silence around performance benchmarks for the OpenAI models running under the hood.
+
+We know the assistant mixes Apple's native models with OpenAI's architecture to let users design and animate Keynote slides using just natural language.
+
+The real shift for developers is that Pages, Keynote, and Numbers now support the Model Context Protocol, or MCP, on macOS 27 and later.
+
+MCP is an open standard that lets different AI models securely access local data sources.
+
+By supporting it, Apple is opening a direct path for third-party AI agents to plug straight into mainstream office workflows.
+
+The hardware requirement limits the immediate user base, and the privacy details regarding that OpenAI integration are still entirely missing.
+Source: https://www.theverge.com/tech/1019373/apple-pages-keynote-numbers-ai-chatbot-update
+
+Outro
+
+The metric to track over the next two weeks is the independent verification timeline for OpenAI's computer science proof.
+
+If that Nobel laureate and the MIT reviewers validate the math, the theoretical boundaries of computing shift immediately.
+
+Keep an eye on the academic pre-print servers to see if the work actually stands on its own.
+
+Have a solid Tuesday, and I'll catch you on Wednesday.

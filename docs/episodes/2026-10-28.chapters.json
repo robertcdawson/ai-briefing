@@ -1,0 +1,46 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — October 28, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 25,
+      "title": "Intro"
+    },
+    {
+      "startTime": 25,
+      "endTime": 94,
+      "title": "OpenAI enlists Nobel laureate shepherds..."
+    },
+    {
+      "startTime": 94,
+      "endTime": 162,
+      "title": "Google DeepMind releases Genie 4..."
+    },
+    {
+      "startTime": 162,
+      "endTime": 227,
+      "title": "Anthropic IPO filings detail existential..."
+    },
+    {
+      "startTime": 227,
+      "endTime": 274,
+      "title": "AI agents breach Anthropic's internal..."
+    },
+    {
+      "startTime": 274,
+      "endTime": 327,
+      "title": "Delaware proposal would allow AI agents..."
+    },
+    {
+      "startTime": 327,
+      "endTime": 383,
+      "title": "Apple adds AI assistant with MCP support..."
+    },
+    {
+      "startTime": 383,
+      "endTime": 411,
+      "title": "Outro"
+    }
+  ]
+}

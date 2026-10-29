@@ -1,0 +1,46 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — October 29, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 14,
+      "title": "Intro"
+    },
+    {
+      "startTime": 14,
+      "endTime": 44,
+      "title": "Google releases Gemini 4 Carbon frontier..."
+    },
+    {
+      "startTime": 44,
+      "endTime": 82,
+      "title": "Google's AI search mode dents ad revenue..."
+    },
+    {
+      "startTime": 82,
+      "endTime": 123,
+      "title": "Microsoft posts record $92.3B quarter..."
+    },
+    {
+      "startTime": 123,
+      "endTime": 166,
+      "title": "MIT Tech Review calls for urgent..."
+    },
+    {
+      "startTime": 166,
+      "endTime": 204,
+      "title": "Google opens Android Studio to 40-plus..."
+    },
+    {
+      "startTime": 204,
+      "endTime": 244,
+      "title": "Nvidia releases open multilingual..."
+    },
+    {
+      "startTime": 244,
+      "endTime": 257,
+      "title": "Outro"
+    }
+  ]
+}

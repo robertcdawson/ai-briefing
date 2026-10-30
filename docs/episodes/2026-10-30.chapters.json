@@ -1,0 +1,46 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — October 30, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 40,
+      "title": "Intro"
+    },
+    {
+      "startTime": 40,
+      "endTime": 178,
+      "title": "Anthropic study finds experts..."
+    },
+    {
+      "startTime": 178,
+      "endTime": 294,
+      "title": "US DOJ scrutinizes Nvidia's planned..."
+    },
+    {
+      "startTime": 294,
+      "endTime": 379,
+      "title": "Mistral releases trillion-parameter..."
+    },
+    {
+      "startTime": 379,
+      "endTime": 486,
+      "title": "Anthropic IPO analysis reveals AGI bet..."
+    },
+    {
+      "startTime": 486,
+      "endTime": 579,
+      "title": "US intelligence investigated Chinese spy..."
+    },
+    {
+      "startTime": 579,
+      "endTime": 680,
+      "title": "Wikimedia files amicus brief staking out..."
+    },
+    {
+      "startTime": 680,
+      "endTime": 709,
+      "title": "Outro"
+    }
+  ]
+}

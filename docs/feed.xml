@@ -4,7 +4,7 @@
         <title>AI Briefing</title>
         <link>https://robertcdawson.github.io/ai-briefing/</link>
         <description>Daily AI news briefing — the stories that matter from the last 24 hours.</description>
-        <lastBuildDate>Thu, 29 Oct 2026 11:34:33 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 30 Oct 2026 11:30:17 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -23,6 +23,60 @@
         <podcast:guid>ea8709f4-3ba2-5b7e-bcdc-e409d84a6443</podcast:guid>
         <podcast:locked owner="manatees@gmail.com">yes</podcast:locked>
         <podcast:person role="host" group="cast">Robert Dawson</podcast:person>
+        <item>
+            <title><![CDATA[AI Briefing — October 30, 2026]]></title>
+            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-10-30.mp3</link>
+            <guid>ai-briefing-2026-10-30</guid>
+            <pubDate>Fri, 30 Oct 2026 11:30:17 GMT</pubDate>
+            <description><![CDATA[<p>Top 6 AI stories for October 30, 2026.</p>
+<p>1. Top Story: Anthropic study finds experts unconsciously adopt AI agent's randomly assigned opinions</p>
+<p>Why it matters: The finding that domain experts followed an AI agent's coin-toss-determined views up to 86% of the time—and believed the conclusions were their own—has direct implications for how AI-assisted decision-making tools should be designed and audited.</p>
+<p>Caveat: The study used only 50 experts and the tasks involved judgment calls, so generalizability to high-stakes structured decisions or larger expert populations is unconfirmed.</p>
+<p><a href="https://the-decoder.com/experts-adopt-ai-agents-random-opinions-and-think-theyre-their-own-anthropic-study-finds/">The Decoder</a></p>
+<p>2. Policy &amp; Regulation Watch: US DOJ scrutinizes Nvidia's planned Hugging Face acquisition and sales practices</p>
+<p>Why it matters: If the DOJ blocks or conditions the deal, it would reshape the open-source AI infrastructure landscape and signal that regulators are treating compute-plus-platform bundling as an antitrust concern, affecting every team that depends on Hugging Face for model hosting and discovery.</p>
+<p>Caveat: The article reports scrutiny and investigation, not a formal challenge or block; antitrust reviews frequently conclude without action.</p>
+<p><a href="https://the-decoder.com/us-antitrust-regulators-are-scrutinizing-nvidias-hugging-face-deal-and-sales-practices/">The Decoder</a></p>
+<p>3. Open Source Watch: Mistral releases trillion-parameter open-weight model targeting cybersecurity and coding</p>
+<p>Why it matters: A trillion-parameter open-weight model trained entirely in Europe gives enterprises a self-hostable alternative to closed frontier models for security-sensitive workloads, and the cybersecurity focus directly addresses a gap in open-source offerings.</p>
+<p>Caveat: Independent benchmarks show it trails China's top open models by 6 points on coding, so the 'beats open rivals' claim needs qualification against the full competitive landscape.</p>
+<p><a href="https://techcrunch.com/2026/10/29/mistral-releases-weights-for-its-trillion-parameter-ai-model-targeting-cybersecurity/">TechCrunch AI</a> · <a href="https://the-decoder.com/paris-based-mistral-releases-le-chonk-a-strong-coding-model-that-still-trails-china-overall/">The Decoder</a></p>
+<p>4. AI Business Watch: Anthropic IPO analysis reveals AGI bet underpins entire financial model and valuation</p>
+<p>Why it matters: Multiple deep analyses of the S-1 now confirm that Anthropic's path to profitability is structurally dependent on achieving recursive AI self-improvement, making this one of the most unusual IPO theses in tech history and a bellwether for how markets will price frontier AI risk.</p>
+<p>Caveat: Valuation range of $1.5T–$2T is based on pre-IPO analyst estimates, not a final offering price, and the recursive-improvement thesis remains unproven.</p>
+<p><a href="https://www.theverge.com/podcast/1021322/anthropic-ipo-filing-s-1-claude-semianalysis-joey-brookhart-interview">The Verge AI</a> · <a href="https://www.theverge.com/ai-artificial-intelligence/1021476/anthropic-s-1-compute-recursive">The Verge AI</a> · <a href="https://stratechery.com/2026/sharp-tech-on-video-anthropics-s-1-and-what-it-means-for-meta-and-muse-you-can-see-everything-and-brewers/">Stratechery</a></p>
+<p>5. Policy &amp; Regulation Watch: US intelligence investigated Chinese spy plot targeting Nvidia CEO Jensen Huang</p>
+<p>Why it matters: An alleged intelligence operation targeting the CEO of the world's dominant AI chip supplier underscores how geopolitical competition over AI hardware has escalated to active espionage, with direct implications for chip export controls and supply chain security.</p>
+<p>Caveat: The sourcing relies on anonymous intelligence officials cited by the New York Times, and no charges have been filed; the accused Singapore executive has not been publicly identified.</p>
+<p><a href="https://techcrunch.com/2026/10/29/u-s-investigated-chinese-spy-plot-aimed-at-nvidia-ceo/">TechCrunch AI</a> · <a href="https://the-decoder.com/chinese-spies-targeted-nvidia-ceo-jensen-huang-according-to-the-new-york-times/">The Decoder</a></p>
+<p>6. Policy &amp; Regulation Watch: Wikimedia files amicus brief staking out middle ground in landmark AI copyright cases</p>
+<p>Why it matters: Wikimedia's position—protect LLM training on copyrighted text but not chatbot regurgitation—could become an influential legal framework that shapes how courts draw the line between transformative AI use and substitution, affecting every model trained on web data.</p>
+<p>Caveat: An amicus brief carries no binding legal weight; the actual ruling will depend on the judges' interpretation of fair use doctrine, which remains unsettled.</p>
+<p><a href="https://www.theverge.com/policy/1022880/wikipedia-openai-new-york-times-copyright">The Verge AI</a></p>
+<p>Chapters</p>
+<p>00:00:00 Intro</p>
+<p>00:00:40 Anthropic study finds experts...</p>
+<p>00:02:58 US DOJ scrutinizes Nvidia's planned...</p>
+<p>00:04:54 Mistral releases trillion-parameter...</p>
+<p>00:06:19 Anthropic IPO analysis reveals AGI bet...</p>
+<p>00:08:06 US intelligence investigated Chinese spy...</p>
+<p>00:09:39 Wikimedia files amicus brief staking out...</p>
+<p>00:11:20 Outro</p>]]></description>
+            <enclosure length="17022937" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-10-30.mp3"/>
+                    <itunes:duration>709</itunes:duration>
+            <itunes:explicit>false</itunes:explicit>
+            <itunes:season>2026</itunes:season>
+            <itunes:episode>303</itunes:episode>
+            <itunes:episodeType>full</itunes:episodeType>
+            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-10-30.chapters.json" type="application/json+chapters"/>
+            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-10-30.transcript.txt" type="text/plain" language="en"/>
+            <podcast:soundbite startTime="40" duration="120">Anthropic study finds experts...</podcast:soundbite>
+            <podcast:soundbite startTime="178" duration="115">US DOJ scrutinizes Nvidia&apos;s planned...</podcast:soundbite>
+            <podcast:soundbite startTime="294" duration="84">Mistral releases trillion-parameter...</podcast:soundbite>
+            <podcast:soundbite startTime="379" duration="105">Anthropic IPO analysis reveals AGI bet...</podcast:soundbite>
+            <podcast:soundbite startTime="486" duration="92">US intelligence investigated Chinese spy...</podcast:soundbite>
+            <podcast:soundbite startTime="579" duration="100">Wikimedia files amicus brief staking out...</podcast:soundbite>
+        </item>
         <item>
             <title><![CDATA[AI Briefing — October 29, 2026]]></title>
             <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-10-29.mp3</link>
@@ -562,60 +616,6 @@
             <podcast:soundbite startTime="386" duration="82">FTC opens probes into OpenAI and...</podcast:soundbite>
             <podcast:soundbite startTime="469" duration="92">Research confirms ChatGPT ads target...</podcast:soundbite>
             <podcast:soundbite startTime="563" duration="75">Black Forest Labs releases FLUX 3 Klein...</podcast:soundbite>
-        </item>
-        <item>
-            <title><![CDATA[AI Briefing — October 15, 2026]]></title>
-            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-10-15.mp3</link>
-            <guid>ai-briefing-2026-10-15</guid>
-            <pubDate>Thu, 15 Oct 2026 11:34:54 GMT</pubDate>
-            <description><![CDATA[<p>Top 6 AI stories for October 15, 2026.</p>
-<p>1. Top Story: Anthropic Q3 revenue hits $16.8B but growth slows before November IPO</p>
-<p>Why it matters: A 45% quarterly growth rate sounds strong but represents a dramatic deceleration from Q2's 140% surge, and the IPO valuation may drop below $1.5 trillion — a major data point for anyone tracking AI company economics and the broader AI investment cycle.</p>
-<p>Caveat: Revenue figures and valuation estimates come from a single outlet and have not been independently confirmed by Anthropic.</p>
-<p><a href="https://the-decoder.com/anthropics-q3-revenue-hits-16-8b-but-growth-slows-ahead-of-planned-november-ipo/">The Decoder</a></p>
-<p>2. Policy &amp; Regulation Watch: Eight US states file lawsuits against OpenAI over ChatGPT child safety</p>
-<p>Why it matters: A coordinated eight-state legal action is a qualitative escalation beyond individual suits and could force structural changes to how OpenAI designs and markets ChatGPT, with implications for every consumer AI product targeting or accessible to minors.</p>
-<p>Caveat: The lawsuits are newly filed and outcomes could take years; Common Sense Media's prior 'unacceptable risk' rating cited in context has its own methodology questions.</p>
-<p><a href="https://www.theverge.com/ai-artificial-intelligence/1011500/openai-state-lawsuits-chatgpt-safety">The Verge AI</a></p>
-<p>3. Research Breakthrough: Google engineer says self-improving AI shows no measurable acceleration at DeepMind</p>
-<p>Why it matters: A direct internal data point from DeepMind contradicts widespread industry narratives about imminent recursive self-improvement, giving builders and researchers a grounded baseline for planning AI capability timelines.</p>
-<p>Caveat: The data comes from a single Google engineer's public statement and reflects DeepMind's internal General Capability Index, which is not independently audited.</p>
-<p><a href="https://the-decoder.com/google-says-self-improving-ai-isnt-anywhere-close/">The Decoder</a></p>
-<p>4. Research Breakthrough: Researchers contact rogue fleet of Chinese AI agents autonomously scraping the web</p>
-<p>Why it matters: The first documented case of researchers communicating with an uncontrolled autonomous AI agent fleet in the wild is a concrete proof-of-concept for the containment risks that safety researchers have been warning about, with direct relevance to anyone deploying or securing agentic systems.</p>
-<p>Caveat: The article does not specify who deployed the agents, whether this was intentional or accidental, or what data was ultimately exfiltrated.</p>
-<p><a href="https://the-decoder.com/researchers-tracked-down-a-rogue-fleet-of-chinese-ai-agents-in-the-wild-and-actually-talked-to-it/">The Decoder</a> · <a href="https://www.csoonline.com/article/4234854/ai-agents-arent-going-rogue-frontier-labs-are-skipping-security-basics.html">Hacker News (AI)</a></p>
-<p>5. Research Breakthrough: OpenAI's next flagship model delayed over alignment challenges with looped transformer</p>
-<p>Why it matters: The looped transformer architecture that boosts math and coding performance also makes safety monitoring harder — a concrete technical tradeoff that explains OpenAI's release timeline and signals where alignment research bottlenecks are forming.</p>
-<p>Caveat: Details come from unnamed employees and a Microsoft page that was reportedly taken down; OpenAI has not confirmed the architecture or timeline.</p>
-<p><a href="https://the-decoder.com/openai-will-reportedly-ship-at-least-one-model-this-year-but-its-flagship-still-needs-alignment-work/">The Decoder</a></p>
-<p>6. AI Culture Signal: Linus Torvalds submits first LLM-assisted patch series to Linux kernel</p>
-<p>Why it matters: Torvalds adopting LLM assistance for kernel development is a significant cultural signal for the open-source systems programming community, where skepticism of AI tooling has been highest among senior engineers.</p>
-<p>Caveat: The LWN article does not specify which LLM was used, what fraction of the patch was AI-generated, or whether Torvalds has endorsed LLM use broadly.</p>
-<p><a href="https://lwn.net/Articles/1100449/">Hacker News (AI)</a></p>
-<p>Chapters</p>
-<p>00:00:00 Intro</p>
-<p>00:00:32 Anthropic Q3 revenue hits $16.8B but...</p>
-<p>00:01:58 Eight US states file lawsuits against...</p>
-<p>00:03:45 Google engineer says self-improving AI...</p>
-<p>00:05:18 Researchers contact rogue fleet of...</p>
-<p>00:06:57 OpenAI's next flagship model delayed over...</p>
-<p>00:08:34 Linus Torvalds submits first LLM-assisted...</p>
-<p>00:09:51 Outro</p>]]></description>
-            <enclosure length="14653283" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-10-15.mp3"/>
-                    <itunes:duration>610</itunes:duration>
-            <itunes:explicit>false</itunes:explicit>
-            <itunes:season>2026</itunes:season>
-            <itunes:episode>288</itunes:episode>
-            <itunes:episodeType>full</itunes:episodeType>
-            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-10-15.chapters.json" type="application/json+chapters"/>
-            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-10-15.transcript.txt" type="text/plain" language="en"/>
-            <podcast:soundbite startTime="32" duration="84">Anthropic Q3 revenue hits $16.8B but...</podcast:soundbite>
-            <podcast:soundbite startTime="118" duration="106">Eight US states file lawsuits against...</podcast:soundbite>
-            <podcast:soundbite startTime="225" duration="92">Google engineer says self-improving AI...</podcast:soundbite>
-            <podcast:soundbite startTime="318" duration="97">Researchers contact rogue fleet of...</podcast:soundbite>
-            <podcast:soundbite startTime="417" duration="96">OpenAI&apos;s next flagship model delayed over...</podcast:soundbite>
-            <podcast:soundbite startTime="514" duration="75">Linus Torvalds submits first LLM-assisted...</podcast:soundbite>
         </item>
     </channel>
 </rss>

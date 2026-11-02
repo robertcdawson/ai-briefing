@@ -1,0 +1,46 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — November 2, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 44,
+      "title": "Intro"
+    },
+    {
+      "startTime": 44,
+      "endTime": 138,
+      "title": "OpenAI prepares major lobbying and PR..."
+    },
+    {
+      "startTime": 138,
+      "endTime": 264,
+      "title": "MIT and Stratechery both declare the..."
+    },
+    {
+      "startTime": 264,
+      "endTime": 382,
+      "title": "Empathetic prompts cause AI chatbots to..."
+    },
+    {
+      "startTime": 382,
+      "endTime": 483,
+      "title": "Adobe and UC San Diego build AI agent..."
+    },
+    {
+      "startTime": 483,
+      "endTime": 574,
+      "title": "Study finds Chinese AI models politically..."
+    },
+    {
+      "startTime": 574,
+      "endTime": 672,
+      "title": "50-agent AI swarms fail to build..."
+    },
+    {
+      "startTime": 672,
+      "endTime": 709,
+      "title": "Outro"
+    }
+  ]
+}

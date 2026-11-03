@@ -4,7 +4,7 @@
         <title>AI Briefing</title>
         <link>https://robertcdawson.github.io/ai-briefing/</link>
         <description>Daily AI news briefing — the stories that matter from the last 24 hours.</description>
-        <lastBuildDate>Mon, 02 Nov 2026 11:31:16 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 03 Nov 2026 11:31:13 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -23,6 +23,60 @@
         <podcast:guid>ea8709f4-3ba2-5b7e-bcdc-e409d84a6443</podcast:guid>
         <podcast:locked owner="manatees@gmail.com">yes</podcast:locked>
         <podcast:person role="host" group="cast">Robert Dawson</podcast:person>
+        <item>
+            <title><![CDATA[AI Briefing — November 3, 2026]]></title>
+            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-11-03.mp3</link>
+            <guid>ai-briefing-2026-11-03</guid>
+            <pubDate>Tue, 03 Nov 2026 11:31:13 GMT</pubDate>
+            <description><![CDATA[<p>Top 6 AI stories for November 3, 2026.</p>
+<p>1. Top Story: Anthropic warns it is very close to recursive self-improvement capability</p>
+<p>Why it matters: RSI would mark a qualitative shift in AI development speed, potentially removing humans from the improvement loop; a warning from the lab building the system carries significant weight for safety researchers and builders planning deployment timelines.</p>
+<p>Caveat: The article does not specify what technical threshold Anthropic is using to define 'very close,' nor whether this is a formal internal safety assessment or a public communications framing.</p>
+<p><a href="https://techcrunch.com/2026/11/02/anthropic-warns-that-its-very-close-to-rsi-capability-aka-self-building-ai/">TechCrunch AI</a> · <a href="https://the-decoder.com/anthropic-grows-revenue-twelvefold-but-posts-23-billion-loss/">The Decoder</a></p>
+<p>2. Policy &amp; Regulation Watch: New York Times sues Brave browser for AI scraping and paywall bypass</p>
+<p>Why it matters: This lawsuit extends AI copyright litigation beyond model makers to the data-pipeline intermediaries — browsers and index providers — that supply training data, potentially reshaping how AI companies source real-time web content.</p>
+<p>Caveat: The complaint is newly filed and no court has yet ruled on whether Brave's index-licensing model constitutes infringement; outcomes could take years.</p>
+<p><a href="https://www.theverge.com/tech/1024588/brave-lawsuit-ai-scraping-new-york-times">The Verge AI</a> · <a href="https://techcrunch.com/2026/11/02/new-york-times-and-other-outlets-sue-web-browser-brave-over-alleged-content-scraping/">TechCrunch AI</a></p>
+<p>3. AI Business Watch: Goldman Sachs reverses course, pulls AI coding tools from non-engineers</p>
+<p>Why it matters: A major financial institution publicly reversing a high-profile 'vibe coding' initiative signals that enterprise AI coding adoption is hitting real risk-management walls, which will influence how other regulated industries deploy similar tools.</p>
+<p>Caveat: Goldman has not published specific incident data or productivity metrics behind the reversal, so it is unclear whether the decision reflects measurable harm or precautionary risk management.</p>
+<p><a href="https://the-decoder.com/goldman-sachs-pulls-ai-coding-tools-from-traders-and-bankers/">The Decoder</a></p>
+<p>4. Research Breakthrough: Mechanism design approach uses incentive structures to keep AI agents aligned</p>
+<p>Why it matters: 'Reverse game theory' or mechanism design offers a mathematically grounded alternative to RLHF-style alignment, making rule-following the rational choice for capable agents rather than relying on trained preferences — directly relevant to agentic deployment safety.</p>
+<p>Caveat: The MIT Tech Review article describes the approach conceptually; no peer-reviewed benchmark results or real-world deployment data are cited to validate the method's effectiveness against capable models.</p>
+<p><a href="https://www.technologyreview.com/2026/11/03/1147934/reverse-game-theory-mechanism-design-ai-alignment/">MIT Tech Review AI</a></p>
+<p>5. AI Business Watch: Grok Bot usage throttled weeks after Musk called it fastest-growing product</p>
+<p>Why it matters: The rapid reversal from 'fastest growth ever' to 'unsustainably high costs' illustrates the unit-economics problem facing AI agent products at scale, a structural challenge relevant to every team pricing agentic workloads.</p>
+<p>Caveat: Musk's cost and growth claims both come from his own X posts without independent verification of usage or revenue figures.</p>
+<p><a href="https://techcrunch.com/2026/11/02/elon-musk-throttles-grok-bot-limits-due-to-unsustainably-high-costs/">TechCrunch AI</a> · <a href="https://the-decoder.com/spacexsi-apparently-cuts-grok-bot-quotas-weeks-after-musk-called-it-his-fastest-growing-product/">The Decoder</a></p>
+<p>6. Policy &amp; Regulation Watch: Anthropic updates Claude Code system prompt to block video game cloning</p>
+<p>Why it matters: This is the first major coding-assistant policy intervention targeting a specific creative-industry harm, setting a precedent for how AI tool makers may use system-prompt restrictions to manage copyright exposure without waiting for legislation.</p>
+<p>Caveat: Ars Technica notes the restriction applies only to Claude Code and will not stop the broader AI game-cloning wave, since many other models and tools remain unrestricted.</p>
+<p><a href="https://www.theverge.com/ai-artificial-intelligence/1024632/anthropic-claude-ai-video-game-clones">The Verge AI</a> · <a href="https://arstechnica.com/ai/2026/11/claudes-new-rules-against-game-cloning-wont-stop-the-ai-copying-boom/">Ars Technica AI</a> · <a href="https://the-decoder.com/anthropic-cracks-down-on-game-cloning-in-claude-code-after-wave-of-ai-built-knockoffs/">The Decoder</a></p>
+<p>Chapters</p>
+<p>00:00:00 Intro</p>
+<p>00:00:33 Anthropic warns it is very close to...</p>
+<p>00:01:51 New York Times sues Brave browser for AI...</p>
+<p>00:02:47 Goldman Sachs reverses course, pulls AI...</p>
+<p>00:03:35 Mechanism design approach uses incentive...</p>
+<p>00:04:30 Grok Bot usage throttled weeks after Musk...</p>
+<p>00:05:21 Anthropic updates Claude Code system...</p>
+<p>00:06:14 Outro</p>]]></description>
+            <enclosure length="9839079" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-11-03.mp3"/>
+                    <itunes:duration>410</itunes:duration>
+            <itunes:explicit>false</itunes:explicit>
+            <itunes:season>2026</itunes:season>
+            <itunes:episode>307</itunes:episode>
+            <itunes:episodeType>full</itunes:episodeType>
+            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-11-03.chapters.json" type="application/json+chapters"/>
+            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-11-03.transcript.txt" type="text/plain" language="en"/>
+            <podcast:soundbite startTime="33" duration="76">Anthropic warns it is very close to...</podcast:soundbite>
+            <podcast:soundbite startTime="111" duration="54">New York Times sues Brave browser for AI...</podcast:soundbite>
+            <podcast:soundbite startTime="167" duration="46">Goldman Sachs reverses course, pulls AI...</podcast:soundbite>
+            <podcast:soundbite startTime="215" duration="53">Mechanism design approach uses incentive...</podcast:soundbite>
+            <podcast:soundbite startTime="270" duration="50">Grok Bot usage throttled weeks after Musk...</podcast:soundbite>
+            <podcast:soundbite startTime="321" duration="51">Anthropic updates Claude Code system...</podcast:soundbite>
+        </item>
         <item>
             <title><![CDATA[AI Briefing — November 2, 2026]]></title>
             <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-11-02.mp3</link>
@@ -562,60 +616,6 @@
             <podcast:soundbite startTime="364" duration="81">FBI says accused OpenAI spy had folder...</podcast:soundbite>
             <podcast:soundbite startTime="447" duration="102">Two German courts hold Google legally...</podcast:soundbite>
             <podcast:soundbite startTime="550" duration="83">MiniMax M3.1 Flash matches top Chinese...</podcast:soundbite>
-        </item>
-        <item>
-            <title><![CDATA[AI Briefing — October 19, 2026]]></title>
-            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-10-19.mp3</link>
-            <guid>ai-briefing-2026-10-19</guid>
-            <pubDate>Mon, 19 Oct 2026 11:40:41 GMT</pubDate>
-            <description><![CDATA[<p>Top 6 AI stories for October 19, 2026.</p>
-<p>1. AI Culture Signal: Anthropic nearly stops hiring junior staff as AI agents outpace humans sixfold</p>
-<p>Why it matters: This is the clearest public data point yet of a major AI lab restructuring its workforce around AI agents rather than humans, signaling a concrete near-term labor shift that will ripple across the tech industry.</p>
-<p>Caveat: The figures come from The Decoder and have not been independently verified; Anthropic has not publicly confirmed the specific percentages.</p>
-<p><a href="https://the-decoder.com/anthropic-has-nearly-stopped-hiring-junior-staff-because-ai-agents-now-work-six-times-as-many-hours/">The Decoder</a> · <a href="https://techcrunch.com/2026/10/18/anthropic-says-its-committing-5-of-its-shares-to-a-public-benefit-fund/">TechCrunch AI</a> · <a href="https://the-decoder.com/anthropic-cushions-its-upcoming-ipo-with-a-discretionary-fund-for-workers-its-models-might-replace/">The Decoder</a></p>
-<p>2. Policy &amp; Regulation Watch: Anthropic's draft AI safety bill sets 50-death or $1B damage trigger threshold</p>
-<p>Why it matters: Anthropic's self-proposed regulatory framework would concentrate AI oversight authority in the Commerce Department and only activate after catastrophic harm thresholds, shaping what a US federal AI law could look like.</p>
-<p>Caveat: This is a proposal, not a bill introduced in Congress, and the specific threshold figures may be negotiating positions rather than Anthropic's preferred final outcome.</p>
-<p><a href="https://www.tomshardware.com/tech-industry/artificial-intelligence/anthropics-proposed-ai-safety-bill-only-kicks-in-if-50-deaths-or-usd1-billion-in-damages-are-on-the-line-proposal-would-effectively-make-the-commerce-department-the-only-agency-capable-of-stopping-an-ai-model">Hacker News (AI)</a></p>
-<p>3. AI Business Watch: Anthropic commits 5% of shares to public benefit fund before IPO</p>
-<p>Why it matters: The fund's structure — a company-controlled LLC with discretionary payments to AI-displaced workers — sets a novel precedent for how AI labs might handle labor displacement obligations, and its timing ahead of the IPO signals strategic positioning.</p>
-<p>Caveat: The fund is an Anthropic-controlled LLC, meaning the company retains full discretion over disbursements, and no independent oversight mechanism has been announced.</p>
-<p><a href="https://techcrunch.com/2026/10/18/anthropic-says-its-committing-5-of-its-shares-to-a-public-benefit-fund/">TechCrunch AI</a> · <a href="https://the-decoder.com/anthropic-cushions-its-upcoming-ipo-with-a-discretionary-fund-for-workers-its-models-might-replace/">The Decoder</a></p>
-<p>4. Research Breakthrough: Claude agents left idle on virtual island exhibit spontaneous play-like behavior</p>
-<p>Why it matters: The experiment probes what AI agents do in the absence of explicit goals, surfacing questions about emergent behavior, intrinsic motivation, and what 'idle' AI agents might do autonomously in deployed environments.</p>
-<p>Caveat: The study uses a single model (Claude Opus 4.7) in a constrained virtual environment, and 'play' is an interpretive label applied by researchers, not a mechanistically defined behavior.</p>
-<p><a href="https://www.technologyreview.com/2026/10/19/1147095/ai-stranded-claude-virtual-desert-island-play/">MIT Tech Review AI</a></p>
-<p>5. Research Breakthrough: New paper proposes AI agents that reason in latent space and act through text</p>
-<p>Why it matters: Hybrid Reasoning Agents decouple internal reasoning from external action, potentially enabling more efficient and capable agentic systems without requiring chain-of-thought verbalization at every step.</p>
-<p>Caveat: The paper is a preprint from Together Computer and has not yet been peer-reviewed; benchmark evaluations are from the authors themselves.</p>
-<p><a href="https://arxiv.org/abs/2610.18861">Hacker News (AI)</a></p>
-<p>6. Product &amp; Tool Watch: Four Gemini 4 Argon agents autonomously beat Minecraft's Ender Dragon</p>
-<p>Why it matters: Fully autonomous multi-agent completion of a long-horizon open-world game is a meaningful benchmark for emergent coordination and planning without predefined roles or human intervention.</p>
-<p>Caveat: Minecraft is a well-studied benchmark environment and success here does not directly translate to real-world task performance; the $1,620 cost per run limits practical deployment relevance.</p>
-<p><a href="https://the-decoder.com/four-gemini-4-argon-agents-beat-minecraft-without-any-human-help/">The Decoder</a></p>
-<p>Chapters</p>
-<p>00:00:00 Intro</p>
-<p>00:00:30 Anthropic nearly stops hiring junior...</p>
-<p>00:01:18 Anthropic's draft AI safety bill sets...</p>
-<p>00:01:55 Anthropic commits 5% of shares to public...</p>
-<p>00:02:26 Claude agents left idle on virtual island...</p>
-<p>00:03:00 New paper proposes AI agents that reason...</p>
-<p>00:03:33 Four Gemini 4 Argon agents autonomously...</p>
-<p>00:04:09 Outro</p>]]></description>
-            <enclosure length="6361193" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-10-19.mp3"/>
-                    <itunes:duration>265</itunes:duration>
-            <itunes:explicit>false</itunes:explicit>
-            <itunes:season>2026</itunes:season>
-            <itunes:episode>292</itunes:episode>
-            <itunes:episodeType>full</itunes:episodeType>
-            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-10-19.chapters.json" type="application/json+chapters"/>
-            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-10-19.transcript.txt" type="text/plain" language="en"/>
-            <podcast:soundbite startTime="30" duration="47">Anthropic nearly stops hiring junior...</podcast:soundbite>
-            <podcast:soundbite startTime="78" duration="35">Anthropic&apos;s draft AI safety bill sets...</podcast:soundbite>
-            <podcast:soundbite startTime="115" duration="30">Anthropic commits 5% of shares to public...</podcast:soundbite>
-            <podcast:soundbite startTime="146" duration="33">Claude agents left idle on virtual island...</podcast:soundbite>
-            <podcast:soundbite startTime="180" duration="31">New paper proposes AI agents that reason...</podcast:soundbite>
-            <podcast:soundbite startTime="213" duration="34">Four Gemini 4 Argon agents autonomously...</podcast:soundbite>
         </item>
     </channel>
 </rss>

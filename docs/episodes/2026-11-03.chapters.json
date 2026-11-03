@@ -1,0 +1,46 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — November 3, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 33,
+      "title": "Intro"
+    },
+    {
+      "startTime": 33,
+      "endTime": 111,
+      "title": "Anthropic warns it is very close to..."
+    },
+    {
+      "startTime": 111,
+      "endTime": 167,
+      "title": "New York Times sues Brave browser for AI..."
+    },
+    {
+      "startTime": 167,
+      "endTime": 215,
+      "title": "Goldman Sachs reverses course, pulls AI..."
+    },
+    {
+      "startTime": 215,
+      "endTime": 270,
+      "title": "Mechanism design approach uses incentive..."
+    },
+    {
+      "startTime": 270,
+      "endTime": 321,
+      "title": "Grok Bot usage throttled weeks after Musk..."
+    },
+    {
+      "startTime": 321,
+      "endTime": 374,
+      "title": "Anthropic updates Claude Code system..."
+    },
+    {
+      "startTime": 374,
+      "endTime": 410,
+      "title": "Outro"
+    }
+  ]
+}

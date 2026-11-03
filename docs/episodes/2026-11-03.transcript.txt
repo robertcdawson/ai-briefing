@@ -1,0 +1,109 @@
+AI Briefing — November 3, 2026
+Date: 2026-11-03
+
+Intro
+
+The collision between existential safety timelines and Wall Street liquidity events is accelerating, and we are starting to see what that looks like in the open.
+
+It is November 3rd, 2026, and the lab that just filed to go public with a balance sheet built entirely around artificial general intelligence is now warning that self-building AI is essentially here.
+
+We will also look at why the New York Times is dragging a web browser into federal court.
+
+Top Story: Anthropic warns it is very close to recursive self-improvement capability
+
+Let us start with the balance sheet, because you cannot separate today's technical warning from the financial reality underneath it.
+
+Anthropic just disclosed a 23 billion dollar operating loss, even as their revenue grew twelvefold year-over-year.
+
+They are weeks away from a planned IPO, carrying roughly 800 billion dollars in compute obligations that only make sense if they achieve AGI.
+
+When we looked at that S-1 filing last week, I called that those compute debts would constrain their API pricing flexibility within two years. That still holds, but the timeline pressure just took a different shape.
+
+According to TechCrunch, Anthropic is now publicly warning that recursive self-improvement—where a system actively builds and improves itself without human intervention—is imminent.
+
+For researchers, RSI is the threshold where development speed decouples from human engineering limits.
+
+We do not know what technical benchmark they are using to define 'very close,' or if this is a formal safety assessment versus a communications strategy to justify that 800 billion dollar compute bill to potential shareholders.
+Source: https://techcrunch.com/2026/11/02/anthropic-warns-that-its-very-close-to-rsi-capability-aka-self-building-ai/
+Source: https://the-decoder.com/anthropic-grows-revenue-twelvefold-but-posts-23-billion-loss/
+
+Policy & Regulation Watch: New York Times sues Brave browser for AI scraping and paywall bypass
+
+If you rely on third-party search indexes or browser APIs to pipe real-time web content into your models, your legal exposure just got much more complicated.
+
+The New York Times is suing the Brave web browser for AI scraping, marking the first time copyright litigation has targeted the data-pipeline intermediaries rather than the model makers themselves.
+
+The Verge reports the lawsuit also specifically targets Brave's paywall bypass feature, treating it as a separate claim from the scraping allegations.
+
+That broadens the attack surface for anyone building tools that summarize or index paywalled news.
+
+Courts will likely take years to decide if licensing a search index constitutes infringement, but sourcing real-time news for AI just became a higher-risk engineering problem right now.
+Source: https://www.theverge.com/tech/1024588/brave-lawsuit-ai-scraping-new-york-times
+Source: https://techcrunch.com/2026/11/02/new-york-times-and-other-outlets-sue-web-browser-brave-over-alleged-content-scraping/
+
+AI Business Watch: Goldman Sachs reverses course, pulls AI coding tools from non-engineers
+
+Goldman Sachs has pulled AI coding tools from its traders and bankers.
+
+This is a sharp reversal from just July 2026, when Goldman CIO Marco Argenti was publicly championing 'vibe coding' for non-engineers.
+
+The Decoder reports the bank cited productivity and risk management as the reasons for walking it back.
+
+Without specific incident data, we do not know if traders were actually deploying broken code or if compliance simply panicked at the possibility.
+
+But when a heavily regulated institution publicly retreats from a high-profile AI initiative, it sets a precedent that other enterprise compliance teams will absolutely use to hit the brakes.
+Source: https://the-decoder.com/goldman-sachs-pulls-ai-coding-tools-from-traders-and-bankers/
+
+Research Breakthrough: Mechanism design approach uses incentive structures to keep AI agents aligned
+
+The prevailing method for keeping AI systems well-behaved relies on training them to prefer certain actions, but researchers are increasingly worried that trained preferences will simply break down as models get smarter.
+
+To fix that, a new approach is trying to make rule-following a matter of basic economics rather than trained morality.
+
+MIT Tech Review highlights a method using mechanism design, or reverse game theory, to build incentive structures for capable models.
+
+Instead of hoping a model remembers its RLHF training when it scales up, you design the environment so that staying aligned is the only mathematically rational choice the system can make.
+
+The concept makes sense for autonomous deployment, but the paper lacks peer-reviewed benchmarks or real-world data proving it actually holds up against highly capable models in the wild.
+Source: https://www.technologyreview.com/2026/11/03/1147934/reverse-game-theory-mechanism-design-ai-alignment/
+
+AI Business Watch: Grok Bot usage throttled weeks after Musk called it fastest-growing product
+
+You might hear that Elon Musk is throttling Grok Bot limits and figure this is just another erratic policy shift at X, but the math underneath it points to a structural wall every AI company is hitting.
+
+About two weeks after Musk publicly claimed Grok Bot was his fastest-growing product ever, SpaceXSI abruptly cut user quotas.
+
+Musk posted on X that operating costs were unsustainably high relative to revenue.
+
+We only have his unverified posts to go on for both the growth and the cost figures, but the unit economics problem is very real.
+
+The Decoder notes that OpenAI and Anthropic are simultaneously tightening their own flat-rate agent plans.
+
+The compute required to run autonomous workloads simply does not scale cleanly with a flat monthly subscription fee.
+Source: https://techcrunch.com/2026/11/02/elon-musk-throttles-grok-bot-limits-due-to-unsustainably-high-costs/
+Source: https://the-decoder.com/spacexsi-apparently-cuts-grok-bot-quotas-weeks-after-musk-called-it-his-fastest-growing-product/
+
+Policy & Regulation Watch: Anthropic updates Claude Code system prompt to block video game cloning
+
+Over the past few months, the retro gaming scene has been completely swamped by AI-generated decompilations, recompilations, and unauthorized ports.
+
+With copyright holders starting to take notice of the flood, tool makers were bound to step in before the lawyers did.
+
+Anthropic just updated the system prompt for Claude Code specifically to block video game cloning.
+
+The Verge points out this is the first major coding-assistant intervention aimed squarely at a creative-industry harm, and it establishes a clear precedent for using system prompts to manage copyright liability without waiting for new laws to pass.
+
+Ars Technica rightly notes this restriction only applies to Claude Code, so it will do absolutely nothing to stop the broader wave of AI game cloning happening on unrestricted models.
+Source: https://www.theverge.com/ai-artificial-intelligence/1024632/anthropic-claude-ai-video-game-clones
+Source: https://arstechnica.com/ai/2026/11/claudes-new-rules-against-game-cloning-wont-stop-the-ai-copying-boom/
+Source: https://the-decoder.com/anthropic-cracks-down-on-game-cloning-in-claude-code-after-wave-of-ai-built-knockoffs/
+
+Outro
+
+Nobody in today's stories has clearly explained where genuine technical capability ends and balance sheet panic begins.
+
+We have Anthropic warning about self-improvement right before asking public markets to fund an 800 billion dollar compute bill, while Goldman Sachs and X discover the hard way that deploying AI at scale ruins your margins and your risk profile.
+
+The line between engineering reality and financial survival is completely blurred.
+
+Keep your head on straight out there, y'all.

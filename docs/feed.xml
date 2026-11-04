@@ -4,7 +4,7 @@
         <title>AI Briefing</title>
         <link>https://robertcdawson.github.io/ai-briefing/</link>
         <description>Daily AI news briefing — the stories that matter from the last 24 hours.</description>
-        <lastBuildDate>Tue, 03 Nov 2026 11:31:13 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 04 Nov 2026 11:30:01 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -23,6 +23,60 @@
         <podcast:guid>ea8709f4-3ba2-5b7e-bcdc-e409d84a6443</podcast:guid>
         <podcast:locked owner="manatees@gmail.com">yes</podcast:locked>
         <podcast:person role="host" group="cast">Robert Dawson</podcast:person>
+        <item>
+            <title><![CDATA[AI Briefing — November 4, 2026]]></title>
+            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-11-04.mp3</link>
+            <guid>ai-briefing-2026-11-04</guid>
+            <pubDate>Wed, 04 Nov 2026 11:30:01 GMT</pubDate>
+            <description><![CDATA[<p>Top 6 AI stories for November 4, 2026.</p>
+<p>1. Top Story: OpenAI reportedly re-enables Codex model training without user consent</p>
+<p>Why it matters: Developers who explicitly opted out of data sharing for IP protection may have had that setting silently reversed, creating real enterprise compliance and confidentiality risks for anyone using Codex in production.</p>
+<p>Caveat: The report originates from a Hacker News thread; OpenAI has not confirmed whether this was a bug, a policy change, or an isolated incident.</p>
+<p><a href="https://news.ycombinator.com/item?id=50352757">Hacker News (AI)</a></p>
+<p>2. Product &amp; Tool Watch: Postman silently auto-installs AI plugins and attempts to share all API data</p>
+<p>Why it matters: Postman is ubiquitous in developer workflows; silent installation of AI plugins that attempt to exfiltrate API data — including potentially sensitive endpoints and credentials — is a serious supply-chain trust issue for engineering teams.</p>
+<p>Caveat: The GitHub issue is a user report, not a confirmed security audit; Postman has not yet issued an official response in the available excerpt.</p>
+<p><a href="https://github.com/postmanlabs/postman-app-support/issues/14370">Hacker News (AI)</a></p>
+<p>3. Policy &amp; Regulation Watch: Google forces schools to accept AI or lose Search access entirely starting 2027</p>
+<p>Why it matters: Google's bundling decision effectively removes meaningful opt-out for K-12 institutions, raising serious questions about coercive platform power in education and setting a precedent for how AI features get mandated into critical infrastructure.</p>
+<p>Caveat: The policy takes effect in 2027 and administrators can still enable AI selectively; the practical coercion depends on how deeply schools depend on Google Search.</p>
+<p><a href="https://www.theverge.com/tech/1025411/google-turn-off-search-ai-features">The Verge AI</a> · <a href="https://arstechnica.com/ai/2026/11/google-will-let-schools-skip-ai-tools-but-they-have-to-give-up-search-too/">Ars Technica AI</a> · <a href="https://techcrunch.com/2026/11/03/google-will-let-schools-disable-its-ai-tools-but-not-without-sacrificing-search/">TechCrunch AI</a> · <a href="https://the-decoder.com/schools-that-turn-off-googles-ai-will-lose-search-too-starting-in-2027/">The Decoder</a> · <a href="https://www.nytimes.com/2026/11/03/us/google-search-schools-restrict-ai.html">Hacker News (AI)</a></p>
+<p>4. AI Business Watch: US tech giants' hidden AI compute debt surges 90 percent to $3.2 trillion</p>
+<p>Why it matters: The scale of off-balance-sheet AI infrastructure obligations across major tech firms dwarfs prior estimates and signals systemic financial risk that could constrain future AI investment, pricing, and competitive dynamics industry-wide.</p>
+<p>Caveat: The Nikkei report does not detail its methodology for calculating 'hidden' debt, and the definition of what qualifies as AI-related obligation may vary significantly across companies.</p>
+<p><a href="https://asia.nikkei.com/business/technology/artificial-intelligence/us-tech-giants-hidden-ai-debt-swells-90-to-3.2tn-in-6-months">Hacker News (AI)</a></p>
+<p>5. Product &amp; Tool Watch: Anthropic's Message Threads API cuts long-context latency by 35 percent</p>
+<p>Why it matters: For agent and multi-turn application developers, a 35% reduction in time-to-first-token on conversations over 500K tokens is a meaningful production-grade improvement that reduces cost and improves user experience without model changes.</p>
+<p>Caveat: The 35% figure comes from Anthropic's own announcement; independent benchmarks under real-world workload distributions have not been published.</p>
+<p><a href="https://the-decoder.com/anthropics-message-threads-cut-time-to-first-token-by-35-percent-for-long-conversations/">The Decoder</a></p>
+<p>6. Research Breakthrough: Stanford study finds 44 percent of widely cited LLM claims already expired</p>
+<p>Why it matters: If nearly half of published LLM findings are obsolete within months, the research base that practitioners and policymakers rely on for capability and safety assessments is systematically unreliable, undermining benchmarking, regulation, and product decisions.</p>
+<p>Caveat: The study tested 50 claims against 20 models — a limited sample — and 'expired' is defined by the researchers' own criteria, which may not align with how practitioners use these findings.</p>
+<p><a href="https://the-decoder.com/rapid-llm-development-is-outrunning-the-research-meant-to-explain-it-study-finds/">The Decoder</a></p>
+<p>Chapters</p>
+<p>00:00:00 Intro</p>
+<p>00:00:40 OpenAI reportedly re-enables Codex model...</p>
+<p>00:02:09 Postman silently auto-installs AI plugins...</p>
+<p>00:03:44 Google forces schools to accept AI or...</p>
+<p>00:05:15 US tech giants' hidden AI compute debt...</p>
+<p>00:07:12 Anthropic's Message Threads API cuts...</p>
+<p>00:08:39 Stanford study finds 44 percent of widely...</p>
+<p>00:10:21 Outro</p>]]></description>
+            <enclosure length="15600233" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-11-04.mp3"/>
+                    <itunes:duration>650</itunes:duration>
+            <itunes:explicit>false</itunes:explicit>
+            <itunes:season>2026</itunes:season>
+            <itunes:episode>308</itunes:episode>
+            <itunes:episodeType>full</itunes:episodeType>
+            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-11-04.chapters.json" type="application/json+chapters"/>
+            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-11-04.transcript.txt" type="text/plain" language="en"/>
+            <podcast:soundbite startTime="40" duration="87">OpenAI reportedly re-enables Codex model...</podcast:soundbite>
+            <podcast:soundbite startTime="129" duration="93">Postman silently auto-installs AI plugins...</podcast:soundbite>
+            <podcast:soundbite startTime="224" duration="90">Google forces schools to accept AI or...</podcast:soundbite>
+            <podcast:soundbite startTime="315" duration="116">US tech giants&apos; hidden AI compute debt...</podcast:soundbite>
+            <podcast:soundbite startTime="432" duration="85">Anthropic&apos;s Message Threads API cuts...</podcast:soundbite>
+            <podcast:soundbite startTime="519" duration="101">Stanford study finds 44 percent of widely...</podcast:soundbite>
+        </item>
         <item>
             <title><![CDATA[AI Briefing — November 3, 2026]]></title>
             <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-11-03.mp3</link>
@@ -562,60 +616,6 @@
             <podcast:soundbite startTime="214" duration="63">Army Cyber Command&apos;s ECHOTRIBBLE program...</podcast:soundbite>
             <podcast:soundbite startTime="278" duration="69">GPT-6 jumps from 38 to 87 percent on...</podcast:soundbite>
             <podcast:soundbite startTime="349" duration="36">DeepSeek open-sources DeepInfer inference...</podcast:soundbite>
-        </item>
-        <item>
-            <title><![CDATA[AI Briefing — October 20, 2026]]></title>
-            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-10-20.mp3</link>
-            <guid>ai-briefing-2026-10-20</guid>
-            <pubDate>Tue, 20 Oct 2026 11:37:20 GMT</pubDate>
-            <description><![CDATA[<p>Top 6 AI stories for October 20, 2026.</p>
-<p>1. Top Story: Goodfire researcher's 26,000-word post claims to upend neural network understanding</p>
-<p>Why it matters: If the claim holds, it would fundamentally change how researchers understand and interpret what's happening inside large neural networks, with direct implications for alignment, debugging, and capability prediction.</p>
-<p>Caveat: The post is a blog entry from a startup researcher, not a peer-reviewed paper, and the AI world's enthusiastic reaction may be outpacing the actual evidence.</p>
-<p><a href="https://www.technologyreview.com/2026/10/19/1147149/we-were-looking-at-it-wrong-the-explosive-claim-thats-upended-the-ai-world/">MIT Tech Review AI</a></p>
-<p>2. Research Breakthrough: Single hacker used autonomous AI agents to breach over 100 major company websites</p>
-<p>Why it matters: This is the first publicly documented large-scale attack where AI agents operated semi-autonomously to breach enterprise targets, signaling a qualitative shift in the threat landscape for security teams.</p>
-<p>Caveat: The Norforge report does not name all victims or fully disclose the attack methodology, and it's unclear how much human direction was involved versus true autonomy.</p>
-<p><a href="https://www.theverge.com/ai-artificial-intelligence/1013643/ai-agents-hack-john-deere-shark-ninja-cummins">The Verge AI</a></p>
-<p>3. AI Business Watch: CoreWeave debt distress triggers neocloud shakeout with Nvidia most exposed</p>
-<p>Why it matters: If only 7-10 of hundreds of AI cloud providers survive, the infrastructure layer underpinning most AI development will consolidate rapidly, affecting pricing, availability, and vendor lock-in for builders.</p>
-<p>Caveat: Survival predictions come from unnamed industry executives, and CoreWeave's distress may not be representative of the broader neocloud sector's fundamentals.</p>
-<p><a href="https://www.theverge.com/ai-artificial-intelligence/1014045/coreweave-stock-debt-sector-ai">The Verge AI</a> · <a href="https://the-decoder.com/the-neocloud-shakeout-is-coming-and-nvidia-has-the-most-to-lose/">The Decoder</a></p>
-<p>4. AI Business Watch: FBI says accused OpenAI spy had folder labeled 'Saudi Gov Docs' on device</p>
-<p>Why it matters: The Saudi government connection materially escalates the espionage case beyond a disgruntled employee narrative, raising questions about state-sponsored intelligence operations targeting frontier AI labs.</p>
-<p>Caveat: The motive and full scope of the alleged operation remain unconfirmed; the FBI's characterization comes from charging documents, not a conviction.</p>
-<p><a href="https://arstechnica.com/tech-policy/2026/10/accused-openai-spy-had-folder-called-saudi-gov-docs-fbi-says/">Ars Technica AI</a></p>
-<p>5. Policy &amp; Regulation Watch: Two German courts hold Google legally liable for false AI Overview statements</p>
-<p>Why it matters: A consistent cross-court ruling treating AI-generated search answers as the publisher's own content sets a precedent that could reshape how AI search products are deployed across the EU and beyond.</p>
-<p>Caveat: These are German regional court rulings and have not yet been tested at the EU level or in other major jurisdictions; Google may still appeal.</p>
-<p><a href="https://the-decoder.com/two-german-courts-now-hold-google-liable-for-what-its-ai-overviews-say/">The Decoder</a></p>
-<p>6. Open Source Watch: MiniMax M3.1 Flash matches top Chinese models at half the cost</p>
-<p>Why it matters: The continued compression of price-performance in Chinese open models is forcing Western API providers to compete on cost, directly affecting the economics of AI-powered products for developers.</p>
-<p>Caveat: Benchmark comparisons are from MiniMax's own reporting and the Artificial Analysis Intelligence Index, which may not reflect real-world task performance.</p>
-<p><a href="https://the-decoder.com/minimax-m3-1-flash-shows-chinas-ai-price-race-has-no-floor-in-sight/">The Decoder</a></p>
-<p>Chapters</p>
-<p>00:00:00 Intro</p>
-<p>00:00:32 Goodfire researcher's 26,000-word post...</p>
-<p>00:02:35 Single hacker used autonomous AI agents...</p>
-<p>00:04:15 CoreWeave debt distress triggers neocloud...</p>
-<p>00:06:04 FBI says accused OpenAI spy had folder...</p>
-<p>00:07:27 Two German courts hold Google legally...</p>
-<p>00:09:10 MiniMax M3.1 Flash matches top Chinese...</p>
-<p>00:10:35 Outro</p>]]></description>
-            <enclosure length="16183719" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-10-20.mp3"/>
-                    <itunes:duration>674</itunes:duration>
-            <itunes:explicit>false</itunes:explicit>
-            <itunes:season>2026</itunes:season>
-            <itunes:episode>293</itunes:episode>
-            <itunes:episodeType>full</itunes:episodeType>
-            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-10-20.chapters.json" type="application/json+chapters"/>
-            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-10-20.transcript.txt" type="text/plain" language="en"/>
-            <podcast:soundbite startTime="32" duration="120">Goodfire researcher&apos;s 26,000-word post...</podcast:soundbite>
-            <podcast:soundbite startTime="155" duration="99">Single hacker used autonomous AI agents...</podcast:soundbite>
-            <podcast:soundbite startTime="255" duration="107">CoreWeave debt distress triggers neocloud...</podcast:soundbite>
-            <podcast:soundbite startTime="364" duration="81">FBI says accused OpenAI spy had folder...</podcast:soundbite>
-            <podcast:soundbite startTime="447" duration="102">Two German courts hold Google legally...</podcast:soundbite>
-            <podcast:soundbite startTime="550" duration="83">MiniMax M3.1 Flash matches top Chinese...</podcast:soundbite>
         </item>
     </channel>
 </rss>

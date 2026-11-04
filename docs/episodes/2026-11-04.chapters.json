@@ -1,0 +1,46 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — November 4, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 40,
+      "title": "Intro"
+    },
+    {
+      "startTime": 40,
+      "endTime": 129,
+      "title": "OpenAI reportedly re-enables Codex model..."
+    },
+    {
+      "startTime": 129,
+      "endTime": 224,
+      "title": "Postman silently auto-installs AI plugins..."
+    },
+    {
+      "startTime": 224,
+      "endTime": 315,
+      "title": "Google forces schools to accept AI or..."
+    },
+    {
+      "startTime": 315,
+      "endTime": 432,
+      "title": "US tech giants' hidden AI compute debt..."
+    },
+    {
+      "startTime": 432,
+      "endTime": 519,
+      "title": "Anthropic's Message Threads API cuts..."
+    },
+    {
+      "startTime": 519,
+      "endTime": 621,
+      "title": "Stanford study finds 44 percent of widely..."
+    },
+    {
+      "startTime": 621,
+      "endTime": 650,
+      "title": "Outro"
+    }
+  ]
+}

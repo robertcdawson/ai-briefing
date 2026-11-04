@@ -1,0 +1,102 @@
+AI Briefing — November 4, 2026
+Date: 2026-11-04
+
+Intro
+
+There's a quiet erosion of developer trust happening right now, and two stories breaking on November 4th, 2026 are sitting at the center of it — OpenAI apparently re-enabled data collection for Codex users who had explicitly turned it off, and Postman silently pushed AI plugins that tried to pull API data without asking anyone.
+
+These aren't isolated bugs. They're part of a longer pattern where tools developers depend on daily are treating consent as a soft default rather than a hard line. Let's start with OpenAI.
+
+Top Story: OpenAI reportedly re-enables Codex model training without user consent
+
+Here's the compressed version of how we got here. OpenAI has always had a data controls toggle — you can find it at chatgpt.com/settings/data-controls — that lets users opt out of having their conversations used to train models. Developers building on Codex, especially anyone handling proprietary code or sensitive business logic, have been relying on that toggle for IP protection.
+
+Then, months ago, a Hacker News thread flagged that the setting appeared to have been silently reversed for some users. People who had deliberately opted out found themselves opted back in. One poster summarized it plainly: 'None of us knowingly opted back in.'
+
+Now that same behavior is being reported again, which means this isn't a one-time misconfiguration — it's a recurring pattern, and that changes the risk calculus.
+
+OpenAI has not confirmed whether this was a bug, an intentional policy change, or something that only hit a subset of accounts. That ambiguity is itself a problem. If you're running Codex in any production context where code confidentiality matters — enterprise compliance, client contracts, anything regulated — you cannot currently assume your opt-out is honored. The responsible move is to go verify that setting right now, not after the next incident.
+
+Postman is carrying a similar story, and it's arguably even more direct about the incentive structure underneath it.
+Source: https://news.ycombinator.com/item?id=50352757
+
+Product & Tool Watch: Postman silently auto-installs AI plugins and attempts to share all API data
+
+Postman's business model depends on being the tool that sits in the middle of every API workflow. Hundreds of thousands of developers have their full API collections in there — endpoints, authentication headers, sometimes credentials. That's a valuable dataset, and AI features need training data.
+
+So when GitHub issue number 14370 on the postmanlabs support repo started collecting reports that Postman had silently installed AI plugins and those plugins were attempting to transmit API collection data, the incentive structure reads pretty clearly. The issue pulled 1,314 upvotes and 447 comments on Hacker News. That's not a fringe complaint.
+
+Users report this isn't a new concern — it's shown up across multiple Postman versions. Postman has not issued an official response in anything available as of today.
+
+The supply-chain risk here is concrete. API collections often contain staging and production endpoints, auth tokens, internal service URLs. If a tool you trust for local development is quietly trying to send that data somewhere, that's a potential credential exposure, not just a privacy nuisance.
+
+Until Postman publishes a clear accounting of what those plugins transmit and why, the conservative call for any team handling sensitive APIs is to audit what version you're running and what network traffic Postman is generating. Google's education bundling story is a different flavor of the same trust question — but at institutional scale.
+Source: https://github.com/postmanlabs/postman-app-support/issues/14370
+
+Policy & Regulation Watch: Google forces schools to accept AI or lose Search access entirely starting 2027
+
+For a school IT administrator, the Monday-morning version of this story is simple: starting in 2027, if you want to block Google's AI features for your students, Google will take Search with it. That's the choice Google VP of Education Chris Phillips described to the New York Times — 'Search and AI are deeply integrated' — and it's not framed as a threat, but the operational effect is the same.
+
+Google holds dominant market share in US K-12 education. Chromebooks, Google Classroom, Google Workspace for Education — these aren't optional add-ons for most districts, they're the infrastructure. Realistic alternatives exist in theory and are very hard to execute in practice, especially for under-resourced schools.
+
+Administrators can still configure AI selectively, so this isn't a total binary. But the full opt-out path — block all AI — now costs you Search, and that's a meaningful constraint on institutional autonomy.
+
+Five outlets are covering this, which suggests the story is solid, though the coverage may be drawing from the same original New York Times reporting. The policy doesn't kick in until 2027, so there's time for regulatory pushback or negotiation — but districts that want to plan around it need to start now.
+
+The compute debt story connects to this indirectly: the pressure to monetize AI investment at scale is exactly what drives bundling decisions like this one.
+Source: https://www.theverge.com/tech/1025411/google-turn-off-search-ai-features
+Source: https://arstechnica.com/ai/2026/11/google-will-let-schools-skip-ai-tools-but-they-have-to-give-up-search-too/
+Source: https://techcrunch.com/2026/11/03/google-will-let-schools-disable-its-ai-tools-but-not-without-sacrificing-search/
+Source: https://the-decoder.com/schools-that-turn-off-googles-ai-will-lose-search-too-starting-in-2027/
+Source: https://www.nytimes.com/2026/11/03/us/google-search-schools-restrict-ai.html
+
+AI Business Watch: US tech giants' hidden AI compute debt surges 90 percent to $3.2 trillion
+
+Three point two trillion dollars in off-balance-sheet AI infrastructure commitments across US tech giants — up ninety percent in six months. My read on that number: it's probably understated, and that's the more unsettling possibility.
+
+We flagged last week that Anthropic's compute obligations were a systemic risk signal. My call then was that those obligations would constrain API pricing flexibility within two years of going public. This Nikkei report suggests the constraint isn't Anthropic-specific — it's industry-wide, and it's compounding faster than most public estimates assumed.
+
+Off-balance-sheet means these commitments don't show up as liabilities on the financial statements investors typically read. They're things like long-term data center contracts, GPU reservation agreements, power infrastructure deals — real obligations, just structured to stay off the main ledger. Nikkei is reporting the aggregate across major US tech firms hit three point two trillion, growing from roughly 1.7 trillion just six months ago.
+
+The methodology caveat is real: Nikkei hasn't published a detailed breakdown of what qualifies as AI-related in their calculation, and the definition of 'hidden' can stretch considerably depending on how you count. Treat the specific figure as an order-of-magnitude signal, not an audited balance sheet.
+
+What it does tell you is that the infrastructure bet is accelerating, not plateauing. That has downstream effects on pricing, on which companies can afford to cut API costs to win market share, and on how much runway smaller players have before the capital requirements become prohibitive.
+
+Anthropic's new Message Threads feature is actually a good example of how companies manage that pressure — optimize latency and cost at the application layer without touching the model.
+Source: https://asia.nikkei.com/business/technology/artificial-intelligence/us-tech-giants-hidden-ai-debt-swells-90-to-3.2tn-in-6-months
+
+Product & Tool Watch: Anthropic's Message Threads API cuts long-context latency by 35 percent
+
+Here's what doesn't quite add up at first glance: Anthropic claims a 35 percent reduction in time-to-first-token for conversations between 500,000 and one million tokens, and they say they did it without any model changes. How does that work?
+
+The answer is in what Message Threads actually does. Standard API calls resend the entire conversation history with every new message — every prior turn, every document, every system prompt, all of it, every time. Message Threads changes that: only the new content in each turn gets transmitted. The model still has context over the full conversation, but the wire transfer is dramatically smaller.
+
+Time-to-first-token is the latency metric that matters most for interactive applications — it's how long a user waits before they see any response at all. A 35 percent improvement at the half-million to million token range is a real production-grade gain for anyone building agents or multi-turn applications that accumulate long context.
+
+The number comes from Anthropic's own announcement, and independent benchmarks under real-world workload distributions haven't been published yet. Verify it against your actual use case before you architect around it. The mechanism is sound, and the direction of the improvement is credible.
+
+The Stanford shelf-life study we're about to cover puts a useful frame around claims like this one.
+Source: https://the-decoder.com/anthropics-message-threads-cut-time-to-first-token-by-35-percent-for-long-conversations/
+
+Research Breakthrough: Stanford study finds 44 percent of widely cited LLM claims already expired
+
+The obvious objection to this study is: of course LLM research expires fast — everyone already knows models improve quickly and yesterday's benchmarks don't hold. So what's actually new here?
+
+What Stanford actually measured is more specific than the general intuition. They took 50 widely cited claims — findings that practitioners and policymakers are actively using to make decisions — and tested them against 20 current models. Forty-four percent are already what the researchers call 'expired,' meaning they no longer hold. Another 34 percent have weakened significantly. The average lifespan of a finding is 15.7 months.
+
+The category that expires fastest is claims about model limitations — which is exactly the category that safety assessments, regulatory frameworks, and product decisions most often draw on. Capability benchmarks going stale is one thing; the evidence base for what models can't do being structurally unreliable is a different problem.
+
+The sample is limited — 50 claims, 20 models — and 'expired' is defined by the researchers' own criteria. So this isn't a comprehensive audit of the literature. But the directional finding is hard to dismiss, and 15.7 months is a short shelf life for research that takes longer than that to move through peer review and into policy.
+
+For anyone citing LLM research to justify a product decision or a regulatory position, the practical implication is to check the publication date and ask whether the models that research was based on still represent the current state. If the paper is more than a year old and it's making a claim about what a model can't do, that claim probably needs to be re-verified.
+
+That's a real friction cost, and it doesn't have an easy fix.
+Source: https://the-decoder.com/rapid-llm-development-is-outrunning-the-research-meant-to-explain-it-study-finds/
+
+Outro
+
+Fifteen point seven months. By the time a safety or capability finding works its way through review and into a policy document, there's roughly a coin-flip chance it's already describing a model that no longer exists.
+
+That friction sits underneath a lot of decisions being made right now, and it doesn't announce itself when you're reading a citation.
+
+Go check your data controls settings, y'all — and maybe your Postman version while you're at it.

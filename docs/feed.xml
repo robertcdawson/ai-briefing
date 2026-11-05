@@ -4,7 +4,7 @@
         <title>AI Briefing</title>
         <link>https://robertcdawson.github.io/ai-briefing/</link>
         <description>Daily AI news briefing — the stories that matter from the last 24 hours.</description>
-        <lastBuildDate>Wed, 04 Nov 2026 11:30:01 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 05 Nov 2026 11:32:40 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -23,6 +23,60 @@
         <podcast:guid>ea8709f4-3ba2-5b7e-bcdc-e409d84a6443</podcast:guid>
         <podcast:locked owner="manatees@gmail.com">yes</podcast:locked>
         <podcast:person role="host" group="cast">Robert Dawson</podcast:person>
+        <item>
+            <title><![CDATA[AI Briefing — November 5, 2026]]></title>
+            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-11-05.mp3</link>
+            <guid>ai-briefing-2026-11-05</guid>
+            <pubDate>Thu, 05 Nov 2026 11:32:40 GMT</pubDate>
+            <description><![CDATA[<p>Top 6 AI stories for November 5, 2026.</p>
+<p>1. Top Story: US midterm voters broadly reject AI data centers and tech industry influence</p>
+<p>Why it matters: A cross-partisan voter backlash against data center expansion directly threatens the physical infrastructure underpinning AI scaling; new governors and senators in Texas and Michigan supporting moratoriums could slow the buildout that every major AI lab depends on.</p>
+<p>Caveat: Election results reflect local land-use and energy concerns as much as anti-AI sentiment, and federal permitting may override many state and local restrictions.</p>
+<p><a href="https://www.theverge.com/policy/1026365/data-centers-midterms-results">The Verge AI</a> · <a href="https://arstechnica.com/tech-policy/2026/11/big-tech-claims-voters-ai-backlash-is-anti-trump-not-anti-tech/">Ars Technica AI</a> · <a href="https://www.technologyreview.com/2026/11/04/1148043/texas-was-the-new-epicenter-of-the-ai-data-center-buildout-that-might-be-kaput/">MIT Tech Review AI</a> · <a href="https://techcrunch.com/2026/11/04/after-the-midterms-a-bigger-clash-over-data-centers-could-be-coming/">TechCrunch AI</a> · <a href="https://www.404media.co/american-voters-overwhelmingly-reject-ai-data-centers/">404 Media</a> · <a href="https://www.404media.co/there-is-one-fight-american-voters-reject-tech-oligarchy/">404 Media</a></p>
+<p>2. Research Breakthrough: MIT researchers show GPT-6 Astra can rewrite other models' weights directly</p>
+<p>Why it matters: If confirmed, a model that can deliberately edit another model's weights without retraining represents a qualitative leap in AI self-modification capability, with profound implications for alignment, security, and AI-assisted optimization pipelines.</p>
+<p>Caveat: The result comes from a single MIT paper with no independent replication yet, and the technique still hits clear performance limits even in the reported experiments.</p>
+<p><a href="https://the-decoder.com/gpt-6-astra-sees-the-matrix-and-reprograms-other-ai-models-directly-through-their-weights/">The Decoder</a></p>
+<p>3. Product &amp; Tool Watch: OpenAI acquires Pierre Computer Company to modernize Git for AI coding agents</p>
+<p>Why it matters: OpenAI is building a full developer infrastructure stack — combining Pierre's libraries already powering Codex with its new Pando Git backend — signaling a strategic push to own the version control and code-review layer that AI agents operate within.</p>
+<p>Caveat: Acquisition terms and timeline for integration into Codex and Pando were not disclosed, and competitive responses from GitHub and GitLab are unknown.</p>
+<p><a href="https://openai.com/index/openai-to-acquire-pierre">OpenAI Blog</a> · <a href="https://the-decoder.com/openai-acquires-pierre-computer-company-to-make-git-keep-up-with-ai-coding-agents/">The Decoder</a> · <a href="https://openai.com/index/openai-to-acquire-pierre/">Hacker News (AI)</a></p>
+<p>4. Product &amp; Tool Watch: Uber discloses only four rides booked by AI agents in Q3 2026</p>
+<p>Why it matters: Uber's first-ever disclosure of AI agent transaction volumes provides a rare ground-truth data point against the hype around agentic commerce, showing real-world adoption of autonomous booking agents remains negligible even on a platform actively supporting them.</p>
+<p>Caveat: Uber Eats saw ~500 AI-agent orders in one week, suggesting category variation; the data covers only third-party agents and may not reflect Uber's own first-party agent integrations.</p>
+<p><a href="https://www.theverge.com/transportation/1026306/uber-ai-agents-q3-earnings-disintermediation">The Verge AI</a> · <a href="https://techcrunch.com/2026/11/04/almost-no-one-uses-ai-agents-to-book-their-uber-company-says/">TechCrunch AI</a></p>
+<p>5. Research Breakthrough: Anthropic's text watermarks easily bypassed; new cryptographic model-provenance prototype released</p>
+<p>Why it matters: The watermark bypass on older Claude models undermines EU AI Act compliance just weeks before the December deadline, while FlashProve's cryptographic approach to model attribution — proving which model generated a response without exposing weights — points toward a more robust alternative.</p>
+<p>Caveat: FlashProve is described as a research prototype with significant limitations, and Anthropic's response to the watermark loophole is only a compliance warning rather than a technical fix.</p>
+<p><a href="https://the-decoder.com/anthropics-text-watermark-is-easy-to-bypass-on-several-older-claude-models/">The Decoder</a> · <a href="https://the-decoder.com/anthropics-new-prototype-proves-which-model-wrote-an-ai-response-without-exposing-its-weights/">The Decoder</a></p>
+<p>6. AI Business Watch: Qualcomm pivots to AI data centers as smartphone sales drop 20 percent</p>
+<p>Why it matters: Qualcomm's aggressive data center forecast — from $650M in Q1 2027 to $15B by 2029 — signals a major chipmaker diversifying away from mobile, potentially intensifying competition with Nvidia and AMD in the AI accelerator market.</p>
+<p>Caveat: Qualcomm's data center revenue projections are forward-looking estimates from its own earnings call and have not been independently validated; the $15B by 2029 figure represents roughly 1.5x its entire 2026 revenue.</p>
+<p><a href="https://www.theverge.com/ai-artificial-intelligence/1026867/qualcomm-earnings-data-centers">The Verge AI</a> · <a href="https://www.qualcomm.com/data-center/products/cloud-ai-100-ultra">Hacker News (AI)</a></p>
+<p>Chapters</p>
+<p>00:00:00 Intro</p>
+<p>00:00:24 US midterm voters broadly reject AI data...</p>
+<p>00:01:36 MIT researchers show GPT-6 Astra can...</p>
+<p>00:02:41 OpenAI acquires Pierre Computer Company...</p>
+<p>00:03:36 Uber discloses only four rides booked by...</p>
+<p>00:04:29 Anthropic's text watermarks easily...</p>
+<p>00:05:30 Qualcomm pivots to AI data centers as...</p>
+<p>00:06:37 Outro</p>]]></description>
+            <enclosure length="9965794" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-11-05.mp3"/>
+                    <itunes:duration>415</itunes:duration>
+            <itunes:explicit>false</itunes:explicit>
+            <itunes:season>2026</itunes:season>
+            <itunes:episode>309</itunes:episode>
+            <itunes:episodeType>full</itunes:episodeType>
+            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-11-05.chapters.json" type="application/json+chapters"/>
+            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-11-05.transcript.txt" type="text/plain" language="en"/>
+            <podcast:soundbite startTime="24" duration="70">US midterm voters broadly reject AI data...</podcast:soundbite>
+            <podcast:soundbite startTime="96" duration="63">MIT researchers show GPT-6 Astra can...</podcast:soundbite>
+            <podcast:soundbite startTime="161" duration="54">OpenAI acquires Pierre Computer Company...</podcast:soundbite>
+            <podcast:soundbite startTime="216" duration="51">Uber discloses only four rides booked by...</podcast:soundbite>
+            <podcast:soundbite startTime="269" duration="60">Anthropic&apos;s text watermarks easily...</podcast:soundbite>
+            <podcast:soundbite startTime="330" duration="65">Qualcomm pivots to AI data centers as...</podcast:soundbite>
+        </item>
         <item>
             <title><![CDATA[AI Briefing — November 4, 2026]]></title>
             <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-11-04.mp3</link>
@@ -562,60 +616,6 @@
             <podcast:soundbite startTime="337" duration="115">Symantec finds autonomous AI agent...</podcast:soundbite>
             <podcast:soundbite startTime="453" duration="81">GPT-6 Sol and Gemini 4 Argon...</podcast:soundbite>
             <podcast:soundbite startTime="536" duration="98">Walmart opens doors to AI shopping agents...</podcast:soundbite>
-        </item>
-        <item>
-            <title><![CDATA[AI Briefing — October 21, 2026]]></title>
-            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-10-21.mp3</link>
-            <guid>ai-briefing-2026-10-21</guid>
-            <pubDate>Wed, 21 Oct 2026 11:40:09 GMT</pubDate>
-            <description><![CDATA[<p>Top 6 AI stories for October 21, 2026.</p>
-<p>1. Top Story: Claude Science autonomously designs protein binders targeting deadly scorpion neurotoxins</p>
-<p>Why it matters: Anthropic's Claude independently generated over 318,000 protein binder designs and identified 17 lab-validated candidates, demonstrating that AI can now perform meaningful wet-lab-adjacent scientific work with minimal human direction.</p>
-<p>Caveat: Whether the two strongest binders actually function as antivenom in vivo remains completely untested, and the work has not yet been peer-reviewed.</p>
-<p><a href="https://the-decoder.com/claude-science-tackles-deadly-scorpion-stings-by-designing-protein-binders-from-scratch/">The Decoder</a></p>
-<p>2. Policy &amp; Regulation Watch: US orders all federal civilian agencies to remove DeepSeek AI products immediately</p>
-<p>Why it matters: The DHS-mandated removal of DeepSeek and third-party services built on its technology from federal systems is the broadest US government action yet against a Chinese AI provider, setting a precedent that could extend to enterprise procurement guidance.</p>
-<p>Caveat: The order applies only to federal civilian agencies and does not yet restrict private-sector or state-government use, and enforcement mechanisms have not been detailed.</p>
-<p><a href="https://techcrunch.com/2026/10/20/us-orders-federal-agencies-to-remove-chinas-deepseek-ai-from-their-systems/">TechCrunch AI</a> · <a href="https://the-decoder.com/us-bans-deepseek-technology-across-federal-civilian-agencies/">The Decoder</a></p>
-<p>3. AI Business Watch: OpenAI acquires Orchestra Bio to accelerate AI-driven drug development pipeline</p>
-<p>Why it matters: The acquisition expands OpenAI's Rosalind life sciences platform with a dedicated team and technology for coordinating drug trials and research, signaling a serious push into pharma AI that could reshape how drug development pipelines are managed.</p>
-<p>Caveat: Acquisition terms were not disclosed, and it is unclear how quickly Orchestra's technology will be integrated or whether it offers capabilities beyond what existing pharma AI tools already provide.</p>
-<p><a href="https://techcrunch.com/2026/10/20/openai-acquires-startup-orchestra-bio%e2%81%a0-to-beef-up-its-biotech-business/">TechCrunch AI</a> · <a href="https://the-decoder.com/openai-acquires-orchestra-bio-to-build-ai-agents-that-speed-up-drug-development/">The Decoder</a></p>
-<p>4. Policy &amp; Regulation Watch: Army Cyber Command's ECHOTRIBBLE program would make AI agents self-spreading cyberweapons</p>
-<p>Why it matters: Internal documents describing ECHOTRIBBLE reveal the US military is actively developing AI agents designed to propagate autonomously through networks and reach air-gapped systems with minimal human oversight, raising serious questions about escalation control and collateral damage.</p>
-<p>Caveat: The documents are described as internal but their authenticity and current development status have not been independently verified, and the program may not reflect final policy.</p>
-<p><a href="https://the-decoder.com/army-cyber-commands-echotribble-would-turn-ai-agents-into-self-spreading-cyberweapons/">The Decoder</a></p>
-<p>5. Product &amp; Tool Watch: GPT-6 jumps from 38 to 87 percent on multi-language benchmark including COBOL</p>
-<p>Why it matters: A jump from 38% to 87.4% pass rate across 20 programming languages, with 97.9% accuracy on COBOL migration specifically, means GPT-6 may now be practically viable for modernizing decades of legacy financial and government infrastructure.</p>
-<p>Caveat: MultiLangBench is a new benchmark created in conjunction with this announcement and has not yet been independently validated; real-world COBOL migration involves far more than test-pass accuracy.</p>
-<p><a href="https://the-decoder.com/openai-says-gpt-6-is-much-better-with-legacy-programming-languages-such-as-cobol-and-fortran/">The Decoder</a></p>
-<p>6. Open Source Watch: DeepSeek open-sources DeepInfer inference engine behind its fastest cheapest model</p>
-<p>Why it matters: Releasing the vLLM-based inference framework that powers DeepSeek's V4.1-Flash model gives the broader community a production-grade tool for cutting compute costs and energy use, adding further pricing pressure on OpenAI and Anthropic's API businesses.</p>
-<p>Caveat: The article does not specify the license terms or whether the release includes full training infrastructure, limiting assessment of how broadly it can be adopted or modified.</p>
-<p><a href="https://the-decoder.com/deepseek-open-sources-the-inference-engine-that-powers-its-fastest-and-cheapest-ai-model/">The Decoder</a></p>
-<p>Chapters</p>
-<p>00:00:00 Intro</p>
-<p>00:00:33 Claude Science autonomously designs...</p>
-<p>00:01:40 US orders all federal civilian agencies...</p>
-<p>00:02:41 OpenAI acquires Orchestra Bio to...</p>
-<p>00:03:34 Army Cyber Command's ECHOTRIBBLE program...</p>
-<p>00:04:38 GPT-6 jumps from 38 to 87 percent on...</p>
-<p>00:05:49 DeepSeek open-sources DeepInfer inference...</p>
-<p>00:06:26 Outro</p>]]></description>
-            <enclosure length="10171423" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-10-21.mp3"/>
-                    <itunes:duration>424</itunes:duration>
-            <itunes:explicit>false</itunes:explicit>
-            <itunes:season>2026</itunes:season>
-            <itunes:episode>294</itunes:episode>
-            <itunes:episodeType>full</itunes:episodeType>
-            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-10-21.chapters.json" type="application/json+chapters"/>
-            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-10-21.transcript.txt" type="text/plain" language="en"/>
-            <podcast:soundbite startTime="33" duration="65">Claude Science autonomously designs...</podcast:soundbite>
-            <podcast:soundbite startTime="100" duration="60">US orders all federal civilian agencies...</podcast:soundbite>
-            <podcast:soundbite startTime="161" duration="51">OpenAI acquires Orchestra Bio to...</podcast:soundbite>
-            <podcast:soundbite startTime="214" duration="63">Army Cyber Command&apos;s ECHOTRIBBLE program...</podcast:soundbite>
-            <podcast:soundbite startTime="278" duration="69">GPT-6 jumps from 38 to 87 percent on...</podcast:soundbite>
-            <podcast:soundbite startTime="349" duration="36">DeepSeek open-sources DeepInfer inference...</podcast:soundbite>
         </item>
     </channel>
 </rss>

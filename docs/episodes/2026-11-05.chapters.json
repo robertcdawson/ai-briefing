@@ -1,0 +1,46 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — November 5, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 24,
+      "title": "Intro"
+    },
+    {
+      "startTime": 24,
+      "endTime": 96,
+      "title": "US midterm voters broadly reject AI data..."
+    },
+    {
+      "startTime": 96,
+      "endTime": 161,
+      "title": "MIT researchers show GPT-6 Astra can..."
+    },
+    {
+      "startTime": 161,
+      "endTime": 216,
+      "title": "OpenAI acquires Pierre Computer Company..."
+    },
+    {
+      "startTime": 216,
+      "endTime": 269,
+      "title": "Uber discloses only four rides booked by..."
+    },
+    {
+      "startTime": 269,
+      "endTime": 330,
+      "title": "Anthropic's text watermarks easily..."
+    },
+    {
+      "startTime": 330,
+      "endTime": 397,
+      "title": "Qualcomm pivots to AI data centers as..."
+    },
+    {
+      "startTime": 397,
+      "endTime": 415,
+      "title": "Outro"
+    }
+  ]
+}

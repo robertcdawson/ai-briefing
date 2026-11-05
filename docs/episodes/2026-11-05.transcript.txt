@@ -1,0 +1,134 @@
+AI Briefing — November 5, 2026
+Date: 2026-11-05
+
+Intro
+
+Seventy-six percent. That is the share of voters in a new Election Day poll who said they absolutely do not want an AI data center built in their community.
+
+It is Thursday, November 5th, 2026, and the physical reality of scaling compute is colliding with local politics.
+
+Top Story: US midterm voters broadly reject AI data centers and tech industry influence
+
+Amazon, Microsoft, Alphabet, and Meta are projected to spend roughly seven hundred twenty billion on capital expenditures this year alone.
+
+That cash has to buy physical land, power grids, and cooling water, but the folks living near those resources are refusing the transaction.
+
+In that NBC News poll I mentioned, three-quarters of respondents opposed local data center expansion.
+
+We saw this play out at the ballot box in Texas, where Democrat James Talarico took a US Senate seat from Ken Paxton by a fifty-five percent margin.
+
+Gina Hinojosa also won the Texas governor's race while running on a platform that explicitly supports data center moratoriums.
+
+Reporting from Ars Technica notes Big Tech is brushing this off as anti-Trump sentiment rather than anti-tech backlash.
+
+The federal government might eventually step in with permitting overrides, but right now, the money is hitting a wall of local resistance.
+
+While the infrastructure fights play out in public, the methods for training on that hardware are shifting quietly.
+Source: https://www.theverge.com/policy/1026365/data-centers-midterms-results
+Source: https://arstechnica.com/tech-policy/2026/11/big-tech-claims-voters-ai-backlash-is-anti-trump-not-anti-tech/
+Source: https://www.technologyreview.com/2026/11/04/1148043/texas-was-the-new-epicenter-of-the-ai-data-center-buildout-that-might-be-kaput/
+Source: https://techcrunch.com/2026/11/04/after-the-midterms-a-bigger-clash-over-data-centers-could-be-coming/
+Source: https://www.404media.co/american-voters-overwhelmingly-reject-ai-data-centers/
+Source: https://www.404media.co/there-is-one-fight-american-voters-reject-tech-oligarchy/
+
+Research Breakthrough: MIT researchers show GPT-6 Astra can rewrite other models' weights directly
+
+If you are trying to fine-tune an open-source model right now, you are probably wrangling datasets and compute clusters.
+
+Imagine instead just asking a frontier model to reach in and adjust the weights for you.
+
+That is what a new paper out of MIT claims GPT-6 Astra can do.
+
+The researchers had Astra edit a Qwen model's weights directly, modifying a tiny fraction—just 0.016 percent of them.
+
+That surgical edit pushed the Qwen model's math accuracy from under eight percent all the way to forty-eight percent.
+
+The Decoder is framing this as a technique that could fundamentally simplify AI optimization, and they are right if it holds up.
+
+The catch is this comes from a single, uncorroborated MIT paper, and the technique hit clear performance ceilings even in their own reported experiments.
+
+Speaking of the tools we use to build, OpenAI is making a major play for your version control.
+Source: https://the-decoder.com/gpt-6-astra-sees-the-matrix-and-reprograms-other-ai-models-directly-through-their-weights/
+
+Product & Tool Watch: OpenAI acquires Pierre Computer Company to modernize Git for AI coding agents
+
+OpenAI is no longer just selling intelligence; they are actively moving to own the entire developer infrastructure stack.
+
+They just announced the acquisition of Pierre Computer Company, whose libraries were actually already running under the hood of OpenAI's Codex coding agent.
+
+Combine this buyout with their recent launch of Pando—a brand new Git backend—and the strategy is plain as day.
+
+They want the version control and code-review layers where AI agents actually do their work.
+
+The developer community is definitely paying attention, with the Hacker News post pulling in two hundred forty-five points and seventy-five comments almost immediately.
+
+We don't know the acquisition terms yet, or how GitHub intends to respond to a direct threat on its home turf.
+
+But all this new infrastructure only matters if people actually use the agents we are building.
+Source: https://openai.com/index/openai-to-acquire-pierre
+Source: https://the-decoder.com/openai-acquires-pierre-computer-company-to-make-git-keep-up-with-ai-coding-agents/
+Source: https://openai.com/index/openai-to-acquire-pierre/
+
+Product & Tool Watch: Uber discloses only four rides booked by AI agents in Q3 2026
+
+We have spent the last year hearing that autonomous agents like Meta's Muse and OpenAI's Dots were about to completely upend consumer commerce.
+
+So how many rides did third-party AI agents actually book on Uber in the entire third quarter?
+
+Exactly four.
+
+Out of three hundred twenty million total rides and deliveries on the platform, four were handled by an agent.
+
+They did see about five hundred Uber Eats orders placed by agents during Halloween week, which suggests food delivery might have a slightly different adoption curve.
+
+Note that this data only covers third-party agents, so any internal tools Uber is testing aren't in that bucket.
+
+That massive gap between expectation and reality brings us to a different kind of problem over at Anthropic.
+Source: https://www.theverge.com/transportation/1026306/uber-ai-agents-q3-earnings-disintermediation
+Source: https://techcrunch.com/2026/11/04/almost-no-one-uses-ai-agents-to-book-their-uber-company-says/
+
+Research Breakthrough: Anthropic's text watermarks easily bypassed; new cryptographic model-provenance prototype released
+
+You might be thinking that a bypassed text watermark isn't exactly breaking news, since we all know statistical watermarks are fragile.
+
+But when you can disable the watermark on Claude Opus 4.6 and Sonnet 4.6 just by tweaking a single sampling parameter, it becomes a massive liability with the EU AI Act deadline weeks away.
+
+Anthropic's response to this loophole wasn't a technical patch, just a compliance warning to users.
+
+On the flip side, there is a new prototype out today called FlashProve that tries a different route.
+
+It uses cryptography to prove which model generated a response without exposing the actual model weights.
+
+It is strictly a research prototype right now, but it points to where attribution actually has to go if it is going to survive contact with reality.
+
+And finally, we are seeing the hardware market react to all these shifting software demands.
+Source: https://the-decoder.com/anthropics-text-watermark-is-easy-to-bypass-on-several-older-claude-models/
+Source: https://the-decoder.com/anthropics-new-prototype-proves-which-model-wrote-an-ai-response-without-exposing-its-weights/
+
+AI Business Watch: Qualcomm pivots to AI data centers as smartphone sales drop 20 percent
+
+For years, Qualcomm was the undisputed king of the smartphone chip.
+
+Mobile markets saturate, device upgrade cycles stretch out, and suddenly you are looking at a roughly twenty percent drop in smartphone sales compared to 2025.
+
+That shrinkage pushed them straight toward the nearest explosive growth market, which is what their Q4 earnings call was really about.
+
+Qualcomm is pivoting hard to AI data centers, projecting six hundred fifty million in data center revenue early next year.
+
+They expect that to scale to fifteen billion by late 2029.
+
+To put that in perspective, their entire company revenue for 2026 was just over ten billion.
+
+They are leaning heavily on their Cloud AI 100 Ultra accelerator, which pulls 150 watts and offers 128 gigabytes of memory, alongside recent partnerships with Amazon and Meta.
+
+Just keep in mind that fifteen billion figure is their own aggressive forecast, not a guaranteed contract.
+Source: https://www.theverge.com/ai-artificial-intelligence/1026867/qualcomm-earnings-data-centers
+Source: https://www.qualcomm.com/data-center/products/cloud-ai-100-ultra
+
+Outro
+
+The number I am watching next is that Q1 2027 data center revenue from Qualcomm.
+
+If they actually hit six hundred fifty million right out of the gate, we might finally have a real third player in the accelerator market.
+
+I'll catch y'all tomorrow.

@@ -1,0 +1,46 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — November 6, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 37,
+      "title": "Intro"
+    },
+    {
+      "startTime": 37,
+      "endTime": 157,
+      "title": "GPT-6 Astra Found to Have Sabotaged AI..."
+    },
+    {
+      "startTime": 157,
+      "endTime": 258,
+      "title": "OpenAI Launches GPT-6 Cyber Model for..."
+    },
+    {
+      "startTime": 258,
+      "endTime": 366,
+      "title": "New GDPx Benchmark Finds All AI Agents..."
+    },
+    {
+      "startTime": 366,
+      "endTime": 474,
+      "title": "OpenAI Drops NDAs for Public Officials on..."
+    },
+    {
+      "startTime": 474,
+      "endTime": 556,
+      "title": "Meta Acquires AI Coding Startup Conductor..."
+    },
+    {
+      "startTime": 556,
+      "endTime": 624,
+      "title": "Perplexity Launches Always-On Teammates..."
+    },
+    {
+      "startTime": 624,
+      "endTime": 650,
+      "title": "Outro"
+    }
+  ]
+}

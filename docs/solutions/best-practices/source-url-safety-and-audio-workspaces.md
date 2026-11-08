@@ -63,15 +63,15 @@ isSafeSourceUrl(" https://example.com/story ") // true (trim OK)
 isSafeSourceUrl("https://exa\nmple.com/story") // false (control before trim)
 ```
 
-Cache-hit re-resolution (orchestrator):
+Cache-hit re-resolution (orchestrator) — drop clusters that resolve to nothing:
 
 ```ts
 const { selected, report } = await withStageCache("curate", { date, articles }, () =>
   curate(articles, date),
 );
-const clusters = selected.map((cluster) =>
-  resolveClusterSources(normaliseCluster(cluster), articles),
-);
+const clusters = selected
+  .map((cluster) => resolveClusterSources(normaliseCluster(cluster), articles))
+  .filter((cluster): cluster is NonNullable<typeof cluster> => cluster !== null);
 ```
 
 ## Why this works

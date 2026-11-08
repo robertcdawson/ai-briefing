@@ -490,7 +490,11 @@ If they restore feeds, add them back.
 | `FEED_BASE_URL` | Must be an absolute `http://` or `https://` URL (enclosure base). |
 | `ffmpeg` / `ffprobe` | Install and ensure both are on `PATH` (`brew install ffmpeg` / `apt install ffmpeg`). |
 
-Preflight does **not** call providers or RSS — a green preflight only means local config looks runnable.
+`npm run preflight` does **not** call providers or RSS — a green preflight only means local config looks runnable. On `npm start` with Gemini TTS (including a designed `voice_…` id), the pipeline then speaks one word via `assertGeminiVoiceReachable` before fetch/curate so a project-mismatched voice fails in seconds. See `docs/solutions/best-practices/gemini-designed-voice.md`.
+
+### Gemini voice check fails with HTTP 403/404
+
+The designed voice id and `GEMINI_API_KEY` must belong to the same Google AI Studio project, or the voice was deleted / expired (stored custom voices last 1 year from last use). The error message lists `voice_…` ids this key can see. Fix: replace the Actions secret with a key from the voice's project, or pick another voice on the tune page (`config/show.json` `tts.voice`).
 
 ### Pipeline logs `episode_already_published` and exits
 

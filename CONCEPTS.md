@@ -123,3 +123,16 @@ The single age-based window (`RETENTION_DAYS = 14` in `src/publish.ts`) that dri
 
 ### Publish verification
 Post-push check that today's episode GUID is actually present in the **live** public `feed.xml` (GitHub Pages deploy), not merely committed in git. Polls the feed, may push an empty commit to unstick a queued deploy, and fails the workflow (with a healthcheck fail ping) if the episode never appears. Turns the backup cron into a recovery path even when generation was skipped. Verification `npx`/`npm` steps must not inherit `DAILY_PUSH_DEPLOY_KEY`; the write credential is written to a temp SSH key file only in git push steps (and unset from the environment after the file is created on the retrigger path).
+
+## Run states
+
+Named transitions live in `src/machines.ts`. Straight-line stages stay procedures in `src/index.ts`. The catalog and the reason a state-machine library is the wrong tool are in `docs/solutions/best-practices/explicit-state-where-flags-can-lie.md`.
+
+### Generation outcome
+How the generation job ended: `skipped` (today's sidecar and MP3 were already on disk), `published` (files were written), or `failed`. Skipped and published both ping the healthcheck as success. Failure pings fail. This does not mean the public feed is updated — that is Feed liveness.
+
+### Feed liveness
+Whether today's GUID is in the public `feed.xml` right now: `pending`, `live`, or `not_live`. Owned by `src/verifyDeploy.ts` plus the daily workflow's one retrigger. The first probe is quiet. Only the second miss pings fail. Distinct from Generation outcome.
+
+### Tune session
+The phone editor's phase: `idle`, `loading`, `ready`, or `saving`, including whether the form is dirty. One phase, so a save cannot finish "clean" after later keystrokes, and a conflict reload keeps its explanation. Source is `src/tuneSession.ts`; the page loads `docs/tune/session.js`.

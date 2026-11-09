@@ -200,7 +200,9 @@
     <p class="status" id="save-status" role="status"></p>
   </div>
 </div>
-<script>
+<script type="module">
+import { initialTuneSession, reduceTuneSession, tuneView } from "./session.js";
+
 const CONFIG_PATH = "config/show.json";
 const TOKEN_KEY = "ai-briefing-tune-token";
 const OWNER_KEY = "ai-briefing-tune-owner";
@@ -218,8 +220,25 @@ const exemplarsRoot = document.getElementById("exemplars");
 const toneNotes = document.getElementById("toneNotes");
 const toneCount = document.getElementById("tone-count");
 
-let sha = "";
-let dirty = false;
+let session = initialTuneSession();
+let loadInFlight = false;
+
+function dispatch(event) {
+  const next = reduceTuneSession(session, event);
+  session = next.session;
+  applySession();
+  return next.accepted;
+}
+
+function applySession() {
+  const view = tuneView(session);
+  editor.hidden = !view.showEditor;
+  savebar.hidden = !view.showEditor;
+  document.getElementById("load").disabled = !view.loadEnabled;
+  document.getElementById("save").disabled = !view.saveEnabled;
+  setStatus(connectStatus, session.connect.text, session.connect.tone);
+  setStatus(saveStatus, session.save.text, session.save.tone);
+}
 
 function detectRepo() {
   const host = location.hostname;
@@ -275,7 +294,7 @@ function addExemplar(passage, index) {
     if (exemplarsRoot.querySelectorAll("textarea").length <= 1) return;
     wrap.remove();
     renumberExemplars();
-    dirty = true;
+    dispatch({ type: "edit" });
   });
   head.append(label, remove);
   wrap.append(head);
@@ -310,7 +329,6 @@ function fill(config) {
   setVal("ttsOutro", tts.outro);
   renderExemplars(Array.isArray(config.exemplars) ? config.exemplars : []);
   updateToneCount();
-  dirty = false;
 }
 
 function readShow() {
@@ -413,38 +431,43 @@ async function github(pathname, options) {
 }
 
 async function loadShow() {
-  setStatus(connectStatus, "Loading…", "");
-  const response = await github("/repos/" + repoPath() + "/contents/" + CONFIG_PATH + "?ref=main");
-  if (response.status === 404) {
-    throw new Error("config/show.json is not on main yet.");
+  if (loadInFlight) return;
+  if (session.phase.phase !== "loading" && !dispatch({ type: "load" })) return;
+  loadInFlight = true;
+  try {
+    const response = await github("/repos/" + repoPath() + "/contents/" + CONFIG_PATH + "?ref=main");
+    if (response.status === 404) {
+      dispatch({ type: "load_err", message: "config/show.json is not on main yet." });
+      return;
+    }
+    if (!response.ok) {
+      dispatch({ type: "load_err", message: "Could not load the show (" + response.status + ")." });
+      return;
+    }
+    const payload = await response.json();
+    if (!payload.content || !payload.sha) {
+      dispatch({ type: "load_err", message: "GitHub returned the file without content." });
+      return;
+    }
+    fill(JSON.parse(base64ToUtf8(payload.content)));
+    localStorage.setItem(OWNER_KEY, ownerInput.value.trim());
+    localStorage.setItem(REPO_KEY, repoInput.value.trim());
+    dispatch({ type: "load_ok", sha: payload.sha });
+  } catch (err) {
+    dispatch({
+      type: "load_err",
+      message: err instanceof Error ? err.message : String(err),
+    });
+  } finally {
+    loadInFlight = false;
   }
-  if (!response.ok) throw new Error("Could not load the show (" + response.status + ").");
-  const payload = await response.json();
-  if (!payload.content || !payload.sha) throw new Error("GitHub returned the file without content.");
-  sha = payload.sha;
-  fill(JSON.parse(base64ToUtf8(payload.content)));
-  editor.hidden = false;
-  savebar.hidden = false;
-  localStorage.setItem(OWNER_KEY, ownerInput.value.trim());
-  localStorage.setItem(REPO_KEY, repoInput.value.trim());
-  setStatus(connectStatus, "Loaded from main.", "ok");
-  setStatus(saveStatus, "", "");
 }
 
 async function saveShow() {
   const show = readShow();
   const missing = validate(show);
-  if (missing.length > 0) {
-    setStatus(saveStatus, "Still needed: " + missing.join(", ") + ".", "error");
-    return;
-  }
-  if (!sha) {
-    setStatus(saveStatus, "Load the show before saving.", "error");
-    return;
-  }
-  const saveButton = document.getElementById("save");
-  saveButton.disabled = true;
-  setStatus(saveStatus, "Saving…", "");
+  if (!dispatch({ type: "save", missing })) return;
+  const sha = tuneView(session).sha;
   try {
     const body = JSON.stringify(show, null, 2) + "\n";
     const response = await github("/repos/" + repoPath() + "/contents/" + CONFIG_PATH, {
@@ -457,35 +480,35 @@ async function saveShow() {
       }),
     });
     if (response.status === 409) {
-      setStatus(saveStatus, "The file changed. Loading the saved version.", "error");
+      dispatch({ type: "save_conflict" });
       await loadShow();
       return;
     }
     if (!response.ok) throw new Error("Save failed (" + response.status + ").");
     const payload = await response.json();
-    sha = payload.content && payload.content.sha ? payload.content.sha : sha;
-    dirty = false;
-    setStatus(saveStatus, "Saved. The next morning's episode will use this.", "ok");
+    const nextSha = payload.content && payload.content.sha ? payload.content.sha : sha;
+    dispatch({ type: "save_ok", sha: nextSha });
   } catch (err) {
-    setStatus(saveStatus, err instanceof Error ? err.message : String(err), "error");
-  } finally {
-    saveButton.disabled = false;
+    dispatch({
+      type: "save_err",
+      message: err instanceof Error ? err.message : String(err),
+    });
   }
 }
 
 document.getElementById("load").addEventListener("click", () => {
-  loadShow().catch((err) => setStatus(connectStatus, err instanceof Error ? err.message : String(err), "error"));
+  loadShow();
 });
 
 document.getElementById("forget").addEventListener("click", () => {
   forgetStoredToken();
   tokenInput.value = "";
-  setStatus(connectStatus, "Token removed from this browser.", "ok");
+  dispatch({ type: "forget" });
 });
 
 document.getElementById("add-exemplar").addEventListener("click", () => {
   addExemplar("");
-  dirty = true;
+  dispatch({ type: "edit" });
 });
 
 document.getElementById("save").addEventListener("click", () => {
@@ -495,12 +518,12 @@ document.getElementById("save").addEventListener("click", () => {
 editor.addEventListener("submit", (event) => event.preventDefault());
 
 editor.addEventListener("input", () => {
-  dirty = true;
+  dispatch({ type: "edit" });
   updateToneCount();
 });
 
 window.addEventListener("beforeunload", (event) => {
-  if (!dirty) return;
+  if (!tuneView(session).warnOnLeave) return;
   event.preventDefault();
   event.returnValue = "";
 });
@@ -515,6 +538,7 @@ function forgetStoredToken() {
 forgetStoredToken();
 window.addEventListener("pagehide", () => { tokenInput.value = ""; });
 updateToneCount();
+applySession();
 </script>
 </body>
 </html>

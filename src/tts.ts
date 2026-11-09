@@ -7,6 +7,7 @@ import path from "node:path";
 import type { Episode, NarrationChunk } from "./types.js";
 import { logJson, withRetry } from "./util.js";
 import { stripInlineAudioTags } from "./audioTags.js";
+import { ttsPartPlan } from "./machines.js";
 import { applyPronunciations } from "./pronunciations.js";
 import { buildGeminiSpeechStyle, isDesignedVoiceId, writeGeminiSpeechMp3 } from "./geminiTts.js";
 import {
@@ -205,8 +206,10 @@ export function assertSpeechBudget(
   let chars = 0;
   for (const part of parts) {
     const request = buildPartSpeechRequest(part.chunks, config, part.section, direction, part.hint, persona);
-    const requests = request.input.length <= config.maxRequestChars ? [request] : part.chunks.map(chunk =>
-      buildPartSpeechRequest([chunk], config, part.section, direction, part.hint, persona));
+    const requests = ttsPartPlan(request.input.length, config.maxRequestChars) === "whole"
+      ? [request]
+      : part.chunks.map(chunk =>
+        buildPartSpeechRequest([chunk], config, part.section, direction, part.hint, persona));
     for (const item of requests) {
       if (!item.input.trim() || item.input.length > config.maxRequestChars) throw new Error("TTS request exceeds provider input budget");
       count++;
@@ -232,7 +235,7 @@ async function synthesizePart(
   // Prefer one request per part: continuous prosody across the whole monologue
   // beats per-chunk synthesis, which resets intonation at every boundary.
   const partRequest = buildPartSpeechRequest(part.chunks, config, part.section, direction, part.hint, persona);
-  if (partRequest.input.length <= config.maxRequestChars) {
+  if (ttsPartPlan(partRequest.input.length, config.maxRequestChars) === "whole") {
     await withRetry(
       () => write(partRequest, outputPath, part.label),
       { attempts: MAX_ATTEMPTS, label: `tts:${part.label}` },

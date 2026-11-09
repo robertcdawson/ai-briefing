@@ -1,3 +1,4 @@
+import { nextFeedPoll } from "./machines.js";
 import { logJson } from "./util.js";
 
 /**
@@ -125,17 +126,21 @@ export async function waitForEpisodeLive(
       cacheBuster: `${now()}-${attempt}`,
     });
 
-    if (xml && feedContainsEpisode(xml, date)) {
-      logJson({ phase: "verify", status: "live", date, attempt });
+    const poll = nextFeedPoll({
+      attempt,
+      sawEpisode: Boolean(xml && feedContainsEpisode(xml, date)),
+      pastDeadline: now() >= deadline,
+    });
+    if (poll.status === "live") {
+      logJson({ phase: "verify", status: "live", date, attempt: poll.attempt });
       return true;
     }
-
-    if (now() >= deadline) {
-      logJson({ phase: "verify", status: "not_live", date, attempts: attempt });
+    if (poll.status === "not_live") {
+      logJson({ phase: "verify", status: "not_live", date, attempts: poll.attempts });
       return false;
     }
 
-    logJson({ phase: "verify", status: "pending", date, attempt });
+    logJson({ phase: "verify", status: "pending", date, attempt: poll.attempt });
     await sleep(intervalMs);
   }
 }

@@ -23,6 +23,7 @@ import {
   NARRATOR_PROFILE,
 } from "./speakerProfiles.js";
 import { HOST_IDENTITY, VOICE_EXEMPLARS, type HostIdentity } from "./voice.js";
+import { showConfigReadOutcome } from "./machines.js";
 import { logJson } from "./util.js";
 
 export const SHOW_CONFIG_PATH = "config/show.json";
@@ -140,28 +141,31 @@ export async function loadShowConfig(filePath = defaultShowConfigPath()): Promis
     raw = await readFile(filePath, "utf8");
   } catch (err) {
     const code = err && typeof err === "object" && "code" in err ? String(err.code) : "";
+    const outcome = showConfigReadOutcome(code === "ENOENT" ? "enoent" : "unreadable");
     logJson({
       phase: "show-config",
-      status: "fallback",
-      reason: code === "ENOENT" ? "missing" : "unreadable",
+      status: outcome.status,
+      ...(outcome.status === "fallback" ? { reason: outcome.reason } : {}),
     });
     return builtinShowConfig();
   }
 
   try {
     const parsed = parseShowConfig(JSON.parse(raw) as unknown);
+    const outcome = showConfigReadOutcome("ok");
     logJson({
       phase: "show-config",
-      status: "loaded",
+      status: outcome.status,
       toneNotes: parsed.config.toneNotes.length > 0,
       truncated: parsed.truncated,
     });
     return parsed.config;
   } catch (err) {
+    const outcome = showConfigReadOutcome("invalid");
     logJson({
       phase: "show-config",
-      status: "fallback",
-      reason: "invalid",
+      status: outcome.status,
+      ...(outcome.status === "fallback" ? { reason: outcome.reason } : {}),
       error: err instanceof Error ? err.message : String(err),
     });
     return builtinShowConfig();

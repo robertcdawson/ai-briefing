@@ -2,6 +2,7 @@ import { execa } from "execa";
 import { access, mkdir, stat, writeFile } from "node:fs/promises";
 import path from "node:path";
 import type { Episode, EpisodePartTiming } from "./types.js";
+import { cueStyleAfterAssetLookup } from "./machines.js";
 import { logJson, withRetry } from "./util.js";
 
 const TIMEOUT_MS = 5 * 60_000;
@@ -214,7 +215,9 @@ async function concatAudioFiles(inputs: string[], workDir: string, outputStem: s
 async function synthesizeCueTracks(workDir: string, style: AudioCueStyle, assetDir: string): Promise<CueTrackPaths> {
   if (style === "asset") {
     const assetTracks = await prepareCueAssetTracks(workDir, assetDir);
-    if (assetTracks) return assetTracks;
+    if (cueStyleAfterAssetLookup(style, assetTracks !== null) === "asset" && assetTracks) {
+      return assetTracks;
+    }
     logJson({
       phase: "audio.cue_assets",
       status: "missing",
@@ -226,7 +229,8 @@ async function synthesizeCueTracks(workDir: string, style: AudioCueStyle, assetD
   const intro = path.join(workDir, "cue-intro.wav");
   const transition = path.join(workDir, "cue-transition.wav");
   const outro = path.join(workDir, "cue-outro.wav");
-  const spec = getCueToneSpec(style === "asset" ? "tone" : style);
+  const synthesized = cueStyleAfterAssetLookup(style, false);
+  const spec = getCueToneSpec(synthesized === "asset" ? "tone" : synthesized);
 
   await Promise.all([
     synthesizeCueTone(intro, spec.intro, CUE_PADS.intro, "intro"),

@@ -1,6 +1,7 @@
 import "dotenv/config";
 import { resolveEpisodeDate } from "../src/episode-date.js";
 import { pingHealthcheck } from "../src/healthcheck.js";
+import { healthcheckKindForVerification } from "../src/machines.js";
 import { waitForEpisodeLive } from "../src/verifyDeploy.js";
 import { logJson } from "../src/util.js";
 
@@ -36,7 +37,8 @@ async function main(): Promise<void> {
     error: "episode committed but not present in the published feed",
   });
   process.exitCode = 1;
-  if (!quiet) await pingHealthcheck("fail");
+  const kind = healthcheckKindForVerification(false, quiet);
+  if (kind === "fail") await pingHealthcheck(kind);
 }
 
 main().catch((err) => {

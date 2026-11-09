@@ -6,6 +6,7 @@ import type { Article, StoryCluster, ScoredCluster, CurationReport } from "./typ
 import { loadRecentCoverage } from "./ledger.js";
 import type { PriorCoverageEntry } from "./ledger.js";
 import { getInterestProfile } from "./interests.js";
+import { airedStoryDisposition } from "./machines.js";
 import { isSafeSourceUrl } from "./sourceUrls.js";
 import { canonicalArticleUrl } from "./fetch.js";
 import { getChatCompletionAssistantText, logJson, withHardTimeout, withRetry } from "./util.js";
@@ -307,7 +308,7 @@ export function computeThreadingTally(
   let newCount = 0;
 
   for (const cluster of selectedClusters) {
-    if (cluster.followUp != null) {
+    if (airedStoryDisposition(cluster.followUp != null) === "follow_up") {
       followUpCount++;
     } else {
       newCount++;

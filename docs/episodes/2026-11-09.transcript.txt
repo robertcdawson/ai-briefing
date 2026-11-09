@@ -1,0 +1,106 @@
+AI Briefing — November 9, 2026
+Date: 2026-11-09
+
+Intro
+
+About a fifty-fifty chance Jensen Huang still has his job — that's Yale professor Jeffrey Sonnenfeld's read, and it landed on November 9th, 2026, the day Nvidia confirmed its board has opened a formal investigation into its own CEO.
+
+An independent director committee with outside counsel is now overseeing that investigation, which means what started a couple weeks ago as anonymous intelligence-official chatter has turned into a real corporate governance event.
+
+Top Story: Nvidia board investigates CEO Jensen Huang over Chinese spy affair
+
+Here's my read: Jensen Huang's position at Nvidia is in genuine jeopardy, and even a clean outcome probably doesn't restore things to where they were last month.
+
+Back on October 30th, we covered US intelligence reports of a Chinese spy plot targeting Huang — sourced from anonymous officials, unconfirmed, and I flagged then that the combination of alleged human intelligence operations and export control concerns around Nvidia made this worth watching closely. What's changed since is that it's no longer anonymous.
+
+Nvidia's board has now formed an independent director committee and brought in outside counsel. That's a formal, disclosed, board-level process — not a quiet internal review. The company is treating this seriously enough to say so publicly.
+
+Sonnenfeld's fifty-fifty estimate is expert opinion from someone who watches CEO tenure closely, not a leak from inside the boardroom. But it's the most concrete public assessment we have, and it's not reassuring if you're Jensen Huang.
+
+Ben Thompson over at Stratechery put it plainly: even if Huang survives, his influence will never be the same. That framing matters because Nvidia's strategic direction on AI hardware, on navigating export controls, on which partnerships it pursues — all of that has been inseparable from Huang personally. He didn't just run the company; he was the company's thesis.
+
+The investigation is early. No findings have been released. We don't know what the committee will conclude or on what timeline. But the leadership uncertainty itself is already a real variable for anyone building on Nvidia's infrastructure stack or watching the AI chip market.
+
+The Apple story is a different kind of leadership pressure — internal, not investigative.
+Source: https://www.theverge.com/ai-artificial-intelligence/1029562/nvidia-investigating-jensen-huang-relationship-chinese-spy
+Source: https://www.theverge.com/ai-artificial-intelligence/1029595/full-text-jensen-huang-affair-memo-nvidia
+Source: https://techcrunch.com/2026/11/08/nvidia-says-its-investigating-ceo-jensen-huangs-relationship-with-possible-chinese-spy/
+Source: https://techcrunch.com/2026/11/08/is-jensen-huangs-job-on-the-line-yales-jeffrey-sonnenfeld-estimates-its-about-a-50-50/
+Source: https://stratechery.com/2026/jensen-huangs-affair-the-culper-report-huangs-righteousness/
+
+Product & Tool Watch: Apple accelerates Siri agentic roadmap under CEO pressure to catch rivals
+
+Here's the detail that doesn't quite add up: Apple reportedly has no illusions it's keeping pace with its rivals — Bloomberg's Mark Gurman used almost exactly those words — and yet Apple still has a billion devices in people's pockets running Siri.
+
+So why is a company with the world's largest installed base of AI-capable hardware trailing on the software side badly enough that its CEO is applying pressure to the AI team?
+
+What Bloomberg is reporting is that John Ternus, Apple's hardware chief who's been elevated in the AI push, is pressing Craig Federighi to move faster on an agentic Siri — meaning a Siri that can take multi-step actions across apps and services, not just answer questions. The stated targets are OpenAI's Dots and Meta's Muse agent products.
+
+The answer to why Apple is behind probably lives somewhere in the tension between its privacy architecture and the cloud-side compute that makes today's best agents work. But Gurman's report describes roadmap intentions and internal pressure, not shipped features. Apple's AI timeline track record over the last few years has been, to put it charitably, optimistic.
+
+Still, a credible agentic Siri would be the most widely distributed AI agent on earth almost immediately. That's not a small thing for competitors to think about.
+
+From Cupertino to a very different kind of AI argument — one about whether the whole scaling approach is running out of road.
+Source: https://www.theverge.com/ai-artificial-intelligence/1029552/apple-siri-ai-agentic
+
+Research Breakthrough: Turing Award winner Sutton warns raw compute scaling is insufficient for intelligence
+
+The pushback I'd expect from a lot of listeners is: why should we care what Richard Sutton thinks about LLM scaling? He's a reinforcement learning theorist, not a transformer researcher, and people have been predicting a scaling wall for years without it arriving.
+
+That's fair. But Sutton's specific credibility here cuts the other way. He's the person who wrote the original bitter lesson — the argument that compute-general methods consistently beat hand-crafted AI approaches over the long run. That paper became the intellectual foundation for the scaling-is-all-you-need camp. When the person who handed the scaling advocates their best argument turns around and says fundamentally new learning methods are needed beyond raw compute, that's at least worth your attention.
+
+His current argument is that transformer scaling alone hits a ceiling — that we need architectural and methodological innovation, not just more parameters and more data. He's not alone; a wave of startups is already betting on post-transformer learning architectures, though most haven't shipped anything that proves the point.
+
+What this is not: a new empirical paper with results. It's a public statement and opinion piece. The scaling debate has been running for years without a clean resolution, and Sutton doesn't have experimental evidence that the ceiling has arrived. He might be early, or he might be wrong.
+
+But if he's right, the redirection of R&D spending toward new architectures would be significant — and it would validate a lot of bets that currently look contrarian.
+
+Speaking of building things fast with current tools — Andrej Karpathy had a productive weekend.
+Source: https://the-decoder.com/the-inventor-of-the-bitter-lesson-has-a-bitter-lesson-for-llm-scaling-enthusiasts/
+
+AI Culture Signal: Karpathy builds curated video platform in a weekend using Claude and Hacker News
+
+For about twenty years, Hacker News has been accumulating links, votes, and community discussion — a long, slow editorial process run by thousands of people with strong opinions about what's worth reading and watching.
+
+Andrej Karpathy, OpenAI co-founder and former Tesla AI director, looked at that archive and asked what you could build with it in two days using Claude as a coding assistant. The answer, apparently, is a curated video platform he says beats YouTube's own recommendation algorithm.
+
+That last claim is self-reported. There's no independent evaluation, no methodology described. Karpathy likes what it surfaces for him — which is useful information, but not a controlled comparison.
+
+What is a concrete data point is the weekend timeline. One engineer, existing LLM tooling, two decades of community-curated signal, and a functional product. That's the actual story here — not that it's better than YouTube, but that the floor for solo developer productivity has moved.
+
+From a weekend project to a courtroom — the music industry has more to say about AI.
+Source: https://the-decoder.com/andrej-karpathy-built-a-curated-video-platform-in-a-weekend-using-claude-and-20-years-of-hacker-news/
+
+Policy & Regulation Watch: Elvis and Eminem rights holders sue Suno over AI voice and lyric cloning
+
+Start with who's paying lawyers here: Elvis Presley's rights holders and Eminem's music publisher filed two separate suits against Suno, the AI music generation company. The money on the plaintiff side represents some of the most commercially valuable musical identities ever recorded.
+
+Suno, for its part, has a business that depends on generating music that sounds like real artists — or at least real enough to be useful. The tension between those two positions is what's in court now.
+
+What makes these suits worth tracking beyond the usual AI copyright pile is the legal hook: the plaintiffs are invoking Tennessee's ELVIS Act, which is the first state law written specifically to ban AI cloning of a singer's voice. It's named for Presley deliberately. These cases are a live test of whether a state-level personality-rights statute can actually constrain an AI music platform operating nationally.
+
+The rights holders' argument is that Suno mechanically encoded itself with artists' identities, hard-work, creativity, and time — that's a direct quote from the filing. Suno hasn't publicly responded to these specific claims.
+
+This is also, per the reporting, yet another pair of lawsuits for Suno, so the company has been here before. No rulings yet; we're at the filing stage.
+
+One more story — this one about whether AI can be conscious at all, and what three prominent scientists think builders should do about it.
+Source: https://www.theverge.com/ai-artificial-intelligence/1029533/elvis-eminem-suno-ai-music-clone-lawsuit
+
+Research Breakthrough: Leading consciousness researchers argue AI cannot become conscious on silicon hardware
+
+If you're building a product and someone asks whether your model might be conscious or deserves moral consideration, a Nature commentary published this week gives you three prominent names to cite for the 'no' position: Anil Seth, Ned Block, and Giulio Tononi.
+
+Those three are not fringe voices. Seth works on the neuroscience of consciousness, Block on philosophy of mind, Tononi developed Integrated Information Theory — one of the most mathematically serious frameworks in the field. Their argument, published in Nature, is that the assumption consciousness depends on computation alone is fatally flawed, and they explicitly warn against granting rights to AI systems built on current architectures.
+
+The substrate-dependence view — the idea that consciousness requires specific physical properties of biological tissue, not just the right information processing — is contested. The hard problem of consciousness is genuinely unresolved, and there are serious researchers on the other side of this argument.
+
+What the commentary does is give the 'AI can't be conscious' position a high-profile, credible restatement at a moment when AI labs are increasingly being asked about model welfare and regulatory bodies are starting to take AI sentience arguments seriously. It doesn't settle the science, but it shifts the weight of authority in one direction.
+Source: https://the-decoder.com/the-brain-as-computer-metaphor-shaped-modern-ai-but-may-be-misleading-the-consciousness-debate/
+
+Outro
+
+The concrete thing to watch from today's stories is the Nvidia board investigation timeline — specifically when the independent director committee issues any findings or guidance, because that's the moment Huang's status moves from uncertain to decided.
+
+The Suno ELVIS Act cases are a slower clock, but the first ruling on Tennessee's voice-cloning statute will set a real precedent for every AI audio company operating in the US.
+
+Those are the two calendars worth keeping open. Talk to y'all tomorrow.

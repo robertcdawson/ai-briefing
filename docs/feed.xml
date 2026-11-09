@@ -4,7 +4,7 @@
         <title>AI Briefing</title>
         <link>https://robertcdawson.github.io/ai-briefing/</link>
         <description>Daily AI news briefing — the stories that matter from the last 24 hours.</description>
-        <lastBuildDate>Fri, 06 Nov 2026 11:28:53 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 09 Nov 2026 11:28:09 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -23,6 +23,60 @@
         <podcast:guid>ea8709f4-3ba2-5b7e-bcdc-e409d84a6443</podcast:guid>
         <podcast:locked owner="manatees@gmail.com">yes</podcast:locked>
         <podcast:person role="host" group="cast">Robert Dawson</podcast:person>
+        <item>
+            <title><![CDATA[AI Briefing — November 9, 2026]]></title>
+            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-11-09.mp3</link>
+            <guid>ai-briefing-2026-11-09</guid>
+            <pubDate>Mon, 09 Nov 2026 11:28:09 GMT</pubDate>
+            <description><![CDATA[<p>Top 6 AI stories for November 9, 2026.</p>
+<p>1. Top Story: Nvidia board investigates CEO Jensen Huang over Chinese spy affair</p>
+<p>Why it matters: The potential departure or diminished influence of Jensen Huang — the architect of Nvidia's AI chip dominance — would be the single largest leadership disruption in the AI infrastructure stack; Nvidia's strategic direction on AI hardware, export controls, and partnerships is inseparable from Huang personally.</p>
+<p>Caveat: The investigation is in early stages with no findings yet, and Yale's Sonnenfeld 50-50 estimate is expert opinion, not insider knowledge.</p>
+<p><a href="https://www.theverge.com/ai-artificial-intelligence/1029562/nvidia-investigating-jensen-huang-relationship-chinese-spy">The Verge AI</a> · <a href="https://www.theverge.com/ai-artificial-intelligence/1029595/full-text-jensen-huang-affair-memo-nvidia">The Verge AI</a> · <a href="https://techcrunch.com/2026/11/08/nvidia-says-its-investigating-ceo-jensen-huangs-relationship-with-possible-chinese-spy/">TechCrunch AI</a> · <a href="https://techcrunch.com/2026/11/08/is-jensen-huangs-job-on-the-line-yales-jeffrey-sonnenfeld-estimates-its-about-a-50-50/">TechCrunch AI</a> · <a href="https://stratechery.com/2026/jensen-huangs-affair-the-culper-report-huangs-righteousness/">Stratechery</a></p>
+<p>2. Product &amp; Tool Watch: Apple accelerates Siri agentic roadmap under CEO pressure to catch rivals</p>
+<p>Why it matters: Apple's billion-device installed base means a credible agentic Siri would instantly be the most widely distributed AI agent in the world, reshaping how consumers interact with AI daily and raising the competitive floor for OpenAI Dots and Meta Muse.</p>
+<p>Caveat: The Bloomberg report describes internal pressure and roadmap intentions, not shipped features; Apple's track record on AI timelines has been poor.</p>
+<p><a href="https://www.theverge.com/ai-artificial-intelligence/1029552/apple-siri-ai-agentic">The Verge AI</a></p>
+<p>3. Research Breakthrough: Turing Award winner Sutton warns raw compute scaling is insufficient for intelligence</p>
+<p>Why it matters: Richard Sutton, originator of the 'bitter lesson' that compute beats hand-crafted methods, now argues the inverse — that transformer scaling alone hits a ceiling — which, if correct, would redirect billions in AI R&amp;D toward fundamentally new learning architectures.</p>
+<p>Caveat: Sutton's argument is a public statement and opinion piece, not a new empirical paper; the scaling debate has been ongoing without resolution for years.</p>
+<p><a href="https://the-decoder.com/the-inventor-of-the-bitter-lesson-has-a-bitter-lesson-for-llm-scaling-enthusiasts/">The Decoder</a></p>
+<p>4. AI Culture Signal: Karpathy builds curated video platform in a weekend using Claude and Hacker News</p>
+<p>Why it matters: A high-profile demonstration by a respected AI researcher that a single engineer can build a functional, recommendation-beating product in a weekend using LLM assistance is a concrete data point on how AI is changing solo developer productivity.</p>
+<p>Caveat: Karpathy's claim that the result 'beats YouTube's own recommendations' is self-reported with no independent evaluation methodology described.</p>
+<p><a href="https://the-decoder.com/andrej-karpathy-built-a-curated-video-platform-in-a-weekend-using-claude-and-20-years-of-hacker-news/">The Decoder</a></p>
+<p>5. Policy &amp; Regulation Watch: Elvis and Eminem rights holders sue Suno over AI voice and lyric cloning</p>
+<p>Why it matters: These suits invoke Tennessee's ELVIS Act — the first state law specifically targeting AI voice cloning — making them a test case for whether state-level personality-rights statutes can constrain AI music generation at scale.</p>
+<p>Caveat: The lawsuits are newly filed with no rulings yet; Suno has not publicly responded to these specific claims.</p>
+<p><a href="https://www.theverge.com/ai-artificial-intelligence/1029533/elvis-eminem-suno-ai-music-clone-lawsuit">The Verge AI</a></p>
+<p>6. Research Breakthrough: Leading consciousness researchers argue AI cannot become conscious on silicon hardware</p>
+<p>Why it matters: A Nature commentary from three prominent consciousness scientists directly challenges the computational theory of mind that underpins most AI safety and rights discourse, with practical implications for how labs frame model welfare and regulatory arguments about AI sentience.</p>
+<p>Caveat: The commentary is a theoretical position piece in Nature, not an empirical study; the hard problem of consciousness remains genuinely unresolved and the authors' substrate-dependence view is contested.</p>
+<p><a href="https://the-decoder.com/the-brain-as-computer-metaphor-shaped-modern-ai-but-may-be-misleading-the-consciousness-debate/">The Decoder</a></p>
+<p>Chapters</p>
+<p>00:00:00 Intro</p>
+<p>00:00:33 Nvidia board investigates CEO Jensen...</p>
+<p>00:02:21 Apple accelerates Siri agentic roadmap...</p>
+<p>00:03:52 Turing Award winner Sutton warns raw...</p>
+<p>00:05:36 Karpathy builds curated video platform in...</p>
+<p>00:06:49 Elvis and Eminem rights holders sue Suno...</p>
+<p>00:08:22 Leading consciousness researchers argue...</p>
+<p>00:09:52 Outro</p>]]></description>
+            <enclosure length="15010405" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-11-09.mp3"/>
+                    <itunes:duration>625</itunes:duration>
+            <itunes:explicit>false</itunes:explicit>
+            <itunes:season>2026</itunes:season>
+            <itunes:episode>313</itunes:episode>
+            <itunes:episodeType>full</itunes:episodeType>
+            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-11-09.chapters.json" type="application/json+chapters"/>
+            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-11-09.transcript.txt" type="text/plain" language="en"/>
+            <podcast:soundbite startTime="33" duration="106">Nvidia board investigates CEO Jensen...</podcast:soundbite>
+            <podcast:soundbite startTime="141" duration="90">Apple accelerates Siri agentic roadmap...</podcast:soundbite>
+            <podcast:soundbite startTime="232" duration="103">Turing Award winner Sutton warns raw...</podcast:soundbite>
+            <podcast:soundbite startTime="336" duration="71">Karpathy builds curated video platform in...</podcast:soundbite>
+            <podcast:soundbite startTime="409" duration="91">Elvis and Eminem rights holders sue Suno...</podcast:soundbite>
+            <podcast:soundbite startTime="502" duration="89">Leading consciousness researchers argue...</podcast:soundbite>
+        </item>
         <item>
             <title><![CDATA[AI Briefing — November 6, 2026]]></title>
             <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-11-06.mp3</link>
@@ -562,60 +616,6 @@
             <podcast:soundbite startTime="293" duration="91">r/opensource bans all AI projects,...</podcast:soundbite>
             <podcast:soundbite startTime="386" duration="90">Google AI Overviews have structurally...</podcast:soundbite>
             <podcast:soundbite startTime="477" duration="68">Grok releases first seven minutes of...</podcast:soundbite>
-        </item>
-        <item>
-            <title><![CDATA[AI Briefing — October 23, 2026]]></title>
-            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-10-23.mp3</link>
-            <guid>ai-briefing-2026-10-23</guid>
-            <pubDate>Fri, 23 Oct 2026 12:17:06 GMT</pubDate>
-            <description><![CDATA[<p>Top 6 AI stories for October 23, 2026.</p>
-<p>1. Top Story: Microsoft AI diagnostic tool outperforms doctors fourfold on hard medical cases</p>
-<p>Why it matters: A peer-reviewed Science paper claiming 4x diagnostic accuracy over generalist physicians is a landmark benchmark for clinical AI; if the results hold up, it shifts the timeline for AI-assisted triage and diagnosis from aspirational to near-term deployable.</p>
-<p>Caveat: Microsoft built its own benchmark from medical case reports, and TechCrunch notes most gains appear to come from the underlying models rather than Microsoft's orchestration layer itself.</p>
-<p><a href="https://www.theverge.com/ai-artificial-intelligence/1016690/suleyman-microsoft-diagnostic-orchestrator-science-medical-superintelligence">The Verge AI</a> · <a href="https://techcrunch.com/2026/10/22/microsofts-mustafa-suleyman-says-its-ai-outperforms-doctors-on-hard-cases-as-he-chases-medical-superintelligence/">TechCrunch AI</a></p>
-<p>2. Research Breakthrough: Anthropic's Claude auto-generates formal proofs verifying safety of existing code</p>
-<p>Why it matters: Generating 180 million lines of formal proof code for 123 open-source libraries at scale demonstrates that AI-assisted formal verification could become routine practice, potentially transforming software quality assurance for builders shipping production systems.</p>
-<p>Caveat: The article does not specify what fraction of the 123 libraries were fully verified versus partially covered, nor whether the approach generalizes beyond the tested library types.</p>
-<p><a href="https://the-decoder.com/anthropics-claude-now-writes-code-and-proves-it-safe-automatically/">The Decoder</a></p>
-<p>3. Policy &amp; Regulation Watch: AI-accelerated PHP2Shell exploits trigger 'Black October' cybersecurity crisis</p>
-<p>Why it matters: The combination of AI-assisted vulnerability discovery, a four-day attacker head start before defenders were notified, and Chinese state actors using AI agents to breach thousands of ConnectWise customers marks a qualitative escalation in AI-enabled offensive cyber operations.</p>
-<p>Caveat: The full scope of affected organizations from the ConnectWise breach has not been disclosed, and attribution to specific Chinese state actors remains based on Microsoft's reporting alone.</p>
-<p><a href="https://arstechnica.com/security/2026/10/hackers-got-a-four-day-head-start-on-epic-php2shell-vulnerability/">Ars Technica AI</a> · <a href="https://techcrunch.com/2026/10/22/chinese-hackers-spied-on-thousands-of-companies-after-breaching-it-giant-connectwise/">TechCrunch AI</a> · <a href="https://www.404media.co/php2shell-black-october-ai-is-changing-everything-about-hacking-no-one-knows-what-happens-next/">404 Media</a></p>
-<p>4. Product &amp; Tool Watch: OpenAI launches Decisions API for fast low-cost in-app decision making</p>
-<p>Why it matters: A dedicated low-latency, low-cost decision model API gives developers a purpose-built inference endpoint for high-frequency branching logic in agents and apps, directly competing with Jev and shifting the decision-model market.</p>
-<p>Caveat: Pricing, latency benchmarks, and independent comparisons against Jev have not yet been published by third parties.</p>
-<p><a href="https://openai.com/index/decisions-api">OpenAI Blog</a> · <a href="https://techcrunch.com/2026/10/22/openai-makes-its-jev-competitor-widely-available-as-decision-model-competition-heats-up/">TechCrunch AI</a></p>
-<p>5. AI Business Watch: OpenAI seeks $30B raise at $1.25T valuation, cutting prior target</p>
-<p>Why it matters: A $30B round at $1.25T would set a record for private company valuation, but the downward revision from earlier targets signals investor pushback that could affect IPO pricing and competitive capital allocation across the AI sector.</p>
-<p>Caveat: The Decoder reports the valuation target was lowered to close the round, suggesting demand at higher valuations was insufficient; final terms are not confirmed.</p>
-<p><a href="https://techcrunch.com/2026/10/22/openai-working-on-new-30b-raise-at-1-25t-valuation-ahead-of-ipo/">TechCrunch AI</a> · <a href="https://the-decoder.com/openai-lowers-valuation-target-raises-up-to-30-billion/">The Decoder</a></p>
-<p>6. Product &amp; Tool Watch: Major US banks block AI agents using customer credentials for account access</p>
-<p>Why it matters: Morgan Stanley and JPMorgan actively restricting AI agent logins signals a coming authentication infrastructure gap; 1Password's new agent credential vault and the banks' read-only posture together define the emerging security perimeter for agentic finance.</p>
-<p>Caveat: The Decoder does not name all banks involved or specify what fraction of agent login attempts are being blocked versus allowed through read-only access.</p>
-<p><a href="https://the-decoder.com/major-us-banks-are-locking-out-ai-agents-that-log-in-with-customer-credentials/">The Decoder</a> · <a href="https://techcrunch.com/2026/10/22/1password-launches-a-way-for-ai-agents-to-log-in-on-your-behalf-without-seeing-your-password/">TechCrunch AI</a></p>
-<p>Chapters</p>
-<p>00:00:00 Intro</p>
-<p>00:00:37 Microsoft AI diagnostic tool outperforms...</p>
-<p>00:02:20 Anthropic's Claude auto-generates formal...</p>
-<p>00:04:04 AI-accelerated PHP2Shell exploits trigger...</p>
-<p>00:06:04 OpenAI launches Decisions API for fast...</p>
-<p>00:07:26 OpenAI seeks $30B raise at $1.25T...</p>
-<p>00:08:31 Major US banks block AI agents using...</p>
-<p>00:09:57 Outro</p>]]></description>
-            <enclosure length="14886564" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-10-23.mp3"/>
-                    <itunes:duration>620</itunes:duration>
-            <itunes:explicit>false</itunes:explicit>
-            <itunes:season>2026</itunes:season>
-            <itunes:episode>296</itunes:episode>
-            <itunes:episodeType>full</itunes:episodeType>
-            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-10-23.chapters.json" type="application/json+chapters"/>
-            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-10-23.transcript.txt" type="text/plain" language="en"/>
-            <podcast:soundbite startTime="37" duration="102">Microsoft AI diagnostic tool outperforms...</podcast:soundbite>
-            <podcast:soundbite startTime="140" duration="102">Anthropic&apos;s Claude auto-generates formal...</podcast:soundbite>
-            <podcast:soundbite startTime="244" duration="118">AI-accelerated PHP2Shell exploits trigger...</podcast:soundbite>
-            <podcast:soundbite startTime="364" duration="80">OpenAI launches Decisions API for fast...</podcast:soundbite>
-            <podcast:soundbite startTime="446" duration="64">OpenAI seeks $30B raise at $1.25T...</podcast:soundbite>
-            <podcast:soundbite startTime="511" duration="85">Major US banks block AI agents using...</podcast:soundbite>
         </item>
     </channel>
 </rss>

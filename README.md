@@ -329,7 +329,7 @@ What you can change there:
 - **Passages** the writer should sound like.
 - **Spoken delivery** — accent, pace, and voice id. OpenAI speech uses these instructions. A non-empty `TTS_VOICE` or `TTS_*_STYLE` Actions variable still overrides the matching delivery field. The words in the script come from the page either way.
 
-The first time, create a fine-grained personal access token with **Contents: Read and write** on this repository only. The token is held only in the open page and must be pasted again after a reload. Old locally stored tokens are removed when the updated page loads. Takes effect on the next run. An episode that already published today is left as it is.
+The first time, create a fine-grained personal access token with **Contents: Read and write** on this repository only. The token is held only in the open page and must be pasted again after a reload. Old locally stored tokens are removed when the updated page loads. Takes effect on the next run. An episode that already published today is left as it is. Edits typed while a save is still in flight stay unsaved, and the page says so. If the file changed on main, the page reloads that version and keeps the explanation.
 
 Details: `docs/solutions/best-practices/show-tune-page.md`.
 

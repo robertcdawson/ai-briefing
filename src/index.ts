@@ -16,6 +16,7 @@ import { pingHealthcheck } from "./healthcheck.js";
 import { withStageCache } from "./stageCache.js";
 import { assertPreflight } from "./preflight.js";
 import { loadShowConfig } from "./showConfig.js";
+import { healthcheckKindForGeneration } from "./machines.js";
 import { logJson } from "./util.js";
 
 async function main(): Promise<void> {
@@ -39,7 +40,9 @@ async function main(): Promise<void> {
         date,
         durationMs: Date.now() - overallStart,
       });
-      void pingHealthcheck("success");
+      void pingHealthcheck(
+        healthcheckKindForGeneration({ status: "skipped", reason: "episode_already_published" }),
+      );
       return;
     }
 
@@ -182,7 +185,7 @@ async function main(): Promise<void> {
       durationMs: Date.now() - overallStart,
       date,
     });
-    void pingHealthcheck("success");
+    void pingHealthcheck(healthcheckKindForGeneration({ status: "published" }));
   } catch (err) {
     const message = err instanceof Error ? err.message : String(err);
     const stack = err instanceof Error ? err.stack : undefined;
@@ -194,7 +197,7 @@ async function main(): Promise<void> {
       stack,
     });
     process.exitCode = 1;
-    void pingHealthcheck("fail");
+    void pingHealthcheck(healthcheckKindForGeneration({ status: "failed" }));
   } finally {
     if (workDir) {
       try {

@@ -13,6 +13,8 @@
  * curate prompt then behaves exactly as it did before this feature).
  */
 
+import { interestProfileText, resolveInterestProfileMode } from "./machines.js";
+
 export const DEFAULT_INTEREST_PROFILE = `The listener is a veteran senior software engineer fascinated by how AI is changing the way people work. Lean toward:
 - AI technologies broadly (research, models, capabilities)
 - Consumer AI products
@@ -27,7 +29,7 @@ export const DEFAULT_INTEREST_PROFILE = `The listener is a veteran senior softwa
  * override is explicitly set to empty/whitespace (personalization disabled).
  */
 export function getInterestProfile(): string {
-  const override = process.env.INTEREST_PROFILE;
-  if (override !== undefined) return override.trim();
-  return DEFAULT_INTEREST_PROFILE.trim();
+  return interestProfileText(
+    resolveInterestProfileMode(process.env.INTEREST_PROFILE, DEFAULT_INTEREST_PROFILE),
+  );
 }

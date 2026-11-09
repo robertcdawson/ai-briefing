@@ -50,6 +50,7 @@ A missing, unreadable, or invalid file logs `phase: show-config, status: fallbac
 **Don't**
 
 - Don't expect a save to change an episode that already published today. The pipeline skips paid stages when today's mp3 and sidecar exist.
+- Don't keep typing through a save and assume those later edits were stored. The page stays dirty and says the in-flight version was the one written. A 409 reloads main and leaves the conflict explanation on screen. Load and save do not run at the same time.
 - Don't put the token in the repo, the tone notes, or a screenshot.
 - Don't phonetic-spell an accent into the script. Delivery instructions are the accent channel, and only the OpenAI speech path honors them.
 

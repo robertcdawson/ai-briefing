@@ -14,6 +14,7 @@ import type { ChatCompletionLike } from "./util.js";
 import { getChatCompletionAssistantText, logJson, withHardTimeout, withRetry } from "./util.js";
 import { formatListenerToneNotes, builtinShowConfig, type ShowConfig } from "./showConfig.js";
 import { formatHostIdentityBlock } from "./voice.js";
+import { scriptModelStep } from "./machines.js";
 
 // Sonnet leads for prose quality (voice adherence, wit, varied phrasing);
 // the cheaper models remain as availability fallbacks. Sonnet was briefly the
@@ -530,13 +531,13 @@ export async function writeScript(
       break;
     } catch (err) {
       lastErr = err;
-      const nextModel = models[modelIndex + 1];
-      if (!nextModel) break;
+      const step = scriptModelStep(model, models[modelIndex + 1], false);
+      if (step.step !== "fallback") break;
       logJson({
         phase: "script.model_fallback",
         status: "error",
-        model,
-        nextModel,
+        model: step.model,
+        nextModel: step.nextModel,
         error: err instanceof Error ? err.message : String(err),
       });
     }

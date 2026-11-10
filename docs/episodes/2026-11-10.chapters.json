@@ -1,0 +1,46 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — November 10, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 29,
+      "title": "Intro"
+    },
+    {
+      "startTime": 29,
+      "endTime": 181,
+      "title": "Jensen Huang spy scandal deepens with..."
+    },
+    {
+      "startTime": 181,
+      "endTime": 301,
+      "title": "Anthropic releases Claude Fable 5.2 and..."
+    },
+    {
+      "startTime": 301,
+      "endTime": 404,
+      "title": "Anthropic expected to set IPO valuation..."
+    },
+    {
+      "startTime": 404,
+      "endTime": 488,
+      "title": "Meta releases Muse Ember, a cheap..."
+    },
+    {
+      "startTime": 488,
+      "endTime": 581,
+      "title": "Claude Code settings files accidentally..."
+    },
+    {
+      "startTime": 581,
+      "endTime": 674,
+      "title": "Google ships four TPU variants in one..."
+    },
+    {
+      "startTime": 674,
+      "endTime": 714,
+      "title": "Outro"
+    }
+  ]
+}

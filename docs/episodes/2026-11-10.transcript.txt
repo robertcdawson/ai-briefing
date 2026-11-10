@@ -1,0 +1,123 @@
+AI Briefing — November 10, 2026
+Date: 2026-11-10
+
+Intro
+
+Jensen Huang hired a PR firm specializing in high-profile sex scandals roughly a year ago — which means somebody saw this coming long before the rest of us did.
+
+Nvidia's stock slid more than four percent after the board opened its investigation, and now securities lawyers are racing to be first through the courthouse door. That's where November 10th, 2026 finds us.
+
+It's a busy day across AI, so let's get into it.
+
+Top Story: Jensen Huang spy scandal deepens with lawsuits, PR firm, and Trump comments
+
+Here's the objection I keep hearing: this is a personal scandal, not a business story, and Nvidia's chips are so dominant that none of this actually moves the needle on the company's trajectory. I understand that read. I don't think it holds.
+
+Yesterday we covered the board opening its investigation into Huang over a suspected Chinese espionage connection. Since then, the story has grown in almost every direction at once.
+
+Securities class-action lawyers are already filing suit. Culper Research — the short-seller — flagged Huang's ties to Alice Huang, the woman at the center of this, six months before any of this became public. That means the information was circulating in certain circles for half a year while Nvidia was lobbying Washington on chip export policy.
+
+For the AI industry specifically, the most consequential piece is this: Megaspeed, the company connected to Alice Huang, bought four point eight billion dollars worth of hard-to-get Nvidia chips starting around 2024. Whether that procurement was influenced by the relationship is exactly what the board is trying to determine — and the full national security picture is still classified, so we genuinely don't know the answer.
+
+Ben Thompson at Stratechery put it plainly: the real risk for Huang is governance, even more than national security. And that framing is right. Nvidia's chip export lobbying position — arguing against tighter restrictions on AI hardware going to China — just got significantly harder to prosecute when its CEO is under investigation for a relationship with an alleged Chinese intelligence asset.
+
+I said yesterday that Huang's influence was durably diminished regardless of how the investigation ends. The PR firm detail actually reinforces that: you don't retain a crisis communications shop that specializes in sex scandals a year in advance unless you have a specific reason to. That call still looks correct to me.
+
+What's still missing: no investigation findings have been released, most of the reporting leans on unnamed sources, and Trump apparently weighed in at a press conference — though what he said and how seriously to take it as a policy signal is unclear from the coverage. The lawsuit filings are real; the governance damage is real; the rest is still developing.
+
+Anthropic, meanwhile, picked a remarkable week to go public — and that's where we go next.
+Source: https://www.theverge.com/ai-artificial-intelligence/1030422/nvidia-jensen-huang-ai-china-alice-huang
+Source: https://www.theverge.com/tech/1030446/trump-jensen-huang-press-conference
+Source: https://www.theverge.com/ai-artificial-intelligence/1029990/jensen-huang-the-spy-who-loved-me
+Source: https://www.theverge.com/ai-artificial-intelligence/1030328/what-could-china-get-from-jensen-huang
+Source: https://techcrunch.com/2026/11/09/jensen-huang-reportedly-engaged-a-pr-firm-with-a-history-of-handling-high-profile-sex-scandals-a-year-ago/
+Source: https://techcrunch.com/2026/11/09/a-short-seller-flagged-nvidia-ceos-ties-to-a-suspected-chinese-spy-six-months-before-the-scandal/
+Source: https://techcrunch.com/2026/11/09/the-race-is-on-to-sue-nvidia/
+Source: https://techcrunch.com/2026/11/09/jensen-huang-pulls-out-of-elevenlabs-summit-amid-nvidia-controversy/
+Source: https://techcrunch.com/2026/11/09/jensen-huangs-affair-with-alleged-chinese-spy-puts-nvidias-china-ambitions-under-scrutiny/
+Source: https://arstechnica.com/tech-policy/2026/11/ceo-jensen-huang-admits-affair-as-nvidia-probes-possible-chinese-espionage/
+Source: https://the-decoder.com/nvidia-espionage-scandal-weakens-huangs-lobby-against-tighter-ai-chip-export-controls/
+Source: https://stratechery.com/2026/the-jensen-huang-story-gets-worse-washington-vs-new-york-silicon-valley/
+
+Product & Tool Watch: Anthropic releases Claude Fable 5.2 and Mythos 5.2 with physics breakthroughs
+
+Anthropic started as a safety-focused lab that spun out of OpenAI in 2021. For the first couple of years, the story was mostly about alignment research and careful deployment. Then Claude 3 changed the competitive picture, Claude 4 made coding genuinely useful, and each generation has pushed the capability ceiling higher while Anthropic kept insisting the safety work was keeping pace.
+
+Today they released Claude Fable 5.2 and Mythos 5.2, and the headline claim is striking: the models solved two open theoretical physics problems during prerelease testing. Anthropic also says these models now write over ninety percent of the code that gets merged into Anthropic's own codebase.
+
+Both models support orchestrating teams of AI agents and handling long-running projects — the kind of multi-step work that single-shot prompting can't do. One version is freely available; a second is restricted to verified organizations only, which is Anthropic's way of gating the more capable system while they watch how it gets used.
+
+Here's the detail that changes the tone of this release: Anthropic says it deliberately limited capabilities that would allow the AI to accelerate its own development. Recursive self-improvement — where a model helps build a better version of itself, which then builds a better version, and so on — is the scenario that makes AI safety researchers most nervous. Anthropic is saying they got close enough to that line that they chose to pull back.
+
+Every capability claim here comes from Anthropic's own prerelease testing. No independent benchmark replication has been published yet. The physics problems are real, but we don't have external verification of the methodology or the claims. Take the numbers seriously, but hold them loosely until someone outside Anthropic runs the same tests.
+
+The IPO timing makes all of this land differently, and that's the next piece.
+Source: https://www.theverge.com/ai-artificial-intelligence/1030005/anthropic-claude-fable-mythos-5-2
+Source: https://techcrunch.com/2026/11/09/anthropic-releases-new-mythos-and-fable-models-amid-rsi-concerns/
+Source: https://the-decoder.com/claude-fable-5-2-and-mythos-5-2-cement-anthropics-ai-lead-just-before-its-ipo/
+Source: https://simonwillison.net/2026/Nov/10/prompting-claude-fable-52/
+
+AI Business Watch: Anthropic expected to set IPO valuation range this week
+
+Back in late October, we covered Anthropic's pre-IPO financials and I said the whole model rests on a bet that recursive AI self-improvement happens and Anthropic is positioned to capture it. That read hasn't changed — and this week makes it more explicit, not less.
+
+The Wall Street Journal reports Anthropic is expected to set its valuation range this week. Analyst estimates have floated one and a half to two trillion dollars, though the Journal hasn't confirmed a final figure. What makes the timing notable is that the model release and the IPO are happening in the same breath.
+
+Think about who benefits from that sequencing. Anthropic's current investors — Google and Amazon are both in — collect at whatever valuation public markets assign. New shareholders are buying into a company whose pitch is: we're so close to recursive self-improvement that we had to deliberately cap our latest models to prevent it. That's either the most compelling IPO story in tech history or a liability disclosure dressed up as a feature, and the market will decide which.
+
+They also just committed three point four billion dollars to natural gas turbines for compute infrastructure. That's a significant capital outlay that tells you something about how much compute they expect to need — and how confident they are that revenue will follow.
+
+The thing I'm watching is whether the valuation range, when it drops, reflects the AGI upside or gets discounted for the governance and safety uncertainty. Those are two very different numbers.
+
+Meta's answer to the compute cost problem is a different kind of model entirely — a small one.
+Source: https://techcrunch.com/2026/11/09/anthropic-reportedly-plans-to-move-forward-with-ipo-plans/
+Source: https://techcrunch.com/2026/11/09/anthropic-joins-ais-natural-gas-frenzy-buys-3-4b-worth-of-turbines/
+
+Product & Tool Watch: Meta releases Muse Ember, a cheap lightweight model for agent workloads
+
+If you're running an agent pipeline with repetitive steps — tool calls, routing decisions, pulling structured data out of documents — Muse Ember is worth a look starting this week. Meta is pricing it at ten cents per million input tokens, which undercuts comparable small models like Haiku and Luna on cost for exactly those tasks.
+
+The wider context: Meta has been building out the Muse model family as its answer to the question of what happens when you need to run thousands of cheap inference calls per user session. Ember is their smallest, most efficient model yet, purpose-built for the repetitive work that makes up the bulk of real-world agent compute spend.
+
+The limitation is real and Meta isn't hiding it: Ember falls short on programming tasks compared to frontier small models. So if your agent pipeline involves writing or debugging code, this probably isn't your primary model. For routing and extraction, the price point is genuinely competitive.
+
+Simon Willison's coverage flags it as Meta's most efficient model to date, which tracks with the positioning. Independent benchmarks beyond Meta's own claims haven't landed yet, so the performance numbers are still self-reported.
+
+A different kind of efficiency problem is waiting in the next story — one that's actively leaking secrets right now.
+Source: https://techcrunch.com/2026/11/09/meta-releases-muse-ember-a-new-lightweight-model-for-agent-execution/
+Source: https://the-decoder.com/meta-launches-muse-ember-a-small-ai-model-built-for-the-repetitive-work-agents-actually-do/
+Source: https://simonwillison.net/2026/Nov/10/muse-ember/
+
+Product & Tool Watch: Claude Code settings files accidentally expose thousands of secrets on GitHub
+
+This one is a live security incident, and I want to say that plainly up front: Claude Code settings files containing passwords and API keys are showing up in public GitHub repositories right now, and the root cause is a UX decision — a 'do not ask again' prompt that causes developers to inadvertently commit those files without realizing what's in them.
+
+Thousands of secrets reportedly exposed. That's the scale Ars Technica is reporting, and it tracks with how quickly these things propagate once a misconfiguration pattern takes hold across a user base.
+
+The mechanism matters here. It's not a vulnerability in the traditional sense — no one broke in. Developers clicked through a prompt, the tool behaved as configured, and credentials ended up in version control. That's the kind of failure that's genuinely hard to catch because it looks like normal behavior until someone searches GitHub for the pattern.
+
+What we don't have confirmed: whether Anthropic has shipped a patch or issued mitigation guidance. If you're using Claude Code, the immediate move is to audit your recent commits for any settings files and rotate any credentials that may have been exposed. Don't wait for an official fix announcement.
+
+This follows Anthropic's earlier Claude Code system prompt update that blocked game cloning — a sign that they're actively adjusting the tool's behavior, which makes the lack of a confirmed patch here more noticeable.
+
+Google, meanwhile, is making a different kind of infrastructure move — and shipping fast.
+Source: https://arstechnica.com/ai/2026/11/claude-code-settings-files-expose-thousands-of-secrets-on-github/
+
+Product & Tool Watch: Google ships four TPU variants in one year, targeting Nvidia GPU dominance
+
+Here's the detail that doesn't immediately make sense: Google shipped four distinct TPU 8 variants in a single year. That's an unusual pace for hardware, where design cycles typically run longer and you'd expect a company to consolidate around one or two configurations rather than fragment the lineup.
+
+The reason, when you look at the specific variants, is that Google is targeting different enterprise objections simultaneously rather than sequentially. The TPU 8tx encrypts data even during active processing — that's called confidential computing, meaning the chip handles your data without ever exposing it in plaintext, even to the infrastructure running it. That directly addresses the security concern that's kept regulated industries on Nvidia hardware. The TPU 8i Max doubles compute and memory by placing two chips on a single package, targeting raw performance comparisons.
+
+Nearly a hundred external customers are now using Google TPUs. That's a real number, but Google hasn't disclosed revenue or workload migration data, so we can't tell yet whether those customers are running meaningful production workloads or pilot projects.
+
+The competitive intent is obvious. Whether four variants in one year reflects genuine product-market fit discovery or a company throwing configurations at the wall to find what sticks — that's honestly still open. The confidential computing capability is the most differentiated feature in the lineup and the one most likely to move enterprise procurement conversations.
+Source: https://the-decoder.com/google-ships-four-tpu-variants-in-one-year-as-it-ramps-up-competition-with-nvidia/
+
+Outro
+
+The question nobody in today's stories has actually answered is this: Anthropic says it deliberately limited Fable 5.2 and Mythos 5.2 to prevent the models from accelerating their own development — but what does that constraint look like in practice, how was it enforced, and how do we know it held?
+
+They're about to ask public market investors to price that claim into a valuation somewhere between one and a half and two trillion dollars. That's a number that deserves a much more specific answer than we've gotten so far.
+
+Y'all go rotate your credentials and read the Anthropic S-1 carefully.

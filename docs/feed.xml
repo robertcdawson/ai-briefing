@@ -4,7 +4,7 @@
         <title>AI Briefing</title>
         <link>https://robertcdawson.github.io/ai-briefing/</link>
         <description>Daily AI news briefing — the stories that matter from the last 24 hours.</description>
-        <lastBuildDate>Mon, 09 Nov 2026 11:28:09 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 10 Nov 2026 11:29:11 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -23,6 +23,60 @@
         <podcast:guid>ea8709f4-3ba2-5b7e-bcdc-e409d84a6443</podcast:guid>
         <podcast:locked owner="manatees@gmail.com">yes</podcast:locked>
         <podcast:person role="host" group="cast">Robert Dawson</podcast:person>
+        <item>
+            <title><![CDATA[AI Briefing — November 10, 2026]]></title>
+            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-11-10.mp3</link>
+            <guid>ai-briefing-2026-11-10</guid>
+            <pubDate>Tue, 10 Nov 2026 11:29:11 GMT</pubDate>
+            <description><![CDATA[<p>Top 6 AI stories for November 10, 2026.</p>
+<p>1. Top Story: Jensen Huang spy scandal deepens with lawsuits, PR firm, and Trump comments</p>
+<p>Why it matters: The scandal now threatens Nvidia's chip export lobbying position at a critical moment for US-China AI policy, with securities litigation risk added on top of governance concerns.</p>
+<p>Caveat: No investigation findings have been released; much reporting relies on unnamed sources and the full national security picture remains classified.</p>
+<p><a href="https://www.theverge.com/ai-artificial-intelligence/1030422/nvidia-jensen-huang-ai-china-alice-huang">The Verge AI</a> · <a href="https://www.theverge.com/tech/1030446/trump-jensen-huang-press-conference">The Verge AI</a> · <a href="https://www.theverge.com/ai-artificial-intelligence/1029990/jensen-huang-the-spy-who-loved-me">The Verge AI</a> · <a href="https://www.theverge.com/ai-artificial-intelligence/1030328/what-could-china-get-from-jensen-huang">The Verge AI</a> · <a href="https://techcrunch.com/2026/11/09/jensen-huang-reportedly-engaged-a-pr-firm-with-a-history-of-handling-high-profile-sex-scandals-a-year-ago/">TechCrunch AI</a> · <a href="https://techcrunch.com/2026/11/09/a-short-seller-flagged-nvidia-ceos-ties-to-a-suspected-chinese-spy-six-months-before-the-scandal/">TechCrunch AI</a> · <a href="https://techcrunch.com/2026/11/09/the-race-is-on-to-sue-nvidia/">TechCrunch AI</a> · <a href="https://techcrunch.com/2026/11/09/jensen-huang-pulls-out-of-elevenlabs-summit-amid-nvidia-controversy/">TechCrunch AI</a> · <a href="https://techcrunch.com/2026/11/09/jensen-huangs-affair-with-alleged-chinese-spy-puts-nvidias-china-ambitions-under-scrutiny/">TechCrunch AI</a> · <a href="https://arstechnica.com/tech-policy/2026/11/ceo-jensen-huang-admits-affair-as-nvidia-probes-possible-chinese-espionage/">Ars Technica AI</a> · <a href="https://the-decoder.com/nvidia-espionage-scandal-weakens-huangs-lobby-against-tighter-ai-chip-export-controls/">The Decoder</a> · <a href="https://stratechery.com/2026/the-jensen-huang-story-gets-worse-washington-vs-new-york-silicon-valley/">Stratechery</a></p>
+<p>2. Product &amp; Tool Watch: Anthropic releases Claude Fable 5.2 and Mythos 5.2 with physics breakthroughs</p>
+<p>Why it matters: The new models claim to write over 90% of Anthropic's own merged code and solve open theoretical physics problems, raising the bar for frontier coding and reasoning benchmarks just before Anthropic's IPO.</p>
+<p>Caveat: All capability claims come from Anthropic's own pre-release testing with no independent benchmark replication yet.</p>
+<p><a href="https://www.theverge.com/ai-artificial-intelligence/1030005/anthropic-claude-fable-mythos-5-2">The Verge AI</a> · <a href="https://techcrunch.com/2026/11/09/anthropic-releases-new-mythos-and-fable-models-amid-rsi-concerns/">TechCrunch AI</a> · <a href="https://the-decoder.com/claude-fable-5-2-and-mythos-5-2-cement-anthropics-ai-lead-just-before-its-ipo/">The Decoder</a> · <a href="https://simonwillison.net/2026/Nov/10/prompting-claude-fable-52/">Simon Willison</a></p>
+<p>3. AI Business Watch: Anthropic expected to set IPO valuation range this week</p>
+<p>Why it matters: The timing of the IPO announcement alongside the Fable/Mythos 5.2 launch and ongoing RSI concerns makes this a pivotal week for Anthropic's public market debut and the broader AI investment narrative.</p>
+<p>Caveat: The Wall Street Journal report does not confirm a final valuation figure; the $1.5T–$2T range remains analyst estimates.</p>
+<p><a href="https://techcrunch.com/2026/11/09/anthropic-reportedly-plans-to-move-forward-with-ipo-plans/">TechCrunch AI</a> · <a href="https://techcrunch.com/2026/11/09/anthropic-joins-ais-natural-gas-frenzy-buys-3-4b-worth-of-turbines/">TechCrunch AI</a></p>
+<p>4. Product &amp; Tool Watch: Meta releases Muse Ember, a cheap lightweight model for agent workloads</p>
+<p>Why it matters: At 10 cents per million input tokens, Ember undercuts Haiku and Luna on price for repetitive agent tasks like tool calls and routing, which represent the bulk of real-world agent compute spend.</p>
+<p>Caveat: Meta's own benchmarks show Ember falls short on actual programming tasks, limiting its use in coding-heavy agent pipelines.</p>
+<p><a href="https://techcrunch.com/2026/11/09/meta-releases-muse-ember-a-new-lightweight-model-for-agent-execution/">TechCrunch AI</a> · <a href="https://the-decoder.com/meta-launches-muse-ember-a-small-ai-model-built-for-the-repetitive-work-agents-actually-do/">The Decoder</a> · <a href="https://simonwillison.net/2026/Nov/10/muse-ember/">Simon Willison</a></p>
+<p>5. Product &amp; Tool Watch: Claude Code settings files accidentally expose thousands of secrets on GitHub</p>
+<p>Why it matters: A 'do not ask again' prompt in Claude Code is causing developers to inadvertently commit files containing passwords and API keys to public repositories, creating a live security incident for teams using AI coding tools.</p>
+<p>Caveat: The scale of exposure and whether Anthropic has issued a patch or mitigation is not confirmed in the reporting.</p>
+<p><a href="https://arstechnica.com/ai/2026/11/claude-code-settings-files-expose-thousands-of-secrets-on-github/">Ars Technica AI</a></p>
+<p>6. Product &amp; Tool Watch: Google ships four TPU variants in one year, targeting Nvidia GPU dominance</p>
+<p>Why it matters: The TPU 8tx's confidential computing capability and the TPU 8i Max's doubled compute-per-package directly address enterprise security and performance gaps that have kept some workloads on Nvidia hardware.</p>
+<p>Caveat: Google reports nearly 100 external customers but has not disclosed revenue or workload migration data to substantiate competitive impact on Nvidia.</p>
+<p><a href="https://the-decoder.com/google-ships-four-tpu-variants-in-one-year-as-it-ramps-up-competition-with-nvidia/">The Decoder</a></p>
+<p>Chapters</p>
+<p>00:00:00 Intro</p>
+<p>00:00:29 Jensen Huang spy scandal deepens with...</p>
+<p>00:03:01 Anthropic releases Claude Fable 5.2 and...</p>
+<p>00:05:01 Anthropic expected to set IPO valuation...</p>
+<p>00:06:44 Meta releases Muse Ember, a cheap...</p>
+<p>00:08:08 Claude Code settings files accidentally...</p>
+<p>00:09:41 Google ships four TPU variants in one...</p>
+<p>00:11:14 Outro</p>]]></description>
+            <enclosure length="17136993" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-11-10.mp3"/>
+                    <itunes:duration>714</itunes:duration>
+            <itunes:explicit>false</itunes:explicit>
+            <itunes:season>2026</itunes:season>
+            <itunes:episode>314</itunes:episode>
+            <itunes:episodeType>full</itunes:episodeType>
+            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-11-10.chapters.json" type="application/json+chapters"/>
+            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-11-10.transcript.txt" type="text/plain" language="en"/>
+            <podcast:soundbite startTime="29" duration="120">Jensen Huang spy scandal deepens with...</podcast:soundbite>
+            <podcast:soundbite startTime="181" duration="119">Anthropic releases Claude Fable 5.2 and...</podcast:soundbite>
+            <podcast:soundbite startTime="301" duration="101">Anthropic expected to set IPO valuation...</podcast:soundbite>
+            <podcast:soundbite startTime="404" duration="82">Meta releases Muse Ember, a cheap...</podcast:soundbite>
+            <podcast:soundbite startTime="488" duration="92">Claude Code settings files accidentally...</podcast:soundbite>
+            <podcast:soundbite startTime="581" duration="91">Google ships four TPU variants in one...</podcast:soundbite>
+        </item>
         <item>
             <title><![CDATA[AI Briefing — November 9, 2026]]></title>
             <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-11-09.mp3</link>
@@ -562,60 +616,6 @@
             <podcast:soundbite startTime="368" duration="94">Cohere finds Alibaba&apos;s Qwen model...</podcast:soundbite>
             <podcast:soundbite startTime="463" duration="77">Microsoft offers voluntary buyouts to...</podcast:soundbite>
             <podcast:soundbite startTime="542" duration="87">Cloudflare discloses cross-request KV...</podcast:soundbite>
-        </item>
-        <item>
-            <title><![CDATA[AI Briefing — October 26, 2026]]></title>
-            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-10-26.mp3</link>
-            <guid>ai-briefing-2026-10-26</guid>
-            <pubDate>Mon, 26 Oct 2026 11:42:46 GMT</pubDate>
-            <description><![CDATA[<p>Top 6 AI stories for October 26, 2026.</p>
-<p>1. Top Story: Apollo economist says AI delivers zero financial payoff outside tech sector</p>
-<p>Why it matters: A credible macroeconomic voice quantifying AI's ROI gap is a signal builders and investors need to weigh against hype cycles; it may shift enterprise procurement conversations and funding narratives.</p>
-<p>Caveat: The claim comes from a single Apollo economist and the excerpt provides no methodology, sample size, or time horizon for the analysis.</p>
-<p><a href="https://techcrunch.com/2026/10/25/ai-delivers-zero-financial-payoff-to-most-companies-according-to-apollo-economist/">TechCrunch AI</a></p>
-<p>2. AI Business Watch: Toyota commits $6.4 billion annually to humanoid robots and factory automation</p>
-<p>Why it matters: A $6.4B annual commitment from a major industrial manufacturer signals that humanoid robotics is crossing from R&amp;D curiosity to core capital allocation, which will accelerate the hardware and AI software ecosystem around embodied agents.</p>
-<p>Caveat: The excerpt does not specify the timeline, milestone targets, or how much of the $6.4B is new spending versus reallocation from existing automation budgets.</p>
-<p><a href="https://the-decoder.com/toyota-is-betting-6-4-billion-a-year-on-humanoid-robots-and-factory-automation/">The Decoder</a></p>
-<p>3. AI Business Watch: High-frequency trading firms build data centers and back chip startups for AI edge</p>
-<p>Why it matters: HFT firms like Jane Street and Hudson River Trading entering the AI infrastructure race signals that latency-sensitive financial players see compute ownership as a durable competitive moat, potentially tightening GPU supply further.</p>
-<p>Caveat: The article does not disclose investment amounts, specific chip startups backed, or timelines for data center buildouts.</p>
-<p><a href="https://the-decoder.com/wall-streets-fastest-traders-are-building-data-centers-and-backing-chip-startups-to-stay-ahead-in-ai/">The Decoder</a></p>
-<p>4. AI Culture Signal: r/opensource bans all AI projects, sparking community revolt and rival subreddit</p>
-<p>Why it matters: The ban crystallizes a growing ideological split in open-source communities over whether AI-assisted or AI-targeted software belongs under the open-source umbrella, with real implications for where developers share and discover tools.</p>
-<p>Caveat: Subreddit moderation decisions are reversible and the rival r/trueopensource is brand new, so the long-term community fragmentation is uncertain.</p>
-<p><a href="https://www.theverge.com/ai-artificial-intelligence/1018217/reddit-opensource-ai-ban">The Verge AI</a></p>
-<p>5. Policy &amp; Regulation Watch: Google AI Overviews have structurally upended the online publishing business model</p>
-<p>Why it matters: The shift from click-through traffic to zero-click AI answers is eroding the ad-revenue foundation of independent publishing, with downstream effects on the information ecosystem that AI models are trained on.</p>
-<p>Caveat: The Verge newsletter piece is analytical commentary rather than new data; specific traffic or revenue figures are not cited in the excerpt.</p>
-<p><a href="https://www.theverge.com/column/1017983/google-ai-search-online-publishing">The Verge AI</a></p>
-<p>6. AI Culture Signal: Grok releases first seven minutes of AI-generated Odyssey film footage</p>
-<p>Why it matters: A major AI lab releasing a feature-length AI-generated film preview is a concrete milestone for evaluating where generative video sits on the quality-versus-artistry curve today.</p>
-<p>Caveat: TechCrunch's own reviewer notes the footage 'looks okay, as long as you're not seeking artistry, inspiration, or human interest,' suggesting quality remains a significant limitation.</p>
-<p><a href="https://techcrunch.com/2026/10/25/grok-releases-the-first-seven-minutes-of-its-ai-generated-odyssey/">TechCrunch AI</a></p>
-<p>Chapters</p>
-<p>00:00:00 Intro</p>
-<p>00:00:17 Apollo economist says AI delivers zero...</p>
-<p>00:01:57 Toyota commits $6.4 billion annually to...</p>
-<p>00:03:32 High-frequency trading firms build data...</p>
-<p>00:04:53 r/opensource bans all AI projects,...</p>
-<p>00:06:26 Google AI Overviews have structurally...</p>
-<p>00:07:57 Grok releases first seven minutes of...</p>
-<p>00:09:07 Outro</p>]]></description>
-            <enclosure length="14091679" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-10-26.mp3"/>
-                    <itunes:duration>587</itunes:duration>
-            <itunes:explicit>false</itunes:explicit>
-            <itunes:season>2026</itunes:season>
-            <itunes:episode>299</itunes:episode>
-            <itunes:episodeType>full</itunes:episodeType>
-            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-10-26.chapters.json" type="application/json+chapters"/>
-            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-10-26.transcript.txt" type="text/plain" language="en"/>
-            <podcast:soundbite startTime="17" duration="99">Apollo economist says AI delivers zero...</podcast:soundbite>
-            <podcast:soundbite startTime="117" duration="93">Toyota commits $6.4 billion annually to...</podcast:soundbite>
-            <podcast:soundbite startTime="212" duration="80">High-frequency trading firms build data...</podcast:soundbite>
-            <podcast:soundbite startTime="293" duration="91">r/opensource bans all AI projects,...</podcast:soundbite>
-            <podcast:soundbite startTime="386" duration="90">Google AI Overviews have structurally...</podcast:soundbite>
-            <podcast:soundbite startTime="477" duration="68">Grok releases first seven minutes of...</podcast:soundbite>
         </item>
     </channel>
 </rss>

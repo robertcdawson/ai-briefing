@@ -1,0 +1,46 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — November 11, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 33,
+      "title": "Intro"
+    },
+    {
+      "startTime": 33,
+      "endTime": 132,
+      "title": "Google releases Gemini 4 Carbon publicly..."
+    },
+    {
+      "startTime": 132,
+      "endTime": 209,
+      "title": "Anthropic launches Claude Meetings,..."
+    },
+    {
+      "startTime": 209,
+      "endTime": 292,
+      "title": "Anthropic confirms $70–$78 IPO price..."
+    },
+    {
+      "startTime": 292,
+      "endTime": 402,
+      "title": "DeepMind's AlphaProof Code writes 3..."
+    },
+    {
+      "startTime": 402,
+      "endTime": 506,
+      "title": "Anthropic's Fable 5.2 completes 41..."
+    },
+    {
+      "startTime": 506,
+      "endTime": 581,
+      "title": "New York's AI safety law takes effect,..."
+    },
+    {
+      "startTime": 581,
+      "endTime": 607,
+      "title": "Outro"
+    }
+  ]
+}

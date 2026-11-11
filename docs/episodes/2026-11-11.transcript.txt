@@ -1,0 +1,128 @@
+AI Briefing — November 11, 2026
+Date: 2026-11-11
+
+Intro
+
+Three million lines of Lean proof code, written by an AI, to verify that Signal's encryption actually does what it claims — that's the headline out of DeepMind today, and it's sitting next to a new Gemini model, a new Anthropic office suite, and a confirmed IPO price range that lands Anthropic at a one-point-four trillion dollar valuation.
+
+November 11th, 2026, and the pace hasn't slowed down any.
+
+Let's get into it.
+
+Top Story: Google releases Gemini 4 Carbon publicly with agent swarm feature
+
+If you're running a multi-step pipeline that currently routes to a frontier model, the first thing to know about Gemini 4 Carbon is the cost number: Google says it runs at less than half the per-task price compared to Anthropic's Fable 5.2.
+
+That's the Monday-morning fact that changes a build decision — before you even get to the capability claims.
+
+Google is calling Carbon its strongest model yet, built specifically for tasks that push against the limits of what current AI can do, and the flagship new feature is something called /swarm: a mode that splits complex tasks across coordinated teams of agents working in real time, rather than routing everything through a single model call.
+
+For anyone designing pipelines that already use multiple agents in sequence, /swarm is an architectural option worth watching closely — it's the difference between a relay race and a team working in parallel.
+
+One caveat to flag: /swarm is previewed, not fully shipped, so the benchmark numbers and the cost comparison both come from Google's own reporting. Independent replication hasn't landed yet.
+
+Google also made a point of saying that Gemini Argon — the previous tier — remains their recommended choice for the majority of software engineering work, which is an interesting hedge to put in the same announcement.
+
+Simon Willison shipped his llm-gemini plugin, version 0.36, the same day, so CLI access to Carbon is already live if you want to start testing.
+
+The Anthropic office suite announcement is just as consequential for the enterprise market, so let's go there next.
+Source: https://deepmind.google/blog/gemini-4-carbon-is-now-available/
+Source: https://www.theverge.com/ai-artificial-intelligence/1030787/google-gemini-4-carbon-public-rollout
+Source: https://the-decoder.com/gemini-4-carbon-arrives-just-in-time-to-feel-like-yesterdays-news-in-the-fastest-model-cycle-yet/
+Source: https://simonwillison.net/2026/Nov/10/llm-gemini/
+
+Product & Tool Watch: Anthropic launches Claude Meetings, Sheets, and Whiteboards office suite
+
+Here's my read on this: Anthropic just declared that it's competing with Microsoft and Google for the knowledge worker's daily workflow, and the product lineup they showed in San Francisco on Tuesday is the evidence.
+
+Claude Sheets and Whiteboards are live now. Claude Meetings — the piece that lets the AI draft plans, map timelines on a whiteboard, and answer questions in real time during a call — is described as coming soon.
+
+Adobe and Atlassian are already named as Interactive Connector partners, meaning their apps embed directly inside Claude rather than the other way around. That's a meaningful distribution play.
+
+Anthropic started as an API and coding-tool company, and now it's building the layer where people spend their actual workday. The Decoder put it plainly — step by step, Anthropic is turning Claude into a central work platform.
+
+What we don't have yet is pricing, firm availability dates, or any independent data on whether this suite actually moves the needle on productivity. Everything shown Tuesday is in beta.
+
+The timing is also notable: Anthropic is doing this the same week it's pricing its IPO, which tells you something about who they're trying to impress right now.
+
+Speaking of that IPO — the price range is now confirmed.
+Source: https://www.theverge.com/ai-artificial-intelligence/1030709/anthropic-has-its-own-ai-powered-office-suite-now
+Source: https://techcrunch.com/2026/11/10/anthropic-launches-claude-meetings-to-turn-workplace-discussions-into-plans-and-tasks/
+Source: https://the-decoder.com/anthropic-turns-claude-into-a-full-workspace-with-plugins-spreadsheets-whiteboards-and-soon-meeting-notes/
+Source: https://claude.com/resources/articles/sheets-whiteboards-data
+
+AI Business Watch: Anthropic confirms $70–$78 IPO price range targeting $1.4 trillion valuation
+
+Yesterday I flagged that Anthropic's IPO valuation would hinge on whether public markets price the AGI upside or discount for the risk — and the number that came back is one-point-four trillion dollars, which doesn't fit neatly into either bucket.
+
+Here's why: earlier expectations were around two trillion. The confirmed range of seventy to seventy-eight dollars per share, with trading expected to start November 20th or 21st, represents a meaningful step down from that. So public investors are applying some discount — but one-point-four trillion is still the largest AI-company IPO in history, which means they're also pricing in substantial upside.
+
+My call from yesterday was honestly still open, and it remains open: the final pricing isn't set, and the roadshow is live now, so the number could move.
+
+The detail that's getting attention separately is that all seven co-founders plan to sell shares netting approximately two hundred fifty million dollars each at IPO. That's a lot of liquidity coming out of the company at the same moment the company is asking public investors to buy in on a frontier-AI thesis.
+
+Early liquidity is standard practice, but it's the kind of fact that tends to come up in analyst questions during roadshow.
+
+The Remote Labor Index numbers out today give us a concrete look at what Anthropic is actually selling, so let's go there.
+Source: https://www.theverge.com/ai-artificial-intelligence/1030703/anthropic-ipo-1-4-trillion
+Source: https://techcrunch.com/2026/11/10/anthropic-sets-ipo-price-range-of-70-to-78-per-share-to-reach-an-implied-valuation-of-1-404-trillion/
+Source: https://techcrunch.com/2026/11/10/all-7-anthropic-founders-will-each-cash-out-about-250m-in-ipo/
+Source: https://the-decoder.com/anthropic-kicks-off-ipo-roadshow-offering-shares-at-70-to-78-and-targeting-a-trillion-dollar-valuation/
+
+Research Breakthrough: DeepMind's AlphaProof Code writes 3 million lines of Lean proofs to verify Signal encryption
+
+The skeptical reaction to this story is fair: we've seen AI math proofs before, DeepMind has a habit of announcing impressive one-off case studies, and three million lines sounds like a big number that might not mean much in practice.
+
+So let me answer that directly.
+
+Lean is a formal proof language — think of it as a mathematical specification so precise that a computer can check every single logical step. Writing three million lines of it to verify Signal's encryption library means the system didn't just test the code, it proved properties about it: that the encryption behaves exactly as specified under all conditions the proof covers.
+
+Signal's encryption is deployed in hundreds of millions of devices. It's one of the most scrutinized cryptographic codebases in consumer software, which is actually part of why this is a meaningful target — if the approach breaks down somewhere, this is where you'd expect to find it.
+
+DeepMind calls it a breakthrough in verifying complex software at depth, and the mechanism extends AlphaProof's earlier math-olympiad work into production code using proof-writing agents.
+
+The constraint here is that this is one case study, reported by DeepMind, with no independent replication or external audit published yet. We don't know the false-negative rate — how often the system would miss a real bug — and we don't know how well it generalizes beyond cryptographic code to arbitrary software.
+
+If it does generalize, the implications for security auditing are significant. That's a meaningful if, and we'll need external verification before treating it as settled.
+
+From cryptographic proofs to labor market data — AlphaProof Code isn't the only story today with real-world scale numbers attached.
+Source: https://deepmind.google/blog/introducing-alphaproof-code/
+
+Research Breakthrough: Anthropic's Fable 5.2 completes 41 percent of real freelance jobs, up from 2.5 percent
+
+A year ago, the best AI systems completing actual freelance job postings on the Remote Labor Index — real professional work, not synthetic benchmarks — were finishing about two and a half percent of tasks to professional quality.
+
+Six months ago, the numbers were still in single digits. Then Anthropic shipped successive Fable versions through the first half of 2026, and the trajectory started bending.
+
+Today's figure from Fable 5.2 is forty-one percent. That's a sixteen-times improvement in twelve months on the same benchmark.
+
+Fable 5.2 also scores more than double the next-best systems — Opus 5.5 and GPT-6 Astra — which means this isn't a marginal lead.
+
+The weak spots are real: product design and animation completion rates lag significantly, so it's not uniform across knowledge work. And the methodology here is Anthropic's own pre-release testing on a benchmark Anthropic has an interest in — independent replication of the Remote Labor Index results hasn't been confirmed.
+
+Yesterday I flagged that Fable 5.2's capability claims needed independent verification, and that's still true. But a sixteen-times jump on a task-completion benchmark, even a proprietary one, is the most concrete quantitative signal we've seen on AI approaching substitution thresholds for real work.
+
+Builders planning workforce and tooling strategy over the next twelve months should have this number in their planning assumptions, with the caveat attached.
+
+New York's new AI safety law took effect this week, which puts a regulatory frame around exactly the kind of capability growth we just described.
+Source: https://the-decoder.com/anthropics-fable-5-2-completes-41-percent-of-real-freelance-jobs-up-from-2-5-percent-a-year-ago/
+
+Policy & Regulation Watch: New York's AI safety law takes effect, requiring OpenAI and Anthropic to register
+
+Follow the incentives here: the labs that have to register and disclose under New York's new law are the same ones currently pricing IPOs and enterprise contracts worth billions. Compliance costs are real but manageable for companies at that scale. The bigger exposure is reputational — what gets disclosed, and when.
+
+The law requires frontier labs to register, disclose their safety practices, and report critical incidents or face fines. No grace period was mentioned in the reporting, meaning OpenAI and Anthropic are on the hook now.
+
+What's not defined clearly yet is what counts as a critical incident requiring disclosure. That ambiguity is going to matter a lot — it's where enforcement gets contested and where labs have the most room to interpret narrowly.
+
+This is the first major US state-level AI safety enforcement regime to go live. Other states and federal regulators will use it as a reference point, which makes the early enforcement decisions more consequential than the law's text alone.
+
+Two things to watch: how the labs define critical incident in their compliance filings, and whether New York actually levies any fines in the first six months.
+Source: https://techcrunch.com/2026/11/10/openai-anthropic-face-new-oversight-as-new-yorks-ai-safety-law-takes-effect/
+Source: https://the-decoder.com/eight-countries-and-top-ai-labs-agree-to-shutdown-mechanisms-in-new-paris-declaration/
+
+Outro
+
+The thread connecting New York's new disclosure requirement and Anthropic's IPO roadshow is that both hinge on the same unanswered question: what does Anthropic consider a critical incident, and when does the public find out about it — before or after the shares start trading on November 20th.
+
+That's the calendar date I'd keep circled. Talk to y'all tomorrow.

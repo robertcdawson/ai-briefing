@@ -1,0 +1,236 @@
+{
+  "date": "2026-11-12",
+  "title": "AI Briefing — November 12, 2026",
+  "description": "<p>Top 6 AI stories for November 12, 2026.</p>\n<p>1. Top Story: Nvidia board prepares to oust CEO Jensen Huang amid second affair allegation</p>\n<p>Why it matters: Huang's potential removal would create a leadership vacuum at the company supplying the majority of AI compute infrastructure globally, with immediate implications for chip roadmaps, export policy, and AI lab supply chains.</p>\n<p>Caveat: The board decision had not been confirmed at publication time, and the WSJ and NYT reports rely on unnamed sources with no official Nvidia statement.</p>\n<p><a href=\"https://www.theverge.com/tech/1031652/jensen-huang-rumor\">The Verge AI</a> · <a href=\"https://techcrunch.com/2026/11/11/nvidias-stock-drops-as-board-reportedly-preps-to-oust-ceo-jensen-huang/\">TechCrunch AI</a> · <a href=\"https://techcrunch.com/2026/11/11/jensen-huang-accused-of-having-another-affair-with-a-nvidia-exec/\">TechCrunch AI</a> · <a href=\"https://techcrunch.com/2026/11/11/congress-to-call-jensen-huang-in-to-answer-for-alleged-chinese-spy-affair/\">TechCrunch AI</a> · <a href=\"https://techcrunch.com/2026/11/11/who-could-replace-jensen-huang-a-highly-unscientific-list-of-possible-successors/\">TechCrunch AI</a> · <a href=\"https://techcrunch.com/2026/11/11/nvidia-ceo-jensen-huangs-affair-with-alleged-chinese-spy-a-timeline/\">TechCrunch AI</a></p>\n<p>2. AI Business Watch: OpenAI quarterly revenue crosses $10 billion for the first time ever</p>\n<p>Why it matters: The 50% quarter-over-quarter revenue jump signals that enterprise AI spending has reached a new scale tier, but the simultaneous $10.9B adjusted operating loss reveals a structurally unprofitable business even at this revenue level.</p>\n<p>Caveat: Revenue figures are reportedly sourced, not officially disclosed by OpenAI, and the comparison to Anthropic's $17B figure needs independent verification.</p>\n<p><a href=\"https://techcrunch.com/2026/11/11/openais-quarterly-revenue-reportedly-crosses-10b-for-the-first-time/\">TechCrunch AI</a> · <a href=\"https://the-decoder.com/enterprise-sales-push-openais-quarterly-revenue-to-10-billion-though-it-still-trails-anthropic/\">The Decoder</a></p>\n<p>3. Research Breakthrough: DeepMind's AlphaGenome 2 predicts how DNA variants affect specific cell types</p>\n<p>Why it matters: Cell-type-specific gene regulation is a key unsolved problem linking genetic variants to disease; a model that can predict these effects at scale could dramatically accelerate drug target identification and rare disease research.</p>\n<p>Caveat: The announcement is from DeepMind's own blog with no peer-reviewed publication or independent benchmark comparison cited yet.</p>\n<p><a href=\"https://deepmind.google/blog/alphagenome-2-deciphering-how-cells-read-dna-to-better-understand-disease/\">Google DeepMind</a> · <a href=\"https://www.theverge.com/ai-artificial-intelligence/1031524/google-deepmind-alphagenome-2-genetic-ai-model\">The Verge AI</a></p>\n<p>4. Research Breakthrough: Anthropic used its own AI to port Claude to AMD GPUs in three days</p>\n<p>Why it matters: If AI-assisted chip porting can reduce a months-long migration to three days, it fundamentally weakens Nvidia's CUDA lock-in as a competitive moat — with major implications for AI lab infrastructure costs and chip market competition.</p>\n<p>Caveat: The three-day claim comes entirely from Anthropic's own IPO roadshow materials, creating an obvious incentive to highlight cost-reduction stories for investors.</p>\n<p><a href=\"https://the-decoder.com/anthropic-says-ai-is-eroding-nvidias-cuda-lead-cutting-an-amd-chip-switch-from-months-to-three-days/\">The Decoder</a> · <a href=\"https://simonwillison.net/2026/Nov/11/anthropic-ipo-roadshow/\">Simon Willison</a></p>\n<p>5. AI Business Watch: TSMC invests $1 billion in both Anthropic and OpenAI simultaneously</p>\n<p>Why it matters: A chipmaker investing in its own largest customers creates a circular financing structure that ties TSMC's strategic interests directly to the success of specific AI labs, with potential implications for chip allocation and pricing.</p>\n<p>Caveat: The article notes this is the latest example of circular AI financing but does not detail the terms, board seats, or any preferential supply agreements that may accompany the investment.</p>\n<p><a href=\"https://arstechnica.com/ai/2026/11/taiwans-chipmaking-giant-tsmc-to-invest-1b-in-anthropic-openai/\">Ars Technica AI</a></p>\n<p>6. Product &amp; Tool Watch: Over 35,000 Grok-built apps exposed patient data and passwords publicly</p>\n<p>Why it matters: A default 'anyone with the link' access setting in Grok's app builder created a mass data exposure affecting medical records and confidential business data — a direct cautionary signal for builders deploying AI-generated apps in production.</p>\n<p>Caveat: The findings come from security firm Claroc, whose methodology and full scope of exposure have not been independently verified; most apps reportedly remain accessible.</p>\n<p><a href=\"https://the-decoder.com/grok-built-apps-exposed-patient-data-plaintext-passwords-and-spacexsis-own-sales-pipeline/\">The Decoder</a></p>\n<p>Chapters</p>\n<p>00:00:00 Intro</p>\n<p>00:00:35 Nvidia board prepares to oust CEO Jensen...</p>\n<p>00:01:52 OpenAI quarterly revenue crosses $10...</p>\n<p>00:03:09 DeepMind's AlphaGenome 2 predicts how DNA...</p>\n<p>00:04:14 Anthropic used its own AI to port Claude...</p>\n<p>00:05:27 TSMC invests $1 billion in both Anthropic...</p>\n<p>00:06:39 Over 35,000 Grok-built apps exposed...</p>\n<p>00:07:49 Outro</p>",
+  "durationSeconds": 489,
+  "byteLength": 11732394,
+  "pubDate": "2026-11-12T11:31:53.033Z",
+  "season": 2026,
+  "episodeNumber": 316,
+  "chaptersFilename": "2026-11-12.chapters.json",
+  "transcriptFilename": "2026-11-12.transcript.txt",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 35,
+      "title": "Intro"
+    },
+    {
+      "startTime": 35,
+      "endTime": 112,
+      "title": "Nvidia board prepares to oust CEO Jensen..."
+    },
+    {
+      "startTime": 112,
+      "endTime": 189,
+      "title": "OpenAI quarterly revenue crosses $10..."
+    },
+    {
+      "startTime": 189,
+      "endTime": 254,
+      "title": "DeepMind's AlphaGenome 2 predicts how DNA..."
+    },
+    {
+      "startTime": 254,
+      "endTime": 327,
+      "title": "Anthropic used its own AI to port Claude..."
+    },
+    {
+      "startTime": 327,
+      "endTime": 399,
+      "title": "TSMC invests $1 billion in both Anthropic..."
+    },
+    {
+      "startTime": 399,
+      "endTime": 469,
+      "title": "Over 35,000 Grok-built apps exposed..."
+    },
+    {
+      "startTime": 469,
+      "endTime": 489,
+      "title": "Outro"
+    }
+  ],
+  "soundbites": [
+    {
+      "startTime": 35,
+      "duration": 76,
+      "title": "Nvidia board prepares to oust CEO Jensen..."
+    },
+    {
+      "startTime": 112,
+      "duration": 75,
+      "title": "OpenAI quarterly revenue crosses $10..."
+    },
+    {
+      "startTime": 189,
+      "duration": 64,
+      "title": "DeepMind's AlphaGenome 2 predicts how DNA..."
+    },
+    {
+      "startTime": 254,
+      "duration": 71,
+      "title": "Anthropic used its own AI to port Claude..."
+    },
+    {
+      "startTime": 327,
+      "duration": 70,
+      "title": "TSMC invests $1 billion in both Anthropic..."
+    },
+    {
+      "startTime": 399,
+      "duration": 68,
+      "title": "Over 35,000 Grok-built apps exposed..."
+    }
+  ],
+  "curation": [
+    {
+      "canonicalKey": "nvidia-jensen-huang-firing-imminent",
+      "headline": "Nvidia board prepares to oust CEO Jensen Huang amid second affair allegation",
+      "whyItMatters": "Huang's potential removal would create a leadership vacuum at the company supplying the majority of AI compute infrastructure globally, with immediate implications for chip roadmaps, export policy, and AI lab supply chains.",
+      "caveat": "The board decision had not been confirmed at publication time, and the WSJ and NYT reports rely on unnamed sources with no official Nvidia statement.",
+      "importance": 92,
+      "category": "business",
+      "stance": "I underestimated the speed of this fallout on Tuesday; Huang's lack of a succession plan turns a personal scandal into a supply chain crisis.",
+      "specifics": [
+        "Nvidia board could meet as soon as Wednesday evening to decide Huang's fate, per WSJ.",
+        "Second alleged affair involves Kimberly Powell, Nvidia VP of Healthcare, who reports to Huang.",
+        "TechCrunch notes Nvidia has no formal succession plan in place."
+      ]
+    },
+    {
+      "canonicalKey": "openai-quarterly-revenue-10-billion",
+      "headline": "OpenAI quarterly revenue crosses $10 billion for the first time ever",
+      "whyItMatters": "The 50% quarter-over-quarter revenue jump signals that enterprise AI spending has reached a new scale tier, but the simultaneous $10.9B adjusted operating loss reveals a structurally unprofitable business even at this revenue level.",
+      "caveat": "Revenue figures are reportedly sourced, not officially disclosed by OpenAI, and the comparison to Anthropic's $17B figure needs independent verification.",
+      "importance": 85,
+      "category": "business",
+      "specifics": [
+        "OpenAI Q3 revenue hit $10B, up ~50% from $6.7B in Q2 2026.",
+        "Adjusted operating losses climbed to $10.9 billion in the same quarter.",
+        "Rival Anthropic reportedly operates more efficiently on $17 billion in annual revenue.",
+        "OpenAI is now fueling a price war for enterprise customers to close the efficiency gap."
+      ]
+    },
+    {
+      "canonicalKey": "alphagenome-2-cell-type-disease-prediction",
+      "headline": "DeepMind's AlphaGenome 2 predicts how DNA variants affect specific cell types",
+      "whyItMatters": "Cell-type-specific gene regulation is a key unsolved problem linking genetic variants to disease; a model that can predict these effects at scale could dramatically accelerate drug target identification and rare disease research.",
+      "caveat": "The announcement is from DeepMind's own blog with no peer-reviewed publication or independent benchmark comparison cited yet.",
+      "importance": 78,
+      "category": "research",
+      "specifics": [
+        "AlphaGenome 2 succeeds last year's AlphaGenome, adding cell-type-specific regulatory predictions.",
+        "DeepMind says the tool could point toward new disease treatments by mapping regulatory changes."
+      ]
+    },
+    {
+      "canonicalKey": "anthropic-cuda-moat-amd-three-days",
+      "headline": "Anthropic used its own AI to port Claude to AMD GPUs in three days",
+      "whyItMatters": "If AI-assisted chip porting can reduce a months-long migration to three days, it fundamentally weakens Nvidia's CUDA lock-in as a competitive moat — with major implications for AI lab infrastructure costs and chip market competition.",
+      "caveat": "The three-day claim comes entirely from Anthropic's own IPO roadshow materials, creating an obvious incentive to highlight cost-reduction stories for investors.",
+      "importance": 76,
+      "category": "research",
+      "specifics": [
+        "A typical CUDA-to-AMD migration previously took months of engineering work.",
+        "Anthropic now runs Claude on four different chip families.",
+        "The announcement was made in Anthropic's IPO roadshow video, per Simon Willison."
+      ]
+    },
+    {
+      "canonicalKey": "tsmc-1b-investment-anthropic-openai",
+      "headline": "TSMC invests $1 billion in both Anthropic and OpenAI simultaneously",
+      "whyItMatters": "A chipmaker investing in its own largest customers creates a circular financing structure that ties TSMC's strategic interests directly to the success of specific AI labs, with potential implications for chip allocation and pricing.",
+      "caveat": "The article notes this is the latest example of circular AI financing but does not detail the terms, board seats, or any preferential supply agreements that may accompany the investment.",
+      "importance": 72,
+      "category": "business",
+      "stance": "TSMC investing in its own largest customers is a circular financing move that threatens to distort chip allocation and stifle smaller competitors.",
+      "specifics": [
+        "TSMC is investing $1 billion split across Anthropic and OpenAI, per Ars Technica.",
+        "The investment comes as AI trade dynamics are described as wobbling.",
+        "TSMC is the dominant manufacturer of the advanced chips both companies depend on."
+      ]
+    },
+    {
+      "canonicalKey": "grok-built-apps-data-exposure",
+      "headline": "Over 35,000 Grok-built apps exposed patient data and passwords publicly",
+      "whyItMatters": "A default 'anyone with the link' access setting in Grok's app builder created a mass data exposure affecting medical records and confidential business data — a direct cautionary signal for builders deploying AI-generated apps in production.",
+      "caveat": "The findings come from security firm Claroc, whose methodology and full scope of exposure have not been independently verified; most apps reportedly remain accessible.",
+      "importance": 71,
+      "category": "product-tools",
+      "specifics": [
+        "Security firm Claroc found 35,000+ Grok-built apps accessible without login.",
+        "Exposed data included patient records, plaintext passwords, and SpaceXSI's sales pipeline.",
+        "Root cause: 'Anyone with the link' was preselected as the default access setting.",
+        "SpaceXSI took only its own 24 employee apps offline; the rest remain publicly accessible."
+      ]
+    }
+  ],
+  "curationReport": {
+    "threshold": 45,
+    "maxStories": 6,
+    "total": 8,
+    "selectedCount": 6,
+    "droppedCount": 2,
+    "clusters": [
+      {
+        "canonicalKey": "nvidia-jensen-huang-firing-imminent",
+        "category": "business",
+        "headline": "Nvidia board prepares to oust CEO Jensen Huang amid second affair allegation",
+        "importance": 92,
+        "selected": true
+      },
+      {
+        "canonicalKey": "openai-quarterly-revenue-10-billion",
+        "category": "business",
+        "headline": "OpenAI quarterly revenue crosses $10 billion for the first time ever",
+        "importance": 85,
+        "selected": true
+      },
+      {
+        "canonicalKey": "alphagenome-2-cell-type-disease-prediction",
+        "category": "research",
+        "headline": "DeepMind's AlphaGenome 2 predicts how DNA variants affect specific cell types",
+        "importance": 78,
+        "selected": true
+      },
+      {
+        "canonicalKey": "anthropic-cuda-moat-amd-three-days",
+        "category": "research",
+        "headline": "Anthropic used its own AI to port Claude to AMD GPUs in three days",
+        "importance": 76,
+        "selected": true
+      },
+      {
+        "canonicalKey": "tsmc-1b-investment-anthropic-openai",
+        "category": "business",
+        "headline": "TSMC invests $1 billion in both Anthropic and OpenAI simultaneously",
+        "importance": 72,
+        "selected": true
+      },
+      {
+        "canonicalKey": "grok-built-apps-data-exposure",
+        "category": "product-tools",
+        "headline": "Over 35,000 Grok-built apps exposed patient data and passwords publicly",
+        "importance": 71,
+        "selected": true
+      },
+      {
+        "canonicalKey": "australia-ai-safety-bill-mandatory-audits",
+        "category": "policy-regulation",
+        "headline": "Australia proposes mandatory independent safety audits for frontier AI models",
+        "importance": 68,
+        "selected": false,
+        "dropReason": "over_cap"
+      },
+      {
+        "canonicalKey": "us-data-brokers-selling-rl-environments-china",
+        "category": "policy-regulation",
+        "headline": "US data brokers selling $500M in RL training environments to Chinese AI labs",
+        "importance": 67,
+        "selected": false,
+        "dropReason": "over_cap"
+      }
+    ]
+  }
+}

@@ -1,0 +1,138 @@
+AI Briefing — November 12, 2026
+Date: 2026-11-12
+
+Intro
+
+The era of the untouchable tech founder is quietly closing its doors, and right here on November 12th, 2026, the company supplying the backbone of the entire AI industry is standing at the threshold.
+
+The fallout at Nvidia is accelerating faster than most people expected, creating a leadership vacuum at the absolute center of the hardware map.
+
+We will look at how that situation is developing, and later, how OpenAI is buying enterprise market share at a staggering loss.
+
+Top Story: Nvidia board prepares to oust CEO Jensen Huang amid second affair allegation
+
+I hear the objection already: why are we spending time on executive-suite soap operas when there are models to train and racks to provision?
+
+The answer is that the person buying your hardware, setting your allocation, and negotiating export policies with Washington might be gone by tomorrow morning.
+
+On Tuesday, we talked about the Nvidia board investigating Jensen Huang over an alleged affair with a reported Chinese intelligence agent, and I said his governance damage was durable. That take was entirely too mild.
+
+The Wall Street Journal now reports the board could meet as soon as Wednesday evening to decide his fate.
+
+The catalyst is a second alleged affair, this time with Kimberly Powell, Nvidia's VP of Healthcare, who reports directly to Huang.
+
+TechCrunch points out a glaring structural flaw making this so dangerous: Nvidia has absolutely no formal succession plan.
+
+You have a single executive holding the reins of the global AI compute supply chain, and the board is scrambling to figure out who even sits in the chair next.
+
+This level of uncertainty threatens the actual chip roadmap your lab relies on through the winter.
+
+And speaking of labs burning through compute, the biggest one just hit a massive financial milestone.
+Source: https://www.theverge.com/tech/1031652/jensen-huang-rumor
+Source: https://techcrunch.com/2026/11/11/nvidias-stock-drops-as-board-reportedly-preps-to-oust-ceo-jensen-huang/
+Source: https://techcrunch.com/2026/11/11/jensen-huang-accused-of-having-another-affair-with-a-nvidia-exec/
+Source: https://techcrunch.com/2026/11/11/congress-to-call-jensen-huang-in-to-answer-for-alleged-chinese-spy-affair/
+Source: https://techcrunch.com/2026/11/11/who-could-replace-jensen-huang-a-highly-unscientific-list-of-possible-successors/
+Source: https://techcrunch.com/2026/11/11/nvidia-ceo-jensen-huangs-affair-with-alleged-chinese-spy-a-timeline/
+
+AI Business Watch: OpenAI quarterly revenue crosses $10 billion for the first time ever
+
+Two years ago, securing a massive enterprise AI contract was a novelty. Last year, it became a competitive necessity. Now it has escalated into a brutal price war where market share matters more than margins.
+
+OpenAI's third-quarter revenue just crossed the ten-billion-dollar mark for the very first time, representing a fifty percent jump from the six point seven billion they pulled in during Q2.
+
+But the cost of that growth is staggering.
+
+Adjusted operating losses climbed to ten point nine billion dollars in that exact same quarter — they are essentially spending a dollar and a dime to make a dollar.
+
+Compare that to rival Anthropic, who reportedly operates more efficiently on seventeen billion in annual revenue, and you see why OpenAI is aggressively slashing prices for enterprise customers.
+
+Keep in mind that these figures are leaked to reporters, not officially filed, and Anthropic's seventeen-billion number still needs independent verification.
+
+The math paints a picture of a structurally unprofitable business scaling up anyway.
+
+That financial pressure to deliver results is pushing AI research into highly specialized, lucrative domains.
+Source: https://techcrunch.com/2026/11/11/openais-quarterly-revenue-reportedly-crosses-10b-for-the-first-time/
+Source: https://the-decoder.com/enterprise-sales-push-openais-quarterly-revenue-to-10-billion-though-it-still-trails-anthropic/
+
+Research Breakthrough: DeepMind's AlphaGenome 2 predicts how DNA variants affect specific cell types
+
+Pharmaceutical companies pay billions to find viable drug targets, and AI labs collect those billions by cutting the discovery timeline down to size.
+
+That financial incentive is exactly how you should read DeepMind's announcement of AlphaGenome 2.
+
+This succeeds their model from last year, but it adds a crucial new capability: predicting how DNA variants affect specific cell types.
+
+In genetics, cell-type-specific regulation — meaning how a gene behaves differently in a heart cell versus a brain cell — is a massive bottleneck for understanding disease.
+
+DeepMind says mapping these regulatory changes could point researchers directly toward new treatments.
+
+If this actually works at scale, it accelerates rare disease research and drug target identification by orders of magnitude.
+
+Just remember that this announcement comes straight from a DeepMind blog post. There is no peer-reviewed publication yet, and no independent benchmark to prove it beats existing methods.
+
+But the race to lower compute costs isn't just happening in biology.
+Source: https://deepmind.google/blog/alphagenome-2-deciphering-how-cells-read-dna-to-better-understand-disease/
+Source: https://www.theverge.com/ai-artificial-intelligence/1031524/google-deepmind-alphagenome-2-genetic-ai-model
+
+Research Breakthrough: Anthropic used its own AI to port Claude to AMD GPUs in three days
+
+The timeline for escaping Nvidia's hardware ecosystem just collapsed, which changes the math for any engineering team trying to diversify their compute stack.
+
+Historically, a CUDA-to-AMD migration — moving code optimized for Nvidia's proprietary software layer over to AMD chips — took months of painful, manual engineering work.
+
+Now, Anthropic says they used their own AI to port the Claude model to AMD GPUs in exactly three days.
+
+They are currently running Claude across four different chip families.
+
+Simon Willison caught this detail buried inside Anthropic's IPO roadshow video.
+
+If an AI assistant can routinely turn a multi-month migration into a long weekend, Nvidia's software lock-in gets fundamentally weaker — and that shifts the balance of power in the chip market and could drastically lower infrastructure costs for AI labs.
+
+The obvious grain of salt is the source: a three-day migration claim nestled inside an IPO pitch video is designed specifically to tell investors a story about falling costs.
+
+The actual test will be when the supply chain tightens, which brings us to a very strategic pile of money.
+Source: https://the-decoder.com/anthropic-says-ai-is-eroding-nvidias-cuda-lead-cutting-an-amd-chip-switch-from-months-to-three-days/
+Source: https://simonwillison.net/2026/Nov/11/anthropic-ipo-roadshow/
+
+AI Business Watch: TSMC invests $1 billion in both Anthropic and OpenAI simultaneously
+
+It is rarely a good sign for a healthy, open market when the manufacturer starts buying equity in its biggest buyers.
+
+According to Ars Technica, Taiwan Semiconductor Manufacturing Company — TSMC — is investing one billion dollars split simultaneously across Anthropic and OpenAI.
+
+TSMC is the undisputed dominant manufacturer of the advanced chips both of these labs absolutely depend on.
+
+Dropping a billion dollars into your own customers creates a circular financing loop, tying TSMC's strategic interests directly to the success of specific companies right as global AI trade dynamics are getting wobbly.
+
+This could easily dictate who gets priority chip allocation and preferential pricing when fab space gets tight.
+
+What the reporting lacks right now are the actual terms of the deal — we are missing whether this buys TSMC board seats or guarantees supply agreements, but the alignment of incentives is impossible to ignore.
+
+Sometimes those misaligned incentives lead to rushed deployments, which is exactly what seems to have happened with a massive batch of new applications.
+Source: https://arstechnica.com/ai/2026/11/taiwans-chipmaking-giant-tsmc-to-invest-1b-in-anthropic-openai/
+
+Product & Tool Watch: Over 35,000 Grok-built apps exposed patient data and passwords publicly
+
+A security firm called Claroc just found over thirty-five thousand applications fully accessible to the public without a login, exposing patient records and internal sales pipelines.
+
+The genuinely strange detail is that every single one of those leaking apps was generated by the exact same tool — they were all built using Grok.
+
+The root cause is a simple UI decision: the Grok app builder preselected 'Anyone with the link' as the default access setting for new projects.
+
+Builders trusted the default, and deployed medical and confidential business data straight onto the open web.
+
+The data included the sales pipeline for SpaceXSI, which promptly took its own twenty-four employee apps offline.
+
+But the vast majority of the other exposed apps remain publicly accessible.
+
+While Claroc's methodology hasn't been independently verified yet, this is a glaring failure of secure defaults — and it proves that when you let a model write and deploy your code, you still own the consequences of the configuration.
+Source: https://the-decoder.com/grok-built-apps-exposed-patient-data-plaintext-passwords-and-spacexsis-own-sales-pipeline/
+
+Outro
+
+The single concrete thing to watch next is Wednesday evening's potential Nvidia board meeting.
+
+The decision that comes out of that room regarding Jensen Huang's tenure will set the immediate trajectory for the entire hardware supply chain.
+
+Take care of yourselves, and I'll be right back here on Friday.

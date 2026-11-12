@@ -1,0 +1,46 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — November 12, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 35,
+      "title": "Intro"
+    },
+    {
+      "startTime": 35,
+      "endTime": 112,
+      "title": "Nvidia board prepares to oust CEO Jensen..."
+    },
+    {
+      "startTime": 112,
+      "endTime": 189,
+      "title": "OpenAI quarterly revenue crosses $10..."
+    },
+    {
+      "startTime": 189,
+      "endTime": 254,
+      "title": "DeepMind's AlphaGenome 2 predicts how DNA..."
+    },
+    {
+      "startTime": 254,
+      "endTime": 327,
+      "title": "Anthropic used its own AI to port Claude..."
+    },
+    {
+      "startTime": 327,
+      "endTime": 399,
+      "title": "TSMC invests $1 billion in both Anthropic..."
+    },
+    {
+      "startTime": 399,
+      "endTime": 469,
+      "title": "Over 35,000 Grok-built apps exposed..."
+    },
+    {
+      "startTime": 469,
+      "endTime": 489,
+      "title": "Outro"
+    }
+  ]
+}

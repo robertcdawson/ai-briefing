@@ -1,0 +1,46 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — November 13, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 35,
+      "title": "Intro"
+    },
+    {
+      "startTime": 35,
+      "endTime": 130,
+      "title": "Jensen Huang resigns as Nvidia CEO after..."
+    },
+    {
+      "startTime": 130,
+      "endTime": 205,
+      "title": "Nvidia privately confirmed chip tracking..."
+    },
+    {
+      "startTime": 205,
+      "endTime": 290,
+      "title": "OpenAI safety team finds frontier models..."
+    },
+    {
+      "startTime": 290,
+      "endTime": 395,
+      "title": "Google launches Gemini 4 Hydrogen,..."
+    },
+    {
+      "startTime": 395,
+      "endTime": 486,
+      "title": "FAA expands AI advisory system to manage..."
+    },
+    {
+      "startTime": 486,
+      "endTime": 597,
+      "title": "Edge0 releases 145B parameter model..."
+    },
+    {
+      "startTime": 597,
+      "endTime": 619,
+      "title": "Outro"
+    }
+  ]
+}

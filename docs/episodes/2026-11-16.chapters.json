@@ -1,0 +1,36 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — November 16, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 26,
+      "title": "Intro"
+    },
+    {
+      "startTime": 26,
+      "endTime": 102,
+      "title": "Congress pushes chip export tightening as..."
+    },
+    {
+      "startTime": 102,
+      "endTime": 164,
+      "title": "GPT-6 Astra co-authors lattice definition..."
+    },
+    {
+      "startTime": 164,
+      "endTime": 227,
+      "title": "Claude Fable 5.2 generates images via..."
+    },
+    {
+      "startTime": 227,
+      "endTime": 278,
+      "title": "Apple launches iOS study measuring..."
+    },
+    {
+      "startTime": 278,
+      "endTime": 298,
+      "title": "Outro"
+    }
+  ]
+}

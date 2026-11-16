@@ -1,0 +1,105 @@
+AI Briefing — November 16, 2026
+Date: 2026-11-16
+
+Intro
+
+The hardware supply chain has been fracturing for months, moving from globalized efficiency to nationalized paranoia.
+
+On November 16, 2026, that fracture just widened.
+
+We have got billions in ghost revenue at Nvidia, and later on, we will look at OpenAI claiming to solve a decades-old physics problem.
+
+Top Story: Congress pushes chip export tightening as Huang eyes Nvidia return
+
+Megaspeed collected nearly twelve billion dollars brokering Nvidia chips for Chinese firms between 2024 and 2025.
+
+Who pays? Chinese firms desperate for compute.
+
+Who collects? Megaspeed, and ultimately, Nvidia.
+
+Culper Research estimates Nvidia's actual China revenue share sits north of twenty percent, completely dwarfing the officially reported seven percent.
+
+This is the financial reality driving the new push in Congress to tighten AI chip export controls.
+
+On Friday, we covered Jensen Huang resigning amid the espionage scandal, and my read was that the resulting supply-chain leadership crisis would take twelve to eighteen months to sort out.
+
+I might have been too conservative, because now there are rumors Huang is already eyeing a return to the company.
+
+Megaspeed is trying to distance itself, claiming Alice Huang hasn't been on their payroll since August 2025, which contradicts earlier reporting.
+
+If Congress actually brings these export bills to a vote—which they have failed to do before—it reshapes the hardware market for every lab buying silicon.
+
+The money always finds a way, but the toll booths are getting more expensive.
+
+Let's move from the hardware drama to the lab.
+Source: https://www.theverge.com/tech/1033999/jensen-huang-return-nvidia-megaspeed
+Source: https://www.theverge.com/ai-artificial-intelligence/1033984/congress-export-rules-ai-chips-china
+Source: https://www.theverge.com/column/1033943/jensen-huang-nvidia-china-spying-scandal-resignation
+Source: https://the-decoder.com/firm-linked-to-jensen-huangs-ex-lover-reportedly-brokered-nearly-12-billion-in-nvidia-chip-orders-for-china/
+Source: https://techcrunch.com/2026/11/15/is-bad-news-for-jensen-huang-also-bad-news-for-the-ai-industry/
+Source: https://stratechery.com/2026/obituaries/
+
+Research Breakthrough: GPT-6 Astra co-authors lattice definition of the Standard Model
+
+If you are building physics simulations or materials science models this Monday morning, the math you rely on might be about to shift.
+
+OpenAI just launched a dedicated science blog, and their opening swing is a claim that the Astra model helped co-author a lattice definition of the Standard Model.
+
+This is a nonperturbative formulation that theoretical physicists have been trying to pin down for decades.
+
+It is the kind of math that bridges quantum mechanics and observable reality.
+
+But before you rewrite your entire physics engine, look at where this is published: a corporate blog, with no peer-reviewed paper and no clear accounting of what the model actually contributed versus the human researchers.
+
+If it holds up, it marks a permanent shift in how we use AI for hard science.
+
+If it doesn't, it is just another corporate flex.
+
+Speaking of novel approaches to generation, Anthropic is trying something weird with images.
+Source: https://openai.com/index/step-toward-defining-the-standard-model
+Source: https://openai.com/index/our-new-blog-for-science
+
+Product & Tool Watch: Claude Fable 5.2 generates images via 700,000 simulated brushstrokes
+
+Writing Python code to paint a picture instead of calculating pixels is a fascinating architectural choice, but it is going to be an absolute nightmare to run at scale.
+
+When Anthropic dropped Claude Fable 5.2 last week, my call was that these were capable models but we needed outside testing to back up their claims.
+
+We are starting to see how the sausage is made.
+
+Anthropic employee Jake Eaton confirmed that generating a single photorealistic parking garage scene took roughly seven hundred thousand simulated brushstrokes.
+
+The model isn't using a standard diffusion pipeline; it is practically writing out coordinates to place virtual paint.
+
+It is a clever way to bypass traditional multimodal pipelines, but nobody has independently benchmarked what this brushstroke method costs in compute, or how slow it actually is in production.
+
+It is a neat trick, but we need to see the receipt.
+
+Let's finish up with a look at how consumers are actually using these tools.
+Source: https://the-decoder.com/anthropics-claude-fable-5-2-doesnt-generate-images-it-paints-them/
+
+Product & Tool Watch: Apple launches iOS study measuring real-world AI health tool effectiveness
+
+The strangest thing about consumer AI health tools is that millions of people use them, but nobody actually knows if they are making anyone healthier.
+
+Apple is trying to put a number on that blind spot.
+
+They just opened enrollment for a new iOS app study, built with OpenEvidence, where participants rate AI health responses on accuracy, detail, and relevance.
+
+You can download the app right now.
+
+It is incredibly rare to see a tech giant try to gather empirical data on clinical AI use in the wild.
+
+The catch is that this is entirely observational and self-reported, and people are notoriously bad at judging whether medical advice is accurate — so this may not produce the kind of hard findings that regulators actually care about.
+Source: https://www.theverge.com/tech/1033355/apples-new-study-looks-to-improve-the-effectiveness-of-ai-health-tools
+Source: https://techcrunch.com/2026/11/15/apple-launches-new-app-to-study-how-people-use-ai-for-health/
+
+Outro
+
+The single concrete thing to watch next is the text of that congressional chip export bill.
+
+Specifically, look for whether it includes retroactive enforcement clauses.
+
+That language dictates whether those billion-dollar broker deals stay closed or get audited.
+
+Watch the commits, y'all.

@@ -1,0 +1,46 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — November 17, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 32,
+      "title": "Intro"
+    },
+    {
+      "startTime": 32,
+      "endTime": 90,
+      "title": "California AG sues OpenAI after rogue..."
+    },
+    {
+      "startTime": 90,
+      "endTime": 164,
+      "title": "Nvidia board rejects Huang return as..."
+    },
+    {
+      "startTime": 164,
+      "endTime": 218,
+      "title": "US issues interim rule blocking China's..."
+    },
+    {
+      "startTime": 218,
+      "endTime": 274,
+      "title": "Alibaba's Qwen4-Max offers frontier-tier..."
+    },
+    {
+      "startTime": 274,
+      "endTime": 329,
+      "title": "OpenAI embeds Apollo Research evaluators..."
+    },
+    {
+      "startTime": 329,
+      "endTime": 375,
+      "title": "Google catches first fully automated..."
+    },
+    {
+      "startTime": 375,
+      "endTime": 403,
+      "title": "Outro"
+    }
+  ]
+}

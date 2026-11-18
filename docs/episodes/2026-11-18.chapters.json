@@ -1,0 +1,46 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — November 18, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 29,
+      "title": "Intro"
+    },
+    {
+      "startTime": 29,
+      "endTime": 134,
+      "title": "OpenAI releases GPT-6.2 Astra and Sol..."
+    },
+    {
+      "startTime": 134,
+      "endTime": 266,
+      "title": "Nvidia posts record Q3, rejects Huang..."
+    },
+    {
+      "startTime": 266,
+      "endTime": 351,
+      "title": "Microsoft reframes Copilot as the OS for..."
+    },
+    {
+      "startTime": 351,
+      "endTime": 446,
+      "title": "Google rebrands Spark as Gemini Tasks and..."
+    },
+    {
+      "startTime": 446,
+      "endTime": 540,
+      "title": "Isomorphic Labs raises $5 billion to push..."
+    },
+    {
+      "startTime": 540,
+      "endTime": 610,
+      "title": "Harvard study finds AI coding agents..."
+    },
+    {
+      "startTime": 610,
+      "endTime": 650,
+      "title": "Outro"
+    }
+  ]
+}

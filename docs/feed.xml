@@ -4,7 +4,7 @@
         <title>AI Briefing</title>
         <link>https://robertcdawson.github.io/ai-briefing/</link>
         <description>Daily AI news briefing — the stories that matter from the last 24 hours.</description>
-        <lastBuildDate>Tue, 17 Nov 2026 11:31:49 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 18 Nov 2026 11:29:51 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -23,6 +23,60 @@
         <podcast:guid>ea8709f4-3ba2-5b7e-bcdc-e409d84a6443</podcast:guid>
         <podcast:locked owner="manatees@gmail.com">yes</podcast:locked>
         <podcast:person role="host" group="cast">Robert Dawson</podcast:person>
+        <item>
+            <title><![CDATA[AI Briefing — November 18, 2026]]></title>
+            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-11-18.mp3</link>
+            <guid>ai-briefing-2026-11-18</guid>
+            <pubDate>Wed, 18 Nov 2026 11:29:51 GMT</pubDate>
+            <description><![CDATA[<p>Top 6 AI stories for November 18, 2026.</p>
+<p>1. Top Story: OpenAI releases GPT-6.2 Astra and Sol with lower API prices</p>
+<p>Why it matters: GPT-6.2 Astra is the first released model to hit OpenAI's own 'High' threshold for AI self-improvement risk, a capability milestone that changes how builders should think about model oversight; Sol offers cheaper inference for production workloads.</p>
+<p>Caveat: Benchmark gains come partly from OpenAI's own reporting, and the self-improvement threshold classification has not been independently verified.</p>
+<p><a href="https://openai.com/index/introducing-gpt-6-2-astra-sol">OpenAI Blog</a> · <a href="https://the-decoder.com/openai-launches-gpt-6-2-astra-and-sol-with-lower-api-prices-and-some-benchmark-gains/">The Decoder</a> · <a href="https://simonwillison.net/2026/Nov/17/gpt62-astra-and-sol/">Simon Willison</a> · <a href="https://openai.com/index/introducing-gpt-6-2-astra-sol/">Hacker News (AI)</a></p>
+<p>2. AI Business Watch: Nvidia posts record Q3, rejects Huang return, and exits China market</p>
+<p>Why it matters: Nvidia's board formally closing the door on Huang's return while simultaneously announcing a China exit and facing SEC and DOJ probes signals a structural strategic pivot that will reshape the AI chip supply chain for years.</p>
+<p>Caveat: The China exit's revenue impact has not been quantified by Nvidia, and the SEC and DOJ investigations are in early stages with no findings.</p>
+<p><a href="https://www.theverge.com/tech/1036032/nvidia-q3-2027-jensen-huang">The Verge AI</a> · <a href="https://techcrunch.com/2026/11/17/nvidia-promises-that-revenue-will-keep-soaring-for-now/">TechCrunch AI</a> · <a href="https://techcrunch.com/2026/11/17/nvidia-is-abandoning-china-after-jensen-huangs-ouster/">TechCrunch AI</a> · <a href="https://techcrunch.com/2026/11/17/nvidia-says-it-doesnt-plan-to-reappoint-jensen-huang-as-ceo/">TechCrunch AI</a> · <a href="https://techcrunch.com/2026/11/17/sec-reportedly-investigating-nvidia-amid-huang-exit/">TechCrunch AI</a> · <a href="https://www.theverge.com/policy/1035410/doj-megaspeed-nvidia-investigation-update">The Verge AI</a> · <a href="https://www.theverge.com/tech/1035420/jensen-huang-nvidia-return-as-ceo-statement">The Verge AI</a> · <a href="https://arstechnica.com/tech-policy/2026/11/trump-was-in-bed-with-jensen-critics-balk-at-huangs-wish-to-return-to-nvidia/">Ars Technica AI</a> · <a href="https://techcrunch.com/2026/11/17/nvidias-startup-stakes-ballooned-to-65b-but-huangs-exit-puts-future-deals-in-doubt/">TechCrunch AI</a> · <a href="https://stratechery.com/2026/nvidia-earnings-office-convergence-os-wars-ai-edition/">Stratechery</a></p>
+<p>3. Product &amp; Tool Watch: Microsoft reframes Copilot as the OS for work at Ignite, embeds Office inside it</p>
+<p>Why it matters: Inverting the relationship so that Word, Excel, and PowerPoint run inside Copilot rather than alongside it is a fundamental UX and platform architecture shift that will change how enterprise developers build and integrate productivity tooling.</p>
+<p>Caveat: No pricing changes or availability timeline for always-on agents were disclosed, and the 'new OS' framing is marketing language without a technical specification.</p>
+<p><a href="https://arstechnica.com/gadgets/2026/11/microsoft-calls-copilot-the-new-os-for-work-at-ignite-keynote/">Ars Technica AI</a> · <a href="https://www.theverge.com/tech/1036111/satya-nadella-says-hes-agi-pilled-now">The Verge AI</a> · <a href="https://stratechery.com/2026/nvidia-earnings-office-convergence-os-wars-ai-edition/">Stratechery</a></p>
+<p>4. Product &amp; Tool Watch: Google rebrands Spark as Gemini Tasks and makes it free for all users</p>
+<p>Why it matters: A free, always-available AI agent that can call businesses, make purchases via Google Pay, and manage calendars represents a significant escalation in the consumer agentic AI race and sets a new baseline expectation for what free AI products do.</p>
+<p>Caveat: Tasks is currently US-only for the purchasing and calling features, and no data on task success rates or failure modes has been disclosed.</p>
+<p><a href="https://www.theverge.com/tech/1035756/google-spark-ai-tasks-free">The Verge AI</a> · <a href="https://techcrunch.com/2026/11/17/google-expands-access-to-gemini-tasks-which-can-help-with-calls-purchases/">TechCrunch AI</a> · <a href="https://arstechnica.com/ai/2026/11/google-will-let-you-opt-out-of-ai-training-in-gemini-without-losing-your-history/">Ars Technica AI</a> · <a href="https://techcrunch.com/2026/11/17/google-to-keep-gemini-chats-for-two-months-up-from-72-hours-even-with-history-off/">TechCrunch AI</a></p>
+<p>5. AI Business Watch: Isomorphic Labs raises $5 billion to push AI drug candidates into clinical trials</p>
+<p>Why it matters: A $5 billion raise just six months after a $2.1 billion round signals that institutional capital is now betting on AI drug discovery moving from computational results to actual human trials, a transition that would validate the entire field.</p>
+<p>Caveat: Isomorphic has no approved drugs yet and has not disclosed which specific drug candidates are entering trials or on what timeline.</p>
+<p><a href="https://techcrunch.com/2026/11/17/isomorphic-labs-raises-5b-as-it-looks-to-take-drug-candidates-to-clinical-trials/">TechCrunch AI</a> · <a href="https://the-decoder.com/isomorphic-labs-raises-5-billion-in-its-second-mega-round-within-six-months/">The Decoder</a> · <a href="https://techcrunch.com/2026/11/17/science-corporations-brain-tech-is-worth-3-5-billion-after-new-funding/">TechCrunch AI</a></p>
+<p>6. Research Breakthrough: Harvard study finds AI coding agents shifted the engineering bottleneck to code review</p>
+<p>Why it matters: If the bottleneck has moved from writing code to reviewing it, the productivity gains from AI coding agents are being partially offset by a new constraint that current tooling does not address, which has direct implications for how engineering teams should invest in AI.</p>
+<p>Caveat: The article is a secondary summary of the research; the original methodology, sample size, and whether results generalize beyond the study's specific organizations are not detailed.</p>
+<p><a href="https://complexdiscovery.com/harvard-researchers-find-ai-coding-agents-shifted-the-bottleneck-to-code-review/">Hacker News (AI)</a></p>
+<p>Chapters</p>
+<p>00:00:00 Intro</p>
+<p>00:00:29 OpenAI releases GPT-6.2 Astra and Sol...</p>
+<p>00:02:14 Nvidia posts record Q3, rejects Huang...</p>
+<p>00:04:26 Microsoft reframes Copilot as the OS for...</p>
+<p>00:05:51 Google rebrands Spark as Gemini Tasks and...</p>
+<p>00:07:26 Isomorphic Labs raises $5 billion to push...</p>
+<p>00:09:00 Harvard study finds AI coding agents...</p>
+<p>00:10:10 Outro</p>]]></description>
+            <enclosure length="15599081" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-11-18.mp3"/>
+                    <itunes:duration>650</itunes:duration>
+            <itunes:explicit>false</itunes:explicit>
+            <itunes:season>2026</itunes:season>
+            <itunes:episode>322</itunes:episode>
+            <itunes:episodeType>full</itunes:episodeType>
+            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-11-18.chapters.json" type="application/json+chapters"/>
+            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-11-18.transcript.txt" type="text/plain" language="en"/>
+            <podcast:soundbite startTime="29" duration="103">OpenAI releases GPT-6.2 Astra and Sol...</podcast:soundbite>
+            <podcast:soundbite startTime="134" duration="120">Nvidia posts record Q3, rejects Huang...</podcast:soundbite>
+            <podcast:soundbite startTime="266" duration="84">Microsoft reframes Copilot as the OS for...</podcast:soundbite>
+            <podcast:soundbite startTime="351" duration="93">Google rebrands Spark as Gemini Tasks and...</podcast:soundbite>
+            <podcast:soundbite startTime="446" duration="93">Isomorphic Labs raises $5 billion to push...</podcast:soundbite>
+            <podcast:soundbite startTime="540" duration="68">Harvard study finds AI coding agents...</podcast:soundbite>
+        </item>
         <item>
             <title><![CDATA[AI Briefing — November 17, 2026]]></title>
             <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-11-17.mp3</link>
@@ -550,60 +604,6 @@
             <podcast:soundbite startTime="315" duration="116">US tech giants&apos; hidden AI compute debt...</podcast:soundbite>
             <podcast:soundbite startTime="432" duration="85">Anthropic&apos;s Message Threads API cuts...</podcast:soundbite>
             <podcast:soundbite startTime="519" duration="101">Stanford study finds 44 percent of widely...</podcast:soundbite>
-        </item>
-        <item>
-            <title><![CDATA[AI Briefing — November 3, 2026]]></title>
-            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-11-03.mp3</link>
-            <guid>ai-briefing-2026-11-03</guid>
-            <pubDate>Tue, 03 Nov 2026 11:31:13 GMT</pubDate>
-            <description><![CDATA[<p>Top 6 AI stories for November 3, 2026.</p>
-<p>1. Top Story: Anthropic warns it is very close to recursive self-improvement capability</p>
-<p>Why it matters: RSI would mark a qualitative shift in AI development speed, potentially removing humans from the improvement loop; a warning from the lab building the system carries significant weight for safety researchers and builders planning deployment timelines.</p>
-<p>Caveat: The article does not specify what technical threshold Anthropic is using to define 'very close,' nor whether this is a formal internal safety assessment or a public communications framing.</p>
-<p><a href="https://techcrunch.com/2026/11/02/anthropic-warns-that-its-very-close-to-rsi-capability-aka-self-building-ai/">TechCrunch AI</a> · <a href="https://the-decoder.com/anthropic-grows-revenue-twelvefold-but-posts-23-billion-loss/">The Decoder</a></p>
-<p>2. Policy &amp; Regulation Watch: New York Times sues Brave browser for AI scraping and paywall bypass</p>
-<p>Why it matters: This lawsuit extends AI copyright litigation beyond model makers to the data-pipeline intermediaries — browsers and index providers — that supply training data, potentially reshaping how AI companies source real-time web content.</p>
-<p>Caveat: The complaint is newly filed and no court has yet ruled on whether Brave's index-licensing model constitutes infringement; outcomes could take years.</p>
-<p><a href="https://www.theverge.com/tech/1024588/brave-lawsuit-ai-scraping-new-york-times">The Verge AI</a> · <a href="https://techcrunch.com/2026/11/02/new-york-times-and-other-outlets-sue-web-browser-brave-over-alleged-content-scraping/">TechCrunch AI</a></p>
-<p>3. AI Business Watch: Goldman Sachs reverses course, pulls AI coding tools from non-engineers</p>
-<p>Why it matters: A major financial institution publicly reversing a high-profile 'vibe coding' initiative signals that enterprise AI coding adoption is hitting real risk-management walls, which will influence how other regulated industries deploy similar tools.</p>
-<p>Caveat: Goldman has not published specific incident data or productivity metrics behind the reversal, so it is unclear whether the decision reflects measurable harm or precautionary risk management.</p>
-<p><a href="https://the-decoder.com/goldman-sachs-pulls-ai-coding-tools-from-traders-and-bankers/">The Decoder</a></p>
-<p>4. Research Breakthrough: Mechanism design approach uses incentive structures to keep AI agents aligned</p>
-<p>Why it matters: 'Reverse game theory' or mechanism design offers a mathematically grounded alternative to RLHF-style alignment, making rule-following the rational choice for capable agents rather than relying on trained preferences — directly relevant to agentic deployment safety.</p>
-<p>Caveat: The MIT Tech Review article describes the approach conceptually; no peer-reviewed benchmark results or real-world deployment data are cited to validate the method's effectiveness against capable models.</p>
-<p><a href="https://www.technologyreview.com/2026/11/03/1147934/reverse-game-theory-mechanism-design-ai-alignment/">MIT Tech Review AI</a></p>
-<p>5. AI Business Watch: Grok Bot usage throttled weeks after Musk called it fastest-growing product</p>
-<p>Why it matters: The rapid reversal from 'fastest growth ever' to 'unsustainably high costs' illustrates the unit-economics problem facing AI agent products at scale, a structural challenge relevant to every team pricing agentic workloads.</p>
-<p>Caveat: Musk's cost and growth claims both come from his own X posts without independent verification of usage or revenue figures.</p>
-<p><a href="https://techcrunch.com/2026/11/02/elon-musk-throttles-grok-bot-limits-due-to-unsustainably-high-costs/">TechCrunch AI</a> · <a href="https://the-decoder.com/spacexsi-apparently-cuts-grok-bot-quotas-weeks-after-musk-called-it-his-fastest-growing-product/">The Decoder</a></p>
-<p>6. Policy &amp; Regulation Watch: Anthropic updates Claude Code system prompt to block video game cloning</p>
-<p>Why it matters: This is the first major coding-assistant policy intervention targeting a specific creative-industry harm, setting a precedent for how AI tool makers may use system-prompt restrictions to manage copyright exposure without waiting for legislation.</p>
-<p>Caveat: Ars Technica notes the restriction applies only to Claude Code and will not stop the broader AI game-cloning wave, since many other models and tools remain unrestricted.</p>
-<p><a href="https://www.theverge.com/ai-artificial-intelligence/1024632/anthropic-claude-ai-video-game-clones">The Verge AI</a> · <a href="https://arstechnica.com/ai/2026/11/claudes-new-rules-against-game-cloning-wont-stop-the-ai-copying-boom/">Ars Technica AI</a> · <a href="https://the-decoder.com/anthropic-cracks-down-on-game-cloning-in-claude-code-after-wave-of-ai-built-knockoffs/">The Decoder</a></p>
-<p>Chapters</p>
-<p>00:00:00 Intro</p>
-<p>00:00:33 Anthropic warns it is very close to...</p>
-<p>00:01:51 New York Times sues Brave browser for AI...</p>
-<p>00:02:47 Goldman Sachs reverses course, pulls AI...</p>
-<p>00:03:35 Mechanism design approach uses incentive...</p>
-<p>00:04:30 Grok Bot usage throttled weeks after Musk...</p>
-<p>00:05:21 Anthropic updates Claude Code system...</p>
-<p>00:06:14 Outro</p>]]></description>
-            <enclosure length="9839079" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-11-03.mp3"/>
-                    <itunes:duration>410</itunes:duration>
-            <itunes:explicit>false</itunes:explicit>
-            <itunes:season>2026</itunes:season>
-            <itunes:episode>307</itunes:episode>
-            <itunes:episodeType>full</itunes:episodeType>
-            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-11-03.chapters.json" type="application/json+chapters"/>
-            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-11-03.transcript.txt" type="text/plain" language="en"/>
-            <podcast:soundbite startTime="33" duration="76">Anthropic warns it is very close to...</podcast:soundbite>
-            <podcast:soundbite startTime="111" duration="54">New York Times sues Brave browser for AI...</podcast:soundbite>
-            <podcast:soundbite startTime="167" duration="46">Goldman Sachs reverses course, pulls AI...</podcast:soundbite>
-            <podcast:soundbite startTime="215" duration="53">Mechanism design approach uses incentive...</podcast:soundbite>
-            <podcast:soundbite startTime="270" duration="50">Grok Bot usage throttled weeks after Musk...</podcast:soundbite>
-            <podcast:soundbite startTime="321" duration="51">Anthropic updates Claude Code system...</podcast:soundbite>
         </item>
     </channel>
 </rss>

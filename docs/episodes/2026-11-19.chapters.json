@@ -1,0 +1,46 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — November 19, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 28,
+      "title": "Intro"
+    },
+    {
+      "startTime": 28,
+      "endTime": 93,
+      "title": "Anthropic prices IPO at $83 per share,..."
+    },
+    {
+      "startTime": 93,
+      "endTime": 169,
+      "title": "Leading AI models from Anthropic, OpenAI,..."
+    },
+    {
+      "startTime": 169,
+      "endTime": 256,
+      "title": "Microsoft's MAI division ships seven..."
+    },
+    {
+      "startTime": 256,
+      "endTime": 321,
+      "title": "OpenAI models deliver a year of chip..."
+    },
+    {
+      "startTime": 321,
+      "endTime": 389,
+      "title": "Google releases Gemini 4 Neon, its fourth..."
+    },
+    {
+      "startTime": 389,
+      "endTime": 451,
+      "title": "OpenAI grants four independent auditors..."
+    },
+    {
+      "startTime": 451,
+      "endTime": 476,
+      "title": "Outro"
+    }
+  ]
+}

@@ -4,7 +4,7 @@
         <title>AI Briefing</title>
         <link>https://robertcdawson.github.io/ai-briefing/</link>
         <description>Daily AI news briefing — the stories that matter from the last 24 hours.</description>
-        <lastBuildDate>Wed, 18 Nov 2026 11:29:51 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 19 Nov 2026 11:32:52 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -23,6 +23,60 @@
         <podcast:guid>ea8709f4-3ba2-5b7e-bcdc-e409d84a6443</podcast:guid>
         <podcast:locked owner="manatees@gmail.com">yes</podcast:locked>
         <podcast:person role="host" group="cast">Robert Dawson</podcast:person>
+        <item>
+            <title><![CDATA[AI Briefing — November 19, 2026]]></title>
+            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-11-19.mp3</link>
+            <guid>ai-briefing-2026-11-19</guid>
+            <pubDate>Thu, 19 Nov 2026 11:32:52 GMT</pubDate>
+            <description><![CDATA[<p>Top 6 AI stories for November 19, 2026.</p>
+<p>1. Top Story: Anthropic prices IPO at $83 per share, above projected range, valuing company at $1.5 trillion</p>
+<p>Why it matters: Pricing above the $70–$78 range and landing at a $1.5 trillion fully diluted valuation signals that public markets are willing to price frontier AI higher than the earlier step-down from $2 trillion suggested. This sets a new public-market benchmark for AI lab valuations that will influence future fundraising and competitive dynamics.</p>
+<p>Caveat: The final valuation is fully diluted and first-day trading performance will be the real test of whether public demand holds at this price.</p>
+<p><a href="https://www.anthropic.com/news/anthropic-prices-initial-public-offering">Hacker News (AI)</a> · <a href="https://techcrunch.com/2026/11/18/anthropic-reportedly-prices-ipo-at-83-a-share-above-projected-range/">TechCrunch AI</a> · <a href="https://www.businesswire.com/news/home/20261118974464/en/Anthropic-is-Not-a-Safe-AI-Company---Broad-Coalition-of-Scientists-Legal-Scholars-and-Tech-Leaders-Challenge-Anthropics-Safety-Branding-Ahead-of-IPO">Hacker News (AI)</a></p>
+<p>2. Research Breakthrough: Leading AI models from Anthropic, OpenAI, and Google flagged civilians as drone targets</p>
+<p>Why it matters: A Vals AI investigation found that frontier models from all three major labs have almost no safeguards against use in autonomous weapons targeting, and a simple video-game framing in the prompt was sufficient to override refusals — a concrete safety failure with direct policy and deployment implications.</p>
+<p>Caveat: The investigation was conducted by Vals AI, a commercial safety evaluation firm, and the full methodology, test conditions, and scope have not been independently peer-reviewed.</p>
+<p><a href="https://the-decoder.com/anthropic-openai-and-google-models-readily-marked-medics-journalists-and-surrendering-soldiers-as-kamikaze-drone-targets/">The Decoder</a></p>
+<p>3. Product &amp; Tool Watch: Microsoft's MAI division ships seven in-house models to replace OpenAI in its own products</p>
+<p>Why it matters: Microsoft publicly confirming it is substituting cheaper in-house models for OpenAI's APIs inside its own products is a strategic inflection point: it reveals the cost pressure on frontier model pricing and signals that the OpenAI–Microsoft partnership has a competitive undercurrent builders should track.</p>
+<p>Caveat: The 98 percent performance parity claim for MAI Code 2 versus GPT-6.1 Sol comes from Microsoft's own internal benchmarks with no external validation.</p>
+<p><a href="https://the-decoder.com/microsoft-is-replacing-outside-ai-models-in-its-own-products-with-cheaper-in-house-alternatives/">The Decoder</a></p>
+<p>4. Research Breakthrough: OpenAI models deliver a year of chip optimization progress for AMD in five months</p>
+<p>Why it matters: OpenAI claims its models achieved up to 14 percent PPA improvement on AMD's flagship GPU IP in under five months, with AMD already sending the changes to production — a concrete example of AI compressing hardware engineering cycles that could accelerate the pace of compute advancement underlying all AI progress.</p>
+<p>Caveat: The one-year-equivalent claim and 14 percent PPA figure come entirely from OpenAI's own blog with no independent verification from AMD or third-party engineers.</p>
+<p><a href="https://openai.com/index/advancing-chip-design-with-our-models/">Hacker News (AI)</a> · <a href="https://the-decoder.com/openai-says-its-models-delivered-a-years-worth-of-chip-optimization-on-top-of-amds-own-engineering/">The Decoder</a></p>
+<p>5. Product &amp; Tool Watch: Google releases Gemini 4 Neon, its fourth frontier model in one month</p>
+<p>Why it matters: Neon is positioned as a developer-focused frontier model that is nearly 2x faster than Carbon while undercutting it on price, giving builders a meaningful new cost-performance option within weeks of Carbon's release. The rapid cadence signals Google is iterating at an unprecedented pace on its Gemini 4 family.</p>
+<p>Caveat: Performance claims come from Google's own benchmarks with no independent third-party evaluation published yet.</p>
+<p><a href="https://deepmind.google/blog/introducing-gemini-4-neon/">Google DeepMind</a> · <a href="https://the-decoder.com/googles-latest-ai-model-is-faster-cheaper-and-smarter-than-its-flagship-predecessor-from-just-weeks-ago/">The Decoder</a> · <a href="https://the-decoder.com/google-ships-gemini-4-neon-its-fourth-new-gemini-model-in-a-month/">The Decoder</a></p>
+<p>6. Policy &amp; Regulation Watch: OpenAI grants four independent auditors on-site access to unreleased models and training data</p>
+<p>Why it matters: This is the first time OpenAI has given external organizations direct access to unreleased models, source code, and training data for safety audits, representing a structural shift in third-party oversight that could set a precedent for the industry — or reveal how limited such access remains in practice.</p>
+<p>Caveat: OpenAI retains the right to redact or delay audit reports, which fundamentally limits how independent the oversight can be.</p>
+<p><a href="https://the-decoder.com/openai-opens-its-ai-systems-to-four-independent-on-site-auditors-for-the-first-time/">The Decoder</a></p>
+<p>Chapters</p>
+<p>00:00:00 Intro</p>
+<p>00:00:28 Anthropic prices IPO at $83 per share,...</p>
+<p>00:01:33 Leading AI models from Anthropic, OpenAI,...</p>
+<p>00:02:49 Microsoft's MAI division ships seven...</p>
+<p>00:04:16 OpenAI models deliver a year of chip...</p>
+<p>00:05:21 Google releases Gemini 4 Neon, its fourth...</p>
+<p>00:06:29 OpenAI grants four independent auditors...</p>
+<p>00:07:31 Outro</p>]]></description>
+            <enclosure length="11415592" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-11-19.mp3"/>
+                    <itunes:duration>476</itunes:duration>
+            <itunes:explicit>false</itunes:explicit>
+            <itunes:season>2026</itunes:season>
+            <itunes:episode>323</itunes:episode>
+            <itunes:episodeType>full</itunes:episodeType>
+            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-11-19.chapters.json" type="application/json+chapters"/>
+            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-11-19.transcript.txt" type="text/plain" language="en"/>
+            <podcast:soundbite startTime="28" duration="63">Anthropic prices IPO at $83 per share,...</podcast:soundbite>
+            <podcast:soundbite startTime="93" duration="75">Leading AI models from Anthropic, OpenAI,...</podcast:soundbite>
+            <podcast:soundbite startTime="169" duration="85">Microsoft&apos;s MAI division ships seven...</podcast:soundbite>
+            <podcast:soundbite startTime="256" duration="64">OpenAI models deliver a year of chip...</podcast:soundbite>
+            <podcast:soundbite startTime="321" duration="66">Google releases Gemini 4 Neon, its fourth...</podcast:soundbite>
+            <podcast:soundbite startTime="389" duration="60">OpenAI grants four independent auditors...</podcast:soundbite>
+        </item>
         <item>
             <title><![CDATA[AI Briefing — November 18, 2026]]></title>
             <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-11-18.mp3</link>
@@ -550,60 +604,6 @@
             <podcast:soundbite startTime="216" duration="51">Uber discloses only four rides booked by...</podcast:soundbite>
             <podcast:soundbite startTime="269" duration="60">Anthropic&apos;s text watermarks easily...</podcast:soundbite>
             <podcast:soundbite startTime="330" duration="65">Qualcomm pivots to AI data centers as...</podcast:soundbite>
-        </item>
-        <item>
-            <title><![CDATA[AI Briefing — November 4, 2026]]></title>
-            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-11-04.mp3</link>
-            <guid>ai-briefing-2026-11-04</guid>
-            <pubDate>Wed, 04 Nov 2026 11:30:01 GMT</pubDate>
-            <description><![CDATA[<p>Top 6 AI stories for November 4, 2026.</p>
-<p>1. Top Story: OpenAI reportedly re-enables Codex model training without user consent</p>
-<p>Why it matters: Developers who explicitly opted out of data sharing for IP protection may have had that setting silently reversed, creating real enterprise compliance and confidentiality risks for anyone using Codex in production.</p>
-<p>Caveat: The report originates from a Hacker News thread; OpenAI has not confirmed whether this was a bug, a policy change, or an isolated incident.</p>
-<p><a href="https://news.ycombinator.com/item?id=50352757">Hacker News (AI)</a></p>
-<p>2. Product &amp; Tool Watch: Postman silently auto-installs AI plugins and attempts to share all API data</p>
-<p>Why it matters: Postman is ubiquitous in developer workflows; silent installation of AI plugins that attempt to exfiltrate API data — including potentially sensitive endpoints and credentials — is a serious supply-chain trust issue for engineering teams.</p>
-<p>Caveat: The GitHub issue is a user report, not a confirmed security audit; Postman has not yet issued an official response in the available excerpt.</p>
-<p><a href="https://github.com/postmanlabs/postman-app-support/issues/14370">Hacker News (AI)</a></p>
-<p>3. Policy &amp; Regulation Watch: Google forces schools to accept AI or lose Search access entirely starting 2027</p>
-<p>Why it matters: Google's bundling decision effectively removes meaningful opt-out for K-12 institutions, raising serious questions about coercive platform power in education and setting a precedent for how AI features get mandated into critical infrastructure.</p>
-<p>Caveat: The policy takes effect in 2027 and administrators can still enable AI selectively; the practical coercion depends on how deeply schools depend on Google Search.</p>
-<p><a href="https://www.theverge.com/tech/1025411/google-turn-off-search-ai-features">The Verge AI</a> · <a href="https://arstechnica.com/ai/2026/11/google-will-let-schools-skip-ai-tools-but-they-have-to-give-up-search-too/">Ars Technica AI</a> · <a href="https://techcrunch.com/2026/11/03/google-will-let-schools-disable-its-ai-tools-but-not-without-sacrificing-search/">TechCrunch AI</a> · <a href="https://the-decoder.com/schools-that-turn-off-googles-ai-will-lose-search-too-starting-in-2027/">The Decoder</a> · <a href="https://www.nytimes.com/2026/11/03/us/google-search-schools-restrict-ai.html">Hacker News (AI)</a></p>
-<p>4. AI Business Watch: US tech giants' hidden AI compute debt surges 90 percent to $3.2 trillion</p>
-<p>Why it matters: The scale of off-balance-sheet AI infrastructure obligations across major tech firms dwarfs prior estimates and signals systemic financial risk that could constrain future AI investment, pricing, and competitive dynamics industry-wide.</p>
-<p>Caveat: The Nikkei report does not detail its methodology for calculating 'hidden' debt, and the definition of what qualifies as AI-related obligation may vary significantly across companies.</p>
-<p><a href="https://asia.nikkei.com/business/technology/artificial-intelligence/us-tech-giants-hidden-ai-debt-swells-90-to-3.2tn-in-6-months">Hacker News (AI)</a></p>
-<p>5. Product &amp; Tool Watch: Anthropic's Message Threads API cuts long-context latency by 35 percent</p>
-<p>Why it matters: For agent and multi-turn application developers, a 35% reduction in time-to-first-token on conversations over 500K tokens is a meaningful production-grade improvement that reduces cost and improves user experience without model changes.</p>
-<p>Caveat: The 35% figure comes from Anthropic's own announcement; independent benchmarks under real-world workload distributions have not been published.</p>
-<p><a href="https://the-decoder.com/anthropics-message-threads-cut-time-to-first-token-by-35-percent-for-long-conversations/">The Decoder</a></p>
-<p>6. Research Breakthrough: Stanford study finds 44 percent of widely cited LLM claims already expired</p>
-<p>Why it matters: If nearly half of published LLM findings are obsolete within months, the research base that practitioners and policymakers rely on for capability and safety assessments is systematically unreliable, undermining benchmarking, regulation, and product decisions.</p>
-<p>Caveat: The study tested 50 claims against 20 models — a limited sample — and 'expired' is defined by the researchers' own criteria, which may not align with how practitioners use these findings.</p>
-<p><a href="https://the-decoder.com/rapid-llm-development-is-outrunning-the-research-meant-to-explain-it-study-finds/">The Decoder</a></p>
-<p>Chapters</p>
-<p>00:00:00 Intro</p>
-<p>00:00:40 OpenAI reportedly re-enables Codex model...</p>
-<p>00:02:09 Postman silently auto-installs AI plugins...</p>
-<p>00:03:44 Google forces schools to accept AI or...</p>
-<p>00:05:15 US tech giants' hidden AI compute debt...</p>
-<p>00:07:12 Anthropic's Message Threads API cuts...</p>
-<p>00:08:39 Stanford study finds 44 percent of widely...</p>
-<p>00:10:21 Outro</p>]]></description>
-            <enclosure length="15600233" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-11-04.mp3"/>
-                    <itunes:duration>650</itunes:duration>
-            <itunes:explicit>false</itunes:explicit>
-            <itunes:season>2026</itunes:season>
-            <itunes:episode>308</itunes:episode>
-            <itunes:episodeType>full</itunes:episodeType>
-            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-11-04.chapters.json" type="application/json+chapters"/>
-            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-11-04.transcript.txt" type="text/plain" language="en"/>
-            <podcast:soundbite startTime="40" duration="87">OpenAI reportedly re-enables Codex model...</podcast:soundbite>
-            <podcast:soundbite startTime="129" duration="93">Postman silently auto-installs AI plugins...</podcast:soundbite>
-            <podcast:soundbite startTime="224" duration="90">Google forces schools to accept AI or...</podcast:soundbite>
-            <podcast:soundbite startTime="315" duration="116">US tech giants&apos; hidden AI compute debt...</podcast:soundbite>
-            <podcast:soundbite startTime="432" duration="85">Anthropic&apos;s Message Threads API cuts...</podcast:soundbite>
-            <podcast:soundbite startTime="519" duration="101">Stanford study finds 44 percent of widely...</podcast:soundbite>
         </item>
     </channel>
 </rss>

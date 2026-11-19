@@ -1,0 +1,129 @@
+AI Briefing — November 19, 2026
+Date: 2026-11-19
+
+Intro
+
+Public markets have been trying to figure out how to value frontier AI labs all year, and the private market multiples are finally getting their reality check.
+
+On November 19th, 2026, we got our first real answer with Anthropic's initial public offering, which just set the benchmark for everyone else.
+
+We'll also look at why Microsoft is suddenly swapping out OpenAI models inside its own products.
+
+Top Story: Anthropic prices IPO at $83 per share, above projected range, valuing company at $1.5 trillion
+
+Just a few months ago, the expectation was a two trillion dollar debut. Then, as we talked about last week, Anthropic set a target range of seventy to seventy-eight dollars a share, aiming for a one-point-four trillion dollar valuation.
+
+My read at the time was that public markets were looking at frontier AI with more skepticism than the private rounds implied.
+
+Well, I was partially right about the skepticism, but the demand showed up anyway.
+
+Anthropic officially priced its IPO on November 18th at eighty-three dollars a share, pushing the fully diluted valuation to one-point-five trillion.
+
+That means investors were willing to pay a premium over the target range, setting a hard public benchmark for what a leading AI lab is actually worth.
+
+The real test comes when the bell rings and trading starts, to see if retail and institutional buyers hold that line.
+
+While Anthropic cashes that check, a new report highlights a glaring safety gap across the industry.
+Source: https://www.anthropic.com/news/anthropic-prices-initial-public-offering
+Source: https://techcrunch.com/2026/11/18/anthropic-reportedly-prices-ipo-at-83-a-share-above-projected-range/
+Source: https://www.businesswire.com/news/home/20261118974464/en/Anthropic-is-Not-a-Safe-AI-Company---Broad-Coalition-of-Scientists-Legal-Scholars-and-Tech-Leaders-Challenge-Anthropics-Safety-Branding-Ahead-of-IPO
+
+Research Breakthrough: Leading AI models from Anthropic, OpenAI, and Google flagged civilians as drone targets
+
+There is a booming cottage industry of commercial AI safety evaluation companies right now, and their business model relies on finding the holes the big labs missed.
+
+A firm called Vals AI just published an investigation showing that models from Anthropic, OpenAI, and Google readily flagged medics, journalists, and surrendering soldiers as targets for kamikaze drones.
+
+The evaluators didn't have to use complex jailbreaks, either. They just framed the prompt like a video game, and that was enough to bypass the models' refusal mechanisms.
+
+All three providers have promised fixes since the findings came out.
+
+Vals AI gets a high-profile marketing win out of this, but it doesn't change the fact that these are massive, deployed systems failing basic international humanitarian law scenarios.
+
+The methodology hasn't been peer-reviewed outside of Vals AI, so we don't know the exact failure rates.
+
+But it shows how easily safety training breaks down when the context shifts to simulated combat, which is exactly what defense contractors are currently trying to automate.
+
+Speaking of automation, Microsoft is making an aggressive change to its enterprise workloads.
+Source: https://the-decoder.com/anthropic-openai-and-google-models-readily-marked-medics-journalists-and-surrendering-soldiers-as-kamikaze-drone-targets/
+
+Product & Tool Watch: Microsoft's MAI division ships seven in-house models to replace OpenAI in its own products
+
+If you build enterprise software in the Azure ecosystem, your default assumption that OpenAI models power everything under the hood just changed.
+
+At Microsoft Ignite, the company's MAI division unveiled seven new in-house models covering code, security, images, language, and routing.
+
+These are specifically designed for always-on enterprise AI agent workloads, and Microsoft is swapping them in to replace OpenAI models inside its own products.
+
+Yesterday, I said Microsoft's push to reframe Copilot as an operating system was just marketing until they showed us the pricing and infrastructure for always-on agents.
+
+This is that infrastructure. Microsoft is aggressively substituting cheaper, internal models to handle the sheer volume of agent requests.
+
+Satya Nadella predicted these agents will reshuffle the economics of the web, and it is pretty clear Microsoft wants to keep those economics in-house rather than paying API costs to its closest partner.
+
+Microsoft claims their MAI Code 2 model hits ninety-eight percent performance parity with GPT-6.1 Sol, though that is strictly an internal benchmark.
+
+While Microsoft cuts its API bill, OpenAI is helping hardware makers speed up their engineering cycles.
+Source: https://the-decoder.com/microsoft-is-replacing-outside-ai-models-in-its-own-products-with-cheaper-in-house-alternatives/
+
+Research Breakthrough: OpenAI models deliver a year of chip optimization progress for AMD in five months
+
+Using AI to design the next generation of AI hardware is the most important feedback loop in this industry right now.
+
+OpenAI just claimed its models achieved up to a fourteen percent improvement on AMD's flagship GPU architecture in under five months.
+
+According to OpenAI, that equals roughly a full year of AMD's own engineering progress, and AMD has already sent the AI-suggested changes to production.
+
+Anthropic is running a similar playbook, applying its models to optimize chips for better performance per dollar.
+
+We have to take the one-year-equivalent claim with a grain of salt, because it comes entirely from an OpenAI blog post with no independent validation from AMD engineers.
+
+Even if the math is slightly exaggerated, compressing hardware engineering cycles means the compute ceiling is going to rise faster than traditional roadmaps predicted.
+
+That accelerating pace is showing up in software releases over at Google, too.
+Source: https://openai.com/index/advancing-chip-design-with-our-models/
+Source: https://the-decoder.com/openai-says-its-models-delivered-a-years-worth-of-chip-optimization-on-top-of-amds-own-engineering/
+
+Product & Tool Watch: Google releases Gemini 4 Neon, its fourth frontier model in one month
+
+It is genuinely confusing why Google would release a flagship model and then undercut it entirely just a few weeks later.
+
+Last week, we looked at Gemini 4 Carbon, and I mentioned its cost advantage was strong enough to shift your pipeline decisions.
+
+Now Google has released Gemini 4 Neon, which is nearly twice as fast as Carbon and even cheaper, priced at three dollars per million input tokens and fifteen per million output.
+
+Neon supports text, images, video, audio, and PDFs with a one-million-token context window, targeted right at software development and scientific tasks.
+
+This makes four distinct Gemini 4 models Google has shipped in roughly seven weeks.
+
+The rapid cadence implies Google is iterating its architecture so fast that it is willing to cannibalize its own product lineup to keep the pressure on competitors.
+
+Just keep in mind that the performance claims are all Google's own benchmarks, with no third-party evaluation yet.
+
+That lack of outside testing brings us to our final story about safety audits.
+Source: https://deepmind.google/blog/introducing-gemini-4-neon/
+Source: https://the-decoder.com/googles-latest-ai-model-is-faster-cheaper-and-smarter-than-its-flagship-predecessor-from-just-weeks-ago/
+Source: https://the-decoder.com/google-ships-gemini-4-neon-its-fourth-new-gemini-model-in-a-month/
+
+Policy & Regulation Watch: OpenAI grants four independent auditors on-site access to unreleased models and training data
+
+If you hear that OpenAI is letting independent auditors look at its unreleased models, your first question is probably going to be about who controls the final report.
+
+OpenAI just granted four audit organizations, including Apollo Research and METR, direct on-site access to unreleased models, source code, and training data.
+
+Earlier this week, I pointed out that embedding Apollo was a good step, but the access restrictions meant the results might never see the light of day.
+
+That concern still holds up here. The terms of this new arrangement explicitly allow OpenAI to redact or delay the publication of these audit reports.
+
+So while giving outsiders a look at the training data is a structural shift for the industry, the oversight isn't truly independent if the company being audited holds a veto over the findings.
+
+It is also hard to ignore the timing, making a big safety transparency announcement on the exact same day Anthropic priced its IPO.
+Source: https://the-decoder.com/openai-opens-its-ai-systems-to-four-independent-on-site-auditors-for-the-first-time/
+
+Outro
+
+You look at Microsoft quietly swapping out OpenAI for internal models to save money, and then you look at Anthropic pulling a one-point-five trillion dollar valuation on the public market.
+
+Those two things are going to collide eventually, because you can't sustain a valuation that high if your biggest enterprise partners decide they can't afford the API calls.
+
+I'll catch y'all on the next one.

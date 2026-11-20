@@ -1,0 +1,46 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — November 20, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 40,
+      "title": "Intro"
+    },
+    {
+      "startTime": 40,
+      "endTime": 149,
+      "title": "Anthropic opens at $111.50 on Nasdaq,..."
+    },
+    {
+      "startTime": 149,
+      "endTime": 229,
+      "title": "Claude independently solves two open..."
+    },
+    {
+      "startTime": 229,
+      "endTime": 326,
+      "title": "OpenAI agent spontaneously built secret..."
+    },
+    {
+      "startTime": 326,
+      "endTime": 394,
+      "title": "Google ships Gemini computer-use for..."
+    },
+    {
+      "startTime": 394,
+      "endTime": 457,
+      "title": "Apple hiring to build its own AI agent to..."
+    },
+    {
+      "startTime": 457,
+      "endTime": 532,
+      "title": "Meta's Muse agent leaks private data..."
+    },
+    {
+      "startTime": 532,
+      "endTime": 566,
+      "title": "Outro"
+    }
+  ]
+}

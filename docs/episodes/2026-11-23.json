@@ -1,0 +1,235 @@
+{
+  "date": "2026-11-23",
+  "title": "AI Briefing — November 23, 2026",
+  "description": "<p>Top 6 AI stories for November 23, 2026.</p>\n<p>1. Top Story: AI coding agents solve fewer than one in ten real workplace tasks</p>\n<p>Why it matters: The gap between isolated benchmark performance and messy real-world developer workflows is now quantified, directly challenging teams building or deploying coding agents for production use.</p>\n<p>Caveat: The simulated workplace methodology may not perfectly replicate all real developer environments, and the specific task mix could skew results.</p>\n<p><a href=\"https://the-decoder.com/ai-coding-agents-ace-isolated-tests-but-complete-fewer-than-one-in-ten-tasks-in-a-simulated-workplace/\">The Decoder</a></p>\n<p>2. Research Breakthrough: METR warns AI capability gains are outpacing safety evaluation methods</p>\n<p>Why it matters: If safety evaluations can no longer keep pace with model improvement rates, the entire framework for responsible deployment decisions is undermined — a critical concern for builders and policymakers alike.</p>\n<p>Caveat: METR also notes current tests may overestimate real-world model capabilities, creating uncertainty in both directions.</p>\n<p><a href=\"https://the-decoder.com/ai-is-getting-better-faster-than-experts-can-reliably-test-whether-new-systems-are-safe-metr-warns/\">The Decoder</a></p>\n<p>3. Research Breakthrough: Security researchers expose stolen keys and snooping at cheap AI inference providers</p>\n<p>Why it matters: Developers routing production workloads through third-party inference resellers face real credential theft and data exposure risks, making provider vetting a critical security practice.</p>\n<p>Caveat: The Dragos research used fake requests as bait, so the full scope of exposure for real production traffic remains unknown.</p>\n<p><a href=\"https://the-decoder.com/security-researchers-show-how-cheap-ai-inference-providers-steal-keys-and-snoop-on-users/\">The Decoder</a></p>\n<p>4. Product &amp; Tool Watch: Perplexity launches Monitor API for continuous scheduled web search with webhooks</p>\n<p>Why it matters: Persistent, event-driven web monitoring as a developer primitive enables a new class of agents that react to world changes rather than waiting for user queries — a meaningful shift in agentic architecture.</p>\n<p>Caveat: No pricing details or rate limits were disclosed, and Perplexity's decision model filtering quality is unverified by independent testing.</p>\n<p><a href=\"https://the-decoder.com/perplexitys-new-monitor-api-turns-web-search-from-a-one-off-query-into-a-nonstop-watchdog/\">The Decoder</a></p>\n<p>5. Product &amp; Tool Watch: Meta Muse agent now shops Walmart on your behalf for Black Friday deals</p>\n<p>Why it matters: This is one of the first live deployments of a major AI agent completing real retail purchases at scale, with Walmart's Agent Gateway providing a model for how retailers can safely expose commerce APIs to agents.</p>\n<p>Caveat: The data-mixing privacy concern flagged in prior coverage of Muse has not been publicly resolved, raising questions about safety of agent-managed purchases.</p>\n<p><a href=\"https://www.theverge.com/ai-artificial-intelligence/1039874/walmart-agent-gateway-meta-muse-black-friday\">The Verge AI</a></p>\n<p>6. Policy &amp; Regulation Watch: OpenAI chief scientist proposes framework for measuring and limiting AI development speed</p>\n<p>Why it matters: A credible internal proposal for AI development speed limits from a frontier lab's chief scientist signals the governance conversation is moving from abstract principles to operational metrics.</p>\n<p>Caveat: The article is a brief excerpt with no details on the specific metrics proposed or whether OpenAI leadership endorses the framework.</p>\n<p><a href=\"https://techcrunch.com/2026/11/22/openais-chief-scientist-has-thoughts-on-how-to-limit-ai-development/\">TechCrunch AI</a></p>\n<p>Chapters</p>\n<p>00:00:00 Intro</p>\n<p>00:00:33 AI coding agents solve fewer than one in...</p>\n<p>00:02:25 METR warns AI capability gains are...</p>\n<p>00:04:08 Security researchers expose stolen keys...</p>\n<p>00:05:47 Perplexity launches Monitor API for...</p>\n<p>00:07:16 Meta Muse agent now shops Walmart on your...</p>\n<p>00:08:51 OpenAI chief scientist proposes framework...</p>\n<p>00:10:09 Outro</p>",
+  "durationSeconds": 644,
+  "byteLength": 15453351,
+  "pubDate": "2026-11-23T11:28:43.430Z",
+  "season": 2026,
+  "episodeNumber": 327,
+  "chaptersFilename": "2026-11-23.chapters.json",
+  "transcriptFilename": "2026-11-23.transcript.txt",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 33,
+      "title": "Intro"
+    },
+    {
+      "startTime": 33,
+      "endTime": 145,
+      "title": "AI coding agents solve fewer than one in..."
+    },
+    {
+      "startTime": 145,
+      "endTime": 248,
+      "title": "METR warns AI capability gains are..."
+    },
+    {
+      "startTime": 248,
+      "endTime": 347,
+      "title": "Security researchers expose stolen keys..."
+    },
+    {
+      "startTime": 347,
+      "endTime": 436,
+      "title": "Perplexity launches Monitor API for..."
+    },
+    {
+      "startTime": 436,
+      "endTime": 531,
+      "title": "Meta Muse agent now shops Walmart on your..."
+    },
+    {
+      "startTime": 531,
+      "endTime": 609,
+      "title": "OpenAI chief scientist proposes framework..."
+    },
+    {
+      "startTime": 609,
+      "endTime": 644,
+      "title": "Outro"
+    }
+  ],
+  "soundbites": [
+    {
+      "startTime": 33,
+      "duration": 111,
+      "title": "AI coding agents solve fewer than one in..."
+    },
+    {
+      "startTime": 145,
+      "duration": 101,
+      "title": "METR warns AI capability gains are..."
+    },
+    {
+      "startTime": 248,
+      "duration": 97,
+      "title": "Security researchers expose stolen keys..."
+    },
+    {
+      "startTime": 347,
+      "duration": 87,
+      "title": "Perplexity launches Monitor API for..."
+    },
+    {
+      "startTime": 436,
+      "duration": 94,
+      "title": "Meta Muse agent now shops Walmart on your..."
+    },
+    {
+      "startTime": 531,
+      "duration": 77,
+      "title": "OpenAI chief scientist proposes framework..."
+    }
+  ],
+  "curation": [
+    {
+      "canonicalKey": "ai-coding-agents-real-world-failure",
+      "headline": "AI coding agents solve fewer than one in ten real workplace tasks",
+      "whyItMatters": "The gap between isolated benchmark performance and messy real-world developer workflows is now quantified, directly challenging teams building or deploying coding agents for production use.",
+      "caveat": "The simulated workplace methodology may not perfectly replicate all real developer environments, and the specific task mix could skew results.",
+      "importance": 82,
+      "category": "research",
+      "stance": "Benchmark-optimized coding agents are being sold into environments they demonstrably can't handle; teams should measure end-to-end task completion, not code generation speed.",
+      "specifics": [
+        "Opus 5.5 and Astra complete fewer than 1-in-10 tasks in simulated workplace settings.",
+        "Models succeed quickly on clear standalone assignments but lose track as autonomous developers.",
+        "Study uses a simulated developer job with colleagues, project boards, and incomplete handoffs.",
+        "Follows Harvard study finding AI coding agents shifted bottleneck to code review, not generation."
+      ]
+    },
+    {
+      "canonicalKey": "metr-safety-evaluation-lag",
+      "headline": "METR warns AI capability gains are outpacing safety evaluation methods",
+      "whyItMatters": "If safety evaluations can no longer keep pace with model improvement rates, the entire framework for responsible deployment decisions is undermined — a critical concern for builders and policymakers alike.",
+      "caveat": "METR also notes current tests may overestimate real-world model capabilities, creating uncertainty in both directions.",
+      "importance": 80,
+      "category": "research",
+      "stance": "METR's warning deserves immediate attention from any team using published safety evals to justify production deployment decisions.",
+      "specifics": [
+        "Current evaluation data cannot rule out a dangerous acceleration in AI development, METR warns.",
+        "METR says models are simultaneously getting harder to measure reliably as they improve.",
+        "Common benchmark tests may overestimate what models can actually do in practice, per METR."
+      ]
+    },
+    {
+      "canonicalKey": "cheap-ai-inference-supply-chain-attack",
+      "headline": "Security researchers expose stolen keys and snooping at cheap AI inference providers",
+      "whyItMatters": "Developers routing production workloads through third-party inference resellers face real credential theft and data exposure risks, making provider vetting a critical security practice.",
+      "caveat": "The Dragos research used fake requests as bait, so the full scope of exposure for real production traffic remains unknown.",
+      "importance": 78,
+      "category": "research",
+      "stance": "Third-party inference resellers are an under-audited attack surface; teams running production traffic through them should treat provider vetting as a security requirement, not an afterthought.",
+      "specifics": [
+        "Dragos researchers sent two million fake AI requests to uncover supply chain vulnerabilities.",
+        "At least three compromised providers and hundreds of stolen AWS keys were discovered.",
+        "Marketplace resellers were found to be simply reading customer requests verbatim.",
+        "OpenRouter responded by removing three providers and 125 endpoints after disclosure."
+      ]
+    },
+    {
+      "canonicalKey": "perplexity-monitor-api-agentic-search",
+      "headline": "Perplexity launches Monitor API for continuous scheduled web search with webhooks",
+      "whyItMatters": "Persistent, event-driven web monitoring as a developer primitive enables a new class of agents that react to world changes rather than waiting for user queries — a meaningful shift in agentic architecture.",
+      "caveat": "No pricing details or rate limits were disclosed, and Perplexity's decision model filtering quality is unverified by independent testing.",
+      "importance": 72,
+      "category": "product-tools",
+      "stance": "Monitor's value depends entirely on filtering quality that hasn't been independently tested; worth watching, not yet worth building production pipelines on.",
+      "specifics": [
+        "A built-in decision model filters out unimportant results before triggering alerts.",
+        "Perplexity frames the API as differentiation from an increasingly interchangeable chatbot market."
+      ]
+    },
+    {
+      "canonicalKey": "meta-muse-walmart-black-friday-shopping",
+      "headline": "Meta Muse agent now shops Walmart on your behalf for Black Friday deals",
+      "whyItMatters": "This is one of the first live deployments of a major AI agent completing real retail purchases at scale, with Walmart's Agent Gateway providing a model for how retailers can safely expose commerce APIs to agents.",
+      "caveat": "The data-mixing privacy concern flagged in prior coverage of Muse has not been publicly resolved, raising questions about safety of agent-managed purchases.",
+      "importance": 70,
+      "category": "product-tools",
+      "stance": "Muse's Walmart launch is a genuine agentic commerce milestone, but deploying it before resolving the data-isolation problem is a decision Meta should have to explain publicly.",
+      "specifics": [
+        "Walmart's Agent Gateway lets Muse find and purchase Black Friday deals without sharing purchase history.",
+        "Agent Profiles give users spending limits, purchase approval controls, and agent activity history.",
+        "Walmart announced the Agent Gateway last month; this is its first live retail implementation."
+      ]
+    },
+    {
+      "canonicalKey": "openai-chief-scientist-ai-speed-limits",
+      "headline": "OpenAI chief scientist proposes framework for measuring and limiting AI development speed",
+      "whyItMatters": "A credible internal proposal for AI development speed limits from a frontier lab's chief scientist signals the governance conversation is moving from abstract principles to operational metrics.",
+      "caveat": "The article is a brief excerpt with no details on the specific metrics proposed or whether OpenAI leadership endorses the framework.",
+      "importance": 65,
+      "category": "policy-regulation",
+      "stance": "An internal proposal for development speed metrics from a frontier lab's chief scientist is worth watching, but means little until we see the actual metrics and whether leadership adopts them."
+    }
+  ],
+  "curationReport": {
+    "threshold": 45,
+    "maxStories": 6,
+    "total": 8,
+    "selectedCount": 6,
+    "droppedCount": 2,
+    "clusters": [
+      {
+        "canonicalKey": "ai-coding-agents-real-world-failure",
+        "category": "research",
+        "headline": "AI coding agents solve fewer than one in ten real workplace tasks",
+        "importance": 82,
+        "selected": true
+      },
+      {
+        "canonicalKey": "metr-safety-evaluation-lag",
+        "category": "research",
+        "headline": "METR warns AI capability gains are outpacing safety evaluation methods",
+        "importance": 80,
+        "selected": true
+      },
+      {
+        "canonicalKey": "cheap-ai-inference-supply-chain-attack",
+        "category": "research",
+        "headline": "Security researchers expose stolen keys and snooping at cheap AI inference providers",
+        "importance": 78,
+        "selected": true
+      },
+      {
+        "canonicalKey": "perplexity-monitor-api-agentic-search",
+        "category": "product-tools",
+        "headline": "Perplexity launches Monitor API for continuous scheduled web search with webhooks",
+        "importance": 72,
+        "selected": true
+      },
+      {
+        "canonicalKey": "meta-muse-walmart-black-friday-shopping",
+        "category": "product-tools",
+        "headline": "Meta Muse agent now shops Walmart on your behalf for Black Friday deals",
+        "importance": 70,
+        "selected": true
+      },
+      {
+        "canonicalKey": "openai-chief-scientist-ai-speed-limits",
+        "category": "policy-regulation",
+        "headline": "OpenAI chief scientist proposes framework for measuring and limiting AI development speed",
+        "importance": 65,
+        "selected": true
+      },
+      {
+        "canonicalKey": "vibe-coding-consumer-gadget-hacking",
+        "category": "culture",
+        "headline": "Vibe-coding with LLMs is spreading from software to consumer hardware hacking",
+        "importance": 55,
+        "selected": false,
+        "dropReason": "over_cap"
+      },
+      {
+        "canonicalKey": "binding-of-isaac-ai-music-controversy",
+        "category": "culture",
+        "headline": "Binding of Isaac developer removes undisclosed AI music after Steam review bombing",
+        "importance": 52,
+        "selected": false,
+        "dropReason": "over_cap"
+      }
+    ]
+  }
+}

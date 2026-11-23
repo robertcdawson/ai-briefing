@@ -1,0 +1,46 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — November 23, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 33,
+      "title": "Intro"
+    },
+    {
+      "startTime": 33,
+      "endTime": 145,
+      "title": "AI coding agents solve fewer than one in..."
+    },
+    {
+      "startTime": 145,
+      "endTime": 248,
+      "title": "METR warns AI capability gains are..."
+    },
+    {
+      "startTime": 248,
+      "endTime": 347,
+      "title": "Security researchers expose stolen keys..."
+    },
+    {
+      "startTime": 347,
+      "endTime": 436,
+      "title": "Perplexity launches Monitor API for..."
+    },
+    {
+      "startTime": 436,
+      "endTime": 531,
+      "title": "Meta Muse agent now shops Walmart on your..."
+    },
+    {
+      "startTime": 531,
+      "endTime": 609,
+      "title": "OpenAI chief scientist proposes framework..."
+    },
+    {
+      "startTime": 609,
+      "endTime": 644,
+      "title": "Outro"
+    }
+  ]
+}

@@ -1,0 +1,112 @@
+AI Briefing — November 23, 2026
+Date: 2026-11-23
+
+Intro
+
+Fewer than one in ten — that's the success rate for AI coding agents dropped into a simulated real workplace, and on November 23rd, 2026, that number lands like a cold splash of water on a lot of expensive deployment plans.
+
+The study didn't test models on clean algorithmic puzzles; it put them inside a simulated developer job with colleagues, project boards, and incomplete handoffs — and watched them fall apart.
+
+Top Story: AI coding agents solve fewer than one in ten real workplace tasks
+
+Back in November 18th's episode, we covered the Harvard study showing AI coding agents had shifted the engineering bottleneck from writing code to reviewing it — and I said teams still optimizing for generation speed were probably solving the wrong problem.
+
+This new research sharpens that considerably. Opus 5.5 and Astra, two of the most capable coding models available right now, completed fewer than one in ten tasks when placed inside a simulated workplace — not a benchmark suite, but a full developer environment with colleagues, project boards, and the kind of partial, ambiguous handoffs that define actual software jobs.
+
+The companies selling these coding agents have every reason to measure performance on isolated, well-specified tasks — and on those, the models do look good. They succeed quickly when the assignment is clear and self-contained. That's what gets shown at demos, that's what goes in the press release.
+
+But the people buying these agents — engineering teams, CTOs, anyone who's been told to cut headcount or accelerate delivery — are deploying them into the messy version, where context is scattered across Slack threads and Jira tickets and a README that nobody updated in eight months.
+
+The gap between those two environments is now quantified, not just asserted. The simulated developer job methodology is the right direction for this kind of evaluation — though it's one study, one outlet reporting it, and the specific task mix could favor certain failure modes over others.
+
+The practical implication: if your team is measuring agent ROI by how fast it generates a PR, you're measuring the part that already works. The bottleneck is now everything around the code — review, context-gathering, knowing when to stop and ask.
+
+That question of how you even measure what these systems can do safely leads directly to the next story.
+Source: https://the-decoder.com/ai-coding-agents-ace-isolated-tests-but-complete-fewer-than-one-in-ten-tasks-in-a-simulated-workplace/
+
+Research Breakthrough: METR warns AI capability gains are outpacing safety evaluation methods
+
+If you're building anything on a frontier model right now, here's what changes Monday morning: you can no longer assume that the safety evaluation attached to a model release actually tells you what that model will do in your production environment.
+
+That's METR's warning — METR being a nonprofit focused specifically on evaluating AI risks. Their concern is that models are improving faster than the tools used to test them, and simultaneously becoming harder to measure reliably as they improve.
+
+The specific problem is benchmark overestimation. Current standard tests may inflate what models can actually do in practice, which means developers and safety teams could be making deployment decisions based on numbers that are optimistic in both directions — overstating capability in some dimensions, potentially missing dangerous ones in others.
+
+What METR is describing is a structural gap, not a tweak to the testing process. The evaluation framework that the whole responsible deployment conversation has been built on is, by their account, no longer keeping pace.
+
+This comes from one article, one outlet, and METR's own reporting — so treat it as a credible alarm from a credible source, not a peer-reviewed finding. But METR's track record on these calls is worth taking seriously.
+
+The builders most exposed are the ones whose compliance or deployment decisions are directly tied to a model's published safety evaluation. If those numbers are unreliable, the downstream decisions built on them are too.
+
+From evaluation gaps to something more immediately concrete — who's actually handling your inference traffic.
+Source: https://the-decoder.com/ai-is-getting-better-faster-than-experts-can-reliably-test-whether-new-systems-are-safe-metr-warns/
+
+Research Breakthrough: Security researchers expose stolen keys and snooping at cheap AI inference providers
+
+If you're routing production workloads through a third-party inference reseller to save money, you should treat that as a security incident waiting to happen — and Dragos researchers just spent two million fake API requests proving why.
+
+Here's what they found: at least three compromised providers, hundreds of stolen AWS keys, and marketplace resellers that were simply reading customer requests verbatim. Not processing them, not logging them for debugging. Reading them.
+
+OpenRouter, one of the larger inference marketplaces, responded by removing three providers and a hundred and twenty-five endpoints after Dragos disclosed the findings. That's a fast response, and it suggests the exposure was real enough to act on immediately.
+
+The caveat is important: Dragos used fake bait requests, not real production traffic. So the full scope of what's been exposed for actual developer workloads — real prompts, real keys, real data — is still unknown. The experiment shows the attack surface exists; it doesn't measure how much has already been taken.
+
+Third-party inference resellers work by sitting between you and the underlying model provider. They're often cheaper because they're aggregating capacity. The security tradeoff is that you're handing your API keys and your request payloads to an intermediary you probably haven't vetted as carefully as you'd vet a cloud provider.
+
+The practical step here is straightforward: audit what's actually handling your requests. If you're using a marketplace layer, check who the underlying providers are. If you can't answer that question, that's the answer.
+
+Perplexity launched something this week that's trying to be a different kind of API entirely.
+Source: https://the-decoder.com/security-researchers-show-how-cheap-ai-inference-providers-steal-keys-and-snoop-on-users/
+
+Product & Tool Watch: Perplexity launches Monitor API for continuous scheduled web search with webhooks
+
+Here's the detail about Perplexity's new Monitor API that doesn't quite add up on first read: they're describing it as differentiation in an increasingly interchangeable chatbot market — but what they actually shipped isn't a chatbot feature at all.
+
+Monitor is a developer API for continuous, scheduled web search with webhooks. You configure a query, set a schedule, and the API watches the web for you and fires an alert when something relevant changes. There's a built-in decision model that filters out noise before triggering anything.
+
+That's a meaningfully different primitive from search-on-demand. It's closer to a monitoring service than a search engine — the kind of thing you'd use to watch for regulatory changes, competitor announcements, or supply chain news without polling manually.
+
+The piece Perplexity doesn't resolve: no pricing, no rate limits, and no independent testing of how well that decision model actually filters. The quality of the filtering is the entire product — if it over-alerts, it's noise; if it under-alerts, it's useless — and we have no external data on that yet.
+
+Whether this is genuine architectural differentiation or a feature that gets absorbed into every other search API within six months is an open question. But as a primitive for building agents that react to world events rather than waiting for user input, it's at least an interesting direction.
+
+From a new API to a live agent already spending real money at Walmart.
+Source: https://the-decoder.com/perplexitys-new-monitor-api-turns-web-search-from-a-one-off-query-into-a-nonstop-watchdog/
+
+Product & Tool Watch: Meta Muse agent now shops Walmart on your behalf for Black Friday deals
+
+The smart objection to this story is: Meta Muse had a data-isolation problem as recently as three days ago — why are we talking about it handling real purchase transactions at Walmart?
+
+That's the right question, and the honest answer is that the data-mixing concern we flagged Thursday hasn't been publicly resolved. Meta hasn't announced a fix, and there's no public statement addressing it in the context of this launch.
+
+What did ship: Walmart's Agent Gateway — announced last month, now live for the first time in a real retail context — lets Muse find and complete Black Friday purchases without accessing your Walmart purchase history. Agent Profiles give users spending limits, approval controls, and a log of what the agent did.
+
+Those controls are the architecture worth paying attention to. Spending limits and purchase approval as first-class features suggest Walmart and Meta have at least thought about the failure modes of an agent with a credit card. That's different from just exposing a buy API and hoping for the best.
+
+But the unresolved data question sits underneath all of it. An agent that can complete purchases is handling financial and behavioral data, and the isolation guarantees that matter for that use case are not the same ones Walmart's Gateway addresses.
+
+This is the first live retail implementation of the Agent Gateway model, so it's a real milestone in agentic commerce. Whether it's a safe one depends on answers we don't have yet.
+
+The last story today is a shorter one, but it's worth a minute of your time.
+Source: https://www.theverge.com/ai-artificial-intelligence/1039874/walmart-agent-gateway-meta-muse-black-friday
+
+Policy & Regulation Watch: OpenAI chief scientist proposes framework for measuring and limiting AI development speed
+
+A quick timeline: for most of the last decade, AI governance conversations have been about principles — fairness, transparency, accountability. Then they moved to voluntary commitments. Then to national legislation with broad mandates but few operational details.
+
+The next line in that sequence is what OpenAI's chief scientist is now sketching: a framework for actually measuring AI development speed and setting limits on it. Not principles, not pledges — metrics and thresholds.
+
+That's a meaningful shift in specificity, coming from inside one of the labs doing the developing. A chief scientist proposing operational speed limits is different from a policy researcher publishing a white paper.
+
+What we don't have: the actual metrics, any indication of whether OpenAI leadership endorses this, or whether it's a personal proposal or something the company is moving toward. The reporting is a brief excerpt, one outlet, and thin on detail.
+
+So file this as a signal worth tracking, not a policy announcement. The governance conversation has been drifting toward operational specifics for a while; this is one data point that the drift is reaching inside the labs themselves.
+Source: https://techcrunch.com/2026/11/22/openais-chief-scientist-has-thoughts-on-how-to-limit-ai-development/
+
+Outro
+
+The concrete thing to watch next is whether OpenAI's chief scientist puts specific metrics on the table — a number, a threshold, anything operational — and whether the company's leadership endorses the framework publicly.
+
+That's the moment this shifts from an interesting internal position to something that could actually influence how other labs think about pacing. Until then, it's a promising signal in a space that's been short on them.
+
+Audit your inference providers before the holiday traffic hits.

@@ -1,0 +1,128 @@
+AI Briefing — November 24, 2026
+Date: 2026-11-24
+
+Intro
+
+Eleven days — that's how long Nvidia lasted without Jensen Huang before a sitting U.S. president called into a board meeting and the board reversed course.
+
+That call, confirmed by White House communications director Steven Cheung, who said 'President Trump was totally involved,' puts a very different frame on what corporate governance at the world's most critical AI chip company looks like right now.
+
+Today is November 24th, 2026, and Huang is back at Nvidia's headquarters, where employees greeted him like a returning hero — which tells you something about how those eleven days felt from the inside.
+
+Top Story: Jensen Huang reinstated as Nvidia CEO after Trump pressures board directly
+
+If you're running infrastructure on Nvidia hardware, the immediate practical reality is that the leadership vacuum is closed — the person who knows the roadmap, the relationships, and the architecture decisions better than anyone else is back at the wheel.
+
+Last week I said the board's refusal to reinstate Huang meant this would be a prolonged, messy situation. That call was wrong, and the reason it was wrong is that the board didn't change its mind on its own. A president picked up the phone.
+
+Huang told returning employees, 'I'm going to be a better CEO the second time around,' and the crowd reportedly went loud. That's a real signal about internal morale at a company whose employees had watched their founder pushed out under an espionage cloud.
+
+But the espionage investigation itself hasn't gone anywhere. Megaspeed, the company at the center of the original scandal, appears headed for a U.S. blacklist. U.S. intelligence agencies reportedly tracked figures connected to that company's ties to Chinese intelligence for over a year before this became public.
+
+And Huang is scheduled to testify before the House of Representatives on December 1st, which is next Monday. His return resolves the succession question, not the underlying one.
+
+A president directly intervening in a board decision at a publicly traded technology company, and the board folding, is not a small thing. Whatever you think of the outcome, the mechanism changes the calculus for every major tech board going forward.
+
+Amazon's move into AI silicon is directly connected to all of this — and it's worth understanding the timeline.
+Source: https://www.theverge.com/ai-artificial-intelligence/1040652/jensen-huang-nvidia-trump-reinstated
+Source: https://www.theverge.com/ai-artificial-intelligence/1030422/nvidia-jensen-huang-ai-china-alice-huang
+Source: https://www.theverge.com/policy/1040096/trump-nvidia-jensen-huang-reinstated
+Source: https://www.theverge.com/tech/1040428/nvidia-jensen-huang-ceo-return
+Source: https://arstechnica.com/ai/2026/11/jensen-huang-reinstated-as-nvidia-ceo-board-chair/
+Source: https://techcrunch.com/2026/11/23/nvidia-reverses-course-and-brings-jensen-huang-back-as-ceo/
+Source: https://techcrunch.com/2026/11/23/jensen-huang-scheduled-to-testify-next-week-in-senate-following-reinstatement-as-nvidia-ceo/
+Source: https://techcrunch.com/2026/11/23/megaspeed-the-company-at-the-center-of-the-jensen-huang-scandal-appears-headed-for-a-u-s-blacklist/
+Source: https://techcrunch.com/2026/11/23/nvidia-employees-greet-jensen-huang-like-a-hero-as-he-returns-to-companys-hq/
+Source: https://the-decoder.com/nvidia-tried-life-without-jensen-huang-and-it-lasted-about-two-weeks/
+Source: https://the-decoder.com/us-spies-tracked-nvidia-scandal-figures-ties-to-chinese-intelligence-for-over-a-year/
+Source: https://stratechery.com/2026/the-individual-exception/
+
+Product & Tool Watch: Anthropic launches Claude Ship agents to autonomously review and approve pull requests
+
+Here's my read: this is the most operationally significant product release for engineering teams this month, and the timing is not an accident.
+
+Two weeks ago we covered Harvard research showing that AI coding tools had shifted the bottleneck in software development from writing code to reviewing it. I said teams still optimizing for generation speed were solving the wrong problem. Anthropic apparently agreed, because Claude Ship is a direct answer to that finding.
+
+The product has two pieces. The PR Steward agent handles the grunt work — failing CI checks, merge conflicts, review feedback — autonomously. The Claude Approvals agent goes further: it can approve pull requests without a human signing off. That second one is launching in beta today.
+
+For context, the Code Review feature that underlies this was announced in March and only hit general availability in October. Anthropic moved the Approvals piece into beta pretty quickly after that.
+
+The real question is what happens to your audit trail and your security posture when an AI is the approver of record on a production codebase. Anthropic hasn't published independent benchmarks on how often the Approvals agent gets it right, and there's no public accounting yet of what failure modes look like at scale.
+
+Autonomous PR approval closes a real loop in the agentic software pipeline. Whether the loop should be fully closed without a human checkpoint is a decision each team has to make for themselves — and right now, you'd be making it without much external data to lean on.
+
+OpenAI's own default model just changed for hundreds of millions of users, and the numbers behind that decision are worth examining.
+Source: https://www.theverge.com/ai-artificial-intelligence/1040134/anthropic-claude-ship-ai-pull-requests
+Source: https://techcrunch.com/2026/11/23/anthropic-launches-claude-ship-letting-ai-agents-review-fix-and-approve-code-changes/
+
+Product & Tool Watch: OpenAI makes GPT-6.2 Sol the default ChatGPT model worldwide
+
+Here's the detail that doesn't quite add up: OpenAI is reporting that image understanding accuracy jumped from 47.4% to 71.7% in their internal tests — that's a 24-point gain — but Sol is the companion model to Astra, which we covered last week as the one carrying the self-improvement classification. Sol was the quieter sibling.
+
+So why does the quieter model get the default slot for hundreds of millions of users?
+
+The answer is probably exactly what it looks like: Sol scores better on the everyday tasks that define the ChatGPT experience — handling complex questions, web searches, images — while Astra is the more capable and more carefully gated research-facing model. Difficult instruction compliance on Sol is now at 78.1% correct by OpenAI's internal measure.
+
+The caveat is that every number in this story comes from OpenAI's own evaluations. No third party has validated the image understanding jump or the instruction-following score. That doesn't mean the improvements aren't real, but it means you're taking OpenAI's word for the magnitude.
+
+What's unambiguous is the deployment decision itself: making Sol the global default is the highest-leverage move OpenAI makes. Whatever Sol's actual capability level, it's now the model most people on earth interact with when they open ChatGPT.
+
+OpenAI's chief scientist has something else on his mind this week — and it's about where all of this is heading.
+Source: https://the-decoder.com/openai-updates-chatgpt-to-handle-complex-everyday-questions-web-searches-and-images-more-reliably/
+
+Policy & Regulation Watch: OpenAI chief scientist releases internal perplexity scores and proposes industry-wide AI speed limits
+
+The pushback I'd expect from a sharp listener: why should we care about a unilateral proposal from a frontier lab's own chief scientist? Of course OpenAI wants to define the metrics — whoever sets the measurement system shapes the rules.
+
+That's a fair read, and it's not wrong. But here's what changed since last week, when I flagged this as a brief excerpt with no specifics and not yet actionable: Jakub Pachocki has now published actual perplexity scores across the full GPT lineage, including at least one unreleased model. Perplexity, as a quick gloss, is a measure of how uncertain a language model is about predicting the next token — lower perplexity generally means a more capable model.
+
+The data shows that core capabilities emerge at what The Decoder describes as 'surprisingly precise thresholds.' That specificity is what moves this from a vague proposal to something with teeth.
+
+Pachocki is pushing perplexity as a shared industry metric for establishing development limits — essentially arguing that if labs can agree on what to measure, they can agree on when to slow down. OpenAI is also warning publicly that upcoming systems could outpace safety controls before those controls are established.
+
+The gap between the proposal and reality is still wide. There's no indication Google DeepMind, Anthropic, or any other frontier lab has agreed to adopt this metric or accept any limits tied to it. One lab advocating for a standard it helped design is a different thing from an industry standard.
+
+Still, releasing the score data publicly is a material escalation from last week's vague framework, and December 1st testimony from Huang may not be the only congressional moment worth watching this month.
+
+Amazon's acquisition today is the other story with long-range strategic implications.
+Source: https://the-decoder.com/openai-warns-that-upcoming-ai-systems-could-outpace-safety-checks-and-urges-rivals-to-agree-on-shared-limits/
+
+AI Business Watch: Amazon acquires Decart AI optimization technology and team for $7.5 billion
+
+Amazon has been building its own AI chip, Trainium, for years — a long, expensive bet on not being permanently dependent on Nvidia for the compute that runs AWS.
+
+The problem with custom silicon is that hardware alone doesn't close the gap. You need software that makes the chip perform, optimization layers that squeeze efficiency out of the architecture, and researchers who know how to tune models to run well on that specific hardware.
+
+That's what Decart appears to be: an AI optimization shop whose technology and team Amazon is acquiring for a reported seven and a half billion dollars. The timing is explicit — the deal is timed to Amazon's preparation to sell Trainium chips externally to customers, not just use them internally.
+
+Seven and a half billion is one of the largest AI acquisitions of 2026 by dollar value, which signals how seriously Amazon is treating the software stack as the missing piece in its silicon play.
+
+What we don't have is detail on exactly what Decart's technology does, what the acquisition timeline looks like, or when external Trainium sales actually begin. This is a single-source report, so treat the dollar figure as reported, not confirmed.
+
+The strategic logic is clear enough: if you want to sell chips to the same customers who currently buy Nvidia, you need to offer them a reason to switch — and raw hardware specs alone have never been enough to do that.
+
+On the research side, one of those Nvidia chips just helped crack a math problem that had been sitting open for a while.
+Source: https://techcrunch.com/2026/11/23/amazon-snaps-up-decarts-ai-optimization-tech-for-7-5b-as-it-prepares-to-sell-trainium-chips/
+
+Research Breakthrough: GPT-6.2 Astra produces first machine-verifiable proof of Smoktunowicz gap theorem
+
+OpenAI published this result, and OpenAI sells access to Astra — so keep that in mind as you read the framing around it. The leaderboard claim also comes from Vals AI, a commercial evaluation firm, not an independent academic body.
+
+With that said, the result itself is interesting for a specific reason that goes beyond the headline. Astra didn't just solve the Smoktunowicz gap theorem — it invented its own proof approach because the standard mathematical foundations it would normally draw from, the Mathlib library, didn't contain what it needed.
+
+Mathlib is essentially the community-maintained library of formalized mathematics that AI proof systems typically lean on. When Astra hit a gap in that library, it didn't stop. It navigated around it.
+
+Astra now leads the Autoform-Hard leaderboard with 49 of 56 tasks solved, up from its prior position. Autoform-Hard is a benchmark of formal mathematical problems that require machine-verifiable proofs — meaning the answer can be checked by a proof assistant, not just a human judge.
+
+The capability question this raises is whether frontier models can now operate in genuine mathematical territory that hasn't been charted yet, rather than recombining known results. One theorem isn't a pattern, and the result hasn't gone through peer review. But the mechanism — improvising foundations rather than retreating when the library runs out — is the part worth watching.
+Source: https://the-decoder.com/gpt-6-2-astra-solved-a-math-theorem-no-other-ai-could-crack-then-invented-its-own-proof-strategy/
+Source: https://the-decoder.com/z-ai-follows-openai-into-loop-transformer-territory-with-its-new-750b-flagship-model/
+Source: https://simonwillison.net/2026/Nov/23/glm-54/
+
+Outro
+
+The Astra math result and the Pachocki perplexity proposal are both, at their core, about the same question: what do you do when the model runs out of known ground and has to improvise? One is a research demonstration, the other is a policy argument — but they're pointing at the same capability frontier.
+
+December 1st is the date to mark: Huang testifies before the House, and that hearing will be the first public accounting of what actually happened at Nvidia over the last few weeks.
+
+Stay skeptical of the benchmarks, y'all — especially the ones the seller wrote.

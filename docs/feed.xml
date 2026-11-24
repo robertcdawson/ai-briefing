@@ -4,7 +4,7 @@
         <title>AI Briefing</title>
         <link>https://robertcdawson.github.io/ai-briefing/</link>
         <description>Daily AI news briefing — the stories that matter from the last 24 hours.</description>
-        <lastBuildDate>Mon, 23 Nov 2026 11:28:43 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 24 Nov 2026 11:30:37 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -23,6 +23,60 @@
         <podcast:guid>ea8709f4-3ba2-5b7e-bcdc-e409d84a6443</podcast:guid>
         <podcast:locked owner="manatees@gmail.com">yes</podcast:locked>
         <podcast:person role="host" group="cast">Robert Dawson</podcast:person>
+        <item>
+            <title><![CDATA[AI Briefing — November 24, 2026]]></title>
+            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-11-24.mp3</link>
+            <guid>ai-briefing-2026-11-24</guid>
+            <pubDate>Tue, 24 Nov 2026 11:30:37 GMT</pubDate>
+            <description><![CDATA[<p>Top 6 AI stories for November 24, 2026.</p>
+<p>1. Top Story: Jensen Huang reinstated as Nvidia CEO after Trump pressures board directly</p>
+<p>Why it matters: Huang's return after only ~11 days resolves the immediate leadership vacuum at the world's most critical AI chip company, but the mechanism — a sitting president calling into a board meeting — sets a precedent for political intervention in major tech governance that will reverberate across the industry.</p>
+<p>Caveat: The full scope of the espionage investigation, Senate testimony, and Megaspeed blacklisting are all unresolved, meaning Huang's position remains legally and politically precarious.</p>
+<p><a href="https://www.theverge.com/ai-artificial-intelligence/1040652/jensen-huang-nvidia-trump-reinstated">The Verge AI</a> · <a href="https://www.theverge.com/ai-artificial-intelligence/1030422/nvidia-jensen-huang-ai-china-alice-huang">The Verge AI</a> · <a href="https://www.theverge.com/policy/1040096/trump-nvidia-jensen-huang-reinstated">The Verge AI</a> · <a href="https://www.theverge.com/tech/1040428/nvidia-jensen-huang-ceo-return">The Verge AI</a> · <a href="https://arstechnica.com/ai/2026/11/jensen-huang-reinstated-as-nvidia-ceo-board-chair/">Ars Technica AI</a> · <a href="https://techcrunch.com/2026/11/23/nvidia-reverses-course-and-brings-jensen-huang-back-as-ceo/">TechCrunch AI</a> · <a href="https://techcrunch.com/2026/11/23/jensen-huang-scheduled-to-testify-next-week-in-senate-following-reinstatement-as-nvidia-ceo/">TechCrunch AI</a> · <a href="https://techcrunch.com/2026/11/23/megaspeed-the-company-at-the-center-of-the-jensen-huang-scandal-appears-headed-for-a-u-s-blacklist/">TechCrunch AI</a> · <a href="https://techcrunch.com/2026/11/23/nvidia-employees-greet-jensen-huang-like-a-hero-as-he-returns-to-companys-hq/">TechCrunch AI</a> · <a href="https://the-decoder.com/nvidia-tried-life-without-jensen-huang-and-it-lasted-about-two-weeks/">The Decoder</a> · <a href="https://the-decoder.com/us-spies-tracked-nvidia-scandal-figures-ties-to-chinese-intelligence-for-over-a-year/">The Decoder</a> · <a href="https://stratechery.com/2026/the-individual-exception/">Stratechery</a></p>
+<p>2. Product &amp; Tool Watch: Anthropic launches Claude Ship agents to autonomously review and approve pull requests</p>
+<p>Why it matters: Claude Ship's PR Steward and Approvals agents directly address the code-review bottleneck that Harvard research identified as the new constraint in AI-assisted engineering workflows, potentially closing the loop on fully agentic software delivery pipelines.</p>
+<p>Caveat: The agents are launching in beta with no independent productivity benchmarks, and autonomous approval of PRs introduces new risk surfaces that Anthropic has not yet publicly addressed.</p>
+<p><a href="https://www.theverge.com/ai-artificial-intelligence/1040134/anthropic-claude-ship-ai-pull-requests">The Verge AI</a> · <a href="https://techcrunch.com/2026/11/23/anthropic-launches-claude-ship-letting-ai-agents-review-fix-and-approve-code-changes/">TechCrunch AI</a></p>
+<p>3. Product &amp; Tool Watch: OpenAI makes GPT-6.2 Sol the default ChatGPT model worldwide</p>
+<p>Why it matters: Upgrading the default model for all ChatGPT users is the highest-leverage deployment decision OpenAI makes; the reported jump in image understanding from 47.4% to 71.7% and instruction-following to 78.1% will affect hundreds of millions of daily interactions.</p>
+<p>Caveat: The benchmark figures come entirely from OpenAI's internal tests with no independent third-party validation.</p>
+<p><a href="https://the-decoder.com/openai-updates-chatgpt-to-handle-complex-everyday-questions-web-searches-and-images-more-reliably/">The Decoder</a></p>
+<p>4. Policy &amp; Regulation Watch: OpenAI chief scientist releases internal perplexity scores and proposes industry-wide AI speed limits</p>
+<p>Why it matters: Pachocki publicly releasing perplexity scores across the entire GPT lineage — including an unreleased model — and pushing for shared industry limits is a material escalation of the proposal first flagged last week, now with concrete metrics attached.</p>
+<p>Caveat: The proposal is still unilateral advocacy with no indication other frontier labs have agreed to adopt perplexity as a shared metric or accept any limits.</p>
+<p><a href="https://the-decoder.com/openai-warns-that-upcoming-ai-systems-could-outpace-safety-checks-and-urges-rivals-to-agree-on-shared-limits/">The Decoder</a></p>
+<p>5. AI Business Watch: Amazon acquires Decart AI optimization technology and team for $7.5 billion</p>
+<p>Why it matters: A $7.5B acquisition of an AI optimization firm timed to Trainium chip commercialization signals Amazon is vertically integrating the software stack needed to make its own silicon competitive with Nvidia — a strategic move with major implications for the cloud AI market.</p>
+<p>Caveat: The deal terms, what specific Decart technology is being acquired, and the timeline for Trainium chip sales have not been disclosed beyond the headline figure.</p>
+<p><a href="https://techcrunch.com/2026/11/23/amazon-snaps-up-decarts-ai-optimization-tech-for-7-5b-as-it-prepares-to-sell-trainium-chips/">TechCrunch AI</a></p>
+<p>6. Research Breakthrough: GPT-6.2 Astra produces first machine-verifiable proof of Smoktunowicz gap theorem</p>
+<p>Why it matters: Astra independently chose a novel proof strategy because standard Mathlib foundations were missing, suggesting frontier models can now navigate genuine mathematical terra incognita rather than recombining known proofs — a meaningful capability threshold for AI-assisted research.</p>
+<p>Caveat: The leaderboard claim and novelty assessment come from Vals AI, a commercial evaluation firm, with no independent peer review of the mathematical result.</p>
+<p><a href="https://the-decoder.com/gpt-6-2-astra-solved-a-math-theorem-no-other-ai-could-crack-then-invented-its-own-proof-strategy/">The Decoder</a> · <a href="https://the-decoder.com/z-ai-follows-openai-into-loop-transformer-territory-with-its-new-750b-flagship-model/">The Decoder</a> · <a href="https://simonwillison.net/2026/Nov/23/glm-54/">Simon Willison</a></p>
+<p>Chapters</p>
+<p>00:00:00 Intro</p>
+<p>00:00:41 Jensen Huang reinstated as Nvidia CEO...</p>
+<p>00:02:22 Anthropic launches Claude Ship agents to...</p>
+<p>00:04:05 OpenAI makes GPT-6.2 Sol the default...</p>
+<p>00:05:43 OpenAI chief scientist releases internal...</p>
+<p>00:07:37 Amazon acquires Decart AI optimization...</p>
+<p>00:09:12 GPT-6.2 Astra produces first...</p>
+<p>00:10:44 Outro</p>]]></description>
+            <enclosure length="16395100" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-11-24.mp3"/>
+                    <itunes:duration>683</itunes:duration>
+            <itunes:explicit>false</itunes:explicit>
+            <itunes:season>2026</itunes:season>
+            <itunes:episode>328</itunes:episode>
+            <itunes:episodeType>full</itunes:episodeType>
+            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-11-24.chapters.json" type="application/json+chapters"/>
+            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-11-24.transcript.txt" type="text/plain" language="en"/>
+            <podcast:soundbite startTime="41" duration="99">Jensen Huang reinstated as Nvidia CEO...</podcast:soundbite>
+            <podcast:soundbite startTime="142" duration="102">Anthropic launches Claude Ship agents to...</podcast:soundbite>
+            <podcast:soundbite startTime="245" duration="97">OpenAI makes GPT-6.2 Sol the default...</podcast:soundbite>
+            <podcast:soundbite startTime="343" duration="113">OpenAI chief scientist releases internal...</podcast:soundbite>
+            <podcast:soundbite startTime="457" duration="93">Amazon acquires Decart AI optimization...</podcast:soundbite>
+            <podcast:soundbite startTime="552" duration="90">GPT-6.2 Astra produces first...</podcast:soundbite>
+        </item>
         <item>
             <title><![CDATA[AI Briefing — November 23, 2026]]></title>
             <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-11-23.mp3</link>
@@ -550,60 +604,6 @@
             <podcast:soundbite startTime="404" duration="82">Meta releases Muse Ember, a cheap...</podcast:soundbite>
             <podcast:soundbite startTime="488" duration="92">Claude Code settings files accidentally...</podcast:soundbite>
             <podcast:soundbite startTime="581" duration="91">Google ships four TPU variants in one...</podcast:soundbite>
-        </item>
-        <item>
-            <title><![CDATA[AI Briefing — November 9, 2026]]></title>
-            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-11-09.mp3</link>
-            <guid>ai-briefing-2026-11-09</guid>
-            <pubDate>Mon, 09 Nov 2026 11:28:09 GMT</pubDate>
-            <description><![CDATA[<p>Top 6 AI stories for November 9, 2026.</p>
-<p>1. Top Story: Nvidia board investigates CEO Jensen Huang over Chinese spy affair</p>
-<p>Why it matters: The potential departure or diminished influence of Jensen Huang — the architect of Nvidia's AI chip dominance — would be the single largest leadership disruption in the AI infrastructure stack; Nvidia's strategic direction on AI hardware, export controls, and partnerships is inseparable from Huang personally.</p>
-<p>Caveat: The investigation is in early stages with no findings yet, and Yale's Sonnenfeld 50-50 estimate is expert opinion, not insider knowledge.</p>
-<p><a href="https://www.theverge.com/ai-artificial-intelligence/1029562/nvidia-investigating-jensen-huang-relationship-chinese-spy">The Verge AI</a> · <a href="https://www.theverge.com/ai-artificial-intelligence/1029595/full-text-jensen-huang-affair-memo-nvidia">The Verge AI</a> · <a href="https://techcrunch.com/2026/11/08/nvidia-says-its-investigating-ceo-jensen-huangs-relationship-with-possible-chinese-spy/">TechCrunch AI</a> · <a href="https://techcrunch.com/2026/11/08/is-jensen-huangs-job-on-the-line-yales-jeffrey-sonnenfeld-estimates-its-about-a-50-50/">TechCrunch AI</a> · <a href="https://stratechery.com/2026/jensen-huangs-affair-the-culper-report-huangs-righteousness/">Stratechery</a></p>
-<p>2. Product &amp; Tool Watch: Apple accelerates Siri agentic roadmap under CEO pressure to catch rivals</p>
-<p>Why it matters: Apple's billion-device installed base means a credible agentic Siri would instantly be the most widely distributed AI agent in the world, reshaping how consumers interact with AI daily and raising the competitive floor for OpenAI Dots and Meta Muse.</p>
-<p>Caveat: The Bloomberg report describes internal pressure and roadmap intentions, not shipped features; Apple's track record on AI timelines has been poor.</p>
-<p><a href="https://www.theverge.com/ai-artificial-intelligence/1029552/apple-siri-ai-agentic">The Verge AI</a></p>
-<p>3. Research Breakthrough: Turing Award winner Sutton warns raw compute scaling is insufficient for intelligence</p>
-<p>Why it matters: Richard Sutton, originator of the 'bitter lesson' that compute beats hand-crafted methods, now argues the inverse — that transformer scaling alone hits a ceiling — which, if correct, would redirect billions in AI R&amp;D toward fundamentally new learning architectures.</p>
-<p>Caveat: Sutton's argument is a public statement and opinion piece, not a new empirical paper; the scaling debate has been ongoing without resolution for years.</p>
-<p><a href="https://the-decoder.com/the-inventor-of-the-bitter-lesson-has-a-bitter-lesson-for-llm-scaling-enthusiasts/">The Decoder</a></p>
-<p>4. AI Culture Signal: Karpathy builds curated video platform in a weekend using Claude and Hacker News</p>
-<p>Why it matters: A high-profile demonstration by a respected AI researcher that a single engineer can build a functional, recommendation-beating product in a weekend using LLM assistance is a concrete data point on how AI is changing solo developer productivity.</p>
-<p>Caveat: Karpathy's claim that the result 'beats YouTube's own recommendations' is self-reported with no independent evaluation methodology described.</p>
-<p><a href="https://the-decoder.com/andrej-karpathy-built-a-curated-video-platform-in-a-weekend-using-claude-and-20-years-of-hacker-news/">The Decoder</a></p>
-<p>5. Policy &amp; Regulation Watch: Elvis and Eminem rights holders sue Suno over AI voice and lyric cloning</p>
-<p>Why it matters: These suits invoke Tennessee's ELVIS Act — the first state law specifically targeting AI voice cloning — making them a test case for whether state-level personality-rights statutes can constrain AI music generation at scale.</p>
-<p>Caveat: The lawsuits are newly filed with no rulings yet; Suno has not publicly responded to these specific claims.</p>
-<p><a href="https://www.theverge.com/ai-artificial-intelligence/1029533/elvis-eminem-suno-ai-music-clone-lawsuit">The Verge AI</a></p>
-<p>6. Research Breakthrough: Leading consciousness researchers argue AI cannot become conscious on silicon hardware</p>
-<p>Why it matters: A Nature commentary from three prominent consciousness scientists directly challenges the computational theory of mind that underpins most AI safety and rights discourse, with practical implications for how labs frame model welfare and regulatory arguments about AI sentience.</p>
-<p>Caveat: The commentary is a theoretical position piece in Nature, not an empirical study; the hard problem of consciousness remains genuinely unresolved and the authors' substrate-dependence view is contested.</p>
-<p><a href="https://the-decoder.com/the-brain-as-computer-metaphor-shaped-modern-ai-but-may-be-misleading-the-consciousness-debate/">The Decoder</a></p>
-<p>Chapters</p>
-<p>00:00:00 Intro</p>
-<p>00:00:33 Nvidia board investigates CEO Jensen...</p>
-<p>00:02:21 Apple accelerates Siri agentic roadmap...</p>
-<p>00:03:52 Turing Award winner Sutton warns raw...</p>
-<p>00:05:36 Karpathy builds curated video platform in...</p>
-<p>00:06:49 Elvis and Eminem rights holders sue Suno...</p>
-<p>00:08:22 Leading consciousness researchers argue...</p>
-<p>00:09:52 Outro</p>]]></description>
-            <enclosure length="15010405" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-11-09.mp3"/>
-                    <itunes:duration>625</itunes:duration>
-            <itunes:explicit>false</itunes:explicit>
-            <itunes:season>2026</itunes:season>
-            <itunes:episode>313</itunes:episode>
-            <itunes:episodeType>full</itunes:episodeType>
-            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-11-09.chapters.json" type="application/json+chapters"/>
-            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-11-09.transcript.txt" type="text/plain" language="en"/>
-            <podcast:soundbite startTime="33" duration="106">Nvidia board investigates CEO Jensen...</podcast:soundbite>
-            <podcast:soundbite startTime="141" duration="90">Apple accelerates Siri agentic roadmap...</podcast:soundbite>
-            <podcast:soundbite startTime="232" duration="103">Turing Award winner Sutton warns raw...</podcast:soundbite>
-            <podcast:soundbite startTime="336" duration="71">Karpathy builds curated video platform in...</podcast:soundbite>
-            <podcast:soundbite startTime="409" duration="91">Elvis and Eminem rights holders sue Suno...</podcast:soundbite>
-            <podcast:soundbite startTime="502" duration="89">Leading consciousness researchers argue...</podcast:soundbite>
         </item>
     </channel>
 </rss>

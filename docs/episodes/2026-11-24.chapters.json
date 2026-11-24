@@ -1,0 +1,46 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — November 24, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 41,
+      "title": "Intro"
+    },
+    {
+      "startTime": 41,
+      "endTime": 142,
+      "title": "Jensen Huang reinstated as Nvidia CEO..."
+    },
+    {
+      "startTime": 142,
+      "endTime": 245,
+      "title": "Anthropic launches Claude Ship agents to..."
+    },
+    {
+      "startTime": 245,
+      "endTime": 343,
+      "title": "OpenAI makes GPT-6.2 Sol the default..."
+    },
+    {
+      "startTime": 343,
+      "endTime": 457,
+      "title": "OpenAI chief scientist releases internal..."
+    },
+    {
+      "startTime": 457,
+      "endTime": 552,
+      "title": "Amazon acquires Decart AI optimization..."
+    },
+    {
+      "startTime": 552,
+      "endTime": 644,
+      "title": "GPT-6.2 Astra produces first..."
+    },
+    {
+      "startTime": 644,
+      "endTime": 683,
+      "title": "Outro"
+    }
+  ]
+}

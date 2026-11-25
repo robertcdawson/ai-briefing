@@ -4,7 +4,7 @@
         <title>AI Briefing</title>
         <link>https://robertcdawson.github.io/ai-briefing/</link>
         <description>Daily AI news briefing — the stories that matter from the last 24 hours.</description>
-        <lastBuildDate>Tue, 24 Nov 2026 11:30:37 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 25 Nov 2026 11:33:56 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -23,6 +23,60 @@
         <podcast:guid>ea8709f4-3ba2-5b7e-bcdc-e409d84a6443</podcast:guid>
         <podcast:locked owner="manatees@gmail.com">yes</podcast:locked>
         <podcast:person role="host" group="cast">Robert Dawson</podcast:person>
+        <item>
+            <title><![CDATA[AI Briefing — November 25, 2026]]></title>
+            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-11-25.mp3</link>
+            <guid>ai-briefing-2026-11-25</guid>
+            <pubDate>Wed, 25 Nov 2026 11:33:56 GMT</pubDate>
+            <description><![CDATA[<p>Top 6 AI stories for November 25, 2026.</p>
+<p>1. Top Story: Insiders say frontier labs' unreleased models have outgrown safety controls</p>
+<p>Why it matters: If accurate, this is the most consequential safety disclosure in the current AI cycle — internal employees at both leading labs believe their own unreleased models cannot be safely controlled, and release decisions are being actively debated internally.</p>
+<p>Caveat: The Axios report relies on anonymous insiders, and neither OpenAI nor Anthropic has confirmed the characterization or the internal debate details.</p>
+<p><a href="https://the-decoder.com/dozens-of-insiders-say-openai-and-anthropics-unreleased-models-have-outgrown-their-safety-measures/">The Decoder</a></p>
+<p>2. AI Business Watch: Anthropic stock sinks below $83 IPO price within days of debut</p>
+<p>Why it matters: A rapid post-IPO collapse at the most-watched AI lab listing signals that public markets may be repricing frontier AI valuations downward, with potential ripple effects on private AI startup funding rounds.</p>
+<p>Caveat: Short-term post-IPO price action is notoriously volatile and may not reflect long-term valuation trajectory; thin float and early institutional selling could explain the drop.</p>
+<p><a href="https://www.bloomberg.com/news/articles/2026-11-24/anthropic-breaks-below-83-ipo-price-in-premarket-trading">Hacker News (AI)</a> · <a href="https://www.msn.com/en-us/money/top-stocks/anthropic-stock-sinks-below-ipo-price-why-that-s-happened-so-fast/ar-AA2i7rqa">Hacker News (AI)</a> · <a href="https://techcrunch.com/2026/11/24/anthropic-shares-fall-below-ipo-price-a-worrying-sign-for-ai-startups/">TechCrunch AI</a></p>
+<p>3. Research Breakthrough: GPT-6 models demonstrate intrinsic protein-design capabilities across five targets</p>
+<p>Why it matters: Protein design has historically required specialized tools like AlphaFold or RoseTTAFold; if GPT-6 can perform this via general reasoning and code, it collapses the barrier between general-purpose LLMs and structural biology workflows for researchers and drug developers.</p>
+<p>Caveat: Lab binding evidence across five targets is early-stage; no peer-reviewed publication or independent replication is cited, and OpenAI is the sole source of the claims.</p>
+<p><a href="https://openai.com/index/gpt-6-models-demonstrate-intrinsic-protein-design-capabilities">OpenAI Blog</a> · <a href="https://openai.com/index/gpt-6-models-demonstrate-intrinsic-protein-design-capabilities/">Hacker News (AI)</a></p>
+<p>4. Product &amp; Tool Watch: Anthropic hits 700M monthly MCP downloads and ships Claude Artifacts as desktop apps</p>
+<p>Why it matters: 700 million monthly SDK downloads makes MCP a de facto standard for agentic AI tool integration; the Artifacts-to-desktop-app pipeline lets non-developers ship functional native apps from a chat session, materially lowering the floor for software creation.</p>
+<p>Caveat: Download counts include automated CI/CD pulls and don't directly measure active developer usage; the desktop app feature's sandboxing and security model have not been independently audited.</p>
+<p><a href="https://the-decoder.com/anthropic-tops-700-million-monthly-mcp-sdk-downloads-and-expands-the-protocol-for-more-autonomous-ai-agents/">The Decoder</a> · <a href="https://the-decoder.com/anthropic-turns-claude-artifacts-into-standalone-desktop-apps-for-macos-and-windows/">The Decoder</a></p>
+<p>5. AI Business Watch: Jensen Huang denies Trump role in reinstatement at first Nvidia all-hands</p>
+<p>Why it matters: Huang's public contradiction of Trump's own stated involvement creates a governance and political liability overhang for Nvidia, and his refusal to establish a succession plan signals continued single-point-of-failure leadership risk.</p>
+<p>Caveat: Accounts of the all-hands come from Bloomberg, NYT, and The Handbasket — all secondhand; Nvidia has not released an official transcript.</p>
+<p><a href="https://www.theverge.com/tech/1041571/jensen-huang-all-hands-nvidia-apology">The Verge AI</a> · <a href="https://techcrunch.com/2026/11/24/in-all-hands-meeting-jensen-huang-thanks-white-house-and-says-hes-in-therapy/">TechCrunch AI</a> · <a href="https://techcrunch.com/2026/11/24/jensen-huang-still-thinks-a-succession-plan-creates-unnecessary-hierarchy/">TechCrunch AI</a> · <a href="https://arstechnica.com/tech-policy/2026/11/how-trump-and-silicon-valley-forced-nvidia-to-take-jensen-huang-back/">Ars Technica AI</a></p>
+<p>6. Policy &amp; Regulation Watch: Tidal bans AI-generated music December 9th, deleting 29 million tracks</p>
+<p>Why it matters: Tidal's hard ban — the first by a major streaming platform — sets a precedent that could pressure Spotify and Apple Music to act, and signals that AI content flooding is now severe enough to threaten platform integrity and artist trust.</p>
+<p>Caveat: Tidal's detection methodology for identifying '100 percent AI-generated' tracks has not been independently validated, raising false-positive risks for human artists using AI tools.</p>
+<p><a href="https://www.theverge.com/entertainment/1041362/tidal-ai-music-ban">The Verge AI</a> · <a href="https://arstechnica.com/ai/2026/11/tidal-will-ban-fully-ai-generated-music-on-december-9/">Ars Technica AI</a> · <a href="https://variety.com/2026/music/news/tidal-bans-ai-generated-music-1236956924/">Hacker News (AI)</a> · <a href="https://techcrunch.com/2026/11/24/tidal-to-ban-and-remove-millions-of-ai-generated-tracks-as-ai-slop-inundates-music-streaming/">TechCrunch AI</a></p>
+<p>Chapters</p>
+<p>00:00:00 Intro</p>
+<p>00:00:32 Insiders say frontier labs' unreleased...</p>
+<p>00:02:46 Anthropic stock sinks below $83 IPO price...</p>
+<p>00:04:52 GPT-6 models demonstrate intrinsic...</p>
+<p>00:06:51 Anthropic hits 700M monthly MCP downloads...</p>
+<p>00:08:28 Jensen Huang denies Trump role in...</p>
+<p>00:09:55 Tidal bans AI-generated music December...</p>
+<p>00:11:25 Outro</p>]]></description>
+            <enclosure length="17436514" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-11-25.mp3"/>
+                    <itunes:duration>726</itunes:duration>
+            <itunes:explicit>false</itunes:explicit>
+            <itunes:season>2026</itunes:season>
+            <itunes:episode>329</itunes:episode>
+            <itunes:episodeType>full</itunes:episodeType>
+            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-11-25.chapters.json" type="application/json+chapters"/>
+            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-11-25.transcript.txt" type="text/plain" language="en"/>
+            <podcast:soundbite startTime="32" duration="120">Insiders say frontier labs&apos; unreleased...</podcast:soundbite>
+            <podcast:soundbite startTime="166" duration="120">Anthropic stock sinks below $83 IPO price...</podcast:soundbite>
+            <podcast:soundbite startTime="292" duration="117">GPT-6 models demonstrate intrinsic...</podcast:soundbite>
+            <podcast:soundbite startTime="411" duration="95">Anthropic hits 700M monthly MCP downloads...</podcast:soundbite>
+            <podcast:soundbite startTime="508" duration="85">Jensen Huang denies Trump role in...</podcast:soundbite>
+            <podcast:soundbite startTime="595" duration="89">Tidal bans AI-generated music December...</podcast:soundbite>
+        </item>
         <item>
             <title><![CDATA[AI Briefing — November 24, 2026]]></title>
             <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-11-24.mp3</link>
@@ -550,60 +604,6 @@
             <podcast:soundbite startTime="292" duration="109">DeepMind&apos;s AlphaProof Code writes 3...</podcast:soundbite>
             <podcast:soundbite startTime="402" duration="102">Anthropic&apos;s Fable 5.2 completes 41...</podcast:soundbite>
             <podcast:soundbite startTime="506" duration="74">New York&apos;s AI safety law takes effect,...</podcast:soundbite>
-        </item>
-        <item>
-            <title><![CDATA[AI Briefing — November 10, 2026]]></title>
-            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-11-10.mp3</link>
-            <guid>ai-briefing-2026-11-10</guid>
-            <pubDate>Tue, 10 Nov 2026 11:29:11 GMT</pubDate>
-            <description><![CDATA[<p>Top 6 AI stories for November 10, 2026.</p>
-<p>1. Top Story: Jensen Huang spy scandal deepens with lawsuits, PR firm, and Trump comments</p>
-<p>Why it matters: The scandal now threatens Nvidia's chip export lobbying position at a critical moment for US-China AI policy, with securities litigation risk added on top of governance concerns.</p>
-<p>Caveat: No investigation findings have been released; much reporting relies on unnamed sources and the full national security picture remains classified.</p>
-<p><a href="https://www.theverge.com/ai-artificial-intelligence/1030422/nvidia-jensen-huang-ai-china-alice-huang">The Verge AI</a> · <a href="https://www.theverge.com/tech/1030446/trump-jensen-huang-press-conference">The Verge AI</a> · <a href="https://www.theverge.com/ai-artificial-intelligence/1029990/jensen-huang-the-spy-who-loved-me">The Verge AI</a> · <a href="https://www.theverge.com/ai-artificial-intelligence/1030328/what-could-china-get-from-jensen-huang">The Verge AI</a> · <a href="https://techcrunch.com/2026/11/09/jensen-huang-reportedly-engaged-a-pr-firm-with-a-history-of-handling-high-profile-sex-scandals-a-year-ago/">TechCrunch AI</a> · <a href="https://techcrunch.com/2026/11/09/a-short-seller-flagged-nvidia-ceos-ties-to-a-suspected-chinese-spy-six-months-before-the-scandal/">TechCrunch AI</a> · <a href="https://techcrunch.com/2026/11/09/the-race-is-on-to-sue-nvidia/">TechCrunch AI</a> · <a href="https://techcrunch.com/2026/11/09/jensen-huang-pulls-out-of-elevenlabs-summit-amid-nvidia-controversy/">TechCrunch AI</a> · <a href="https://techcrunch.com/2026/11/09/jensen-huangs-affair-with-alleged-chinese-spy-puts-nvidias-china-ambitions-under-scrutiny/">TechCrunch AI</a> · <a href="https://arstechnica.com/tech-policy/2026/11/ceo-jensen-huang-admits-affair-as-nvidia-probes-possible-chinese-espionage/">Ars Technica AI</a> · <a href="https://the-decoder.com/nvidia-espionage-scandal-weakens-huangs-lobby-against-tighter-ai-chip-export-controls/">The Decoder</a> · <a href="https://stratechery.com/2026/the-jensen-huang-story-gets-worse-washington-vs-new-york-silicon-valley/">Stratechery</a></p>
-<p>2. Product &amp; Tool Watch: Anthropic releases Claude Fable 5.2 and Mythos 5.2 with physics breakthroughs</p>
-<p>Why it matters: The new models claim to write over 90% of Anthropic's own merged code and solve open theoretical physics problems, raising the bar for frontier coding and reasoning benchmarks just before Anthropic's IPO.</p>
-<p>Caveat: All capability claims come from Anthropic's own pre-release testing with no independent benchmark replication yet.</p>
-<p><a href="https://www.theverge.com/ai-artificial-intelligence/1030005/anthropic-claude-fable-mythos-5-2">The Verge AI</a> · <a href="https://techcrunch.com/2026/11/09/anthropic-releases-new-mythos-and-fable-models-amid-rsi-concerns/">TechCrunch AI</a> · <a href="https://the-decoder.com/claude-fable-5-2-and-mythos-5-2-cement-anthropics-ai-lead-just-before-its-ipo/">The Decoder</a> · <a href="https://simonwillison.net/2026/Nov/10/prompting-claude-fable-52/">Simon Willison</a></p>
-<p>3. AI Business Watch: Anthropic expected to set IPO valuation range this week</p>
-<p>Why it matters: The timing of the IPO announcement alongside the Fable/Mythos 5.2 launch and ongoing RSI concerns makes this a pivotal week for Anthropic's public market debut and the broader AI investment narrative.</p>
-<p>Caveat: The Wall Street Journal report does not confirm a final valuation figure; the $1.5T–$2T range remains analyst estimates.</p>
-<p><a href="https://techcrunch.com/2026/11/09/anthropic-reportedly-plans-to-move-forward-with-ipo-plans/">TechCrunch AI</a> · <a href="https://techcrunch.com/2026/11/09/anthropic-joins-ais-natural-gas-frenzy-buys-3-4b-worth-of-turbines/">TechCrunch AI</a></p>
-<p>4. Product &amp; Tool Watch: Meta releases Muse Ember, a cheap lightweight model for agent workloads</p>
-<p>Why it matters: At 10 cents per million input tokens, Ember undercuts Haiku and Luna on price for repetitive agent tasks like tool calls and routing, which represent the bulk of real-world agent compute spend.</p>
-<p>Caveat: Meta's own benchmarks show Ember falls short on actual programming tasks, limiting its use in coding-heavy agent pipelines.</p>
-<p><a href="https://techcrunch.com/2026/11/09/meta-releases-muse-ember-a-new-lightweight-model-for-agent-execution/">TechCrunch AI</a> · <a href="https://the-decoder.com/meta-launches-muse-ember-a-small-ai-model-built-for-the-repetitive-work-agents-actually-do/">The Decoder</a> · <a href="https://simonwillison.net/2026/Nov/10/muse-ember/">Simon Willison</a></p>
-<p>5. Product &amp; Tool Watch: Claude Code settings files accidentally expose thousands of secrets on GitHub</p>
-<p>Why it matters: A 'do not ask again' prompt in Claude Code is causing developers to inadvertently commit files containing passwords and API keys to public repositories, creating a live security incident for teams using AI coding tools.</p>
-<p>Caveat: The scale of exposure and whether Anthropic has issued a patch or mitigation is not confirmed in the reporting.</p>
-<p><a href="https://arstechnica.com/ai/2026/11/claude-code-settings-files-expose-thousands-of-secrets-on-github/">Ars Technica AI</a></p>
-<p>6. Product &amp; Tool Watch: Google ships four TPU variants in one year, targeting Nvidia GPU dominance</p>
-<p>Why it matters: The TPU 8tx's confidential computing capability and the TPU 8i Max's doubled compute-per-package directly address enterprise security and performance gaps that have kept some workloads on Nvidia hardware.</p>
-<p>Caveat: Google reports nearly 100 external customers but has not disclosed revenue or workload migration data to substantiate competitive impact on Nvidia.</p>
-<p><a href="https://the-decoder.com/google-ships-four-tpu-variants-in-one-year-as-it-ramps-up-competition-with-nvidia/">The Decoder</a></p>
-<p>Chapters</p>
-<p>00:00:00 Intro</p>
-<p>00:00:29 Jensen Huang spy scandal deepens with...</p>
-<p>00:03:01 Anthropic releases Claude Fable 5.2 and...</p>
-<p>00:05:01 Anthropic expected to set IPO valuation...</p>
-<p>00:06:44 Meta releases Muse Ember, a cheap...</p>
-<p>00:08:08 Claude Code settings files accidentally...</p>
-<p>00:09:41 Google ships four TPU variants in one...</p>
-<p>00:11:14 Outro</p>]]></description>
-            <enclosure length="17136993" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-11-10.mp3"/>
-                    <itunes:duration>714</itunes:duration>
-            <itunes:explicit>false</itunes:explicit>
-            <itunes:season>2026</itunes:season>
-            <itunes:episode>314</itunes:episode>
-            <itunes:episodeType>full</itunes:episodeType>
-            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-11-10.chapters.json" type="application/json+chapters"/>
-            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-11-10.transcript.txt" type="text/plain" language="en"/>
-            <podcast:soundbite startTime="29" duration="120">Jensen Huang spy scandal deepens with...</podcast:soundbite>
-            <podcast:soundbite startTime="181" duration="119">Anthropic releases Claude Fable 5.2 and...</podcast:soundbite>
-            <podcast:soundbite startTime="301" duration="101">Anthropic expected to set IPO valuation...</podcast:soundbite>
-            <podcast:soundbite startTime="404" duration="82">Meta releases Muse Ember, a cheap...</podcast:soundbite>
-            <podcast:soundbite startTime="488" duration="92">Claude Code settings files accidentally...</podcast:soundbite>
-            <podcast:soundbite startTime="581" duration="91">Google ships four TPU variants in one...</podcast:soundbite>
         </item>
     </channel>
 </rss>

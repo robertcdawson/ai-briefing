@@ -1,0 +1,46 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — November 25, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 32,
+      "title": "Intro"
+    },
+    {
+      "startTime": 32,
+      "endTime": 166,
+      "title": "Insiders say frontier labs' unreleased..."
+    },
+    {
+      "startTime": 166,
+      "endTime": 292,
+      "title": "Anthropic stock sinks below $83 IPO price..."
+    },
+    {
+      "startTime": 292,
+      "endTime": 411,
+      "title": "GPT-6 models demonstrate intrinsic..."
+    },
+    {
+      "startTime": 411,
+      "endTime": 508,
+      "title": "Anthropic hits 700M monthly MCP downloads..."
+    },
+    {
+      "startTime": 508,
+      "endTime": 595,
+      "title": "Jensen Huang denies Trump role in..."
+    },
+    {
+      "startTime": 595,
+      "endTime": 685,
+      "title": "Tidal bans AI-generated music December..."
+    },
+    {
+      "startTime": 685,
+      "endTime": 726,
+      "title": "Outro"
+    }
+  ]
+}

@@ -1,0 +1,246 @@
+{
+  "date": "2026-11-25",
+  "title": "AI Briefing — November 25, 2026",
+  "description": "<p>Top 6 AI stories for November 25, 2026.</p>\n<p>1. Top Story: Insiders say frontier labs' unreleased models have outgrown safety controls</p>\n<p>Why it matters: If accurate, this is the most consequential safety disclosure in the current AI cycle — internal employees at both leading labs believe their own unreleased models cannot be safely controlled, and release decisions are being actively debated internally.</p>\n<p>Caveat: The Axios report relies on anonymous insiders, and neither OpenAI nor Anthropic has confirmed the characterization or the internal debate details.</p>\n<p><a href=\"https://the-decoder.com/dozens-of-insiders-say-openai-and-anthropics-unreleased-models-have-outgrown-their-safety-measures/\">The Decoder</a></p>\n<p>2. AI Business Watch: Anthropic stock sinks below $83 IPO price within days of debut</p>\n<p>Why it matters: A rapid post-IPO collapse at the most-watched AI lab listing signals that public markets may be repricing frontier AI valuations downward, with potential ripple effects on private AI startup funding rounds.</p>\n<p>Caveat: Short-term post-IPO price action is notoriously volatile and may not reflect long-term valuation trajectory; thin float and early institutional selling could explain the drop.</p>\n<p><a href=\"https://www.bloomberg.com/news/articles/2026-11-24/anthropic-breaks-below-83-ipo-price-in-premarket-trading\">Hacker News (AI)</a> · <a href=\"https://www.msn.com/en-us/money/top-stocks/anthropic-stock-sinks-below-ipo-price-why-that-s-happened-so-fast/ar-AA2i7rqa\">Hacker News (AI)</a> · <a href=\"https://techcrunch.com/2026/11/24/anthropic-shares-fall-below-ipo-price-a-worrying-sign-for-ai-startups/\">TechCrunch AI</a></p>\n<p>3. Research Breakthrough: GPT-6 models demonstrate intrinsic protein-design capabilities across five targets</p>\n<p>Why it matters: Protein design has historically required specialized tools like AlphaFold or RoseTTAFold; if GPT-6 can perform this via general reasoning and code, it collapses the barrier between general-purpose LLMs and structural biology workflows for researchers and drug developers.</p>\n<p>Caveat: Lab binding evidence across five targets is early-stage; no peer-reviewed publication or independent replication is cited, and OpenAI is the sole source of the claims.</p>\n<p><a href=\"https://openai.com/index/gpt-6-models-demonstrate-intrinsic-protein-design-capabilities\">OpenAI Blog</a> · <a href=\"https://openai.com/index/gpt-6-models-demonstrate-intrinsic-protein-design-capabilities/\">Hacker News (AI)</a></p>\n<p>4. Product &amp; Tool Watch: Anthropic hits 700M monthly MCP downloads and ships Claude Artifacts as desktop apps</p>\n<p>Why it matters: 700 million monthly SDK downloads makes MCP a de facto standard for agentic AI tool integration; the Artifacts-to-desktop-app pipeline lets non-developers ship functional native apps from a chat session, materially lowering the floor for software creation.</p>\n<p>Caveat: Download counts include automated CI/CD pulls and don't directly measure active developer usage; the desktop app feature's sandboxing and security model have not been independently audited.</p>\n<p><a href=\"https://the-decoder.com/anthropic-tops-700-million-monthly-mcp-sdk-downloads-and-expands-the-protocol-for-more-autonomous-ai-agents/\">The Decoder</a> · <a href=\"https://the-decoder.com/anthropic-turns-claude-artifacts-into-standalone-desktop-apps-for-macos-and-windows/\">The Decoder</a></p>\n<p>5. AI Business Watch: Jensen Huang denies Trump role in reinstatement at first Nvidia all-hands</p>\n<p>Why it matters: Huang's public contradiction of Trump's own stated involvement creates a governance and political liability overhang for Nvidia, and his refusal to establish a succession plan signals continued single-point-of-failure leadership risk.</p>\n<p>Caveat: Accounts of the all-hands come from Bloomberg, NYT, and The Handbasket — all secondhand; Nvidia has not released an official transcript.</p>\n<p><a href=\"https://www.theverge.com/tech/1041571/jensen-huang-all-hands-nvidia-apology\">The Verge AI</a> · <a href=\"https://techcrunch.com/2026/11/24/in-all-hands-meeting-jensen-huang-thanks-white-house-and-says-hes-in-therapy/\">TechCrunch AI</a> · <a href=\"https://techcrunch.com/2026/11/24/jensen-huang-still-thinks-a-succession-plan-creates-unnecessary-hierarchy/\">TechCrunch AI</a> · <a href=\"https://arstechnica.com/tech-policy/2026/11/how-trump-and-silicon-valley-forced-nvidia-to-take-jensen-huang-back/\">Ars Technica AI</a></p>\n<p>6. Policy &amp; Regulation Watch: Tidal bans AI-generated music December 9th, deleting 29 million tracks</p>\n<p>Why it matters: Tidal's hard ban — the first by a major streaming platform — sets a precedent that could pressure Spotify and Apple Music to act, and signals that AI content flooding is now severe enough to threaten platform integrity and artist trust.</p>\n<p>Caveat: Tidal's detection methodology for identifying '100 percent AI-generated' tracks has not been independently validated, raising false-positive risks for human artists using AI tools.</p>\n<p><a href=\"https://www.theverge.com/entertainment/1041362/tidal-ai-music-ban\">The Verge AI</a> · <a href=\"https://arstechnica.com/ai/2026/11/tidal-will-ban-fully-ai-generated-music-on-december-9/\">Ars Technica AI</a> · <a href=\"https://variety.com/2026/music/news/tidal-bans-ai-generated-music-1236956924/\">Hacker News (AI)</a> · <a href=\"https://techcrunch.com/2026/11/24/tidal-to-ban-and-remove-millions-of-ai-generated-tracks-as-ai-slop-inundates-music-streaming/\">TechCrunch AI</a></p>\n<p>Chapters</p>\n<p>00:00:00 Intro</p>\n<p>00:00:32 Insiders say frontier labs' unreleased...</p>\n<p>00:02:46 Anthropic stock sinks below $83 IPO price...</p>\n<p>00:04:52 GPT-6 models demonstrate intrinsic...</p>\n<p>00:06:51 Anthropic hits 700M monthly MCP downloads...</p>\n<p>00:08:28 Jensen Huang denies Trump role in...</p>\n<p>00:09:55 Tidal bans AI-generated music December...</p>\n<p>00:11:25 Outro</p>",
+  "durationSeconds": 726,
+  "byteLength": 17436514,
+  "pubDate": "2026-11-25T11:33:56.514Z",
+  "season": 2026,
+  "episodeNumber": 329,
+  "chaptersFilename": "2026-11-25.chapters.json",
+  "transcriptFilename": "2026-11-25.transcript.txt",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 32,
+      "title": "Intro"
+    },
+    {
+      "startTime": 32,
+      "endTime": 166,
+      "title": "Insiders say frontier labs' unreleased..."
+    },
+    {
+      "startTime": 166,
+      "endTime": 292,
+      "title": "Anthropic stock sinks below $83 IPO price..."
+    },
+    {
+      "startTime": 292,
+      "endTime": 411,
+      "title": "GPT-6 models demonstrate intrinsic..."
+    },
+    {
+      "startTime": 411,
+      "endTime": 508,
+      "title": "Anthropic hits 700M monthly MCP downloads..."
+    },
+    {
+      "startTime": 508,
+      "endTime": 595,
+      "title": "Jensen Huang denies Trump role in..."
+    },
+    {
+      "startTime": 595,
+      "endTime": 685,
+      "title": "Tidal bans AI-generated music December..."
+    },
+    {
+      "startTime": 685,
+      "endTime": 726,
+      "title": "Outro"
+    }
+  ],
+  "soundbites": [
+    {
+      "startTime": 32,
+      "duration": 120,
+      "title": "Insiders say frontier labs' unreleased..."
+    },
+    {
+      "startTime": 166,
+      "duration": 120,
+      "title": "Anthropic stock sinks below $83 IPO price..."
+    },
+    {
+      "startTime": 292,
+      "duration": 117,
+      "title": "GPT-6 models demonstrate intrinsic..."
+    },
+    {
+      "startTime": 411,
+      "duration": 95,
+      "title": "Anthropic hits 700M monthly MCP downloads..."
+    },
+    {
+      "startTime": 508,
+      "duration": 85,
+      "title": "Jensen Huang denies Trump role in..."
+    },
+    {
+      "startTime": 595,
+      "duration": 89,
+      "title": "Tidal bans AI-generated music December..."
+    }
+  ],
+  "curation": [
+    {
+      "canonicalKey": "openai-anthropic-unreleased-models-safety-crisis",
+      "headline": "Insiders say frontier labs' unreleased models have outgrown safety controls",
+      "whyItMatters": "If accurate, this is the most consequential safety disclosure in the current AI cycle — internal employees at both leading labs believe their own unreleased models cannot be safely controlled, and release decisions are being actively debated internally.",
+      "caveat": "The Axios report relies on anonymous insiders, and neither OpenAI nor Anthropic has confirmed the characterization or the internal debate details.",
+      "importance": 92,
+      "category": "policy-regulation",
+      "stance": "If the insider accounts are accurate, this is the clearest evidence yet that capability and safety are genuinely diverging inside the leading labs.",
+      "specifics": [
+        "Dozens of employees at both OpenAI and Anthropic cited in Axios report",
+        "Both companies reportedly debating whether to halt releases or stop training",
+        "Employee trust in leadership described as actively eroding at both firms",
+        "Unreleased frontier models said to have 'outgrown their own safety measures'"
+      ]
+    },
+    {
+      "canonicalKey": "anthropic-ipo-below-price",
+      "headline": "Anthropic stock sinks below $83 IPO price within days of debut",
+      "whyItMatters": "A rapid post-IPO collapse at the most-watched AI lab listing signals that public markets may be repricing frontier AI valuations downward, with potential ripple effects on private AI startup funding rounds.",
+      "caveat": "Short-term post-IPO price action is notoriously volatile and may not reflect long-term valuation trajectory; thin float and early institutional selling could explain the drop.",
+      "importance": 82,
+      "category": "business",
+      "stance": "The IPO pop I called out Monday was always on borrowed time; the repricing this fast suggests public markets are applying scrutiny private rounds never had to face.",
+      "specifics": [
+        "Anthropic priced IPO at $83 per share, opened at $111.50 on Nasdaq",
+        "Stock broke below $83 IPO price in premarket trading within days",
+        "TechCrunch calls the slump 'a worrying sign for AI startups' broadly",
+        "Hacker News thread on the drop drew 766 comments, indicating high investor anxiety"
+      ]
+    },
+    {
+      "canonicalKey": "gpt6-protein-design-capabilities",
+      "headline": "GPT-6 models demonstrate intrinsic protein-design capabilities across five targets",
+      "whyItMatters": "Protein design has historically required specialized tools like AlphaFold or RoseTTAFold; if GPT-6 can perform this via general reasoning and code, it collapses the barrier between general-purpose LLMs and structural biology workflows for researchers and drug developers.",
+      "caveat": "Lab binding evidence across five targets is early-stage; no peer-reviewed publication or independent replication is cited, and OpenAI is the sole source of the claims.",
+      "importance": 80,
+      "category": "research",
+      "stance": "Interesting enough to track closely, but a single-source self-published announcement with no peer review isn't a result I'd reorganize a research pipeline around yet.",
+      "specifics": [
+        "GPT-6 designed protein structures and sequences using reasoning and code generation",
+        "Lab tests found evidence of binding across five distinct protein targets",
+        "OpenAI Blog published the announcement with no third-party validation cited",
+        "Hacker News post drew 276 points and 85 comments, signaling strong researcher interest"
+      ]
+    },
+    {
+      "canonicalKey": "anthropic-mcp-700m-downloads-artifacts-desktop",
+      "headline": "Anthropic hits 700M monthly MCP downloads and ships Claude Artifacts as desktop apps",
+      "whyItMatters": "700 million monthly SDK downloads makes MCP a de facto standard for agentic AI tool integration; the Artifacts-to-desktop-app pipeline lets non-developers ship functional native apps from a chat session, materially lowering the floor for software creation.",
+      "caveat": "Download counts include automated CI/CD pulls and don't directly measure active developer usage; the desktop app feature's sandboxing and security model have not been independently audited.",
+      "importance": 74,
+      "category": "product-tools",
+      "stance": "The Artifacts-to-desktop-app pipeline is a real floor-lowering moment for software creation; the MCP download number is a signal of ecosystem momentum, not a headcount.",
+      "specifics": [
+        "Anthropic reports over 700 million monthly MCP SDK downloads, two years after launch",
+        "New MCP features include background tasks, follow-up user questions, and file uploads",
+        "Claude Artifacts can now be installed as native desktop apps on macOS and Windows",
+        "Free accounts are sufficient to build and install desktop apps, no paid tier required",
+        "New MCP capabilities designed to let Claude operate more independently between user interactions"
+      ]
+    },
+    {
+      "canonicalKey": "jensen-huang-all-hands-trump-denial",
+      "headline": "Jensen Huang denies Trump role in reinstatement at first Nvidia all-hands",
+      "whyItMatters": "Huang's public contradiction of Trump's own stated involvement creates a governance and political liability overhang for Nvidia, and his refusal to establish a succession plan signals continued single-point-of-failure leadership risk.",
+      "caveat": "Accounts of the all-hands come from Bloomberg, NYT, and The Handbasket — all secondhand; Nvidia has not released an official transcript.",
+      "importance": 72,
+      "category": "business",
+      "stance": "Huang's public denial of Trump's involvement, delivered in the same breath as thanks to the White House, is a contradiction the company has left entirely unresolved.",
+      "specifics": [
+        "Huang said Trump involvement was 'completely untrue' per reporter Marisa Kabas",
+        "Yale's Jeffrey Sonnenfeld called Nvidia a 'detriment' to US industrial might",
+        "Huang said he still opposes succession planning, calling it 'unnecessary hierarchy'",
+        "Huang thanked the White House in the same meeting he denied its role, per TechCrunch"
+      ]
+    },
+    {
+      "canonicalKey": "tidal-ai-music-ban",
+      "headline": "Tidal bans AI-generated music December 9th, deleting 29 million tracks",
+      "whyItMatters": "Tidal's hard ban — the first by a major streaming platform — sets a precedent that could pressure Spotify and Apple Music to act, and signals that AI content flooding is now severe enough to threaten platform integrity and artist trust.",
+      "caveat": "Tidal's detection methodology for identifying '100 percent AI-generated' tracks has not been independently validated, raising false-positive risks for human artists using AI tools.",
+      "importance": 68,
+      "category": "policy-regulation",
+      "stance": "Tidal's ban is more about platform integrity and artist relations than consumption data, but the detection methodology is the part that will either make or break the policy.",
+      "specifics": [
+        "Tidal will delete approximately 29 million AI-generated songs on December 9th",
+        "Platform will reject an estimated 80,000 to 85,000 AI tracks per day post-ban",
+        "96 percent of all AI-generated songs received zero streams, per Tidal music lead Robert Andersen",
+        "Tidal will still accept songs made with AI assistance, only banning fully AI-generated tracks"
+      ]
+    }
+  ],
+  "curationReport": {
+    "threshold": 45,
+    "maxStories": 6,
+    "total": 8,
+    "selectedCount": 6,
+    "droppedCount": 2,
+    "clusters": [
+      {
+        "canonicalKey": "openai-anthropic-unreleased-models-safety-crisis",
+        "category": "policy-regulation",
+        "headline": "Insiders say frontier labs' unreleased models have outgrown safety controls",
+        "importance": 92,
+        "selected": true
+      },
+      {
+        "canonicalKey": "anthropic-ipo-below-price",
+        "category": "business",
+        "headline": "Anthropic stock sinks below $83 IPO price within days of debut",
+        "importance": 82,
+        "selected": true
+      },
+      {
+        "canonicalKey": "gpt6-protein-design-capabilities",
+        "category": "research",
+        "headline": "GPT-6 models demonstrate intrinsic protein-design capabilities across five targets",
+        "importance": 80,
+        "selected": true
+      },
+      {
+        "canonicalKey": "anthropic-mcp-700m-downloads-artifacts-desktop",
+        "category": "product-tools",
+        "headline": "Anthropic hits 700M monthly MCP downloads and ships Claude Artifacts as desktop apps",
+        "importance": 74,
+        "selected": true
+      },
+      {
+        "canonicalKey": "jensen-huang-all-hands-trump-denial",
+        "category": "business",
+        "headline": "Jensen Huang denies Trump role in reinstatement at first Nvidia all-hands",
+        "importance": 72,
+        "selected": true
+      },
+      {
+        "canonicalKey": "tidal-ai-music-ban",
+        "category": "policy-regulation",
+        "headline": "Tidal bans AI-generated music December 9th, deleting 29 million tracks",
+        "importance": 68,
+        "selected": true
+      },
+      {
+        "canonicalKey": "ai-agents-everyday-task-benchmark",
+        "category": "research",
+        "headline": "New benchmark finds even best AI agents fail everyday tasks reliably and safely",
+        "importance": 65,
+        "selected": false,
+        "dropReason": "over_cap"
+      },
+      {
+        "canonicalKey": "riemann-hypothesis-ai-proof-rollout-controversy",
+        "category": "research",
+        "headline": "Anthropic researcher walks back Riemann proof announcement, stands by underlying math",
+        "importance": 63,
+        "selected": false,
+        "dropReason": "over_cap"
+      }
+    ]
+  }
+}

@@ -17,7 +17,7 @@ tags: [state, tune-page, healthcheck, verify-deploy, pipeline]
 
 ## Context
 
-The weekday run is a straight line: preflight, fetch, curate, script, ear edit, TTS, audio, publish. That sequence is a procedure. Several other decisions were not. They were independent flags, and a few of those combinations were false:
+The weekday run is a straight line: preflight, optional Gemini voice check (`assertGeminiVoiceReachable` when TTS is Gemini), fetch, curate, script, ear edit, TTS, audio, publish. That sequence is a procedure — the voice probe is part of the procedure, not a named transition in `machines.ts`. Several other decisions were not. They were independent flags, and a few of those combinations were false:
 
 - The tune page kept `dirty`, `sha`, two status lines, and a disabled button separately. A save that finished after the listener kept typing set `dirty` back to false, so the page said the morning episode would use text that never left the browser. A 409 wrote "The file changed. Loading the saved version." and the reload then cleared that sentence. Load and save could be in flight together.
 - Generation success and "listeners can fetch the episode" were easy to collapse into one ping. They are different actors. The generation job pings success for both a new episode and an already-published skip. The loud feed verifier is the only step that pings fail when the public feed still lacks today's GUID. The quiet first probe must not page.

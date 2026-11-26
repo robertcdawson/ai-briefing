@@ -1,0 +1,237 @@
+{
+  "date": "2026-11-26",
+  "title": "AI Briefing — November 26, 2026",
+  "description": "<p>Top 6 AI stories for November 26, 2026.</p>\n<p>1. Policy &amp; Regulation Watch: Nvidia halts Southeast Asia server shipments as US export controls bite</p>\n<p>Why it matters: The abrupt halt to shipments across four major Southeast Asian markets signals that the latest US export control rules are already disrupting global AI infrastructure supply chains, with cascading effects on data center financing and cloud buildouts.</p>\n<p>Caveat: The full scope of affected deals and the enforcement mechanism for detecting violations remain unclear, and some chaos may be temporary as partners seek compliance paths.</p>\n<p><a href=\"https://the-decoder.com/nvidia-halts-server-shipments-to-malaysia-singapore-thailand-and-indonesia-after-tighter-us-export-controls/\">The Decoder</a> · <a href=\"https://the-decoder.com/us-chip-access-curbs-and-anti-distillation-measures-are-reportedly-already-slowing-chinese-ai-labs/\">The Decoder</a></p>\n<p>2. Product &amp; Tool Watch: OpenAI cuts GPT-6.2 usage limits and launches enterprise Private Inference</p>\n<p>Why it matters: Tightening usage limits on the world's most-used AI models directly affects developers and power users who have built workflows around GPT-6.2, while Private Inference is a significant enterprise trust signal that could unlock sensitive workloads currently kept off OpenAI's platform.</p>\n<p>Caveat: The usage-limit cuts come from a single tweet with 276 HN points rather than an official announcement, and Private Inference's cryptographic guarantees have not been independently audited.</p>\n<p><a href=\"https://twitter.com/thsottiaux/status/2125784147889393806\">Hacker News (AI)</a> · <a href=\"https://techcrunch.com/2026/11/25/openai-says-heavy-chatgpt-users-may-hit-limits-sooner-as-it-merges-chat-and-work/\">TechCrunch AI</a> · <a href=\"https://the-decoder.com/openai-wants-companies-to-trust-it-with-sensitive-work-by-promising-not-to-look-at-their-data/\">The Decoder</a></p>\n<p>3. AI Business Watch: Amazon and Meta in talks to end two-month Muse shopping agent blockade</p>\n<p>Why it matters: Muse already commands 51 percent of all agentic shopping orders; if Amazon lifts its block, it would be the largest platform capitulation to an AI agent yet and set a precedent for how e-commerce giants negotiate with agentic intermediaries.</p>\n<p>Caveat: Talks are ongoing with no deal confirmed, and Amazon's core concern about losing ad revenue from its $68.6 billion annual ad business has not been resolved.</p>\n<p><a href=\"https://www.theverge.com/tech/1042071/meta-amazon-muse-ai-shopping-discussions\">The Verge AI</a> · <a href=\"https://techcrunch.com/2026/11/25/amazon-and-meta-reportedly-in-talks-to-lift-blockade-on-ai-agent-muse/\">TechCrunch AI</a> · <a href=\"https://the-decoder.com/amazon-and-meta-are-in-talks-to-end-the-block-on-metas-ai-shopping-agent-muse-in-amazons-online-store/\">The Decoder</a></p>\n<p>4. AI Business Watch: S&amp;P weighs Nvidia credit downgrade citing governance and key-man risks</p>\n<p>Why it matters: A credit downgrade would raise Nvidia's borrowing costs at a moment when it is financing massive infrastructure expansion, and the 'key-man' framing from a major ratings agency formally institutionalizes the leadership crisis as a financial risk.</p>\n<p>Caveat: S&amp;P has only signaled it is considering a downgrade, not confirmed one, and Nvidia's underlying revenue and cash position remain strong.</p>\n<p><a href=\"https://techcrunch.com/2026/11/25/sp-considers-nvidia-credit-downgrade-over-governance-and-key-man-risks/\">TechCrunch AI</a> · <a href=\"https://techcrunch.com/2026/11/25/jensen-huang-broke-nvidias-code-of-conduct-and-his-employees-may-not-forget-it/\">TechCrunch AI</a> · <a href=\"https://techcrunch.com/2026/11/25/the-questions-jensen-huang-and-nvidia-will-still-have-to-answer-about-megaspeed/\">TechCrunch AI</a></p>\n<p>5. Policy &amp; Regulation Watch: State AGs challenge Character.AI plan to auction 21 million users' private chats</p>\n<p>Why it matters: The case sets a precedent for whether AI companionship platforms can treat intimate user data as a liquidatable asset in bankruptcy, directly affecting how regulators and courts will treat AI-generated personal data going forward.</p>\n<p>Caveat: The legal challenge is newly filed and no court ruling has been issued; the outcome will depend heavily on how bankruptcy courts weigh privacy interests against creditor claims.</p>\n<p><a href=\"https://techcrunch.com/2026/11/25/state-ags-fight-character-ais-plan-to-auction-off-users-private-chats/\">TechCrunch AI</a> · <a href=\"https://techcrunch.com/2026/11/25/want-to-buy-your-kid-an-ai-toy-this-christmas-not-in-new-york/\">TechCrunch AI</a></p>\n<p>6. Research Breakthrough: DeepMind deploys AI agents to run Gemini experiments autonomously on its own compute</p>\n<p>Why it matters: Using AI agents to manage compute allocation and run experiments on frontier models is a meaningful step toward automated AI research pipelines, and DeepMind's explicit design choice to leave chain-of-thought untrained for oversight is a notable safety architecture decision.</p>\n<p>Caveat: Research chief Koray Kavukcuoglu says recursive self-improvement remains distant, but the lab's own assessment of that distance is not independently verifiable.</p>\n<p><a href=\"https://the-decoder.com/ai-agents-now-control-part-of-deepminds-compute-for-gemini-experiments-but-recursive-self-improvement-remains-distant/\">The Decoder</a></p>\n<p>Chapters</p>\n<p>00:00:00 Intro</p>\n<p>00:00:30 Nvidia halts Southeast Asia server...</p>\n<p>00:01:26 OpenAI cuts GPT-6.2 usage limits and...</p>\n<p>00:02:17 Amazon and Meta in talks to end two-month...</p>\n<p>00:02:56 S&amp;P weighs Nvidia credit downgrade citing...</p>\n<p>00:03:44 State AGs challenge Character.AI plan to...</p>\n<p>00:04:24 DeepMind deploys AI agents to run Gemini...</p>\n<p>00:05:10 Outro</p>",
+  "durationSeconds": 329,
+  "byteLength": 7908329,
+  "pubDate": "2026-11-26T11:34:59.203Z",
+  "season": 2026,
+  "episodeNumber": 330,
+  "chaptersFilename": "2026-11-26.chapters.json",
+  "transcriptFilename": "2026-11-26.transcript.txt",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 30,
+      "title": "Intro"
+    },
+    {
+      "startTime": 30,
+      "endTime": 86,
+      "title": "Nvidia halts Southeast Asia server..."
+    },
+    {
+      "startTime": 86,
+      "endTime": 137,
+      "title": "OpenAI cuts GPT-6.2 usage limits and..."
+    },
+    {
+      "startTime": 137,
+      "endTime": 176,
+      "title": "Amazon and Meta in talks to end two-month..."
+    },
+    {
+      "startTime": 176,
+      "endTime": 224,
+      "title": "S&P weighs Nvidia credit downgrade citing..."
+    },
+    {
+      "startTime": 224,
+      "endTime": 264,
+      "title": "State AGs challenge Character.AI plan to..."
+    },
+    {
+      "startTime": 264,
+      "endTime": 310,
+      "title": "DeepMind deploys AI agents to run Gemini..."
+    },
+    {
+      "startTime": 310,
+      "endTime": 329,
+      "title": "Outro"
+    }
+  ],
+  "soundbites": [
+    {
+      "startTime": 30,
+      "duration": 55,
+      "title": "Nvidia halts Southeast Asia server..."
+    },
+    {
+      "startTime": 86,
+      "duration": 49,
+      "title": "OpenAI cuts GPT-6.2 usage limits and..."
+    },
+    {
+      "startTime": 137,
+      "duration": 38,
+      "title": "Amazon and Meta in talks to end two-month..."
+    },
+    {
+      "startTime": 176,
+      "duration": 46,
+      "title": "S&P weighs Nvidia credit downgrade citing..."
+    },
+    {
+      "startTime": 224,
+      "duration": 39,
+      "title": "State AGs challenge Character.AI plan to..."
+    },
+    {
+      "startTime": 264,
+      "duration": 45,
+      "title": "DeepMind deploys AI agents to run Gemini..."
+    }
+  ],
+  "curation": [
+    {
+      "canonicalKey": "nvidia-export-controls-southeast-asia-shipment-halt",
+      "headline": "Nvidia halts Southeast Asia server shipments as US export controls bite",
+      "whyItMatters": "The abrupt halt to shipments across four major Southeast Asian markets signals that the latest US export control rules are already disrupting global AI infrastructure supply chains, with cascading effects on data center financing and cloud buildouts.",
+      "caveat": "The full scope of affected deals and the enforcement mechanism for detecting violations remain unclear, and some chaos may be temporary as partners seek compliance paths.",
+      "importance": 88,
+      "category": "policy-regulation",
+      "stance": "The remote-access ban slams shut the biggest loophole in export controls, just as we suspected last week.",
+      "specifics": [
+        "Nvidia told Dell and Supermicro to stop shipping servers to Malaysia, Singapore, Thailand, and Indonesia.",
+        "Dealers are already seeking buyers for thousands of B300 chips after the halt.",
+        "One cloud executive described the situation as 'sheer chaos,' per The Decoder report.",
+        "Deepseek researchers internally estimate they are up to nine months behind US models, gap widening.",
+        "US chip-access curbs and anti-distillation measures are reportedly slowing Deepseek, Moonshot AI, and Alibaba."
+      ]
+    },
+    {
+      "canonicalKey": "openai-chatgpt-usage-limits-private-inference",
+      "headline": "OpenAI cuts GPT-6.2 usage limits and launches enterprise Private Inference",
+      "whyItMatters": "Tightening usage limits on the world's most-used AI models directly affects developers and power users who have built workflows around GPT-6.2, while Private Inference is a significant enterprise trust signal that could unlock sensitive workloads currently kept off OpenAI's platform.",
+      "caveat": "The usage-limit cuts come from a single tweet with 276 HN points rather than an official announcement, and Private Inference's cryptographic guarantees have not been independently audited.",
+      "importance": 80,
+      "category": "product-tools",
+      "specifics": [
+        "OpenAI is merging Chat and Work into a single usage meter, affecting heavy ChatGPT users.",
+        "Private Inference lets companies run queries on powerful models without OpenAI accessing the data.",
+        "OpenAI is testing Private Inference as a trust feature targeting enterprise sensitive-workload customers."
+      ]
+    },
+    {
+      "canonicalKey": "meta-muse-amazon-talks-unblock",
+      "headline": "Amazon and Meta in talks to end two-month Muse shopping agent blockade",
+      "whyItMatters": "Muse already commands 51 percent of all agentic shopping orders; if Amazon lifts its block, it would be the largest platform capitulation to an AI agent yet and set a precedent for how e-commerce giants negotiate with agentic intermediaries.",
+      "caveat": "Talks are ongoing with no deal confirmed, and Amazon's core concern about losing ad revenue from its $68.6 billion annual ad business has not been resolved.",
+      "importance": 75,
+      "category": "business",
+      "specifics": [
+        "Muse commands 51 percent of all agentic shopping orders, per The Decoder.",
+        "Amazon's ad business generates $68.6 billion a year, the core sticking point in negotiations.",
+        "Talks center on product recommendation quality and impact on Amazon's advertising revenue.",
+        "Amazon blocked Muse from its platform approximately two months ago, per TechCrunch."
+      ]
+    },
+    {
+      "canonicalKey": "sp-nvidia-credit-downgrade-governance",
+      "headline": "S&P weighs Nvidia credit downgrade citing governance and key-man risks",
+      "whyItMatters": "A credit downgrade would raise Nvidia's borrowing costs at a moment when it is financing massive infrastructure expansion, and the 'key-man' framing from a major ratings agency formally institutionalizes the leadership crisis as a financial risk.",
+      "caveat": "S&P has only signaled it is considering a downgrade, not confirmed one, and Nvidia's underlying revenue and cash position remain strong.",
+      "importance": 72,
+      "category": "business",
+      "specifics": [
+        "S&P may lower Nvidia's credit rating to AA-, the fourth-highest rating, per TechCrunch.",
+        "The downgrade consideration cites both governance failures and key-man dependency on Jensen Huang.",
+        "TechCrunch reports Huang broke Nvidia's own code of conduct, with potential lasting employee trust damage."
+      ]
+    },
+    {
+      "canonicalKey": "character-ai-bankruptcy-data-auction-state-ags",
+      "headline": "State AGs challenge Character.AI plan to auction 21 million users' private chats",
+      "whyItMatters": "The case sets a precedent for whether AI companionship platforms can treat intimate user data as a liquidatable asset in bankruptcy, directly affecting how regulators and courts will treat AI-generated personal data going forward.",
+      "caveat": "The legal challenge is newly filed and no court ruling has been issued; the outcome will depend heavily on how bankruptcy courts weigh privacy interests against creditor claims.",
+      "importance": 70,
+      "category": "policy-regulation",
+      "specifics": [
+        "2.1 million of those accounts are registered to minors, state AGs noted.",
+        "Multiple state attorneys general are fighting the bankruptcy sale plan."
+      ]
+    },
+    {
+      "canonicalKey": "deepmind-ai-agents-gemini-compute-self-improvement",
+      "headline": "DeepMind deploys AI agents to run Gemini experiments autonomously on its own compute",
+      "whyItMatters": "Using AI agents to manage compute allocation and run experiments on frontier models is a meaningful step toward automated AI research pipelines, and DeepMind's explicit design choice to leave chain-of-thought untrained for oversight is a notable safety architecture decision.",
+      "caveat": "Research chief Koray Kavukcuoglu says recursive self-improvement remains distant, but the lab's own assessment of that distance is not independently verifiable.",
+      "importance": 68,
+      "category": "research",
+      "specifics": [
+        "Google DeepMind AI agents now control part of the lab's compute for Gemini experiments autonomously.",
+        "Research chief Koray Kavukcuoglu says the lab is 'still far from recursive self-improvement.'",
+        "DeepMind intentionally leaves agents' internal chains of thought untrained to keep them human-reviewable.",
+        "Kavukcuoglu measures AGI by everyday user trust rather than benchmark scores."
+      ]
+    }
+  ],
+  "curationReport": {
+    "threshold": 45,
+    "maxStories": 6,
+    "total": 8,
+    "selectedCount": 6,
+    "droppedCount": 2,
+    "clusters": [
+      {
+        "canonicalKey": "nvidia-export-controls-southeast-asia-shipment-halt",
+        "category": "policy-regulation",
+        "headline": "Nvidia halts Southeast Asia server shipments as US export controls bite",
+        "importance": 88,
+        "selected": true
+      },
+      {
+        "canonicalKey": "openai-chatgpt-usage-limits-private-inference",
+        "category": "product-tools",
+        "headline": "OpenAI cuts GPT-6.2 usage limits and launches enterprise Private Inference",
+        "importance": 80,
+        "selected": true
+      },
+      {
+        "canonicalKey": "meta-muse-amazon-talks-unblock",
+        "category": "business",
+        "headline": "Amazon and Meta in talks to end two-month Muse shopping agent blockade",
+        "importance": 75,
+        "selected": true
+      },
+      {
+        "canonicalKey": "sp-nvidia-credit-downgrade-governance",
+        "category": "business",
+        "headline": "S&P weighs Nvidia credit downgrade citing governance and key-man risks",
+        "importance": 72,
+        "selected": true
+      },
+      {
+        "canonicalKey": "character-ai-bankruptcy-data-auction-state-ags",
+        "category": "policy-regulation",
+        "headline": "State AGs challenge Character.AI plan to auction 21 million users' private chats",
+        "importance": 70,
+        "selected": true
+      },
+      {
+        "canonicalKey": "deepmind-ai-agents-gemini-compute-self-improvement",
+        "category": "research",
+        "headline": "DeepMind deploys AI agents to run Gemini experiments autonomously on its own compute",
+        "importance": 68,
+        "selected": true
+      },
+      {
+        "canonicalKey": "prismml-ternary-quantization-54gb-to-6gb",
+        "category": "open-source",
+        "headline": "PrismML compresses 27B-parameter model from 54 GB to 5.9 GB using ternary weights",
+        "importance": 62,
+        "selected": false,
+        "dropReason": "over_cap"
+      },
+      {
+        "canonicalKey": "anthropic-ai-workplace-adoption-study",
+        "category": "culture",
+        "headline": "Anthropic study finds AI workplace adoption blocked by org structure, not tool literacy",
+        "importance": 60,
+        "selected": false,
+        "dropReason": "over_cap"
+      }
+    ]
+  }
+}

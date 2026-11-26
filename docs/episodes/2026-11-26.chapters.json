@@ -1,0 +1,46 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — November 26, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 30,
+      "title": "Intro"
+    },
+    {
+      "startTime": 30,
+      "endTime": 86,
+      "title": "Nvidia halts Southeast Asia server..."
+    },
+    {
+      "startTime": 86,
+      "endTime": 137,
+      "title": "OpenAI cuts GPT-6.2 usage limits and..."
+    },
+    {
+      "startTime": 137,
+      "endTime": 176,
+      "title": "Amazon and Meta in talks to end two-month..."
+    },
+    {
+      "startTime": 176,
+      "endTime": 224,
+      "title": "S&P weighs Nvidia credit downgrade citing..."
+    },
+    {
+      "startTime": 224,
+      "endTime": 264,
+      "title": "State AGs challenge Character.AI plan to..."
+    },
+    {
+      "startTime": 264,
+      "endTime": 310,
+      "title": "DeepMind deploys AI agents to run Gemini..."
+    },
+    {
+      "startTime": 310,
+      "endTime": 329,
+      "title": "Outro"
+    }
+  ]
+}

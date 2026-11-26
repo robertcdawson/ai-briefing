@@ -4,7 +4,7 @@
         <title>AI Briefing</title>
         <link>https://robertcdawson.github.io/ai-briefing/</link>
         <description>Daily AI news briefing — the stories that matter from the last 24 hours.</description>
-        <lastBuildDate>Wed, 25 Nov 2026 11:33:56 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 26 Nov 2026 11:34:59 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -23,6 +23,60 @@
         <podcast:guid>ea8709f4-3ba2-5b7e-bcdc-e409d84a6443</podcast:guid>
         <podcast:locked owner="manatees@gmail.com">yes</podcast:locked>
         <podcast:person role="host" group="cast">Robert Dawson</podcast:person>
+        <item>
+            <title><![CDATA[AI Briefing — November 26, 2026]]></title>
+            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-11-26.mp3</link>
+            <guid>ai-briefing-2026-11-26</guid>
+            <pubDate>Thu, 26 Nov 2026 11:34:59 GMT</pubDate>
+            <description><![CDATA[<p>Top 6 AI stories for November 26, 2026.</p>
+<p>1. Policy &amp; Regulation Watch: Nvidia halts Southeast Asia server shipments as US export controls bite</p>
+<p>Why it matters: The abrupt halt to shipments across four major Southeast Asian markets signals that the latest US export control rules are already disrupting global AI infrastructure supply chains, with cascading effects on data center financing and cloud buildouts.</p>
+<p>Caveat: The full scope of affected deals and the enforcement mechanism for detecting violations remain unclear, and some chaos may be temporary as partners seek compliance paths.</p>
+<p><a href="https://the-decoder.com/nvidia-halts-server-shipments-to-malaysia-singapore-thailand-and-indonesia-after-tighter-us-export-controls/">The Decoder</a> · <a href="https://the-decoder.com/us-chip-access-curbs-and-anti-distillation-measures-are-reportedly-already-slowing-chinese-ai-labs/">The Decoder</a></p>
+<p>2. Product &amp; Tool Watch: OpenAI cuts GPT-6.2 usage limits and launches enterprise Private Inference</p>
+<p>Why it matters: Tightening usage limits on the world's most-used AI models directly affects developers and power users who have built workflows around GPT-6.2, while Private Inference is a significant enterprise trust signal that could unlock sensitive workloads currently kept off OpenAI's platform.</p>
+<p>Caveat: The usage-limit cuts come from a single tweet with 276 HN points rather than an official announcement, and Private Inference's cryptographic guarantees have not been independently audited.</p>
+<p><a href="https://twitter.com/thsottiaux/status/2125784147889393806">Hacker News (AI)</a> · <a href="https://techcrunch.com/2026/11/25/openai-says-heavy-chatgpt-users-may-hit-limits-sooner-as-it-merges-chat-and-work/">TechCrunch AI</a> · <a href="https://the-decoder.com/openai-wants-companies-to-trust-it-with-sensitive-work-by-promising-not-to-look-at-their-data/">The Decoder</a></p>
+<p>3. AI Business Watch: Amazon and Meta in talks to end two-month Muse shopping agent blockade</p>
+<p>Why it matters: Muse already commands 51 percent of all agentic shopping orders; if Amazon lifts its block, it would be the largest platform capitulation to an AI agent yet and set a precedent for how e-commerce giants negotiate with agentic intermediaries.</p>
+<p>Caveat: Talks are ongoing with no deal confirmed, and Amazon's core concern about losing ad revenue from its $68.6 billion annual ad business has not been resolved.</p>
+<p><a href="https://www.theverge.com/tech/1042071/meta-amazon-muse-ai-shopping-discussions">The Verge AI</a> · <a href="https://techcrunch.com/2026/11/25/amazon-and-meta-reportedly-in-talks-to-lift-blockade-on-ai-agent-muse/">TechCrunch AI</a> · <a href="https://the-decoder.com/amazon-and-meta-are-in-talks-to-end-the-block-on-metas-ai-shopping-agent-muse-in-amazons-online-store/">The Decoder</a></p>
+<p>4. AI Business Watch: S&amp;P weighs Nvidia credit downgrade citing governance and key-man risks</p>
+<p>Why it matters: A credit downgrade would raise Nvidia's borrowing costs at a moment when it is financing massive infrastructure expansion, and the 'key-man' framing from a major ratings agency formally institutionalizes the leadership crisis as a financial risk.</p>
+<p>Caveat: S&amp;P has only signaled it is considering a downgrade, not confirmed one, and Nvidia's underlying revenue and cash position remain strong.</p>
+<p><a href="https://techcrunch.com/2026/11/25/sp-considers-nvidia-credit-downgrade-over-governance-and-key-man-risks/">TechCrunch AI</a> · <a href="https://techcrunch.com/2026/11/25/jensen-huang-broke-nvidias-code-of-conduct-and-his-employees-may-not-forget-it/">TechCrunch AI</a> · <a href="https://techcrunch.com/2026/11/25/the-questions-jensen-huang-and-nvidia-will-still-have-to-answer-about-megaspeed/">TechCrunch AI</a></p>
+<p>5. Policy &amp; Regulation Watch: State AGs challenge Character.AI plan to auction 21 million users' private chats</p>
+<p>Why it matters: The case sets a precedent for whether AI companionship platforms can treat intimate user data as a liquidatable asset in bankruptcy, directly affecting how regulators and courts will treat AI-generated personal data going forward.</p>
+<p>Caveat: The legal challenge is newly filed and no court ruling has been issued; the outcome will depend heavily on how bankruptcy courts weigh privacy interests against creditor claims.</p>
+<p><a href="https://techcrunch.com/2026/11/25/state-ags-fight-character-ais-plan-to-auction-off-users-private-chats/">TechCrunch AI</a> · <a href="https://techcrunch.com/2026/11/25/want-to-buy-your-kid-an-ai-toy-this-christmas-not-in-new-york/">TechCrunch AI</a></p>
+<p>6. Research Breakthrough: DeepMind deploys AI agents to run Gemini experiments autonomously on its own compute</p>
+<p>Why it matters: Using AI agents to manage compute allocation and run experiments on frontier models is a meaningful step toward automated AI research pipelines, and DeepMind's explicit design choice to leave chain-of-thought untrained for oversight is a notable safety architecture decision.</p>
+<p>Caveat: Research chief Koray Kavukcuoglu says recursive self-improvement remains distant, but the lab's own assessment of that distance is not independently verifiable.</p>
+<p><a href="https://the-decoder.com/ai-agents-now-control-part-of-deepminds-compute-for-gemini-experiments-but-recursive-self-improvement-remains-distant/">The Decoder</a></p>
+<p>Chapters</p>
+<p>00:00:00 Intro</p>
+<p>00:00:30 Nvidia halts Southeast Asia server...</p>
+<p>00:01:26 OpenAI cuts GPT-6.2 usage limits and...</p>
+<p>00:02:17 Amazon and Meta in talks to end two-month...</p>
+<p>00:02:56 S&amp;P weighs Nvidia credit downgrade citing...</p>
+<p>00:03:44 State AGs challenge Character.AI plan to...</p>
+<p>00:04:24 DeepMind deploys AI agents to run Gemini...</p>
+<p>00:05:10 Outro</p>]]></description>
+            <enclosure length="7908329" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-11-26.mp3"/>
+                    <itunes:duration>329</itunes:duration>
+            <itunes:explicit>false</itunes:explicit>
+            <itunes:season>2026</itunes:season>
+            <itunes:episode>330</itunes:episode>
+            <itunes:episodeType>full</itunes:episodeType>
+            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-11-26.chapters.json" type="application/json+chapters"/>
+            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-11-26.transcript.txt" type="text/plain" language="en"/>
+            <podcast:soundbite startTime="30" duration="55">Nvidia halts Southeast Asia server...</podcast:soundbite>
+            <podcast:soundbite startTime="86" duration="49">OpenAI cuts GPT-6.2 usage limits and...</podcast:soundbite>
+            <podcast:soundbite startTime="137" duration="38">Amazon and Meta in talks to end two-month...</podcast:soundbite>
+            <podcast:soundbite startTime="176" duration="46">S&amp;P weighs Nvidia credit downgrade citing...</podcast:soundbite>
+            <podcast:soundbite startTime="224" duration="39">State AGs challenge Character.AI plan to...</podcast:soundbite>
+            <podcast:soundbite startTime="264" duration="45">DeepMind deploys AI agents to run Gemini...</podcast:soundbite>
+        </item>
         <item>
             <title><![CDATA[AI Briefing — November 25, 2026]]></title>
             <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-11-25.mp3</link>
@@ -550,60 +604,6 @@
             <podcast:soundbite startTime="254" duration="71">Anthropic used its own AI to port Claude...</podcast:soundbite>
             <podcast:soundbite startTime="327" duration="70">TSMC invests $1 billion in both Anthropic...</podcast:soundbite>
             <podcast:soundbite startTime="399" duration="68">Over 35,000 Grok-built apps exposed...</podcast:soundbite>
-        </item>
-        <item>
-            <title><![CDATA[AI Briefing — November 11, 2026]]></title>
-            <link>https://robertcdawson.github.io/ai-briefing/episodes/2026-11-11.mp3</link>
-            <guid>ai-briefing-2026-11-11</guid>
-            <pubDate>Wed, 11 Nov 2026 11:28:55 GMT</pubDate>
-            <description><![CDATA[<p>Top 6 AI stories for November 11, 2026.</p>
-<p>1. Top Story: Google releases Gemini 4 Carbon publicly with agent swarm feature</p>
-<p>Why it matters: Carbon ranks first on several benchmarks at less than half the per-task cost of competing frontier models, and its new /swarm feature for coordinated multi-agent task splitting is a meaningful architectural addition for builders designing complex pipelines.</p>
-<p>Caveat: Benchmark rankings come from Google's own reporting, and the /swarm feature is only previewed, not fully shipped.</p>
-<p><a href="https://deepmind.google/blog/gemini-4-carbon-is-now-available/">Google DeepMind</a> · <a href="https://www.theverge.com/ai-artificial-intelligence/1030787/google-gemini-4-carbon-public-rollout">The Verge AI</a> · <a href="https://the-decoder.com/gemini-4-carbon-arrives-just-in-time-to-feel-like-yesterdays-news-in-the-fastest-model-cycle-yet/">The Decoder</a> · <a href="https://simonwillison.net/2026/Nov/10/llm-gemini/">Simon Willison</a></p>
-<p>2. Product &amp; Tool Watch: Anthropic launches Claude Meetings, Sheets, and Whiteboards office suite</p>
-<p>Why it matters: Anthropic is pivoting from a pure API and coding-tool vendor to a full workplace platform, directly competing with Microsoft 365 Copilot and Google Workspace AI for knowledge-worker mindshare — a significant strategic expansion that changes the competitive landscape for enterprise AI.</p>
-<p>Caveat: No pricing, availability dates, or independent productivity benchmarks were disclosed at launch; the suite is in beta.</p>
-<p><a href="https://www.theverge.com/ai-artificial-intelligence/1030709/anthropic-has-its-own-ai-powered-office-suite-now">The Verge AI</a> · <a href="https://techcrunch.com/2026/11/10/anthropic-launches-claude-meetings-to-turn-workplace-discussions-into-plans-and-tasks/">TechCrunch AI</a> · <a href="https://the-decoder.com/anthropic-turns-claude-into-a-full-workspace-with-plugins-spreadsheets-whiteboards-and-soon-meeting-notes/">The Decoder</a> · <a href="https://claude.com/resources/articles/sheets-whiteboards-data">Hacker News (AI)</a></p>
-<p>3. AI Business Watch: Anthropic confirms $70–$78 IPO price range targeting $1.4 trillion valuation</p>
-<p>Why it matters: The confirmed price range and imminent trading date make this the largest AI-company IPO in history and a direct market signal on how public investors price frontier AI risk versus upside — a benchmark that will affect funding conditions across the entire sector.</p>
-<p>Caveat: The valuation is down from a previously expected $2 trillion, and investor skepticism about AI returns is cited as a headwind; final pricing is not yet set.</p>
-<p><a href="https://www.theverge.com/ai-artificial-intelligence/1030703/anthropic-ipo-1-4-trillion">The Verge AI</a> · <a href="https://techcrunch.com/2026/11/10/anthropic-sets-ipo-price-range-of-70-to-78-per-share-to-reach-an-implied-valuation-of-1-404-trillion/">TechCrunch AI</a> · <a href="https://techcrunch.com/2026/11/10/all-7-anthropic-founders-will-each-cash-out-about-250m-in-ipo/">TechCrunch AI</a> · <a href="https://the-decoder.com/anthropic-kicks-off-ipo-roadshow-offering-shares-at-70-to-78-and-targeting-a-trillion-dollar-valuation/">The Decoder</a></p>
-<p>4. Research Breakthrough: DeepMind's AlphaProof Code writes 3 million lines of Lean proofs to verify Signal encryption</p>
-<p>Why it matters: Automated formal verification of production cryptographic code at this scale is a qualitative leap — if it generalizes, it could fundamentally change how security-critical software is audited and how much trust engineers can place in AI-assisted code review.</p>
-<p>Caveat: The announcement covers one high-profile case study on Signal's encryption; generalizability to arbitrary codebases and the false-negative rate are not yet disclosed.</p>
-<p><a href="https://deepmind.google/blog/introducing-alphaproof-code/">Google DeepMind</a></p>
-<p>5. Research Breakthrough: Anthropic's Fable 5.2 completes 41 percent of real freelance jobs, up from 2.5 percent</p>
-<p>Why it matters: A 16x jump in real-task completion on the Remote Labor Index in one year is the most concrete quantitative signal yet that AI is approaching substitution thresholds for a meaningful slice of knowledge work — directly relevant to how builders and employers should plan workforce and tooling strategy.</p>
-<p>Caveat: The benchmark and its methodology come from Anthropic's own pre-release testing; independent replication on the Remote Labor Index has not been confirmed.</p>
-<p><a href="https://the-decoder.com/anthropics-fable-5-2-completes-41-percent-of-real-freelance-jobs-up-from-2-5-percent-a-year-ago/">The Decoder</a></p>
-<p>6. Policy &amp; Regulation Watch: New York's AI safety law takes effect, requiring OpenAI and Anthropic to register</p>
-<p>Why it matters: This is the first major US state-level AI safety enforcement regime to go live, requiring frontier labs to register, disclose safety practices, and report critical incidents — establishing a compliance precedent that other states and federal regulators will likely reference.</p>
-<p>Caveat: Enforcement details, fine structures, and what constitutes a 'critical incident' requiring disclosure have not been fully specified in reporting.</p>
-<p><a href="https://techcrunch.com/2026/11/10/openai-anthropic-face-new-oversight-as-new-yorks-ai-safety-law-takes-effect/">TechCrunch AI</a> · <a href="https://the-decoder.com/eight-countries-and-top-ai-labs-agree-to-shutdown-mechanisms-in-new-paris-declaration/">The Decoder</a></p>
-<p>Chapters</p>
-<p>00:00:00 Intro</p>
-<p>00:00:33 Google releases Gemini 4 Carbon publicly...</p>
-<p>00:02:12 Anthropic launches Claude Meetings,...</p>
-<p>00:03:29 Anthropic confirms $70–$78 IPO price...</p>
-<p>00:04:52 DeepMind's AlphaProof Code writes 3...</p>
-<p>00:06:42 Anthropic's Fable 5.2 completes 41...</p>
-<p>00:08:26 New York's AI safety law takes effect,...</p>
-<p>00:09:41 Outro</p>]]></description>
-            <enclosure length="14563461" type="audio/mpeg" url="https://robertcdawson.github.io/ai-briefing/episodes/2026-11-11.mp3"/>
-                    <itunes:duration>607</itunes:duration>
-            <itunes:explicit>false</itunes:explicit>
-            <itunes:season>2026</itunes:season>
-            <itunes:episode>315</itunes:episode>
-            <itunes:episodeType>full</itunes:episodeType>
-            <podcast:chapters url="https://robertcdawson.github.io/ai-briefing/episodes/2026-11-11.chapters.json" type="application/json+chapters"/>
-            <podcast:transcript url="https://robertcdawson.github.io/ai-briefing/episodes/2026-11-11.transcript.txt" type="text/plain" language="en"/>
-            <podcast:soundbite startTime="33" duration="97">Google releases Gemini 4 Carbon publicly...</podcast:soundbite>
-            <podcast:soundbite startTime="132" duration="76">Anthropic launches Claude Meetings,...</podcast:soundbite>
-            <podcast:soundbite startTime="209" duration="81">Anthropic confirms $70–$78 IPO price...</podcast:soundbite>
-            <podcast:soundbite startTime="292" duration="109">DeepMind&apos;s AlphaProof Code writes 3...</podcast:soundbite>
-            <podcast:soundbite startTime="402" duration="102">Anthropic&apos;s Fable 5.2 completes 41...</podcast:soundbite>
-            <podcast:soundbite startTime="506" duration="74">New York&apos;s AI safety law takes effect,...</podcast:soundbite>
         </item>
     </channel>
 </rss>

@@ -1,0 +1,78 @@
+AI Briefing — November 26, 2026
+Date: 2026-11-26
+
+Intro
+
+Nvidia has told Dell and Supermicro to stop shipping servers to Malaysia, Singapore, Thailand, and Indonesia, and the AI sector across Southeast Asia is in chaos.
+
+That halt, as of November 26, 2026, is a direct result of the latest round of US export controls — and the effects are already rippling through data center financing and cloud buildouts across the region.
+
+Policy & Regulation Watch: Nvidia halts Southeast Asia server shipments as US export controls bite
+
+Just over a week ago, we reported on the US blocking China's access to AI chips. Nvidia's abrupt decision to halt server shipments is a direct consequence of that policy shift.
+
+They instructed major partners like Dell and Supermicro to cease shipments to Southeast Asia, affecting Malaysia, Singapore, Thailand, and Indonesia. Dealers are now scrambling to sell off thousands of B300 chips already in transit.
+
+One cloud executive described the situation as 'sheer chaos.' AI research labs in the region are facing delays, with estimates suggesting they could be nine months behind US models because of these supply chain disruptions.
+
+The full scope of affected deals and how violations will actually be detected remains unclear, and some of this disruption may ease as partners find compliance paths — but the cascading effects on cloud buildouts are already real.
+Source: https://the-decoder.com/nvidia-halts-server-shipments-to-malaysia-singapore-thailand-and-indonesia-after-tighter-us-export-controls/
+Source: https://the-decoder.com/us-chip-access-curbs-and-anti-distillation-measures-are-reportedly-already-slowing-chinese-ai-labs/
+
+Product & Tool Watch: OpenAI cuts GPT-6.2 usage limits and launches enterprise Private Inference
+
+OpenAI is merging its Chat and Work usage meters, which hits heavy users of ChatGPT. At the same time, they're rolling out a new feature called Private Inference for enterprise clients.
+
+Private Inference lets companies run queries on powerful AI models without OpenAI accessing their data — a meaningful trust signal for businesses handling sensitive workloads.
+
+That said, the usage-limit news comes from a single tweet rather than an official announcement, and Private Inference's data guarantees haven't been independently audited. Developers who've built workflows around GPT-6.2 may hit limits sooner than they expect, and it's worth keeping an eye on whether the enterprise privacy promise holds up under scrutiny.
+Source: https://twitter.com/thsottiaux/status/2125784147889393806
+Source: https://techcrunch.com/2026/11/25/openai-says-heavy-chatgpt-users-may-hit-limits-sooner-as-it-merges-chat-and-work/
+Source: https://the-decoder.com/openai-wants-companies-to-trust-it-with-sensitive-work-by-promising-not-to-look-at-their-data/
+
+AI Business Watch: Amazon and Meta in talks to end two-month Muse shopping agent blockade
+
+Muse already controls over half of all agentic shopping orders, which gives Meta real leverage going into these negotiations with Amazon.
+
+The talks are reportedly focused on product recommendation quality and how that affects Amazon's advertising revenue — nearly $69 billion a year. That ad revenue concern is what triggered the blockade two months ago and hasn't been resolved yet.
+
+No deal is confirmed. But if Amazon does lift the block, it would be the biggest platform capitulation to an AI agent so far, and it would shape how e-commerce giants handle agentic intermediaries going forward.
+Source: https://www.theverge.com/tech/1042071/meta-amazon-muse-ai-shopping-discussions
+Source: https://techcrunch.com/2026/11/25/amazon-and-meta-reportedly-in-talks-to-lift-blockade-on-ai-agent-muse/
+Source: https://the-decoder.com/amazon-and-meta-are-in-talks-to-end-the-block-on-metas-ai-shopping-agent-muse-in-amazons-online-store/
+
+AI Business Watch: S&P weighs Nvidia credit downgrade citing governance and key-man risks
+
+S&P is considering downgrading Nvidia's credit rating to AA-, which would raise the company's borrowing costs at a moment when it's financing a massive infrastructure expansion.
+
+The trigger is a combination of governance concerns and dependency on CEO Jensen Huang — including reports that Huang may have violated Nvidia's own code of conduct. When a major ratings agency formally puts 'key-man risk' in writing, that institutionalizes the leadership question as a financial risk, not just a PR one.
+
+S&P hasn't confirmed a downgrade, and Nvidia's underlying revenue and cash position remain strong. But the scrutiny is real and the timing is awkward.
+Source: https://techcrunch.com/2026/11/25/sp-considers-nvidia-credit-downgrade-over-governance-and-key-man-risks/
+Source: https://techcrunch.com/2026/11/25/jensen-huang-broke-nvidias-code-of-conduct-and-his-employees-may-not-forget-it/
+Source: https://techcrunch.com/2026/11/25/the-questions-jensen-huang-and-nvidia-will-still-have-to-answer-about-megaspeed/
+
+Policy & Regulation Watch: State AGs challenge Character.AI plan to auction 21 million users' private chats
+
+Character.AI is in bankruptcy and has proposed auctioning off private user chats — 21 million users' worth, and 2.1 million of those users are minors. State attorneys general are pushing back hard.
+
+The core legal question is whether a company in bankruptcy can treat intimate user data as a liquidatable asset. Courts haven't ruled yet, and the outcome will depend on how bankruptcy judges weigh privacy interests against creditor claims.
+
+However this resolves, it's fixing to set a precedent for how AI companionship platforms handle personal data when things go sideways financially.
+Source: https://techcrunch.com/2026/11/25/state-ags-fight-character-ais-plan-to-auction-off-users-private-chats/
+Source: https://techcrunch.com/2026/11/25/want-to-buy-your-kid-an-ai-toy-this-christmas-not-in-new-york/
+
+Research Breakthrough: DeepMind deploys AI agents to run Gemini experiments autonomously on its own compute
+
+DeepMind now has AI agents managing compute resources for Gemini experiments — allocating resources and running tests without a human in the loop for each decision.
+
+One design choice stands out: the agents' chain-of-thought reasoning is deliberately left untrained, so humans can still read what the system is actually doing. That's a specific architectural bet on oversight over raw capability.
+
+Research chief Koray Kavukcuoglu says recursive self-improvement is still distant, though that's the lab's own assessment and not independently verified. What's clear is that automating the research pipeline is already happening — the question of how far it goes is still open.
+Source: https://the-decoder.com/ai-agents-now-control-part-of-deepminds-compute-for-gemini-experiments-but-recursive-self-improvement-remains-distant/
+
+Outro
+
+The Character.AI case is a good reminder that the legal infrastructure around AI is still being built in real time — courts are going to be making foundational calls about data ownership and privacy for years.
+
+That's the day. Stay curious, y'all.

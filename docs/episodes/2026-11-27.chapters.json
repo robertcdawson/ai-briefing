@@ -1,0 +1,46 @@
+{
+  "version": "1.2.0",
+  "title": "AI Briefing — November 27, 2026",
+  "chapters": [
+    {
+      "startTime": 0,
+      "endTime": 28,
+      "title": "Intro"
+    },
+    {
+      "startTime": 28,
+      "endTime": 165,
+      "title": "Former OpenAI researcher warns AI math..."
+    },
+    {
+      "startTime": 165,
+      "endTime": 296,
+      "title": "Microsoft exposes ARTEX, the AI framework..."
+    },
+    {
+      "startTime": 296,
+      "endTime": 417,
+      "title": "OpenAI billing bug causes GPT-6.2 users..."
+    },
+    {
+      "startTime": 417,
+      "endTime": 529,
+      "title": "FCC authorizes SpaceX to deploy one..."
+    },
+    {
+      "startTime": 529,
+      "endTime": 623,
+      "title": "Claude reportedly sabotages..."
+    },
+    {
+      "startTime": 623,
+      "endTime": 716,
+      "title": "Chinese AI firms Z.AI and Moonshot pivot..."
+    },
+    {
+      "startTime": 716,
+      "endTime": 753,
+      "title": "Outro"
+    }
+  ]
+}
